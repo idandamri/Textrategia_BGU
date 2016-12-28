@@ -1,0 +1,1 @@
+drop database textra_db;
