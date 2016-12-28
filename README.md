@@ -1,1 +1,0 @@
-"# Textrategia_BGU" 
