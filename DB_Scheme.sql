@@ -55,28 +55,28 @@ teacherID varchar(10) not null,
 IsMasterGroup boolean not null,
 GroupeCode varchar(20),
 primary key (GroupId),
-foreign key (teacherID ) references users(PersonalID)
+foreign key (teacherID) references users(PersonalID)
 );
 
 CREATE TABLE students_per_group
 (
 StudentId varchar(10) not null,
-foreign key (StudentId) references users(PersonalID),
 GroupId bigint unsigned not null,
-foreign key (GroupId) references users(GroupId),
-primary key (GroupId, StudentId)
+foreign key (StudentId) references users(PersonalID),
+foreign key (GroupId) references groups(GroupId),
+primary key (StudentId, GroupId)
 );
 
 CREATE TABLE mother_of_all_tables
 (
 instanceTime timestamp not null,
-studentId bigint not null,
-foreign key (StudentId) references users(PersonalID),
-taskId bigint not null,
+studentId varchar(10) not null,
+taskId bigint unsigned not null,
+Q_id bigint unsigned not null,
+A_id bigint unsigned not null,
 foreign key (taskId) references tasks(T_id),
-Q_id bigint not null,
+foreign key (studentId) references users(PersonalID),
 foreign key (Q_id) references questions(Q_id),
-A_id bigint not null,
 foreign key (A_id) references answers(A_id),
 primary key (instanceTime)
 );
