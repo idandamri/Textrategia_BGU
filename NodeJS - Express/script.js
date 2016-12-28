@@ -60,7 +60,7 @@ app.post('/login',function(req,res){
   connection.query(query, 
   					function(error, rows, fields){
   						if(error){
-							console.log("Error!!!!")
+							console.log("\n"+password+user_name+"Error!!!!\n0" + error)
 						}
 						else{
 							// res.send('done');
