@@ -36,15 +36,23 @@ A_id bigint unsigned not null,
 Q_id bigint unsigned not null,
 answer varchar(255) not null,
 isCorrect boolean not null,
-primary key (A_id)
+primary key (A_id, Q_id)
 );
 
-CREATE TABLE Tasks
+CREATE TABLE tasks
 (
 T_id bigint unsigned not null,
 T_title varchar(100) not null,
 T_description varchar(500) not null,
 primary key (T_id)
+);
+
+CREATE TABLE tasks_joined_with_questions(
+T_id bigint unsigned not null,
+Q_id bigint unsigned not null,
+foreign key (T_id) references tasks(T_id),
+foreign key (Q_id) references questions(Q_id),
+primary key (T_id, Q_id)
 );
 
 CREATE TABLE groups
@@ -78,5 +86,5 @@ foreign key (taskId) references tasks(T_id),
 foreign key (studentId) references users(PersonalID),
 foreign key (Q_id) references questions(Q_id),
 foreign key (A_id) references answers(A_id),
-primary key (instanceTime)
+primary key (A_id,Q_id,taskId,studentId)
 );
