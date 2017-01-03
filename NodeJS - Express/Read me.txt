@@ -16,5 +16,6 @@ If you're not sure to wether you have all tables or data complete the following 
 5.Run the file using the lightning button.
 6.Now open the file 'Instances for DB' in MySQL.
 7.Run the file using the lightning button.
+8.The only thing left is really checking that the tables are set and that the DB is running.
 
 You are now ready.
