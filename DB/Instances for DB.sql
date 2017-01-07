@@ -77,13 +77,13 @@ insert into students_per_group
 values(2,1234567);
 /*------------------------------------------*/
 
-/*----------- mother_of_all_tables ---------*/
-insert into mother_of_all_tables
-values(CURRENT_TIMESTAMP,1,1,1,1);
+/*----------- tasks_and_question_for_student_instances ---------*/
+insert into tasks_and_question_for_student_instances
+values(1,1,1);
 
-insert into mother_of_all_tables
-values(CURRENT_TIMESTAMP,2,1,1,3);
+insert into tasks_and_question_for_student_instances
+values(2,1,1);
 
-insert into mother_of_all_tables
-values(CURRENT_TIMESTAMP,2,1,1,1);
+insert into tasks_and_question_for_student_instances
+values(3,1,1);
 /*------------------------------------------*/
