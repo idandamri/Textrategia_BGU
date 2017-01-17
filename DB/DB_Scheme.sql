@@ -15,11 +15,11 @@ primary key (PersonalID)
 
 create table questions
 (
-Q_id bigint unsigned not null,
+Q_id bigint unsigned not null auto_increment,
 Q_qeustion varchar(500) not null,
 isMultipuleAns boolean not null,
-Q_mediaType int not null,
-Q_media varchar(255) not null,
+Q_mediaType varchar(25) not null,
+Q_media varchar(10000) not null,
 Q_correctFB varchar(500) not null,
 Q_notCorrectFB varchar(500) not null,
 Q_skill varchar(255) not null,
@@ -32,7 +32,7 @@ primary key (Q_id)
 
 create table answers
 (
-A_id bigint unsigned not null,
+A_id bigint unsigned not null auto_increment,
 Q_id bigint unsigned not null,
 answer varchar(255) not null,
 isCorrect boolean not null,
@@ -41,7 +41,7 @@ primary key (A_id, Q_id)
 
 create table tasks
 (
-T_id bigint unsigned not null,
+T_id bigint unsigned not null auto_increment,
 T_title varchar(100) not null,
 T_description varchar(500) not null,
 primary key (T_id)
@@ -57,7 +57,7 @@ primary key (T_id, Q_id)
 
 create table groups
 (
-GroupId bigint unsigned not null,
+GroupId bigint unsigned not null auto_increment,
 GroupName varchar(100) not null,
 teacherID varchar(10) not null,
 IsMasterGroup boolean not null,
