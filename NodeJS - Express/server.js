@@ -63,10 +63,13 @@ app.post('/login',function(req,res){
 							console.log("\n"+password+user_name+"Error!!!!\n0" + error)
 						}
 						else{
-							// res.send('done');
-							// res.sendFile(__dirname + '/secondpage.html');
-							res.send('secondpage');
-						}
+								console.log('Titles: ', rows[0].FirstName);
+							  	// res.send('done');
+								// res.sendFile(__dirname + '/secondpage.html');
+								if(rows[0].FirstName == user_name){
+									res.send('done');
+								}
+							}
   					});
 });
 
