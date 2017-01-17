@@ -1,43 +1,50 @@
 module.exports = 
 {
 
-	/* get groups_id for student (by id)*/
+	/* get all groups_id for some student (by id)*/
 	getGroupsIdByStudentId : function(student_id){
 		var query = "SELECT * FROM textra_db.students_per_group where StudentId ='" + student_id + "'";	
 		return query;
 	},
 
-	/*get user data*/
-	getAllDataForUser : function(user_name,password){
-		var query = "SELECT * FROM textra_db.users "+
-  				"WHERE FirstName = \'"+user_name+"\' and Pass = \'" + password+"\';";
+	/*get user data by use id and password*/
+	getDataForUserByIdOrEmail : function(user_identifier,password){
+		var query = "SELECT FirstName,LastName,School,UserType FROM textra_db.users "+
+  				"WHERE (PersonalID like \'"+user_identifier+"\' or Email like \'"+user_identifier+"\')  and Pass like \'" + password+"\';";
 		return query;
 	},
 
+
+	/*get user data by use id and password*/
+	getDataForUserById : function(id,password){
+		var query = "SELECT FirstName,LastName,School,UserType FROM textra_db.users "+
+  				"WHERE PersonalID like \'"+id+"\' and Pass like \'" + password+"\';";
+		return query;
+	},
+
+	/*get user data by use email and password*/
+	getDataForUserByEmail : function(email,password){
+		var query = "SELECT FirstName,LastName,School,UserType FROM textra_db.users "+
+  				"WHERE Email like \'"+email+"\' and Pass like \'" + password+"\';";
+		return query;
+	},
+
+	/*need to re-check!!!!! - not working*/
 	/*get all task's title for student*/
 	gelAllTaskTitleByStudentId : function (user_id){
-		var query = "SELECT T_title from tasks JOIN tasks_and_question_for_student_instances ON tasks.T_id" +
-		"= tasks_and_question_for_student_instances.taskId WHERE studentId ="
-		+ user_id + ";";
+		var query = "select tasks.T_id , tasks.T_title" + 
+					"from tasks" + 
+					"inner join" + 
+					"(select T_id" + 
+					"from question_for_student" + 
+					"where studentId =\'1\'" + 
+					"group by (studentId)" + 
+					") as t1" + 
+					"where t1.T_id like tasks.T_id;"  ;
 
 		return query;
 	},
-
-	/*get all task's title and task's id for student*/
-	gelAllTaskDataByStudentId : function (user_id){
-		/*select task_id, title from task_for_questuin_for*/
-		var query = "SELECT T_title,T_id,T_description from tasks JOIN tasks_and_question_for_student_instances ON tasks.T_id"
-		+"= tasks_and_question_for_student_instances.taskId WHERE studentId ="
-		+ user_id + ";";
-
-		return query;
-	},
-
-	getQuestionIDForTask : function (user_id,taks_id){
-		var query = "select Q_id from tasks_and_question_for_student_instances where studentId=" +user_id+ "and taskId =" +  task_id +";" ; 
-		return query;
-	},
-
+	
 	getQuestionDataForTask : function (q_id){
 		var query = 
 		"SELECT * FROM textra_db.questions where Q_id ="+ q_id +";";
@@ -46,42 +53,34 @@ module.exports =
 
 	/* 
 	*/
-	getNumberOfCorrectAnswersForTask : function (taks_id){
-		/*
-				SELECT T1.studentId,T1.taskId,T1.Q_id,T1.A_id 
-		FROM textra_db.mother_of_all_tables AS T1, textra_db.mother_of_all_tables AS T2
-		where T1.studentId=2 and T1.taskId=1	 
-		and T2.studentId=2 and T2.taskId=1
-		and T1.Q_id = T2.Q_id 
-		and T1.instanceTime > T2.instanceTime
-		;
-		*/
+	getNumberOfCorrectAnswersForTask : function (taks_id,student_id){
+		var query = 
+		"select * from" + 
+			"(select * from" +  
+			"(select *" + 
+			"from textra_db.mother_of_all_tables" +  
+			"where studentId = " + student_id + 
+			"and taskId =" + task_id + 
+			"order by instanceTime desc) as t1 /* this sort by instance time and requested value */" + 
+			"group by studentId,taskId,Q_id) as t2 /*this remove the first record (if exist)*/" + 
+	    "inner join textra_db.answers /*in order to check if the answer is correctanswers*/" +
+	    "on textra_db.answers.Q_id= t2.Q_id" + 
+	    "and textra_db.answers.A_id= t2.A_id " + 
+		"and isCorrect=1;" ;
+		return query;
 	},
 	
 	getAllAnswersToQuestion : function (q_id){
 		var query = "SELECT * FROM textra_db.answers where Q_id ="+  q_id + ";" ;
+		return query;
 	},
 
 	
 	
-/*
-	updateAnsForQuestion : function (user_id,taskId,q_id){
-
-	}
-*/
-
-
-
-/*
-	getPasswordForPersonalID : function (PersonalID){
-		var query = "SELECT Pass FROM textra_db.users where FirstName='" +name + "';";	
-	}
-*/
 };
 
 /*
 private function!
 */
-
 
 /*need to add var queries = require("./queryForDB.js"); */
