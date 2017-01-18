@@ -1,13 +1,13 @@
 module.exports = 
 {
 
-	/* get all groups_id for some student (by id)*/
+	/* get all groups_id by student id*/
 	getGroupsIdByStudentId : function(student_id){
 		var query = "SELECT * FROM textra_db.students_per_group where StudentId ='" + student_id + "'";	
 		return query;
 	},
 
-	/*get user data by use id and password*/
+	/*get user data (names,school name,user type) by user identifier (id or email) and password*/
 	getDataForUserByIdOrEmail : function(user_identifier,password){
 		var query = "SELECT FirstName,LastName,School,UserType FROM textra_db.users "+
   				"WHERE (PersonalID like \'"+user_identifier+"\' or Email like \'"+user_identifier+"\')  and Pass like \'" + password+"\';";
@@ -15,43 +15,46 @@ module.exports =
 	},
 
 
-	/*get user data by use id and password*/
+	/*not in use*/
+	/*get user data (names,school name,user type) by id and password*/
 	getDataForUserById : function(id,password){
 		var query = "SELECT FirstName,LastName,School,UserType FROM textra_db.users "+
   				"WHERE PersonalID like \'"+id+"\' and Pass like \'" + password+"\';";
 		return query;
 	},
 
-	/*get user data by use email and password*/
+	/*not in use*/
+	/*get user data (names,school name,user type) by email and password*/
 	getDataForUserByEmail : function(email,password){
 		var query = "SELECT FirstName,LastName,School,UserType FROM textra_db.users "+
   				"WHERE Email like \'"+email+"\' and Pass like \'" + password+"\';";
 		return query;
 	},
 
-	/*need to re-check!!!!! - not working*/
-	/*get all task's title for student*/
+	/*get all tasks's information (id,title and description) by student id*/
 	gelAllTaskTitleByStudentId : function (user_id){
-		var query = "select tasks.T_id , tasks.T_title" + 
-					"from tasks" + 
-					"inner join" + 
-					"(select T_id" + 
-					"from question_for_student" + 
-					"where studentId =\'1\'" + 
-					"group by (studentId)" + 
-					") as t1" + 
-					"where t1.T_id like tasks.T_id;"  ;
+		var query = 
+		"select tasks.* from" + 
+		"(select T_id" + 
+		"from tasks_and_question_for_student_instances" + 
+		"where studentId like \'" + user_id +"\'" 
+		"group by (T_id)) as t1" + 
+		"inner join tasks" +
+		"on t1.T_id like tasks.T_id;";
 
 		return query;
 	},
 	
+	/*get all question data by question id*/
 	getQuestionDataForTask : function (q_id){
 		var query = 
 		"SELECT * FROM textra_db.questions where Q_id ="+ q_id +";";
 		return query;
 	},
 
-	/* 
+	/* not yet final. will update in the maraton (see notes.txt file)
+	get number of correct answer for a task by task id and student id
+	return 2 attribute - number of correct ans | number of total qustion in task
 	*/
 	getNumberOfCorrectAnswersForTask : function (taks_id,student_id){
 		var query = 

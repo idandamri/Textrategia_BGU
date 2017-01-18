@@ -1,0 +1,28 @@
+/*
+need to edit -getNumberOfCorrectAnswersForTask
+get number of correct answer for a task by task id and student id
+	return 2 attribute - number of correct ans | number of total qustion in task
+*/
+
+/*count the correct ans*/
+select count(*) numeber_of_correct_ans from ( 
+	select * from
+		(select *  
+		from textra_db.instances_of_answers   
+		where studentId like  '1' 
+		and T_id =  1 
+		order by instanceTime desc  /* this sort by instance time and requested value */  
+		) as t1
+	group by studentId,T_id,Q_id /*remove first record*/
+	) as t2 
+inner join answers /*check if the ans is correct*/
+on answers.Q_id= t2.Q_id  
+and answers.A_id= t2.A_id   
+and isCorrect=1; 
+;
+
+/*count number of question to task*/
+select count(*) as question_in_tasks
+from tasks_joined_with_questions
+where T_id = 1;
+; 
