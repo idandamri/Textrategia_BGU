@@ -79,23 +79,23 @@ create table instances_of_answers
 (
 instanceTime timestamp not null,
 studentId varchar(10) not null,
-taskId bigint unsigned not null,
+T_id bigint unsigned not null,
 Q_id bigint unsigned not null,
 A_id bigint unsigned not null,
-foreign key (taskId) references tasks(T_id),
+foreign key (T_id) references tasks(T_id),
 foreign key (studentId) references users(PersonalID),
 foreign key (Q_id) references questions(Q_id),
 foreign key (A_id) references answers(A_id),
-primary key (A_id,Q_id,taskId,studentId)
+primary key (A_id,Q_id,T_id,studentId)
 );
 
 create table tasks_and_question_for_student_instances
 (
 studentId varchar(10) not null,
-taskId bigint unsigned not null,
+T_id bigint unsigned not null,
 Q_id bigint unsigned not null,
-foreign key (taskId) references tasks(T_id),
+foreign key (T_id) references tasks(T_id),
 foreign key (studentId) references users(PersonalID),
 foreign key (Q_id) references questions(Q_id),
-primary key (Q_id,taskId,studentId)
+primary key (Q_id,T_id,studentId)
 );
