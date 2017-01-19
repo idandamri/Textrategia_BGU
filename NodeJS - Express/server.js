@@ -10,7 +10,7 @@ var connection = mysql.createConnection({
 	connectionLimit: 10000,
 	host:'localhost',
 	user:'root',
-	password:'123456',
+	password:'1q2w3e4r',
 	database:'textra_db'
 });
 
@@ -53,6 +53,7 @@ res.sendFile(__dirname + '/secondpage.html');
 app.post('/login',function(req,res){
   var user_name=req.body.user;
   var password=req.body.password;
+  console.log('\n\n!!!\n\n'+user_name + "," + password)
   console.log("User name = "+user_name+", password is "+password);
 	var query = "SELECT FirstName FROM textra_db.users "+
   				"WHERE FirstName = \'"+user_name+"\' and Pass = \'" + password+"\';";
@@ -63,12 +64,13 @@ app.post('/login',function(req,res){
 							console.log("\n"+password+user_name+"Error!!!!\n0" + error)
 						}
 						else{
-								console.log('Titles: ', rows[0].FirstName);
+								console.log(rows)
+								// console.log('Titles: ', rows[0].FirstName);
 							  	// res.send('done');
 								// res.sendFile(__dirname + '/secondpage.html');
-								if(rows[0].FirstName == user_name){
-									res.send('done');
-								}
+								// if(rows[0].FirstName == user_name){
+								// 	res.send('done');
+								// }
 							}
   					});
 });

@@ -5,7 +5,7 @@ var app = express();
 var queries = require("./queryForDB.js");
 var bodyParser = require('body-parser');
 app.use('/static', express.static(path.join(__dirname, '/client')));
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 // This responds with "Hello World" on the homepage
 
@@ -35,10 +35,10 @@ app.get('/homepage',function(req,res){
 /*get: user_id
 return: task infomation*/
 /*TO-DO: add number od q in task*/
-app.get('/getTasks', function ({body}, res) {
+app.get('/getTasks', function (req, res) {
   console.log("Got a get task request");
-  const {user_id} = body;
-  console.log(user_id);
+  var u_id = req.body.user_id;
+  console.log(u_id);
   const query = queries.gelAllTaskTitleByStudentId(user_id); /*hard coded. need to change*/
   connection.query (query , function(err,ans,field){
     if (err){
@@ -88,7 +88,9 @@ app.post('/login', function (req, res) {
   console.log("Got a login request");
   var user_name= req.body.user; /* user_name can be id or email */
   var password = req.body.password;
+    console.log('\n\n!!!\n\n'+user_name + "," + password)
   var query = queries.getDataForUserByIdOrEmail(user_name,password);
+  console.log(query);
   connection.query (query , function(err,ans,field){
     if(err)   
       console.log(err);
@@ -103,8 +105,7 @@ app.post('/login', function (req, res) {
       }
     }
  });
-
-}) 
+}); 
 
 
 app.get('/',function(req,res){
@@ -119,7 +120,7 @@ app.get('/',function(req,res){
 var connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
-  password : '123456',
+  password : '1q2w3e4r',
   database: 'textra_db'
 });
 
