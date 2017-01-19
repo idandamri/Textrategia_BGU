@@ -86,8 +86,9 @@ module.exports =
 		"from tasks_and_question_for_student_instances " + 
 		"join questions " + 
 		"on tasks_and_question_for_student_instances.T_id = " + t_id + 
-		" and tasks_and_question_for_student_instances.studentID = " + student_id + 
-		" and tasks_and_question_for_student_instances.Q_id = questions.Q_id;" ; 
+		" and tasks_and_question_for_student_instances.studentID = " + user_id + 
+		" and tasks_and_question_for_student_instances.Q_id = questions.Q_id " +
+		"limit 1;" ; 
 		return query;
 	},
 
