@@ -77,6 +77,35 @@ app.get('/getQuestion', function (req, res) {
 /*get: student_id, questio_id,task_id,answer_id
 */
 app.post('/updateAnswer', function (req, res) {
+  var s_id= req.body.s_id;
+  var t_id= req.body.t_id;
+  var q_id= req.body.q_id;
+  var a_id= req.body.a_id;
+  var query = queries.SubmitStudentsAnswerForQuestion(s_id,t_id,q_id,a_id);
+  console.log('\n'+query+'\n');
+  connection.query (query , function(err,ans,field){
+    if (err){
+      console.log(err)
+      res.send("wrong - in question request");  
+    }
+    else{
+      console.log(ans);
+      res.send(ans);
+    }
+  });
+  console.log('Ended with inserting!\n');
+  var query2 = queries.DeleteQuestionsFromInstance(s_id,t_id,q_id);
+  console.log('\n'+query2+'\n');
+  connection.query (query2 , function(err,ans,field){
+    if (err){
+      console.log(err)
+      res.send("wrong - in question request");  
+    }
+    else{
+      console.log(ans);
+      res.send(ans);
+    }
+  });
 });
 
 
@@ -88,7 +117,7 @@ app.post('/login', function (req, res) {
   console.log("Got a login request");
   var user_name= req.body.user; /* user_name can be id or email */
   var password = req.body.password;
-    console.log('\n\n!!!\n\n'+user_name + "," + password)
+    console.log('\n\nUsername:'+user_name + "\nPassword:" + password + '\n')
   var query = queries.getDataForUserByIdOrEmail(user_name,password);
   console.log(query);
   connection.query (query , function(err,ans,field){
@@ -97,7 +126,7 @@ app.post('/login', function (req, res) {
     else{
       console.log(ans);
       //res.send(row[1]);
-      if(ans!="[]"){ /*check if the resault is empty*/
+      if(ans.length > 0){ /*check if the resault is empty*/
         res.send('OK') /*change to user id*/
       }
       else {

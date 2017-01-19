@@ -3,7 +3,7 @@ module.exports =
 
 	/* get all groups_id by student id*/
 	getGroupsIdByStudentId : function(student_id){
-		var query = "SELECT * FROM textra_db.students_per_group where StudentId ='" + student_id + "'";	
+		var query = "SELEC T * FROM textra_db.students_per_group where StudentId ='" + student_id + "'";	
 		return query;
 	},
 
@@ -92,7 +92,17 @@ module.exports =
 	},
 
 	
-	
+	SubmitStudentsAnswerForQuestion : function (student_id, task_id, q_id, a_id){
+		var query = "insert into textra_db.instances_of_answers " + 
+		"values(null," + student_id + "," + task_id + "," + q_id + "," + a_id + ");\n";
+		return query;
+	},
+
+	DeleteQuestionsFromInstance : function (student_id, task_id, q_id){
+		var query = "delete from textra_db.tasks_and_question_for_student_instances where studentId like \'" + 
+		student_id + "\' and T_id = " + task_id + " and Q_id = " + q_id + ";";
+		return query;
+	},
 };
 
 /*
@@ -100,3 +110,5 @@ private function!
 */
 
 /*need to add var queries = require("./queryForDB.js"); */
+
+
