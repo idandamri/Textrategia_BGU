@@ -6,17 +6,20 @@
       $(document).ready(function(){
         var user,pass;
         $("#submit").click(function(){
+          console.log("ButtonClicked!\n")
           user=$("#user").val();
           pass=$("#password").val();
-          $.post("http://localhost:1337/login",{user: user,password: pass}, function(data){
+          $.post("http://localhost:8081/login",{user: user,password: pass}, function(data){
             if(data==='done')
               {
                 alert("Hi, " + user + "\nlogin success!");
               }
               else {
                 console.log(data);
-                // $.get("http://localhost:1337" + data);
-                window.location="http://localhost:1337/"+data;
+                $.get("/secondpagd",{user:user},function(data){
+
+                })
+                //window.location="http://localhost:8081"+data + "?;"
               }
           });
         });

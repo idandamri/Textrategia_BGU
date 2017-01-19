@@ -34,14 +34,15 @@ module.exports =
 	/*get all tasks's information (id,title and description) by student id*/
 	gelAllTaskTitleByStudentId : function (user_id){
 		var query = 
-		"select tasks.* from" + 
-		"(select T_id" + 
-		"from tasks_and_question_for_student_instances" + 
-		"where studentId like \'" + user_id +"\'" 
-		"group by (T_id)) as t1" + 
-		"inner join tasks" +
+	
+		"select tasks.* from " + 
+		"(select T_id " + 
+		"from tasks_and_question_for_student_instances " + 
+		"where studentId like \'1\' "+ 
+		"group by (T_id)) as t1 " + 
+		"inner join tasks " +
 		"on t1.T_id like tasks.T_id;";
-
+		
 		return query;
 	},
 	

@@ -1,7 +1,12 @@
 var express = require('express');
 var mysql = require('mysql');
+var path = require('path');
 var app = express();
 var queries = require("./queryForDB.js");
+var bodyParser = require('body-parser');
+app.use('/static', express.static(path.join(__dirname, 'client')));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 // This responds with "Hello World" on the homepage
 
 /*
@@ -17,40 +22,82 @@ app.get('/how_to request_from_data', function (req, res) {
 })
 */
 
-app.post('/test', function (req, res) {
-  console.log("Got a test request");
-  var ans = getTasksForStudent("1");
-  res.send (ans);
+app.get('/homepage',function(req,res){
+  res.sendFile(__dirname + '/homepage.html');
+});
+
+
+
+app.get('/getTasks', function ({body}, res) {
+  console.log("Got a get task request");
+  const {user_id} = body;
+  console.log(user_id);
+  const query = queries.gelAllTaskTitleByStudentId(user_id); /*hard coded. need to change*/
+  connection.query (query , function(err,ans,field){
+    if (err){
+      console.log(err)
+      res.send("wrong - in task request");  
+    }
+    else{
+      res.send(ans);
+    }
+  });
 
 })
+
+/*get - t_id , user_id
+return - qustion info */
+app.get('/getQuestion', function (req, res) {
+  console.log("Got a question request");
+  var user_id= req.body.user_id;
+  var t_id= req.body.t_id;
+
+  var query = queries.getQustionByTaskAndUserID(user_id,t_id); /*hard coded. need to change*/
+  connection.query (query , function(err,ans,field){
+    if (err){
+      console.log(err)
+      res.send("wrong - in question request");  
+    }
+    else{
+      res.send(ans);
+    }
+  });
+
+})
+
+/*will get user id*/
+app.post('/tasks', function (req, res) {
+
+});
 
 
 app.post('/login', function (req, res) {
   console.log("Got a login request");
-  var user_name= req.headers['username']; /* user_name can be id/email */
-  var password = req.headers['password'];
-  var ans;
-
+  var user_name= req.body.user; /* user_name can be id or email */
+  var password = req.body.password;
   var query = queries.getDataForUserByIdOrEmail(user_name,password);
   connection.query (query , function(err,ans,field){
-    if(err) 
+    if(err)   
       console.log(err);
     else{
+      console.log(ans);
       //res.send(row[1]);
       if(ans!="[]"){ /*check if the resault is empty*/
-        //res.send(ans);
-        ans = getTasksForStudent ("1");
-        /*ask for all student task before redirecting*/
-        
-        //res.redirect ('./secondpage') /*how should we do it?*/
+        res.send('OK') /*change to user id*/
       }
       else {
-        res.send("Please try Again.");
+        res.send('ERROR');
       }
     }
  });
 
 }) 
+
+
+app.get('/',function(req,res){
+  res.sendFile(__dirname + '/' + url);
+});
+
 
 
 /*
@@ -74,25 +121,6 @@ app.post('/tasks', function (req, res) {
     }
  });
 */
-
-
-
-
-
-  //res.send(chosen_task);
-
-function getTasksForStudent (studentId){
-var query = queries.gelAllTaskTitleByStudentId(studentId); /*hard coded. need to change*/
-connection.query (query , function(err,ans,field){
-  if (err){
-    console.log(err)
-    return "";
-  }
-  else{
-    return ans;
-  }
-});
-}
 
 
 

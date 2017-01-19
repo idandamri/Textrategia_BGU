@@ -7,7 +7,7 @@ function WelcomeComponent() {
 
 // Component definition
 angular.module('textrategia').component('welcomeComponent',{
-	templateUrl: 'views/welcome.html',
+	templateUrl: '/views/welcome.html',
 	controller: WelcomeComponent
 });
 
