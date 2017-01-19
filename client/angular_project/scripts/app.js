@@ -2,8 +2,10 @@
 
 // textrategia is my angular application name (OFF ALL THE MODUL)
 // [] : all the injections. the libraries I might use
-angular.module('textrategia', ['ui.router'])
+angular.module('textrategia', ['ui.router', 'snap', 'ngAnimate'])
 .config(function($stateProvider, $urlRouterProvider) {
+
+
 	$urlRouterProvider.otherwise('/welcome');
 
 	$stateProvider
@@ -13,7 +15,7 @@ angular.module('textrategia', ['ui.router'])
     })
     .state('welcome', {
     	url: '/welcome',
-    	parent: 'base',
+    	// parent: 'base',
     	template: '<welcome-component></welcome-component>'
 	});     // remove: ;)
     // .state('login', {

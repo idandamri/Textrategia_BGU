@@ -104,9 +104,6 @@ body {
 	background: #E0E2E1 !important;
 }
 
-/*#email.form-control {
-	width: (device-width)/2
-}*/
 
 tr:hover{
     background: #F1F0EE;
@@ -135,16 +132,6 @@ tr:hover{
 	position: center;
 }*/
 
-
-/* ------------------- Table ------------------- */ 
-/*not working*/
-tr nth-child(even){
-	background-color: white !important;
-}
-
-thead tr th{
-	text-align: right;
-}
 
 
 
