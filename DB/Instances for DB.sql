@@ -12,7 +12,6 @@ insert into users
 values (4,"Sturm","Arnon","BGU","Beer Sheva",1,"sturm@bgu.ac.il‬‏","123456");
 /*------------------------------------------*/
 
-
 /*-------------- tasks ---------------------*/
 insert into tasks
 values(1,"מטלת ניסוי","מטלת ניסוי לבסיס הנתונים");
