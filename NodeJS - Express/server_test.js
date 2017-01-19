@@ -31,7 +31,10 @@ app.get('/homepage',function(req,res){
 });
 
 
-
+/*GOOD*/
+/*get: user_id
+return: task infomation*/
+/*TO-DO: add number od q in task*/
 app.get('/getTasks', function ({body}, res) {
   console.log("Got a get task request");
   const {user_id} = body;
@@ -69,12 +72,18 @@ app.get('/getQuestion', function (req, res) {
 
 })
 
-/*will get user id*/
-app.post('/tasks', function (req, res) {
 
+
+/*get: student_id, questio_id,task_id,answer_id
+*/
+app.post('/updateAnswer', function (req, res) {
 });
 
 
+/*GOOD
+get :  user and password
+return : OK or ERROR
+*/
 app.post('/login', function (req, res) {
   console.log("Got a login request");
   var user_name= req.body.user; /* user_name can be id or email */
@@ -103,28 +112,6 @@ app.get('/',function(req,res){
 });
 
 
-
-/*
-app.post('/tasks', function (req, res) {
-  var chosen_task= req.headers['task'];
-  res.send(chosen_task);
-  var query = getQuestionIDForTask (someUserId,someTaskId);
-  connection.query (query , function(err,row,field){
-    if(err) 
-      console.log(err);
-    else{
-      
-      if(ans!="[]"){ //check if the resault is empty
-        ans = row;
-        //res.send(ans);
-        res.redirect ('./secondpage')
-      }
-      else {
-        res.send("Please try Again.");
-      }
-    }
- });
-*/
 
 
 
