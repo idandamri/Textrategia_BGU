@@ -45,6 +45,7 @@ module.exports =
 		
 		return query;
 	},
+
 	
 	/*get all question data by question id*/
 	getQuestionDataForTask : function (q_id){
@@ -76,6 +77,17 @@ module.exports =
 	
 	getAllAnswersToQuestion : function (q_id){
 		var query = "SELECT * FROM textra_db.answers where Q_id ="+  q_id + ";" ;
+		return query;
+	},
+
+	getQustionByTaskAndUserID(user_id,t_id){
+		var query = 
+		"select questions.* " + 
+		"from tasks_and_question_for_student_instances " + 
+		"join questions " + 
+		"on tasks_and_question_for_student_instances.T_id = " + t_id + 
+		" and tasks_and_question_for_student_instances.studentID = " + student_id + 
+		" and tasks_and_question_for_student_instances.Q_id = questions.Q_id;" ; 
 		return query;
 	},
 

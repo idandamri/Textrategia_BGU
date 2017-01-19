@@ -4,7 +4,7 @@ var path = require('path');
 var app = express();
 var queries = require("./queryForDB.js");
 var bodyParser = require('body-parser');
-app.use('/static', express.static(path.join(__dirname, 'client')));
+app.use('/static', express.static(path.join(__dirname, '/client')));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 // This responds with "Hello World" on the homepage
@@ -21,6 +21,10 @@ app.get('/how_to request_from_data', function (req, res) {
 
 })
 */
+
+app.get('/test',function(req,res){
+  res.sendFile(__dirname + '/static/client/index.html');
+});
 
 app.get('/homepage',function(req,res){
   res.sendFile(__dirname + '/homepage.html');
@@ -95,7 +99,7 @@ app.post('/login', function (req, res) {
 
 
 app.get('/',function(req,res){
-  res.sendFile(__dirname + '/' + url);
+  res.sendFile(__dirname + '/static' );
 });
 
 

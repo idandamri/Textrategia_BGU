@@ -1,0 +1,29 @@
+
+header ul {
+	list-style: none;
+	/* make sure its not a list*/
+	text-align: right;
+}
+header ul li {
+	display: inline-block;
+	background-color: #CCC;
+	padding: 15px;
+	/* space inside */
+	margin: 0 5px 0 5px;
+	/*space outside */
+}
+header ul li:hover {
+	background-color: white;
+}
+
+#c_1.container {
+	background: #E0E2E1 ;
+}
+
+body { background: #E0E2E1 !important;}
+
+#imag-logo.img-responsive {
+	position: fixed;
+    bottom: 0;
+}
+
