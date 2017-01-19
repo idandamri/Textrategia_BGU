@@ -10,7 +10,7 @@ var connection = mysql.createConnection({
 	connectionLimit: 10000,
 	host:'localhost',
 	user:'root',
-	password:'1q2w3e4r',
+	password:'123456',
 	database:'textra_db'
 });
 
@@ -73,7 +73,7 @@ app.post('/login',function(req,res){
   					});
 });
 
-app.listen(1337);
+app.listen(8081);
 
 
 
