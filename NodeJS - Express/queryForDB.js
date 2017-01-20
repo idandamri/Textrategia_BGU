@@ -75,8 +75,9 @@ module.exports =
 		return query;
 	},
 	
-	getAllAnswersToQuestion : function (q_id){
-		var query = "SELECT * FROM textra_db.answers where Q_id ="+  q_id + ";" ;
+	getNumberOfQuestionForTask (t_id){
+		var query = "select count(*) as numberOfQuestion from tasks_joined_with_questions where T_id =" +
+		t_id + ";"
 		return query;
 	},
 
