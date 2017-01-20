@@ -178,7 +178,7 @@ app.post('/login', function (req, res) {
   console.log("Got a login request");
   var user_name= req.body.user; /* user_name can be id or email */
   var password = req.body.password;
-    console.log('\n\nUsername:'+user_name + "\nPassword:" + password + '\n')
+  console.log('\n\nUsername:'+user_name + "\nPassword:" + password + '\n')
   var query = queries.getDataForUserByIdOrEmail(user_name,password);
   console.log(query);
   connection.query (query , function(err,ans,field){
@@ -240,7 +240,7 @@ app.post('/login', function (req, res) {
   var connection = mysql.createConnection({
     host     : 'localhost',
     user     : 'root',
-    password : '123456',
+    password : '1q2w3e4r',
     database: 'textra_db'
   });
 

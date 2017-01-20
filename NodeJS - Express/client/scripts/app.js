@@ -27,17 +27,17 @@ angular.module('textrategia', ['ui.router', 'snap', 'ngAnimate'])
     });
 })
 .controller('buttonController', function($scope) {
-  
 $scope.redirect = function(path){
   window.location = path;
 }
   })
 
-.controller('loginCtrl', function($scope){
+.controller('loginCtrl', function($scope,$http){
     $scope.submit = function(){
         var uname = $scope.username;
         var pass = $scope.password;
-        console.log(uname+"!!!")
+
+
         if(uname == '' || password == ''){
             alert('no pass or uname');
         }
@@ -45,7 +45,32 @@ $scope.redirect = function(path){
             if(new String(uname).valueOf() == new String('undefined').valueOf()){
                 alert('you didn\'t return an email');
             }else
-            $http.post("/login",{user: uname,password: pass}, function(data){
+            {
+                console.log(typeof (uname) );
+                console.log(typeof(pass)+"\n");
+                $http({
+                method: 'POST', 
+                url: 'login',
+                data: { 
+                        'user': uname, 
+                        'password': pass 
+                     },
+            }).then(function success(res) {
+                var json = JSON.parse(JSON.stringify(res));
+                console.log(json);
+                if(json['data']=='OK'){
+                    console.log(JSON.stringify(res));
+                    alert('Posted\n' + uname + "\n");
+                } else {
+                    console.log('bla')
+                }
+
+            },function error(data) {
+                $scope.data = data || "FALSE";
+                $scope.errorMessage = 'Something went wrong';
+            });
+
+            /*post("/login",{user: uname,password: pass}, function(data){
                 if(data=='OK')
                   {
                     alert("Hi,\nLogin success!");
@@ -54,15 +79,15 @@ $scope.redirect = function(path){
                     console.log(data);
                     alert("Username or password wrong!");
                     //window.location="http://localhost:8081"+data + "?;"
-                }
-            });
-            alert('Posted\n' + uname + "\n" + pass);
+                  }
+            });*/
+            }
         }
     }
 })
 
-// not working yet
-.controller('picController', function($scope, $sce) {
-    // var data = "bla " ;
-  $scope.imgUri  = $sce.trustAsResourceUrl("/client/pic/bottom.png");
-});
+// // not working yet
+// .controller('picController', function($scope, $sce) {
+//     // var data = "bla " ;
+//   $scope.imgUri  = $sce.trustAsResourceUrl("/pic/bottom.png");
+// });
