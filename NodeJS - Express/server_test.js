@@ -4,7 +4,7 @@
   var app = express();
   var queries = require("./queryForDB.js");
   var bodyParser = require('body-parser');
-  app.use('/static', express.static(path.join(__dirname, '/client')));
+  app.use(express.static(__dirname + '/client'));
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.json());
   // This responds with "Hello World" on the homepage
@@ -22,18 +22,23 @@
   })
   */
 
-  app.get('/test',function(req,res){
-    var query = queries.getAllAnswersToQuestion("1"); 
-    connection.query (query , function(err,ans,field){
-      if (err){
-        console.log(err);  
-      }
-      else{
-        console.log(ans);
-        res.send(ans);
+  // app.get('/test',function(req,res){
+  //   var query = queries.getAllAnswersToQuestion("1"); 
+  //   connection.query (query , function(err,ans,field){
+  //     if (err){
+  //       console.log(err);  
+  //     }
+  //     else{
+  //       console.log(ans);
+  //       res.send(ans);
         
-      }
-    }); 
+  //     }
+  //   }); 
+  // });
+
+
+  app.get('/',function(req,res){
+    res.redirect('/index.html');
   });
 
   app.get('/homepage',function(req,res){
@@ -96,7 +101,6 @@
   });
 
 
-<<<<<<< HEAD
 /*get: student_id, questio_id,task_id,answer_id
 */
 app.post('/updateAnswer', function (req, res) {
@@ -151,7 +155,11 @@ app.post('/login', function (req, res) {
       //res.send(row[1]);
       if(ans.length > 0){ /*check if the resault is empty*/
         res.send('OK') /*change to user id*/
-=======
+      }
+    }
+  });
+});
+
   /*get: student_id, questio_id,task_id,answer_id
   */
   app.post('/updateAnswer', function (req, res) {
@@ -181,7 +189,6 @@ app.post('/login', function (req, res) {
         else {
           res.send('ERROR');
         }
->>>>>>> 1af1437e86c4c5b7be294008fdb96a5bcd108fd5
       }
     });
   }); 
