@@ -37,11 +37,26 @@ $scope.redirect = function(path){
     $scope.submit = function(){
         var uname = $scope.username;
         var pass = $scope.password;
+        console.log(uname+"!!!")
         if(uname == '' || password == ''){
             alert('no pass or uname');
         }
         else{
-            alert('Welcome');
+            if(new String(uname).valueOf() == new String('undefined').valueOf()){
+                alert('you didn\'t return an email');
+            }else
+            $http.post("/login",{user: uname,password: pass}, function(data){
+                if(data=='OK')
+                  {
+                    alert("Hi,\nLogin success!");
+                  }
+                  else {
+                    console.log(data);
+                    alert("Username or password wrong!");
+                    //window.location="http://localhost:8081"+data + "?;"
+                }
+            });
+            alert('Posted\n' + uname + "\n" + pass);
         }
     }
 })
@@ -49,5 +64,5 @@ $scope.redirect = function(path){
 // not working yet
 .controller('picController', function($scope, $sce) {
     // var data = "bla " ;
-  $scope.imgUri  = $sce.trustAsResourceUrl("/pic/bottom.png");
+  $scope.imgUri  = $sce.trustAsResourceUrl("/client/pic/bottom.png");
 });

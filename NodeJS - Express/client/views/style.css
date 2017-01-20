@@ -156,3 +156,16 @@ thead tr th{
 
 }
 
+#index-bott{
+    background: url('pic/bottom.png') ;
+    
+    min-height: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.fix{
+    position:fixed;
+    bottom:0px;
+    left:50%;
+}

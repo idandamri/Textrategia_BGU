@@ -1,7 +1,6 @@
   var express = require('express');
   var mysql = require('mysql');
   var path = require('path');
-  var absorb = require('absorb');
   var app = express();
   var queries = require("./queryForDB.js");
   var bodyParser = require('body-parser');
