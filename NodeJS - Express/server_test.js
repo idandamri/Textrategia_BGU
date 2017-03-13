@@ -10,6 +10,8 @@
   app.use(bodyParser.json());
   // This responds with "Hello World" on the homepage
 
+
+
   /*
   app.get('/how_to request_from_data', function (req, res) {
      console.log("Got a GET request for the homepage");
@@ -32,20 +34,24 @@
   //     else{
   //       console.log(ans);
   //       res.send(ans);
-  app.get('/test',function(req,res){
-    var query = queries.getNumberOfQuestionForTask(1); 
-    connection.query (query , function(err,ans,field){
-      if (err){
-        console.log(err);  
-      }
-      else{
-        console.log(ans);
-        res.send(ans);
-        
-      }
-    }); 
-  });
+  // app.get('/test',function(req,res){
+  //   var query = queries.getNumberOfQuestionForTask(1);
+  //   connection.query (query , function(err,ans,field){
+  //     if (err){
+  //       console.log(err);
+  //     }
+  //     else{
+  //       console.log(ans);
+  //       res.send(ans);
+  //
+  //     }
+  //   });
+  // });
 
+
+  app.get('/testForTests',function(req,res){
+      res.send("HELLO TESTER");
+  });
 
   app.get('/',function(req,res){
     res.redirect('/index.html');
@@ -55,6 +61,19 @@
     res.sendFile(__dirname + '/homepage.html');
   });
 
+
+   app.get('/getListOfTasks',function(req,res){
+     var user_id = req.body.user_id;
+     var query = queries.gelAllTaskTitleByStudentId(user_id);
+     console.log(query)
+     connection.query(query,function (err,tasks,field) {
+       console.log(JSON.stringify(tasks));
+       if (tasks.length > 0)
+          res.status(200).json(tasks);
+       else
+         res.status(204).send(); /*empty content*/
+     });
+  });
 
   /*GOOD
   getTasks
@@ -72,7 +91,7 @@
     connection.query (query , function(err,tasks,field){
       if (err){
         console.log(err)
-        res.send("wrong - in task request");  
+        res.send("Err in task req: " + err );
       }
       else{
         t_id = tasks[0]["T_id"];
@@ -88,10 +107,11 @@
             console.log("num of question:" + numberOfQuestion);
             merge ={};
             Object.assign(merge,tasks[i],numberOfQuestion[i]);
-            console.log (merge );
+            console.log ("merge:" +merge );
             listOfmerge.push(merge);
-            // res.send(merge );
+            //res.send(merge );
           }
+          console.log("listofmerge: " + listOfmerge);
           res.send(listOfmerge);
         }
       }); 
@@ -109,27 +129,38 @@
     var user_id= req.body.user_id;
     var t_id= req.body.t_id;
 
+    var isTaskExist_query = queries.getTaskDeatils(t_id);
+
     var query = queries.getQustionByTaskAndUserID(user_id,t_id); /*hard coded. need to change*/
-    connection.query (query , function(err,listOfQuestion,field){
-      if (err){
+      console.log(query);
+      connection.query (query , function(err,listOfQuestion,field){
+      console.log("listOfQuestion.length:" + listOfQuestion.length)
+        if (err){
         console.log(err)
-        res.send("wrong - in question request");  
+        res.send("ERR in question request:" + err);
       }
-      else{
-        var q_id = listOfQuestion[0]["Q_id"];
-        console.log(q_id);
-        var query = queries.getAllAnswersToQuestion(q_id); 
-        connection.query (query , function(err,listOfAnswer,field){
-          if (err){
-           console.log(err);  
-         }
-         else{
-          console.log(listOfQuestion);
-          res.send(listOfQuestion.concat(listOfAnswer));
-          
-        }
-      }); 
+      else if (listOfQuestion.length==0){
+          res.status(204).send("No more Question for this task"); /*empty content*/
       }
+      else {
+          res.status(200).json(listOfQuestion[0]["Q_id"]);
+      }
+
+
+      //   var q_id = listOfQuestion[0]["Q_id"];
+      //   console.log(q_id);
+      //   var query = queries.getAllAnswersToQuestion(q_id);
+      //   connection.query (query , function(err,listOfAnswer,field){
+      //     if (err){
+      //      console.log(err);
+      //    }
+      //    else{
+      //     console.log(listOfQuestion);
+      //     res.send(listOfQuestion.concat(listOfAnswer));
+      //
+      //   }
+      // });
+
     });
 
   });
@@ -137,67 +168,67 @@
 
 /*get: student_id, questio_id,task_id,answer_id
 */
-app.post('/updateAnswer', function (req, res) {
-  var s_id= req.body.s_id;
-  var t_id= req.body.t_id;
-  var q_id= req.body.q_id;
-  var a_id= req.body.a_id;
-  var query = queries.SubmitStudentsAnswerForQuestion(s_id,t_id,q_id,a_id);
-  console.log('\n'+query+'\n');
-  connection.query (query , function(err,ans,field){
-    if (err){
-      console.log(err)
-      res.send("wrong - in question request");  
-    }
-    else{
-      console.log(ans);
-      res.send(ans);
-    }
+  function deleteQuestionFromQueue(s_id, t_id, q_id) {
+      var query2 = queries.DeleteQuestionsFromInstance(s_id, t_id, q_id);
+      console.log('\n' + query2 + '\n');
+      connection.query(query2, function (err, ans, field) {
+          if (err) {
+              return false;
+          }
+          else {
+            return true;
+          }
+      });
+  }
+  app.post('/updateAnswer', function (req, res) {
+      var s_id = req.body.s_id;
+      var t_id = req.body.t_id;
+      var q_id = req.body.q_id;
+      var a_id = req.body.a_id;
+      var query = queries.SubmitStudentsAnswerForQuestion(s_id, t_id, q_id, a_id);
+      //console.log('\n' + query + '\n');
+      connection.query(query, function (err, ans, field) {
+          if (err) {
+              console.log(err)
+              res.status(400).send();
+          }
+          else {
+            /*delete q from queue*/
+              console.log('Ended with inserting!\n');
+              var deleteSucceeded = deleteQuestionFromQueue(s_id, t_id, q_id, res);
+              if (deleteSucceeded)
+                  res.status(200).send();
+              else
+                  res.status(400).send();
+          }
+
+      });
   });
-  console.log('Ended with inserting!\n');
-  var query2 = queries.DeleteQuestionsFromInstance(s_id,t_id,q_id);
-  console.log('\n'+query2+'\n');
-  connection.query (query2 , function(err,ans,field){
-    if (err){
-      console.log(err)
-      res.send("wrong - in question request");  
-    }
-    else{
-      console.log(ans);
-      res.send(ans);
-    }
-  });
-});
 
 
 /*GOOD
 get :  user and password
 return : OK or ERROR
 */
-app.post('/login', function (req, res) {
-  console.log("Got a login request");
-  var user_name= req.body.user; /* user_name can be id or email */
-  var password = req.body.password;
-  console.log('\n\nUsername:'+user_name + "\nPassword:" + password + '\n')
-  var query = queries.getDataForUserByIdOrEmail(user_name,password);
-  console.log(query);
-  connection.query (query , function(err,ans,field){
-    if(err)   
-      console.log(err);
-    else{
-      console.log(ans);
-      //res.send(row[1]);
-      if(ans.length > 0){ /*check if the resault is empty*/
-        res.send('OK') /*change to user id*/
-      }
-    }
-  });
-});
-
-  /*get: student_id, questio_id,task_id,answer_id
-  */
-  app.post('/updateAnswer', function (req, res) {
-  });
+// app.post('/login', function (req, res) {
+//   console.log("Got a login request");
+//   var user_name= req.body.user; /* user_name can be id or email */
+//   var password = req.body.password;
+//   console.log('\n\nUsername:'+user_name + "\nPassword:" + password + '\n')
+//   var query = queries.getDataForUserByIdOrEmail(user_name,password);
+//   console.log(query);
+//   connection.query (query , function(err,ans,field){
+//     if(err)
+//       console.log(err);
+//     else{
+//       console.log(ans);
+//       //res.send(row[1]);
+//       if(ans.length > 0){ /*check if the resault is empty*/
+//         res.send('OK') /*change to user id*/
+//       }
+//     }
+//   });
+// });
 
 
   /*GOOD
@@ -205,32 +236,33 @@ app.post('/login', function (req, res) {
   return : OK or ERROR
   */
   app.post('/login', function (req, res) {
-    console.log("Got a login request");
     var user_name= req.body.user; /* user_name can be id or email */
     var password = req.body.password;
-    console.log('\n\n!!!\n\n'+user_name + "," + password)
+    console.log('Got a login request from: \n\n!!!\n\n'+user_name + "," + password)
     var query = queries.getDataForUserByIdOrEmail(user_name,password);
-    console.log(query);
+    console.log("This is the query: " + query);
     connection.query (query , function(err,ans,field){
       if(err)   
-        console.log(err);
+        console.log("err" + err);
       else{
-        console.log(ans);
+        console.log("ans:" + ans);
         //res.send(row[1]);
-        if(ans!="[]"){ /*check if the resault is empty*/
-          res.send('OK') /*change to user id*/
+        if(ans.length>0){ /*check if the resault is empty*/
+          res.status(200).send('OK.') /*change to user id*/
+          console.log('OK');
         }
         else {
-          res.send('ERROR');
+          res.status(401).send('ERROR');
+          console.log('ERROR \n');
         }
       }
     });
   }); 
 
 
-  app.get('/',function(req,res){
-    res.sendFile(__dirname + '/static' );
-  });
+  // app.get('/',function(req,res){
+  //   res.sendFile(__dirname + '/static' );
+  // });
 
 
 
@@ -240,16 +272,15 @@ app.post('/login', function (req, res) {
   var connection = mysql.createConnection({
     host     : 'localhost',
     user     : 'root',
-    password : '1q2w3e4r',
+    password : '123456',
     database: 'textra_db'
   });
 
-
-
-
   connection.connect(function(err) {
+    console.error(err)
     // connected! (unless `err` is set)
   });
+
 
 
 
@@ -260,3 +291,5 @@ app.post('/login', function (req, res) {
 
    console.log("Example app listening at http://%s:%s", host, port)
   });
+
+module.exports =app;

@@ -10,7 +10,7 @@ module.exports =
 	/*get user data (names,school name,user type) by user identifier (id or email) and password*/
 	getDataForUserByIdOrEmail : function(user_identifier,password){
 		var query = "SELECT FirstName,LastName,School,UserType FROM textra_db.users "+
-  				"WHERE (PersonalID like \'"+user_identifier+"\' or Email like \'"+user_identifier+"\')  and Pass like \'" + password+"\';";
+  				"WHERE (PersonalID like \'%"+user_identifier+"%\' or Email like \'%"+user_identifier+"%\')  and Pass like \'%" + password+"%\';";
 		return query;
 	},
 
@@ -38,7 +38,7 @@ module.exports =
 		"select tasks.* from " + 
 		"(select T_id " + 
 		"from tasks_and_question_for_student_instances " + 
-		"where studentId like \'1\' "+ 
+		"where studentId like \'"+ user_id +"\' " +
 		"group by (T_id)) as t1 " + 
 		"inner join tasks " +
 		"on t1.T_id like tasks.T_id;";
@@ -56,8 +56,9 @@ module.exports =
 
 	/* not yet final. will update in the maraton (see notes.txt file)
 	get number of correct answer for a task by task id and student id
-	return 2 attribute - number of correct ans | number of total qustion in task
+	*return 2 attribute - number of correct ans | number of total qustion in task
 	*/
+
 	getNumberOfCorrectAnswersForTask : function (taks_id,student_id){
 		var query = 
 		"select * from" + 
@@ -75,21 +76,21 @@ module.exports =
 		return query;
 	},
 	
-	getNumberOfQuestionForTask (t_id){
+	getNumberOfQuestionForTask :function (t_id){
 		var query = "select count(*) as numberOfQuestion from tasks_joined_with_questions where T_id =" +
 		t_id + ";"
 		return query;
 	},
 
-	getQustionByTaskAndUserID(user_id,t_id){
-		var query = 
-		"select questions.* " + 
-		"from tasks_and_question_for_student_instances " + 
-		"join questions " + 
-		"on tasks_and_question_for_student_instances.T_id = " + t_id + 
-		" and tasks_and_question_for_student_instances.studentID = " + user_id + 
+	getQustionByTaskAndUserID : function(user_id,t_id){
+		var query =
+		"select questions.* " +
+		"from tasks_and_question_for_student_instances " +
+		"join questions " +
+		"on tasks_and_question_for_student_instances.T_id = " + t_id +
+		" and tasks_and_question_for_student_instances.studentID = " + user_id +
 		" and tasks_and_question_for_student_instances.Q_id = questions.Q_id " +
-		"limit 1;" ; 
+		"limit 1;" ;
 		return query;
 	},
 
@@ -105,6 +106,13 @@ module.exports =
 		student_id + "\' and T_id = " + task_id + " and Q_id = " + q_id + ";";
 		return query;
 	},
+
+	getTaskDeatils:function (t_id) {
+		var query = "select * from textra_db.tasks where T_id like /'%" + t_id + "%'/";
+		return query;
+
+    }
+
 };
 
 /*
