@@ -51,7 +51,6 @@ describe("Testing Textrategia API",function(){
     });
 
     describe("Testing Get question",function() {
-
         it('Get Question For a Task', function (done) {
             request(app).get("/getQuestion").send({"user_id": '1', "t_id": "1"})
                 .end(function (err, res) {
@@ -93,7 +92,6 @@ describe("Testing Textrategia API",function(){
         //
         //         });
         // });
-
 
     });
 

@@ -1,4 +1,6 @@
-<div id="wrap">
+
+
+	<div id="wrap">
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -7,7 +9,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#welcome">טקסטרטגיה</a>
+      <a class="navbar-brand" href="welcome.html">טקסטרטגיה</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
@@ -17,43 +19,51 @@
       <p class="navbar-text">בהצלחה</p>
       <ul class="nav navbar-nav navbar-right">
         <li class="disabled"><a href="#"><span class="glyphicon glyphicon-user"></span> הרשם</a></li>
-        <li><a href="#login"><span class="glyphicon glyphicon-log-in"></span> התחברות</a></li>
+        <li><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> LALA</a></li>
       </ul>
     </div>
   </div>
 </nav>
+
 	
 		<div class="container" id="c_1">
+	
+
 			<br>
+
 			<h2>טקסטרטגיה</h2>
 			<h4>מתרגלים אסטרטגיות הבנה</h4>
 
+
+			<!-- <form>
+			    <label>Username:</label><input type="email" id="username" ng-model="username"/></br></br>
+			    <label></label>Password:</label><input type="password" id="password" ng-model="password"></br>
+			    <button type="submit" ng-click="submit()">login</button>
+			</form> -->
+
+
+			
+			<div ng-controller="loginCtrl">
 			<form action="" id="login-form" name="login-form">
 				<div class="form-group">
-					<label for="email">דואר אלקטרוני:</label> 
-					<input class="form-control" id="email" placeholder="הכנס כתובת דואר אלקטרוני" type="email">
+					<label>דואר אלקטרוני:</label> 
+					<input type="email" class="form-control" id="username" ng-model="username" placeholder="הכנס כתובת דואר אלקטרוני">
 				</div>
 
 				<div class="form-group">
-					<label for="pwd">סיסמא:</label> 
-					<input class="form-control" id="pwd" placeholder="הכנס סיסמא" type="password">
+					<label>סיסמא:</label> 
+					<input  class="form-control" type="password" id="password" ng-model="password" placeholder="הכנס סיסמא">
 				</div>
 
 				<div class="checkbox">
 					<label><input type="checkbox">זכור אותי</label>
-				</div>	
-				<!--<a class="btn btn-default" type="submit" href="#student">כניסה</a> -->
-				<a class="btn btn-default" type="submit" ng-click="loginClick()">כניסה</a>
+				</div>
+				<button class="btn btn-default" type="submit" ng-click="submit()">כניסה</button> 
 			</form>
-		</div>
-		<!-- <img class="img-responsive" id="imag-logo" src="pic/bottom.png"> -->
+			</div>
 
-<!-- NOT WORKING YET!!!!!!!!!!!!!!!!!!!!!!! -->
-<!--  		 <div ng-controller="picController">
-  		  <img ng-src="{{imgUri}}"/>
-	 	 </div>
-		 <img class="img-responsive" ng-src="{{myVar}}">
--->
-	
+			
+		</div>
+		<img class="img-responsive" src="/views/pic/bottom.png">
 
 </div>
