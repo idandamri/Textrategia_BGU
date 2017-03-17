@@ -3,7 +3,7 @@ var expect = require('chai').expect;
 var should = require('chai').should();
 var rewire = require('rewire');
 var app = rewire('../server_test');
-var sinon = require("sinon");
+//var sinon = require("sinon");
 
 describe("Testing Textrategia API",function(){
 
@@ -33,7 +33,7 @@ describe("Testing Textrategia API",function(){
                         throw err;
                     res.status.should.be.equal(200);
                     console.log("BODY: " + JSON.stringify(res.body));
-                    JSON.stringify(res.body).should.be.equal('[{"T_id":1,"T_title":"מטלת ניסוי","T_description":"מטלת ניסוי לבסיס הנתונים"}]')
+                    JSON.stringify(res.body).should.be.equal('[{"T_id":1,"T_title":"מטלת ניסוי","T_description":"מטלת ניסוי לבסיס הנתונים"}]');
                     done();
                 });
         });
