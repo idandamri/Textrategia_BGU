@@ -1,9 +1,9 @@
 var express = require('express');
 var mysql = require('mysql');
 var cors = require('cors');
-app.use(cors());
 var path = require('path');
 var app = express();
+app.use(cors());
 var queries = require("./queryForDB.js");
 var bodyParser = require('body-parser');
 app.use(express.static(__dirname + '/client'));

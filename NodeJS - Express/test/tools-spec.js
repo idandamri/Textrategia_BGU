@@ -3,7 +3,7 @@ var expect = require('chai').expect;
 var should = require('chai').should();
 var rewire = require('rewire');
 var app = rewire('../server_test');
-//var sinon = require("sinon");
+var sinon = require("sinon");
 
 describe("Testing Textrategia API", function () {
 
