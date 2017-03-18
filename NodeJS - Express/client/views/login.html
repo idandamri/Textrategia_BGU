@@ -11,8 +11,9 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><a href="student.html">תלמיד</a></li>
-        <li><a href="tasks.html">מטלות</a></li>
+        <!-- <li><a href="student.html">תלמיד</a></li> -->
+        <li><a href="#student">תלמיד</a></li>
+        <li><a href="#tasks">מטלות</a></li>
       </ul>
       <p class="navbar-text">בהצלחה</p>
       <ul class="nav navbar-nav navbar-right">
@@ -28,32 +29,91 @@
 			<h2>טקסטרטגיה</h2>
 			<h4>מתרגלים אסטרטגיות הבנה</h4>
 
+
+
+
+<form name="myForm">
+        <div class="login-container">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>דואר אלקטרוני:</label>
+                <input type="email" name="email" ng-model="user.username" required class="form-control" placeholder="הכנס כתובת דואר אלקטרוני">
+                <div ng-show="myForm.email.$error.email" class="error">Invalid email!</div>
+                <div ng-show="myForm.email.$error.required &amp;&amp; myForm.email.$touched" class="error">Required!</div>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>סיסמא:</label>
+                <input type="password" name="pass" ng-model="user.password" required class="form-control" placeholder="הכנס סיסמא">
+                <div ng-show="myForm.pass.$error.required &amp;&amp; myForm.pass.$touched" class="error">Required!</div>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <button ng-click="authenticate()" ng-disabled="myForm.$invalid" class="btn btn-success pull-right">כניסה</button>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div ng-show="showError" class="alert alert-danger">שם משתמש או סיסמא לא נכונים!</div>
+              <div ng-show="showSuccess" class="alert alert-success">חיבור נעשה בהצלחה!</div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+
+
+
+
+<br>
+<br>
+
+</div>
+<img class="img-responsive" id="imag-logo" src="views/pic/bottom.png">
+
+
+
+
+
+
+
+<!-- 
+
+
+
+<br><br><br><br><br><br><br><br>
 			<form action="" id="login-form" name="login-form">
 				<div class="form-group">
 					<label for="email">דואר אלקטרוני:</label> 
-					<input class="form-control" id="email" placeholder="הכנס כתובת דואר אלקטרוני" type="email">
+					<input type="text" class="form-control" id="email" placeholder="הכנס כתובת דואר אלקטרוני" type="email">
 				</div>
 
 				<div class="form-group">
-					<label for="pwd">סיסמא:</label> 
-					<input class="form-control" id="pwd" placeholder="הכנס סיסמא" type="password">
+					<label for="pwd">:</label> 
+					<input type="email" class="form-control" id="pwd" placeholder="הכנס סיסמא" type="password">
 				</div>
 
 				<div class="checkbox">
 					<label><input type="checkbox">זכור אותי</label>
 				</div>	
-				<!--<a class="btn btn-default" type="submit" href="#student">כניסה</a> -->
-				<a class="btn btn-default" type="submit" ng-click="loginClick()">כניסה</a>
+				<a class="btn btn-default" type="submit" href="#student">כניסה</a> 
+
 			</form>
-		</div>
-		<!-- <img class="img-responsive" id="imag-logo" src="pic/bottom.png"> -->
 
-<!-- NOT WORKING YET!!!!!!!!!!!!!!!!!!!!!!! -->
-<!--  		 <div ng-controller="picController">
-  		  <img ng-src="{{imgUri}}"/>
-	 	 </div>
-		 <img class="img-responsive" ng-src="{{myVar}}">
--->
-	
 
-</div>
+
+		</div> -->
+
+
+<!-- ////////////////////////////// -->
+<!--
+http://codepen.io/shridhar4/pen/ambrPq
+ http://ustutorials.com/angularjs-tutorials/angularjs-login-form-validation.php
+ good example: http://embed.plnkr.co/tg25kr/?show=preview 
+ -->
+

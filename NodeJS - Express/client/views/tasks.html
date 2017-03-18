@@ -22,36 +22,32 @@
     </div>
   </div>
 </nav>
+
 	<div id="wrap">
 		<div class="container" id="c_1">
+
 			<br>
-			<p class="lead"></p>
 			<h1>שלום, {{studentname}}!</h1>
-			<p></p>
-			<h3><em>במה נבחר היום?</em></h3><br>
+			<h3><em>לרשותך, רשימת המטלות הזמינות בפניך</em></h3>
+      <br>
 			<br>
-			<div class="container text-center">
-				<div class="row"   >
-					<div class="col-sm-3">
-						<a href="#tasks"><img alt="תרגול" class="img-circle student_actions" src="views/pic/logo2.png"></a>
-						<p><strong>מטלות</strong></p>
-					</div>
-					<div class="col-sm-3">
-						<!-- <a href="empty.html"> -->
-						<img alt="בקרוב" class="img-circle student_actions" src="views/pic/logo1.png"> <!-- </a> -->
-						<p><strong>תרגל בעצמך - בקרוב</strong></p>
-					</div>
-					<div class="col-sm-3">
-						<!-- <a href="empty.html"> -->
-						<img alt="בקרוב" class="img-circle student_actions" src="views/pic/logo2.png"> <!-- </a> -->
-						<p><strong>סטטיסטיקה - בקרוב</strong></p>
-					</div>
-
-				</div>
-			</div><br>
 
 
-			<br><br><br><br><br><br>
-		</div>
+    <div class="row">
+    	<div class="col-sm-4" ng-repeat="x in tasks">
+    		<div class="card text-center" style="width: 20rem;">
+     			<div class="card-block">
+     				<h4 class="card-title"><b>{{x.T_title}}</b></h4>
+     				<p class="card-text">{{x.T_description}}</p>
+     				<p class="card-text"> מספר שאלות: <b>{{questionSum}}</b></p>
+     				<a href="#one_question" class="btn btn-primary">התחל מטלה</a>
+     			</div>
+     		</div>
+     	</div>
+    </div>
+
 	</div>
+</div>
+
+<br><br><br><br><br>
 <img class="img-responsive" id="imag-logo" src="views/pic/bottom.png"> 
