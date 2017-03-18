@@ -90,7 +90,7 @@ module.exports =
 		"on tasks_and_question_for_student_instances.T_id = " + t_id +
 		" and tasks_and_question_for_student_instances.studentID = " + user_id +
 		" and tasks_and_question_for_student_instances.Q_id = questions.Q_id " +
-		"limit 1;" ;
+		";" ;
 		return query;
 	},
 
@@ -100,10 +100,10 @@ module.exports =
 		"values(null," + student_id + "," + task_id + "," + q_id + "," + a_id + ");\n";
 		return query;
 	},
-
+//delete from textra_db.tasks_and_question_for_student_instances where studentId like '2' and T_id = '1' and Q_id = '1'
 	DeleteQuestionsFromInstance : function (student_id, task_id, q_id){
 		var query = "delete from textra_db.tasks_and_question_for_student_instances where studentId like \'" + 
-		student_id + "\' and T_id = " + task_id + " and Q_id = " + q_id + ";";
+		student_id + "\' and T_id = \'" + task_id + "\' and Q_id = \'" + q_id + "\';";
 		return query;
 	},
 
