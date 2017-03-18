@@ -1,5 +1,5 @@
-//var _url = "http://localhost:8081";
-var _url = "http://textrategia.com";
+var _url = "http://localhost:8081";
+//var _url = "http://textrategia.com";
 
 var tasks_parsed_jason_lst = [
     {"T_id":1,"T_title":"מיניונים","T_description":"כל המיניונים הם בצבע צהוב. מדוע זאת? האם זהו ביטוי לטבעם הפחדני, או שמא מחלת עור הנובעת מאכילת יתר של בננות?"},
@@ -48,10 +48,29 @@ textrategiaApp.controller("StudentController",function($scope){
 
 
 
-textrategiaApp.controller("TasksController",function($scope){
-    $scope.tasks = tasks_parsed_jason_lst;
+textrategiaApp.controller("TasksController",function($scope,$http){
+    //$scope.tasks = tasks_parsed_jason_lst;
+          
+        var req = {
+                method: 'POST',
+                cache: false,
+                url: _url +'/getListOfTasks',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                data: 'user_id=1' /*CHANGE TO COOKIE*/
+        };  
+
+        $http(req)
+        .success(function(data,status,headers,config){
+            $scope.tasks  = data;
+        }).error(function(data,status,headers,config){
+            $scope.tasks  = data;
+        });
+
+
     $scope.questionSum = 4; //remove in future. should be a query or calculation
-    $scope.studentname = "שקד";
+    $scope.studentname = "שקד"; /*CHANGE TO COOKIE*/
 });
 
 textrategiaApp.controller("oneQuestionController", function($scope){
@@ -116,18 +135,12 @@ textrategiaApp.controller("LoginController", function($scope, $http,$location) {
           
         $http(req)
         .success(function(data,status,headers,config){
-            //alert("data:" + data + " status:"+status);
-            //$location.path('student');
-            //flag = true;
-            //alert("200");
             $scope.showError = false;
             $scope.showSuccess = true;
             $location.path('student');
 
 
         }).error(function(data,status,headers,config){
-            //alert("data:" + data + " status:"+status);
-            //flag = false;
             $scope.showError = true;
             $scope.showSuccess = false;
 
