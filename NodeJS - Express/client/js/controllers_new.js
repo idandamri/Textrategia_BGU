@@ -88,15 +88,6 @@ textrategiaApp.controller("oneQuestionController", function($scope){
 
 });
 
-
-
-
-
-
-
-
-
-
 textrategiaApp.controller("LoginController", function($scope, $http,$location) {
   // $scope.user={'username':'','password':''};
     //var user = 'shakedkr@post.bgu.ac.il';
@@ -120,7 +111,7 @@ textrategiaApp.controller("LoginController", function($scope, $http,$location) {
                 },
                 data: 'user='+user+'&password='+password
         };  
-        alert(JSON.stringify(req));
+        //alert(JSON.stringify(req));
 
           
         $http(req)
@@ -128,7 +119,7 @@ textrategiaApp.controller("LoginController", function($scope, $http,$location) {
             //alert("data:" + data + " status:"+status);
             //$location.path('student');
             //flag = true;
-            alert("200");
+            //alert("200");
             $scope.showError = false;
             $scope.showSuccess = true;
             $location.path('student');
