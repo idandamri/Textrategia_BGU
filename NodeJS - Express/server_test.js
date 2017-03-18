@@ -65,7 +65,7 @@
    app.get('/getListOfTasks',function(req,res){
      var user_id = req.body.user_id;
      var query = queries.gelAllTaskTitleByStudentId(user_id);
-     console.log(query)
+     console.log(query);
      connection.query(query,function (err,tasks,field) {
        console.log(JSON.stringify(tasks));
        if (tasks.length > 0)
@@ -90,7 +90,7 @@
     var query = queries.gelAllTaskTitleByStudentId('1'); /*hard coded. need to change*/
     connection.query (query , function(err,tasks,field){
       if (err){
-        console.log(err)
+        console.log(err);
         res.send("Err in task req: " + err );
       }
       else{
@@ -118,7 +118,7 @@
       }
     });
 
-  })
+  });
 
   /* GOOD
   getQuestion
@@ -136,7 +136,7 @@
       connection.query (query , function(err,listOfQuestion,field){
       console.log("listOfQuestion.length:" + listOfQuestion.length)
         if (err){
-        console.log(err)
+        console.log(err);
         res.send("ERR in question request:" + err);
       }
       else if (listOfQuestion.length==0){
@@ -189,7 +189,7 @@
       //console.log('\n' + query + '\n');
       connection.query(query, function (err, ans, field) {
           if (err) {
-              console.log(err)
+              console.log(err);
               res.status(400).send();
           }
           else {
@@ -238,7 +238,7 @@ return : OK or ERROR
   app.post('/login', function (req, res) {
     var user_name= req.body.user; /* user_name can be id or email */
     var password = req.body.password;
-    console.log('Got a login request from: \n\n!!!\n\n'+user_name + "," + password)
+    console.log('Got a login request from: \n\n!!!\n\n'+user_name + "," + password);
     var query = queries.getDataForUserByIdOrEmail(user_name,password);
     console.log("This is the query: " + query);
     connection.query (query , function(err,ans,field){
@@ -248,7 +248,7 @@ return : OK or ERROR
         console.log("ans:" + ans);
         //res.send(row[1]);
         if(ans.length>0){ /*check if the resault is empty*/
-          res.status(200).send('OK.') /*change to user id*/
+          res.status(200).send('OK.'); /*change to user id*/
           console.log('OK');
         }
         else {
@@ -272,12 +272,12 @@ return : OK or ERROR
   var connection = mysql.createConnection({
     host     : 'localhost',
     user     : 'root',
-    password : '123456',
+    password : '1q2w3e4r',//'123456' to upload
     database: 'textra_db'
   });
 
   connection.connect(function(err) {
-    console.error(err)
+    console.error(err);
     // connected! (unless `err` is set)
   });
 
@@ -286,8 +286,8 @@ return : OK or ERROR
 
   var server = app.listen(8081, function () {
 
-   var host = server.address().address
-   var port = server.address().port
+   var host = server.address().address;
+   var port = server.address().port;
 
    console.log("Example app listening at http://%s:%s", host, port)
   });
