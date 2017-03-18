@@ -1,12 +1,17 @@
 var express = require('express');
 var mysql = require('mysql');
+<<<<<<< HEAD
+
+=======
 var cors = require('cors');
+>>>>>>> 82bfd22e646ef0e6fe3eea4356425033a50bd97f
 var path = require('path');
 var app = express();
 app.use(cors());
 var queries = require("./queryForDB.js");
 var bodyParser = require('body-parser');
 app.use(express.static(__dirname + '/client'));
+
 
 
 app.use(bodyParser.urlencoded({extended: false}));
