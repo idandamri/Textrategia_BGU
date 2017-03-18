@@ -39,15 +39,15 @@
               <div class="form-group">
                 <label>דואר אלקטרוני:</label>
                 <input type="email" name="email" ng-model="user.username" required class="form-control" placeholder="הכנס כתובת דואר אלקטרוני">
-                <div ng-show="myForm.email.$error.email" class="error">Invalid email!</div>
-                <div ng-show="myForm.email.$error.required &amp;&amp; myForm.email.$touched" class="error">Required!</div>
+                <div ng-show="myForm.email.$error.email" class="error">אימייל לא תקין</div>
+                <div ng-show="myForm.email.$error.required &amp;&amp; myForm.email.$touched" class="error">שדה חובה!</div>
               </div>
             </div>
             <div class="col-md-12">
               <div class="form-group">
                 <label>סיסמא:</label>
                 <input type="password" name="pass" ng-model="user.password" required class="form-control" placeholder="הכנס סיסמא">
-                <div ng-show="myForm.pass.$error.required &amp;&amp; myForm.pass.$touched" class="error">Required!</div>
+                <div ng-show="myForm.pass.$error.required &amp;&amp; myForm.pass.$touched" class="error">שדה חובה!</div>
               </div>
             </div>
             <div class="col-md-12">

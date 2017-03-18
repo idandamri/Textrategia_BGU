@@ -272,7 +272,7 @@ return : OK or ERROR
   var connection = mysql.createConnection({
     host     : 'localhost',
     user     : 'root',
-    password : '1q2w3e4r',//'123456' to upload
+    password : '123456',//'123456' to upload
     database: 'textra_db'
   });
 
