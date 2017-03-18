@@ -1,4 +1,5 @@
-var _url = "http://localhost:8081";
+//var _url = "http://localhost:8081";
+var _url = "http://textrategia.com";
 
 var tasks_parsed_jason_lst = [
     {"T_id":1,"T_title":"מיניונים","T_description":"כל המיניונים הם בצבע צהוב. מדוע זאת? האם זהו ביטוי לטבעם הפחדני, או שמא מחלת עור הנובעת מאכילת יתר של בננות?"},
