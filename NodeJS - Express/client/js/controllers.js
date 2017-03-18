@@ -38,6 +38,13 @@ var questions = [
 
 ];
 
+var getQuestion_value = function(id) {
+    if(id < questions.length) {
+        return questions[id];
+    } else {
+        return false;
+    }
+};
 
 textrategiaApp.controller("StudentController",function($scope){
 	$scope.studentname = "שקד";
@@ -69,14 +76,7 @@ textrategiaApp.controller("oneQuestionController", function($scope){
     };
 
 
-    // $scope.getQuestion = function(){
-    //     var q = 
-    //         if (scope.id < question.length){
-    //             return questions[scope.id];
-    //         } else {
-    //             return false;
-    //         }
-    //     };
+
 
 
 
