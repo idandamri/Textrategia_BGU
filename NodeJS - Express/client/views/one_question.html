@@ -43,12 +43,60 @@
     </div>
 <br><br>
 
+
+<div class="quiz-area" ng-show="inProgress">
+  <div ng-show="!quizOver">
+    <h2 id="question">{{question}}</h2>
+    <ul id="options">
+      <li ng-repeat="option in options">
+        <label>
+          <input type="radio" name="answer" value="{{option}}">
+          {{option}}
+        </label>
+      </li>
+    </ul>
+    <button ng-click="checkAnswer()" ng-show="answerMode">Submit</button>
+
+    <div ng-show="!answerMode">
+      <button ng-click="nextQuestion()" class="next-question">Next</button>
+      <span ng-show="correctAns">That is correct!</span>
+      <span ng-show="!correctAns">Sorry, that is an incorrect answer.</span>
+    </div>
+  </div>
+
+  <div ng-show="quizOver">
+    <h2>Quiz is over</h2>
+    <button ng-click="reset()">Play again</button>
+  </div>
+
+  <div id="score">
+    Score: {{score}}
+  </div>
+</div>
+
+<div class="intro" ng-show="!inProgress">
+  <p>Welcome to the QuizApp</p>
+  <button id="startQuiz" ng-click="start()">Start the Quiz</button>
+</div>
+
+
+<br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br>
+<!-- bla bla -->
+
+
+
+
 <table class="table table-responsive">
     <tbody>
         <tr ng-repeat="d in answers"> <td>  
             <div class="radio" id="question">
               <label>
-                <input type="radio" name="'{{question.Q_id}}'" value="'{{d.isCorrect}}'">
+                <input 
+                type="radio" 
+                name="'{{d.Q_id}}'" 
+                value="'{{d.isCorrect}}'">
                 {{ d.answer }} 
                </label>
             </div>
@@ -56,7 +104,7 @@
     </tbody>
 </table>
 
-<div ng-switch="'{{question.Q_id}}'">
+<div  class="radioValue" ng-switch="'{{question.Q_id}}'">
   <div ng-switch-when=1>
      <h3>this is test: 1</h3>
      <p>Welcome to a world of dogs.</p>
