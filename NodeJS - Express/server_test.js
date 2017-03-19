@@ -1,10 +1,6 @@
 var express = require('express');
 var mysql = require('mysql');
-<<<<<<< HEAD
-
-=======
-var cors = require('cors');
->>>>>>> 82bfd22e646ef0e6fe3eea4356425033a50bd97f
+// var cors = require('cors');
 var path = require('path');
 var app = express();
 app.use(cors());
@@ -56,20 +52,20 @@ app.use(bodyParser.json());
 // });
 
 
-app.get('/testForTests', function (req, res) {
+app.post('/testForTests', function (req, res) {
     res.send("HELLO TESTER");
 });
 
-app.get('/', function (req, res) {
+app.post('/', function (req, res) {
     res.redirect('/index.html');
 });
-//
-// app.get('/homepage', function (req, res) {
-//     res.sendFile(__dirname + '/homepage.html');
-// });
-//
 
-app.get('/getListOfTasks', function (req, res) {
+/*app.get('/homepage', function (req, res) {
+    res.sendFile(__dirname + '/homepage.html');
+});*/
+
+
+app.post('/getListOfTasks', function (req, res) {
     var user_id = req.body.user_id;
     var query = queries.gelAllTaskTitleByStudentId(user_id);
     console.log(query);
@@ -89,7 +85,7 @@ app.get('/getListOfTasks', function (req, res) {
  get: user_id
  return: a list of tasks information*/
 
-app.get('/getTasks', function (req, res) {
+app.post('/getTasks', function (req, res) {
     console.log("Got a get task request");
     var u_id = req.body.user_id;
     var t_id;
@@ -134,7 +130,7 @@ app.get('/getTasks', function (req, res) {
  getQuestion
  get - t_id , user_id
  return -A list of jsons. The first one is a question info, second to last - answer info */
-app.get('/getQuestion', function (req, res) {
+app.post('/getQuestion', function (req, res) {
     console.log("Got a question request");
     var user_id = req.body.user_id;
     var t_id = req.body.t_id;
@@ -225,7 +221,6 @@ app.post('/updateAnswer', function (req, res) {
             //         res.status(400).send();
             // });
         }
-
     });
 });
 
@@ -290,8 +285,7 @@ app.post('/login', function (req, res) {
 //   res.sendFile(__dirname + '/static' );
 // });
 
-
-  var connection = mysql.createConnection({
+var connection = mysql.createConnection({
     host     : 'localhost',
     user     : 'root',
     password : '123456',//'123456' to upload
