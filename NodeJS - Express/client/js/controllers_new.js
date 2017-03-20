@@ -1,46 +1,16 @@
 var _url = "http://localhost:8081";
 //var _url = "http://textrategia.com";
 
-var tasks_parsed_jason_lst = [
-    {"T_id":1,"T_title":"מיניונים","T_description":"כל המיניונים הם בצבע צהוב. מדוע זאת? האם זהו ביטוי לטבעם הפחדני, או שמא מחלת עור הנובעת מאכילת יתר של בננות?"},
-    {"T_id":2,"T_title":"זברות בפיג'מות","T_description":"לעיתים רבות זברות ישנות לובשות פיג'מות. יש הגורסים כי מדובר בהצהרה אופנתית. האומנם?!"}
-    ];
+//lst of string, all possible answers
+var get_answers_lst_from_jason = function() {
+    var ans = [];
+    for(i=0 ; i< myJason.length ; i++){
+        alert(myJason[i].answer);
+        ans.push(myJason[i].answer);
+    }
 
-
-var answers_parsed_jason_lst = [
-    {"A_id":1, "Q_id":1, "answer":"מיניונים אוכלים בננות","isCorrect":1},
-    {"A_id":2, "Q_id":1, "answer":"מיניונים הם מוגיי לב","isCorrect":0},
-    {"A_id":3, "Q_id":1, "answer":"למיניונים אין כבד","isCorrect":0},
-  
-    {"A_id":1, "Q_id":2, "answer":"מספר משתנה","isCorrect":1},
-    {"A_id":2, "Q_id":2, "answer":"עין אחת","isCorrect":0},
-    {"A_id":3, "Q_id":2, "answer":"שתי עיניים","isCorrect":0}
-];
-
-var question1_parsed_jason_lst = {
-"Q_id":1, "Q_question":"מדוע המיניונים צהובים?", 
-"Q_correctFB":"נכון מאוד, מיניונים אוכלים כמות גדולה של בננות!", 
-"Q_notCorrectFB":"נסה שוב, השתמשת בעלילה כרמז",
-"Q_skill":"מודעות קולנועית"
+    return ans;
 };
-
-
-var questions = [
-
-{"Q_id":1, "Q_question":"מדוע המיניונים צהובים?", 
-"Q_correctFB":"נכון מאוד, מיניונים אוכלים כמות גדולה של בננות!",
-"Q_notCorrectFB":"נסה שוב, השתמשת בעלילה כרמז",
-"Q_skill":"מודעות קולנועית"
-},
-
-{"Q_id":2, "Q_question":"כמה עיניים יש למיניונים?", 
-"Q_correctFB":"נכון מאוד, מספר עיניים קבוע זה פאסה", 
-"Q_notCorrectFB":"באמת? תנסה שוב",
-"Q_skill":"שיפוטיות"
-}
-
-];
-
 
 textrategiaApp.controller("StudentController",function($scope){
 	$scope.studentname = "שקד";
@@ -73,38 +43,83 @@ textrategiaApp.controller("TasksController",function($scope,$http){
     $scope.studentname = "שקד"; /*CHANGE TO COOKIE*/
 });
 
-textrategiaApp.controller("oneQuestionController", function($scope){
-    $scope.answers = answers_parsed_jason_lst;
-    $scope.question = question1_parsed_jason_lst;
-    $scope.task_name = "מיניונים צהובים";
+textrategiaApp.controller("oneQuestionController", function($scope,$http){
+ 
+    var myJason;
 
-    $scope.start = function(){
-        $scope.id = 0;
-        $scope.quizOver = false;
-        $scope.inProgress = true;
-        $scope.getQuestion();
-    };
+    var req = {
+                method: 'POST',
+                cache: false,
+                url: _url +'/getQuestion',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                data: 'user_id=1&t_id=1' /*CHANGE TO COOKIE*/
+    };  
 
-    $scope.reset = function() {
-        $scope.inProgress = false;
-        $scope.score = 0;
-    };
+    $http(req)
+        .success(function(data,status,headers,config){
+            alert("status: "+status + "data: "+JSON.stringify(data));
+            myJason = data;
+                $scope.task_name = myJason[0].Q_skill;  // change to task name
+                $scope.task_id = 1;                     //change to task is
+                $scope.Q_skill = myJason[0].Q_skill;
+
+                $scope.start = function(){
+                    $scope.id = 0;
+                    $scope.quizOver = false;
+                    $scope.inProgress = true;
+                    $scope.getQuestion();
+                };
+
+                $scope.reset = function() {
+                    $scope.inProgress = false;
+                    $scope.score = 0;
+                };
+
+                $scope.getQuestion = function(){
+                    $scope.question =  myJason[0].Q_qeustion;
+                    $scope.options = get_answers_lst_from_jason();
+
+                    $scope.answer = 0;
+                    $scope.answerMode = true;
+
+                };
+
+            //This is function for submit
+                $scope.checkAnswer = function(){
+                    var ans = $('input[name=answer]:checked').val();
+                    if(ans == $scope.options[$scope.answer]) {
+                        $scope.score++;
+                        $scope.feedback = myJason[0].Q_correctFB;
+                        $scope.correctAns = true;
+                    } else {
+                        $scope.feedback = myJason[0].Q_notCorrectFB;
+                        $scope.correctAns = false;
+                    }
+                    $scope.answerMode = false;
+                };
 
 
-    // $scope.getQuestion = function(){
-    //     var q = 
-    //         if (scope.id < question.length){
-    //             return questions[scope.id];
-    //         } else {
-    //             return false;
-    //         }
-    //     };
+                $scope.nextQuestion = function(){
+                    // HERE WE NEED TO ASK FOR NEXT QUESTION. how???
+                    // for now, infint loop on same question
+                    $scope.getQuestion();
+                };
+
+                $scope.reset();  
+
+            alert(JSON.stringify(myJason));
+        }).error(function(data,status,headers,config){
+            alert("status: "+status + "data: "+JSON.stringify(data));
+            myJason = data;
+        });
 
 
 
-    
 
 
+  
 });
 
 textrategiaApp.controller("LoginController", function($scope, $http,$location) {

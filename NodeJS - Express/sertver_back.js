@@ -1,9 +1,9 @@
 var express = require('express');
 var mysql = require('mysql');
-//var cors = require('cors');
 var path = require('path');
 var app = express();
-//app.use(cors());
+var cors = require('cors');
+app.use(cors());
 var queries = require("./queryForDB.js");
 var bodyParser = require('body-parser');
 app.use(express.static(__dirname + '/client'));
@@ -52,7 +52,7 @@ app.use(bodyParser.json());
 // });
 
 
-app.post('/testForTests', function (req, res) {
+app.get('/testForTests', function (req, res) {
     res.send("HELLO TESTER");
 });
 
@@ -85,7 +85,7 @@ app.post('/getListOfTasks', function (req, res) {
  get: user_id
  return: a list of tasks information*/
 
-app.post('/getTasks', function (req, res) {
+app.get('/getTasks', function (req, res) {
     console.log("Got a get task request");
     var u_id = req.body.user_id;
     var t_id;
@@ -286,19 +286,13 @@ app.post('/login', function (req, res) {
 //   res.sendFile(__dirname + '/static' );
 // });
 
-var connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '1q2w3e4r',//'123456',//'123456' to upload
 
-/*
-  var connection = mysql.createConnection({
+var connection = mysql.createConnection({
     host     : 'localhost',
     user     : 'root',
-    password : '123456',//'123456' to upload*/
+    password : '123456',//'123456' to upload
     database: 'textra_db'
 });
-
 
 connection.connect(function (err) {
     console.error(err);
