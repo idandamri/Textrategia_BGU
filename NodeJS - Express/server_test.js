@@ -312,7 +312,7 @@ app.post('/login', function (req, res) {
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: /*'1q2w3e4r',//*/'123456',//'123456' to upload
+    password: '1q2w3e4r',//'123456',//'123456' to upload
     database: 'textra_db'
 });
 
@@ -322,7 +322,7 @@ connection.connect(function (err) {
 });
 
 
-var server = app.listen(80, function () {
+var server = app.listen(8081, function () {
 
     var host = server.address().address;
     var port = server.address().port;
