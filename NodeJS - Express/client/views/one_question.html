@@ -1,66 +1,68 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="#welcome">טקסטרטגיה</a>
+      <button class="navbar-toggle" data-target="#myNavbar" data-toggle="collapse" type="button"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button> <a class="navbar-brand" href="#welcome">טקסטרטגיה</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <!-- <li><a href="student.html">תלמיד</a></li> -->
-        <li><a href="#student">תלמיד</a></li>
-        <li><a href="#tasks">מטלות</a></li>
+        <li>
+          <a href="#student">תלמיד</a>
+        </li>
+        <li>
+          <a href="#tasks">מטלות</a>
+        </li>
       </ul>
       <p class="navbar-text">בהצלחה</p>
       <ul class="nav navbar-nav navbar-right">
-        <li class="disabled"><a href="#"><span class="glyphicon glyphicon-user"></span> הרשם</a></li>
-        <li><a href="#login"><span class="glyphicon glyphicon-log-in"></span> התחברות</a></li>
+        <li class="disabled">
+          <a href="#"><span class="glyphicon glyphicon-user"></span> הרשם</a>
+        </li>
+        <li>
+          <a href="#login"><span class="glyphicon glyphicon-log-in"></span> התחברות</a>
+        </li>
       </ul>
     </div>
   </div>
 </nav>
 
 <div id="wrap">
-	<div class="container" id="c_1">
-			<br>
-   <p class="text-center ">
-    <div class="col-sm-12">
-    <h1><b>{{task_name}}<b></h1>
-    </div>
-    <div class="col-sm-12">
-      <h3>{{ question.Q_question }}</h3>
-    </div>
+  <div class="container" id="c_1">
+  <div id = "myQuiz">
+      
+  <div class="col-sm-12"><h1><b>{{task_name}}<b></h1></div>
+  <div class="col-sm-12"> <h3>{{ question.Q_question }}</h3> </div>
 
 
-    <div class="text-right" id="labels_in_task">
-        <span class="label label-success">{{ question.Q_skill}}</span>
-<!--         <span class="label label-info">תגית2</span>
-        <span class="label label-default">תגית3</span>  -->
+  <div class="text-right" id="labels_in_task">
+  <span class="label label-success">{{ Q_skill}}</span>
+  </div>
 
-    </div>
-<br><br>
-
+<div class="intro" ng-show="!inProgress">
+<h6><br></h6>
+  <p><h4><u><b>ברוך הבא למחשבון השאלות</b></u></h4></p>
+  <button id="startQuiz" ng-click="start()" type="button" class="btn btn-warning btn-sm">התחל לפתור</button>
+</div>
 
 <div class="quiz-area" ng-show="inProgress">
   <div ng-show="!quizOver">
-    <h2 id="question">{{question}}</h2>
+    <h3 id="question">{{question}}</h3>
     <ul id="options">
+
       <li ng-repeat="option in options">
         <label>
           <input type="radio" name="answer" value="{{option}}">
           {{option}}
         </label>
       </li>
+
     </ul>
-    <button ng-click="checkAnswer()" ng-show="answerMode">Submit</button>
+ 
+    <button ng-click="checkAnswer()" ng-show="answerMode" type="button" class="btn btn-warning btn-sm"  data-toggle="modal" data-target="#fedbackModal">בדוק</button>
+
 
     <div ng-show="!answerMode">
-      <button ng-click="nextQuestion()" class="next-question">Next</button>
-      <span ng-show="correctAns">That is correct!</span>
-      <span ng-show="!correctAns">Sorry, that is an incorrect answer.</span>
+      <button ng-click="nextQuestion()" class="next-question" type="button" class="btn btn-default btn-sm">הבא</button>
     </div>
   </div>
 
@@ -70,90 +72,29 @@
   </div>
 
   <div id="score">
-    Score: {{score}}
-  </div>
-</div>
-
-<div class="intro" ng-show="!inProgress">
-  <p>Welcome to the QuizApp</p>
-  <button id="startQuiz" ng-click="start()">Start the Quiz</button>
-</div>
-
-
-<br><br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br><br>
-<!-- bla bla -->
-
-
-
-
-<table class="table table-responsive">
-    <tbody>
-        <tr ng-repeat="d in answers"> <td>  
-            <div class="radio" id="question">
-              <label>
-                <input 
-                type="radio" 
-                name="'{{d.Q_id}}'" 
-                value="'{{d.isCorrect}}'">
-                {{ d.answer }} 
-               </label>
-            </div>
-        </td> </tr>
-    </tbody>
-</table>
-
-<div  class="radioValue" ng-switch="'{{question.Q_id}}'">
-  <div ng-switch-when=1>
-     <h3>this is test: 1</h3>
-     <p>Welcome to a world of dogs.</p>
-  </div>
-  <div ng-switch-when=0>
-     <h1>0</h1>
-     <p>Learn from examples.</p>
+    ניקוד: {{score}}
   </div>
 </div>
 
 
 <br><br><br><br><br><br><br><br>
-
-
-
-
-
-
-<!-- Button trigger modal -->
-    <div class="col-sm-4"></div>
-    <div class="col-sm-2"> 
-        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myCurrectModal">
-            תשובה נכונה
-        </button>
-    </div>
-    <div class="col-sm-2 ">
-        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myWrongModal">
-            תשובה שגויה
-        </button>
-    </div>
-    <div class="col-sm-4"></div>
 
 <!-- Modal -->
-<div class="modal fade" id="myCurrectModal" tabindex="-1" role="dialog" aria-labelledby="myCurrectModalLabel">
+<div class="modal fade" id="fedbackModal" tabindex="-1" role="dialog" aria-labelledby="myCurrectModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">כל הכבוד!</h4>
+        <h4 class="modal-title">
+          <span ng-show="correctAns">כל הכבוד!</span>
+          <span ng-show="!correctAns">אופס...</span>
+        </h4>
       </div>
       <div class="modal-body">
-      <div class="row">
-          <div class="col-md-4"></div>
-          <div class="col-md-4">
-            <p>תשובה נכונה!&hellip;</p>
-          </div>
-          <div class="col-md-4"></div>
-            
-          <div class="col-md-4 col-md-offset-4">המשך לשאלה הבאה</div>
+        <div class="row">
+          <span ng-show="correctAns">תשובה נכונה!</span>
+          <span ng-show="!correctAns">תשובה לא נכונה, נסה שנית!</span>
+          <br><p> {{feedback}}</p>
         </div>
       </div>
       <div class="modal-footer">
@@ -164,38 +105,13 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-<!-- Modal -->
-<div class="modal fade" id="myWrongModal" tabindex="-1" role="dialog" aria-labelledby="myWrongModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">אופס...</h4>
-      </div>
-      <div class="modal-body">
-      <div class="row">
-          <div class="col-md-4"></div>
-          <div class="col-md-4">
-            <p>תשובה לא נכונה...&hellip;</p>
-          </div>
-          <div class="col-md-4"></div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">נסה שוב</button>
-         <li><a href="one_question.html">שאלה הבאה</a></li>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-       
+<!-- bla bla -->
+     
     
       
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-		</div>
-	</div>
+<br><br><br><br>
+  </div>
+</div>
 
-	<img class="img-responsive" id="imag-logo" src="views/pic/bottom.png"> 
-</body>
-</html>
+  <img class="img-responsive" id="imag-logo" src="views/pic/bottom.png"> 

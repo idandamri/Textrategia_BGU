@@ -2,6 +2,7 @@ var express = require('express');
 var mysql = require('mysql');
 var path = require('path');
 var app = express();
+var cors = require('cors');
 app.use(cors());
 var queries = require("./queryForDB.js");
 var bodyParser = require('body-parser');
@@ -64,7 +65,7 @@ app.get('/', function (req, res) {
 // });
 //
 
-app.get('/getListOfTasks', function (req, res) {
+app.post('/getListOfTasks', function (req, res) {
     var user_id = req.body.user_id;
     var query = queries.gelAllTaskTitleByStudentId(user_id);
     console.log(query);
@@ -129,7 +130,7 @@ app.get('/getTasks', function (req, res) {
  getQuestion
  get - t_id , user_id
  return -A list of jsons. The first one is a question info, second to last - answer info */
-app.get('/getQuestion', function (req, res) {
+app.post('/getQuestion', function (req, res) {
     console.log("Got a question request");
     var user_id = req.body.user_id;
     var t_id = req.body.t_id;
@@ -286,7 +287,7 @@ app.post('/login', function (req, res) {
 // });
 
 
-  var connection = mysql.createConnection({
+var connection = mysql.createConnection({
     host     : 'localhost',
     user     : 'root',
     password : '123456',//'123456' to upload
