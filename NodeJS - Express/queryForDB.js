@@ -83,6 +83,19 @@ module.exports =
 	},
 
 	getQustionByTaskAndUserID : function(user_id,t_id){
+		var query ="select T.Q_id, T.Q_qeustion, T.isMultipuleAns, T.Q_correctFB, T.Q_mediaType, T.Q_media, " +
+			"T.Q_notCorrectFB, T.Q_skill, T.Q_difficulty, T.Q_proffession, T.Q_approved, T.Q_disabled, " +
+			"answers.A_id, answers.answer, answers.isCorrect from ((select * from questions " +
+			"where questions.Q_id = (select questions.Q_id from tasks_and_question_for_student_instances " +
+			"join questions on tasks_and_question_for_student_instances.T_id = \'" + t_id + "\'" +
+			"and tasks_and_question_for_student_instances.studentID = \'" + user_id + "\' " +
+			"and tasks_and_question_for_student_instances.Q_id = questions.Q_id limit 1))" +
+			"as T JOIN answers on T.Q_id = answers.Q_id);"
+		return query;
+	},
+/*
+
+	getQustionByTaskAndUserID : function(user_id,t_id){
 		var query =
 		"select questions.* " +
 		"from tasks_and_question_for_student_instances " +
@@ -93,6 +106,7 @@ module.exports =
 		";" ;
 		return query;
 	},
+*/
 
 	
 	SubmitStudentsAnswerForQuestion : function (student_id, task_id, q_id, a_id){
@@ -110,7 +124,22 @@ module.exports =
 	getTaskDeatils:function (t_id) {
 		var query = "select * from textra_db.tasks where T_id like /'%" + t_id + "%'/";
 		return query;
+    },
 
+	getFullQuestionByQid:function (q_id) {
+		var query = "select T.Q_id, T.Q_qeustion, T.isMultipuleAns, " +
+			"T.Q_correctFB, T.Q_mediaType, T.Q_media," +
+			"T.Q_notCorrectFB, T.Q_skill, T.Q_difficulty," +
+            "T.Q_proffession, T.Q_approved, T.Q_disabled, " +
+			"answers.A_id, answers.answer, answers.isCorrect" +
+			"from ((select * from questions where questions.Q_id = \'" + q_id + "\')" +
+			"as T JOIN answers on T.Q_id = answers.Q_id);"
+		return query;
+    },
+
+    getAnswersByTidQidSid:function (/*s_id, t_id, */q_id) {
+        var query = "select * from textra_db.tasks where Q_id like /'" + q_id + "'/";
+        return query;
     }
 
 };

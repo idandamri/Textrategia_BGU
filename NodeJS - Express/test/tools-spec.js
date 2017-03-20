@@ -26,7 +26,7 @@ describe("Testing Textrategia API", function () {
 
     describe("Testing get Tasks", function () {
         it('Test get tasks', function (done) {
-            request(app).get("/getListOfTasks").send({"user_id": '1'})
+            request(app).post("/getListOfTasks").send({"user_id": '1'})
                 .end(function (err, res) {
                     if (err)
                         throw err;
@@ -38,7 +38,7 @@ describe("Testing Textrategia API", function () {
         });
 
         it('Test get tasks - fake deatils', function (done) {
-            request(app).get("/getListOfTasks").send({"user_id": '8'})
+            request(app).post("/getListOfTasks").send({"user_id": '8'})
                 .end(function (err, res) {
                     if (err)
                         throw err;
@@ -50,23 +50,28 @@ describe("Testing Textrategia API", function () {
     });
 
     describe("Testing Get question", function () {
+
+        var qqq = "";
+        var aaa = "";
+
         it('Get Question For a Task', function (done) {
-            request(app).get("/getQuestion").send({"user_id": '1', "t_id": "1"})
+            request(app).post("/getQuestion").send({"user_id": '1', "t_id": "1"})
                 .end(function (err, res) {
                     if (err)
                         throw err;
                     res.status.should.be.equal(200);
-                    questiions = res.body;
-                    for (i = 0; i < questiions.length; i++) {
-                        strQ = JSON.stringify(questiions[i]);
+                    questions = res.body;
+                    for (i = 0; i < questions.length; i++) {
+                        strQ = JSON.stringify(questions[i]);
                         console.log("BODY: " + strQ);
                     }
+                    qqq = questions;
                     done();
                 });
         });
 
         it('Get Question For an Empty Task', function (done) {
-            request(app).get("/getQuestion").send({"user_id": '1', "t_id": "5"})
+            request(app).post("/getQuestion").send({"user_id": '1', "t_id": "5"})
                 .end(function (err, res) {
                     if (err)
                         throw err;

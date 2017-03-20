@@ -3,11 +3,10 @@ var mysql = require('mysql');
 // var cors = require('cors');
 var path = require('path');
 var app = express();
-app.use(cors());
+//app.use(cors());
 var queries = require("./queryForDB.js");
 var bodyParser = require('body-parser');
 app.use(express.static(__dirname + '/client'));
-
 
 
 app.use(bodyParser.urlencoded({extended: false}));
@@ -56,13 +55,13 @@ app.post('/testForTests', function (req, res) {
     res.send("HELLO TESTER");
 });
 
-app.post('/', function (req, res) {
+app.get('/', function (req, res) {
     res.redirect('/index.html');
 });
 
 /*app.get('/homepage', function (req, res) {
-    res.sendFile(__dirname + '/homepage.html');
-});*/
+ res.sendFile(__dirname + '/homepage.html');
+ });*/
 
 
 app.post('/getListOfTasks', function (req, res) {
@@ -126,6 +125,8 @@ app.post('/getTasks', function (req, res) {
 
 });
 
+var qqq = "";
+
 /* GOOD
  getQuestion
  get - t_id , user_id
@@ -140,13 +141,13 @@ app.post('/getQuestion', function (req, res) {
         var query = queries.getQustionByTaskAndUserID(user_id, t_id);
     /*hard coded. need to change*/
     console.log(query);
-    connection.query(query, function (err, listOfQuestion, field) {
-        console.log("listOfQuestion.length:" + listOfQuestion.length);
+    connection.query(query, function (err, listOfQuestionAnswers, field) {
+        console.log("listOfQuestionAnswers.length:" + listOfQuestionAnswers.length);
         if (err) {
             console.log(err);
             res.send("ERR in question request:" + err);
         }
-        else if (listOfQuestion.length == 0) {
+        else if (listOfQuestionAnswers.length == 0) {
             res.status(204).send("No more Question for this task");
             /*empty content*/
         }
@@ -156,7 +157,10 @@ app.post('/getQuestion', function (req, res) {
              res.status(200).json(listOfQuestion[i]);
              }
              }*/
-            res.status(200).json(listOfQuestion/*[0]["Q_id"]*/);
+            qqq = listOfQuestionAnswers;
+            res.status(200).json(listOfQuestionAnswers/*[0]["Q_id"]*/);
+
+            // createListWithAnswers(qqq/*, user_id, t_id*/);
         }
 
 
@@ -177,13 +181,33 @@ app.post('/getQuestion', function (req, res) {
     });
 });
 
+var aaa = "";
+
+// function createListWithAnswers(arrOfQs/*, sID, tID*/) {
+// app.post('/getAnswers', function (req, res) {
+//     var q_ID = req[0].Q_id;
+//     /*var t_ID = tID;
+//      var s_ID = sID;*/
+//
+//     var query2 = queries.getAnswersByTidQidSid(/*stud_id, task_id, */q_ID);
+//     console.log('\n' + query2 + '\n');
+//     connection.query(query2, function (err, ans, field) {
+//         if (!err) {
+//             res.status(200).json(ans);
+//         } else {
+//             res.send("ERR in question request:" + err);
+//         }
+//     });
+//
+// });
+// }
 
 /*get: student_id, questio_id,task_id,answer_id
  */
 app.post('/questionDone', function deleteQuestionFromQueue(req, res, err) {
     var quest_id = req.body.q_id;
-    var stud_id= req.body.s_id;
     var task_id = req.body.t_id;
+    var stud_id = req.body.s_id;
 
 
     var query2 = queries.DeleteQuestionsFromInstance(stud_id, task_id, quest_id);
@@ -286,9 +310,9 @@ app.post('/login', function (req, res) {
 // });
 
 var connection = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'root',
-    password : '123456',//'123456' to upload
+    host: 'localhost',
+    user: 'root',
+    password: /*'1q2w3e4r',//*/'123456',//'123456' to upload
     database: 'textra_db'
 });
 
@@ -298,7 +322,7 @@ connection.connect(function (err) {
 });
 
 
-var server = app.listen(8081, function () {
+var server = app.listen(80, function () {
 
     var host = server.address().address;
     var port = server.address().port;
