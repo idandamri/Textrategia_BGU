@@ -2,23 +2,35 @@ var _url = "http://localhost:8081";
 //var _url = "http://textrategia.com";
 
 //lst of string, all possible answers
-var get_answers_lst_from_jason = function() {
+var get_answers_lst_from_jason = function(myJason) {
     var ans = [];
     for(i=0 ; i< myJason.length ; i++){
-        alert(myJason[i].answer);
+        //alert(myJason[i].answer);
         ans.push(myJason[i].answer);
     }
 
     return ans;
 };
 
+
+/*TO-DO*/
+function updateAnswer (student_id , task_id, quesion_id){
+
+};
+
+/*TO-DO*/
+function removeQuestionFromInstances (student_id , task_id, quesion_id){
+
+};
+
+
 textrategiaApp.controller("StudentController",function($scope){
-	$scope.studentname = "שקד";
+	$scope.studentName = getUserName();
 });
 
 
 
-textrategiaApp.controller("TasksController",function($scope,$http){
+textrategiaApp.controller("TasksController",function($scope,$http,$location){
     //$scope.tasks = tasks_parsed_jason_lst;
           
         var req = {
@@ -28,7 +40,7 @@ textrategiaApp.controller("TasksController",function($scope,$http){
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
-                data: 'user_id=1' /*CHANGE TO COOKIE*/
+                data: 'user_id=' + getUserID() /*CHANGE TO COOKIE*/
         };  
 
         $http(req)
@@ -40,12 +52,21 @@ textrategiaApp.controller("TasksController",function($scope,$http){
 
 
     $scope.questionSum = 4; //remove in future. should be a query or calculation
-    $scope.studentname = "שקד"; /*CHANGE TO COOKIE*/
+    $scope.studentName = getUserName();
+
+    $scope.navigateToOneQuestion = function(t_id){
+        setTaskID(t_id);
+        $location.path('one_question');
+    };
+
 });
 
+
+
+
 textrategiaApp.controller("oneQuestionController", function($scope,$http){
- 
-    var myJason;
+
+   var myJason;
 
     var req = {
                 method: 'POST',
@@ -54,79 +75,74 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http){
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
-                data: 'user_id=1&t_id=1' /*CHANGE TO COOKIE*/
+                data: 'user_id='+getUserID()+'&t_id=1' /*CHANGE TO COOKIE*/
     };  
 
     $http(req)
         .success(function(data,status,headers,config){
             alert("status: "+status + "data: "+JSON.stringify(data));
             myJason = data;
-                $scope.task_name = myJason[0].Q_skill;  // change to task name
-                $scope.task_id = 1;                     //change to task is
-                $scope.Q_skill = myJason[0].Q_skill;
-
-                $scope.start = function(){
-                    $scope.id = 0;
-                    $scope.quizOver = false;
-                    $scope.inProgress = true;
-                    $scope.getQuestion();
-                };
-
-                $scope.reset = function() {
-                    $scope.inProgress = false;
-                    $scope.score = 0;
-                };
-
-                $scope.getQuestion = function(){
-                    $scope.question =  myJason[0].Q_qeustion;
-                    $scope.options = get_answers_lst_from_jason();
-
-                    $scope.answer = 0;
-                    $scope.answerMode = true;
-
-                };
-
-            //This is function for submit
-                $scope.checkAnswer = function(){
-                    var ans = $('input[name=answer]:checked').val();
-                    if(ans == $scope.options[$scope.answer]) {
-                        $scope.score++;
-                        $scope.feedback = myJason[0].Q_correctFB;
-                        $scope.correctAns = true;
-                    } else {
-                        $scope.feedback = myJason[0].Q_notCorrectFB;
-                        $scope.correctAns = false;
-                    }
-                    $scope.answerMode = false;
-                };
-
-
-                $scope.nextQuestion = function(){
-                    // HERE WE NEED TO ASK FOR NEXT QUESTION. how???
-                    // for now, infint loop on same question
-                    $scope.getQuestion();
-                };
-
-                $scope.reset();  
-
-            alert(JSON.stringify(myJason));
+            $scope.task_name = myJason[0].Q_skill;  // change to task name
+            $scope.task_id = 1;                     //change to task is
+        $scope.Q_skill = myJason[0].Q_skill;
         }).error(function(data,status,headers,config){
-            alert("status: "+status + "data: "+JSON.stringify(data));
-            myJason = data;
-        });
+            //alert("status: "+status + "data: "+JSON.stringify(data));
+            myJason = "";
+    });
+   
+    $scope.start = function(){
+        $scope.id = 0;
+        $scope.quizOver = false;
+        $scope.inProgress = true;
+        $scope.getQuestion();
+    };
+
+    $scope.reset = function() {
+        $scope.inProgress = false;
+        $scope.score = 0;
+    };
+
+    $scope.getQuestion = function(){
+        $scope.question =  myJason[0].Q_qeustion;
+        $scope.options = get_answers_lst_from_jason(myJason);
+        $scope.answer = 0;
+        $scope.answerMode = true;
+    };
+
+    //This is function for submit
+    $scope.checkAnswer = function(){
+        var ans = $('input[name=answer]:checked').val();
+        if(ans == $scope.options[$scope.answer]) {
+            $scope.score++;
+            $scope.feedback = myJason[0].Q_correctFB;
+            $scope.correctAns = true;
+            /*need to add update ans & remove from instances*/ 
+        } else {
+            $scope.feedback = myJason[0].Q_notCorrectFB;
+            $scope.correctAns = false;
+            /*need to add update ans*/
+        }
+        $scope.answerMode = false;
+    };
 
 
+    $scope.nextQuestion = function(){
+        // HERE WE NEED TO ASK FOR NEXT QUESTION. how???
+        // solution : just re-load the question anagin
+        $location.path('one_question');
+        // for now, infint loop on same question
+        //$scope.getQuestion();
+    };
 
-
+    $scope.reset();
+ 
 
   
 });
 
 textrategiaApp.controller("LoginController", function($scope, $http,$location) {
-  // $scope.user={'username':'','password':''};
-    //var user = 'shakedkr@post.bgu.ac.il';
-   //var password='123456';
 
+    
     $scope.showError = false; // set Error flag
     $scope.showSuccess = false; // set Success Flag
 
@@ -150,6 +166,8 @@ textrategiaApp.controller("LoginController", function($scope, $http,$location) {
           
         $http(req)
         .success(function(data,status,headers,config){
+            setUserName(data[0].FirstName);
+            setUserID(data[0].PersonalID);
             $scope.showError = false;
             $scope.showSuccess = true;
             $location.path('student');
@@ -162,15 +180,7 @@ textrategiaApp.controller("LoginController", function($scope, $http,$location) {
         });
 
 
-        //-------- set error or success flags
-        // if(flag){
-        //     $scope.showError = false;
-        //     $scope.showSuccess = true;
-        //     $location.path('student');
-        // }
-        // else{ 
-        //     $scope.showError = true;
-        //     $scope.showSuccess = false;
-        // }
     }
+
+
 });

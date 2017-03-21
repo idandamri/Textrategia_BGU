@@ -3,6 +3,7 @@ var textrategiaApp = angular.module('textrategiaApp', [
 //'SomeNameControllers'
 ]);
 
+
 textrategiaApp.config(function($routeProvider){
 	$routeProvider
 	.when('/login', {
