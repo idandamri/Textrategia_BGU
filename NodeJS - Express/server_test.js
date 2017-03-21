@@ -1,9 +1,9 @@
 var express = require('express');
 var mysql = require('mysql');
-//var cors = require('cors');
+var cors = require('cors');
 var path = require('path');
 var app = express();
-//app.use(cors());
+app.use(cors());
 var queries = require("./queryForDB.js");
 var bodyParser = require('body-parser');
 app.use(express.static(__dirname + '/client'));
@@ -200,7 +200,7 @@ app.post('/questionDone', function deleteQuestionFromQueue(req, res, err) {
 
 app.post('/updateAnswer', function (req, res) {
     var sId = req.body.stud_id;
-    var tId = req.body.task_id;
+    var tId = req.body.task_id;-
     var qId = req.body.quest_id;
     var aId = req.body.ans_id;
     var query = queries.SubmitStudentsAnswerForQuestion(sId, tId, qId, aId);
@@ -269,7 +269,7 @@ app.post('/login', function (req, res) {
             console.log("ans:" + ans);
             //res.send(row[1]);
             if (ans.length > 0) { /*check if the resault is empty*/
-                res.status(200).send('OK.');
+                res.status(200).json(ans);
                 /*change to user id*/
                 console.log('OK');
             }
@@ -286,12 +286,13 @@ app.post('/login', function (req, res) {
 //   res.sendFile(__dirname + '/static' );
 // });
 
+/*
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '1q2w3e4r',//'123456',//'123456' to upload
+*/
 
-/*
   var connection = mysql.createConnection({
     host     : 'localhost',
     user     : 'root',

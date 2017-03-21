@@ -9,7 +9,7 @@ module.exports =
 
 	/*get user data (names,school name,user type) by user identifier (id or email) and password*/
 	getDataForUserByIdOrEmail : function(user_identifier,password){
-		var query = "SELECT FirstName,LastName,School,UserType FROM textra_db.users "+
+		var query = "SELECT * FROM textra_db.users "+
   				"WHERE (PersonalID like \'%"+user_identifier+"%\' or Email like \'%"+user_identifier+"%\')  and Pass like \'%" + password+"%\';";
 		return query;
 	},
