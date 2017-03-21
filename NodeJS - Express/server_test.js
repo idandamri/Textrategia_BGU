@@ -136,45 +136,48 @@ app.post('/getQuestion', function (req, res) {
     var t_id = req.body.t_id;
 
     var isTaskExist_query = queries.getTaskDeatils(t_id);
-    if (isTaskExist_query)
+    if (isTaskExist_query) {
         var query = queries.getQustionByTaskAndUserID(user_id, t_id);
-    /*hard coded. need to change*/
-    console.log(query);
-    connection.query(query, function (err, listOfQuestion, field) {
-        console.log("listOfQuestion.length:" + listOfQuestion.length);
-        if (err) {
-            console.log(err);
-            res.send("ERR in question request:" + err);
-        }
-        else if (listOfQuestion.length == 0) {
-            res.status(204).send("No more Question for this task");
-            /*empty content*/
-        }
-        else {
-            /*if(listOfQuestion.length>1){
-             for(i=0; i<listOfQuestion.length;i++){
-             res.status(200).json(listOfQuestion[i]);
-             }
-             }*/
-            res.status(200).json(listOfQuestion/*[0]["Q_id"]*/);
-        }
+        /*hard coded. need to change*/
+        console.log(query);
+        connection.query(query, function (err, listOfQuestion, field) {
+            console.log("listOfQuestion.length:" + listOfQuestion.length);
+            if (err) {
+                console.log(err);
+                res.send("ERR in question request:" + err);
+            }
+            else if (listOfQuestion.length == 0) {
+                res.status(204).send("No more Question for this task");
+                /*empty content*/
+            }
+            else {
+                /*if(listOfQuestion.length>1){
+                 for(i=0; i<listOfQuestion.length;i++){
+                 res.status(200).json(listOfQuestion[i]);
+                 }
+                 }*/
+                res.status(200).json(listOfQuestion/*[0]["Q_id"]*/);
+            }
 
+            //   var q_id = listOfQuestion[0]["Q_id"];
+            //   console.log(q_id);
+            //   var query = queries.getAllAnswersToQuestion(q_id);
+            //   connection.query (query , function(err,listOfAnswer,field){
+            //     if (err){
+            //      console.log(err);
+            //    }
+            //    else{
+            //     console.log(listOfQuestion);
+            //     res.send(listOfQuestion.concat(listOfAnswer));
+            //
+            //   }
+            // });
 
-        //   var q_id = listOfQuestion[0]["Q_id"];
-        //   console.log(q_id);
-        //   var query = queries.getAllAnswersToQuestion(q_id);
-        //   connection.query (query , function(err,listOfAnswer,field){
-        //     if (err){
-        //      console.log(err);
-        //    }
-        //    else{
-        //     console.log(listOfQuestion);
-        //     res.send(listOfQuestion.concat(listOfAnswer));
-        //
-        //   }
-        // });
-
-    });
+        });
+    }
+    else{
+        res.status(676);//End of task
+    }
 });
 
 

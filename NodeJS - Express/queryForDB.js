@@ -83,7 +83,7 @@ module.exports =
 	},
 
 	getQustionByTaskAndUserID : function(user_id,t_id){
-		var query ="select T.Q_id, T.Q_qeustion, T.isMultipuleAns, T.Q_correctFB, T.Q_notCorrectFB, answers.A_id, " +
+		var query ="select "+/*T.Q_id, T.Q_qeustion, T.isMultipuleAns, T.Q_correctFB, T.Q_notCorrectFB,*/" answers.A_id, " +
 			"answers.answer, answers.isCorrect from ((select * from questions " +
 			"where questions.Q_id = (select questions.Q_id from tasks_and_question_for_student_instances " +
 			"join questions on tasks_and_question_for_student_instances.T_id = \'" + t_id + "\'" +

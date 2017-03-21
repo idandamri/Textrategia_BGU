@@ -1,15 +1,15 @@
 /*------------------ users -----------------*/
 insert into users
-values (1,"Damri","Idan","Techni","Beer Sheva",1,"idandamri@gmail.com","123456");
+values (1,"דמרי","עידן","Techni","Beer Sheva",1,"idandamri@gmail.com","123456");
 
 insert into users
-values (2,"Krigel","Shaked","Mekif H","Ashdod",2,"shakedkr@post.bgu.ac.il","123456");
+values (2,"קריגל","שקד","Mekif H","Ashdod",2,"shakedkr@post.bgu.ac.il","123456");
 
 insert into users
-values (3,"Ganim","Hadas","Mevuot","Ashdod",2,"hadasganim@gmail.com","123456");
+values (3,"גנים","הדס","Mevuot","Ashdod",2,"hadasganim@gmail.com","123456");
 
 insert into users
-values (4,"Sturm","Arnon","BGU","Beer Sheva",1,"sturm@bgu.ac.il","123456");
+values (4,"שטורם","ארנון","BGU","Beer Sheva",1,"sturm@bgu.ac.il","123456");
 /*------------------------------------------*/
 
 /*-------------- tasks ---------------------*/
