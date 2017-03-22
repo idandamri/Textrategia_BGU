@@ -219,6 +219,18 @@ app.post('/updateAnswer', function (req, res) {
             // var deleteSucceeded = deleteQuestionFromQueue(sId, tId, qId, res);
             // connection.query(deleteSucceeded, function (err, ans, field) {
             //     if (!err)
+
+            var query2 = queries.DeleteQuestionsFromInstance(sId, tId, qId);
+            console.log('\n' + query2 + '\n');
+            connection.query(query2, function (err, ans, field) {
+                if (err) {
+                    return res.status(204);
+                }
+                else {
+                    return res.status(200);
+                }
+            });
+
             res.status(200).send();
             //     else
             //         res.status(400).send();
