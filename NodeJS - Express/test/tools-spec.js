@@ -96,21 +96,5 @@ describe("Testing Textrategia API", function () {
                     done();
                 });
         });
-
-        it('Testing removing quest after update', function (done) {
-            request(app).post("/questionDone")
-                .send({"s_id": "2", "t_id": "1", "q_id": "1"})
-                .end(function (err, res) {
-                    if (err) {
-                        console.log("ERR: " + err)
-                        throw err;
-                        done();
-                    }
-                    else {
-                        res.status.should.be.equal(200);
-                        done();
-                    }
-                });
-        });
     });
 });

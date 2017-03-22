@@ -203,7 +203,7 @@ app.post('/questionDone', function deleteQuestionFromQueue(req, res, err) {
 
 app.post('/updateAnswer', function (req, res) {
     var sId = req.body.stud_id;
-    var tId = req.body.task_id;-
+    var tId = req.body.task_id;
     var qId = req.body.quest_id;
     var aId = req.body.ans_id;
     var query = queries.SubmitStudentsAnswerForQuestion(sId, tId, qId, aId);
