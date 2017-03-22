@@ -82,7 +82,7 @@ module.exports =
 		return query;
 	},
 
-	getQustionByTaskAndUserID : function(user_id,t_id){
+	getAnswersByTaskAndUser : function(user_id,t_id){
 		var query ="select "+/*T.Q_id, T.Q_qeustion, T.isMultipuleAns, T.Q_correctFB, T.Q_notCorrectFB,*/" answers.A_id, " +
 			"answers.answer, answers.isCorrect from ((select * from questions " +
 			"where questions.Q_id = (select questions.Q_id from tasks_and_question_for_student_instances " +
@@ -129,11 +129,9 @@ module.exports =
 		var query = "select T.Q_id, T.Q_qeustion, T.isMultipuleAns, " +
 			"T.Q_correctFB, T.Q_mediaType, T.Q_media," +
 			"T.Q_notCorrectFB, T.Q_skill, T.Q_difficulty," +
-            "T.Q_proffession, T.Q_approved, T.Q_disabled, " +
-			"answers.A_id, answers.answer, answers.isCorrect" +
-			"from ((select * from questions where questions.Q_id = \'" + q_id + "\')" +
-			"as T JOIN answers on T.Q_id = answers.Q_id);"
-		return query;
+            "T.Q_proffession, T.Q_approved, T.Q_disabled " +
+			"from (select * from questions where questions.Q_id = \'" + q_id + "\') as T;";
+			return query;
     },
 
     getAnswersByTidQidSid:function (/*s_id, t_id, */q_id) {

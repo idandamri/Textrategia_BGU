@@ -9,7 +9,6 @@ var bodyParser = require('body-parser');
 app.use(express.static(__dirname + '/client'));
 
 
-
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 // This responds with "Hello World" on the homepage
@@ -131,61 +130,52 @@ app.post('/getTasks', function (req, res) {
  get - t_id , user_id
  return -A list of jsons. The first one is a question info, second to last - answer info */
 app.post('/getQuestion', function (req, res) {
-    console.log("Got a question request");
-    var user_id = req.body.user_id;
-    var t_id = req.body.t_id;
+        console.log("Got a question request");
+        var user_id = req.body.user_id;
+        var t_id = req.body.t_id;
 
-    var isTaskExist_query = queries.getTaskDeatils(t_id);
-    if (isTaskExist_query) {
-        var query = queries.getQustionByTaskAndUserID(user_id, t_id);
-        /*hard coded. need to change*/
-        console.log(query);
-        connection.query(query, function (err, listOfQuestion, field) {
-            console.log("listOfQuestion.length:" + listOfQuestion.length);
-            if (err) {
-                console.log(err);
-                res.send("ERR in question request:" + err);
-            }
-            else if (listOfQuestion.length == 0) {
-                res.status(204).send("No more Question for this task");
-                /*empty content*/
-            }
-            else {
-                /*if(listOfQuestion.length>1){
-                 for(i=0; i<listOfQuestion.length;i++){
-                 res.status(200).json(listOfQuestion[i]);
-                 }
-                 }*/
-                res.status(200).json(listOfQuestion/*[0]["Q_id"]*/);
-            }
+        var isTaskExist_query = queries.getTaskDeatils(t_id);
+        if (isTaskExist_query) {
 
-            //   var q_id = listOfQuestion[0]["Q_id"];
-            //   console.log(q_id);
-            //   var query = queries.getAllAnswersToQuestion(q_id);
-            //   connection.query (query , function(err,listOfAnswer,field){
-            //     if (err){
-            //      console.log(err);
-            //    }
-            //    else{
-            //     console.log(listOfQuestion);
-            //     res.send(listOfQuestion.concat(listOfAnswer));
-            //
-            //   }
-            // });
+            var question = "";
 
-        });
+            var query = queries.getFullQuestionByQid(user_id, t_id);
+            console.log(query);
+            connection.query(query, function (err, ans, field) {
+                var query = queries.getAnswersByTaskAndUser(user_id, t_id);
+                console.log(query);
+                connection.query(query, function (err, listOfAnswers, field) {
+                    console.log("listOfAnswers.length:" + listOfAnswers.length);
+                    if (err) {
+                        console.log(err);
+                        res.send("ERR in question request:" + err);
+                    }
+                    else if (listOfAnswers.length == 0) {
+                        res.status(204).send("No more Question for this task");
+                        /*empty content*/
+                    }
+                    else {
+                        questionFromDB = ans;
+                        var responseJson = {};
+                        responseJson["question"] = questionFromDB[0];
+                        responseJson["answers"] = listOfAnswers;
+                        res.status(200).json(responseJson);
+                    }
+                });
+            });
+        }
+        else {
+            res.status(676);//End of task
+        }
     }
-    else{
-        res.status(676);//End of task
-    }
-});
+);
 
 
 /*get: student_id, questio_id,task_id,answer_id
  */
 app.post('/questionDone', function deleteQuestionFromQueue(req, res, err) {
     var quest_id = req.body.q_id;
-    var stud_id= req.body.s_id;
+    var stud_id = req.body.s_id;
     var task_id = req.body.t_id;
 
 
@@ -220,16 +210,16 @@ app.post('/updateAnswer', function (req, res) {
             // connection.query(deleteSucceeded, function (err, ans, field) {
             //     if (!err)
 
-            var query2 = queries.DeleteQuestionsFromInstance(sId, tId, qId);
-            console.log('\n' + query2 + '\n');
-            connection.query(query2, function (err, ans, field) {
-                if (err) {
-                    return res.status(204);
-                }
-                else {
-                    return res.status(200);
-                }
-            });
+            /*var query2 = queries.DeleteQuestionsFromInstance(sId, tId, qId);
+             console.log('\n' + query2 + '\n');
+             connection.query(query2, function (err, ans, field) {
+             if (err) {
+             return res.status(204);
+             }
+             else {
+             return res.status(200);
+             }
+             });*/
 
             res.status(200).send();
             //     else
@@ -302,16 +292,16 @@ app.post('/login', function (req, res) {
 // });
 
 /*
+ var connection = mysql.createConnection({
+ host: 'localhost',
+ user: 'root',
+ password: '1q2w3e4r',//'123456',//'123456' to upload
+ */
+
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '1q2w3e4r',//'123456',//'123456' to upload
-*/
-
-  var connection = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'root',
-    password : '123456',//'123456' to upload*/
+    password: '1q2w3e4r',//'123456' to upload*/
     database: 'textra_db'
 });
 

@@ -50,10 +50,6 @@ describe("Testing Textrategia API", function () {
     });
 
     describe("Testing Get question", function () {
-
-        var qqq = "";
-        var aaa = "";
-
         it('Get Question For a Task', function (done) {
             request(app).post("/getQuestion").send({"user_id": '1', "t_id": "1"})
                 .end(function (err, res) {
@@ -61,11 +57,18 @@ describe("Testing Textrategia API", function () {
                         throw err;
                     res.status.should.be.equal(200);
                     questions = res.body;
-                    for (i = 0; i < questions.length; i++) {
-                        strQ = JSON.stringify(questions[i]);
-                        console.log("BODY: " + strQ);
+                    strQ = JSON.stringify(questions["question"]);
+                    console.log("{\"question\" : "+ strQ + ", \"answers\": [");
+                    for (i = 0; i < questions["answers"].length; i++) {
+                        strQ = JSON.stringify(questions["answers"][i]);
+                        // console.log("Ans "+i+" - " + strQ);
+                        if (i<questions["answers"].length-1) {
+                            console.log(strQ + ", ");
+                        } else {
+                            console.log(strQ + "]}");
+                        }
                     }
-                    qqq = questions;
+                    // qqq = questions;
                     done();
                 });
         });
