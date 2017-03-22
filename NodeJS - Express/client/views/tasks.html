@@ -27,7 +27,7 @@
 		<div class="container" id="c_1">
 
 			<br>
-			<h1>שלום!</h1>
+			<h1>שלום {{studentName}}!</h1>
 			<h3><em>לרשותך, רשימת המטלות הזמינות בפניך</em></h3>
       <br>
 			<br>
@@ -40,8 +40,9 @@
      				<h4 class="card-title"><b>{{x.T_title}}</b></h4>
      				<p class="card-text">{{x.T_description}}</p>
      				<p class="card-text"> מספר שאלות: <b>{{questionSum}}</b></p>
-     				<a href="#one_question" class="btn btn-primary">התחל מטלה</a>
-     			</div>
+     				<a ng-click="navigateToOneQuestion(x.T_id)" class="btn btn-primary">התחל מטלה</a>
+     			
+          </div>
      		</div>
      	</div>
     </div>
