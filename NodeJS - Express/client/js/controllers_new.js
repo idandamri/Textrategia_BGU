@@ -25,7 +25,7 @@ function removeQuestionFromInstances (student_id , task_id, quesion_id){
 
 
 textrategiaApp.controller("StudentController",function($scope){
-	$scope.studentName = getUserName();
+    $scope.studentName = getUserName();
 });
 
 
@@ -84,7 +84,7 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http){
             myJason = data;
             $scope.task_name = myJason[0].Q_skill;  // change to task name
             $scope.task_id = 1;                     //change to task is
-        $scope.Q_skill = myJason[0].Q_skill;
+            $scope.Q_skill = myJason[0].Q_skill;
         }).error(function(data,status,headers,config){
             //alert("status: "+status + "data: "+JSON.stringify(data));
             myJason = "";
@@ -103,7 +103,9 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http){
     };
 
     $scope.getQuestion = function(){
+        alert(JSON.stringify("myJason: " + myJason));
         $scope.question =  myJason[0].Q_qeustion;
+        alert(myJason[0].Q_qeustion);
         $scope.options = get_answers_lst_from_jason(myJason);
         $scope.answer = 0;
         $scope.answerMode = true;
