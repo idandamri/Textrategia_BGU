@@ -8,7 +8,6 @@ var get_answers_lst_from_jason = function(myJason) {
         //alert(myJason[i].answer);
         ans.push(myJason[i].answer);
     }
-
     return ans;
 };
 
@@ -82,9 +81,9 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http){
         .success(function(data,status,headers,config){
             alert("status: "+status + "data: "+JSON.stringify(data));
             myJason = data;
-            $scope.task_name = myJason[0].Q_skill;  // change to task name
+            $scope.task_name = myJason[0].question.Q_skill;  // change to task name
             $scope.task_id = 1;                     //change to task is
-            $scope.Q_skill = myJason[0].Q_skill;
+            $scope.Q_skill = myJason[0].question.Q_skill;
         }).error(function(data,status,headers,config){
             //alert("status: "+status + "data: "+JSON.stringify(data));
             myJason = "";
@@ -103,10 +102,11 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http){
     };
 
     $scope.getQuestion = function(){
-        alert(JSON.stringify("myJason: " + myJason));
-        $scope.question =  myJason[0].Q_qeustion;
-        alert(myJason[0].Q_qeustion);
-        $scope.options = get_answers_lst_from_jason(myJason);
+        alert(JSON.stringify( myJason));
+        alert(JSON.stringify( myJason.question));
+        $scope.question =  myJason.question.Q_qeustion;
+        alert(myJason.question.Q_qeustion);
+        $scope.options = get_answers_lst_from_jason(myJason.answers);
         $scope.answer = 0;
         $scope.answerMode = true;
     };
