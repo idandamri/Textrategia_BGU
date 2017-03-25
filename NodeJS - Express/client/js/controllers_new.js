@@ -11,6 +11,16 @@ var get_answers_lst_from_jason = function(myJason) {
     return ans;
 };
 
+var get_answer_index = function(myJason) {
+    var ans;
+    for (i=0 ; i< myJason.length ; i++){
+        if (myJason[i].isCorrect == 1){
+            ans = i;
+            break;
+        }
+    }
+    return ans;
+};
 
 /*TO-DO*/
 function updateAnswer (student_id , task_id, quesion_id){
@@ -60,40 +70,62 @@ textrategiaApp.controller("TasksController",function($scope,$http,$location){
 
 });
 
-
-
-
-textrategiaApp.controller("oneQuestionController", function($scope,$http){
-
-   var myJason;
+/*not in use*/
+function extracted() {
+    var myJason;
+    $http = angular.injector(["ng"]).get("$http");
 
     var req = {
-                method: 'POST',
-                cache: false,
-                url: _url +'/getQuestion',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                data: 'user_id='+getUserID()+'&t_id=1' /*CHANGE TO COOKIE*/
-    };  
+        method: 'POST',
+        cache: false,
+        url: _url + '/getQuestion',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        data: 'user_id=' + getUserID() + '&t_id=1' /*CHANGE TO COOKIE*/
+    };
 
-    $http(req)
-        .success(function(data,status,headers,config){
-            alert("status: "+status + "data: "+JSON.stringify(data));
-            myJason = data;
-            $scope.task_name = myJason[0].question.Q_skill;  // change to task name
-            $scope.task_id = 1;                     //change to task is
-            $scope.Q_skill = myJason[0].question.Q_skill;
-        }).error(function(data,status,headers,config){
-            //alert("status: "+status + "data: "+JSON.stringify(data));
+    // return function() {
+            $http(req)
+            .success(function (data, status, headers, config) {
+                myJason = data;
+
+            }).error(function (data, status, headers, config) {
             myJason = "";
-    });
-   
+        });
+    // }
+}
+
+textrategiaApp.controller("oneQuestionController", function($scope,$http,$location){
+
     $scope.start = function(){
-        $scope.id = 0;
-        $scope.quizOver = false;
-        $scope.inProgress = true;
-        $scope.getQuestion();
+        //var myJason  = extracted();
+        var req = {
+            method: 'POST',
+            cache: false,
+            url: _url + '/getQuestion',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            data: 'user_id=' + getUserID() + '&t_id=' + getTaskID() /*CHANGE TO COOKIE*/
+        };
+        $http(req)
+            .success(function (data, status, headers, config) {
+                myJason = data;
+                alert(JSON.stringify(myJason));
+                $scope.task_name = myJason.question.Q_skill;  // change to task name
+                $scope.task_id = getTaskID();                    //change to task is
+                $scope.Q_skill = myJason.question.Q_skill;
+                $scope.id = 0;
+                $scope.quizOver = false;
+                $scope.inProgress = true;
+                $scope.getQuestion();
+
+            }).error(function (data, status, headers, config) {
+                 myJason = "";
+        });
+
+
     };
 
     $scope.reset = function() {
@@ -102,13 +134,11 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http){
     };
 
     $scope.getQuestion = function(){
-        alert(JSON.stringify( myJason));
-        alert(JSON.stringify( myJason.question));
         $scope.question =  myJason.question.Q_qeustion;
-        alert(myJason.question.Q_qeustion);
         $scope.options = get_answers_lst_from_jason(myJason.answers);
-        $scope.answer = 0;
+        $scope.answer = get_answer_index(myJason.answers);
         $scope.answerMode = true;
+        $scope.questionID = myJason.question.Q_id;
     };
 
     //This is function for submit
@@ -116,11 +146,11 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http){
         var ans = $('input[name=answer]:checked').val();
         if(ans == $scope.options[$scope.answer]) {
             $scope.score++;
-            $scope.feedback = myJason[0].Q_correctFB;
+            $scope.feedback = myJason.answers.Q_correctFB;
             $scope.correctAns = true;
             /*need to add update ans & remove from instances*/ 
         } else {
-            $scope.feedback = myJason[0].Q_notCorrectFB;
+            $scope.feedback = myJason.answers.Q_notCorrectFB;
             $scope.correctAns = false;
             /*need to add update ans*/
         }
@@ -129,17 +159,29 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http){
 
 
     $scope.nextQuestion = function(){
-        // HERE WE NEED TO ASK FOR NEXT QUESTION. how???
-        // solution : just re-load the question anagin
-        $location.path('one_question');
-        // for now, infint loop on same question
-        //$scope.getQuestion();
+        var req = {
+            method: 'POST',
+            cache: false,
+            url: _url + '/questionDone',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            data: 's_id=' + getUserID() + '&t_id=1' + "&q_id=" + $scope.questionID /*CHANGE TO COOKIE*/
+        };
+        $http(req)
+            .success(function (data, status, headers, config) {
+                 /*load new question deatils*/
+                alert("status for next question:" + status);
+                $scope.start();
+            }).error(function (data, status, headers, config) {
+                alert(status);
+        });
+
+
     };
 
     $scope.reset();
- 
 
-  
 });
 
 textrategiaApp.controller("LoginController", function($scope, $http,$location) {

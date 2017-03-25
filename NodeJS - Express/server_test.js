@@ -133,7 +133,6 @@ app.post('/getQuestion', function (req, res) {
         console.log("Got a question request");
         var user_id = req.body.user_id;
         var t_id = req.body.t_id;
-
         var isTaskExist_query = queries.getTaskDeatils(t_id);
         if (isTaskExist_query) {
 
@@ -178,15 +177,14 @@ app.post('/questionDone', function deleteQuestionFromQueue(req, res, err) {
     var stud_id = req.body.s_id;
     var task_id = req.body.t_id;
 
-
     var query2 = queries.DeleteQuestionsFromInstance(stud_id, task_id, quest_id);
     console.log('\n' + query2 + '\n');
     connection.query(query2, function (err, ans, field) {
         if (err) {
-            return res.status(204);
+            res.status(204).send();
         }
         else {
-            return res.status(200);
+            res.status(200).send();
         }
     });
 });
@@ -235,31 +233,6 @@ app.post('/updateAnswer', function (req, res) {
  get :  user and password
  return : OK or ERROR
  */
-// app.post('/login', function (req, res) {
-//   console.log("Got a login request");
-//   var user_name= req.body.user; /* user_name can be id or email */
-//   var password = req.body.password;
-//   console.log('\n\nUsername:'+user_name + "\nPassword:" + password + '\n')
-//   var query = queries.getDataForUserByIdOrEmail(user_name,password);
-//   console.log(query);
-//   connection.query (query , function(err,ans,field){
-//     if(err)
-//       console.log(err);
-//     else{
-//       console.log(ans);
-//       //res.send(row[1]);
-//       if(ans.length > 0){ /*check if the resault is empty*/
-//         res.send('OK') /*change to user id*/
-//       }
-//     }
-//   });
-// });
-
-
-/*GOOD
- get :  user and password
- return : OK or ERROR
- */
 app.post('/login', function (req, res) {
     var user_name = req.body.user;
     /* user_name can be id or email */
@@ -301,7 +274,7 @@ app.post('/login', function (req, res) {
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '1q2w3e4r',//'123456' to upload*/
+    password: '123456',//'123456' to upload*/
     database: 'textra_db'
 });
 
@@ -309,7 +282,7 @@ var connection = mysql.createConnection({
 connection.connect(function (err) {
     if (err){
         console.log("Connection Error")
-    }4
+    }
     // console.error(err);
     // connected! (unless `err` is set)
 });

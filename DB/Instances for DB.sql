@@ -53,7 +53,7 @@ insert into tasks_and_question_for_student_instances
 values(3,1,1);
 /*------------------------------------------*/
 
-/*----------- instances_of_answers ---------*/
+/*----------- instances_of_answers 
 INSERT INTO `textra_db`.`instances_of_answers` (`studentId`, `T_id`, `Q_id`, `A_id`) VALUES ('1', '1', '1', '1');
 INSERT INTO `textra_db`.`instances_of_answers` (`studentId`, `T_id`, `Q_id`, `A_id`) VALUES ('1', '1', '1', '2');
 INSERT INTO `textra_db`.`instances_of_answers` (`studentId`, `T_id`, `Q_id`, `A_id`) VALUES ('1', '1', '1', '3');
