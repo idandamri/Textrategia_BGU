@@ -109,8 +109,8 @@ module.exports =
 
 	
 	SubmitStudentsAnswerForQuestion : function (student_id, task_id, q_id, a_id){
-		var query = "insert into textra_db.instances_of_answers " + 
-		"values(null," + student_id + "," + task_id + "," + q_id + "," + a_id + ");\n";
+		var query = "insert into textra_db.instances_of_answers " +
+		"values(current_timestamp," + student_id + "," + task_id + "," + q_id + "," + a_id + ");\n";
 		return query;
 	},
 //delete from textra_db.tasks_and_question_for_student_instances where studentId like '2' and T_id = '1' and Q_id = '1'

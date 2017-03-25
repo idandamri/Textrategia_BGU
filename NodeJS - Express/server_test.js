@@ -307,7 +307,10 @@ var connection = mysql.createConnection({
 
 
 connection.connect(function (err) {
-    console.error(err);
+    if (err){
+        console.log("Connection Error")
+    }4
+    // console.error(err);
     // connected! (unless `err` is set)
 });
 
