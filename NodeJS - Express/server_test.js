@@ -133,39 +133,39 @@ app.post('/getQuestion', function (req, res) {
         console.log("Got a question request");
         var user_id = req.body.user_id;
         var t_id = req.body.t_id;
-        var isTaskExist_query = queries.getTaskDeatils(t_id);
-        if (isTaskExist_query) {
-
-            var question = "";
-
-            var query = queries.getFullQuestionByQid(user_id, t_id);
-            console.log(query);
-            connection.query(query, function (err, ans, field) {
-                var query = queries.getAnswersByTaskAndUser(user_id, t_id);
+        var question = "";
+        var tasksQid = queries.getSingleQuestionIdFromTaskIdAndUserId(user_id, t_id);
+        connection.query(tasksQid, function (err, row, field) {
+            if (row[0].Q_id != null) {//TODO continue debug Idan
+                var query = queries.getFullQuestionByQid(row[0].Q_id);
                 console.log(query);
-                connection.query(query, function (err, listOfAnswers, field) {
-                    console.log("listOfAnswers.length:" + listOfAnswers.length);
-                    if (err) {
-                        console.log(err);
-                        res.send("ERR in question request:" + err);
-                    }
-                    else if (listOfAnswers.length == 0) {
-                        res.status(204).send("No more Question for this task");
-                        /*empty content*/
-                    }
-                    else {
-                        questionFromDB = ans;
-                        var responseJson = {};
-                        responseJson["question"] = questionFromDB[0];
-                        responseJson["answers"] = listOfAnswers;
-                        res.status(200).json(responseJson);
-                    }
+                connection.query(query, function (err, ans, field) {
+                    var query = queries.getAnswersByTaskAndUser(user_id, t_id);
+                    console.log(query);
+                    connection.query(query, function (err, listOfAnswers, field) {
+                        console.log("listOfAnswers.length:" + listOfAnswers.length);
+                        if (err) {
+                            console.log(err);
+                            res.send("ERR in question request:" + err);
+                        }
+                        else if (listOfAnswers.length == 0) {
+                            res.status(204).send("No more Question for this task");
+                            /*empty content*/
+                        }
+                        else {
+                            questionFromDB = ans;
+                            var responseJson = {};
+                            responseJson["question"] = questionFromDB[0];
+                            responseJson["answers"] = listOfAnswers;
+                            res.status(200).json(responseJson);
+                        }
+                    });
                 });
-            });
-        }
-        else {
-            res.status(676);//End of task
-        }
+            }
+            else {
+                res.status(676);//End of task
+            }
+        });
     }
 );
 
@@ -274,13 +274,13 @@ app.post('/login', function (req, res) {
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '123456',//'123456' to upload*/
+    password: '1q2w3e4r',//'123456' to upload*/
     database: 'textra_db'
 });
 
 
 connection.connect(function (err) {
-    if (err){
+    if (err) {
         console.log("Connection Error")
     }
     // console.error(err);
