@@ -130,13 +130,14 @@ app.post('/getTasks', function (req, res) {
  get - t_id , user_id
  return -A list of jsons. The first one is a question info, second to last - answer info */
 app.post('/getQuestion', function (req, res) {
-        console.log("Got a question request");
-        var user_id = req.body.user_id;
-        var t_id = req.body.t_id;
-        var question = "";
-        var tasksQid = queries.getSingleQuestionIdFromTaskIdAndUserId(user_id, t_id);
-        connection.query(tasksQid, function (err, row, field) {
-            if (row[0].Q_id != null) {//TODO continue debug Idan
+    console.log("Got a question request");
+    var user_id = req.body.user_id;
+    var t_id = req.body.t_id;
+    var question = "";
+    var tasksQid = queries.getSingleQuestionIdFromTaskIdAndUserId(user_id, t_id);
+    connection.query(tasksQid, function (err, row, field) {
+        if (row.length>0 /*&& row != null*/) {
+            if (row[0].Q_id != null) {
                 var query = queries.getFullQuestionByQid(row[0].Q_id);
                 console.log(query);
                 connection.query(query, function (err, ans, field) {
@@ -161,13 +162,18 @@ app.post('/getQuestion', function (req, res) {
                         }
                     });
                 });
+
             }
+
             else {
                 res.status(676);//End of task
             }
-        });
-    }
-);
+        }
+        else{
+            res.status(204);//End of task
+        }
+    });
+});
 
 
 /*get: student_id, questio_id,task_id,answer_id
