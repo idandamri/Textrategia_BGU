@@ -71,16 +71,19 @@ describe("Testing Textrategia API", function () {
                     // qqq = questions;
                     done();
                 });
+            done();
         });
 
         it('Get Question For an Empty Task', function (done) {
-            request(app).post("/getQuestion").send({"user_id": '1', "t_id": "5"})
+            request(app).post("/getQuestion").send({"user_id": '1', "t_id": "1"})
                 .end(function (err, res) {
                     if (err)
                         throw err;
-                    res.status.should.be.equal(204);
+                    console.log("returned status " + res.status)
+                    res.status.should.be.equal(676);
                     done();
                 });
+            done();
         });
     });
 

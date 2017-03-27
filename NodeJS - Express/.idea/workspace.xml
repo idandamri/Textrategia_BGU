@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7c1dd669-4d78-476f-9d51-553f8449f360" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server_test.js" afterPath="$PROJECT_DIR$/server_test.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/tools-spec.js" afterPath="$PROJECT_DIR$/test/tools-spec.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,8 +21,8 @@
       <file leaf-file-name="tools-spec.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/tools-spec.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="84">
-              <caret line="4" column="10" lean-forward="false" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="10" />
+            <state relative-caret-position="119">
+              <caret line="81" column="41" lean-forward="false" selection-start-line="81" selection-start-column="33" selection-end-line="81" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -31,8 +31,8 @@
       <file leaf-file-name="queryForDB.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/queryForDB.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="218">
-              <caret line="133" column="4" lean-forward="false" selection-start-line="133" selection-start-column="4" selection-end-line="133" selection-end-column="4" />
+            <state relative-caret-position="130">
+              <caret line="86" column="53" lean-forward="false" selection-start-line="86" selection-start-column="53" selection-end-line="86" selection-end-column="53" />
               <folding />
             </state>
           </provider>
@@ -41,8 +41,8 @@
       <file leaf-file-name="server_test.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server_test.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="304" column="3" lean-forward="false" selection-start-line="304" selection-start-column="3" selection-end-line="304" selection-end-column="3" />
+            <state relative-caret-position="108">
+              <caret line="136" column="3" lean-forward="false" selection-start-line="136" selection-start-column="3" selection-end-line="136" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -56,6 +56,7 @@
       <find>oneques</find>
       <find>getQuestion</find>
       <find>getQ</find>
+      <find>getQu</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -74,6 +75,7 @@
         <option value="$PROJECT_DIR$/client/views/one_question.html" />
         <option value="$PROJECT_DIR$/queryForDB.js" />
         <option value="$PROJECT_DIR$/server_test.js" />
+        <option value="$PROJECT_DIR$/test/tools-spec.js" />
       </list>
     </option>
   </component>
@@ -149,7 +151,7 @@
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
     <property name="nodejs.mocha.mocha_node_package_dir" value="C:\Users\idan\AppData\Roaming\npm\node_modules\mocha" />
   </component>
-  <component name="RunManager" selected="Mocha.Testing Textrategia API.Testing Get question.Get Question For a Task">
+  <component name="RunManager" selected="Mocha.Testing Textrategia API.Testing Get question.Get Question For an Empty Task">
     <configuration default="false" name="server_test.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="project" path-to-js-file="server_test.js" working-dir="$PROJECT_DIR$">
       <method />
     </configuration>
@@ -167,6 +169,23 @@
         <name value="Testing Textrategia API" />
         <name value="Testing Get question" />
         <name value="Get Question For a Task" />
+      </test-names>
+      <method />
+    </configuration>
+    <configuration default="false" name="Testing Textrategia API.Testing Get question.Get Question For an Empty Task" type="mocha-javascript-test-runner" factoryName="Mocha" temporary="true" nameIsGenerated="true">
+      <node-interpreter>D:/Proj/node</node-interpreter>
+      <node-options />
+      <working-directory>$PROJECT_DIR$</working-directory>
+      <pass-parent-env>true</pass-parent-env>
+      <envs />
+      <ui>bdd</ui>
+      <extra-mocha-options />
+      <test-kind>TEST</test-kind>
+      <test-file>$PROJECT_DIR$/test/tools-spec.js</test-file>
+      <test-names>
+        <name value="Testing Textrategia API" />
+        <name value="Testing Get question" />
+        <name value="Get Question For an Empty Task" />
       </test-names>
       <method />
     </configuration>
@@ -566,14 +585,16 @@
     <configuration default="true" type="osgi.bnd.run" factoryName="Test Launcher (JUnit)">
       <method />
     </configuration>
-    <list size="2">
+    <list size="3">
       <item index="0" class="java.lang.String" itemvalue="Node.js.server_test.js" />
       <item index="1" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing Get question.Get Question For a Task" />
+      <item index="2" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing Get question.Get Question For an Empty Task" />
     </list>
     <recent_temporary>
-      <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing Get question.Get Question For a Task" />
+      <list size="3">
+        <item index="0" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing Get question.Get Question For an Empty Task" />
         <item index="1" class="java.lang.String" itemvalue="Node.js.server_test.js" />
+        <item index="2" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing Get question.Get Question For a Task" />
       </list>
     </recent_temporary>
   </component>
@@ -588,7 +609,7 @@
       <option name="presentableId" value="Default" />
       <updated>1490292077375</updated>
       <workItem from="1490292078919" duration="1827000" />
-      <workItem from="1490549471962" duration="5724000" />
+      <workItem from="1490549471962" duration="8847000" />
     </task>
     <task id="LOCAL-00001" summary="done updating getQuestion">
       <created>1490566647810</created>
@@ -597,47 +618,54 @@
       <option name="project" value="LOCAL" />
       <updated>1490566647810</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="done updating getQuestion .">
+      <created>1490567682589</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1490567682589</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Testing_Textrategia_API_Testing_Get_question_Get_Question_For_a_Task - 2017.03.27 at 01h 15m 42s.xml">
-      <configuration name="Testing Textrategia API.Testing Get question.Get Question For a Task" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="Testing_Textrategia_API_Testing_Get_question_Get_Question_For_an_Empty_Task - 2017.03.27 at 10h 51m 04s.xml">
+      <configuration name="Testing Textrategia API.Testing Get question.Get Question For an Empty Task" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="Testing_Textrategia_API_Testing_Get_question_Get_Question_For_a_Task - 2017.03.27 at 01h 16m 19s.xml">
-      <configuration name="Testing Textrategia API.Testing Get question.Get Question For a Task" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="Testing_Textrategia_API_Testing_Get_question_Get_Question_For_an_Empty_Task - 2017.03.27 at 10h 52m 35s.xml">
+      <configuration name="Testing Textrategia API.Testing Get question.Get Question For an Empty Task" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="Testing_Textrategia_API_Testing_Get_question_Get_Question_For_a_Task - 2017.03.27 at 01h 22m 37s.xml">
-      <configuration name="Testing Textrategia API.Testing Get question.Get Question For a Task" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="Testing_Textrategia_API_Testing_Get_question_Get_Question_For_an_Empty_Task - 2017.03.27 at 10h 52m 41s.xml">
+      <configuration name="Testing Textrategia API.Testing Get question.Get Question For an Empty Task" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="Testing_Textrategia_API_Testing_Get_question_Get_Question_For_a_Task - 2017.03.27 at 01h 22m 55s.xml">
-      <configuration name="Testing Textrategia API.Testing Get question.Get Question For a Task" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="Testing_Textrategia_API_Testing_Get_question_Get_Question_For_an_Empty_Task - 2017.03.27 at 10h 53m 00s.xml">
+      <configuration name="Testing Textrategia API.Testing Get question.Get Question For an Empty Task" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="Testing_Textrategia_API_Testing_Get_question_Get_Question_For_a_Task - 2017.03.27 at 01h 25m 10s.xml">
-      <configuration name="Testing Textrategia API.Testing Get question.Get Question For a Task" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="Testing_Textrategia_API_Testing_Get_question_Get_Question_For_an_Empty_Task - 2017.03.27 at 10h 53m 30s.xml">
+      <configuration name="Testing Textrategia API.Testing Get question.Get Question For an Empty Task" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="Testing_Textrategia_API_Testing_Get_question_Get_Question_For_a_Task - 2017.03.27 at 01h 25m 56s.xml">
-      <configuration name="Testing Textrategia API.Testing Get question.Get Question For a Task" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="Testing_Textrategia_API_Testing_Get_question_Get_Question_For_an_Empty_Task - 2017.03.27 at 10h 54m 09s.xml">
+      <configuration name="Testing Textrategia API.Testing Get question.Get Question For an Empty Task" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="Testing_Textrategia_API_Testing_Get_question_Get_Question_For_a_Task - 2017.03.27 at 01h 26m 27s.xml">
-      <configuration name="Testing Textrategia API.Testing Get question.Get Question For a Task" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="Testing_Textrategia_API_Testing_Get_question_Get_Question_For_an_Empty_Task - 2017.03.27 at 10h 54m 15s.xml">
+      <configuration name="Testing Textrategia API.Testing Get question.Get Question For an Empty Task" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="Testing_Textrategia_API_Testing_Get_question_Get_Question_For_a_Task - 2017.03.27 at 01h 26m 57s.xml">
-      <configuration name="Testing Textrategia API.Testing Get question.Get Question For a Task" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="Testing_Textrategia_API_Testing_Get_question_Get_Question_For_an_Empty_Task - 2017.03.27 at 10h 56m 10s.xml">
+      <configuration name="Testing Textrategia API.Testing Get question.Get Question For an Empty Task" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="Testing_Textrategia_API_Testing_Get_question_Get_Question_For_a_Task - 2017.03.27 at 01h 28m 19s.xml">
-      <configuration name="Testing Textrategia API.Testing Get question.Get Question For a Task" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="Testing_Textrategia_API_Testing_Get_question_Get_Question_For_an_Empty_Task - 2017.03.27 at 10h 56m 22s.xml">
+      <configuration name="Testing Textrategia API.Testing Get question.Get Question For an Empty Task" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="Testing_Textrategia_API_Testing_Get_question_Get_Question_For_a_Task - 2017.03.27 at 01h 30m 21s.xml">
-      <configuration name="Testing Textrategia API.Testing Get question.Get Question For a Task" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="Testing_Textrategia_API_Testing_Get_question_Get_Question_For_an_Empty_Task - 2017.03.27 at 10h 57m 22s.xml">
+      <configuration name="Testing Textrategia API.Testing Get question.Get Question For an Empty Task" configurationId="mocha-javascript-test-runner" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7551000" />
+    <option name="totallyTimeSpent" value="10674000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1376" height="744" extended-state="6" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1376" height="744" extended-state="7" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -647,13 +675,13 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32896176" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32935154" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32764506" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32935154" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.137538" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.137538" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -677,7 +705,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="done updating getQuestion" />
-    <option name="LAST_COMMIT_MESSAGE" value="done updating getQuestion" />
+    <MESSAGE value="done updating getQuestion ." />
+    <option name="LAST_COMMIT_MESSAGE" value="done updating getQuestion ." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -690,21 +719,63 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/server_test.js</url>
-          <line>139</line>
+          <line>143</line>
           <properties />
           <option name="timeStamp" value="19" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/server_test.js</url>
-          <line>138</line>
+          <line>142</line>
           <properties />
           <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/server_test.js</url>
+          <line>147</line>
+          <properties />
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/server_test.js</url>
+          <line>150</line>
+          <properties />
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/test/tools-spec.js</url>
+          <line>82</line>
+          <properties />
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/test/tools-spec.js</url>
+          <line>79</line>
+          <properties />
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/test/tools-spec.js</url>
+          <line>83</line>
+          <properties />
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/server_test.js</url>
+          <line>176</line>
+          <properties />
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/test/tools-spec.js</url>
+          <line>85</line>
+          <properties />
+          <option name="timeStamp" value="29" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="21" />
+      <option name="time" value="30" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -782,24 +853,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/queryForDB.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="133" column="4" lean-forward="false" selection-start-line="133" selection-start-column="4" selection-end-line="133" selection-end-column="4" />
+        <state relative-caret-position="130">
+          <caret line="86" column="53" lean-forward="false" selection-start-line="86" selection-start-column="53" selection-end-line="86" selection-end-column="53" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server_test.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="304" column="3" lean-forward="false" selection-start-line="304" selection-start-column="3" selection-end-line="304" selection-end-column="3" />
+        <state relative-caret-position="108">
+          <caret line="136" column="3" lean-forward="false" selection-start-line="136" selection-start-column="3" selection-end-line="136" selection-end-column="3" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/tools-spec.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="4" column="10" lean-forward="false" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="10" />
+        <state relative-caret-position="119">
+          <caret line="81" column="41" lean-forward="false" selection-start-line="81" selection-start-column="33" selection-end-line="81" selection-end-column="41" />
           <folding />
         </state>
       </provider>

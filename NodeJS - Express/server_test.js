@@ -136,41 +136,46 @@ app.post('/getQuestion', function (req, res) {
     var question = "";
     var tasksQid = queries.getSingleQuestionIdFromTaskIdAndUserId(user_id, t_id);
     connection.query(tasksQid, function (err, row, field) {
-        if (row.length>0 /*&& row != null*/) {
-            if (row[0].Q_id != null) {
-                var query = queries.getFullQuestionByQid(row[0].Q_id);
-                console.log(query);
-                connection.query(query, function (err, ans, field) {
-                    var query = queries.getAnswersByTaskAndUser(user_id, t_id);
+        if(err){
+            console.log("Error with query for question for task");
+        }
+        else {
+            if (row.length > 0 /*&& row != null*/) {
+                if (row[0].Q_id != null) {
+                    var query = queries.getFullQuestionByQid(row[0].Q_id);
                     console.log(query);
-                    connection.query(query, function (err, listOfAnswers, field) {
-                        console.log("listOfAnswers.length:" + listOfAnswers.length);
-                        if (err) {
-                            console.log(err);
-                            res.send("ERR in question request:" + err);
-                        }
-                        else if (listOfAnswers.length == 0) {
-                            res.status(204).send("No more Question for this task");
-                            /*empty content*/
-                        }
-                        else {
-                            questionFromDB = ans;
-                            var responseJson = {};
-                            responseJson["question"] = questionFromDB[0];
-                            responseJson["answers"] = listOfAnswers;
-                            res.status(200).json(responseJson);
-                        }
+                    connection.query(query, function (err, ans, field) {
+                        var query = queries.getAnswersByTaskAndUser(user_id, t_id);
+                        console.log(query);
+                        connection.query(query, function (err, listOfAnswers, field) {
+                            console.log("listOfAnswers.length:" + listOfAnswers.length);
+                            if (err) {
+                                console.log(err);
+                                res.send("ERR in question request:" + err);
+                            }
+                            else if (listOfAnswers.length == 0) {
+                                res.status(204).send("No more Question for this task");
+                                /*empty content*/
+                            }
+                            else {
+                                questionFromDB = ans;
+                                var responseJson = {};
+                                responseJson["question"] = questionFromDB[0];
+                                responseJson["answers"] = listOfAnswers;
+                                res.status(200).json(responseJson);
+                            }
+                        });
                     });
-                });
 
+                }
+
+                else {
+                    res.status(676);//End of task
+                }
             }
-
             else {
                 res.status(676);//End of task
             }
-        }
-        else{
-            res.status(204);//End of task
         }
     });
 });
