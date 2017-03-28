@@ -264,12 +264,19 @@ connection.connect(function (err) {
 });
 
 
-// var server = app.listen(8081, function () {
-//     var host = server.address().address;
-//     var port = server.address().port;
-//     console.log("Example app listening at http://%s:%s", host, port)
-// });
-var server = app.listen(8081, "127.0.0.1", function () {
-    console.log("Example app listening at ");
+var server = app.listen(8081, function () {
+    var host = server.address().address;
+    var port = server.address().port;
+    console.log("Example app listening at http://%s:%s", host, port)
 });
+// var server = app.listen(8081, "127.0.0.1", function () {
+//     console.log("Example app listening at ");
+// });
+
+
+setInterval(function () {
+    db.query('SELECT 1');
+}, 5000);
+
+
 module.exports = app;
