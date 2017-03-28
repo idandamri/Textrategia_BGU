@@ -264,16 +264,12 @@ connection.connect(function (err) {
 });
 
 
-<<<<<<< HEAD
-var server = app.listen(8081, function () {
-=======
+// var server = app.listen(8081, function () {
 var server = app.listen(80, function () {
->>>>>>> a56b529379152f65c484455ecd1c95d30f4a9a79
     var host = server.address().address;
     var port = server.address().port;
     console.log("Example app listening at http://%s:%s", host, port)
 });
-<<<<<<< HEAD
 // var server = app.listen(8081, "127.0.0.1", function () {
 //     console.log("Example app listening at ");
 // });
@@ -283,10 +279,7 @@ setInterval(function () {
     db.query('SELECT 1');
 }, 5000);
 
-
-=======
 //var server = app.listen(80, "127.0.0.1", function () {
 //    console.log("Example app listening at ");
 //});
->>>>>>> a56b529379152f65c484455ecd1c95d30f4a9a79
 module.exports = app;
