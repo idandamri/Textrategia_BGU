@@ -58,40 +58,37 @@ app.post('/testForTests', function (req, res) {
 app.get('/', function (req, res) {
     res.redirect('/index.html');
 });
-//
-// app.get('/homepage', function (req, res) {
-//     res.sendFile(__dirname + '/homepage.html');
-// });
-//
+
 
 app.post('/getListOfTasks', function (req, res) {
     var user_id = req.body.user_id;
     var query = queries.gelAllTaskTitleByStudentId(user_id);
     console.log(query);
     connection.query(query, function (err, tasks, field) {
-        console.log(JSON.stringify(tasks));
-        if (tasks.length > 0)
-            res.status(200).json(tasks);
-        //send list of tasks
-        else
-            res.status(204).send();
-        /*empty content*/
+
+        if (!err) {
+            console.log("got a list of task response")
+            console.log(JSON.stringify(tasks));
+            if (tasks.length > 0)
+                res.status(200).json(tasks);
+            else
+                res.status(204).send("Empty list of tasks");
+        } else {
+            res.status(400).send("List task had an error - check DB");
+        }
     });
 });
 
-/*GOOD
- getTasks
- get: user_id
- return: a list of tasks information*/
 
 app.post('/getTasks', function (req, res) {
-    console.log("Got a get task request");
+    console.log("Got a get task request from:");
     var u_id = req.body.user_id;
     var t_id;
     var merge;
     var listOfmerge = [];
+
     console.log(u_id);
-    var query = queries.gelAllTaskTitleByStudentId('1');
+    var query = queries.gelAllTaskTitleByStudentId(u_id);
     /*hard coded. need to change*/
     connection.query(query, function (err, tasks, field) {
         if (err) {
