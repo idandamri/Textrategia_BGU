@@ -264,12 +264,12 @@ connection.connect(function (err) {
 });
 
 
-// var server = app.listen(8081, function () {
-//     var host = server.address().address;
-//     var port = server.address().port;
-//     console.log("Example app listening at http://%s:%s", host, port)
-// });
-var server = app.listen(8081, "127.0.0.1", function () {
-    console.log("Example app listening at ");
+var server = app.listen(80, function () {
+    var host = server.address().address;
+    var port = server.address().port;
+    console.log("Example app listening at http://%s:%s", host, port)
 });
+//var server = app.listen(80, "127.0.0.1", function () {
+//    console.log("Example app listening at ");
+//});
 module.exports = app;
