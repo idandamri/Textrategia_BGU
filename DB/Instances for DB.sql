@@ -15,6 +15,10 @@ values (4,"שטורם","ארנון","BGU","Beer Sheva",1,"sturm@bgu.ac.il","1234
 /*-------------- tasks ---------------------*/
 insert into tasks
 values(1,"מטלת ניסוי","מטלת ניסוי לבסיס הנתונים");
+
+insert into tasks
+values(2,"2מטלת ניסוי","מטלת ניסוי לבסיס הנתונים");
+
 /*------------------------------------------*/
 
 /*--------------- groups -------------------*/
@@ -42,15 +46,96 @@ insert into students_per_group
 values(2,1234567);
 /*------------------------------------------*/
 
+/*----------- textra_db.tasks_joined_with_questions ---------*/
+
+insert into tasks_joined_with_questions
+values (1,1);
+
+insert into tasks_joined_with_questions
+values (1,2);
+
+insert into tasks_joined_with_questions
+values (1,3);
+
+insert into tasks_joined_with_questions
+values (1,4);
+
+/*task2*/
+insert into tasks_joined_with_questions
+values (2,1);
+
+insert into tasks_joined_with_questions
+values (2,2);
+
+insert into tasks_joined_with_questions
+values (2,3);
+
+insert into tasks_joined_with_questions
+values (2,4);
+
+
+
 /*----------- tasks_and_question_for_student_instances ---------*/
+/*idan user*/
 insert into tasks_and_question_for_student_instances
 values(1,1,1);
 
 insert into tasks_and_question_for_student_instances
-values(2,1,1);
+values(1,1,2);
 
 insert into tasks_and_question_for_student_instances
-values(3,1,1);
+values(1,1,3);
+
+insert into tasks_and_question_for_student_instances
+values(1,1,4);
+
+
+insert into tasks_and_question_for_student_instances
+values(1,2,1);
+
+insert into tasks_and_question_for_student_instances
+values(1,2,2);
+
+insert into tasks_and_question_for_student_instances
+values(1,2,3);
+
+insert into tasks_and_question_for_student_instances
+values(1,2,4);
+
+
+
+/*arnon user*/
+insert into tasks_and_question_for_student_instances
+values(4,1,1);
+
+insert into tasks_and_question_for_student_instances
+values(4,1,2);
+
+insert into tasks_and_question_for_student_instances
+values(4,1,3);
+
+insert into tasks_and_question_for_student_instances
+values(4,1,4);
+
+
+insert into tasks_and_question_for_student_instances
+values(4,2,1);
+
+insert into tasks_and_question_for_student_instances
+values(4,2,2);
+
+insert into tasks_and_question_for_student_instances
+values(4,2,3);
+
+insert into tasks_and_question_for_student_instances
+values(4,2,4);
+
+
+
+
+
+
+
 /*------------------------------------------*/
 
 /*----------- instances_of_answers 

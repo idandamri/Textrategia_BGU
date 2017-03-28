@@ -52,30 +52,31 @@ textrategiaApp.controller("StudentController",function($scope){
 
 textrategiaApp.controller("TasksController",function($scope,$http,$location){
     //$scope.tasks = tasks_parsed_jason_lst;
-          
-        var req = {
-                method: 'POST',
-                cache: false,
-                url: _url +'/getListOfTasks',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                data: 'user_id=' + getUserID() /*CHANGE TO COOKIE*/
-        };  
 
-        $http(req)
+    var req = {
+        method: 'POST',
+        cache: false,
+        url: _url +'/getListOfTasks',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        data: 'user_id=' + getUserID() /*CHANGE TO COOKIE*/
+    };
+
+    $http(req)
         .success(function(data,status,headers,config){
             $scope.tasks  = data;
         }).error(function(data,status,headers,config){
-            $scope.tasks  = data;
-        });
+        $scope.tasks  = data;
+    });
 
 
     $scope.questionSum = 4; //remove in future. should be a query or calculation
     $scope.studentName = getUserName();
 
-    $scope.navigateToOneQuestion = function(t_id){
+    $scope.navigateToOneQuestion = function(t_id,t_name){
         setTaskID(t_id);
+        setTaskName(t_name);
         $location.path('one_question');
     };
 
@@ -108,7 +109,7 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
         $http(req)
             .success(function (data, status, headers, config) {
                 myJason = data;
-                $scope.task_name = myJason.question.Q_skill;  // change to task name
+                $scope.task_name = getTaskName();  // change to task name
                 $scope.task_id = getTaskID();                    //change to task is
                 $scope.Q_skill = myJason.question.Q_skill;
                 $scope.id = 0;
@@ -118,11 +119,11 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
                 $scope.getQuestion();
 
             }).error(function (data, status, headers, config) {
-                if (status = 676){
-                    //alert("End Of Task!");
-                    $scope.quizOver = true;
-                    //$location.path('student');
-                }
+            if (status = 676){
+                //alert("End Of Task!");
+                $scope.quizOver = true;
+                //$location.path('student');
+            }
 
         });
     };
@@ -179,7 +180,7 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
 
                 // $scope.start();
             });
-            };
+    };
 
     $scope.reset();
 
@@ -187,7 +188,7 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
 
 textrategiaApp.controller("LoginController", function($scope, $http,$location) {
 
-    
+
     $scope.showError = false; // set Error flag
     $scope.showSuccess = false; // set Success Flag
 
@@ -196,29 +197,29 @@ textrategiaApp.controller("LoginController", function($scope, $http,$location) {
         var user = $scope.user.username;
         var password = $scope.user.password;
         var flag= false;
-        
+
         var req = {
-                method: 'POST',
-                cache: false,
-                url: _url +'/login',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                data: 'user='+user+'&password='+password
-        };  
+            method: 'POST',
+            cache: false,
+            url: _url +'/login',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            data: 'user='+user+'&password='+password
+        };
         //alert(JSON.stringify(req));
 
-          
+
         $http(req)
-        .success(function(data,status,headers,config){
-            setUserName(data[0].FirstName);
-            setUserID(data[0].PersonalID);
-            $scope.showError = false;
-            $scope.showSuccess = true;
-            $location.path('student');
+            .success(function(data,status,headers,config){
+                setUserName(data[0].FirstName);
+                setUserID(data[0].PersonalID);
+                $scope.showError = false;
+                $scope.showSuccess = true;
+                $location.path('student');
 
 
-        }).error(function(data,status,headers,config){
+            }).error(function(data,status,headers,config){
             $scope.showError = true;
             $scope.showSuccess = false;
 
