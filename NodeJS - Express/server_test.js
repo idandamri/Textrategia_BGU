@@ -131,6 +131,7 @@ app.post('/getQuestion', function (req, res) {
     var t_id = req.body.t_id;
     var question = "";
     var tasksQid = queries.getSingleQuestionIdFromTaskIdAndUserId(user_id, t_id);
+    var tasksQid = queries.getSingleQuestionIdFromTaskIdAndUserId(user_id, t_id);
     connection.query(tasksQid, function (err, row, field) {
         if (err) {
             console.log("Error with query for question for task");
@@ -175,7 +176,7 @@ app.post('/getQuestion', function (req, res) {
             else {
                 console.log("Question id amount is smaller then one");
                 res.status(676).send("End of task");//End of task
-                console.log("Sent 204 status");
+                //console.log("Sent 204 status");
             }
         }
     });
@@ -251,7 +252,7 @@ app.post('/login', function (req, res) {
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '1q2w3e4r',//'123456' to upload*/
+    password: '123456',//'123456' to upload*/
     database: 'textra_db'
 });
 
@@ -263,10 +264,13 @@ connection.connect(function (err) {
 });
 
 
-var server = app.listen(8081, function () {
-    var host = server.address().address;
-    var port = server.address().port;
-    console.log("Example app listening at http://%s:%s", host, port)
-});
+// var server = app.listen(8081, function () {
+//     var host = server.address().address;
+//     var port = server.address().port;
+//     console.log("Example app listening at http://%s:%s", host, port)
+// });
 
+var server = app.listen(8081, "127.0.0.1", function () {
+    console.log("Example app listening at ");
+});
 module.exports = app;

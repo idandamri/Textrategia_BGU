@@ -29,7 +29,7 @@
   <div class="container" id="c_1">
   <div id = "myQuiz">
       
-  <div class="col-sm-12"><h1><b>{{task_name}}<b></h1></div>
+  <div class="col-sm-12"><h1><b>{{task_name}}</b></h1></div>
   <div class="col-sm-12"> <h3>{{ question.Q_question }}</h3> </div>
 
 
@@ -67,8 +67,8 @@
   </div>
 
   <div ng-show="quizOver">
-    <h2>Quiz is over</h2>
-    <button ng-click="reset()">Play again</button>
+    <h2>כל הכבוד! המטלה הסתיימה.</h2>
+    <button class="btn btn-warning" ng-click="finishTask()">חזרה לדף הבית</button>
   </div>
 
   <div id="score">
@@ -98,8 +98,14 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">סגור</button>
-        <button type="button" ng-click="nextQuestion()" class="btn btn-primary" >שאלה הבאה</button>
+        <div ng-show="correctAns">
+          <button type="button" class="btn btn-default" data-dismiss="modal">סגור</button>
+          <button type="button" data-dismiss="modal" ng-click="nextQuestion()" class="btn btn-primary" >שאלה הבאה</button>
+        </div>
+        <div ng-show="!correctAns">
+          <button type="button" data-dismiss="modal" ng-click="oneMoreTry()" class="btn btn-default" > (לא נכון )סגור</button>
+          <button type="button" data-dismiss="modal" ng-click="nextQuestion()" class="btn btn-primary" >שאלה הבאה</button>
+        </div>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
@@ -112,4 +118,4 @@
   </div>
 </div>
 
-<img class="img-responsive" id="imag-logo" src="views/pic/bottom.png"> 
+  <img class="img-responsive" id="imag-logo" src="views/pic/bottom.png">

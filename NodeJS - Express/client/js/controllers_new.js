@@ -5,7 +5,7 @@ var _url = "http://localhost:8081";
 var get_answers_lst_from_jason = function(myJason) {
     var ans = [];
     for(i=0 ; i< myJason.length ; i++){
-        //alert(myJason[i].answer);
+
         ans.push(myJason[i].answer);
     }
     return ans;
@@ -23,14 +23,25 @@ var get_answer_index = function(myJason) {
 };
 
 /*TO-DO*/
-function updateAnswer (student_id , task_id, quesion_id){
+function updateAnswer (quesion_id , ans_id){
+    var req = {
+        method: 'POST',
+        cache: false,
+        url: _url +'/updateAnswer',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        data: 'stud_id='+getUserID()+'&task_id='+getTaskID() + '&quest_id=' + quesion_id + '&ans_id=' + ans_id
+    };
+    //alert(JSON.stringify(req));
 
+
+    $http(req)
+        .success(function(data,status,headers,config){
+        }).error(function(data,status,headers,config){
+    });
 };
 
-/*TO-DO*/
-function removeQuestionFromInstances (student_id , task_id, quesion_id){
-
-};
 
 
 textrategiaApp.controller("StudentController",function($scope){
@@ -69,37 +80,22 @@ textrategiaApp.controller("TasksController",function($scope,$http,$location){
     };
 
 });
+//    $http = angular.injector(["ng"]).get("$http");
 
-/*not in use*/
-function extracted() {
-    var myJason;
-    $http = angular.injector(["ng"]).get("$http");
-
-    var req = {
-        method: 'POST',
-        cache: false,
-        url: _url + '/getQuestion',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        data: 'user_id=' + getUserID() + '&t_id=1' /*CHANGE TO COOKIE*/
-    };
-
-    // return function() {
-            $http(req)
-            .success(function (data, status, headers, config) {
-                myJason = data;
-
-            }).error(function (data, status, headers, config) {
-            myJason = "";
-        });
-    // }
-}
 
 textrategiaApp.controller("oneQuestionController", function($scope,$http,$location){
 
+    $scope.finishTask = function () {
+        $location.path('student');
+
+    };
+
+    $scope.oneMoreTry = function(){
+        $scope.triedOnce = true;
+
+    }
+
     $scope.start = function(){
-        //var myJason  = extracted();
         var req = {
             method: 'POST',
             cache: false,
@@ -112,20 +108,23 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
         $http(req)
             .success(function (data, status, headers, config) {
                 myJason = data;
-                alert(JSON.stringify(myJason));
                 $scope.task_name = myJason.question.Q_skill;  // change to task name
                 $scope.task_id = getTaskID();                    //change to task is
                 $scope.Q_skill = myJason.question.Q_skill;
                 $scope.id = 0;
                 $scope.quizOver = false;
+                $scope.triedOnce = false;
                 $scope.inProgress = true;
                 $scope.getQuestion();
 
             }).error(function (data, status, headers, config) {
-                 myJason = "";
+                if (status = 676){
+                    //alert("End Of Task!");
+                    $scope.quizOver = true;
+                    //$location.path('student');
+                }
+
         });
-
-
     };
 
     $scope.reset = function() {
@@ -148,7 +147,9 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
             $scope.score++;
             $scope.feedback = myJason.answers.Q_correctFB;
             $scope.correctAns = true;
-            /*need to add update ans & remove from instances*/ 
+
+            /*need to add update ans & remove from instances*/
+
         } else {
             $scope.feedback = myJason.answers.Q_notCorrectFB;
             $scope.correctAns = false;
@@ -158,27 +159,27 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
     };
 
 
-    $scope.nextQuestion = function(){
+    $scope.nextQuestion = function(question_id){
         var req = {
             method: 'POST',
             cache: false,
-            url: _url + '/questionDone',
+            url: _url +'/questionDone',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            data: 's_id=' + getUserID() + '&t_id=1' + "&q_id=" + $scope.questionID /*CHANGE TO COOKIE*/
+            data: 's_id=' + getUserID() +'&t_id='+getTaskID() + '&q_id=' + $scope.questionID
         };
+
         $http(req)
-            .success(function (data, status, headers, config) {
-                 /*load new question deatils*/
-                alert("status for next question:" + status);
+            .success(function(data,status,headers,config){
+
                 $scope.start();
-            }).error(function (data, status, headers, config) {
-                alert(status);
-        });
+            })
+            .error(function(data,status,headers,config) {
 
-
-    };
+                // $scope.start();
+            });
+            };
 
     $scope.reset();
 
