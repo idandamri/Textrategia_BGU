@@ -1,5 +1,5 @@
-var _url = "http://localhost:8081";
-//var _url = "http://textrategia.com";
+//var _url = "http://localhost:8081";
+var _url = ""//"132.72.23.65";
 
 //lst of string, all possible answers
 var get_answers_lst_from_jason = function(myJason) {
