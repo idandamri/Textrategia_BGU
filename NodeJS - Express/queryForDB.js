@@ -10,7 +10,7 @@ module.exports =
 	/*get user data (names,school name,user type) by user identifier (id or email) and password*/
 	getDataForUserByIdOrEmail : function(user_identifier,password){
 		var query = "SELECT * FROM textra_db.users "+
-  				"WHERE (PersonalID like \'%"+user_identifier+"%\' or Email like \'%"+user_identifier+"%\')  and Pass == \'%" + password+"%\';";
+  				"WHERE (PersonalID like \'"+user_identifier+"\' or Email like \'"+user_identifier+"\')  and Pass like \'" + password+"\';";
 		return query;
 	},
 
@@ -19,7 +19,7 @@ module.exports =
 	/*get user data (names,school name,user type) by id and password*/
 	getDataForUserById : function(id,password){
 		var query = "SELECT FirstName,LastName,School,UserType FROM textra_db.users "+
-  				"WHERE PersonalID like \'"+id+"\' and Pass == \'" + password+"\';";
+  				"WHERE PersonalID like \'"+id+"\' and Pass like \'" + password+"\';";
 		return query;
 	},
 
@@ -27,7 +27,7 @@ module.exports =
 	/*get user data (names,school name,user type) by email and password*/
 	getDataForUserByEmail : function(email,password){
 		var query = "SELECT FirstName,LastName,School,UserType FROM textra_db.users "+
-  				"WHERE Email like \'"+email+"\' and Pass == \'" + password+"\';";
+  				"WHERE Email like \'"+email+"\' and Pass like \'" + password+"\';";
 		return query;
 	},
 
@@ -121,7 +121,7 @@ module.exports =
 	},
 
 	getTaskDeatils:function (t_id) {
-		var query = "select * from textra_db.tasks where T_id like /'%" + t_id + "%'/";
+		var query = "select * from textra_db.tasks where T_id like /'" + t_id + "'/";
 		return query;
     },
 

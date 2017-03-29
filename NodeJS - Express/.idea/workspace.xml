@@ -31,7 +31,7 @@
         <entry file="file://$PROJECT_DIR$/queryForDB.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="112">
-              <caret line="29" column="59" lean-forward="false" selection-start-line="29" selection-start-column="59" selection-end-line="29" selection-end-column="59" />
+              <caret line="123" column="81" lean-forward="false" selection-start-line="123" selection-start-column="81" selection-end-line="123" selection-end-column="81" />
               <folding />
             </state>
           </provider>
@@ -59,6 +59,7 @@
       <find>.quer</find>
       <find>like</find>
       <find>pass like</find>
+      <find>%</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -612,7 +613,7 @@
       <updated>1490292077375</updated>
       <workItem from="1490292078919" duration="1827000" />
       <workItem from="1490549471962" duration="8847000" />
-      <workItem from="1490677753829" duration="5171000" />
+      <workItem from="1490677753829" duration="5818000" />
     </task>
     <task id="LOCAL-00001" summary="done updating getQuestion">
       <created>1490566647810</created>
@@ -664,7 +665,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15845000" />
+    <option name="totallyTimeSpent" value="16492000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1376" height="744" extended-state="6" />
@@ -853,7 +854,7 @@
     <entry file="file://$PROJECT_DIR$/queryForDB.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="112">
-          <caret line="29" column="59" lean-forward="false" selection-start-line="29" selection-start-column="59" selection-end-line="29" selection-end-column="59" />
+          <caret line="123" column="81" lean-forward="false" selection-start-line="123" selection-start-column="81" selection-end-line="123" selection-end-column="81" />
           <folding />
         </state>
       </provider>
