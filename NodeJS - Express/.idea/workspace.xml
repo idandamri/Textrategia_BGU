@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="7c1dd669-4d78-476f-9d51-553f8449f360" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/queryForDB.js" afterPath="$PROJECT_DIR$/queryForDB.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server_test.js" afterPath="$PROJECT_DIR$/server_test.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -32,7 +31,7 @@
         <entry file="file://$PROJECT_DIR$/queryForDB.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="112">
-              <caret line="115" column="85" lean-forward="false" selection-start-line="115" selection-start-column="81" selection-end-line="115" selection-end-column="85" />
+              <caret line="29" column="59" lean-forward="false" selection-start-line="29" selection-start-column="59" selection-end-line="29" selection-end-column="59" />
               <folding />
             </state>
           </provider>
@@ -59,6 +58,7 @@
       <find>getQu</find>
       <find>.quer</find>
       <find>like</find>
+      <find>pass like</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -612,7 +612,7 @@
       <updated>1490292077375</updated>
       <workItem from="1490292078919" duration="1827000" />
       <workItem from="1490549471962" duration="8847000" />
-      <workItem from="1490677753829" duration="4676000" />
+      <workItem from="1490677753829" duration="5171000" />
     </task>
     <task id="LOCAL-00001" summary="done updating getQuestion">
       <created>1490566647810</created>
@@ -664,7 +664,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15350000" />
+    <option name="totallyTimeSpent" value="15845000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1376" height="744" extended-state="6" />
@@ -853,7 +853,7 @@
     <entry file="file://$PROJECT_DIR$/queryForDB.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="112">
-          <caret line="115" column="85" lean-forward="false" selection-start-line="115" selection-start-column="81" selection-end-line="115" selection-end-column="85" />
+          <caret line="29" column="59" lean-forward="false" selection-start-line="29" selection-start-column="59" selection-end-line="29" selection-end-column="59" />
           <folding />
         </state>
       </provider>
