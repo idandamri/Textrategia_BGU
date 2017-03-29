@@ -10,7 +10,7 @@ module.exports =
 	/*get user data (names,school name,user type) by user identifier (id or email) and password*/
 	getDataForUserByIdOrEmail : function(user_identifier,password){
 		var query = "SELECT * FROM textra_db.users "+
-  				"WHERE (PersonalID like \'%"+user_identifier+"%\' or Email like \'%"+user_identifier+"%\')  and Pass like \'%" + password+"%\';";
+  				"WHERE (PersonalID == \'%"+user_identifier+"%\' or Email == \'%"+user_identifier+"%\')  and Pass == \'%" + password+"%\';";
 		return query;
 	},
 
@@ -19,7 +19,7 @@ module.exports =
 	/*get user data (names,school name,user type) by id and password*/
 	getDataForUserById : function(id,password){
 		var query = "SELECT FirstName,LastName,School,UserType FROM textra_db.users "+
-  				"WHERE PersonalID like \'"+id+"\' and Pass like \'" + password+"\';";
+  				"WHERE PersonalID == \'"+id+"\' and Pass == \'" + password+"\';";
 		return query;
 	},
 
@@ -27,7 +27,7 @@ module.exports =
 	/*get user data (names,school name,user type) by email and password*/
 	getDataForUserByEmail : function(email,password){
 		var query = "SELECT FirstName,LastName,School,UserType FROM textra_db.users "+
-  				"WHERE Email like \'"+email+"\' and Pass like \'" + password+"\';";
+  				"WHERE Email == \'"+email+"\' and Pass == \'" + password+"\';";
 		return query;
 	},
 
@@ -38,10 +38,10 @@ module.exports =
 		"select tasks.* from " + 
 		"(select T_id " + 
 		"from tasks_and_question_for_student_instances " + 
-		"where studentId like \'"+ user_id +"\' " +
+		"where studentId == \'"+ user_id +"\' " +
 		"group by (T_id)) as t1 " + 
 		"inner join tasks " +
-		"on t1.T_id like tasks.T_id;";
+		"on t1.T_id == tasks.T_id;";
 		
 		return query;
 	},
@@ -115,13 +115,13 @@ module.exports =
 	},
 //delete from textra_db.tasks_and_question_for_student_instances where studentId like '2' and T_id = '1' and Q_id = '1'
 	DeleteQuestionsFromInstance : function (student_id, task_id, q_id){
-		var query = "delete from textra_db.tasks_and_question_for_student_instances where studentId like \'" + 
+		var query = "delete from textra_db.tasks_and_question_for_student_instances where studentId == \'" +
 		student_id + "\' and T_id = \'" + task_id + "\' and Q_id = \'" + q_id + "\';";
 		return query;
 	},
 
 	getTaskDeatils:function (t_id) {
-		var query = "select * from textra_db.tasks where T_id like /'%" + t_id + "%'/";
+		var query = "select * from textra_db.tasks where T_id == /'%" + t_id + "%'/";
 		return query;
     },
 
@@ -140,7 +140,7 @@ module.exports =
     },
 
     getAnswersByTidQidSid:function (/*s_id, t_id, */q_id) {
-        var query = "select * from textra_db.tasks where Q_id like /'" + q_id + "'/";
+        var query = "select * from textra_db.tasks where Q_id == /'" + q_id + "'/";
         return query;
     }
 

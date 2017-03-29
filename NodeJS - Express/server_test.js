@@ -276,7 +276,7 @@ var server = app.listen(80, function () {
 
 
 setInterval(function () {
-    db.query('SELECT 1');
+    connection.query('SELECT 1');
 }, 5000);
 
 //var server = app.listen(80, "127.0.0.1", function () {
