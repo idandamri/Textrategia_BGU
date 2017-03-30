@@ -220,6 +220,45 @@ app.post('/updateAnswer', function (req, res) {
 });
 
 
+app.post('/insertStudentToGroup', function (req, res) {
+    var sId = req.body.stud_id;
+    var gId = req.body.group_id;
+
+    var query = queries.addStudentToGroup(sId, gId);
+    console.log('\n' + query + '\n');
+    connection.query(query, function (err, ans, field) {
+        if (err) {
+            console.log(err);
+            res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
+        }
+        else {
+            res.status(200).send("inserted!");
+        }
+    });
+});
+
+
+app.post('/createGroup', function (req, res) {
+    var teacherId = req.body.teacherID;
+    var gId = req.body.group_id;
+    var gName = req.body.group_name;
+    var isMaster = req.body.is_master;
+    var gCode = req.body.group_code;
+
+    var query = queries.createGroup(gId, gName, teacherId, isMaster, gCode);
+    console.log('\n' + query + '\n');
+    connection.query(query, function (err, ans, field) {
+        if (err) {
+            console.log(err);
+            res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
+        }
+        else {
+            res.status(200).send("inserted!");
+        }
+    });
+});
+
+
 app.post('/login', function (req, res) {
     var user_name = req.body.user;
     /* user_name can be id or email */
@@ -252,7 +291,7 @@ app.post('/login', function (req, res) {
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '123456',//'123456' to upload*/
+    password: '1q2w3e4r',//'123456' to upload*/
     database: 'textra_db'
 });
 

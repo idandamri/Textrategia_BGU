@@ -103,4 +103,37 @@ describe("Testing Textrategia API", function () {
                 });
         });
     });
+
+    describe("Testing groups", function () {
+        it('Testing insert student', function (done) {
+            request(app).post("/insertStudentToGroup").send({"stud_id": "1", "group_id": "1111"})
+                .end(function (err, res) {
+                    if (err) {
+                        console.log("ERR: " + err)
+                        throw err;
+                    }
+                    else {
+                        res.status.should.be.equal(200);
+                    }
+                    done();
+                });
+        });
+
+
+        it('Testing creation of group', function (done) {
+            request(app).post("/createGroup").send({"group_id": "1234", "group_name": "בדיקות 2",
+                "teacherID": "4", "is_master": "0", "group_code": "01234"})
+                .end(function (err, res) {
+                    if (err) {
+                        console.log("ERR: " + err)
+                        throw err;
+                    }
+                    else {
+                        res.status.should.be.equal(200);
+                    }
+                    done();
+                });
+        });
+    });
+
 });
