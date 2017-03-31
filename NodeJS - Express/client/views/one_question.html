@@ -48,6 +48,31 @@
   <div ng-show="!quizOver">
 
     <h3 id="question">{{question}}</h3>
+
+    <div align="center">
+      <iframe margin="0" ng-show="showVideo" padding="0" border="none" width="700" height="400" frameBorder="0"
+              ng-src="{{videoURL}}">
+      </iframe>
+    </div>
+
+
+    <div align="center">
+      <iframe margin="0" ng-show="showVoice" padding="0" border="none" width="400" height="50" frameBorder="0"
+              ng-src="{{voiceURL}}">
+      </iframe>
+    </div>
+
+    <div align="center">
+      <!--<iframe margin="0" ng-show="showImg" padding="0" border="none" width="400" height="50" frameBorder="0"-->
+              <!--ng-src="{{imgURL}}">-->
+      <!--</iframe>-->
+      <img ng-show="showImg" ng-src ="{{imgURL}}">
+
+    </div>
+
+
+
+
     <dl id="options">
       <dt ng-repeat="option in options">
         <label>

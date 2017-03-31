@@ -139,9 +139,10 @@ textrategiaApp.controller("TasksController",function($scope,$http,$location){
 //    $http = angular.injector(["ng"]).get("$http");
 
 
-textrategiaApp.controller("oneQuestionController", function($scope,$http,$location){
+textrategiaApp.controller("oneQuestionController", function($scope,$http,$location ,$sce){
 
     $scope.numberOfQuestions = 0;
+
 
     $scope.finishTask = function () {
         $location.path('student');
@@ -177,7 +178,29 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
                 $scope.inProgress = true;
                 $scope.getQuestion();
                 $scope.numberOfQuestions += 1 ;
-
+                if (data.question.Q_mediaType == "youtube" ){
+                    $scope.videoURL = $sce.trustAsResourceUrl('https://www.youtube.com/embed/' + data.question.Q_media + '?rel=0'); //data.question.Q_media;
+                    $scope.showVideo = true;
+                    $scope.showVoice = false;
+                    $scope.showImg= false;
+                }
+                else if (data.question.Q_mediaType == "page" ){
+                    //$scope.videoURL = 'https://www.youtube.com/embed/crs0TiiYE4I?rel=0'; //data.question.Q_media;
+                    $scope.voiceURL = $sce.trustAsResourceUrl(data.question.Q_media);
+                    $scope.showVoice = true;
+                    $scope.showVideo = false;
+                    $scope.showImg= false;
+                }
+                else if (data.question.Q_mediaType == "img" ){
+                    $scope.imgURL = "views/pic/simp1.jpg";
+                    $scope.showImg= true;
+                    $scope.showVoice = false;
+                    $scope.showVideo = false;
+                }
+                else {
+                    $scope.showVideo = false;
+                    $scope.showVoice = false;
+                }
             }).error(function (data, status, headers, config) {
                 if (status = 676){
                     //alert("End Of Task!");
