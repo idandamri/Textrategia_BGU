@@ -28,15 +28,6 @@ function getTaskID(){
 	return taskID ;
 };
 
-var taskName="";
-
-function setTaskName(_taskName){
-    taskName = _taskName;
-};
-
-function getTaskName(){
-    return taskName ;
-};
 
 
 

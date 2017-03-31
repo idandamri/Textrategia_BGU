@@ -1,11 +1,10 @@
-//var _url = "http://localhost:8081";
-var _url = ""//"132.72.23.65";
+var _url = "http://localhost:8081";
+//var _url = "http://textrategia.com";
 
 //lst of string, all possible answers
 var get_answers_lst_from_jason = function(myJason) {
     var ans = [];
     for(i=0 ; i< myJason.length ; i++){
-
         ans.push(myJason[i].answer);
     }
     return ans;
@@ -49,34 +48,90 @@ textrategiaApp.controller("StudentController",function($scope){
 });
 
 
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ~~ SHAKED TO-DO ~~ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+/* I need: 
+1. the question itself
+2. the task name it came from
+2. what is the right answer
+3. what was marked. (((( CAN ALSO BE INSIDE OF JASON))))
+*/
+/*Note: if you change tags name, let hadas know */
+var history_list_mock = [
+
+{
+  "question": {
+    "Q_id": 1,
+    "Q_qeustion": "האזן לשיחה המוקלטת. לשם מה החליטו במפעל הפיס להקליט שיחות של אנשים עם אראלה?",
+    "Q_taskName": "מטלת דוגמא",
+    "wasMarked": 0
+  },
+  "answers": [
+    {
+        "A_id": 1,
+        "answer": "כדי לשכנע אנשים שהזכייה בפיס אפשרית",
+        "isCorrect": 1,
+
+    },
+    {
+        "A_id": 2,
+        "answer": "כדי לגרום לאנשים להתרגש",
+        "isCorrect": 0,
+
+    },
+    {
+        "A_id": 3,
+        "answer": "כדי שאנשים ירגישו הזדהות עם הזוכים",
+        "isCorrect": 0,
+
+    },
+    {
+        "A_id": 4,
+        "answer": "כדי שאנשים יחשבו כיצד הם היו מגיבים לשיחה",
+        "isCorrect": 0,
+
+    }
+  ]
+}
+
+];
+
+
+textrategiaApp.controller("historyTasksController",function($scope){
+    $scope.studentName = getUserName();
+    $scope.history_list = history_list_mock;
+});
+
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
 
 textrategiaApp.controller("TasksController",function($scope,$http,$location){
     //$scope.tasks = tasks_parsed_jason_lst;
+          
+        var req = {
+                method: 'POST',
+                cache: false,
+                url: _url +'/getListOfTasks',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                data: 'user_id=' + getUserID() /*CHANGE TO COOKIE*/
+        };  
 
-    var req = {
-        method: 'POST',
-        cache: false,
-        url: _url +'/getListOfTasks',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        data: 'user_id=' + getUserID() /*CHANGE TO COOKIE*/
-    };
-
-    $http(req)
+        $http(req)
         .success(function(data,status,headers,config){
             $scope.tasks  = data;
         }).error(function(data,status,headers,config){
-        $scope.tasks  = data;
-    });
+            $scope.tasks  = data;
+        });
 
 
     $scope.questionSum = 4; //remove in future. should be a query or calculation
     $scope.studentName = getUserName();
 
-    $scope.navigateToOneQuestion = function(t_id,t_name){
+    $scope.navigateToOneQuestion = function(t_id){
         setTaskID(t_id);
-        setTaskName(t_name);
         $location.path('one_question');
     };
 
@@ -86,13 +141,17 @@ textrategiaApp.controller("TasksController",function($scope,$http,$location){
 
 textrategiaApp.controller("oneQuestionController", function($scope,$http,$location){
 
+    $scope.numberOfQuestions = 0;
+
     $scope.finishTask = function () {
         $location.path('student');
 
     };
 
     $scope.oneMoreTry = function(){
-        $scope.triedOnce = true;
+        if ($scope.triedOnce == false){
+    // ?!?!?!?!?!?!?
+        }
 
     }
 
@@ -109,7 +168,7 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
         $http(req)
             .success(function (data, status, headers, config) {
                 myJason = data;
-                $scope.task_name = getTaskName();  // change to task name
+                $scope.task_name = myJason.question.Q_skill;  // change to task name
                 $scope.task_id = getTaskID();                    //change to task is
                 $scope.Q_skill = myJason.question.Q_skill;
                 $scope.id = 0;
@@ -117,13 +176,14 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
                 $scope.triedOnce = false;
                 $scope.inProgress = true;
                 $scope.getQuestion();
+                $scope.numberOfQuestions += 1 ;
 
             }).error(function (data, status, headers, config) {
-            if (status = 676){
-                //alert("End Of Task!");
-                $scope.quizOver = true;
-                //$location.path('student');
-            }
+                if (status = 676){
+                    //alert("End Of Task!");
+                    $scope.quizOver = true;
+                    //$location.path('student');
+                }
 
         });
     };
@@ -180,7 +240,7 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
 
                 // $scope.start();
             });
-    };
+            };
 
     $scope.reset();
 
@@ -188,7 +248,7 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
 
 textrategiaApp.controller("LoginController", function($scope, $http,$location) {
 
-
+    
     $scope.showError = false; // set Error flag
     $scope.showSuccess = false; // set Success Flag
 
@@ -197,29 +257,29 @@ textrategiaApp.controller("LoginController", function($scope, $http,$location) {
         var user = $scope.user.username;
         var password = $scope.user.password;
         var flag= false;
-
+        
         var req = {
-            method: 'POST',
-            cache: false,
-            url: _url +'/login',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            data: 'user='+user+'&password='+password
-        };
+                method: 'POST',
+                cache: false,
+                url: _url +'/login',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                data: 'user='+user+'&password='+password
+        };  
         //alert(JSON.stringify(req));
 
-
+          
         $http(req)
-            .success(function(data,status,headers,config){
-                setUserName(data[0].FirstName);
-                setUserID(data[0].PersonalID);
-                $scope.showError = false;
-                $scope.showSuccess = true;
-                $location.path('student');
+        .success(function(data,status,headers,config){
+            setUserName(data[0].FirstName);
+            setUserID(data[0].PersonalID);
+            $scope.showError = false;
+            $scope.showSuccess = true;
+            $location.path('student');
 
 
-            }).error(function(data,status,headers,config){
+        }).error(function(data,status,headers,config){
             $scope.showError = true;
             $scope.showSuccess = false;
 
