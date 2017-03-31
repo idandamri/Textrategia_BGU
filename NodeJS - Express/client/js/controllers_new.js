@@ -1,6 +1,51 @@
 var _url = "http://localhost:8081";
 //var _url = "http://textrategia.com";
 
+
+//* TEACHER CONTROLLERS*//
+
+textrategiaApp.controller("TeacherController",function($scope){
+    $scope.teacherName = getUserName();
+    
+});
+
+var groups_mock = [
+ {
+    "GroupId": 1,
+    "GroupName": "זברות צבעוניות",
+    "teacherID": 5,
+    "isMasterGroup": 1,
+    "GroupeCode": 01234
+  },
+   {
+    "GroupId": 2,
+    "GroupName": "קואלות ירוקות",
+    "teacherID": 5,
+    "isMasterGroup": 1,
+    "GroupeCode": 25
+  }
+];
+
+
+textrategiaApp.controller("GroupManagementController",function($scope){
+    $scope.teacherName = getUserName();
+    $scope.groups = groups_mock;
+    $scope.numberOfStudents = function(GroupID){
+        return 12;
+    }
+
+});
+
+
+
+
+
+
+
+
+
+//* STUDENTS CONTROLLERS*//
+
 //lst of string, all possible answers
 var get_answers_lst_from_jason = function(myJason) {
     var ans = [];
@@ -54,9 +99,9 @@ textrategiaApp.controller("StudentController",function($scope){
 1. the question itself
 2. the task name it came from
 2. what is the right answer
-3. what was marked. (((( CAN ALSO BE INSIDE OF JASON))))
+3. what was marked. ( CAN ALSO BE INSIDE OF JASON)
 */
-/*Note: if you change tags name, let hadas know */
+/*Note: if you change tags name, let Hadas know */
 var history_list_mock = [
 
 {
