@@ -1,0 +1,69 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#welcome">טקסטרטגיה</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <!-- <li><a href="student.html">תלמיד</a></li> -->
+        <li><a href="#student">תלמיד</a></li>
+        <li><a href="#tasks">מטלות</a></li>
+      </ul>
+      <p class="navbar-text">בהצלחה</p>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="disabled"><a href="#"><span class="glyphicon glyphicon-user"></span> הרשם</a></li>
+        <li><a href="#login"><span class="glyphicon glyphicon-log-in"></span> התחברות</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div id="wrap">
+<div class="container" id="c_1">
+
+  <br>
+<div class="row">  
+
+  <div class="col-sm-12">  <h1>שלום, {{teacherName}}!</h1>  </div>
+  <div class="col-sm-12">  <h3>בחר קבוצה והצמד לה מטלה</h3>  </div>
+      
+
+<br><br>
+
+<div class="col-sm-1"></div>
+
+<div class="col-sm-5">
+  <div class="list-group ">
+    <button type="button" class="list-group-item list-group-item-action active" ng-repeat="x in groups">
+      {{x.GroupName}}
+      <span class="badge badge-default badge-pill">{{numberOfStudents(x.GroupId)}}</span>
+    </button>
+  </div>
+</div>
+
+<div class="col-sm-5">
+  <div class="list-group ">
+    <button type="button" class="list-group-item list-group-item-action active" ng-repeat="x in groups">
+      {{x.GroupName}}
+      <span class="badge badge-default badge-pill">{{numberOfStudents(x.GroupId)}}</span>
+    </button>
+  </div>
+</div>
+
+<div class="col-sm-1"></div>
+
+
+
+
+
+</div>
+</div>
+</div>
+
+<br><br><br><br><br>
+<img class="img-responsive" id="imag-logo" src="views/pic/bottom.png"> 
