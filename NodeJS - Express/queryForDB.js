@@ -131,9 +131,25 @@ module.exports =
         return query;
     },
 
+
+    addQustion: function (question_title, isMultipleAns, question_media, question_media_type,
+                          quest_correct_FB, quest_incorrect_FB, quest_skill, quest_difficulty, quest_proffesion,
+                          quest_is_approved, quest_disabled) {
+        var query = "INSERT INTO textra_db.questions VALUES (null,'" + question_title + "','" + isMultipleAns + "','"
+            + question_media_type + "','" + question_media + "','" + quest_correct_FB + "','" + quest_incorrect_FB + "','"
+            + quest_skill + "','" + quest_difficulty + "','" + quest_proffesion + "','" + quest_is_approved + "','"
+            + quest_disabled + "');";
+        return query;
+    },
+
     createGroup: function (g_id, g_name, teacher_id, is_master_g, g_code) {
         var query = "INSERT INTO textra_db.groups VALUES (" + g_id + "," +
             "'" + g_name + "'," + teacher_id + "," + is_master_g + "," + g_code + ");";
+        return query;
+    },
+
+    approveQuestion: function (q_id, isApproved) {
+        var query = "UPDATE textra_db.questions SET Q_approved = " + isApproved + " WHERE Q_id = " + q_id + ";";
         return query;
     },
 

@@ -220,6 +220,29 @@ app.post('/updateAnswer', function (req, res) {
 });
 
 
+app.post('/questionApproveOrNot', function (req, res) {
+    var isApproved = req.body.is_approved;
+    var qId = req.body.q_id;
+
+    var query = queries.approveQuestion(qId, isApproved);
+    console.log('\n' + query + '\n');
+    connection.query(query, function (err, ans, field) {
+        if (err) {
+            console.log(err);
+            res.status(400).send("Update error - check DB (Question may not exist or value is same!)");
+        }
+        else {
+            if (ans.affectedRows == 0) {
+                res.status(400).send("Update error - check DB (Question may not exist or value is same!)");
+            }
+            else {
+                res.status(200).send("updated!");
+            }
+        }
+    });
+});
+
+
 app.post('/insertStudentToGroup', function (req, res) {
     var sId = req.body.stud_id;
     var gId = req.body.group_id;
@@ -246,6 +269,34 @@ app.post('/createGroup', function (req, res) {
     var gCode = req.body.group_code;
 
     var query = queries.createGroup(gId, gName, teacherId, isMaster, gCode);
+    console.log('\n' + query + '\n');
+    connection.query(query, function (err, ans, field) {
+        if (err) {
+            console.log(err);
+            res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
+        }
+        else {
+            res.status(200).send("inserted!");
+        }
+    });
+});
+
+
+app.post('/addQuestion', function (req, res) {
+    var qTitle = req.body.question_title;
+    var isMulAns = req.body.isMultipleAns;
+    var qMediaType = req.body.question_media_type;
+    var qMedia = req.body.question_media;
+    var qCorrFB = req.body.quest_correct_FB;
+    var qIncorrFB = req.body.quest_incorrect_FB;
+    var qSkill = req.body.quest_skill;
+    var qDiff = req.body.quest_difficulty;
+    var qProff = req.body.quest_proffesion;
+    var qIsApp = req.body.quest_is_approved;
+    var qDisabled = req.body.quest_disabled;
+
+    var query = queries.addQustion(qTitle, isMulAns, qMedia, qMediaType, qCorrFB, qIncorrFB,
+        qSkill, qDiff, qProff, qIsApp, qDisabled);
     console.log('\n' + query + '\n');
     connection.query(query, function (err, ans, field) {
         if (err) {
