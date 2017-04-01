@@ -135,6 +135,20 @@ module.exports =
         return query;
     },
 
+    getStudentsFromGroup: function (group_id) {
+        var query = "SELECT StudentId FROM textra_db.students_per_group where GroupId = " + group_id + ";";
+        return query;
+    },
+
+    getQestionsAndTasksForinstance: function (t_id) {
+        var query = "select T_id, Q_id from textra_db.tasks_joined_with_questions where T_id = " + t_id + ";";
+        return query;
+    },
+
+    addTaskQuestionStudentInstance: function (stud_id, t_id, q_id) {
+        var query = "insert into textra_db.tasks_and_question_for_student_instances values(" + stud_id + "," + t_id + "," + q_id + ");";
+        return query;
+    },
 
     addQustion: function (question_title, isMultipleAns, question_media, question_media_type,
                           quest_correct_FB, quest_incorrect_FB, quest_skill, quest_difficulty, quest_proffesion,

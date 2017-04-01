@@ -261,6 +261,56 @@ app.post('/insertStudentToGroup', function (req, res) {
 });
 
 
+app.post('/addTaskToGroup', function (req, res) {
+    var gId = req.body.group_id;
+    var tId = req.body.task_id;
+
+    var query = queries.getStudentsFromGroup(gId);
+    console.log('\n' + query + '\n');
+    connection.query(query, function (err, students, field) {
+        if (err) {
+            console.log(err);
+            res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
+        }
+        else {
+            // res.status(200).send("inserted!");
+            var query2 = queries.getQestionsAndTasksForinstance(tId);
+            console.log('\n' + query2 + '\n');
+            connection.query(query2, function (err2, QuestsAndTasks, field) {
+                if (err2) {
+                    console.log(err);
+                    res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
+                } else {
+                    var indxStud = 0;
+                    while (students.length > indxStud) {
+                        var indxTask = 0;
+                        while (QuestsAndTasks.length > indxTask) {
+                            var s_id = Number(students[indxStud].StudentId);
+                            var t_id = QuestsAndTasks[indxTask].T_id;
+                            var q_id = QuestsAndTasks[indxTask].Q_id;
+                            var query3 = queries.addTaskQuestionStudentInstance(s_id, t_id, q_id);
+                            console.log('\n' + query3 + '\n');
+                            connection.query(query3, function (err3, ans3, field) {
+                                if (err3) {
+                                    console.log(err);
+                                    res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
+                                } else {
+                                    console.log("Added as instance:\nStudent ID: " + s_id + "\nTask ID: " +
+                                        t_id + "\nQuestion ID:" + q_id)
+                                }
+                            });
+                            indxTask++;
+                        }
+                        indxStud++;
+                    }
+                    res.status(200).send("Added!");
+                }
+            });
+        }
+    });
+});
+
+
 app.post('/createGroup', function (req, res) {
     var teacherId = req.body.teacherID;
     var gId = req.body.group_id;
@@ -284,14 +334,12 @@ app.post('/createGroup', function (req, res) {
 
 app.post('/addUsersToGroup', function (req, res) {
     var users = req.body.users;
-    // var bla = users.map(Number);
     var groupId = req.body.group_id;
-    // var gName = req.body.group_name;
-    // var isMaster = req.body.is_master;
-    // var gCode = req.body.group_code;
+
     var hasError = false;
     var indx = 0;
-    if(indx<users.length) {
+
+    if (indx < users.length) {
         while (indx < users.length) {
             var user = users[indx];
             indx++;
@@ -307,25 +355,14 @@ app.post('/addUsersToGroup', function (req, res) {
                     } else {
                         res.status(200).send();
                     }
-                    /*
-                     else {
-                     console.log("Added user " + user + " to " + groupId);
-                     }*/
                 });
             }
         }
     }
-    else{
+    else {
         res.status(204).send();
         /*empty content*/
     }
-
-    /*if (hasError) {
-        res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
-    }
-    else {
-        res.status(200).send();
-    }*/
 });
 
 
@@ -348,10 +385,6 @@ app.post('/getGroupByUser', function (req, res) {
                     console.log(err);
                     res.status(400).send("Check DB (group/student does not exist or relation error!");
                 }
-                /*else if (ans2.length == 0) {
-                 res.status(204).send("No groups for this user");
-                 /!*empty content*!/
-                 }*/
                 else {
                     groupsOfUser = ans2;
                     var responseJson = {};
@@ -362,8 +395,7 @@ app.post('/getGroupByUser', function (req, res) {
             });
         }
     });
-})
-;
+});
 
 
 app.post('/addQuestion', function (req, res) {
@@ -398,6 +430,7 @@ app.post('/login', function (req, res) {
     var user_name = req.body.user;
     /* user_name can be id or email */
     var password = req.body.password;
+
     console.log('Got a login request from: \n\n!!!\n\n' + user_name + "," + password);
     var query = queries.getDataForUserByIdOrEmail(user_name, password);
     console.log("This is the query: " + query);

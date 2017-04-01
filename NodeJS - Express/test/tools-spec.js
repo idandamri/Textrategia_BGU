@@ -24,11 +24,19 @@ describe("Testing Textrategia API", function () {
         });
     });
 
+    describe("Testing adding task to group", function () {
+        it('Test adding', function (done) {
+            request(app).post("/addTaskToGroup").send({"group_id": "123456", "task_id": "1"})
+                .expect(200)
+                .end(done);
+        });
+    });
+
     describe("Testing group of user", function () {
         it('Test group of user', function (done) {
             request(app).post("/getGroupByUser").send({"teacherID": "1"})
                 .end(function (err, res) {
-                    if(err)
+                    if (err)
                         throw err;
                     console.log("BODY: " + JSON.stringify(res.body));
                     done();
@@ -37,7 +45,7 @@ describe("Testing Textrategia API", function () {
         it('Test group of user - empty group', function (done) {
             request(app).post("/getGroupByUser").send({"teacherID": "9"})
                 .end(function (err, res) {
-                    if(err)
+                    if (err)
                         throw err;
                     console.log("BODY: " + JSON.stringify(res.body));
                     done();
@@ -211,9 +219,10 @@ describe("Testing Textrategia API", function () {
         });
     });
 
+
     describe("Testing groups", function () {
         it('Testing insert students(plural)', function (done) {
-            request(app).post("/addUsersToGroup").send({"users": [1,2,3,4], "group_id": "1212"})
+            request(app).post("/addUsersToGroup").send({"users": [1, 2, 3, 4], "group_id": "1212"})
                 .end(function (err, res) {
                     if (err) {
                         console.log("ERR: " + err)
@@ -239,6 +248,7 @@ describe("Testing Textrategia API", function () {
                     done();
                 });
         });
+
         it('Testing insert students(empty)', function (done) {
             request(app).post("/addUsersToGroup").send({"users": [], "group_id": "1213"})
                 .end(function (err, res) {
@@ -252,21 +262,6 @@ describe("Testing Textrategia API", function () {
                     done();
                 });
         });
-
-        // it('Testing insert student', function (done) {
-        //     request(app).post("/insertStudentToGroup").send({"users": [1], "group_id": "1111"})
-        //         .end(function (err, res) {
-        //             if (err) {
-        //                 console.log("ERR: " + err)
-        //                 throw err;
-        //             }
-        //             else {
-        //                 res.status.should.be.equal(400);
-        //             }
-        //             done();
-        //         });
-        // });
-
 
         it('Testing creation of group', function (done) {
             request(app).post("/createGroup").send({
