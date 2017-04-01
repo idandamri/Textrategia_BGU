@@ -1,59 +1,59 @@
 <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="#welcome">טקסטרטגיה</a>
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#welcome">טקסטרטגיה</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <!-- <li><a href="student.html">תלמיד</a></li> -->
+                <li><a href="#student">תלמיד</a></li>
+                <li><a href="#tasks">מטלות</a></li>
+            </ul>
+            <p class="navbar-text">בהצלחה</p>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="disabled"><a href="#"><span class="glyphicon glyphicon-user"></span> הרשם</a></li>
+                <li><a href="#login"><span class="glyphicon glyphicon-log-in"></span> התחברות</a></li>
+            </ul>
+        </div>
     </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <!-- <li><a href="student.html">תלמיד</a></li> -->
-        <li><a href="#student">תלמיד</a></li>
-        <li><a href="#tasks">מטלות</a></li>
-      </ul>
-      <p class="navbar-text">בהצלחה</p>
-      <ul class="nav navbar-nav navbar-right">
-        <li class="disabled"><a href="#"><span class="glyphicon glyphicon-user"></span> הרשם</a></li>
-        <li><a href="#login"><span class="glyphicon glyphicon-log-in"></span> התחברות</a></li>
-      </ul>
-    </div>
-  </div>
 </nav>
-	<div id="wrap">
-		<div class="container" id="c_1">
-			<br>
+<div id="wrap">
+    <div class="container" id="c_1">
+        <br>
 
-    <div class="row">  
-    <div class="col-sm-12" >
-      <h1>שלום, {{teacherName}}!</h1>
+        <div class="row">
+            <div class="col-sm-12" >
+                <h1>שלום, {{studentName}}!</h1>
+            </div>
+
+            <br>
+            <div class="container text-center">
+                <div class="row"   >
+                    <div class="col-sm-3">
+                        <a href="#groupManagement"><img alt="תרגול" class="img-circle student_actions" src="views/pic/logo2.png"></a>
+                        <p><strong>ניהול קבוצות</strong></p>
+                    </div>
+                    <div class="col-sm-3">
+                        <!-- <a href="empty.html"> -->
+                        <img alt="בקרוב" class="img-circle student_actions" src="views/pic/logo1.png"> <!-- </a> -->
+                        <p><strong>	בניית מטלות - בקרוב </strong></p>
+                    </div>
+                    <div class="col-sm-3">
+                        <!-- <a href="empty.html"> -->
+                        <img alt="בקרוב" class="img-circle student_actions" src="views/pic/logo2.png"> <!-- </a> -->
+                        <p><strong>סטטיסטיקה - בקרוב</strong></p>
+                    </div>
+
+                </div>
+            </div><br>
+
+
+            <br><br><br><br><br><br>
+        </div>
     </div>
-
-			<br>
-			<div class="container text-center">
-				<div class="row"   >
-					<div class="col-sm-3">
-						<a href="#groupManagement"><img alt="תרגול" class="img-circle student_actions" src="views/pic/logo2.png"></a>
-						<p><strong>ניהול קבוצות</strong></p>
-					</div>
-					<div class="col-sm-3">
-						<!-- <a href="empty.html"> -->
-						<img alt="בקרוב" class="img-circle student_actions" src="views/pic/logo1.png"> <!-- </a> -->
-						<p><strong>	בניית מטלות - בקרוב </strong></p>
-					</div>
-					<div class="col-sm-3">
-						<!-- <a href="empty.html"> -->
-						<img alt="בקרוב" class="img-circle student_actions" src="views/pic/logo2.png"> <!-- </a> -->
-						<p><strong>סטטיסטיקה - בקרוב</strong></p>
-					</div>
-
-				</div>
-			</div><br>
-
-
-			<br><br><br><br><br><br>
-		</div>
-	</div>
-<img class="img-responsive" id="imag-logo" src="views/pic/bottom.png"> 
+    <img class="img-responsive" id="imag-logo" src="views/pic/bottom.png">
