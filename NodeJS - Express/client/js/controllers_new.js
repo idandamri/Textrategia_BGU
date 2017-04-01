@@ -80,7 +80,7 @@ textrategiaApp.controller("GroupManagementController",function($scope){
         for (i = 0 ; i < sel1.options.length ; i++){
             opt1 = sel1.options[i];
             if (opt1.selected == true){
-                alert(opt1.value);              // this is GroupName
+                alert(opt1.value);              // this is GroupID
                 break;
             }
         }
@@ -91,7 +91,7 @@ textrategiaApp.controller("GroupManagementController",function($scope){
         for (i = 0 ; i < sel2.options.length ; i++){
             opt2 = sel2.options[i];
             if (opt2.selected == true){
-                alert(opt2.value);              // this is T_title
+                alert(opt2.value);              // this is T_id
                 break;
             }
         }

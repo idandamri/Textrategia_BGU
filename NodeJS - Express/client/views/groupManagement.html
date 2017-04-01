@@ -11,8 +11,8 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <!-- <li><a href="student.html">תלמיד</a></li> -->
-        <li><a href="#student">תלמיד</a></li>
-        <li><a href="#tasks">מטלות</a></li>
+        <li><a href="#teacher">מורה</a></li>
+        <li class="disabled"><a href="#" >הקבוצות שלי</a></li>
       </ul>
       <p class="navbar-text">בהצלחה</p>
       <ul class="nav navbar-nav navbar-right">
@@ -50,13 +50,12 @@
 
       <div class="col-sm-6">
         <div class="form-group">
-          <label for="expertise" class="control-label pull-right" >מטלות זמינות:</label>
+          <label for="expertise2" class="control-label pull-right" >מטלות זמינות:</label>
 
           <select class="form-control inputstl" id="expertise2" multiple>
-            <option ng-repeat="y in info.tasks" >{{y.T_title}}</option>
+            <option ng-repeat="y in info.tasks" value="{{y.T_id}}">{{y.T_title}}</option>
             <option ng-show="info.tasks==0" disabled>אין מטלות זמינות</option>
           </select>
-
 
         </div>
       </div>
@@ -64,13 +63,12 @@
 
       <div class="col-sm-6">
         <div class="form-group">
-          <label for="expertise" class="control-label pull-right">קבוצות זמינות:</label>
+          <label for="expertise1" class="control-label pull-right">קבוצות זמינות:</label>
 
           <select class="form-control inputstl" id="expertise1" multiple>
-            <option ng-repeat="x in info.groups">{{x.GroupName}}</option>
+            <option ng-repeat="x in info.groups" value="{{x.GroupId}}">{{x.GroupName}}</option>
             <option ng-show="info.groups==0" disabled>אין קבוצות זמינות</option>
           </select>
-
 
         </div>
       </div>
