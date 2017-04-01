@@ -282,6 +282,77 @@ app.post('/createGroup', function (req, res) {
 });
 
 
+app.post('/addUsersToGroup', function (req, res) {
+    var users = req.body.users;
+    var groupId = req.body.group_id;
+    // var gName = req.body.group_name;
+    // var isMaster = req.body.is_master;
+    // var gCode = req.body.group_code;
+    var hasError = false;
+    for(var user in users)
+    {
+        id(!hasError)
+        {
+            var query = queries.addUsersToGroup(user, groupId);
+            console.log('\n' + query + '\n');
+            connection.query(query, function (err, ans, field) {
+                if (err) {
+                    console.log(err);
+                    hasError = true;
+                }
+                else {
+                    console.log("Added user " + user + " to " + groupId);
+                }
+            });
+        }
+    }
+
+    if (hasError) {
+        res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
+    }
+    else {
+        res.status(200).send();
+    }
+});
+
+
+app.post('/getGroupByUser', function (req, res) {
+    var teacherId = req.body.teacherID;
+
+    var query = queries.getTasks();
+    console.log('\n' + query + '\n');
+    connection.query(query, function (err, ans, field) {
+        if (err) {
+            console.log(err);
+            res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
+        }
+        else {
+            var query2 = queries.getGroupsByUser(teacherId);
+
+            console.log('\n' + query2 + '\n');
+            connection.query(query2, function (err2, ans2, field2) {
+                if (err) {
+                    console.log(err);
+                    res.status(400).send("Check DB (group/student does not exist or relation error!");
+                }
+                /*else if (ans2.length == 0) {
+                 res.status(204).send("No groups for this user");
+                 /!*empty content*!/
+                 }*/
+                else {
+                    groupsOfUser = ans2;
+                    var responseJson = {};
+                    responseJson["groups"] = groupsOfUser;
+                    responseJson["tasks"] = ans;
+                    res.status(200).json(responseJson);
+                }
+            });
+        }
+    });
+})
+;
+
+
 app.post('/addQuestion', function (req, res) {
     var qTitle = req.body.question_title;
     var isMulAns = req.body.isMultipleAns;
@@ -342,7 +413,7 @@ app.post('/login', function (req, res) {
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '123456',//'123456' to upload*/
+    password: '1q2w3e4r',//'123456' to upload*/
     database: 'textra_db'
 });
 
@@ -355,10 +426,13 @@ connection.connect(function (err) {
 
 
 // var server = app.listen(8081, function () {
-// var server = app.listen(80, function () {
-//     var host = server.address().address;
-//     var port = server.address().port;
-//     console.log("Example app listening at http://%s:%s", host, port)
+var server = app.listen(8081, function () {
+    var host = server.address().address;
+    var port = server.address().port;
+    console.log("Example app listening at http://%s:%s", host, port)
+});
+// var server = app.listen(8081, "127.0.0.1", function () {
+//     console.log("Example app listening at ");
 // });
 
 var server = app.listen(8081, "127.0.0.1", function () {

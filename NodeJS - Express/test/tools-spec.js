@@ -24,6 +24,27 @@ describe("Testing Textrategia API", function () {
         });
     });
 
+    describe("Testing group of user", function () {
+        it('Test group of user', function (done) {
+            request(app).post("/getGroupByUser").send({"teacherID": "1"})
+                .end(function (err, res) {
+                    if(err)
+                        throw err;
+                    console.log("BODY: " + JSON.stringify(res.body));
+                    done();
+                });
+        });
+        it('Test group of user - empty group', function (done) {
+            request(app).post("/getGroupByUser").send({"teacherID": "9"})
+                .end(function (err, res) {
+                    if(err)
+                        throw err;
+                    console.log("BODY: " + JSON.stringify(res.body));
+                    done();
+                });
+        });
+    });
+
     describe("Testing get Tasks", function () {
         it('Test get tasks', function (done) {
             request(app).post("/getListOfTasks").send({"user_id": '1'})
@@ -193,6 +214,20 @@ describe("Testing Textrategia API", function () {
     describe("Testing groups", function () {
         it('Testing insert student', function (done) {
             request(app).post("/insertStudentToGroup").send({"stud_id": "1", "group_id": "1111"})
+                .end(function (err, res) {
+                    if (err) {
+                        console.log("ERR: " + err)
+                        throw err;
+                    }
+                    else {
+                        res.status.should.be.equal(200);
+                    }
+                    done();
+                });
+        });
+
+        it('Testing insert students(plural)', function (done) {
+            request(app).post("/addUsersToGroup").send({"users": "[1,2,3,4]", "group_id": "1212"})
                 .end(function (err, res) {
                     if (err) {
                         console.log("ERR: " + err)

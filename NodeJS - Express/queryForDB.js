@@ -120,14 +120,18 @@ module.exports =
         return query;
     },
 
-    getTaskDeatils: function (t_id) {
-        var query = "select * from textra_db.tasks where T_id like /'" + t_id + "'/";
+    getTasks: function () {
+        var query = "select * from textra_db.tasks;";
         return query;
     },
 
-    addStudentToGroup: function (s_id, g_id) {
-        var query = "INSERT INTO textra_db.students_per_group VALUES (" + s_id + "," +
-            " " + g_id + ");";
+    addUsersToGroup: function (user_id, group_id) {
+        var query = "insert into textra_db.students_per_group values (" + user_id + "," + group_id + ");";
+        return query;
+    },
+
+    getGroupsByUser: function (user_id) {
+        var query = "SELECT * FROM textra_db.groups where teacherID = " + user_id + ";";
         return query;
     },
 
