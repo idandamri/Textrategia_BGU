@@ -247,7 +247,7 @@ app.post('/insertStudentToGroup', function (req, res) {
     var sId = req.body.stud_id;
     var gId = req.body.group_id;
 
-    var query = queries.addStudentToGroup(sId, gId);
+    var query = queries.addUsersToGroup(sId, gId);
     console.log('\n' + query + '\n');
     connection.query(query, function (err, ans, field) {
         if (err) {
@@ -284,35 +284,48 @@ app.post('/createGroup', function (req, res) {
 
 app.post('/addUsersToGroup', function (req, res) {
     var users = req.body.users;
+    // var bla = users.map(Number);
     var groupId = req.body.group_id;
     // var gName = req.body.group_name;
     // var isMaster = req.body.is_master;
     // var gCode = req.body.group_code;
     var hasError = false;
-    for(var user in users)
-    {
-        id(!hasError)
-        {
-            var query = queries.addUsersToGroup(user, groupId);
-            console.log('\n' + query + '\n');
-            connection.query(query, function (err, ans, field) {
-                if (err) {
-                    console.log(err);
-                    hasError = true;
-                }
-                else {
-                    console.log("Added user " + user + " to " + groupId);
-                }
-            });
+    var indx = 0;
+    if(indx<users.length) {
+        while (indx < users.length) {
+            var user = users[indx];
+            indx++;
+            if (!hasError) {
+                var query = queries.addUsersToGroup(user, groupId);
+                console.log('\n' + query + '\n');
+                connection.query(query, function (err, ans, field) {
+                    if (err) {
+                        console.log(err);
+                        hasError = true;
+                        res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
+
+                    } else {
+                        res.status(200).send();
+                    }
+                    /*
+                     else {
+                     console.log("Added user " + user + " to " + groupId);
+                     }*/
+                });
+            }
         }
     }
+    else{
+        res.status(204).send();
+        /*empty content*/
+    }
 
-    if (hasError) {
+    /*if (hasError) {
         res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
     }
     else {
         res.status(200).send();
-    }
+    }*/
 });
 
 
@@ -431,14 +444,10 @@ var server = app.listen(8081, function () {
     var port = server.address().port;
     console.log("Example app listening at http://%s:%s", host, port)
 });
-// var server = app.listen(8081, "127.0.0.1", function () {
-//     console.log("Example app listening at ");
-// });
 
 // var server = app.listen(8081, "127.0.0.1", function () {
 //     console.log("Example app listening at ");
 // });
-
 
 setInterval(function () {
     connection.query('SELECT 1');
