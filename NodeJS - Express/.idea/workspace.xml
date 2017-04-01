@@ -4,10 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/server_test.js" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c1dd669-4d78-476f-9d51-553f8449f360" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server_test.js" afterPath="$PROJECT_DIR$/server_test.js" />
-    </list>
+    <list default="true" id="7c1dd669-4d78-476f-9d51-553f8449f360" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,11 +18,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="tools-spec.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="tools-spec.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/tools-spec.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-25">
-              <caret line="236" column="23" lean-forward="false" selection-start-line="236" selection-start-column="23" selection-end-line="236" selection-end-column="23" />
+            <state relative-caret-position="145">
+              <caret line="264" column="24" lean-forward="true" selection-start-line="264" selection-start-column="24" selection-end-line="264" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -34,18 +31,18 @@
       <file leaf-file-name="queryForDB.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/queryForDB.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
-              <caret line="127" column="12" lean-forward="false" selection-start-line="127" selection-start-column="12" selection-end-line="127" selection-end-column="12" />
+            <state relative-caret-position="129">
+              <caret line="129" column="7" lean-forward="false" selection-start-line="129" selection-start-column="7" selection-end-line="129" selection-end-column="7" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="server_test.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="server_test.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server_test.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="217">
-              <caret line="330" column="0" lean-forward="true" selection-start-line="330" selection-start-column="0" selection-end-line="330" selection-end-column="0" />
+            <state relative-caret-position="82">
+              <caret line="293" column="0" lean-forward="false" selection-start-line="293" selection-start-column="0" selection-end-line="293" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -67,10 +64,11 @@
       <find>adds</find>
       <find>insert</find>
       <find>task</find>
-      <find>add</find>
       <find>create</find>
       <find>addq</find>
       <find>groups</find>
+      <find>add</find>
+      <find>insertStudentToGroup</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -88,8 +86,9 @@
         <option value="$PROJECT_DIR$/client/js/controllers_new.js" />
         <option value="$PROJECT_DIR$/client/views/one_question.html" />
         <option value="$PROJECT_DIR$/queryForDB.js" />
-        <option value="$PROJECT_DIR$/test/tools-spec.js" />
+        <option value="timers.js" />
         <option value="$PROJECT_DIR$/server_test.js" />
+        <option value="$PROJECT_DIR$/test/tools-spec.js" />
       </list>
     </option>
   </component>
@@ -185,58 +184,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
-  <component name="RunManager" selected="Mocha.Testing Textrategia API.Testing groups.Testing insert students(plural)">
-    <configuration default="false" name="Testing Textrategia API.Testing add question.Testing adding question" type="mocha-javascript-test-runner" factoryName="Mocha" temporary="true" nameIsGenerated="true">
-      <node-interpreter>D:/Proj/node</node-interpreter>
-      <node-options />
-      <working-directory>$PROJECT_DIR$/..</working-directory>
-      <pass-parent-env>true</pass-parent-env>
-      <envs />
-      <ui>bdd</ui>
-      <extra-mocha-options />
-      <test-kind>TEST</test-kind>
-      <test-file>$PROJECT_DIR$/test/tools-spec.js</test-file>
-      <test-names>
-        <name value="Testing Textrategia API" />
-        <name value="Testing add question" />
-        <name value="Testing adding question" />
-      </test-names>
-      <method />
-    </configuration>
-    <configuration default="false" name="Testing Textrategia API.Testing add question.Testing FAIL adding question - missing parameter" type="mocha-javascript-test-runner" factoryName="Mocha" temporary="true" nameIsGenerated="true">
-      <node-interpreter>D:/Proj/node</node-interpreter>
-      <node-options />
-      <working-directory>$PROJECT_DIR$/..</working-directory>
-      <pass-parent-env>true</pass-parent-env>
-      <envs />
-      <ui>bdd</ui>
-      <extra-mocha-options />
-      <test-kind>TEST</test-kind>
-      <test-file>$PROJECT_DIR$/test/tools-spec.js</test-file>
-      <test-names>
-        <name value="Testing Textrategia API" />
-        <name value="Testing add question" />
-        <name value="Testing FAIL adding question - missing parameter" />
-      </test-names>
-      <method />
-    </configuration>
-    <configuration default="false" name="Testing Textrategia API.Testing group of user.Test group of user" type="mocha-javascript-test-runner" factoryName="Mocha" temporary="true" nameIsGenerated="true">
-      <node-interpreter>D:/Proj/node</node-interpreter>
-      <node-options />
-      <working-directory>$PROJECT_DIR$/..</working-directory>
-      <pass-parent-env>true</pass-parent-env>
-      <envs />
-      <ui>bdd</ui>
-      <extra-mocha-options />
-      <test-kind>TEST</test-kind>
-      <test-file>$PROJECT_DIR$/test/tools-spec.js</test-file>
-      <test-names>
-        <name value="Testing Textrategia API" />
-        <name value="Testing group of user" />
-        <name value="Test group of user" />
-      </test-names>
-      <method />
-    </configuration>
+  <component name="RunManager" selected="Mocha.Testing Textrategia API.Testing groups.Testing insert students(empty)">
     <configuration default="false" name="Testing Textrategia API.Testing group of user" type="mocha-javascript-test-runner" factoryName="Mocha" temporary="true" nameIsGenerated="true">
       <node-interpreter>D:/Proj/node</node-interpreter>
       <node-options />
@@ -267,6 +215,56 @@
         <name value="Testing Textrategia API" />
         <name value="Testing groups" />
         <name value="Testing insert students(plural)" />
+      </test-names>
+      <method />
+    </configuration>
+    <configuration default="false" name="Testing Textrategia API.Testing groups.Testing insert students(single)" type="mocha-javascript-test-runner" factoryName="Mocha" temporary="true" nameIsGenerated="true">
+      <node-interpreter>D:/Proj/node</node-interpreter>
+      <node-options />
+      <working-directory>$PROJECT_DIR$/..</working-directory>
+      <pass-parent-env>true</pass-parent-env>
+      <envs />
+      <ui>bdd</ui>
+      <extra-mocha-options />
+      <test-kind>TEST</test-kind>
+      <test-file>$PROJECT_DIR$/test/tools-spec.js</test-file>
+      <test-names>
+        <name value="Testing Textrategia API" />
+        <name value="Testing groups" />
+        <name value="Testing insert students(single)" />
+      </test-names>
+      <method />
+    </configuration>
+    <configuration default="false" name="Testing Textrategia API.Testing groups" type="mocha-javascript-test-runner" factoryName="Mocha" temporary="true" nameIsGenerated="true">
+      <node-interpreter>D:/Proj/node</node-interpreter>
+      <node-options />
+      <working-directory>$PROJECT_DIR$/..</working-directory>
+      <pass-parent-env>true</pass-parent-env>
+      <envs />
+      <ui>bdd</ui>
+      <extra-mocha-options />
+      <test-kind>SUITE</test-kind>
+      <test-file>$PROJECT_DIR$/test/tools-spec.js</test-file>
+      <test-names>
+        <name value="Testing Textrategia API" />
+        <name value="Testing groups" />
+      </test-names>
+      <method />
+    </configuration>
+    <configuration default="false" name="Testing Textrategia API.Testing groups.Testing insert students(empty)" type="mocha-javascript-test-runner" factoryName="Mocha" temporary="true" nameIsGenerated="true">
+      <node-interpreter>D:/Proj/node</node-interpreter>
+      <node-options />
+      <working-directory>$PROJECT_DIR$/..</working-directory>
+      <pass-parent-env>true</pass-parent-env>
+      <envs />
+      <ui>bdd</ui>
+      <extra-mocha-options />
+      <test-kind>TEST</test-kind>
+      <test-file>$PROJECT_DIR$/test/tools-spec.js</test-file>
+      <test-names>
+        <name value="Testing Textrategia API" />
+        <name value="Testing groups" />
+        <name value="Testing insert students(empty)" />
       </test-names>
       <method />
     </configuration>
@@ -667,19 +665,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing add question.Testing adding question" />
-      <item index="1" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing add question.Testing FAIL adding question - missing parameter" />
-      <item index="2" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing group of user.Test group of user" />
-      <item index="3" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing group of user" />
-      <item index="4" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing groups.Testing insert students(plural)" />
+      <item index="0" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing group of user" />
+      <item index="1" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing groups.Testing insert students(plural)" />
+      <item index="2" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing groups.Testing insert students(single)" />
+      <item index="3" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing groups" />
+      <item index="4" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing groups.Testing insert students(empty)" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing groups.Testing insert students(plural)" />
-        <item index="1" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing group of user" />
-        <item index="2" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing group of user.Test group of user" />
-        <item index="3" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing add question.Testing FAIL adding question - missing parameter" />
-        <item index="4" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing add question.Testing adding question" />
+        <item index="0" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing groups.Testing insert students(empty)" />
+        <item index="1" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing groups" />
+        <item index="2" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing groups.Testing insert students(single)" />
+        <item index="3" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing groups.Testing insert students(plural)" />
+        <item index="4" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing group of user" />
       </list>
     </recent_temporary>
   </component>
@@ -698,7 +696,7 @@
       <workItem from="1490677753829" duration="14209000" />
       <workItem from="1491038342638" duration="441000" />
       <workItem from="1491038803258" duration="166000" />
-      <workItem from="1491039020288" duration="15049000" />
+      <workItem from="1491039020288" duration="18042000" />
     </task>
     <task id="LOCAL-00001" summary="done updating getQuestion">
       <created>1490566647810</created>
@@ -753,39 +751,39 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Testing_Textrategia_API_Testing_add_question_Testing_FAIL_adding_question_-_missing_parameter - 2017.04.01 at 14h 03m 06s.xml">
-      <configuration name="Testing Textrategia API.Testing add question.Testing FAIL adding question - missing parameter" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="Testing_Textrategia_API_Testing_groups - 2017.04.01 at 18h 08m 27s.xml">
+      <configuration name="Testing Textrategia API.Testing groups" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="Testing_Textrategia_API_Testing_group_of_user - 2017.04.01 at 15h 20m 17s.xml">
-      <configuration name="Testing Textrategia API.Testing group of user" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="Testing_Textrategia_API_Testing_groups - 2017.04.01 at 18h 08m 55s.xml">
+      <configuration name="Testing Textrategia API.Testing groups" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="Testing_Textrategia_API_Testing_group_of_user - 2017.04.01 at 15h 20m 56s.xml">
-      <configuration name="Testing Textrategia API.Testing group of user" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="Testing_Textrategia_API_Testing_groups - 2017.04.01 at 18h 11m 26s.xml">
+      <configuration name="Testing Textrategia API.Testing groups" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="Testing_Textrategia_API_Testing_group_of_user - 2017.04.01 at 15h 21m 17s.xml">
-      <configuration name="Testing Textrategia API.Testing group of user" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="Testing_Textrategia_API_Testing_groups - 2017.04.01 at 18h 15m 16s.xml">
+      <configuration name="Testing Textrategia API.Testing groups" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="Testing_Textrategia_API_Testing_group_of_user - 2017.04.01 at 15h 21m 39s.xml">
-      <configuration name="Testing Textrategia API.Testing group of user" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="Testing_Textrategia_API_Testing_groups - 2017.04.01 at 18h 15m 37s.xml">
+      <configuration name="Testing Textrategia API.Testing groups" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="Testing_Textrategia_API_Testing_group_of_user_Test_group_of_user - 2017.04.01 at 15h 12m 03s.xml">
-      <configuration name="Testing Textrategia API.Testing group of user.Test group of user" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="Testing_Textrategia_API_Testing_groups - 2017.04.01 at 18h 17m 33s.xml">
+      <configuration name="Testing Textrategia API.Testing groups" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="Testing_Textrategia_API_Testing_groups_Testing_insert_students(plural) - 2017.04.01 at 17h 25m 42s.xml">
-      <configuration name="Testing Textrategia API.Testing groups.Testing insert students(plural)" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="Testing_Textrategia_API_Testing_groups_Testing_insert_students(empty) - 2017.04.01 at 18h 18m 50s.xml">
+      <configuration name="Testing Textrategia API.Testing groups.Testing insert students(empty)" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="Testing_Textrategia_API_Testing_groups_Testing_insert_students(plural) - 2017.04.01 at 17h 26m 05s.xml">
-      <configuration name="Testing Textrategia API.Testing groups.Testing insert students(plural)" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="Testing_Textrategia_API_Testing_groups_Testing_insert_students(empty) - 2017.04.01 at 18h 20m 24s.xml">
+      <configuration name="Testing Textrategia API.Testing groups.Testing insert students(empty)" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="Testing_Textrategia_API_Testing_groups_Testing_insert_students(plural) - 2017.04.01 at 17h 26m 44s.xml">
-      <configuration name="Testing Textrategia API.Testing groups.Testing insert students(plural)" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="Testing_Textrategia_API_Testing_groups_Testing_insert_students(empty) - 2017.04.01 at 18h 20m 34s.xml">
+      <configuration name="Testing Textrategia API.Testing groups.Testing insert students(empty)" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="Testing_Textrategia_API_Testing_groups_Testing_insert_students(plural) - 2017.04.01 at 17h 27m 58s.xml">
-      <configuration name="Testing Textrategia API.Testing groups.Testing insert students(plural)" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="Testing_Textrategia_API_Testing_groups_Testing_insert_students(empty) - 2017.04.01 at 18h 20m 46s.xml">
+      <configuration name="Testing Textrategia API.Testing groups.Testing insert students(empty)" configurationId="mocha-javascript-test-runner" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40539000" />
+    <option name="totallyTimeSpent" value="43532000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1376" height="744" extended-state="6" />
@@ -801,7 +799,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32935154" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32764506" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32764506" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32935154" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -813,7 +811,7 @@
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3993174" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3993174" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -861,25 +859,8 @@
         </line-breakpoint>
         <line-breakpoint type="javascript">
           <url>file://$PROJECT_DIR$/test/tools-spec.js</url>
-          <line>214</line>
-          <option name="timeStamp" value="30" />
-        </line-breakpoint>
-        <line-breakpoint type="javascript">
-          <url>file://$PROJECT_DIR$/test/tools-spec.js</url>
           <line>213</line>
           <option name="timeStamp" value="36" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/test/tools-spec.js</url>
-          <line>229</line>
-          <properties />
-          <option name="timeStamp" value="71" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/test/tools-spec.js</url>
-          <line>231</line>
-          <properties />
-          <option name="timeStamp" value="72" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/queryForDB.js</url>
@@ -889,51 +870,33 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/server_test.js</url>
-          <line>286</line>
-          <properties />
-          <option name="timeStamp" value="74" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/server_test.js</url>
-          <line>290</line>
-          <properties />
-          <option name="timeStamp" value="75" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/server_test.js</url>
-          <line>291</line>
-          <properties />
-          <option name="timeStamp" value="76" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/server_test.js</url>
-          <line>293</line>
-          <properties />
-          <option name="timeStamp" value="77" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/server_test.js</url>
-          <line>295</line>
-          <properties />
-          <option name="timeStamp" value="80" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/server_test.js</url>
-          <line>298</line>
+          <line>301</line>
           <properties />
           <option name="timeStamp" value="81" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/server_test.js</url>
-          <line>309</line>
+          <line>292</line>
           <properties />
-          <option name="timeStamp" value="82" />
+          <option name="timeStamp" value="95" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/server_test.js</url>
+          <line>294</line>
+          <properties />
+          <option name="timeStamp" value="96" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/server_test.js</url>
+          <line>293</line>
+          <properties />
+          <option name="timeStamp" value="97" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="83" />
+      <option name="time" value="98" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1089,24 +1052,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/queryForDB.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="127" column="12" lean-forward="false" selection-start-line="127" selection-start-column="12" selection-end-line="127" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/tools-spec.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-25">
-          <caret line="236" column="23" lean-forward="false" selection-start-line="236" selection-start-column="23" selection-end-line="236" selection-end-column="23" />
+        <state relative-caret-position="129">
+          <caret line="129" column="7" lean-forward="false" selection-start-line="129" selection-start-column="7" selection-end-line="129" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server_test.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="330" column="0" lean-forward="true" selection-start-line="330" selection-start-column="0" selection-end-line="330" selection-end-column="0" />
+        <state relative-caret-position="82">
+          <caret line="293" column="0" lean-forward="false" selection-start-line="293" selection-start-column="0" selection-end-line="293" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/tools-spec.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="264" column="24" lean-forward="true" selection-start-line="264" selection-start-column="24" selection-end-line="264" selection-end-column="24" />
           <folding />
         </state>
       </provider>
