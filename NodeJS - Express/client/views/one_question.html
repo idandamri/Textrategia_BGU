@@ -27,117 +27,124 @@
 
 <div id="wrap">
   <div class="container" id="c_1">
-  <div id = "myQuiz">
-      
-  <div class="col-sm-12"><h1><b>{{task_name}}</b></h1></div>
-  <div class="col-sm-12"> <h3>{{ question.Q_question }}</h3> </div>
+    <div id = "myQuiz">
 
-
-  <div class="text-right" id="labels_in_task">
-  <span class="label label-success">{{ Q_skill}}</span>
-  </div>
-
-<!--<div class="intro" ng-show="!inProgress">-->
-<!--<h6><br></h6>-->
-  <!--<p><h4><u><b>ברוך הבא למחשבון השאלות</b></u></h4></p>-->
-<!--<button id="startQuiz" ng-click="start()" type="button" class="btn btn-warning btn-sm">התחל לפתור</button>-->
-
-<!--</div>-->
-
-<div class="quiz-area">
-  <div ng-show="!quizOver">
-
-    <h3 id="question">{{question}}</h3>
-
-    <div align="center">
-      <iframe margin="0" ng-show="showVideo" padding="0" border="none" width="700" height="400" frameBorder="0"
-              ng-src="{{videoURL}}">
-      </iframe>
-    </div>
-
-
-    <div align="center">
-      <iframe margin="0" ng-show="showVoice" padding="0" border="none" width="400" height="50" frameBorder="0"
-              ng-src="{{voiceURL}}">
-      </iframe>
-    </div>
-
-    <div align="center">
-      <img ng-show="showImg" ng-src ="{{imgURL}}">
-    </div>
-
-    <div align="center" ng-show="showText">
-        <h1> {{textData}} </h1>
-    </div>
-
-
-
-    <dl id="options">
-      <dt ng-repeat="option in options">
-        <label>
-          <input type="radio" name="answer" value="{{option}}">
-            {{option}}
-        </label>
-      </dt>
-    </dl>
-  
-    <button ng-click="checkAnswer()" ng-show="answerMode" type="button" class="btn btn-warning btn-sm"  data-toggle="modal" data-target="#fedbackModal">בדוק</button>
-
-
-  </div>
-    <div ng-show="!answerMode">
-      <button ng-click="nextQuestion()" class="next-question" type="button" class="btn btn-default btn-sm">שאלה הבאה</button>
-    </div>
-
-  <div ng-show="quizOver">
-    <h2>סיימת את המטלה!</h2>
-    <button class="btn btn-warning" ng-click="finishTask()">חזרה לדף הבית</button>
-  </div>
-
-  <div id="score">
-    <h3> ניקוד: {{ score }} </h3>
-  </div>
-</div>
-
-
-<br><br><br><br><br><br><br><br>
-
-<!-- Modal -->
-<div class="modal fade" id="fedbackModal" tabindex="-1" role="dialog" aria-labelledby="myCurrectModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">
-          <span ng-show="correctAns">כל הכבוד!</span>
-          <span ng-show="!correctAns">אופס...</span>
-        </h4>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-          <span ng-show="correctAns">תשובה נכונה!</span>
-          <span ng-show="!correctAns">תשובה לא נכונה</span>
-          <br><p> {{feedback}}</p>
+      <div class="col-sm-12">
+        <h1><b>{{task_name}}</b></h1>
+        <div class="text-right" id="labels_in_task">
+          <span class="label label-success">{{ Q_skill}}</span>
         </div>
       </div>
-      <div class="modal-footer">
-        <div ng-show="correctAns">
-          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">סגור</button> -->
-          <button type="button" data-dismiss="modal" ng-click="nextQuestion()" class="btn btn-primary" >שאלה הבאה</button>
-        </div>
-        <div ng-show="!correctAns">
-          <!-- <button ng-show="!triedOnce" type="button" data-dismiss="modal" ng-click="oneMoreTry()" class="btn btn-default" > (לא נכון )סגור</button> -->
-          <button type="button" data-dismiss="modal" ng-click="nextQuestion()" class="btn btn-primary" >שאלה הבאה</button>
-        </div>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
 
-<!-- bla bla -->
-     
+      <!--<div class="intro" ng-show="!inProgress">-->
+      <!--<h6><br></h6>-->
+      <!--<p><h4><u><b>ברוך הבא למחשבון השאלות</b></u></h4></p>-->
+      <!--<button id="startQuiz" ng-click="start()" type="button" class="btn btn-warning btn-sm">התחל לפתור</button>-->
 
-<br><br><br><br>
+      <!--</div>-->
+
+      <div class="quiz-area">
+        <div ng-show="!quizOver">
+
+          <h3 id="question">{{question}}</h3>
+
+          <div class="col-sm-6">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10">
+
+
+              <!-- <iframe margin="0" ng-show="showVideo" padding="0" border="none" width="700" height="400" frameBorder="0" ng-src="{{videoURL}}"></iframe> -->
+              <div class="embed-responsive embed-responsive-16by9" ng-show="showVideo || showVoice">
+                <iframe class="embed-responsive-item" ng-show="showVideo" ng-src="{{videoURL}}"></iframe>
+
+                <!-- <iframe margin="0" ng-show="showVoice" padding="0" border="none"  height="50" frameBorder="0" ng-src="{{voiceURL}}"></iframe> -->
+                <iframe class="embed-responsive-item" ng-show="showVoice" ng-src="{{voiceURL}}"></iframe>
+              </div>
+
+
+              <img class="img-rounded img-responsive" ng-show="showImg" ng-src ="{{imgURL}}" alt="oops...">
+              <div ng-show="showText"><h4><em>{{textData}} </em> </h4> </div>
+            </div>
+
+            <div class="col-sm-1"></div>
+          </div>
+
+
+
+          <div class="col-sm-6">
+            <dl id="options">
+              <dt ng-repeat="option in options">
+                <label>
+                  <input type="radio" name="answer" value="{{option}}">
+                  {{option}}
+                </label>
+              </dt>
+            </dl>
+          </div>
+
+          <button ng-click="checkAnswer()" ng-show="answerMode" type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#fedbackModal">
+            בדוק
+          </button>
+
+        </div> <!-- ng-show="!quizOver" -->
+
+        <div ng-show="!answerMode">
+          <button ng-click="nextQuestion()" class="next-question" type="button" class="btn btn-default btn-sm">
+            שאלה הבאה
+          </button>
+        </div>
+
+        <div ng-show="quizOver">
+          <h2>סיימת את המטלה!</h2>
+          <button class="btn btn-warning" ng-click="finishTask()">חזרה למטלות</button>
+        </div>
+
+        <div id="score">
+          <h3> ניקוד: {{ score }} </h3>
+        </div>
+
+      </div> <!-- class="quiz-area" -->
+
+
+      <br><br><br><br><br><br><br><br>
+
+      <!-- Modal -->
+      <div class="modal fade" id="fedbackModal" tabindex="-1" role="dialog" aria-labelledby="myCurrectModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">
+                <span ng-show="correctAns">כל הכבוד!</span>
+                <span ng-show="!correctAns">אופס...</span>
+              </h4>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <span ng-show="correctAns">תשובה נכונה!</span>
+                <span ng-show="!correctAns">תשובה לא נכונה</span>
+                <br><p> {{feedback}}</p>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <div ng-show="correctAns">
+                <!-- <button type="button" class="btn btn-default" data-dismiss="modal">סגור</button> -->
+                <button type="button" data-dismiss="modal" ng-click="nextQuestion()" class="btn btn-primary" >שאלה הבאה</button>
+              </div>
+              <div ng-show="!correctAns">
+                 <button ng-show="!triedOnce" type="button" data-dismiss="modal" ng-click="oneMoreTry()" class="btn btn-default" > (לא נכון )סגור</button>
+                <button type="button" data-dismiss="modal" ng-click="nextQuestion()" class="btn btn-primary" >שאלה הבאה</button>
+              </div>
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
+
+      <!-- bla bla -->
+
+
+      <br><br><br><br>
+    </div>
   </div>
 </div>
 

@@ -50,9 +50,9 @@
 
       <div class="col-sm-6">
         <div class="form-group">
-          <label for="expertise2" class="control-label pull-right" >מטלות זמינות:</label>
+          <label for="available_task" class="control-label pull-right" >מטלות זמינות:</label>
 
-          <select class="form-control inputstl" id="expertise2" multiple>
+          <select class="form-control inputstl" id="available_task" multiple>
             <option ng-repeat="y in info.tasks" value="{{y.T_id}}">{{y.T_title}}</option>
             <option ng-show="info.tasks==0" disabled>אין מטלות זמינות</option>
           </select>
@@ -60,12 +60,11 @@
         </div>
       </div>
 
-
       <div class="col-sm-6">
         <div class="form-group">
-          <label for="expertise1" class="control-label pull-right">קבוצות זמינות:</label>
+          <label for="available_group" class="control-label pull-right">קבוצות זמינות:</label>
 
-          <select class="form-control inputstl" id="expertise1" multiple>
+          <select class="form-control inputstl" id="available_group" multiple>
             <option ng-repeat="x in info.groups" value="{{x.GroupId}}">{{x.GroupName}}</option>
             <option ng-show="info.groups==0" disabled>אין קבוצות זמינות</option>
           </select>

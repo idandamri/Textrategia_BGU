@@ -413,7 +413,7 @@ app.post('/login', function (req, res) {
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '1q2w3e4r',//'123456' to upload*/
+    password: '123456',//'123456' to upload*/
     database: 'textra_db'
 });
 
@@ -435,9 +435,9 @@ var server = app.listen(8081, function () {
 //     console.log("Example app listening at ");
 // });
 
-var server = app.listen(8081, "127.0.0.1", function () {
-    console.log("Example app listening at ");
-});
+// var server = app.listen(8081, "127.0.0.1", function () {
+//     console.log("Example app listening at ");
+// });
 
 
 setInterval(function () {
