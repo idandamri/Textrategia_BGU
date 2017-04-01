@@ -63,12 +63,13 @@
     </div>
 
     <div align="center">
-      <!--<iframe margin="0" ng-show="showImg" padding="0" border="none" width="400" height="50" frameBorder="0"-->
-              <!--ng-src="{{imgURL}}">-->
-      <!--</iframe>-->
       <img ng-show="showImg" ng-src ="{{imgURL}}">
-
     </div>
+
+    <div align="center" ng-show="showText">
+        <h1> {{textData}} </h1>
+    </div>
+
 
 
 
@@ -87,7 +88,7 @@
 
   </div>
     <div ng-show="!answerMode">
-      <button ng-click="nextQuestion()" class="next-question" type="button" class="btn btn-default btn-sm">הבא</button>
+      <button ng-click="nextQuestion()" class="next-question" type="button" class="btn btn-default btn-sm">שאלה הבאה</button>
     </div>
 
   <div ng-show="quizOver">

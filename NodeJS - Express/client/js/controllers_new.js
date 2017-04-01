@@ -49,13 +49,32 @@ textrategiaApp.controller("GroupManagementController",function($scope){
 //lst of string, all possible answers
 var get_answers_lst_from_jason = function(myJason) {
     var ans = [];
+    var ans_id =[];
     for(i=0 ; i< myJason.length ; i++){
         ans.push(myJason[i].answer);
+        ans_id.push(myJason[i].A_id);
     }
-    return ans;
+    return {
+        ans_lst : ans,
+        ans_id_lst : ans_id
+    };
 };
 
-var get_answer_index = function(myJason) {
+
+var get_answer_index = function(ans_lst, ans_id_lst,ans ) {
+    var index;
+    for (i=0 ; i< ans_lst.length ; i++){
+        if (ans_lst[i] == ans){
+            index= ans_id_lst[i];
+            break;
+        }
+    }
+    return index;
+};
+
+
+
+var get_correct_answer_index = function(myJason) {
     var ans;
     for (i=0 ; i< myJason.length ; i++){
         if (myJason[i].isCorrect == 1){
@@ -67,7 +86,8 @@ var get_answer_index = function(myJason) {
 };
 
 /*TO-DO*/
-function updateAnswer (quesion_id , ans_id){
+function updateAnswer (question_id , ans_id){
+    $http = angular.injector(["ng"]).get("$http");
     var req = {
         method: 'POST',
         cache: false,
@@ -75,11 +95,8 @@ function updateAnswer (quesion_id , ans_id){
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
-        data: 'stud_id='+getUserID()+'&task_id='+getTaskID() + '&quest_id=' + quesion_id + '&ans_id=' + ans_id
+        data: 'stud_id='+getUserID()+'&task_id='+getTaskID() + '&quest_id=' + question_id + '&ans_id=' + ans_id
     };
-    //alert(JSON.stringify(req));
-
-
     $http(req)
         .success(function(data,status,headers,config){
         }).error(function(data,status,headers,config){
@@ -103,7 +120,6 @@ textrategiaApp.controller("StudentController",function($scope){
 */
 /*Note: if you change tags name, let Hadas know */
 var history_list_mock = [
-
 {
   "question": {
     "Q_id": 1,
@@ -153,7 +169,7 @@ textrategiaApp.controller("historyTasksController",function($scope){
 
 textrategiaApp.controller("TasksController",function($scope,$http,$location){
     //$scope.tasks = tasks_parsed_jason_lst;
-          
+
         var req = {
                 method: 'POST',
                 cache: false,
@@ -214,6 +230,12 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
         $http(req)
             .success(function (data, status, headers, config) {
                 myJason = data;
+                /*flags*/
+                $scope.showText= false;
+                $scope.showImg= false;
+                $scope.showVoice = false;
+                $scope.showVideo = false;
+
                 $scope.task_name = myJason.question.Q_skill;  // change to task name
                 $scope.task_id = getTaskID();                    //change to task is
                 $scope.Q_skill = myJason.question.Q_skill;
@@ -233,23 +255,20 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
                     //$scope.videoURL = 'https://www.youtube.com/embed/crs0TiiYE4I?rel=0'; //data.question.Q_media;
                     $scope.voiceURL = $sce.trustAsResourceUrl(data.question.Q_media);
                     $scope.showVoice = true;
-                    $scope.showVideo = false;
-                    $scope.showImg= false;
                 }
                 else if (data.question.Q_mediaType == "img" ){
                     $scope.imgURL = "views/pic/simp1.jpg";
                     $scope.showImg= true;
-                    $scope.showVoice = false;
-                    $scope.showVideo = false;
                 }
-                else {
-                    $scope.showVideo = false;
-                    $scope.showVoice = false;
+                else if (data.question.Q_mediaType == "text" ){
+                    $scope.textData= data.question.Q_media;
+                    $scope.showText= true;
                 }
+
             }).error(function (data, status, headers, config) {
-                if (status = 676){
-                    //alert("End Of Task!");
+                if (status == "676"){
                     $scope.quizOver = true;
+                    $scope.answerMode = true;
                     //$location.path('student');
                 }
 
@@ -263,8 +282,10 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
 
     $scope.getQuestion = function(){
         $scope.question =  myJason.question.Q_qeustion;
-        $scope.options = get_answers_lst_from_jason(myJason.answers);
-        $scope.answer = get_answer_index(myJason.answers);
+        var answers_lst = get_answers_lst_from_jason(myJason.answers);
+        $scope.options =  answers_lst.ans_lst;
+        $scope.options_id =  answers_lst.ans_id_lst;
+        $scope.answer = get_correct_answer_index(myJason.answers);
         $scope.answerMode = true;
         $scope.questionID = myJason.question.Q_id;
     };
@@ -272,11 +293,13 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
     //This is function for submit
     $scope.checkAnswer = function(){
         var ans = $('input[name=answer]:checked').val();
+        var ans_id = get_answer_index($scope.options, $scope.options_id,ans);
+        updateAnswer($scope.questionID,ans_id);
         if(ans == $scope.options[$scope.answer]) {
             $scope.score++;
             $scope.feedback = myJason.answers.Q_correctFB;
             $scope.correctAns = true;
-
+            // $scope.AnsID = getAnsID($scope.answer)
             /*need to add update ans & remove from instances*/
 
         } else {
@@ -285,8 +308,8 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
             /*need to add update ans*/
         }
         $scope.answerMode = false;
-    };
 
+    };
 
     $scope.nextQuestion = function(question_id){
         var req = {
@@ -301,7 +324,6 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
 
         $http(req)
             .success(function(data,status,headers,config){
-
                 $scope.start();
             })
             .error(function(data,status,headers,config) {
@@ -344,9 +366,12 @@ textrategiaApp.controller("LoginController", function($scope, $http,$location) {
             setUserID(data[0].PersonalID);
             $scope.showError = false;
             $scope.showSuccess = true;
-            $location.path('student');
-
-
+            if (data[0].PersonalID == "1"){
+                $location.path('student');
+            }
+            else if (data[0].PersonalID == "2") {
+                $location.path('teacher');
+            }
         }).error(function(data,status,headers,config){
             $scope.showError = true;
             $scope.showSuccess = false;
