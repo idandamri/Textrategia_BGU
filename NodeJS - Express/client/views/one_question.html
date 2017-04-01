@@ -37,12 +37,12 @@
   <span class="label label-success">{{ Q_skill}}</span>
   </div>
 
-<div class="intro" ng-show="!inProgress">
-<h6><br></h6>
-  <p><h4><u><b>ברוך הבא למחשבון השאלות</b></u></h4></p>
-<button id="startQuiz" ng-click="start()" type="button" class="btn btn-warning btn-sm">התחל לפתור</button>
+<!--<div class="intro" ng-show="!inProgress">-->
+<!--<h6><br></h6>-->
+  <!--<p><h4><u><b>ברוך הבא למחשבון השאלות</b></u></h4></p>-->
+<!--<button id="startQuiz" ng-click="start()" type="button" class="btn btn-warning btn-sm">התחל לפתור</button>-->
 
-</div>
+<!--</div>-->
 
 <div class="quiz-area">
   <div ng-show="!quizOver">
@@ -63,13 +63,12 @@
     </div>
 
     <div align="center">
-      <!--<iframe margin="0" ng-show="showImg" padding="0" border="none" width="400" height="50" frameBorder="0"-->
-              <!--ng-src="{{imgURL}}">-->
-      <!--</iframe>-->
       <img ng-show="showImg" ng-src ="{{imgURL}}">
-
     </div>
 
+    <div align="center" ng-show="showText">
+        <h1> {{textData}} </h1>
+    </div>
 
 
 
@@ -87,7 +86,7 @@
 
   </div>
     <div ng-show="!answerMode">
-      <button ng-click="nextQuestion()" class="next-question" type="button" class="btn btn-default btn-sm">הבא</button>
+      <button ng-click="nextQuestion()" class="next-question" type="button" class="btn btn-default btn-sm">שאלה הבאה</button>
     </div>
 
   <div ng-show="quizOver">

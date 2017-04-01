@@ -4,38 +4,106 @@ var _url = "http://localhost:8081";
 
 //* TEACHER CONTROLLERS*//
 
+
+
+// ########################### TEACHER CONTROLLERS ###########################//
+
 textrategiaApp.controller("TeacherController",function($scope){
     $scope.teacherName = getUserName();
-    
+
 });
 
-var groups_mock = [
- {
-    "GroupId": 1,
-    "GroupName": "זברות צבעוניות",
-    "teacherID": 5,
-    "isMasterGroup": 1,
-    "GroupeCode": 01234
-  },
-   {
-    "GroupId": 2,
-    "GroupName": "קואלות ירוקות",
-    "teacherID": 5,
-    "isMasterGroup": 1,
-    "GroupeCode": 25
-  }
-];
+var groups_and_tasks_mock =
+    {
+        "groups": [
+            {
+                "GroupId": 1111,
+                "GroupName": "זברות צבעוניות",
+                "teacherID": "1",
+                "IsMasterGroup": 1,
+                "GroupeCode": "1"
+            },
+            {
+                "GroupId": 1234567,
+                "GroupName": "כוכבים נופלים",
+                "teacherID": "1",
+                "IsMasterGroup": 0,
+                "GroupeCode": "2"
+            },
+            {
+                "GroupId": 1234567,
+                "GroupName": "כיתה ה' 3",
+                "teacherID": "1",
+                "IsMasterGroup": 0,
+                "GroupeCode": "3"
+            }
+        ],
+        "tasks": [
+            {
+                "T_id": 1,
+                "T_title": "נסיכות דיסני ובני זוגם",
+                "T_description": "מטלת ניסוי לבסיס הנתונים"
+            },
+            {
+                "T_id": 2,
+                "T_title": "המדריך המהיר לזיהוי מיניונים",
+                "T_description": "מטלת ניסוי לבסיס הנתונים"
+            },
+            {
+                "T_id": 3,
+                "T_title": "ביב בופ ורוקסטדי, הסיפור האמיתי",
+                "T_description": "מטלת ניסוי לבסיס הנתונים"
+            }
+        ]
+    };
+
+var empty = {"groups":[],"tasks":[{"T_id":1,"T_title":"מטלת ניסוי","T_description":"מטלת ניסוי לבסיס הנתונים"},{"T_id":2,"T_title":"2מטלת ניסוי","T_description":"מטלת ניסוי לבסיס הנתונים"}]};
 
 
 textrategiaApp.controller("GroupManagementController",function($scope){
     $scope.teacherName = getUserName();
-    $scope.groups = groups_mock;
-    $scope.numberOfStudents = function(GroupID){
+    // $scope.info = empty;
+    $scope.info = groups_and_tasks_mock;
+    $scope.numberOfStudents = function(thisGroupID){
         return 12;
+    }
+
+    $scope.showError = false; // set Error flag
+
+
+// these function alert the choise the user made.
+    $scope.sendTaskToGroup = function(){
+        //get group selection
+        var sel1 = document.getElementById("expertise1");
+
+        var opt1;
+        for (i = 0 ; i < sel1.options.length ; i++){
+            opt1 = sel1.options[i];
+            if (opt1.selected == true){
+                alert(opt1.value);              // this is GroupName
+                break;
+            }
+        }
+        //get tasks selection
+        var sel2 = document.getElementById("expertise2");
+
+        var opt2;
+        for (i = 0 ; i < sel2.options.length ; i++){
+            opt2 = sel2.options[i];
+            if (opt2.selected == true){
+                alert(opt2.value);              // this is T_title
+                break;
+            }
+        }
+
+
+
+
     }
 
 });
 
+//  #################################################################################
 
 
 
@@ -49,13 +117,32 @@ textrategiaApp.controller("GroupManagementController",function($scope){
 //lst of string, all possible answers
 var get_answers_lst_from_jason = function(myJason) {
     var ans = [];
+    var ans_id =[];
     for(i=0 ; i< myJason.length ; i++){
         ans.push(myJason[i].answer);
+        ans_id.push(myJason[i].A_id);
     }
-    return ans;
+    return {
+        ans_lst : ans,
+        ans_id_lst : ans_id
+    };
 };
 
-var get_answer_index = function(myJason) {
+
+var get_answer_index = function(ans_lst, ans_id_lst,ans ) {
+    var index;
+    for (i=0 ; i< ans_lst.length ; i++){
+        if (ans_lst[i] == ans){
+            index= ans_id_lst[i];
+            break;
+        }
+    }
+    return index;
+};
+
+
+
+var get_correct_answer_index = function(myJason) {
     var ans;
     for (i=0 ; i< myJason.length ; i++){
         if (myJason[i].isCorrect == 1){
@@ -67,7 +154,8 @@ var get_answer_index = function(myJason) {
 };
 
 /*TO-DO*/
-function updateAnswer (quesion_id , ans_id){
+function updateAnswer (question_id , ans_id){
+    $http = angular.injector(["ng"]).get("$http");
     var req = {
         method: 'POST',
         cache: false,
@@ -75,11 +163,8 @@ function updateAnswer (quesion_id , ans_id){
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
-        data: 'stud_id='+getUserID()+'&task_id='+getTaskID() + '&quest_id=' + quesion_id + '&ans_id=' + ans_id
+        data: 'stud_id='+getUserID()+'&task_id='+getTaskID() + '&quest_id=' + question_id + '&ans_id=' + ans_id
     };
-    //alert(JSON.stringify(req));
-
-
     $http(req)
         .success(function(data,status,headers,config){
         }).error(function(data,status,headers,config){
@@ -103,7 +188,6 @@ textrategiaApp.controller("StudentController",function($scope){
 */
 /*Note: if you change tags name, let Hadas know */
 var history_list_mock = [
-
 {
   "question": {
     "Q_id": 1,
@@ -153,7 +237,7 @@ textrategiaApp.controller("historyTasksController",function($scope){
 
 textrategiaApp.controller("TasksController",function($scope,$http,$location){
     //$scope.tasks = tasks_parsed_jason_lst;
-          
+
         var req = {
                 method: 'POST',
                 cache: false,
@@ -175,8 +259,9 @@ textrategiaApp.controller("TasksController",function($scope,$http,$location){
     $scope.questionSum = 4; //remove in future. should be a query or calculation
     $scope.studentName = getUserName();
 
-    $scope.navigateToOneQuestion = function(t_id){
+    $scope.navigateToOneQuestion = function(t_id,t_name){
         setTaskID(t_id);
+        setTaskName(t_name);
         $location.path('one_question');
     };
 
@@ -214,7 +299,13 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
         $http(req)
             .success(function (data, status, headers, config) {
                 myJason = data;
-                $scope.task_name = myJason.question.Q_skill;  // change to task name
+                /*flags*/
+                $scope.showText= false;
+                $scope.showImg= false;
+                $scope.showVoice = false;
+                $scope.showVideo = false;
+
+                $scope.task_name = getTaskName();  // change to task name
                 $scope.task_id = getTaskID();                    //change to task is
                 $scope.Q_skill = myJason.question.Q_skill;
                 $scope.id = 0;
@@ -233,23 +324,20 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
                     //$scope.videoURL = 'https://www.youtube.com/embed/crs0TiiYE4I?rel=0'; //data.question.Q_media;
                     $scope.voiceURL = $sce.trustAsResourceUrl(data.question.Q_media);
                     $scope.showVoice = true;
-                    $scope.showVideo = false;
-                    $scope.showImg= false;
                 }
                 else if (data.question.Q_mediaType == "img" ){
                     $scope.imgURL = "views/pic/simp1.jpg";
                     $scope.showImg= true;
-                    $scope.showVoice = false;
-                    $scope.showVideo = false;
                 }
-                else {
-                    $scope.showVideo = false;
-                    $scope.showVoice = false;
+                else if (data.question.Q_mediaType == "text" ){
+                    $scope.textData= data.question.Q_media;
+                    $scope.showText= true;
                 }
+
             }).error(function (data, status, headers, config) {
-                if (status = 676){
-                    //alert("End Of Task!");
+                if (status == "676"){
                     $scope.quizOver = true;
+                    $scope.answerMode = true;
                     //$location.path('student');
                 }
 
@@ -258,35 +346,43 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
 
     $scope.reset = function() {
         $scope.inProgress = false;
+        $scope.quizOver = false;
         $scope.score = 0;
+        $scope.start();
     };
 
     $scope.getQuestion = function(){
         $scope.question =  myJason.question.Q_qeustion;
-        $scope.options = get_answers_lst_from_jason(myJason.answers);
-        $scope.answer = get_answer_index(myJason.answers);
+        var answers_lst = get_answers_lst_from_jason(myJason.answers);
+        $scope.options =  answers_lst.ans_lst;
+        $scope.options_id =  answers_lst.ans_id_lst;
+        $scope.answer = get_correct_answer_index(myJason.answers);
         $scope.answerMode = true;
         $scope.questionID = myJason.question.Q_id;
+        $scope.correctFB = myJason.question.Q_correctFB;
+        $scope.wrongFB = myJason.question.Q_notCorrectFB;
     };
 
     //This is function for submit
     $scope.checkAnswer = function(){
         var ans = $('input[name=answer]:checked').val();
+        var ans_id = get_answer_index($scope.options, $scope.options_id,ans);
+        updateAnswer($scope.questionID,ans_id);
         if(ans == $scope.options[$scope.answer]) {
             $scope.score++;
-            $scope.feedback = myJason.answers.Q_correctFB;
+            $scope.feedback = $scope.correctFB;
             $scope.correctAns = true;
-
+            // $scope.AnsID = getAnsID($scope.answer)
             /*need to add update ans & remove from instances*/
 
         } else {
-            $scope.feedback = myJason.answers.Q_notCorrectFB;
+            $scope.feedback = $scope.wrongFB;
             $scope.correctAns = false;
             /*need to add update ans*/
         }
         $scope.answerMode = false;
-    };
 
+    };
 
     $scope.nextQuestion = function(question_id){
         var req = {
@@ -301,7 +397,6 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
 
         $http(req)
             .success(function(data,status,headers,config){
-
                 $scope.start();
             })
             .error(function(data,status,headers,config) {
@@ -344,9 +439,12 @@ textrategiaApp.controller("LoginController", function($scope, $http,$location) {
             setUserID(data[0].PersonalID);
             $scope.showError = false;
             $scope.showSuccess = true;
-            $location.path('student');
-
-
+            if (data[0].PersonalID == "1"){
+                $location.path('student');
+            }
+            else if (data[0].PersonalID == "2") {
+                $location.path('teacher');
+            }
         }).error(function(data,status,headers,config){
             $scope.showError = true;
             $scope.showSuccess = false;
