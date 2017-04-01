@@ -58,11 +58,11 @@ describe("Testing Textrategia API", function () {
                     res.status.should.be.equal(200);
                     questions = res.body;
                     strQ = JSON.stringify(questions["question"]);
-                    console.log("{\"question\" : "+ strQ + ", \"answers\": [");
+                    console.log("{\"question\" : " + strQ + ", \"answers\": [");
                     for (i = 0; i < questions["answers"].length; i++) {
                         strQ = JSON.stringify(questions["answers"][i]);
                         // console.log("Ans "+i+" - " + strQ);
-                        if (i<questions["answers"].length-1) {
+                        if (i < questions["answers"].length - 1) {
                             console.log(strQ + ", ");
                         } else {
                             console.log(strQ + "]}");
@@ -104,6 +104,92 @@ describe("Testing Textrategia API", function () {
         });
     });
 
+
+    describe("Testing add question", function () {
+        it('Testing adding question', function (done) {
+            request(app).post("/addQuestion").send({
+                "question_title": "testQ title",
+                "isMultipleAns": "0",
+                "question_media": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec qu",
+                "question_media_type": "text",
+                "quest_correct_FB": "well done",
+                "quest_incorrect_FB": "it was not the correct answer",
+                "quest_skill": "testing skills!",
+                "quest_difficulty": "easy",
+                "quest_proffesion": "test proffesion",
+                "quest_is_approved": "1",
+                "quest_disabled": "0"
+            })
+                .end(function (err, res) {
+                    if (err) {
+                        console.log("ERR: " + err)
+                        throw err;
+                    }
+                    else {
+                        res.status.should.be.equal(200);
+                    }
+                    done();
+                });
+        });
+
+        it('Testing FAIL adding question - missing  a \' not nullable \' param', function (done) {
+            request(app).post("/addQuestion").send({
+                "isMultipleAns": "0",
+                "question_media": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec qu",
+                "question_media_type": "text",
+                "quest_correct_FB": "well done",
+                "quest_incorrect_FB": "it was not the correct answer",
+                "quest_skill": "testing skills!",
+                "quest_difficulty": "easy",
+                "quest_proffesion": "test proffesion",
+                "quest_is_approved": "1",
+                "quest_disabled": "0"
+            })
+                .end(function (err, res) {
+                    if (err) {
+                        console.log("ERR: " + err)
+                        throw err;
+                    }
+                    else {
+                        res.status.should.be.equal(400);
+                    }
+                    done();
+                });
+        });
+    });
+
+
+    describe("Testing approve question", function () {
+        this.timeout(7000);
+        it('Testing approve OK', function (done) {
+            request(app).post("/questionApproveOrNot").send({"q_id": "1", "is_approved": "1"})
+                .end(function (err, res) {
+                    if (err) {
+                        console.log("ERR: " + err)
+                        throw err;
+                    }
+                    else {
+                        res.status.should.be.equal(200);
+                    }
+                    done();
+                });
+        });
+
+        it('Testing approve FAIL', function (done) {
+            request(app).post("/questionApproveOrNot").send({"q_id": "134", "is_approved": "1"})
+                .end(function (err, res) {
+                    if (err) {
+                        console.log("ERR: " + err)
+                        throw err;
+                    }
+                    else {
+                        res.status.should.be.equal(400);
+                    }
+                    done();
+                });
+        });
+    });
+
     describe("Testing groups", function () {
         it('Testing insert student', function (done) {
             request(app).post("/insertStudentToGroup").send({"stud_id": "1", "group_id": "1111"})
@@ -120,9 +206,26 @@ describe("Testing Textrategia API", function () {
         });
 
 
+        it('Testing insert student', function (done) {
+            request(app).post("/insertStudentToGroup").send({"stud_id": "1", "group_id": "1111"})
+                .end(function (err, res) {
+                    if (err) {
+                        console.log("ERR: " + err)
+                        throw err;
+                    }
+                    else {
+                        res.status.should.be.equal(400);
+                    }
+                    done();
+                });
+        });
+
+
         it('Testing creation of group', function (done) {
-            request(app).post("/createGroup").send({"group_id": "1234", "group_name": "בדיקות 2",
-                "teacherID": "4", "is_master": "0", "group_code": "01234"})
+            request(app).post("/createGroup").send({
+                "group_id": "1234", "group_name": "בדיקות 2",
+                "teacherID": "4", "is_master": "0", "group_code": "01234"
+            })
                 .end(function (err, res) {
                     if (err) {
                         console.log("ERR: " + err)
@@ -135,5 +238,4 @@ describe("Testing Textrategia API", function () {
                 });
         });
     });
-
 });
