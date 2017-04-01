@@ -28,49 +28,54 @@
 
 <!-- MADE CHANGE !!!!!! -->
       <br>
-    <div class="row">  
-    <div class="col-sm-12" >
       <h1>שלום, {{studentName}}!</h1>
-    </div>
-      
-
-      <div class="col-sm-2" >
-        <!-- <h6> <strong> היסטוריית מטלות </strong></h6> -->
-        <a href="#history_tasks"><span class="glyphicon glyphicon-check"></span> היסטוריית מטלות</a> 
+      <div ng-show="history_list.length==0">
+        <h3><em> עדיין לא קיימת היסטוריית מטלות במערכת </em></h3>
       </div>
-
-      <div class="col-sm-6"></div>
-
-      <div class="col-sm-4" >
-        <div ng-show="tasks.length==0">
-          <h3><em> אין מטלות זמינות לביצוע... </em></h3>
-        </div>
-        <div ng-show="tasks.length!=0">
-          <h3><em>לרשותך, רשימת המטלות הזמינות בפניך:</em></h3>
-        </div>
+      <div ng-show="history_list.length!=0">
+        <h3><em>לרשותך, רשימת המטלות שפתרת:</em></h3>
       </div>
-      </div>
-
-        <br>
-        <br>
-
-
-   
+      <br>
+      <br>
 
 
     <div class="row">
-      <div class="col-sm-4" ng-repeat="x in tasks">
-    		<div class="card text-center" style="width: 20rem;">
-     			<div class="card-block">
-     				<h4 class="card-title"><b>{{x.T_title}}</b></h4>
-     				<p class="card-text">{{x.T_description}}</p>
-     				<!--<p class="card-text"> מספר שאלות: <b>{{questionSum}}</b></p> -->
-     				<a ng-click="navigateToOneQuestion(x.T_id)" class="btn btn-primary">התחל מטלה</a>
-     			
+
+      <div class="col-sm-4" ng-repeat="x in history_list">
+        <div class="card text-center" >
+          <div class="card-block">
+          
+            <h3 class="card-title">{{x.question.Q_taskName}}</h3>
+            <h5 class="card-subtitle mb-2 "><b>{{x.question.Q_qeustion}}</b></h5>
+            
+            <dl id="options">
+              <dt ng-repeat="y in x.answers">
+                  <div ng-show="y.isCorrect == 1">
+                    <p class="card-text mb-2 bg-success"> {{y.answer}} </p>   
+                  </div>
+                  <div ng-show="y.isCorrect == 0">      
+                    <p class="card-text mb-2 text-muted"> {{y.answer}} </p>         
+                  </div>
+              </dt>
+            </dl>
+
+            <p class="card-text mb-2"><strong>התשובה שסומנה: < {{x.question.wasMarked + 1}} ></strong> </p>
+          
           </div>
-     		</div>
-     	</div>
+        </div>
+      </div>
     </div>
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -46,33 +46,57 @@
 
 <div class="quiz-area">
   <div ng-show="!quizOver">
-    <h3 id="question">{{question}}</h3>
-    <ul id="options">
 
-      <li ng-repeat="option in options">
+    <h3 id="question">{{question}}</h3>
+
+    <div align="center">
+      <iframe margin="0" ng-show="showVideo" padding="0" border="none" width="700" height="400" frameBorder="0"
+              ng-src="{{videoURL}}">
+      </iframe>
+    </div>
+
+
+    <div align="center">
+      <iframe margin="0" ng-show="showVoice" padding="0" border="none" width="400" height="50" frameBorder="0"
+              ng-src="{{voiceURL}}">
+      </iframe>
+    </div>
+
+    <div align="center">
+      <!--<iframe margin="0" ng-show="showImg" padding="0" border="none" width="400" height="50" frameBorder="0"-->
+              <!--ng-src="{{imgURL}}">-->
+      <!--</iframe>-->
+      <img ng-show="showImg" ng-src ="{{imgURL}}">
+
+    </div>
+
+
+
+
+    <dl id="options">
+      <dt ng-repeat="option in options">
         <label>
           <input type="radio" name="answer" value="{{option}}">
-          {{option}}
+            {{option}}
         </label>
-      </li>
-
-    </ul>
- 
+      </dt>
+    </dl>
+  
     <button ng-click="checkAnswer()" ng-show="answerMode" type="button" class="btn btn-warning btn-sm"  data-toggle="modal" data-target="#fedbackModal">בדוק</button>
 
 
+  </div>
     <div ng-show="!answerMode">
       <button ng-click="nextQuestion()" class="next-question" type="button" class="btn btn-default btn-sm">הבא</button>
     </div>
-  </div>
 
   <div ng-show="quizOver">
-    <h2>כל הכבוד! המטלה הסתיימה.</h2>
+    <h2>סיימת את המטלה!</h2>
     <button class="btn btn-warning" ng-click="finishTask()">חזרה לדף הבית</button>
   </div>
 
   <div id="score">
-    ניקוד: {{score}}
+    <h3> ניקוד: {{ score }} </h3>
   </div>
 </div>
 
@@ -93,17 +117,17 @@
       <div class="modal-body">
         <div class="row">
           <span ng-show="correctAns">תשובה נכונה!</span>
-          <span ng-show="!correctAns">תשובה לא נכונה, נסה שנית!</span>
+          <span ng-show="!correctAns">תשובה לא נכונה</span>
           <br><p> {{feedback}}</p>
         </div>
       </div>
       <div class="modal-footer">
         <div ng-show="correctAns">
-          <!--<button type="button" class="btn btn-default" data-dismiss="modal">סגור</button> -->
+          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">סגור</button> -->
           <button type="button" data-dismiss="modal" ng-click="nextQuestion()" class="btn btn-primary" >שאלה הבאה</button>
         </div>
         <div ng-show="!correctAns">
-          <!--<button type="button" data-dismiss="modal" ng-click="oneMoreTry()" class="btn btn-default" > (לא נכון )סגור</button> -->
+          <!-- <button ng-show="!triedOnce" type="button" data-dismiss="modal" ng-click="oneMoreTry()" class="btn btn-default" > (לא נכון )סגור</button> -->
           <button type="button" data-dismiss="modal" ng-click="nextQuestion()" class="btn btn-primary" >שאלה הבאה</button>
         </div>
       </div>

@@ -24,16 +24,47 @@ var question1_parsed_jason_lst = {
 
 var questions = [
 
-{"Q_id":1, "Q_question":"מדוע המיניונים צהובים?", 
-"Q_correctFB":"נכון מאוד, מיניונים אוכלים כמות גדולה של בננות!",
-"Q_notCorrectFB":"נסה שוב, השתמשת בעלילה כרמז",
-"Q_skill":"מודעות קולנועית"
-},
-
-{"Q_id":2, "Q_question":"כמה עיניים יש למיניונים?", 
-"Q_correctFB":"נכון מאוד, מספר עיניים קבוע זה פאסה", 
-"Q_notCorrectFB":"באמת? תנסה שוב",
-"Q_skill":"שיפוטיות"
+{
+  "question": {
+    "Q_id": 1,
+    "Q_qeustion": "האזן לשיחה המוקלטת. לשם מה החליטו במפעל הפיס להקליט שיחות של אנשים עם אראלה?",
+    "isMultipuleAns": 0,
+    "Q_correctFB": "שיחה כזאת מעבר להזדהות וההתרגשות אכן גורמת לאנשים לחוש שזכייה היא דבר אפשרי.",
+    "Q_mediaType": "page",
+    "Q_media": "http://rr-d.vidnt.com/vod/aod/pas/240/26?path=&files[]=9-3-16.mp3&autoplay=true",
+    "Q_notCorrectFB": "נסו לחשוב אם יש מטרה אחת בולטת שהאחרות עשויות לשרת אותה.",
+    "Q_skill": "זיהוי מטרה מרכזית",
+    "Q_difficulty": "קלה",
+    "Q_proffession": "הבעה",
+    "Q_approved": 1,
+    "Q_disabled": 0
+  },
+  "answers": [
+    {
+        "A_id": 1,
+        "answer": "כדי לשכנע אנשים שהזכייה בפיס אפשרית",
+        "isCorrect": 1,
+        "wasMarked": 1
+    },
+    {
+        "A_id": 2,
+        "answer": "כדי לגרום לאנשים להתרגש",
+        "isCorrect": 0,
+        "wasMarked": 0
+    },
+    {
+        "A_id": 3,
+        "answer": "כדי שאנשים ירגישו הזדהות עם הזוכים",
+        "isCorrect": 0,
+        "wasMarked": 0
+    },
+    {
+        "A_id": 4,
+        "answer": "כדי שאנשים יחשבו כיצד הם היו מגיבים לשיחה",
+        "isCorrect": 0,
+        "wasMarked": 0
+    }
+  ]
 }
 
 ];

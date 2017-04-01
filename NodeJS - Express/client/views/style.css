@@ -12,7 +12,7 @@
 
 .jumbotron { 
     background-color: transparent; /* Orange */
-    color: #ff5fff;
+    color: #0E76BD; /*#ff5fff; PINK */
 	text-align: center;
 	height: 100vh;
 
@@ -47,6 +47,14 @@ removed active.
     color: grey;
 }
 */
+/* ------------------- welcome -------------------*/
+
+* {
+    font-family: 'Varela Round', sans-serif;
+}
+
+
+
 /* ------------------- login ------------------- */ 
 .radio-inline input[type="radio"],
 .checkbox input[type="checkbox"],
@@ -150,7 +158,7 @@ thead tr th{
 
 /* ------------------- Bottom page ------------------- */
 
-.img-responsive {
+#imag-logo {
 	position: fixed;
     bottom: 0;
 

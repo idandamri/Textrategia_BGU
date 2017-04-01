@@ -18,9 +18,24 @@ textrategiaApp.config(function($routeProvider){
 	templateUrl:'views/tasks.html',
 	controller :'TasksController'
 	})
+	.when('/history_tasks', {
+	templateUrl:'views/history_tasks.html',
+	controller :'historyTasksController'
+	})
 	.when('/one_question', {
 	templateUrl:'views/one_question.html',
 	controller :'oneQuestionController'
+	})
+
+
+// ~~~~ teacher routs ~~~~~
+	.when('/teacher', {
+	templateUrl:'views/teacher.html',
+	controller :'TeacherController'
+	})
+		.when('/groupManagement', {
+	templateUrl:'views/groupManagement.html',
+	controller :'GroupManagementController'
 	})
 	.otherwise({
 		templateUrl:'views/welcome.html'
