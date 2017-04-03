@@ -337,7 +337,7 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
                     $scope.showVoice = true;
                 }
                 else if (data.question.Q_mediaType == "img" ){
-                    $scope.imgURL = "views/pic/simp1.jpg";
+                    $scope.imgURL = "views/" +data.question.Q_media ;
                     $scope.showImg= true;
                 }
                 else if (data.question.Q_mediaType == "text" ){
