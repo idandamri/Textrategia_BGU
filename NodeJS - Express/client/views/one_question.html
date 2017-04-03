@@ -106,7 +106,7 @@
         </div>
 
         <div id="score">
-          <h3> ניקוד: {{ score }} </h3>
+          <h3 class="text-info"><strong> ניקוד: {{ score }} </strong></h3>
         </div>
 
       </div> <!-- class="quiz-area" -->
@@ -121,8 +121,7 @@
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
               <h4 class="modal-title">
-                <span ng-show="correctAns">כל הכבוד!</span>
-                <span ng-show="!correctAns">אופס...</span>
+               <h4 class="modal-title text-info"> <strong>טקסטרטגיה</strong> <small>מתרגלים אסטרטגיות הבנה</small></h4>
               </h4>
             </div>
             <div class="modal-body">
@@ -131,8 +130,8 @@
                   <img alt="תרגול" class="img-circle student_actions" src="views/pic/logo2.png" >
                 </div>
                 <div class="col-xs-7 col-sm-9">
-                  <span ng-show="correctAns">תשובה נכונה!</span>
-                  <span ng-show="!correctAns">תשובה לא נכונה</span>
+                  <span ng-show="correctAns">כל הכבוד, תשובה נכונה! </span>
+                  <span ng-show="!correctAns">אופס... <br> תשובה לא נכונה. </span>
                   <br><p> {{feedback}}</p>
                 </div>
               </div>

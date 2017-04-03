@@ -76,17 +76,46 @@
 
       <div class="col-sm-4"></div>
       <div class="col-sm-4">
-        <button type="submit" class="btn btn-lg btn-block btn-info" ng-click="sendTaskToGroup()">שלח מטלה</button>
+        <button ng-click="sendTaskToGroup()" type="submit" class="btn btn-lg btn-block btn-info" data-toggle="modal" data-target="#fedbackModal">שלח מטלה</button>
       </div>
       <div class="col-sm-4"></div>
-
-
-
-
 
     </div>
   </div>
 </div>
+
+
+
+      <!-- Modal -->
+      <div class="modal fade" id="fedbackModal" tabindex="-1" role="dialog" aria-labelledby="myCurrectModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+               <h4 class="modal-title text-info"> <strong>טקסטרטגיה</strong> <small>מתרגלים אסטרטגיות הבנה</small></h4>
+              </div>
+        
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-xs-5 col-sm-3"> 
+                  <img alt="תרגול" class="img-circle student_actions" src="views/pic/logo2.png" >
+                </div>
+                <div class="col-xs-7 col-sm-9">
+                <br>
+                  <span ng-show="!messageSent"> {{serverFeedback}}</span>           
+                  <span ng-show="messageSent"> המטלה נשלחה </span>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+                <!-- <button type="button" class="btn btn-default" data-dismiss="modal">סגור</button> -->
+                 <button type="button" data-dismiss="modal" class="btn btn-default" > סגור </button>
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
+
+
 
 <br><br><br><br><br>
 <img class="img-responsive" id="imag-logo" src="views/pic/bottom.png"> 

@@ -64,7 +64,8 @@ textrategiaApp.controller("GroupManagementController",function($scope,$http){
     $scope.teacherName = getUserName();
     // $scope.info = empty;
 
-    $scope.showError = false; // set Error flag
+    $scope.messageSent = false; // set Error flag
+    $scope.serverFeedback = "אופס... אין תשובה מהשרת.";
 
     // $scope.info = groups_and_tasks_mock;
     var req = {
@@ -95,7 +96,7 @@ textrategiaApp.controller("GroupManagementController",function($scope,$http){
         for (i = 0 ; i < sel1.options.length ; i++){
             opt1 = sel1.options[i];
             if (opt1.selected == true){
-                //alert(opt1.value);              // this is GroupID
+                // alert(opt1.value);              // this is GroupID
                 break;
             }
         }
@@ -106,7 +107,7 @@ textrategiaApp.controller("GroupManagementController",function($scope,$http){
         for (i = 0 ; i < sel2.options.length ; i++){
             opt2 = sel2.options[i];
             if (opt2.selected == true){
-                //alert(opt2.value);              // this is T_id
+                // alert(opt2.value);              // this is T_id
                 break;
             }
         }
