@@ -27,26 +27,32 @@
 
 <div id="wrap">
   <div class="container" id="c_1">
+
     <div id = "myQuiz">
 
-      <div class="col-sm-12">
-        <h1><b>{{task_name}}</b></h1>
+    <div class="row">
+      <div class="col-sm-6"></div>
+      <div class="col-sm-3">
         <div class="text-right" id="labels_in_task">
-          <span class="label label-success">{{ Q_skill}}</span>
+          <!-- Here tried to fix skill label -->
         </div>
       </div>
+      <div class="col-sm-3">
+        <h1><b>{{task_name}}</b></h1>
+        <span class="label label-success" id="bottom-align-text">{{Q_skill}}</span>
+      </div>
+    </div>
 
-      <!--<div class="intro" ng-show="!inProgress">-->
-      <!--<h6><br></h6>-->
-      <!--<p><h4><u><b>ברוך הבא למחשבון השאלות</b></u></h4></p>-->
-      <!--<button id="startQuiz" ng-click="start()" type="button" class="btn btn-warning btn-sm">התחל לפתור</button>-->
 
-      <!--</div>-->
 
       <div class="quiz-area">
         <div ng-show="!quizOver">
+       
 
-          <h3 id="question">{{question}}</h3>
+          <div class="col-sm-12">
+            <h3 id="question">{{question}}</h3>
+          </div>
+
 
           <div class="col-sm-6">
             <div class="col-sm-1"></div>
@@ -63,7 +69,7 @@
 
 
               <img class="img-rounded img-responsive" ng-show="showImg" ng-src ="{{imgURL}}" alt="oops...">
-              <div ng-show="showText"><h4><em>{{textData}} </em> </h4> </div>
+              <div class="text-info" ng-show="showText"><h4><strong><em>{{textData}} </em></strong> </h4> </div>
             </div>
 
             <div class="col-sm-1"></div>
@@ -121,9 +127,14 @@
             </div>
             <div class="modal-body">
               <div class="row">
-                <span ng-show="correctAns">תשובה נכונה!</span>
-                <span ng-show="!correctAns">תשובה לא נכונה</span>
-                <br><p> {{feedback}}</p>
+                <div class="col-xs-5 col-sm-3"> 
+                  <img alt="תרגול" class="img-circle student_actions" src="views/pic/logo2.png" >
+                </div>
+                <div class="col-xs-7 col-sm-9">
+                  <span ng-show="correctAns">תשובה נכונה!</span>
+                  <span ng-show="!correctAns">תשובה לא נכונה</span>
+                  <br><p> {{feedback}}</p>
+                </div>
               </div>
             </div>
             <div class="modal-footer">
@@ -132,8 +143,8 @@
                 <button type="button" data-dismiss="modal" ng-click="nextQuestion()" class="btn btn-primary" >שאלה הבאה</button>
               </div>
               <div ng-show="!correctAns">
-                 <button ng-show="!triedOnce" type="button" data-dismiss="modal" ng-click="oneMoreTry()" class="btn btn-default" > (לא נכון )סגור</button>
-                <button type="button" data-dismiss="modal" ng-click="nextQuestion()" class="btn btn-primary" >שאלה הבאה</button>
+                 <button ng-show="!triedOnce" type="button" data-dismiss="modal" ng-click="oneMoreTry()" class="btn btn-default" > נסה פעם נוספת!</button>
+                <button type="button" data-dismiss="modal" ng-click="nextQuestion()" class="btn btn-link" >שאלה הבאה...</button>
               </div>
             </div>
           </div><!-- /.modal-content -->
@@ -148,4 +159,9 @@
   </div>
 </div>
 
-  <img class="img-responsive" id="imag-logo" src="views/pic/bottom.png">
+<br>
+<div ng-show="showImg">
+  <br><br><br>
+   <br><br><br>
+</div>
+<img class="img-responsive" id="imag-logo" src="views/pic/bottom.png">

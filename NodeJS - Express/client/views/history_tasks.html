@@ -27,26 +27,39 @@
 		<div class="container" id="c_1">
 
 <!-- MADE CHANGE !!!!!! -->
-      <br>
+<div class="col-sm-12">
       <h1>שלום, {{studentName}}!</h1>
       <div ng-show="history_list.length==0">
         <h3><em> עדיין לא קיימת היסטוריית מטלות במערכת </em></h3>
       </div>
       <div ng-show="history_list.length!=0">
         <h3><em>לרשותך, רשימת המטלות שפתרת:</em></h3>
+      </div>  
+      
+  </div>
+
+
+<div class="col-sm-12">
+      <div class = "col-md-2">
+<!--          <ul class="pagination">
+           
+              <li class="active"><a href = "#history_tasks">מטלה 1</a></li>
+              <li class="disabled"><a href = "#history_tasks">מטלה 2</a></li>
+              <li class="disabled"><a href = "#history_tasks">מטלה 3</a></li>
+              <li class="disabled"><a href = "#history_tasks">מטלה 4</a></li>
+            
+         </ul>
+ -->
       </div>
-      <br>
-      <br>
 
-
+  <div class="col-sm-10">
     <div class="row">
-
       <div class="col-sm-4" ng-repeat="x in history_list">
         <div class="card text-center" >
           <div class="card-block">
           
-            <h3 class="card-title">{{x.question.Q_taskName}}</h3>
-            <h5 class="card-subtitle mb-2 "><b>{{x.question.Q_qeustion}}</b></h5>
+            <h3 class="card-title "><strong>תשובה נכונה!<strong></h3>
+            <h5 class="card-subtitle mb-2 text-info"><b>{{x.question.Q_qeustion}}</b></h5>
             
             <dl id="options">
               <dt ng-repeat="y in x.answers">
@@ -65,22 +78,13 @@
         </div>
       </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
+  </div>
+</div>
 
 
 
 	</div>
 </div>
 
-<br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br>
 <img class="img-responsive" id="imag-logo" src="views/pic/bottom.png"> 

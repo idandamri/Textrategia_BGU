@@ -121,10 +121,6 @@ textrategiaApp.controller("GroupManagementController",function($scope,$http){
 
 
 
-
-
-
-
 //* STUDENTS CONTROLLERS*//
 
 //lst of string, all possible answers
