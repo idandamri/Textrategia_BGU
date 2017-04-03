@@ -18,6 +18,15 @@
 
 }
 
+.modal-backdrop {
+   background-color: #A19A94;
+
+}
+/*not pretty...*/
+/*.modal-content{
+    background: #F1F0EE;
+}
+*/
 /* ------------------- header -------------------*/
 
 
@@ -97,6 +106,11 @@ table tbody tr td div label {
 
     margin-right: -3%;
 }
+
+/*#labels_in_task{
+  display: inline-block;
+  vertical-align: bottom; 
+}*/
 
 /* ------------------------------------------------ */
 /* ------------------- General  ------------------- */

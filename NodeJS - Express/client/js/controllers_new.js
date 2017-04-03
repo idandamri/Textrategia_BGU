@@ -60,43 +60,57 @@ var groups_and_tasks_mock =
 var empty = {"groups":[],"tasks":[{"T_id":1,"T_title":"מטלת ניסוי","T_description":"מטלת ניסוי לבסיס הנתונים"},{"T_id":2,"T_title":"2מטלת ניסוי","T_description":"מטלת ניסוי לבסיס הנתונים"}]};
 
 
-textrategiaApp.controller("GroupManagementController",function($scope){
+textrategiaApp.controller("GroupManagementController",function($scope,$http){
     $scope.teacherName = getUserName();
     // $scope.info = empty;
-    $scope.info = groups_and_tasks_mock;
-    $scope.numberOfStudents = function(thisGroupID){
-        return 12;
-    }
 
-    $scope.showError = false; // set Error flag
+    $scope.messageSent = false; // set Error flag
+    $scope.serverFeedback = "אופס... אין תשובה מהשרת.";
+
+    // $scope.info = groups_and_tasks_mock;
+    var req = {
+        method: 'POST',
+        cache: false,
+        url: _url +'/getGroupByUser',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        data: 'teacherID='+getUserID()
+    };
 
 
-// these function alert the choise the user made.
+    $http(req)
+        .success(function(data,status,headers,config){
+            $scope.info = data;
+        }).error(function(data,status,headers,config){
+    });
+
+
+    // these function alert the choise the user made.
     $scope.sendTaskToGroup = function(){
         //get group selection
-        var sel1 = document.getElementById("expertise1");
+
+        var sel1 = document.getElementById("available_group");
 
         var opt1;
         for (i = 0 ; i < sel1.options.length ; i++){
             opt1 = sel1.options[i];
             if (opt1.selected == true){
-                alert(opt1.value);              // this is GroupID
+                // alert(opt1.value);              // this is GroupID
                 break;
             }
         }
         //get tasks selection
-        var sel2 = document.getElementById("expertise2");
+        var sel2 = document.getElementById("available_task");
 
         var opt2;
         for (i = 0 ; i < sel2.options.length ; i++){
             opt2 = sel2.options[i];
             if (opt2.selected == true){
-                alert(opt2.value);              // this is T_id
+                // alert(opt2.value);              // this is T_id
                 break;
             }
         }
-
-
 
 
     }
@@ -104,10 +118,6 @@ textrategiaApp.controller("GroupManagementController",function($scope){
 });
 
 //  #################################################################################
-
-
-
-
 
 
 
@@ -272,18 +282,17 @@ textrategiaApp.controller("TasksController",function($scope,$http,$location){
 textrategiaApp.controller("oneQuestionController", function($scope,$http,$location ,$sce){
 
     $scope.numberOfQuestions = 0;
+    $scope.triedOnce = false;
 
 
     $scope.finishTask = function () {
-        $location.path('student');
+        $location.path('tasks');
 
     };
 
     $scope.oneMoreTry = function(){
-        if ($scope.triedOnce == false){
-    // ?!?!?!?!?!?!?
-        }
-
+        $scope.triedOnce = true;
+        $scope.start();
     }
 
     $scope.start = function(){
@@ -310,7 +319,6 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
                 $scope.Q_skill = myJason.question.Q_skill;
                 $scope.id = 0;
                 $scope.quizOver = false;
-                $scope.triedOnce = false;
                 $scope.inProgress = true;
                 $scope.getQuestion();
                 $scope.numberOfQuestions += 1 ;
@@ -326,7 +334,7 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
                     $scope.showVoice = true;
                 }
                 else if (data.question.Q_mediaType == "img" ){
-                    $scope.imgURL = "views/pic/simp1.jpg";
+                    $scope.imgURL = "views/" +data.question.Q_media ;
                     $scope.showImg= true;
                 }
                 else if (data.question.Q_mediaType == "text" ){
@@ -385,6 +393,7 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
     };
 
     $scope.nextQuestion = function(question_id){
+        $scope.triedOnce = false;
         var req = {
             method: 'POST',
             cache: false,
@@ -411,7 +420,6 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
 
 textrategiaApp.controller("LoginController", function($scope, $http,$location) {
 
-    
     $scope.showError = false; // set Error flag
     $scope.showSuccess = false; // set Success Flag
 
@@ -432,19 +440,21 @@ textrategiaApp.controller("LoginController", function($scope, $http,$location) {
         };  
         //alert(JSON.stringify(req));
 
-          
         $http(req)
         .success(function(data,status,headers,config){
             setUserName(data[0].FirstName);
             setUserID(data[0].PersonalID);
             $scope.showError = false;
             $scope.showSuccess = true;
-            if (data[0].PersonalID == "1"){
-                $location.path('student');
-            }
-            else if (data[0].PersonalID == "2") {
+            if (data[0].UserType == "1"){
+                // alert("go teacher!");
                 $location.path('teacher');
             }
+            else if (data[0].UserType == "2") {
+                // alert("go student!");
+                $location.path('student');
+            }
+
         }).error(function(data,status,headers,config){
             $scope.showError = true;
             $scope.showSuccess = false;
