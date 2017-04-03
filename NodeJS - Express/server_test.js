@@ -281,7 +281,11 @@ app.post('/addTaskToGroup', function (req, res) {
                     console.log(err);
                     res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
                 } else {
+                    // var lastStudentId = students[students.length - 1].StudentId;
+                    // var lastTaskId = QuestsAndTasks.length;
                     var indxStud = 0;
+                    var megaQuery = [];
+
                     while (students.length > indxStud) {
                         var indxTask = 0;
                         while (QuestsAndTasks.length > indxTask) {
@@ -290,20 +294,64 @@ app.post('/addTaskToGroup', function (req, res) {
                             var q_id = QuestsAndTasks[indxTask].Q_id;
                             var query3 = queries.addTaskQuestionStudentInstance(s_id, t_id, q_id);
                             console.log('\n' + query3 + '\n');
-                            connection.query(query3, function (err3, ans3, field) {
-                                if (err3) {
-                                    console.log(err);
-                                    res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
-                                } else {
-                                    console.log("Added as instance:\nStudent ID: " + s_id + "\nTask ID: " +
-                                        t_id + "\nQuestion ID:" + q_id)
-                                }
-                            });
+                            megaQuery[indxTask + indxStud * QuestsAndTasks.length] = query3;
                             indxTask++;
                         }
                         indxStud++;
                     }
-                    res.status(200).send("Added!");
+
+                    var is_new_call = true;
+                    var curr = 0;
+                    var total = megaQuery.length;
+
+
+                    var sendInstance = function (queriesArr, indexInArr){
+                        if(indexInArr<queriesArr.length){
+                            if(is_new_call) {
+                                is_new_call = false;
+                                // res.status(200);
+                                // res.send();
+                                sendInstance(queriesArr,0);
+                            }
+                            else{
+                                curr++;
+                                if(curr == total){
+                                    res.state(200).send();
+                                }
+                                else{
+                                    var q = queriesArr[indexInArr];
+                                    connection.query(q, function (err3, ans3, field) {
+                                        if (err3) {
+                                            console.log(err3);
+                                            res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
+                                        } else {
+                                            console.log("Added: " + q);
+                                        }
+                                    });
+                                    indexInArr++;
+                                    sendInstance(queriesArr, indexInArr);
+
+                                }
+                            }
+                        }
+                    };
+
+                    sendInstance(megaQuery,0);
+                    // console.log('\nMega Query is:\n' + megaQuery + '\n');
+                    // indexQuery = 0;
+                    /*while (indexQuery < megaQuery.length) {
+                        var q = megaQuery[indexQuery]
+                        connection.query(q, function (err3, ans3, field) {
+                            if (err3) {
+                                console.log(err3);
+                                // res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
+                            } else {
+                                console.log("Added: " + q);
+                                // res.status(200).send("Added!");
+                            }
+                        });
+                        indexQuery++;
+                    }*/
                 }
             });
         }
