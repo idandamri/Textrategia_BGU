@@ -1,0 +1,100 @@
+possible inputs:
+user_id /*for student and teacher*/
+user_mail (for login)
+question_id
+task_id
+answer_id
+password
+task_id_list
+...
+
+
+API:
+
+1. get('/')
+    redirect to home page
+
+2. post('getListOfTasks')
+    input: user_id
+    output: status 200 & json with task information / status 204 - no content / status 200 -failure
+    example to output: [
+                         {
+                           "T_id": 1,
+                           "T_title": "מטלת ניסוי",
+                           "T_description": "מטלת ניסוי לבסיס הנתונים"
+                         }
+                       ]
+
+
+
+3. post('getQuestion')
+    input: user_id, task_id
+    output: status 200 & json with (one) question information / status 676 - End of task
+    example to output : {
+                          "question": {
+                            "Q_id": 2,
+                            "Q_qeustion": "לפניך סרטון קצר. צפה בו וענה על השאלה - מהי מטרתו המרכזית של יוצר הסרטון? ",
+                            "isMultipuleAns": 0,
+                            "Q_correctFB": " הצלחת לזהות שמדובר בטקסט פרסומי שמטרתו להניע את הצופים לרכוש ממוצרי RC קולה. פרטי משרד הפרסום שהופיעו בראשית הסרטון מסייעים להבנה שמדובר בפרסומת, ומכאן צריך רק לבדוק מה מנסים למכור לנו...",
+                            "Q_mediaType": "youtube",
+                            "Q_media": "crs0TiiYE4I",
+                            "Q_notCorrectFB": "הסרטון הציג אמנם את תשובתך אך לא זו הייתה מטרתו המרכזית. כדאי לחשוב: מי יצר את הסרטון? מהי הכותרת שלו? מה עשויה להיות מטרתו אם כך?",
+                            "Q_skill": "זיהוי מטרה מרכזית",
+                            "Q_difficulty": "קלה",
+                            "Q_proffession": "הבעה",
+                            "Q_approved": 1,
+                            "Q_disabled": 0
+                          },
+                          "answers": [
+                            {
+                              "A_id": 5,
+                              "answer": "לשכנע את הצופה לרכוש RC קולה",
+                              "isCorrect": 1
+                            },
+                            {
+                              "A_id": 6,
+                              "answer": "להדגים מה מוכן ילד לעשות כדי להרשים את חברתו",
+                              "isCorrect": 0
+                            },
+                            {
+                              "A_id": 7,
+                              "answer": "להראות את מידת היצירתיות של ילדים",
+                              "isCorrect": 0
+                            },
+                            {
+                              "A_id": 8,
+                              "answer": "להעביר מסר ללא מילים",
+                              "isCorrect": 0
+                            }
+                          ]
+                        }
+
+4. post('questionDone')
+    input: question_id , user_id , task_id
+    action: delete question from student queue
+    output: status 200 -success / 400 - failure
+
+5. post('updateAnswer')
+    input: user_id, task_id , question_id , answer_id
+    action: add instance of answer to db
+    output: status 200 -success / 400 - failure
+
+6. post('login')
+    input: user_id, password
+    output: status 200 & json with user deatils /401 - unauthorized /
+    example to output : [
+                          {
+                            "PersonalID": "2",
+                            "LastName": "קריגל",
+                            "FirstName": "שקד",
+                            "School": "Mekif H",
+                            "City": "Ashdod",
+                            "UserType": 2,
+                            "Email": "shakedkr@post.bgu.ac.il",
+                            "Pass": "123456"
+                          }
+                        ]
+
+
+
+
