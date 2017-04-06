@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7c1dd669-4d78-476f-9d51-553f8449f360" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server_test.js" afterPath="$PROJECT_DIR$/server_test.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/tools-spec.js" afterPath="$PROJECT_DIR$/test/tools-spec.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,11 +20,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="tools-spec.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="tools-spec.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/tools-spec.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="243">
-              <caret line="285" column="71" lean-forward="false" selection-start-line="285" selection-start-column="71" selection-end-line="285" selection-end-column="71" />
+              <caret line="285" column="215" lean-forward="true" selection-start-line="285" selection-start-column="52" selection-end-line="285" selection-end-column="215" />
               <folding />
             </state>
           </provider>
@@ -35,17 +34,17 @@
         <entry file="file://$PROJECT_DIR$/queryForDB.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="108">
-              <caret line="142" column="4" lean-forward="false" selection-start-line="142" selection-start-column="4" selection-end-line="142" selection-end-column="4" />
+              <caret line="173" column="4" lean-forward="false" selection-start-line="173" selection-start-column="4" selection-end-line="173" selection-end-column="4" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="server_test.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="server_test.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server_test.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="290">
-              <caret line="426" column="33" lean-forward="true" selection-start-line="426" selection-start-column="33" selection-end-line="426" selection-end-column="33" />
+            <state relative-caret-position="120">
+              <caret line="388" column="31" lean-forward="true" selection-start-line="388" selection-start-column="31" selection-end-line="388" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -94,9 +93,9 @@
         <option value="$PROJECT_DIR$/client/js/controllers_new.js" />
         <option value="$PROJECT_DIR$/client/views/one_question.html" />
         <option value="timers.js" />
-        <option value="$PROJECT_DIR$/test/tools-spec.js" />
         <option value="$PROJECT_DIR$/queryForDB.js" />
         <option value="$PROJECT_DIR$/server_test.js" />
+        <option value="$PROJECT_DIR$/test/tools-spec.js" />
       </list>
     </option>
   </component>
@@ -704,7 +703,7 @@
       <workItem from="1490677753829" duration="14209000" />
       <workItem from="1491038342638" duration="441000" />
       <workItem from="1491038803258" duration="166000" />
-      <workItem from="1491039020288" duration="40693000" />
+      <workItem from="1491039020288" duration="41228000" />
     </task>
     <task id="LOCAL-00001" summary="done updating getQuestion">
       <created>1490566647810</created>
@@ -791,7 +790,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="66183000" />
+    <option name="totallyTimeSpent" value="66718000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1376" height="744" extended-state="6" />
@@ -1106,26 +1105,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/tools-spec.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="285" column="71" lean-forward="false" selection-start-line="285" selection-start-column="71" selection-end-line="285" selection-end-column="71" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/queryForDB.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
-          <caret line="142" column="4" lean-forward="false" selection-start-line="142" selection-start-column="4" selection-end-line="142" selection-end-column="4" />
+          <caret line="173" column="4" lean-forward="false" selection-start-line="173" selection-start-column="4" selection-end-line="173" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server_test.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="426" column="33" lean-forward="true" selection-start-line="426" selection-start-column="33" selection-end-line="426" selection-end-column="33" />
+        <state relative-caret-position="120">
+          <caret line="388" column="31" lean-forward="true" selection-start-line="388" selection-start-column="31" selection-end-line="388" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/tools-spec.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="285" column="215" lean-forward="true" selection-start-line="285" selection-start-column="52" selection-end-line="285" selection-end-column="215" />
           <folding />
         </state>
       </provider>
