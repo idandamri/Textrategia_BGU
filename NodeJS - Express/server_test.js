@@ -391,17 +391,17 @@ app.post('/registerUser', function (req, res) {
     connection.query(query, function (err, groups, field) {
         if (err) {
             console.log(err);
-            res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
+            res.status(400).send("No group Id found error!");
         }
         else {
-            var grpuop_id = groups[0].GroupId;
+            var group_id = groups[0].GroupId;
 
             var query2 = queries.registerUser(lastName, firstName, school, city, userType, email, password);
             console.log('\n' + query2 + '\n');
             connection.query(query2, function (err, ans, field) {
                 if (err) {
                     console.log(err);
-                    res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
+                    res.status(400).send("Insertion error - check DB (student does not exist or relation) error!");
                 }
                 else {
 
@@ -410,12 +410,12 @@ app.post('/registerUser', function (req, res) {
                     connection.query(query3, function (err, u_id, field) {
                         if (err) {
                             console.log(err);
-                            res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
+                            res.status(400).send("No PersonalID found error!");
                         }
                         else {
                             var user_id = u_id[0].PersonalID;
 
-                            var query4 = queries.addUsersToGroup(user_id, grpuop_id);
+                            var query4 = queries.addUsersToGroup(user_id, group_id);
                             console.log('\n' + query4 + '\n');
                             connection.query(query4, function (err, ans, field) {
                                 if (err) {
