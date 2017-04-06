@@ -51,10 +51,6 @@ app.use(bodyParser.json());
 // });
 
 
-app.post('/testForTests', function (req, res) {
-    res.send("HELLO TESTER");
-});
-
 app.get('/', function (req, res) {
     res.redirect('/index.html');
 });
@@ -80,49 +76,49 @@ app.post('/getListOfTasks', function (req, res) {
 });
 
 
-app.post('/getTasks', function (req, res) {
-    console.log("Got a get task request from:");
-    var u_id = req.body.user_id;
-    var t_id;
-    var merge;
-    var listOfmerge = [];
-
-    console.log(u_id);
-    var query = queries.gelAllTaskTitleByStudentId(u_id);
-    /*hard coded. need to change*/
-    connection.query(query, function (err, tasks, field) {
-        if (err) {
-            console.log(err);
-            res.status(400).send("Err in task req: " + err);
-        }
-        else {
-            console.log("Got a task response")
-            t_id = tasks[0]["T_id"];
-            console.log(t_id);
-            query = queries.getNumberOfQuestionForTask(t_id);
-            connection.query(query, function (err, numberOfQuestion, field) {
-                if (err) {
-                    res.status(400).send("Number of questions in task error - check DB");
-                    console.log("Number of questions in task error - check DB\nError:" + err);
-                }
-                else {
-                    console.log("Got a response from DB")
-                    var i;
-                    for (i = 0; i < tasks.length; i++) {
-                        console.log("num of question:" + numberOfQuestion);
-                        merge = {};
-                        Object.assign(merge, tasks[i], numberOfQuestion[i]);
-                        console.log("merge:" + merge);
-                        listOfmerge.push(merge);
-                        //res.send(merge);
-                    }
-                    console.log("listofmerge: " + listOfmerge);
-                    res.send(listOfmerge);
-                }
-            });
-        }
-    });
-});
+// app.post('/getTasks', function (req, res) {
+//     console.log("Got a get task request from:");
+//     var u_id = req.body.user_id;
+//     var t_id;
+//     var merge;
+//     var listOfmerge = [];
+//
+//     console.log(u_id);
+//     var query = queries.gelAllTaskTitleByStudentId(u_id);
+//     /*hard coded. need to change*/
+//     connection.query(query, function (err, tasks, field) {
+//         if (err) {
+//             console.log(err);
+//             res.status(400).send("Err in task req: " + err);
+//         }
+//         else {
+//             console.log("Got a task response")
+//             t_id = tasks[0]["T_id"];
+//             console.log(t_id);
+//             query = queries.getNumberOfQuestionForTask(t_id);
+//             connection.query(query, function (err, numberOfQuestion, field) {
+//                 if (err) {
+//                     res.status(400).send("Number of questions in task error - check DB");
+//                     console.log("Number of questions in task error - check DB\nError:" + err);
+//                 }
+//                 else {
+//                     console.log("Got a response from DB")
+//                     var i;
+//                     for (i = 0; i < tasks.length; i++) {
+//                         console.log("num of question:" + numberOfQuestion);
+//                         merge = {};
+//                         Object.assign(merge, tasks[i], numberOfQuestion[i]);
+//                         console.log("merge:" + merge);
+//                         listOfmerge.push(merge);
+//                         //res.send(merge);
+//                     }
+//                     console.log("listofmerge: " + listOfmerge);
+//                     res.send(listOfmerge);
+//                 }
+//             });
+//         }
+//     });
+// });
 
 
 app.post('/getQuestion', function (req, res) {

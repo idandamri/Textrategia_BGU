@@ -130,6 +130,35 @@ values(4,2,3);
 insert into tasks_and_question_for_student_instances
 values(4,2,4);
 
+/*shaked user*/
+insert into tasks_and_question_for_student_instances
+values(2,1,1);
+
+insert into tasks_and_question_for_student_instances
+values(2,1,2);
+
+insert into tasks_and_question_for_student_instances
+values(2,1,3);
+
+insert into tasks_and_question_for_student_instances
+values(2,1,4);
+
+
+insert into tasks_and_question_for_student_instances
+values(2,2,1);
+
+insert into tasks_and_question_for_student_instances
+values(2,2,2);
+
+insert into tasks_and_question_for_student_instances
+values(2,2,3);
+
+insert into tasks_and_question_for_student_instances
+values(2,2,4);
+
+insert into tasks_and_question_for_student_instances
+values(2,2,8);
+
 
 
 
