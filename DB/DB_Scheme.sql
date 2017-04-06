@@ -2,7 +2,7 @@ create database textra_db;
 use textra_db;
 
 create table users (
-PersonalID varchar(10) not null,
+PersonalID varchar(10) not null auto_increment,
 LastName varchar(255) not null,
 FirstName varchar(255) not null,
 School varchar(255) not null,

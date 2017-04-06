@@ -252,10 +252,10 @@ app.post('/insertStudentToGroup', function (req, res) {
     connection.query(query, function (err, ans, field) {
         if (err) {
             console.log(err);
-            res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
+            // res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
         }
         else {
-            res.status(200).send("inserted!");
+            // res.status(200).send("inserted!");
         }
     });
 });
@@ -305,20 +305,20 @@ app.post('/addTaskToGroup', function (req, res) {
                     var total = megaQuery.length;
 
 
-                    var sendInstance = function (queriesArr, indexInArr){
-                        if(indexInArr<queriesArr.length){
-                            if(is_new_call) {
+                    var sendInstance = function (queriesArr, indexInArr) {
+                        if (indexInArr < queriesArr.length) {
+                            if (is_new_call) {
                                 is_new_call = false;
                                 // res.status(200);
                                 // res.send();
-                                sendInstance(queriesArr,0);
+                                sendInstance(queriesArr, 0);
                             }
-                            else{
+                            else {
                                 curr++;
-                                if(curr == total){
+                                if (curr == total) {
                                     res.state(200).send();
                                 }
-                                else{
+                                else {
                                     var q = queriesArr[indexInArr];
                                     connection.query(q, function (err3, ans3, field) {
                                         if (err3) {
@@ -336,22 +336,22 @@ app.post('/addTaskToGroup', function (req, res) {
                         }
                     };
 
-                    sendInstance(megaQuery,0);
+                    sendInstance(megaQuery, 0);
                     // console.log('\nMega Query is:\n' + megaQuery + '\n');
                     // indexQuery = 0;
                     /*while (indexQuery < megaQuery.length) {
-                        var q = megaQuery[indexQuery]
-                        connection.query(q, function (err3, ans3, field) {
-                            if (err3) {
-                                console.log(err3);
-                                // res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
-                            } else {
-                                console.log("Added: " + q);
-                                // res.status(200).send("Added!");
-                            }
-                        });
-                        indexQuery++;
-                    }*/
+                     var q = megaQuery[indexQuery]
+                     connection.query(q, function (err3, ans3, field) {
+                     if (err3) {
+                     console.log(err3);
+                     // res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
+                     } else {
+                     console.log("Added: " + q);
+                     // res.status(200).send("Added!");
+                     }
+                     });
+                     indexQuery++;
+                     }*/
                 }
             });
         }
@@ -380,6 +380,69 @@ app.post('/createGroup', function (req, res) {
 });
 
 
+app.post('/registerUser', function (req, res) {
+    var groupCode = req.body.group_id;
+    var lastName = req.body.lastName;
+    var firstName = req.body.firstName;
+    var school = req.body.school;
+    var city = req.body.city;
+    var userType = req.body.userType;
+    var email = req.body.email;
+    var password = req.body.password;
+
+    var query = queries.getGroupIdfromcode(groupCode);
+    console.log('\n' + query + '\n');
+    connection.query(query, function (err, groups, field) {
+        if (err) {
+            console.log(err);
+            res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
+        }
+        else {
+            var grpuop_id = groups[0].GroupId;
+
+            var query2 = queries.registerUser(lastName, firstName, school, city, userType, email, password);
+            console.log('\n' + query2 + '\n');
+            connection.query(query2, function (err, ans, field) {
+                if (err) {
+                    console.log(err);
+                    res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
+                }
+                else {
+
+                    var query3 = queries.getUserId(email);
+                    console.log('\n' + query3 + '\n');
+                    connection.query(query3, function (err, u_id, field) {
+                        if (err) {
+                            console.log(err);
+                            res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
+                        }
+                        else {
+                            var user_id = u_id[0].PersonalID;
+
+                            var query4 = queries.addUsersToGroup(user_id, grpuop_id);
+                            console.log('\n' + query4 + '\n');
+                            connection.query(query4, function (err, ans, field) {
+                                if (err) {
+                                    console.log(err);
+                                    res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
+                                }
+                                else {
+                                    res.status(200).send("Registered!!");
+                                }
+                            });
+                            // res.status(200).send("inserted!");
+                        }
+                    });
+
+                    // res.status(200).send("inserted!");
+                }
+            });
+            // res.status(200).send("registered!!");
+        }
+    });
+});
+
+
 app.post('/addUsersToGroup', function (req, res) {
     var users = req.body.users;
     var groupId = req.body.group_id;
@@ -398,14 +461,15 @@ app.post('/addUsersToGroup', function (req, res) {
                     if (err) {
                         console.log(err);
                         hasError = true;
-                        res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
+                        // res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
 
                     } else {
-                        res.status(200).send();
+                        // res.status(200).send();
                     }
                 });
             }
         }
+        // res.status(200).send();
     }
     else {
         res.status(204).send();
@@ -507,7 +571,7 @@ app.post('/login', function (req, res) {
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '123456',//'123456' to upload*/
+    password: '1q2w3e4r',//'123456' to upload*/
     database: 'textra_db'
 });
 

@@ -4,7 +4,10 @@
     <bookmark url="file://$PROJECT_DIR$/server_test.js" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c1dd669-4d78-476f-9d51-553f8449f360" name="Default" comment="" />
+    <list default="true" id="7c1dd669-4d78-476f-9d51-553f8449f360" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../DB/DB_Scheme.sql" afterPath="$PROJECT_DIR$/../DB/DB_Scheme.sql" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,8 +24,8 @@
       <file leaf-file-name="tools-spec.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/tools-spec.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="31" column="11" lean-forward="true" selection-start-line="31" selection-start-column="11" selection-end-line="31" selection-end-column="11" />
+            <state relative-caret-position="243">
+              <caret line="285" column="71" lean-forward="false" selection-start-line="285" selection-start-column="71" selection-end-line="285" selection-end-column="71" />
               <folding />
             </state>
           </provider>
@@ -31,8 +34,8 @@
       <file leaf-file-name="queryForDB.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/queryForDB.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="98">
-              <caret line="148" column="134" lean-forward="false" selection-start-line="148" selection-start-column="134" selection-end-line="148" selection-end-column="134" />
+            <state relative-caret-position="125">
+              <caret line="143" column="38" lean-forward="false" selection-start-line="143" selection-start-column="28" selection-end-line="143" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -41,8 +44,8 @@
       <file leaf-file-name="server_test.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server_test.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="278">
-              <caret line="318" column="35" lean-forward="false" selection-start-line="318" selection-start-column="35" selection-end-line="318" selection-end-column="35" />
+            <state relative-caret-position="244">
+              <caret line="428" column="38" lean-forward="true" selection-start-line="428" selection-start-column="38" selection-end-line="428" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -70,6 +73,10 @@
       <find>insertStudentToGroup</find>
       <find>add</find>
       <find>\n</find>
+      <find>idf</find>
+      <find>idfrom</find>
+      <find>idfrom`</find>
+      <find>addUsersToGroup</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -185,40 +192,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
-  <component name="RunManager" selected="Mocha.Testing Textrategia API.Testing adding task to group">
-    <configuration default="false" name="Testing Textrategia API.Testing groups.Testing insert students(single)" type="mocha-javascript-test-runner" factoryName="Mocha" temporary="true" nameIsGenerated="true">
-      <node-interpreter>D:/Proj/node</node-interpreter>
-      <node-options />
-      <working-directory>$PROJECT_DIR$/..</working-directory>
-      <pass-parent-env>true</pass-parent-env>
-      <envs />
-      <ui>bdd</ui>
-      <extra-mocha-options />
-      <test-kind>TEST</test-kind>
-      <test-file>$PROJECT_DIR$/test/tools-spec.js</test-file>
-      <test-names>
-        <name value="Testing Textrategia API" />
-        <name value="Testing groups" />
-        <name value="Testing insert students(single)" />
-      </test-names>
-      <method />
-    </configuration>
-    <configuration default="false" name="Testing Textrategia API.Testing groups" type="mocha-javascript-test-runner" factoryName="Mocha" temporary="true" nameIsGenerated="true">
-      <node-interpreter>D:/Proj/node</node-interpreter>
-      <node-options />
-      <working-directory>$PROJECT_DIR$/..</working-directory>
-      <pass-parent-env>true</pass-parent-env>
-      <envs />
-      <ui>bdd</ui>
-      <extra-mocha-options />
-      <test-kind>SUITE</test-kind>
-      <test-file>$PROJECT_DIR$/test/tools-spec.js</test-file>
-      <test-names>
-        <name value="Testing Textrategia API" />
-        <name value="Testing groups" />
-      </test-names>
-      <method />
-    </configuration>
+  <component name="RunManager" selected="Mocha.Testing Textrategia API.Testing Register User">
     <configuration default="false" name="Testing Textrategia API.Testing groups.Testing insert students(empty)" type="mocha-javascript-test-runner" factoryName="Mocha" temporary="true" nameIsGenerated="true">
       <node-interpreter>D:/Proj/node</node-interpreter>
       <node-options />
@@ -266,6 +240,39 @@
       <test-names>
         <name value="Testing Textrategia API" />
         <name value="Testing adding task to group" />
+      </test-names>
+      <method />
+    </configuration>
+    <configuration default="false" name="Testing Textrategia API.Testing groups.Testing insert students(plural)" type="mocha-javascript-test-runner" factoryName="Mocha" temporary="true" nameIsGenerated="true">
+      <node-interpreter>D:/Proj/node</node-interpreter>
+      <node-options />
+      <working-directory>$PROJECT_DIR$/..</working-directory>
+      <pass-parent-env>true</pass-parent-env>
+      <envs />
+      <ui>bdd</ui>
+      <extra-mocha-options />
+      <test-kind>TEST</test-kind>
+      <test-file>$PROJECT_DIR$/test/tools-spec.js</test-file>
+      <test-names>
+        <name value="Testing Textrategia API" />
+        <name value="Testing groups" />
+        <name value="Testing insert students(plural)" />
+      </test-names>
+      <method />
+    </configuration>
+    <configuration default="false" name="Testing Textrategia API.Testing Register User" type="mocha-javascript-test-runner" factoryName="Mocha" temporary="true" nameIsGenerated="true">
+      <node-interpreter>D:/Proj/node</node-interpreter>
+      <node-options />
+      <working-directory>$PROJECT_DIR$/..</working-directory>
+      <pass-parent-env>true</pass-parent-env>
+      <envs />
+      <ui>bdd</ui>
+      <extra-mocha-options />
+      <test-kind>SUITE</test-kind>
+      <test-file>$PROJECT_DIR$/test/tools-spec.js</test-file>
+      <test-names>
+        <name value="Testing Textrategia API" />
+        <name value="Testing Register User" />
       </test-names>
       <method />
     </configuration>
@@ -666,19 +673,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing groups.Testing insert students(single)" />
-      <item index="1" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing groups" />
-      <item index="2" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing groups.Testing insert students(empty)" />
-      <item index="3" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing adding task to group.Test adding" />
-      <item index="4" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing adding task to group" />
+      <item index="0" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing groups.Testing insert students(empty)" />
+      <item index="1" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing adding task to group.Test adding" />
+      <item index="2" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing adding task to group" />
+      <item index="3" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing groups.Testing insert students(plural)" />
+      <item index="4" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing Register User" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing adding task to group" />
-        <item index="1" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing adding task to group.Test adding" />
-        <item index="2" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing groups.Testing insert students(empty)" />
-        <item index="3" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing groups" />
-        <item index="4" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing groups.Testing insert students(single)" />
+        <item index="0" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing Register User" />
+        <item index="1" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing groups.Testing insert students(plural)" />
+        <item index="2" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing adding task to group" />
+        <item index="3" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing adding task to group.Test adding" />
+        <item index="4" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing groups.Testing insert students(empty)" />
       </list>
     </recent_temporary>
   </component>
@@ -697,7 +704,7 @@
       <workItem from="1490677753829" duration="14209000" />
       <workItem from="1491038342638" duration="441000" />
       <workItem from="1491038803258" duration="166000" />
-      <workItem from="1491039020288" duration="31815000" />
+      <workItem from="1491039020288" duration="40299000" />
     </task>
     <task id="LOCAL-00001" summary="done updating getQuestion">
       <created>1490566647810</created>
@@ -752,73 +759,73 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Testing_Textrategia_API_Testing_adding_task_to_group - 2017.04.03 at 20h 05m 48s.xml">
-      <configuration name="Testing Textrategia API.Testing adding task to group" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="Testing_Textrategia_API_Testing_Register_User - 2017.04.06 at 14h 04m 10s.xml">
+      <configuration name="Testing Textrategia API.Testing Register User" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="Testing_Textrategia_API_Testing_adding_task_to_group - 2017.04.03 at 20h 10m 12s.xml">
-      <configuration name="Testing Textrategia API.Testing adding task to group" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="Testing_Textrategia_API_Testing_Register_User - 2017.04.06 at 14h 04m 45s.xml">
+      <configuration name="Testing Textrategia API.Testing Register User" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="Testing_Textrategia_API_Testing_adding_task_to_group - 2017.04.03 at 20h 15m 08s.xml">
-      <configuration name="Testing Textrategia API.Testing adding task to group" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="Testing_Textrategia_API_Testing_Register_User - 2017.04.06 at 14h 21m 18s.xml">
+      <configuration name="Testing Textrategia API.Testing Register User" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="Testing_Textrategia_API_Testing_adding_task_to_group - 2017.04.03 at 20h 16m 49s.xml">
-      <configuration name="Testing Textrategia API.Testing adding task to group" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="Testing_Textrategia_API_Testing_Register_User - 2017.04.06 at 14h 25m 33s.xml">
+      <configuration name="Testing Textrategia API.Testing Register User" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="Testing_Textrategia_API_Testing_adding_task_to_group - 2017.04.03 at 20h 18m 41s.xml">
-      <configuration name="Testing Textrategia API.Testing adding task to group" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="Testing_Textrategia_API_Testing_Register_User - 2017.04.06 at 14h 25m 51s.xml">
+      <configuration name="Testing Textrategia API.Testing Register User" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="Testing_Textrategia_API_Testing_adding_task_to_group - 2017.04.03 at 20h 34m 52s.xml">
-      <configuration name="Testing Textrategia API.Testing adding task to group" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="Testing_Textrategia_API_Testing_Register_User - 2017.04.06 at 14h 26m 24s.xml">
+      <configuration name="Testing Textrategia API.Testing Register User" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="Testing_Textrategia_API_Testing_adding_task_to_group - 2017.04.03 at 20h 34m 55s.xml">
-      <configuration name="Testing Textrategia API.Testing adding task to group" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="Testing_Textrategia_API_Testing_Register_User - 2017.04.06 at 14h 38m 57s.xml">
+      <configuration name="Testing Textrategia API.Testing Register User" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="Testing_Textrategia_API_Testing_adding_task_to_group - 2017.04.03 at 20h 35m 15s.xml">
-      <configuration name="Testing Textrategia API.Testing adding task to group" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="Testing_Textrategia_API_Testing_Register_User - 2017.04.06 at 14h 40m 54s.xml">
+      <configuration name="Testing Textrategia API.Testing Register User" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="Testing_Textrategia_API_Testing_adding_task_to_group - 2017.04.03 at 20h 37m 27s.xml">
-      <configuration name="Testing Textrategia API.Testing adding task to group" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="Testing_Textrategia_API_Testing_Register_User - 2017.04.06 at 14h 42m 08s.xml">
+      <configuration name="Testing Textrategia API.Testing Register User" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="Testing_Textrategia_API_Testing_adding_task_to_group - 2017.04.03 at 22h 21m 38s.xml">
-      <configuration name="Testing Textrategia API.Testing adding task to group" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="Testing_Textrategia_API_Testing_Register_User - 2017.04.06 at 14h 48m 11s.xml">
+      <configuration name="Testing Textrategia API.Testing Register User" configurationId="mocha-javascript-test-runner" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="57305000" />
+    <option name="totallyTimeSpent" value="65789000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1376" height="744" extended-state="7" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1376" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32935154" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32764506" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32935154" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14665653" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32935154" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32764506" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32935154" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14589666" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3993174" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3993174" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -862,12 +869,6 @@
           <url>file://$PROJECT_DIR$/test/tools-spec.js</url>
           <line>222</line>
           <option name="timeStamp" value="36" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/queryForDB.js</url>
-          <line>129</line>
-          <properties />
-          <option name="timeStamp" value="73" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/server_test.js</url>
@@ -917,11 +918,41 @@
           <properties />
           <option name="timeStamp" value="148" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/server_test.js</url>
+          <line>392</line>
+          <properties />
+          <option name="timeStamp" value="149" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/server_test.js</url>
+          <line>400</line>
+          <properties />
+          <option name="timeStamp" value="150" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/server_test.js</url>
+          <line>411</line>
+          <properties />
+          <option name="timeStamp" value="151" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/server_test.js</url>
+          <line>419</line>
+          <properties />
+          <option name="timeStamp" value="152" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/server_test.js</url>
+          <line>429</line>
+          <properties />
+          <option name="timeStamp" value="154" />
+        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="149" />
+      <option name="time" value="155" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1077,24 +1108,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test/tools-spec.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="31" column="11" lean-forward="true" selection-start-line="31" selection-start-column="11" selection-end-line="31" selection-end-column="11" />
+        <state relative-caret-position="243">
+          <caret line="285" column="71" lean-forward="false" selection-start-line="285" selection-start-column="71" selection-end-line="285" selection-end-column="71" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/queryForDB.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
-          <caret line="148" column="134" lean-forward="false" selection-start-line="148" selection-start-column="134" selection-end-line="148" selection-end-column="134" />
+        <state relative-caret-position="125">
+          <caret line="143" column="38" lean-forward="false" selection-start-line="143" selection-start-column="28" selection-end-line="143" selection-end-column="38" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server_test.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="318" column="35" lean-forward="false" selection-start-line="318" selection-start-column="35" selection-end-line="318" selection-end-column="35" />
+        <state relative-caret-position="244">
+          <caret line="428" column="38" lean-forward="true" selection-start-line="428" selection-start-column="38" selection-end-line="428" selection-end-column="38" />
           <folding />
         </state>
       </provider>

@@ -140,6 +140,11 @@ module.exports =
         return query;
     },
 
+    getUserId: function (email) {
+        var query = "SELECT PersonalID FROM textra_db.users where Email = '" + email+ "';";
+        return query;
+    },
+
     getQestionsAndTasksForinstance: function (t_id) {
         var query = "select T_id, Q_id from textra_db.tasks_joined_with_questions where T_id = " + t_id + ";";
         return query;
@@ -163,6 +168,17 @@ module.exports =
     createGroup: function (g_id, g_name, teacher_id, is_master_g, g_code) {
         var query = "INSERT INTO textra_db.groups VALUES (" + g_id + "," +
             "'" + g_name + "'," + teacher_id + "," + is_master_g + "," + g_code + ");";
+        return query;
+    },
+
+    getGroupIdfromcode: function (g_code) {
+        var query = "select GroupId from textra_db.groups where GroupeCode = " + g_code + ";";
+        return query;
+    },
+
+    registerUser: function (lastName, firstName, school, city, userType, email, password) {
+        var query = "insert into textra_db.users values(null, '" + lastName + "', '" + firstName + "',' " + school
+            + "', '" + city + "', '" + userType + "', '" + email + "', '" + password + "');";
         return query;
     },
 

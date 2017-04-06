@@ -223,7 +223,7 @@ describe("Testing Textrategia API", function () {
     describe("Testing groups", function () {
         it('Testing insert students(plural)', function (done) {
             request(app).post("/addUsersToGroup").send({"users": [1, 2, 3, 4], "group_id": "1212"})
-                .end(function (err, res) {
+                .end(function (err) {
                     if (err) {
                         console.log("ERR: " + err)
                         throw err;
@@ -279,5 +279,18 @@ describe("Testing Textrategia API", function () {
                     done();
                 });
         });
+    })
+
+    describe("Testing Register User", function () {
+        it('Test login Request - correct deatils', function (done) {
+            request(app).post("/registerUser").send({"group_id":"123456","lastName":"Gudes","firstName":"Ehud","school":"BGU","city":"B7", "userType": "0" ,"email": "shakedkr@post.bgu.ac.il", "password": "123456"})
+                .expect(200)
+                .end(done);
+        });
+        // it('Test login Request - fake deatils', function (done) {
+        //     request(app).post("/login").send({"user": "someFakeMail@post.bgu.ac.il", "password": "123456"})
+        //         .expect(401)
+        //         .end(done);
+        // });
     });
 });
