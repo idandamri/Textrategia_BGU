@@ -1,3 +1,5 @@
+//dependencies
+
 var express = require('express');
 var mysql = require('mysql');
 var cors = require('cors');
@@ -11,44 +13,6 @@ app.use(express.static(__dirname + '/client'));
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
-// This responds with "Hello World" on the homepage
-
-
-/*
- app.get('/how_to request_from_data', function (req, res) {
- console.log("Got a GET request for the homepage");
-
- connection.query ("SELECT * FROM textra_db.answers;" , function(err,row,field){
- if(err) console.log(err);
- else
- res.send(row)
- });
-
- })
- */
-
-// app.get('/test',function(req,res){
-//   var query = queries.getAllAnswersToQuestion("1");
-//   connection.query (query , function(err,ans,field){
-//     if (err){
-//       console.log(err);
-//     }
-//     else{
-//       console.log(ans);
-//       res.send(ans);
-// app.get('/test',function(req,res){
-//   var query = queries.getNumberOfQuestionForTask(1);
-//   connection.query (query , function(err,ans,field){
-//     if (err){
-//       console.log(err);
-//     }
-//     else{
-//       console.log(ans);
-//       res.send(ans);
-//
-//     }
-//   });
-// });
 
 
 app.get('/', function (req, res) {
@@ -74,51 +38,6 @@ app.post('/getListOfTasks', function (req, res) {
         }
     });
 });
-
-
-// app.post('/getTasks', function (req, res) {
-//     console.log("Got a get task request from:");
-//     var u_id = req.body.user_id;
-//     var t_id;
-//     var merge;
-//     var listOfmerge = [];
-//
-//     console.log(u_id);
-//     var query = queries.gelAllTaskTitleByStudentId(u_id);
-//     /*hard coded. need to change*/
-//     connection.query(query, function (err, tasks, field) {
-//         if (err) {
-//             console.log(err);
-//             res.status(400).send("Err in task req: " + err);
-//         }
-//         else {
-//             console.log("Got a task response")
-//             t_id = tasks[0]["T_id"];
-//             console.log(t_id);
-//             query = queries.getNumberOfQuestionForTask(t_id);
-//             connection.query(query, function (err, numberOfQuestion, field) {
-//                 if (err) {
-//                     res.status(400).send("Number of questions in task error - check DB");
-//                     console.log("Number of questions in task error - check DB\nError:" + err);
-//                 }
-//                 else {
-//                     console.log("Got a response from DB")
-//                     var i;
-//                     for (i = 0; i < tasks.length; i++) {
-//                         console.log("num of question:" + numberOfQuestion);
-//                         merge = {};
-//                         Object.assign(merge, tasks[i], numberOfQuestion[i]);
-//                         console.log("merge:" + merge);
-//                         listOfmerge.push(merge);
-//                         //res.send(merge);
-//                     }
-//                     console.log("listofmerge: " + listOfmerge);
-//                     res.send(listOfmerge);
-//                 }
-//             });
-//         }
-//     });
-// });
 
 
 app.post('/getQuestion', function (req, res) {
@@ -216,6 +135,36 @@ app.post('/updateAnswer', function (req, res) {
 });
 
 
+app.post('/login', function (req, res) {
+    var user_name = req.body.user;
+    /* user_name can be id or email */
+    var password = req.body.password;
+
+    console.log('Got a login request from: \n\n!!!\n\n' + user_name + "," + password);
+    var query = queries.getDataForUserByIdOrEmail(user_name, password);
+    console.log("This is the query: " + query);
+    connection.query(query, function (err, ans, field) {
+        if (err) {
+            console.log("err" + err);
+            res.status(400).send("login Fail Error");
+        }
+        else {
+            console.log("ans:" + ans);
+            //res.send(row[1]);
+            if (ans.length > 0) { /*check if the resault is empty*/
+                res.status(200).json(ans);
+                /*change to user id*/
+                console.log('OK');
+            }
+            else {
+                res.status(401).send('ERROR');
+                console.log('ERROR \n');
+            }
+        }
+    });
+});
+
+
 app.post('/questionApproveOrNot', function (req, res) {
     var isApproved = req.body.is_approved;
     var qId = req.body.q_id;
@@ -238,7 +187,7 @@ app.post('/questionApproveOrNot', function (req, res) {
     });
 });
 
-
+//TODO handle async bug!
 app.post('/insertStudentToGroup', function (req, res) {
     var sId = req.body.stud_id;
     var gId = req.body.group_id;
@@ -256,7 +205,7 @@ app.post('/insertStudentToGroup', function (req, res) {
     });
 });
 
-
+//TODO handle async bug!
 app.post('/addTaskToGroup', function (req, res) {
     var gId = req.body.group_id;
     var tId = req.body.task_id;
@@ -333,21 +282,7 @@ app.post('/addTaskToGroup', function (req, res) {
                     };
 
                     sendInstance(megaQuery, 0);
-                    // console.log('\nMega Query is:\n' + megaQuery + '\n');
-                    // indexQuery = 0;
-                    /*while (indexQuery < megaQuery.length) {
-                     var q = megaQuery[indexQuery]
-                     connection.query(q, function (err3, ans3, field) {
-                     if (err3) {
-                     console.log(err3);
-                     // res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
-                     } else {
-                     console.log("Added: " + q);
-                     // res.status(200).send("Added!");
-                     }
-                     });
-                     indexQuery++;
-                     }*/
+                   
                 }
             });
         }
@@ -356,7 +291,7 @@ app.post('/addTaskToGroup', function (req, res) {
 
 
 app.post('/createGroup', function (req, res) {
-    var teacherId = req.body.teacherID;
+    var teacherId = req.body.teacher_id;
     var gId = req.body.group_id;
     var gName = req.body.group_name;
     var isMaster = req.body.is_master;
@@ -378,13 +313,13 @@ app.post('/createGroup', function (req, res) {
 
 app.post('/registerUser', function (req, res) {
     var groupCode = req.body.group_id;
-    var lastName = req.body.lastName;
-    var firstName = req.body.firstName;
+    var lastName = req.body.last_name;
+    var firstName = req.body.first_name;
     var school = req.body.school;
     var city = req.body.city;
-    var userType = req.body.userType;
+    var userType = req.body.user_type;
     var email = req.body.email;
-    var password = req.body.password;
+    var password = req.body.pass;
 
     var query = queries.getGroupIdfromcode(groupCode);
     console.log('\n' + query + '\n');
@@ -475,7 +410,7 @@ app.post('/addUsersToGroup', function (req, res) {
 
 
 app.post('/getGroupByUser', function (req, res) {
-    var teacherId = req.body.teacherID;
+    var teacherId = req.body.teacher_id;
 
     var query = queries.getTasks();
     console.log('\n' + query + '\n');
@@ -508,19 +443,20 @@ app.post('/getGroupByUser', function (req, res) {
 
 app.post('/addQuestion', function (req, res) {
     var qTitle = req.body.question_title;
-    var isMulAns = req.body.isMultipleAns;
+    var isMulAns = req.body.is_multiple_ans;
     var qMediaType = req.body.question_media_type;
     var qMedia = req.body.question_media;
-    var qCorrFB = req.body.quest_correct_FB;
-    var qIncorrFB = req.body.quest_incorrect_FB;
+    var qCorrFB = req.body.quest_correct_fb;
+    var qIncorrFB = req.body.quest_incorrect_fb;
     var qSkill = req.body.quest_skill;
     var qDiff = req.body.quest_difficulty;
     var qProff = req.body.quest_proffesion;
     var qIsApp = req.body.quest_is_approved;
+    var qWhoCreated = req.who_created;
     var qDisabled = req.body.quest_disabled;
 
     var query = queries.addQustion(qTitle, isMulAns, qMedia, qMediaType, qCorrFB, qIncorrFB,
-        qSkill, qDiff, qProff, qIsApp, qDisabled);
+        qSkill, qDiff, qProff, qIsApp, qDisabled,qWhoCreated);
     console.log('\n' + query + '\n');
     connection.query(query, function (err, ans, field) {
         if (err) {
@@ -533,35 +469,6 @@ app.post('/addQuestion', function (req, res) {
     });
 });
 
-
-app.post('/login', function (req, res) {
-    var user_name = req.body.user;
-    /* user_name can be id or email */
-    var password = req.body.password;
-
-    console.log('Got a login request from: \n\n!!!\n\n' + user_name + "," + password);
-    var query = queries.getDataForUserByIdOrEmail(user_name, password);
-    console.log("This is the query: " + query);
-    connection.query(query, function (err, ans, field) {
-        if (err) {
-            console.log("err" + err);
-            res.status(400).send("login Fail Error");
-        }
-        else {
-            console.log("ans:" + ans);
-            //res.send(row[1]);
-            if (ans.length > 0) { /*check if the resault is empty*/
-                res.status(200).json(ans);
-                /*change to user id*/
-                console.log('OK');
-            }
-            else {
-                res.status(401).send('ERROR');
-                console.log('ERROR \n');
-            }
-        }
-    });
-});
 
 
 var connection = mysql.createConnection({
