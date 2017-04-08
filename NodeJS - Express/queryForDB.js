@@ -22,13 +22,6 @@ module.exports =
             return query;
         },
 
-        /*get all question data by question id*/
-        getQuestionDataForTask: function (q_id) {
-            var query =
-                "SELECT * FROM textra_db.questions where Q_id =" + q_id + ";";
-            return query;
-        },
-
         //TODO - check if needed
         /* not yet final. will update in the maraton (see notes.txt file)
          get number of correct answer for a task by task id and student id
@@ -156,15 +149,28 @@ module.exports =
                 "from (select * from questions where questions.Q_id = \'" + q_id + "\') as T;";
             return query;
         },
+
         getSingleQuestionIdFromTaskIdAndUserId: function (user_id, t_id) {
             var query = "SELECT Q_id FROM textra_db.tasks_and_question_for_student_instances " +
                 "where studentId = " + user_id + " and T_id = " + t_id + " limit 1;";
             return query;
         },
 
-        getAnswersByTidQidSid: function (/*s_id, t_id, */q_id) {
-            var query = "select * from textra_db.tasks where Q_id like /'" + q_id + "'/";
+        //TODO check if needed..
+        /*getAnswersByTidQidSid: function (/!*s_id, t_id, *!/q_id) {
+         var query = "select * from textra_db.tasks where Q_id like /'" + q_id + "'/";
+         return query;
+         }*/
+        addNewTask: function (t_title, t_description, t_owner, t_approved) {
+            var query = "insert into textra_db.tasks values(null,'" + t_title + "','" + t_description + "',"
+                + t_owner + "," + t_approved + ");";
+            return query;
+        },
+
+        joinNewTaskWithQuestion: function (t_id, q_id) {
+            var query = "insert into textra_db.tasks values(" + t_id + "," + q_id + ");";
             return query;
         }
+
 
     };

@@ -20,6 +20,36 @@ app.get('/', function (req, res) {
 });
 
 
+app.post('/login', function (req, res) {
+    var user_name = req.body.user;
+    /* user_name can be id or email */
+    var password = req.body.password;
+
+    console.log('Got a login request from: \n\n!!!\n\n' + user_name + "," + password);
+    var query = queries.getDataForUserByIdOrEmail(user_name, password);
+    console.log("This is the query: " + query);
+    connection.query(query, function (err, ans, field) {
+        if (err) {
+            console.log("err" + err);
+            res.status(400).send("login Fail Error");
+        }
+        else {
+            console.log("ans:" + ans);
+            //res.send(row[1]);
+            if (ans.length > 0) { /*check if the resault is empty*/
+                res.status(200).json(ans);
+                /*change to user id*/
+                console.log('OK');
+            }
+            else {
+                res.status(401).send('ERROR');
+                console.log('ERROR \n');
+            }
+        }
+    });
+});
+
+
 app.post('/getListOfTasks', function (req, res) {
     var user_id = req.body.user_id;
     var query = queries.gelAllTaskTitleByStudentId(user_id);
@@ -45,7 +75,6 @@ app.post('/getQuestion', function (req, res) {
     var user_id = req.body.user_id;
     var t_id = req.body.t_id;
     var question = "";
-    var tasksQid = queries.getSingleQuestionIdFromTaskIdAndUserId(user_id, t_id);
     var tasksQid = queries.getSingleQuestionIdFromTaskIdAndUserId(user_id, t_id);
     connection.query(tasksQid, function (err, row, field) {
         if (err) {
@@ -130,36 +159,6 @@ app.post('/updateAnswer', function (req, res) {
         }
         else {
             res.status(200).send("Updated!");
-        }
-    });
-});
-
-
-app.post('/login', function (req, res) {
-    var user_name = req.body.user;
-    /* user_name can be id or email */
-    var password = req.body.password;
-
-    console.log('Got a login request from: \n\n!!!\n\n' + user_name + "," + password);
-    var query = queries.getDataForUserByIdOrEmail(user_name, password);
-    console.log("This is the query: " + query);
-    connection.query(query, function (err, ans, field) {
-        if (err) {
-            console.log("err" + err);
-            res.status(400).send("login Fail Error");
-        }
-        else {
-            console.log("ans:" + ans);
-            //res.send(row[1]);
-            if (ans.length > 0) { /*check if the resault is empty*/
-                res.status(200).json(ans);
-                /*change to user id*/
-                console.log('OK');
-            }
-            else {
-                res.status(401).send('ERROR');
-                console.log('ERROR \n');
-            }
         }
     });
 });
