@@ -283,14 +283,19 @@ describe("Testing Textrategia API", function () {
 
     describe("Testing Register User", function () {
         it('Test login Request - correct deatils', function (done) {
-            request(app).post("/registerUser").send({"group_code":"123456","lastName":"Gudes","firstName":"Ehud","school":"BGU","city":"B7", "userType": "0" ,"email": "shakedkr@post.bgu.ac.il", "password": "123456"})
+            request(app).post("/registerUser").send({"group_code":"123456","lastName":"Gudes","firstName":"Ehud",
+                "school":"BGU","city":"B7", "userType": "0" ,"email": "shakedkr@post.bgu.ac.il", "password": "123456"})
                 .expect(200)
                 .end(done);
         });
-        // it('Test login Request - fake deatils', function (done) {
-        //     request(app).post("/login").send({"user": "someFakeMail@post.bgu.ac.il", "password": "123456"})
-        //         .expect(401)
-        //         .end(done);
-        // });
+    });
+
+    describe("Testing adding Task", function () {
+        it('Test create task - correct deatils', function (done) {
+            request(app).post("/createTask").send({"t_title":"TiTlE-TeSt","t_description":"desc_desc_desc","t_owner":1,
+                "t_approved":1,"questions":[1,3,4,15,8,7]})
+                .expect(200)
+                .end(done);
+        });
     });
 });

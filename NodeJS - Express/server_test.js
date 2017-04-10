@@ -4,6 +4,7 @@ var express = require('express');
 var mysql = require('mysql');
 var cors = require('cors');
 var path = require('path');
+var Q = require('Q');
 var app = express();
 app.use(cors());
 var queries = require("./queryForDB.js");
@@ -464,6 +465,59 @@ app.post('/addQuestion', function (req, res) {
         }
         else {
             res.status(200).send("inserted!");
+        }
+    });
+});
+
+
+app.post('/createTask', function (req, res) {
+
+    var tTitle = req.body.t_title;
+    var tDesc = req.body.t_description;
+    var tOwner = req.body.t_owner;
+    var tApproved = req.body.t_approved;
+    var questionsForTask = req.body.questions;
+
+    var query = queries.addNewTask(tTitle,tDesc,tOwner,tApproved);
+    console.log('\n' + query + '\n');
+    connection.query(query, function (err, ans, field) {
+        if (err) {
+            console.log(err);
+            res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
+        }
+        else {
+
+            var query2 = queries.getHighestIdFromTable('tasks','T_id');
+            console.log('\n' + query2 + '\n');
+            connection.query(query2, function (err, taskRow, field) {
+                if (err) {
+                    console.log(err);
+                    res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
+                }
+                else {
+                    tId = taskRow[0].T_id;
+                    var questionsArray = [];
+                    for (i=0; i<questionsForTask.length;i++){
+                        var qId = questionsForTask[i];
+                        questionsArray[i] = queries.joinNewTaskWithQuestion(tId,qId);
+                    }
+
+                    for (i=0; i<questionsForTask.length;i++) {
+                        var query3 = questionsArray[i];
+                        console.log('\n' + query3 + '\n');
+                        connection.query(query3, function (err, ans, field) {
+                            if (err) {
+                                console.log(err);
+                                res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
+                            }
+                            else {
+                                res.status(200).send("inserted!");
+                            }
+                        });
+                    }
+                    // res.status(200).send("inserted!");
+                }
+            });
         }
     });
 });

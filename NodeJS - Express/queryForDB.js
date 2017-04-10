@@ -161,16 +161,21 @@ module.exports =
          var query = "select * from textra_db.tasks where Q_id like /'" + q_id + "'/";
          return query;
          }*/
-        addNewTask: function (t_title, t_description, t_owner, t_approved) {
+            addNewTask: function (t_title, t_description, t_owner, t_approved) {
             var query = "insert into textra_db.tasks values(null,'" + t_title + "','" + t_description + "',"
                 + t_owner + "," + t_approved + ");";
             return query;
         },
 
         joinNewTaskWithQuestion: function (t_id, q_id) {
-            var query = "insert into textra_db.tasks values(" + t_id + "," + q_id + ");";
+            var query = "insert into textra_db.tasks_joined_with_questions values(" + t_id + "," + q_id + ");";
+            return query;
+        },
+
+        getHighestIdFromTable: function (table_name, attribute_id) {
+            var query = "select " + attribute_id + " from textra_db."+ table_name +" where " + attribute_id
+                + " = ( select max(" + attribute_id + ") from textra_db."+ table_name +" );";
             return query;
         }
-
 
     };
