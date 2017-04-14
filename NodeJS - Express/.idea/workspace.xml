@@ -4,10 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/server_test.js" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c1dd669-4d78-476f-9d51-553f8449f360" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server_test.js" afterPath="$PROJECT_DIR$/server_test.js" />
-    </list>
+    <list default="true" id="7c1dd669-4d78-476f-9d51-553f8449f360" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,8 +21,8 @@
       <file leaf-file-name="tools-spec.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/tools-spec.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="223" column="11" lean-forward="false" selection-start-line="223" selection-start-column="11" selection-end-line="223" selection-end-column="11" />
+            <state relative-caret-position="193">
+              <caret line="29" column="16" lean-forward="false" selection-start-line="29" selection-start-column="16" selection-end-line="29" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -44,8 +41,8 @@
       <file leaf-file-name="server_test.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server_test.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-204">
-              <caret line="0" column="14" lean-forward="false" selection-start-line="0" selection-start-column="14" selection-end-line="0" selection-end-column="14" />
+            <state relative-caret-position="-249">
+              <caret line="187" column="23" lean-forward="false" selection-start-line="187" selection-start-column="23" selection-end-line="187" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -55,7 +52,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>getQ</find>
       <find>getQu</find>
       <find>like</find>
       <find>pass like</find>
@@ -76,15 +72,16 @@
       <find>addTask</find>
       <find>Task</find>
       <find>login</find>
-      <find>createTask</find>
       <find>todo</find>
       <find>createTa</find>
       <find>createT</find>
       <find>approved</find>
-      <find>addTaskToGroup</find>
       <find>insertStudentToGroup</find>
       <find>addUsersToGroup</find>
       <find>insertstu</find>
+      <find>createTask</find>
+      <find>createTas</find>
+      <find>addTaskToGroup</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -104,8 +101,8 @@
         <option value="timers.js" />
         <option value="$PROJECT_DIR$/queryForDB.js" />
         <option value="$APPLICATION_CONFIG_DIR$/extensions/אקדא" />
-        <option value="$PROJECT_DIR$/test/tools-spec.js" />
         <option value="$PROJECT_DIR$/server_test.js" />
+        <option value="$PROJECT_DIR$/test/tools-spec.js" />
       </list>
     </option>
   </component>
@@ -743,7 +740,7 @@
       <workItem from="1491626886872" duration="7565000" />
       <workItem from="1491752782839" duration="3803000" />
       <workItem from="1492086259604" duration="2786000" />
-      <workItem from="1492187269906" duration="3928000" />
+      <workItem from="1492187269906" duration="4481000" />
     </task>
     <task id="LOCAL-00001" summary="done updating getQuestion">
       <created>1490566647810</created>
@@ -830,7 +827,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="87400000" />
+    <option name="totallyTimeSpent" value="87953000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1376" height="744" extended-state="6" />
@@ -935,36 +932,11 @@
           <line>113</line>
           <option name="timeStamp" value="29" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/server_test.js</url>
-          <line>427</line>
-          <option name="timeStamp" value="155" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/server_test.js</url>
-          <line>436</line>
-          <option name="timeStamp" value="156" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/server_test.js</url>
-          <line>451</line>
-          <option name="timeStamp" value="160" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/server_test.js</url>
-          <line>454</line>
-          <option name="timeStamp" value="161" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/server_test.js</url>
-          <line>453</line>
-          <option name="timeStamp" value="162" />
-        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="177" />
+      <option name="time" value="178" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1249,16 +1221,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test/tools-spec.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="223" column="11" lean-forward="false" selection-start-line="223" selection-start-column="11" selection-end-line="223" selection-end-column="11" />
+        <state relative-caret-position="193">
+          <caret line="29" column="16" lean-forward="false" selection-start-line="29" selection-start-column="16" selection-end-line="29" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server_test.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-204">
-          <caret line="0" column="14" lean-forward="false" selection-start-line="0" selection-start-column="14" selection-end-line="0" selection-end-column="14" />
+        <state relative-caret-position="-249">
+          <caret line="187" column="23" lean-forward="false" selection-start-line="187" selection-start-column="23" selection-end-line="187" selection-end-column="23" />
           <folding />
         </state>
       </provider>

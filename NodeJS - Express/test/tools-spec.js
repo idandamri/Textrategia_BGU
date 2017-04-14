@@ -27,7 +27,7 @@ describe("Testing Textrategia API", function () {
     describe("Testing adding task to group", function () {
         it('Test adding', function (done) {
             request(app).post("/addTaskToGroup").send({"group_id": "123456", "task_id": "1"})
-                /*.expect(200)*/
+                .expect(200)
                 .end(done);
         });
     });
