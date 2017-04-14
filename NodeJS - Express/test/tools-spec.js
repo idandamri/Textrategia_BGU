@@ -97,7 +97,6 @@ describe("Testing Textrategia API", function () {
                             console.log(strQ + "]}");
                         }
                     }
-                    // qqq = questions;
                     done();
                 });
             done();

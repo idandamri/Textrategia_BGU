@@ -1,10 +1,8 @@
 //dependencies
-
 var express = require('express');
 var mysql = require('mysql');
 var cors = require('cors');
 var path = require('path');
-var Q = require('Q');
 var app = express();
 app.use(cors());
 var queries = require("./queryForDB.js");
@@ -121,7 +119,6 @@ app.post('/getQuestion', function (req, res) {
             else {
                 console.log("Question id amount is smaller then one");
                 res.status(676).send("End of task");//End of task
-                //console.log("Sent 204 status");
             }
         }
     });
@@ -152,7 +149,7 @@ app.post('/updateAnswer', function (req, res) {
     var qId = req.body.quest_id;
     var aId = req.body.ans_id;
     var query = queries.SubmitStudentsAnswerForQuestion(sId, tId, qId, aId);
-    //console.log('\n' + query + '\n');
+    console.log('\n' + query + '\n');
     connection.query(query, function (err, ans, field) {
         if (err) {
             console.log(err);
@@ -187,25 +184,7 @@ app.post('/questionApproveOrNot', function (req, res) {
     });
 });
 
-//TODO handle async bug!
-app.post('/insertStudentToGroup', function (req, res) {
-    var sId = req.body.stud_id;
-    var gId = req.body.group_id;
 
-    var query = queries.addUsersToGroup(sId, gId);
-    console.log('\n' + query + '\n');
-    connection.query(query, function (err, ans, field) {
-        if (err) {
-            console.log(err);
-            // res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
-        }
-        else {
-            // res.status(200).send("inserted!");
-        }
-    });
-});
-
-//TODO handle async bug!
 app.post('/addTaskToGroup', function (req, res) {
     var gId = req.body.group_id;
     var tId = req.body.task_id;
@@ -218,7 +197,6 @@ app.post('/addTaskToGroup', function (req, res) {
             res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
         }
         else {
-            // res.status(200).send("inserted!");
             var query2 = queries.getQestionsAndTasksForinstance(tId);
             console.log('\n' + query2 + '\n');
             connection.query(query2, function (err2, QuestsAndTasks, field) {
@@ -226,8 +204,6 @@ app.post('/addTaskToGroup', function (req, res) {
                     console.log(err);
                     res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
                 } else {
-                    // var lastStudentId = students[students.length - 1].StudentId;
-                    // var lastTaskId = QuestsAndTasks.length;
                     var indxStud = 0;
                     var megaQuery = [];
 
@@ -245,44 +221,17 @@ app.post('/addTaskToGroup', function (req, res) {
                         indxStud++;
                     }
 
-                    var is_new_call = true;
-                    var curr = 0;
-                    var total = megaQuery.length;
+                    var bigQuery = megaQuery.join(" ");
 
-
-                    var sendInstance = function (queriesArr, indexInArr) {
-                        if (indexInArr < queriesArr.length) {
-                            if (is_new_call) {
-                                is_new_call = false;
-                                // res.status(200);
-                                // res.send();
-                                sendInstance(queriesArr, 0);
-                            }
-                            else {
-                                curr++;
-                                if (curr == total) {
-                                    res.state(200).send();
-                                }
-                                else {
-                                    var q = queriesArr[indexInArr];
-                                    connection.query(q, function (err3, ans3, field) {
-                                        if (err3) {
-                                            console.log(err3);
-                                            res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
-                                        } else {
-                                            console.log("Added: " + q);
-                                        }
-                                    });
-                                    indexInArr++;
-                                    sendInstance(queriesArr, indexInArr);
-
-                                }
-                            }
+                    connection.query(bigQuery, function (err3, ans3, field) {
+                        if (err3) {
+                            console.log(err3);
+                            res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
+                        } else {
+                            console.log("Added: " + bigQuery);
+                            res.status(200).send();
                         }
-                    };
-
-                    sendInstance(megaQuery, 0);
-                   
+                    });
                 }
             });
         }
@@ -361,52 +310,50 @@ app.post('/registerUser', function (req, res) {
                                     res.status(200).send("Registered!!");
                                 }
                             });
-                            // res.status(200).send("inserted!");
                         }
                     });
-
-                    // res.status(200).send("inserted!");
                 }
             });
-            // res.status(200).send("registered!!");
         }
     });
 });
 
 
 app.post('/addUsersToGroup', function (req, res) {
+
     var users = req.body.users;
     var groupId = req.body.group_id;
-
-    var hasError = false;
     var indx = 0;
+    var queriesArr = [];
 
     if (indx < users.length) {
         while (indx < users.length) {
             var user = users[indx];
+            var query = queries.addUsersToGroup(user, groupId);
+            console.log('\n' + query + '\n');
+            queriesArr[indx] = query;
             indx++;
-            if (!hasError) {
-                var query = queries.addUsersToGroup(user, groupId);
-                console.log('\n' + query + '\n');
-                connection.query(query, function (err, ans, field) {
-                    if (err) {
-                        console.log(err);
-                        hasError = true;
-                        // res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
-
-                    } else {
-                        // res.status(200).send();
-                    }
-                });
-            }
         }
-        // res.status(200).send();
+        if (queriesArr.length > 0) {
+            var bigQuery = queriesArr.join(" ");
+            connection.query(bigQuery, function (err, ans, field) {
+                if (err) {
+                    console.log(err);
+                    // hasError = true;
+                    res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
+
+                } else {
+                    res.status(200).send("inserted!!");
+                }
+            });
+        }
     }
     else {
         res.status(204).send();
         /*empty content*/
     }
-});
+})
+;
 
 
 app.post('/getGroupByUser', function (req, res) {
@@ -456,7 +403,7 @@ app.post('/addQuestion', function (req, res) {
     var qDisabled = req.body.quest_disabled;
 
     var query = queries.addQustion(qTitle, isMulAns, qMedia, qMediaType, qCorrFB, qIncorrFB,
-        qSkill, qDiff, qProff, qIsApp, qDisabled,qWhoCreated);
+        qSkill, qDiff, qProff, qIsApp, qDisabled, qWhoCreated);
     console.log('\n' + query + '\n');
     connection.query(query, function (err, ans, field) {
         if (err) {
@@ -478,7 +425,7 @@ app.post('/createTask', function (req, res) {
     var tApproved = req.body.t_approved;
     var questionsForTask = req.body.questions;
 
-    var query = queries.addNewTask(tTitle,tDesc,tOwner,tApproved);
+    var query = queries.addNewTask(tTitle, tDesc, tOwner, tApproved);
     console.log('\n' + query + '\n');
     connection.query(query, function (err, ans, field) {
         if (err) {
@@ -487,7 +434,7 @@ app.post('/createTask', function (req, res) {
         }
         else {
 
-            var query2 = queries.getHighestIdFromTable('tasks','T_id');
+            var query2 = queries.getHighestIdFromTable('tasks', 'T_id');
             console.log('\n' + query2 + '\n');
             connection.query(query2, function (err, taskRow, field) {
                 if (err) {
@@ -497,25 +444,16 @@ app.post('/createTask', function (req, res) {
                 else {
                     tId = taskRow[0].T_id;
                     var questionsArray = [];
-                    for (i=0; i<questionsForTask.length;i++){
+                    for (i = 0; i < questionsForTask.length; i++) {
                         var qId = questionsForTask[i];
-                        questionsArray[i] = queries.joinNewTaskWithQuestion(tId,qId);
+                        questionsArray[i] = queries.joinNewTaskWithQuestion(tId, qId);
                     }
 
-                    for (i=0; i<questionsForTask.length;i++) {
-                        var query3 = questionsArray[i];
-                        console.log('\n' + query3 + '\n');
-                        connection.query(query3, function (err, ans, field) {
-                            if (err) {
-                                console.log(err);
-                                res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
-                            }
-                            else {
-                                res.status(200).send("inserted!");
-                            }
-                        });
-                    }
-                    // res.status(200).send("inserted!");
+                    var insertStatement = questionsArray.join(" ");
+
+                    connection.query(insertStatement, function (err, ans, field) {
+                        res.status(200).send("inserted!");
+                    });
                 }
             });
         }
@@ -523,12 +461,12 @@ app.post('/createTask', function (req, res) {
 });
 
 
-
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '1q2w3e4r',//'123456' to upload*/
-    database: 'textra_db'
+    database: 'textra_db',
+    multipleStatements: true
 });
 
 
@@ -540,15 +478,15 @@ connection.connect(function (err) {
 
 
 // var server = app.listen(8081, function () {
-// var server = app.listen(8081, function () {
-//     var host = server.address().address;
-//     var port = server.address().port;
-//     console.log("Example app listening at http://%s:%s", host, port)
-// });
-
-var server = app.listen(8081, "127.0.0.1", function () {
-    console.log("Example app listening at ");
+var server = app.listen(8081, function () {
+    var host = server.address().address;
+    var port = server.address().port;
+    console.log("Example app listening at http://%s:%s", host, port)
 });
+
+// var server = app.listen(8081, "127.0.0.1", function () {
+//     console.log("Example app listening at ");
+// });
 
 setInterval(function () {
     connection.query('SELECT 1');

@@ -1,0 +1,52 @@
+
+
+json sent to server example:
+
+{"users": [1, 2, 3, 4], "group_id": "1212"}
+
+Each number in the array is an ID representing a user trying to register to a group with an ID with the given group_id
+
+
+
+The post method is:
+app.post('/addUsersToGroup', function (req, res) {
+    var users = req.body.users;
+    var groupId = req.body.group_id;
+
+    var hasError = false;
+    var indx = 0;
+
+    if (indx < users.length) {
+        while (indx < users.length) {
+            var user = users[indx];
+            indx++;
+            if (!hasError) {
+                var query = queries.addUsersToGroup(user, groupId);
+                console.log('\n' + query + '\n');
+                connection.query(query, function (err, ans, field) {
+                    if (err) {
+                        console.log(err);
+                        hasError = true;
+                        // res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
+
+                    } else {
+                        // res.status(200).send();
+                    }
+                });
+            }
+        }
+        // res.status(200).send();
+    }
+    else {
+        res.status(204).send();
+        /*empty content*/
+    }
+});
+
+
+The query is built here:
+addUsersToGroup: function (user_id, group_id) 
+{
+	var query = "insert into textra_db.students_per_group values (" + user_id + "," + group_id + ");";
+	return query;
+}
