@@ -4,6 +4,25 @@ var _url = "http://localhost:8081";
 
 //* TEACHER CONTROLLERS*//
 
+// ########################### GENERAL CONTROLLERS ###########################//
+
+
+textrategiaApp.controller("RegisterController",function($scope){
+    $scope.checkedCode = false ;// init to false
+
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();   
+    });
+
+    // this function check code and chage type of user
+    $scope.checkUserCode  = function(){
+        $scope.checkedCode = true;
+
+        $scope.isUserTeacher = false; // this get set by server response
+
+    }
+
+});
 
 
 // ########################### TEACHER CONTROLLERS ###########################//
@@ -13,51 +32,12 @@ textrategiaApp.controller("TeacherController",function($scope){
 
 });
 
-var groups_and_tasks_mock =
-    {
-        "groups": [
-            {
-                "GroupId": 1111,
-                "GroupName": "זברות צבעוניות",
-                "teacherID": "1",
-                "IsMasterGroup": 1,
-                "GroupeCode": "1"
-            },
-            {
-                "GroupId": 1234567,
-                "GroupName": "כוכבים נופלים",
-                "teacherID": "1",
-                "IsMasterGroup": 0,
-                "GroupeCode": "2"
-            },
-            {
-                "GroupId": 1234567,
-                "GroupName": "כיתה ה' 3",
-                "teacherID": "1",
-                "IsMasterGroup": 0,
-                "GroupeCode": "3"
-            }
-        ],
-        "tasks": [
-            {
-                "T_id": 1,
-                "T_title": "נסיכות דיסני ובני זוגם",
-                "T_description": "מטלת ניסוי לבסיס הנתונים"
-            },
-            {
-                "T_id": 2,
-                "T_title": "המדריך המהיר לזיהוי מיניונים",
-                "T_description": "מטלת ניסוי לבסיס הנתונים"
-            },
-            {
-                "T_id": 3,
-                "T_title": "ביב בופ ורוקסטדי, הסיפור האמיתי",
-                "T_description": "מטלת ניסוי לבסיס הנתונים"
-            }
-        ]
-    };
 
-var empty = {"groups":[],"tasks":[{"T_id":1,"T_title":"מטלת ניסוי","T_description":"מטלת ניסוי לבסיס הנתונים"},{"T_id":2,"T_title":"2מטלת ניסוי","T_description":"מטלת ניסוי לבסיס הנתונים"}]};
+textrategiaApp.controller("CreateGroupController",function($scope){
+    $scope.teacherName = getUserName();
+
+});
+
 
 
 textrategiaApp.controller("GroupManagementController",function($scope,$http){
@@ -75,7 +55,7 @@ textrategiaApp.controller("GroupManagementController",function($scope,$http){
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
-        data: 'teacherID='+getUserID()
+        data: 'teacher_id='+getUserID()
     };
 
 

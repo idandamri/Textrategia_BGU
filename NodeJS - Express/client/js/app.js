@@ -10,6 +10,12 @@ textrategiaApp.config(function($routeProvider){
 		templateUrl:'views/login.html',
 		controller :'LoginController'
 	})
+	.when('/register', {
+		templateUrl:'views/register.html',
+		controller :'RegisterController'
+	})
+
+// ~~~~~~~~~~~~ Student routs ~~~~~~~~~~~~~
 	.when('/student', {
 		templateUrl:'views/student.html',
 		controller :'StudentController'
@@ -28,7 +34,7 @@ textrategiaApp.config(function($routeProvider){
 	})
 
 
-// ~~~~~~~~~~~~ teacher routs ~~~~~~~~~~~~~
+// ~~~~~~~~~~~~ Teacher routs ~~~~~~~~~~~~~
 	.when('/teacher', {
 		templateUrl:'views/teacher.html',
 		controller :'TeacherController'
@@ -36,6 +42,10 @@ textrategiaApp.config(function($routeProvider){
 		.when('/groupManagement', {
 		templateUrl:'views/groupManagement.html',
 		controller :'GroupManagementController'
+	})
+		.when('/createGroup', {
+		templateUrl:'views/createGroup.html',
+		controller :'CreateGroupController'
 	})
 		.otherwise({
 		templateUrl:'views/welcome.html'
