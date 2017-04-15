@@ -53,18 +53,76 @@
 <!-- AFTER WE CHECK CODE AND SEE TYPE OF USER -->
     <div ng-show="checkedCode">
     
-        <button ng-click="checkUserCode()" class="btn  btn-info" data-target="#fedbackModal" data-toggle="modal" type="submit" >שsdsdsdsdsd</button>
+      <form name="myForm" class="form-horizontal" role="form">
+
+        <div class="col-sm-2"></div>
+
+        <div class="col-sm-4">
+
+          <!--  2 - 4 - 6 -->
+          <label class="control-label pull-right">שם משפחה:</label>
+          <input type="text" name="lastName" class="form-control inputstl pull-right" required placeholder="הכנס שם משפחה" ng-model="user.userLastName">
+
+          <label class="control-label pull-right">הכנס דואר אלקטרוני בשנית:</label>
+          <input type="email" name="email2" class="form-control inputstl pull-right" required placeholder="הכנס כתובת דואר אלקטרוני"ל ng-model="user.email2">
+
+          <div ng-show="myForm.email2.$error.email2" class="error">אימייל לא תקין</div>
+          <div ng-show="myForm.email2.$error.required &amp;&amp; myForm.email2.$touched" class="error">שדה חובה!</div>
+
+          <label class="control-label pull-right">הכנס סיסמא בשנית:</label>
+          <input type="password" name="password2" class="form-control inputstl pull-right" required placeholder="הכנס סיסמא בשנית" ng-model="user.password2" >
+
+
+<!--     
+            <label for="gender1" class="control-label">בחר עיר:</label>
+            <select class="form-control inputstl">
+              <option>קבוצת אם חדשה</option>
+              <option>בחירה 1</option>
+              <option>בחירה 2</option>
+              <option>בחירה 3</option>
+            </select>                  
+--> 
+        </div>
+ 
+        <div class="col-sm-1"></div>
+     
+        <div class="col-sm-4">
+      
+          <!-- 1 - 3 - 5 -->
+          <label class="control-label pull-right">שם פרטי:</label>
+          <input type="text" name="firstName" class="form-control inputstl pull-right" required placeholder="הכנס שם פרטי" ng-model="user.userFirstName">
+
+          <label class="control-label pull-right">הכנס דואר אלקטרוני:</label>
+          <input type="email" name="email1" class="form-control inputstl pull-right" required placeholder="הכנס כתובת דואר אלקטרוני"ל ng-model="user.email1">
+
+          <div ng-show="myForm.email.$error.email" class="error">אימייל לא תקין</div>
+          <div ng-show="myForm.email.$error.required &amp;&amp; myForm.email.$touched" class="error">שדה חובה!</div>
+
+          <label class="control-label pull-right">הכנס סיסמא:</label>
+          <input type="password1" name="password1" class="form-control inputstl pull-right" required placeholder="הכנס סיסמא" ng-model="user.password1" >
+
+        </div>
+ 
+        <div class="col-sm-2"></div>
+      
+        <div class="col-sm-12 text-center"><br></div>
+
+        <div class="col-sm-12 text-center">
+          <button ng-click="registerUser()" ng-disabled="myForm.$invalid" type="submit" class="btn btn-lg btn-info" data-toggle="modal" data-target="#fedbackModal">הרשם!</button>
+        </div>
+     
+</form>
+
+
+
+
     </div>
-
-
-
-
     </div>
   </div>
 </div>
 
 
-</form>
+
 
       <!-- Modal -->
       <div class="modal fade" id="fedbackModal" tabindex="-1" role="dialog" aria-labelledby="myCurrectModalLabel">

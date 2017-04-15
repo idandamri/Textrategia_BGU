@@ -22,6 +22,11 @@ textrategiaApp.controller("RegisterController",function($scope){
 
     }
 
+    $scope.registerUser = function(){
+        var userFirstName = $scope.user.userFirstName;
+        var userEmail = $scope.user.userEmail;
+    }
+
 });
 
 
