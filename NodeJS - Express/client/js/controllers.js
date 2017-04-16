@@ -13,52 +13,6 @@ textrategiaApp.controller("TeacherController",function($scope){
 
 });
 
-var groups_and_tasks_mock =
-    {
-        "groups": [
-            {
-                "GroupId": 1111,
-                "GroupName": "זברות צבעוניות",
-                "teacherID": "1",
-                "IsMasterGroup": 1,
-                "GroupeCode": "1"
-            },
-            {
-                "GroupId": 1234567,
-                "GroupName": "כוכבים נופלים",
-                "teacherID": "1",
-                "IsMasterGroup": 0,
-                "GroupeCode": "2"
-            },
-            {
-                "GroupId": 1234567,
-                "GroupName": "כיתה ה' 3",
-                "teacherID": "1",
-                "IsMasterGroup": 0,
-                "GroupeCode": "3"
-            }
-        ],
-        "tasks": [
-            {
-                "T_id": 1,
-                "T_title": "נסיכות דיסני ובני זוגם",
-                "T_description": "מטלת ניסוי לבסיס הנתונים"
-            },
-            {
-                "T_id": 2,
-                "T_title": "המדריך המהיר לזיהוי מיניונים",
-                "T_description": "מטלת ניסוי לבסיס הנתונים"
-            },
-            {
-                "T_id": 3,
-                "T_title": "ביב בופ ורוקסטדי, הסיפור האמיתי",
-                "T_description": "מטלת ניסוי לבסיס הנתונים"
-            }
-        ]
-    };
-
-var empty = {"groups":[],"tasks":[{"T_id":1,"T_title":"מטלת ניסוי","T_description":"מטלת ניסוי לבסיס הנתונים"},{"T_id":2,"T_title":"2מטלת ניסוי","T_description":"מטלת ניסוי לבסיס הנתונים"}]};
-
 
 textrategiaApp.controller("GroupManagementController",function($scope,$http){
     $scope.teacherName = getUserName();

@@ -465,7 +465,7 @@ app.post('/createTask', function (req, res) {
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '1q2w3e4r',//'123456' to upload*/
+    password: '123456',//'1q2w3e4r' to upload*/
     database: 'textra_db',
     multipleStatements: true
 });
@@ -479,15 +479,15 @@ connection.connect(function (err) {
 
 
 // var server = app.listen(8081, function () {
-var server = app.listen(8081, function () {
-    var host = server.address().address;
-    var port = server.address().port;
-    console.log("Example app listening at http://%s:%s", host, port)
-});
-
-// var server = app.listen(8081, "127.0.0.1", function () {
-//     console.log("Example app listening at ");
+// var server = app.listen(8081, function () {
+//     var host = server.address().address;
+//     var port = server.address().port;
+//     console.log("Example app listening at http://%s:%s", host, port)
 // });
+
+var server = app.listen(8081, "127.0.0.1", function () {
+    console.log("Example app listening at ");
+});
 
 setInterval(function () {
     connection.query('SELECT 1');
