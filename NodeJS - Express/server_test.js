@@ -261,7 +261,8 @@ app.post('/createGroup', function (req, res) {
 
 
 app.post('/registerUser', function (req, res) {
-    var groupCode = req.body.group_id;
+    var personalId = req.body.personal_id;
+    var groupCode = req.body.group_code;
     var lastName = req.body.last_name;
     var firstName = req.body.first_name;
     var school = req.body.school;
@@ -280,7 +281,7 @@ app.post('/registerUser', function (req, res) {
         else {
             var group_id = groups[0].GroupId;
 
-            var query2 = queries.registerUser(lastName, firstName, school, city, userType, email, password);
+            var query2 = queries.registerUser(personalId, lastName, firstName, school, city, userType, email, password);
             console.log('\n' + query2 + '\n');
             connection.query(query2, function (err, ans, field) {
                 if (err) {

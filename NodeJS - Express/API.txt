@@ -116,7 +116,7 @@ API:
     example to output : 
     
 10.post('/registerUser')
-	input: group_id, last_name, first_name, school, city, user_type, email, pass 
+	input: personal_id, group_id, last_name, first_name, school, city, user_type, email, pass
     output: status 200 & "Registered!!" /400 - server error
     example to output : [
     

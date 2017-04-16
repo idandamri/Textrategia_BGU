@@ -282,8 +282,8 @@ describe("Testing Textrategia API", function () {
 
     describe("Testing Register User", function () {
         it('Test login Request - correct deatils', function (done) {
-            request(app).post("/registerUser").send({"group_code":"123456","lastName":"Gudes","firstName":"Ehud",
-                "school":"BGU","city":"B7", "userType": "0" ,"email": "shakedkr@post.bgu.ac.il", "password": "123456"})
+            request(app).post("/registerUser").send({"personal_id":"12121211","group_code":"0123","last_name":"Gudes","first_name":"Ehud",
+                "school":"BGU","city":"B7", "user_type": "0" ,"email": "shakedkr@post.bgu.ac.il", "password": "123456"})
                 .expect(200)
                 .end(done);
         });

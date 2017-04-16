@@ -130,8 +130,8 @@ module.exports =
             return query;
         },
 
-        registerUser: function (lastName, firstName, school, city, userType, email, password) {
-            var query = "insert into textra_db.users values(null, '" + lastName + "', '" + firstName + "',' " + school
+        registerUser: function (personalId, lastName, firstName, school, city, userType, email, password) {
+            var query = "insert into textra_db.users values('"+ personalId+"', '" + lastName + "', '" + firstName + "',' " + school
                 + "', '" + city + "', '" + userType + "', '" + email + "', '" + password + "');";
             return query;
         },
