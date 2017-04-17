@@ -8,23 +8,67 @@ var _url = "http://localhost:8081";
 
 
 textrategiaApp.controller("RegisterController",function($scope){
-    $scope.checkedCode = false ;// init to false
+    
+    $scope.checkedCode = false ;            // init to false
+    $scope.userCode = "";                   // must be kept as global
 
     $(document).ready(function(){
         $('[data-toggle="tooltip"]').tooltip();   
     });
 
-    // this function check code and chage type of user
+    // validate user code with server, and set feedback
     $scope.checkUserCode  = function(){
-        $scope.checkedCode = true;
+
+        var badFeedback = "הקוד לא תקין, אנא פנה לרכז טקסטרטגיה";
+        var goodFeedback = "הקוד נקלט, הנך מוזמן להמשיך בתהליך הרישום";
+
+
+        $scope.userCode  = $scope.user.userCode;
+        // alert($scope.userCode);
+
+        // ################################################
+        // ######### send userCode to server here ######### 
+        // ################################################
 
         $scope.isUserTeacher = false; // this get set by server response
-
+        
+        // if 200 then good feedback + change flag.
+        $scope.serverFeedback = goodFeedback;
+        $scope.checkedCode = true; // flag, change after server 'OK' response only.        
+        
+        // else bad feedback + DONT CHANGE FLAG
+        // $scope.serverFeedback = badFeedback;
     }
 
+
+    // send information to server + $scope.userCode must be also sent.
     $scope.registerUser = function(){
+        $scope.registerMod = true;
+
         var userFirstName = $scope.user.userFirstName;
-        var userEmail = $scope.user.userEmail;
+        var userEmail1 = $scope.user.userEmail1;
+        var userPassword1 = $scope.user.userPassword1;
+
+        var userLastName = $scope.user.userLastName;
+        var userEmail2 = $scope.user.userEmail2;
+        var userPassword2 = $scope.user.userPassword2;
+
+        // temporry, will pretty it up later.
+        if (userEmail1 != userEmail2){
+        $scope.serverFeedback = "email must be the same!";
+        }
+        
+        // temporry, will pretty it up later.
+        if (userPassword1 != userPassword2){
+        $scope.serverFeedback = "password must be the same";
+        }
+
+        if (userEmail1 == userEmail2 && userPassword1 == userPassword2 ){
+            //contact server
+            $scope.serverFeedback = "הרישום התבצע בהצלחה!"
+        }
+
+
     }
 
 });
