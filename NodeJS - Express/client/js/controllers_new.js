@@ -85,6 +85,28 @@ textrategiaApp.controller("TeacherController",function($scope){
 textrategiaApp.controller("CreateGroupController",function($scope){
     $scope.teacherName = getUserName();
 
+    $scope.createGroup = function (){
+        
+        var groupName = $scope.group.groupName;
+
+        var sel1 = document.getElementById("group_master");
+
+        var opt1;
+        for (i = 0 ; i < sel1.options.length ; i++){
+            opt1 = sel1.options[i];
+            if (opt1.selected == true){
+                //alert(opt1.value);              // 1 means yes, 0 means no
+                break;
+            }
+        }
+
+        //alert(groupName);
+
+
+        $scope.serverFeedback = "הקבוצה נוצר בהצלחה, קוד הקבוצה הוא: "
+        $scope.output_groupCode = "1234"; // this will be provided to the user, so he will know the code.
+    }
+
 });
 
 
