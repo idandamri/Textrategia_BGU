@@ -47,6 +47,10 @@ textrategiaApp.config(function($routeProvider){
 		templateUrl:'views/createGroup.html',
 		controller :'CreateGroupController'
 	})
+		.when('/createQuestion', {
+		templateUrl:'views/createQuestion.html',
+		controller :'CreateQuestionController'
+	})
 		.otherwise({
 		templateUrl:'views/welcome.html'
 		//controller :'lalaController'

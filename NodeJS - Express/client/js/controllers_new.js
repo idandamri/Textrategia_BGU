@@ -82,16 +82,79 @@ textrategiaApp.controller("TeacherController",function($scope){
 });
 
 
+
+textrategiaApp.controller("CreateQuestionController",function($scope){
+    $scope.teacherName = getUserName();
+
+
+    $scope.sendNewQuestion = function (){
+
+        // question_title is argument 1
+        var question_title = $scope.question.question_title;
+
+        // (IS MULTIPLE ANS QUESTION) opt1.value is argument 2
+        var opt1;
+        var sel1 = document.getElementById("is_multiple_ans");
+        for (i = 0 ; i < sel1.options.length ; i++){
+            opt1 = sel1.options[i];
+            if (opt1.selected == true){
+                //alert(opt1.value);              // 1 means yes, 0 means no
+                break;
+            }
+        }
+        
+        // (MEDIA TYPE) opt2.value is argument 3  
+        var opt2;
+        var sel2 = document.getElementById("media_type");
+        for (i = 0 ; i < sel2.options.length ; i++){
+            opt2 = sel2.options[i];
+            if (opt2.selected == true){
+                //alert(opt2.value);              // 0 is no media.... @SHAKED - CHANGE AS YOU WISH
+                break;
+            }
+        }
+
+        // arguments 4 - 8
+        var question_media = $scope.question.question_media;
+        var quest_correct_fb = $scope.question.quest_correct_fb;
+        var quest_incorrect_fb = $scope.question.quest_incorrect_fb;
+        var quest_skill = $scope.question.quest_skill
+        var quest_difficulty = $scope.question.quest_difficulty
+
+
+        // the information: 
+        // quest_proffesion /// quest_is_approved //// who_created /// quest_disabled
+        // is not user inserted
+
+
+
+        // ####################################################
+        // SEND INFORMATION TO SERVER HERE
+        // ####################################################
+
+
+        // change server feedback acording to succuss or failure!
+        $scope.serverFeedback = "השאלה נשלחה בהצלחה!"
+    }
+
+});
+
+
+
+
 textrategiaApp.controller("CreateGroupController",function($scope){
     $scope.teacherName = getUserName();
 
+    // Only 2 arguments. name & is_master_group
     $scope.createGroup = function (){
         
+        // groupName is argument 1
         var groupName = $scope.group.groupName;
 
-        var sel1 = document.getElementById("group_master");
 
+        // opt1.value is argument 2
         var opt1;
+        var sel1 = document.getElementById("group_master");
         for (i = 0 ; i < sel1.options.length ; i++){
             opt1 = sel1.options[i];
             if (opt1.selected == true){
@@ -100,9 +163,15 @@ textrategiaApp.controller("CreateGroupController",function($scope){
             }
         }
 
-        //alert(groupName);
 
 
+        // ####################################################
+        // SEND INFORMATION TO SERVER HERE
+        // ####################################################
+
+
+
+        // change server feedback acording to succuss or failure!
         $scope.serverFeedback = "הקבוצה נוצר בהצלחה, קוד הקבוצה הוא: "
         $scope.output_groupCode = "1234"; // this will be provided to the user, so he will know the code.
     }
@@ -173,7 +242,7 @@ textrategiaApp.controller("GroupManagementController",function($scope,$http){
 
 
 
-//* STUDENTS CONTROLLERS*//
+//* ########################### STUDENTS CONTROLLERS ########################### *//
 
 //lst of string, all possible answers
 var get_answers_lst_from_jason = function(myJason) {
