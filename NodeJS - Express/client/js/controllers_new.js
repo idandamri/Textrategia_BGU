@@ -85,6 +85,19 @@ textrategiaApp.controller("TeacherController",function($scope){
 
 textrategiaApp.controller("CreateQuestionController",function($scope){
     $scope.teacherName = getUserName();
+    $scope.insertPossibleAnswersMode = false;
+
+
+    $scope.editQuestionMode = function(){
+        $scope.insertPossibleAnswersMode = false;
+    }
+
+
+    $scope.possibleAnswersMode = function(){
+        $scope.insertPossibleAnswersMode = true;
+
+    }
+
 
 
     $scope.sendNewQuestion = function (){
@@ -127,6 +140,27 @@ textrategiaApp.controller("CreateQuestionController",function($scope){
         // is not user inserted
 
 
+
+        // get possible answers infomation!
+        var possible_ans_1 = $scope.question.possible_ans_1;
+        var possible_ans_2 = $scope.question.possible_ans_2;
+        var possible_ans_3 = $scope.question.possible_ans_3;
+        var possible_ans_4 = $scope.question.possible_ans_4;
+
+        // (CORRECT ANS) opt3.value is argument   
+        var opt3;
+        var sel3 = document.getElementById("correct_ans");
+        for (i = 0 ; i < sel3.options.length ; i++){
+            opt3 = sel3.options[i];
+            if (opt3.selected == true){
+                // alert(opt3.value);              // 0 is ans1 , 1 is ans2 ...
+                break;
+            }
+        }
+
+        // alert("title: " + question_title + " op1: " + opt1.value + " op2: " + opt2.value + " question_media :" + question_media);
+        // alert("y: " + quest_correct_fb + " n: " + quest_incorrect_fb + " skill: " + quest_skill +" diff: " + quest_difficulty);
+        // alert("1: " + possible_ans_1 + " 2: " + possible_ans_2 + " 3: " +  possible_ans_3 + " 4: " + possible_ans_4)
 
         // ####################################################
         // SEND INFORMATION TO SERVER HERE
