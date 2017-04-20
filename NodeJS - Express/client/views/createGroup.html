@@ -16,12 +16,13 @@
       </ul>
       <p class="navbar-text">בהצלחה</p>
       <ul class="nav navbar-nav navbar-right">
-        <li class="disabled"><a href="#"><span class="glyphicon glyphicon-user"></span> הרשם</a></li>
+        <li> <a href="#register"><span class="glyphicon glyphicon-user"></span> הרשם</a></li>
         <li><a href="#login"><span class="glyphicon glyphicon-log-in"></span> התחברות</a></li>
       </ul>
     </div>
   </div>
 </nav>
+
 
 <div id="wrap">
   <div class="container" id="c_1">
@@ -30,55 +31,47 @@
 
       <div class="col-sm-12">  <h1>שלום, {{teacherName}}!</h1>  <h3>צור קבוצת לימוד חדשה: </h3>  </div>
 
-      <form class="form-horizontal" role="form">
+
+      <form name="myForm" class="form-horizontal" role="form">
 
         <div class="col-sm-2"></div>
 
-        <div class="col-sm-3">
+        <div class="col-sm-4">
 
-           <div class="form-group">
-            <label for="name1" class="control-label pull-right">שם הקבוצה:</label>
-            <input type="email" class="form-control inputstl pull-right" id="name1" placeholder="Enter Your Full Name">
-          </div>
-
-          <div class="form-group">
-            <label for="gender1" class="control-label">קבוצת אם:</label>
-            <select class="form-control inputstl" id="gender1">
-              <option>קבוצת אם חדשה</option>
-              <option>בחירה 1</option>
-              <option>בחירה 2</option>
-              <option>בחירה 3</option>
+          <!--  2 -->
+          <label class="control-label pull-right">האם קבוצת אם:&nbsp;&nbsp;</label>
+            <select class="form-control inputstl" id="group_master">
+              <option value=1>כן</option>
+              <option value=0>לא</option>
             </select>                  
-          </div>
-
         
+
         </div>
  
-        <div class="col-sm-2"></div>
+        <div class="col-sm-1"></div>
      
-        <div class="col-sm-3">
+        <div class="col-sm-4">
       
-          <div class="form-group">
-            <label for="name1" class="control-label pull-right">קוד קבוצה:</label>
-            <input type="number" class="form-control inputstl pull-right" id="name1" placeholder="הכנס קוד קבוצה">
-          </div>
+          <!-- 1 -->
+          <label class="control-label pull-right">שם פרטי:&nbsp;&nbsp;</label>
+          <!-- <span class="label label-danger"> Danger Label</span> -->
+          <input type="text" name="groupName" class="form-control inputstl pull-right" required placeholder="הכנס שם פרטי" ng-model="group.groupName">
 
-          <div class="form-group">
-              <label for="name1" class="control-label pull-right">שם הקבוצה:</label>
-              <input type="text" class="form-control inputstl pull-right" id="name1" placeholder="הכנס שם קבוצה">
-          </div>
+
         </div>
-
  
         <div class="col-sm-2"></div>
       
         <div class="col-sm-12 text-center"><br></div>
 
         <div class="col-sm-12 text-center">
-          <button ng-click="sendTaskToGroup()" type="submit" class="btn btn-lg btn-info" data-toggle="modal" data-target="#fedbackModal">שלח מטלה</button>
+          <button ng-click="createGroup()" ng-disabled="myForm.$invalid" type="submit" class="btn btn-lg btn-info" data-toggle="modal" data-target="#fedbackModal">צור קבוצה!</button>
         </div>
      
 </form>
+
+
+
       
     </div>      
   </div>
@@ -102,8 +95,8 @@
                 </div>
                 <div class="col-xs-7 col-sm-9">
                 <br>
-                  <span ng-show="!messageSent"> {{serverFeedback}}</span>           
-                  <span ng-show="messageSent"> המטלה נשלחה </span>
+                  <span> {{serverFeedback}}</span>   
+                  <span class="text-info"> <strong><em>{{output_groupCode}}</em></strong></span>       
                 </div>
               </div>
             </div>

@@ -16,7 +16,7 @@
       </ul>
       <p class="navbar-text">בהצלחה</p>
       <ul class="nav navbar-nav navbar-right">
-        <li class="disabled"><a href="#"><span class="glyphicon glyphicon-user"></span> הרשם</a></li>
+        <li><a href="#register"><span class="glyphicon glyphicon-user"></span> הרשם</a></li>
         <li><a href="#login"><span class="glyphicon glyphicon-log-in"></span> התחברות</a></li>
       </ul>
     </div>
@@ -39,13 +39,13 @@
         <h3> <span class="badge" data-toggle="tooltip" title="קוד המונפק באופן אישי לכל משתמש על ידי רכז טקסטרטגיה">מה זה קוד משתמש?</span></h3>
       </div>  
       <div class="col-sm-5">
-        <div class="form-group row">
-              <input type="email" class="form-control inputstl form-control-lg" id="lgFormGroupInput" placeholder="הכנס קוד משתמש" > 
-        </div>
+        <form name="myFirstForm" class="form-group row" role="form">
+              <input type="text" name="code" required class="form-control inputstl form-control-lg" id="lgFormGroupInput" placeholder="הכנס קוד משתמש" ng-model="user.userCode"> 
+        </form>
       </div>
       <div class="col-sm-3"> <br> </div>
       <div class="col-sm-12 text-center">
-        <button class="btn  btn-info" data-target="#fedbackModal" data-toggle="modal" type="submit" ng-click="checkUserCode()">שלח קוד</button>
+        <button ng-click="checkUserCode()" ng-disabled="myFirstForm.$invalid" type="submit" class="btn btn-lg btn-info" data-toggle="modal" data-target="#fedbackModal">שלח קוד</button>
       </div>
 </div>
 
@@ -60,28 +60,22 @@
         <div class="col-sm-4">
 
           <!--  2 - 4 - 6 -->
-          <label class="control-label pull-right">שם משפחה:</label>
+          <label class="control-label pull-right">שם משפחה:&nbsp;&nbsp;</label>
+          <!-- <span class="label label-danger"> Danger Label</span> -->
           <input type="text" name="lastName" class="form-control inputstl pull-right" required placeholder="הכנס שם משפחה" ng-model="user.userLastName">
 
-          <label class="control-label pull-right">הכנס דואר אלקטרוני בשנית:</label>
-          <input type="email" name="email2" class="form-control inputstl pull-right" required placeholder="הכנס כתובת דואר אלקטרוני"ל ng-model="user.email2">
+          <label class="control-label pull-right">הכנס דואר אלקטרוני בשנית:&nbsp;&nbsp;</label>
+          <!-- <span class="label label-danger"> Danger Label</span> -->
+          <input type="email" name="email2" class="form-control inputstl pull-right" required placeholder="הכנס כתובת דואר אלקטרוני"ל ng-model="user.userEmail2">
 
-          <div ng-show="myForm.email2.$error.email2" class="error">אימייל לא תקין</div>
+<!--       <div ng-show="myForm.email2.$error.email2" class="error">אימייל לא תקין</div>
           <div ng-show="myForm.email2.$error.required &amp;&amp; myForm.email2.$touched" class="error">שדה חובה!</div>
+ -->
+          <label class="control-label pull-right">הכנס סיסמא בשנית:&nbsp;&nbsp;</label>
+          <!-- <span class="label label-danger"> Danger Label</span> -->
+          <input type="password" name="password2" class="form-control inputstl pull-right" required placeholder="הכנס סיסמא בשנית" ng-model="user.userPassword2" >
+              
 
-          <label class="control-label pull-right">הכנס סיסמא בשנית:</label>
-          <input type="password" name="password2" class="form-control inputstl pull-right" required placeholder="הכנס סיסמא בשנית" ng-model="user.password2" >
-
-
-<!--     
-            <label for="gender1" class="control-label">בחר עיר:</label>
-            <select class="form-control inputstl">
-              <option>קבוצת אם חדשה</option>
-              <option>בחירה 1</option>
-              <option>בחירה 2</option>
-              <option>בחירה 3</option>
-            </select>                  
---> 
         </div>
  
         <div class="col-sm-1"></div>
@@ -89,17 +83,20 @@
         <div class="col-sm-4">
       
           <!-- 1 - 3 - 5 -->
-          <label class="control-label pull-right">שם פרטי:</label>
+          <label class="control-label pull-right">שם פרטי:&nbsp;&nbsp;</label>
+          <!-- <span class="label label-danger"> Danger Label</span> -->
           <input type="text" name="firstName" class="form-control inputstl pull-right" required placeholder="הכנס שם פרטי" ng-model="user.userFirstName">
 
-          <label class="control-label pull-right">הכנס דואר אלקטרוני:</label>
-          <input type="email" name="email1" class="form-control inputstl pull-right" required placeholder="הכנס כתובת דואר אלקטרוני"ל ng-model="user.email1">
+          <label class="control-label pull-right">הכנס דואר אלקטרוני:&nbsp;&nbsp;</label>
+          <!-- <span class="label label-danger"> Danger Label</span> -->
+          <input type="email" name="email1" class="form-control inputstl pull-right" required placeholder="הכנס כתובת דואר אלקטרוני"ל ng-model="user.userEmail1">
 
           <div ng-show="myForm.email.$error.email" class="error">אימייל לא תקין</div>
           <div ng-show="myForm.email.$error.required &amp;&amp; myForm.email.$touched" class="error">שדה חובה!</div>
 
-          <label class="control-label pull-right">הכנס סיסמא:</label>
-          <input type="password1" name="password1" class="form-control inputstl pull-right" required placeholder="הכנס סיסמא" ng-model="user.password1" >
+          <label class="control-label pull-right">הכנס סיסמא:&nbsp;&nbsp;</label>
+          <!-- <span class="label label-danger"> Danger Label</span> -->
+          <input type="password1" name="password1" class="form-control inputstl pull-right" required placeholder="הכנס סיסמא" ng-model="user.userPassword1" >
 
         </div>
  
@@ -108,6 +105,8 @@
         <div class="col-sm-12 text-center"><br></div>
 
         <div class="col-sm-12 text-center">
+
+        <!-- register Button! -->
           <button ng-click="registerUser()" ng-disabled="myForm.$invalid" type="submit" class="btn btn-lg btn-info" data-toggle="modal" data-target="#fedbackModal">הרשם!</button>
         </div>
      
@@ -140,8 +139,8 @@
                 </div>
                 <div class="col-xs-7 col-sm-9">
                 <br>
-                  <span ng-show="!messageSent"> {{serverFeedback}}</span>           
-                  <span ng-show="messageSent"> המטלה נשלחה </span>
+                  <span> {{serverFeedback}}</span>           
+                  <!-- <span ng-show="registerMod"> registermod </span> -->
                 </div>
               </div>
             </div>

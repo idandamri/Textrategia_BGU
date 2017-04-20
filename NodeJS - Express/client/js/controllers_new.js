@@ -8,23 +8,67 @@ var _url = "http://localhost:8081";
 
 
 textrategiaApp.controller("RegisterController",function($scope){
-    $scope.checkedCode = false ;// init to false
+    
+    $scope.checkedCode = false ;            // init to false
+    $scope.userCode = "";                   // must be kept as global
 
     $(document).ready(function(){
         $('[data-toggle="tooltip"]').tooltip();   
     });
 
-    // this function check code and chage type of user
+    // validate user code with server, and set feedback
     $scope.checkUserCode  = function(){
-        $scope.checkedCode = true;
+
+        var badFeedback = "הקוד לא תקין, אנא פנה לרכז טקסטרטגיה";
+        var goodFeedback = "הקוד נקלט, הנך מוזמן להמשיך בתהליך הרישום";
+
+
+        $scope.userCode  = $scope.user.userCode;
+        // alert($scope.userCode);
+
+        // ################################################
+        // ######### send userCode to server here ######### 
+        // ################################################
 
         $scope.isUserTeacher = false; // this get set by server response
-
+        
+        // if 200 then good feedback + change flag.
+        $scope.serverFeedback = goodFeedback;
+        $scope.checkedCode = true; // flag, change after server 'OK' response only.        
+        
+        // else bad feedback + DONT CHANGE FLAG
+        // $scope.serverFeedback = badFeedback;
     }
 
+
+    // send information to server + $scope.userCode must be also sent.
     $scope.registerUser = function(){
+        $scope.registerMod = true;
+
         var userFirstName = $scope.user.userFirstName;
-        var userEmail = $scope.user.userEmail;
+        var userEmail1 = $scope.user.userEmail1;
+        var userPassword1 = $scope.user.userPassword1;
+
+        var userLastName = $scope.user.userLastName;
+        var userEmail2 = $scope.user.userEmail2;
+        var userPassword2 = $scope.user.userPassword2;
+
+        // temporry, will pretty it up later.
+        if (userEmail1 != userEmail2){
+        $scope.serverFeedback = "email must be the same!";
+        }
+        
+        // temporry, will pretty it up later.
+        if (userPassword1 != userPassword2){
+        $scope.serverFeedback = "password must be the same";
+        }
+
+        if (userEmail1 == userEmail2 && userPassword1 == userPassword2 ){
+            //contact server
+            $scope.serverFeedback = "הרישום התבצע בהצלחה!"
+        }
+
+
     }
 
 });
@@ -38,8 +82,133 @@ textrategiaApp.controller("TeacherController",function($scope){
 });
 
 
+
+textrategiaApp.controller("CreateQuestionController",function($scope){
+    $scope.teacherName = getUserName();
+    $scope.insertPossibleAnswersMode = false;
+
+
+    $scope.editQuestionMode = function(){
+        $scope.insertPossibleAnswersMode = false;
+    }
+
+
+    $scope.possibleAnswersMode = function(){
+        $scope.insertPossibleAnswersMode = true;
+
+    }
+
+
+
+    $scope.sendNewQuestion = function (){
+
+        // question_title is argument 1
+        var question_title = $scope.question.question_title;
+
+        // (IS MULTIPLE ANS QUESTION) opt1.value is argument 2
+        var opt1;
+        var sel1 = document.getElementById("is_multiple_ans");
+        for (i = 0 ; i < sel1.options.length ; i++){
+            opt1 = sel1.options[i];
+            if (opt1.selected == true){
+                //alert(opt1.value);              // 1 means yes, 0 means no
+                break;
+            }
+        }
+        
+        // (MEDIA TYPE) opt2.value is argument 3  
+        var opt2;
+        var sel2 = document.getElementById("media_type");
+        for (i = 0 ; i < sel2.options.length ; i++){
+            opt2 = sel2.options[i];
+            if (opt2.selected == true){
+                //alert(opt2.value);              // 0 is no media.... @SHAKED - CHANGE AS YOU WISH
+                break;
+            }
+        }
+
+        // arguments 4 - 8
+        var question_media = $scope.question.question_media;
+        var quest_correct_fb = $scope.question.quest_correct_fb;
+        var quest_incorrect_fb = $scope.question.quest_incorrect_fb;
+        var quest_skill = $scope.question.quest_skill
+        var quest_difficulty = $scope.question.quest_difficulty
+
+
+        // the information: 
+        // quest_proffesion /// quest_is_approved //// who_created /// quest_disabled
+        // is not user inserted
+
+
+
+        // get possible answers infomation!
+        var possible_ans_1 = $scope.question.possible_ans_1;
+        var possible_ans_2 = $scope.question.possible_ans_2;
+        var possible_ans_3 = $scope.question.possible_ans_3;
+        var possible_ans_4 = $scope.question.possible_ans_4;
+
+        // (CORRECT ANS) opt3.value is argument   
+        var opt3;
+        var sel3 = document.getElementById("correct_ans");
+        for (i = 0 ; i < sel3.options.length ; i++){
+            opt3 = sel3.options[i];
+            if (opt3.selected == true){
+                // alert(opt3.value);              // 0 is ans1 , 1 is ans2 ...
+                break;
+            }
+        }
+
+        // alert("title: " + question_title + " op1: " + opt1.value + " op2: " + opt2.value + " question_media :" + question_media);
+        // alert("y: " + quest_correct_fb + " n: " + quest_incorrect_fb + " skill: " + quest_skill +" diff: " + quest_difficulty);
+        // alert("1: " + possible_ans_1 + " 2: " + possible_ans_2 + " 3: " +  possible_ans_3 + " 4: " + possible_ans_4)
+
+        // ####################################################
+        // SEND INFORMATION TO SERVER HERE
+        // ####################################################
+
+
+        // change server feedback acording to succuss or failure!
+        $scope.serverFeedback = "השאלה נשלחה בהצלחה!"
+    }
+
+});
+
+
+
+
 textrategiaApp.controller("CreateGroupController",function($scope){
     $scope.teacherName = getUserName();
+
+    // Only 2 arguments. name & is_master_group
+    $scope.createGroup = function (){
+        
+        // groupName is argument 1
+        var groupName = $scope.group.groupName;
+
+
+        // opt1.value is argument 2
+        var opt1;
+        var sel1 = document.getElementById("group_master");
+        for (i = 0 ; i < sel1.options.length ; i++){
+            opt1 = sel1.options[i];
+            if (opt1.selected == true){
+                //alert(opt1.value);              // 1 means yes, 0 means no
+                break;
+            }
+        }
+
+
+
+        // ####################################################
+        // SEND INFORMATION TO SERVER HERE
+        // ####################################################
+
+
+
+        // change server feedback acording to succuss or failure!
+        $scope.serverFeedback = "הקבוצה נוצר בהצלחה, קוד הקבוצה הוא: "
+        $scope.output_groupCode = "1234"; // this will be provided to the user, so he will know the code.
+    }
 
 });
 
@@ -107,7 +276,7 @@ textrategiaApp.controller("GroupManagementController",function($scope,$http){
 
 
 
-//* STUDENTS CONTROLLERS*//
+//* ########################### STUDENTS CONTROLLERS ########################### *//
 
 //lst of string, all possible answers
 var get_answers_lst_from_jason = function(myJason) {
