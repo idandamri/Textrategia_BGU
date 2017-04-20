@@ -17,9 +17,7 @@
         <li><a href="#tasks">מטלות</a></li> -->
         
         <!--    DISABLED AS SHOULD BE -->  
-        <li class="disabled"><a href="#student">תלמיד</a></li>
-        <li class="disabled"><a href="#tasks">מטלות</a></li> 
-        
+       
       </ul>
       <p class="navbar-text">בהצלחה</p>
       <ul class="nav navbar-nav navbar-right">
@@ -41,28 +39,28 @@
 <form name="myForm">
         <div class="login-container">
           <div class="row">
-            <div class="col-md-12">
               <div class="form-group">
+            
+            <div class="col-md-12">
                 <label><span class="glyphicon glyphicon-envelope"></span> דואר אלקטרוני: </label>
-                <input type="email" name="email" ng-model="user.username" required class="form-control" placeholder="הכנס כתובת דואר אלקטרוני">
+                  <input type="email" name="email" ng-model="user.username" required class="form-control" placeholder="הכנס כתובת דואר אלקטרוני">
+                
                 <div ng-show="myForm.email.$error.email" class="error">אימייל לא תקין</div>
                 <div ng-show="myForm.email.$error.required &amp;&amp; myForm.email.$touched" class="error">שדה חובה!</div>
-              </div>
-            </div>
-            <div class="col-md-12">
-              <div class="form-group">
+
                 <label><span class="glyphicon glyphicon-lock"></span> סיסמא: </label>
-                <input type="password" name="pass" ng-model="user.password" required class="form-control" placeholder="הכנס סיסמא">
+                  <input type="password" name="pass" ng-model="user.password" required class="form-control" placeholder="הכנס סיסמא">
                 <div ng-show="myForm.pass.$error.required &amp;&amp; myForm.pass.$touched" class="error">שדה חובה!</div>
-              </div>
             </div>
+
+            <div class="col-md-12"><br></div>
             <div class="col-md-12">
-              <div class="form-group">
+
                 <div class="col-xs-7 col-md-10"></div>
                 <div class="col-xs-5 col-md-2">
                   <button ng-click="authenticate()" ng-disabled="myForm.$invalid" class="btn btn-success pull-right btn-block"> כניסה  <span class="glyphicon glyphicon-thumbs-up"></span></button>
                 </div>
-                <!-- <div class="col-md-1"></div> -->
+
                 <div class="clearfix"></div>
               </div>
             </div>
