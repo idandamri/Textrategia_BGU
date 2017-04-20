@@ -168,4 +168,9 @@ API:
 	input:t_title, t_description, t_owner, t_approved, questions
 	input example:{"t_title":"TiTlE-TeSt","t_description":"desc_desc_desc","t_owner":1,
                 "t_approved":1,"questions":[1,3,4,15,8,7]}
-	output: status 200 "inserted!" / 400 - server error
+	output: status 20
+
+14.post('/checkGroup')
+	input:group_id
+	input example:{"group_id":"0123"}
+	output: status 200 / 400 - "No group found by code error!"
