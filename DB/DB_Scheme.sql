@@ -27,6 +27,7 @@ Q_difficulty varchar(255)not null,
 Q_proffession varchar(255) not null,
 Q_approved boolean not null,
 Q_disabled boolean not null,
+Q_owner varchar(10) not null,
 primary key (Q_id)
 );
 
@@ -44,6 +45,9 @@ create table tasks
 T_id bigint unsigned not null auto_increment,
 T_title varchar(100) not null,
 T_description varchar(500) not null,
+T_owner varchar(10) not null,
+T_approved boolean not null,
+foreign key (T_owner) references users(PersonalID),
 primary key (T_id)
 );
 
@@ -55,13 +59,13 @@ foreign key (Q_id) references questions(Q_id),
 primary key (T_id, Q_id)
 );
 
-create table groups
-(
+create table groups(
 GroupId bigint unsigned not null auto_increment,
 GroupName varchar(100) not null,
 teacherID varchar(10) not null,
 IsMasterGroup boolean not null,
 GroupeCode varchar(20),
+isApproved boolean not null,
 primary key (GroupId),
 foreign key (teacherID) references users(PersonalID)
 );
