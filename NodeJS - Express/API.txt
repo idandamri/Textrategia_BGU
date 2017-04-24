@@ -14,7 +14,24 @@ API:
 1. get('/')
     redirect to home page
 
-2. post('getListOfTasks')
+2. post('login')
+    input: user, password
+    output: status 200 & json with user deatils /401 - unauthorized /
+    example to output : [
+                              {
+                                "PersonalID": "2",
+                                "LastName": "קריגל",
+                                "FirstName": "שקד",
+                                "School": "Mekif H",
+                                "City": "Ashdod",
+                                "UserType": 2,
+                                "Email": "shakedkr@post.bgu.ac.il",
+                                "Pass": "123456"
+                              }
+                            ]
+
+
+3. post('getListOfTasks')
     input: user_id
     output: status 200 & json with task information / status 204 - no content / status 200 -failure
     example to output: [
@@ -25,10 +42,8 @@ API:
                          }
                        ]
 
-
-
-3. post('getQuestion')
-    input: user_id, task_id
+4. post('getQuestion')
+    input: user_id, t_id
     output: status 200 & json with (one) question information / status 676 - End of task
     example to output : {
                           "question": {
@@ -69,35 +84,18 @@ API:
                           ]
                         }
 
-4. post('questionDone')
+/*5. post('questionDone')
     input: question_id , user_id , task_id
     action: delete question from student queue
     output: status 200 -success / 400 - failure
+*/
 
 5. post('updateAnswer')
-    input: user_id, task_id , question_id , answer_id
+    input: user_id, task_id , question_id , ans_id
     action: add instance of answer to db
     output: status 200 -success / 400 - failure
 
-6. post('login')
-    input: user_id, password
-    output: status 200 & json with user deatils /401 - unauthorized /
-    example to output : [
-                          {
-                            "PersonalID": "2",
-                            "LastName": "קריגל",
-                            "FirstName": "שקד",
-                            "School": "Mekif H",
-                            "City": "Ashdod",
-                            "UserType": 2,
-                            "Email": "shakedkr@post.bgu.ac.il",
-                            "Pass": "123456"
-                          }
-                        ]
-						
-						
-						
-						
+-------------------------------------------------------------------------------------
 7.post('/questionApproveOrNot')
 	input: is_approved, q_id
     output: status 200 /400 - server error

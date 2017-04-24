@@ -44,6 +44,7 @@
         </form>
       </div>
       <div class="col-sm-3"> <br> </div>
+
       <div class="col-sm-12 text-center">
         <button ng-click="checkUserCode()" ng-disabled="myFirstForm.$invalid" type="submit" class="btn btn-lg btn-info" data-toggle="modal" data-target="#fedbackModal">שלח קוד</button>
       </div>
@@ -91,12 +92,12 @@
           <!-- <span class="label label-danger"> Danger Label</span> -->
           <input type="email" name="email1" class="form-control inputstl pull-right" required placeholder="הכנס כתובת דואר אלקטרוני"ל ng-model="user.userEmail1">
 
-          <div ng-show="myForm.email.$error.email" class="error">אימייל לא תקין</div>
+<!--           <div ng-show="myForm.email.$error.email" class="error">אימייל לא תקין</div>
           <div ng-show="myForm.email.$error.required &amp;&amp; myForm.email.$touched" class="error">שדה חובה!</div>
-
+ -->
           <label class="control-label pull-right">הכנס סיסמא:&nbsp;&nbsp;</label>
           <!-- <span class="label label-danger"> Danger Label</span> -->
-          <input type="password1" name="password1" class="form-control inputstl pull-right" required placeholder="הכנס סיסמא" ng-model="user.userPassword1" >
+          <input type="password" name="password1" class="form-control inputstl pull-right" required placeholder="הכנס סיסמא" ng-model="user.userPassword1" >
 
         </div>
  

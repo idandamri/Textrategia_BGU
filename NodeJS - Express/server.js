@@ -18,7 +18,7 @@ app.get('/', function (req, res) {
     res.redirect('/index.html');
 });
 
-
+/*
 app.get('/deleteItems', function (req, res) {
     var querieOfDeletion = "DELETE FROM `textra_db`.`students_per_group` WHERE `StudentId`='12121211' and`GroupId`='123456';"
         + "DELETE FROM `textra_db`.`users` WHERE `PersonalID`='12121211';"
@@ -34,7 +34,7 @@ app.get('/deleteItems', function (req, res) {
         }
     });
 
-});
+});*/
 
 
 app.post('/login', function (req, res) {
@@ -142,6 +142,7 @@ app.post('/getQuestion', function (req, res) {
     });
 });
 
+/*
 
 app.post('/questionDone', function deleteQuestionFromQueue(req, res) {
     var quest_id = req.body.q_id;
@@ -159,6 +160,7 @@ app.post('/questionDone', function deleteQuestionFromQueue(req, res) {
         }
     });
 });
+*/
 
 
 app.post('/updateAnswer', function (req, res) {

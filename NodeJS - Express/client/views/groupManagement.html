@@ -48,8 +48,10 @@
       <div class="col-sm-1"></div>
        -->
 
-      <div class="col-sm-6">
-        <div class="form-group">
+      <div class="form-group">
+
+        <!-- 2 -->
+        <div class="col-sm-6">
           <label for="available_task" class="control-label pull-right" >מטלות זמינות:</label>
 
           <select class="form-control inputstl" id="available_task" multiple>
@@ -57,11 +59,11 @@
             <option ng-show="info.tasks==0" disabled>אין מטלות זמינות</option>
           </select>
 
-        </div>
       </div>
 
-      <div class="col-sm-6">
-        <div class="form-group">
+
+      <!-- 1 -->
+        <div class="col-sm-6">
           <label for="available_group" class="control-label pull-right">קבוצות זמינות:</label>
 
           <select class="form-control inputstl" id="available_group" multiple>
@@ -72,11 +74,14 @@
         </div>
       </div>
 
-
+      <div class="col-sm-12"><br></div>
 
       <div class="col-sm-4"></div>
+
+      <!-- Button -->
       <div class="col-sm-4">
-        <button ng-click="sendTaskToGroup()" type="submit" class="btn btn-lg btn-block btn-info" data-toggle="modal" data-target="#fedbackModal">שלח מטלה</button>
+        <button ng-click="sendTaskToGroup()" type="submit" class="btn btn-lg btn-block btn-info" data-toggle="modal" data-target="#fedbackModal">שלח מטלה
+        <span class="glyphicon glyphicon-send"></span>  </button>
       </div>
       <div class="col-sm-4"></div>
 

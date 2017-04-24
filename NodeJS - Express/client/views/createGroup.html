@@ -42,7 +42,7 @@
           <label class="control-label pull-right">האם קבוצת אם:&nbsp;&nbsp;</label>
             <select class="form-control inputstl" id="group_master">
               <option value=1>כן</option>
-              <option value=0>לא</option>
+              <!-- <option value=0>לא</option> -->
             </select>                  
         
 
@@ -53,9 +53,9 @@
         <div class="col-sm-4">
       
           <!-- 1 -->
-          <label class="control-label pull-right">שם פרטי:&nbsp;&nbsp;</label>
+          <label class="control-label pull-right">הכנס שם קבוצה:&nbsp;&nbsp;</label>
           <!-- <span class="label label-danger"> Danger Label</span> -->
-          <input type="text" name="groupName" class="form-control inputstl pull-right" required placeholder="הכנס שם פרטי" ng-model="group.groupName">
+          <input type="text" name="groupName" class="form-control inputstl pull-right" required placeholder="הכנס שם קבוצה:" ng-model="group.groupName">
 
 
         </div>
@@ -65,7 +65,8 @@
         <div class="col-sm-12 text-center"><br></div>
 
         <div class="col-sm-12 text-center">
-          <button ng-click="createGroup()" ng-disabled="myForm.$invalid" type="submit" class="btn btn-lg btn-info" data-toggle="modal" data-target="#fedbackModal">צור קבוצה!</button>
+          <button ng-click="createGroup()" ng-disabled="myForm.$invalid" type="submit" class="btn btn-lg btn-info" data-toggle="modal" data-target="#fedbackModal">צור קבוצה!  <span class="glyphicon glyphicon-king"></span>
+          </button>
         </div>
      
 </form>
