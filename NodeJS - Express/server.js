@@ -2,7 +2,7 @@
 var express = require('express');
 var mysql = require('mysql');
 var cors = require('cors');
-var path = require('path');
+/*var path = */require('path');
 var app = express();
 app.use(cors());
 var queries = require("./queryForDB.js");
@@ -19,6 +19,24 @@ app.get('/', function (req, res) {
 });
 
 
+app.get('/deleteItems', function (req, res) {
+    var querieOfDeletion = "DELETE FROM `textra_db`.`students_per_group` WHERE `StudentId`='12121211' and`GroupId`='123456';"
+        + "DELETE FROM `textra_db`.`users` WHERE `PersonalID`='12121211';"
+        + "DELETE FROM `textra_db`.`instances_of_answers` WHERE `A_id`='1' and`Q_id`='1' and`T_id`='1' and`studentId`='2';";
+    console.log('\n' + querieOfDeletion + '\n');
+    connection.query(querieOfDeletion, function (err) {
+        if (err) {
+            console.log(err);
+            res.status(400).send("deletion error");
+        }
+        else {
+            res.status(200).send("Deleted!");
+        }
+    });
+
+});
+
+
 app.post('/login', function (req, res) {
     var user_name = req.body.user;
     /* user_name can be id or email */
@@ -27,7 +45,7 @@ app.post('/login', function (req, res) {
     console.log('Got a login request from: \n\n!!!\n\n' + user_name + "," + password);
     var query = queries.getDataForUserByIdOrEmail(user_name, password);
     console.log("This is the query: " + query);
-    connection.query(query, function (err, ans, field) {
+    connection.query(query, function (err, ans) {
         if (err) {
             console.log("err" + err);
             res.status(400).send("login Fail Error");
@@ -53,10 +71,10 @@ app.post('/getListOfTasks', function (req, res) {
     var user_id = req.body.user_id;
     var query = queries.gelAllTaskTitleByStudentId(user_id);
     console.log(query);
-    connection.query(query, function (err, tasks, field) {
+    connection.query(query, function (err, tasks) {
 
         if (!err) {
-            console.log("got a list of task response")
+            console.log("got a list of task response");
             console.log(JSON.stringify(tasks));
             if (tasks.length > 0)
                 res.status(200).json(tasks);
@@ -75,7 +93,7 @@ app.post('/getQuestion', function (req, res) {
     var t_id = req.body.t_id;
     var question = "";
     var tasksQid = queries.getSingleQuestionIdFromTaskIdAndUserId(user_id, t_id);
-    connection.query(tasksQid, function (err, row, field) {
+    connection.query(tasksQid, function (err, row) {
         if (err) {
             console.log("Error with query for question for task");
         }
@@ -87,10 +105,10 @@ app.post('/getQuestion', function (req, res) {
                     var query = queries.getFullQuestionByQid(row[0].Q_id);
                     console.log(query);
                     console.log("Got full question");
-                    connection.query(query, function (err, ans, field) {
+                    connection.query(query, function (err, ans) {
                         var query = queries.getAnswersByTaskAndUser(user_id, t_id);
                         console.log(query);
-                        connection.query(query, function (err, listOfAnswers, field) {
+                        connection.query(query, function (err, listOfAnswers) {
                             console.log("listOfAnswers.length:" + listOfAnswers.length);
                             if (err) {
                                 console.log(err);
@@ -125,14 +143,14 @@ app.post('/getQuestion', function (req, res) {
 });
 
 
-app.post('/questionDone', function deleteQuestionFromQueue(req, res, err) {
+app.post('/questionDone', function deleteQuestionFromQueue(req, res) {
     var quest_id = req.body.q_id;
     var stud_id = req.body.s_id;
     var task_id = req.body.t_id;
 
-    var query2 = queries.DeleteQuestionsFromInstance(stud_id, task_id, quest_id);
+    var query2 = queries.deleteQuestionsFromInstance(stud_id, task_id, quest_id);
     console.log('\n' + query2 + '\n');
-    connection.query(query2, function (err, ans, field) {
+    connection.query(query2, function (err) {
         if (err) {
             res.status(400).send("Delete action had an error - check DB");
         }
@@ -148,9 +166,9 @@ app.post('/updateAnswer', function (req, res) {
     var tId = req.body.task_id;
     var qId = req.body.quest_id;
     var aId = req.body.ans_id;
-    var query = queries.SubmitStudentsAnswerForQuestion(sId, tId, qId, aId);
+    var query = queries.submitStudentsAnswerForQuestion(sId, tId, qId, aId);
     console.log('\n' + query + '\n');
-    connection.query(query, function (err, ans, field) {
+    connection.query(query, function (err) {
         if (err) {
             console.log(err);
             res.status(400).send("Update had an error - check DB");
@@ -168,7 +186,7 @@ app.post('/questionApproveOrNot', function (req, res) {
 
     var query = queries.approveQuestion(qId, isApproved);
     console.log('\n' + query + '\n');
-    connection.query(query, function (err, ans, field) {
+    connection.query(query, function (err, ans) {
         if (err) {
             console.log(err);
             res.status(400).send("Update error - check DB (Question may not exist or value is same!)");
@@ -191,7 +209,7 @@ app.post('/addTaskToGroup', function (req, res) {
 
     var query = queries.getStudentsFromGroup(gId);
     console.log('\n' + query + '\n');
-    connection.query(query, function (err, students, field) {
+    connection.query(query, function (err, students) {
         if (err) {
             console.log(err);
             res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
@@ -199,7 +217,7 @@ app.post('/addTaskToGroup', function (req, res) {
         else {
             var query2 = queries.getQestionsAndTasksForinstance(tId);
             console.log('\n' + query2 + '\n');
-            connection.query(query2, function (err2, QuestsAndTasks, field) {
+            connection.query(query2, function (err2, QuestsAndTasks) {
                 if (err2) {
                     console.log(err);
                     res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
@@ -223,7 +241,7 @@ app.post('/addTaskToGroup', function (req, res) {
 
                     var bigQuery = megaQuery.join(" ");
 
-                    connection.query(bigQuery, function (err3, ans3, field) {
+                    connection.query(bigQuery, function (err3) {
                         if (err3) {
                             console.log(err3);
                             res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
@@ -239,16 +257,28 @@ app.post('/addTaskToGroup', function (req, res) {
 });
 
 
+function makeid()
+{
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for( var i=0; i < 5; i++ )
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
+}
+
+
 app.post('/createGroup', function (req, res) {
     var teacherId = req.body.teacher_id;
-    var gId = req.body.group_id;
     var gName = req.body.group_name;
     var isMaster = req.body.is_master;
-    var gCode = req.body.group_code;
+    var isApp = req.body.is_approved;
+    var gCode = makeid();
 
-    var query = queries.createGroup(gId, gName, teacherId, isMaster, gCode);
+    var query = queries.createGroup(gName, teacherId, isMaster, gCode,isApp);
     console.log('\n' + query + '\n');
-    connection.query(query, function (err, ans, field) {
+    connection.query(query, function (err) {
         if (err) {
             console.log(err);
             res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
@@ -260,6 +290,25 @@ app.post('/createGroup', function (req, res) {
 });
 
 
+/*
+app.post('/checkGroup', function (req, res) {
+    var groupCode = req.body.group_code;
+
+    var query = queries.getGroupIdfromcode(groupCode);
+    console.log('\n' + query + '\n');
+    connection.query(query, function (err, isTeacher, field) {
+        if (err) {
+            console.log(err);
+            res.status(400).send("No group found by code error!");
+        }
+        else {
+            res.status(200).send(isTeacher[0].);
+        }
+    });
+});
+*/
+
+
 app.post('/registerUser', function (req, res) {
     var personalId = req.body.personal_id;
     var groupCode = req.body.group_code;
@@ -269,11 +318,11 @@ app.post('/registerUser', function (req, res) {
     var city = req.body.city;
     var userType = req.body.user_type;
     var email = req.body.email;
-    var password = req.body.pass;
+    var password = req.body.password;
 
     var query = queries.getGroupIdfromcode(groupCode);
     console.log('\n' + query + '\n');
-    connection.query(query, function (err, groups, field) {
+    connection.query(query, function (err, groups) {
         if (err) {
             console.log(err);
             res.status(400).send("No group Id found error!");
@@ -283,7 +332,7 @@ app.post('/registerUser', function (req, res) {
 
             var query2 = queries.registerUser(personalId, lastName, firstName, school, city, userType, email, password);
             console.log('\n' + query2 + '\n');
-            connection.query(query2, function (err, ans, field) {
+            connection.query(query2, function (err) {
                 if (err) {
                     console.log(err);
                     res.status(400).send("Insertion error - check DB (student does not exist or relation) error!");
@@ -292,7 +341,7 @@ app.post('/registerUser', function (req, res) {
 
                     var query3 = queries.getUserId(email);
                     console.log('\n' + query3 + '\n');
-                    connection.query(query3, function (err, u_id, field) {
+                    connection.query(query3, function (err, u_id) {
                         if (err) {
                             console.log(err);
                             res.status(400).send("No PersonalID found error!");
@@ -302,7 +351,7 @@ app.post('/registerUser', function (req, res) {
 
                             var query4 = queries.addUsersToGroup(user_id, group_id);
                             console.log('\n' + query4 + '\n');
-                            connection.query(query4, function (err, ans, field) {
+                            connection.query(query4, function (err) {
                                 if (err) {
                                     console.log(err);
                                     res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
@@ -337,7 +386,7 @@ app.post('/addUsersToGroup', function (req, res) {
         }
         if (queriesArr.length > 0) {
             var bigQuery = queriesArr.join(" ");
-            connection.query(bigQuery, function (err, ans, field) {
+            connection.query(bigQuery, function (err) {
                 if (err) {
                     console.log(err);
                     // hasError = true;
@@ -353,8 +402,7 @@ app.post('/addUsersToGroup', function (req, res) {
         res.status(204).send();
         /*empty content*/
     }
-})
-;
+});
 
 
 app.post('/getGroupByUser', function (req, res) {
@@ -362,7 +410,7 @@ app.post('/getGroupByUser', function (req, res) {
 
     var query = queries.getTasks();
     console.log('\n' + query + '\n');
-    connection.query(query, function (err, ans, field) {
+    connection.query(query, function (err, ans) {
         if (err) {
             console.log(err);
             res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
@@ -371,7 +419,7 @@ app.post('/getGroupByUser', function (req, res) {
             var query2 = queries.getGroupsByUser(teacherId);
 
             console.log('\n' + query2 + '\n');
-            connection.query(query2, function (err2, ans2, field2) {
+            connection.query(query2, function (err2, ans2) {
                 if (err) {
                     console.log(err);
                     res.status(400).send("Check DB (group/student does not exist or relation error!");
@@ -400,13 +448,13 @@ app.post('/addQuestion', function (req, res) {
     var qDiff = req.body.quest_difficulty;
     var qProff = req.body.quest_proffesion;
     var qIsApp = req.body.quest_is_approved;
-    var qWhoCreated = req.who_created;
     var qDisabled = req.body.quest_disabled;
+    var qWhoCreated = req.body.who_created;
 
     var query = queries.addQustion(qTitle, isMulAns, qMedia, qMediaType, qCorrFB, qIncorrFB,
         qSkill, qDiff, qProff, qIsApp, qDisabled, qWhoCreated);
     console.log('\n' + query + '\n');
-    connection.query(query, function (err, ans, field) {
+    connection.query(query, function (err) {
         if (err) {
             console.log(err);
             res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
@@ -428,7 +476,7 @@ app.post('/createTask', function (req, res) {
 
     var query = queries.addNewTask(tTitle, tDesc, tOwner, tApproved);
     console.log('\n' + query + '\n');
-    connection.query(query, function (err, ans, field) {
+    connection.query(query, function (err) {
         if (err) {
             console.log(err);
             res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
@@ -437,7 +485,7 @@ app.post('/createTask', function (req, res) {
 
             var query2 = queries.getHighestIdFromTable('tasks', 'T_id');
             console.log('\n' + query2 + '\n');
-            connection.query(query2, function (err, taskRow, field) {
+            connection.query(query2, function (err, taskRow) {
                 if (err) {
                     console.log(err);
                     res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
@@ -452,8 +500,13 @@ app.post('/createTask', function (req, res) {
 
                     var insertStatement = questionsArray.join(" ");
 
-                    connection.query(insertStatement, function (err, ans, field) {
-                        res.status(200).send("inserted!");
+                    connection.query(insertStatement, function (err) {
+                        if (err) {
+                            console.log(err);
+                            res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
+                        } else {
+                            res.status(200).send("inserted!");
+                        }
                     });
                 }
             });
@@ -465,7 +518,7 @@ app.post('/createTask', function (req, res) {
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '123456',//'1q2w3e4r' to upload*/
+    password: '1q2w3e4r',//'1q2w3e4r' to upload*/
     database: 'textra_db',
     multipleStatements: true
 });
@@ -478,16 +531,16 @@ connection.connect(function (err) {
 });
 
 
-// var server = app.listen(8081, function () {
-// var server = app.listen(8081, function () {
-//     var host = server.address().address;
-//     var port = server.address().port;
-//     console.log("Example app listening at http://%s:%s", host, port)
-// });
-
-var server = app.listen(8081, "127.0.0.1", function () {
-    console.log("Example app listening at ");
+var server = app.listen(8081, function () {
+    var host = server.address().address;
+    var port = server.address().port;
+    console.log("Example app listening at http://%s:%s", host, port)
 });
+
+// //TODO - Hadas you need this/TESTS!!!
+// app.listen(8081, "127.0.0.1", function () {
+//     console.log("App is running ");
+// });
 
 setInterval(function () {
     connection.query('SELECT 1');
