@@ -283,7 +283,7 @@ app.post('/createGroup', function (req, res) {
     connection.query(query, function (err) {
         if (err) {
             console.log(err);
-            res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
+            res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!)");
         }
         else {
             res.status(200).send("inserted!");
@@ -448,18 +448,18 @@ app.post('/addQuestion', function (req, res) {
     var qIncorrFB = req.body.quest_incorrect_fb;
     var qSkill = req.body.quest_skill;
     var qDiff = req.body.quest_difficulty;
-    var qProff = req.body.quest_proffesion;
+    var qProf = req.body.quest_profesion;
     var qIsApp = req.body.quest_is_approved;
     var qDisabled = req.body.quest_disabled;
     var qWhoCreated = req.body.who_created;
 
     var query = queries.addQustion(qTitle, isMulAns, qMedia, qMediaType, qCorrFB, qIncorrFB,
-        qSkill, qDiff, qProff, qIsApp, qDisabled, qWhoCreated);
+        qSkill, qDiff, qProf, qIsApp, qDisabled, qWhoCreated);
     console.log('\n' + query + '\n');
     connection.query(query, function (err) {
         if (err) {
             console.log(err);
-            res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
+            res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!)");
         }
         else {
             res.status(200).send("inserted!");
@@ -481,7 +481,7 @@ app.post('/createTask', function (req, res) {
     connection.query(query, function (err) {
         if (err) {
             console.log(err);
-            res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
+            res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!)");
         }
         else {
 

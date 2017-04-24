@@ -119,7 +119,7 @@ describe("Testing Textrategia API", function () {
                 "quest_incorrect_fb": "it was not the correct answer",
                 "quest_skill": "testing skills!",
                 "quest_difficulty": "easy",
-                "quest_proffesion": "test proffesion",
+                "quest_profesion": "test profesion",
                 "quest_is_approved": "1",
                 "who_created": "1",
                 "quest_disabled": "0"
