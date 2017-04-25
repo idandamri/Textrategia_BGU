@@ -144,9 +144,9 @@ app.post('/getQuestion', function (req, res) {
 
 
 app.post('/questionDone', function deleteQuestionFromQueue(req, res) {
-    var quest_id = req.body.q_id;
-    var stud_id = req.body.s_id;
-    var task_id = req.body.t_id;
+    var quest_id = req.body.quest_id;
+    var stud_id = req.body.user_id;
+    var task_id = req.body.task_id;
 
     var query2 = queries.deleteQuestionsFromInstance(stud_id, task_id, quest_id);
     console.log('\n' + query2 + '\n');
@@ -162,7 +162,7 @@ app.post('/questionDone', function deleteQuestionFromQueue(req, res) {
 
 
 app.post('/updateAnswer', function (req, res) {
-    var sId = req.body.stud_id;
+    var sId = req.body.user_id;
     var tId = req.body.task_id;
     var qId = req.body.quest_id;
     var aId = req.body.ans_id;
@@ -518,7 +518,7 @@ app.post('/createTask', function (req, res) {
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '1q2w3e4r',//'1q2w3e4r' to upload*/
+    password: '123456',//'1q2w3e4r' to upload*/
     database: 'textra_db',
     multipleStatements: true
 });

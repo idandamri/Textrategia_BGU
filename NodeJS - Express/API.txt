@@ -84,14 +84,15 @@ API:
                           ]
                         }
 
-/*5. post('questionDone')
-    input: question_id , user_id , task_id
+
+5. post('questionDone')
+    input: quest_id , user_id , task_id
     action: delete question from student queue
     output: status 200 -success / 400 - failure
-*/
+
 
 6. post('updateAnswer')
-    input: user_id, task_id , question_id , ans_id
+    input: user_id, task_id , quest_id , ans_id
     action: add instance of answer to db
     output: status 200 -success / 400 - failure
 

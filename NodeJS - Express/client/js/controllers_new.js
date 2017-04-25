@@ -318,7 +318,7 @@ var get_correct_answer_index = function(myJason) {
 };
 
 /*TO-DO*/
-function updateAnswer (question_id , ans_id){
+function updateAnswer (quest_id , ans_id){
     $http = angular.injector(["ng"]).get("$http");
     var req = {
         method: 'POST',
@@ -327,7 +327,7 @@ function updateAnswer (question_id , ans_id){
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
-        data: 'stud_id='+getUserID()+'&task_id='+getTaskID() + '&quest_id=' + question_id + '&ans_id=' + ans_id
+        data: 'user_id='+getUserID()+'&task_id='+getTaskID() + '&quest_id=' + quest_id + '&ans_id=' + ans_id
     };
     $http(req)
         .success(function(data,status,headers,config){
@@ -546,7 +546,7 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
 
     };
 
-    $scope.nextQuestion = function(question_id){
+    $scope.nextQuestion = function(quest_id){
         $scope.triedOnce = false;
         var req = {
             method: 'POST',
@@ -555,7 +555,7 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            data: 's_id=' + getUserID() +'&t_id='+getTaskID() + '&q_id=' + $scope.questionID
+            data: 'user_id=' + getUserID() +'&task_id='+getTaskID() + '&quest_id=' + $scope.questionID
         };
 
         $http(req)
