@@ -109,7 +109,7 @@ module.exports =
         },
 
         getGroupIdfromcode: function (g_code) {
-            return "select GroupId from textra_db.groups where GroupeCode = " + g_code + ";";
+            return "select GroupId from textra_db.groups where GroupeCode like \'" + g_code + "\';";
         },
 
         registerUser: function (personalId, lastName, firstName, school, city, userType, email, password) {
@@ -151,6 +151,17 @@ module.exports =
         getHighestIdFromTable: function (table_name, attribute_id) {
             return "select " + attribute_id + " from textra_db." + table_name + " where " + attribute_id
                 + " = ( select max(" + attribute_id + ") from textra_db." + table_name + " );";
+        },
+
+        checkIfEmailExist: function (email) {
+            return "select Email"+ " from textra_db.users where Email like '" +
+                email + "';";
+        },
+
+        bla: function (email) {
+            // return "select Email"+ " from textra_db.users where Email like '" +
+            //     + email.toString() + "';";
+            return email;
         }
 
     };

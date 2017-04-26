@@ -122,8 +122,6 @@
 </div>
 
 
-
-
       <!-- Modal -->
       <div class="modal fade" id="fedbackModal" tabindex="-1" role="dialog" aria-labelledby="myCurrectModalLabel">
         <div class="modal-dialog" role="document">
@@ -147,7 +145,9 @@
             </div>
             <div class="modal-footer">
                 <!-- <button type="button" class="btn btn-default" data-dismiss="modal">סגור</button> -->
-                 <button type="button" data-dismiss="modal" class="btn btn-default" > סגור </button>
+                 <button type="button" ng-show="doneRegister" data-dismiss="modal" class="btn btn-default" ng-click="goToLogin()"> סגור </button>
+                <button type="button" ng-show="!doneRegister" data-dismiss="modal" class="btn btn-default"> סגור </button>
+
             </div>
           </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->

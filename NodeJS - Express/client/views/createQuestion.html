@@ -44,7 +44,7 @@
 	        </select>                  
         
         <!-- 4 -->
-        <label class="control-label pull-right">הכנס כתובת מדייה: &nbsp;&nbsp;</label>
+        <label class="control-label pull-right">הכנס מדייה: &nbsp;&nbsp;</label>
        		<input type="text" name="question_media" class="form-control inputstl pull-right" required placeholder="קישור למדיה" ng-model="question.question_media">	
 
 		<!-- 6 -->
@@ -53,8 +53,21 @@
 
 
        	<!-- 8 -->
-          <label class="control-label pull-right">הכנס קושי שאלה:&nbsp;&nbsp;</label>
-          	<input type="number"  min="1" max="10" name="quest_difficulty" class="form-control inputstl pull-right" required placeholder="מ-1 עד 10" ng-model="question.quest_difficulty">
+          <!--<label class="control-label pull-right">הכנס קושי שאלה:&nbsp;&nbsp;</label>-->
+          	<!--<input type="number"  min="1" max="10" name="quest_difficulty" class="form-control inputstl pull-right" required placeholder="מ-1 עד 10" ng-model="question.quest_difficulty">-->
+
+
+            <label class="control-label pull-right">מהו קושי השאלה?:&nbsp;&nbsp;</label>
+            <select class="form-control inputstl" id="quest_difficulty">
+                <!-- <option value=0>אין מדיה</option> -->
+                <option value="קלה">קלה</option>
+                <option value="בינונית">בינונית</option>
+                <option value="קשה">קשה</option>
+            </select>
+
+
+
+
 
         </div>
  
@@ -70,10 +83,10 @@
           	<label class="control-label pull-right">מהו סוג המדיה של השאלה?:&nbsp;&nbsp;</label>
 	            <select class="form-control inputstl" id="media_type">
 		            <!-- <option value=0>אין מדיה</option> -->
-		            <option value=1>סרטון</option>
-		            <option value=2>אודיו</option>
-		            <option value=3>תמונה</option>
-		            <option value=4>טקסט</option>
+                    <option value="youtube">סרטון youtube</option>
+                    <option value="page">אודיו</option>
+                    <option value="img">תמונה</option>
+                    <option value="text">טקסט</option>
 	            </select>   
 
 	            <!-- 5 -->
@@ -179,7 +192,9 @@
             </div>
             <div class="modal-footer">
                 <!-- <button type="button" class="btn btn-default" data-dismiss="modal">סגור</button> -->
-                 <button type="button" data-dismiss="modal" class="btn btn-default" > סגור </button>
+                 <button type="button" ng-show="doneRegisterQuestion" data-dismiss="modal" class="btn btn-default" ng-click="goToTeacher()" > סגור </button>
+                 <button type="button" ng-show="!doneRegisterQuestion" data-dismiss="modal" class="btn btn-default" > סגור </button>
+
             </div>
           </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->

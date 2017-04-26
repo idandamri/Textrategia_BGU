@@ -1,4 +1,4 @@
-drop database textra_db;
+usersdrop database textra_db;
 
 create database textra_db;
 use textra_db;
