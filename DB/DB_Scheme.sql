@@ -5,8 +5,6 @@ create table users (
 PersonalID varchar(10) not null,
 LastName varchar(255) not null,
 FirstName varchar(255) not null,
-School varchar(255) not null,
-City varchar(255) not null,
 UserType int not null,
 Email varchar(255) not null,
 Pass varchar(255) not null,
@@ -59,15 +57,25 @@ foreign key (Q_id) references questions(Q_id),
 primary key (T_id, Q_id)
 );
 
+create table cities_and_schools(
+School varchar(255) not null,
+City varchar(255) not null,
+primary key (School, City)
+);
+
 create table groups(
 GroupId bigint unsigned not null auto_increment,
 GroupName varchar(100) not null,
+School varchar(255) not null,
+City varchar(255) not null,
 teacherID varchar(10) not null,
+isTeacherGroup boolean not null,
 IsMasterGroup boolean not null,
 GroupeCode varchar(20),
+GroupUserType int not null,/* user types- student = 0 ; teacher = 1 ; superUser = 2 */
 isApproved boolean not null,
-primary key (GroupId),
-foreign key (teacherID) references users(PersonalID)
+/*foreign key (teacherID) references users(PersonalID),*/
+primary key (GroupId)
 );
 
 create table students_per_group

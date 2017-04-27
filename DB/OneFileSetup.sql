@@ -7,8 +7,6 @@ create table users (
 PersonalID varchar(10) not null,
 LastName varchar(255) not null,
 FirstName varchar(255) not null,
-School varchar(255) not null,
-City varchar(255) not null,
 UserType int not null,
 Email varchar(255) not null,
 Pass varchar(255) not null,
@@ -61,15 +59,24 @@ foreign key (Q_id) references questions(Q_id),
 primary key (T_id, Q_id)
 );
 
+create table cities_and_schools(
+School varchar(255) not null,
+City varchar(255) not null,
+primary key (School, City)
+);
+
 create table groups(
 GroupId bigint unsigned not null auto_increment,
 GroupName varchar(100) not null,
+School varchar(255) not null,
+City varchar(255) not null,
 teacherID varchar(10) not null,
+isTeacherGroup boolean not null,
 IsMasterGroup boolean not null,
 GroupeCode varchar(20),
+GroupUserType int not null,/* user types- student = 0 ; teacher = 1 ; superUser = 2 */
 isApproved boolean not null,
-primary key (GroupId),
-foreign key (teacherID) references users(PersonalID)
+primary key (GroupId)
 );
 
 create table students_per_group
@@ -268,16 +275,16 @@ INSERT INTO `textra_db`.`answers` (`answer`, `Q_id`, `isCorrect`) VALUES ('כי 
 
 /*------------------ users -----------------*/
 insert into users
-values (1,"דמרי","עידן","Techni","Beer Sheva",1,"idandamri@gmail.com","123456");
+values (1,"דמרי","עידן",2,"idandamri@gmail.com","123456");
 
 insert into users
-values (2,"קריגל","שקד","Mekif H","Ashdod",2,"shakedkr@post.bgu.ac.il","123456");
+values (2,"קריגל","שקד",0,"shakedkr@post.bgu.ac.il","123456");
 
 insert into users
-values (3,"גנים","הדס","Mevuot","Ashdod",2,"hadasganim@gmail.com","123456");
+values (3,"גנים","הדס",0,"hadasganim@gmail.com","123456");
 
 insert into users
-values (4,"שטורם","ארנון","BGU","Beer Sheva",1,"sturm@bgu.ac.il","123456");
+values (4,"שטורם","ארנון",1,"sturm@bgu.ac.il","123456");
 /*------------------------------------------*/
 
 /*-------------- tasks ---------------------*/
@@ -291,24 +298,21 @@ values(null,"2מטלת ניסוי","מטלת ניסוי לבסיס הנתוני�
 
 /*--------------- groups -------------------*/
 insert into groups
-values(123456,"טקסטרטגיה", 4, 1,"0123",1);
+values(123456,"טקסטרטגיה","מבועות", "אשדוד", 4, 0, 1,"0123", 1, 1);
 
 insert into groups
-values(1234567,"שיעור פרטי", 1, 0,"0123456",0);
+values(1234567,"שיעור פרטי","מבועות","אשדוד", 1, 0, 1, "0123456", 1, 1);
+
+insert into groups
+values(1, "קבוצת מורים", "מענית", "באר שבע", 1, 1,1,"teach",1,1);
 /*------------------------------------------*/
 
 /*----------- students_per_group -----------*/
-insert into students_per_group
-values(1,123456);
-
 insert into students_per_group
 values(2,123456);
 
 insert into students_per_group
 values(3,123456);
-
-insert into students_per_group
-values(4,1234567);
 
 insert into students_per_group
 values(2,1234567);
@@ -344,7 +348,7 @@ values (2,4);
 
 
 /*----------- tasks_and_question_for_student_instances ---------*/
-/*idan user*/
+/*idan user
 insert into tasks_and_question_for_student_instances
 values(1,1,1);
 
@@ -368,37 +372,37 @@ insert into tasks_and_question_for_student_instances
 values(1,2,3);
 
 insert into tasks_and_question_for_student_instances
-values(1,2,4);
+values(1,2,4);*/
 
 
 
 /*arnon user*/
 insert into tasks_and_question_for_student_instances
-values(4,1,1);
+values(3,1,1);
 
 insert into tasks_and_question_for_student_instances
-values(4,1,2);
+values(3,1,2);
 
 insert into tasks_and_question_for_student_instances
-values(4,1,3);
+values(3,1,3);
 
 insert into tasks_and_question_for_student_instances
-values(4,1,4);
+values(3,1,4);
 
 
 insert into tasks_and_question_for_student_instances
-values(4,2,1);
+values(3,2,1);
 
 insert into tasks_and_question_for_student_instances
-values(4,2,2);
+values(3,2,2);
 
 insert into tasks_and_question_for_student_instances
-values(4,2,3);
+values(3,2,3);
 
 insert into tasks_and_question_for_student_instances
-values(4,2,4);
+values(3,2,4);
 
-/*shaked user*/
+/*shaked user
 insert into tasks_and_question_for_student_instances
 values(2,1,1);
 
@@ -425,13 +429,7 @@ insert into tasks_and_question_for_student_instances
 values(2,2,4);
 
 insert into tasks_and_question_for_student_instances
-values(2,2,8);
-
-
-
-
-
-
+values(2,2,8);*/
 
 /*------------------------------------------*/
 

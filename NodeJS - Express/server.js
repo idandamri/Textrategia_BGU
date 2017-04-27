@@ -2,7 +2,8 @@
 var express = require('express');
 var mysql = require('mysql');
 var cors = require('cors');
-/*var path = */require('path');
+/*var path = */
+require('path');
 var app = express();
 app.use(cors());
 var queries = require("./queryForDB.js");
@@ -19,22 +20,22 @@ app.get('/', function (req, res) {
 });
 
 /*
-app.get('/deleteItems', function (req, res) {
-    var querieOfDeletion = "DELETE FROM `textra_db`.`students_per_group` WHERE `StudentId`='12121211' and`GroupId`='123456';"
-        + "DELETE FROM `textra_db`.`users` WHERE `PersonalID`='12121211';"
-        + "DELETE FROM `textra_db`.`instances_of_answers` WHERE `A_id`='1' and`Q_id`='1' and`T_id`='1' and`studentId`='2';";
-    console.log('\n' + querieOfDeletion + '\n');
-    connection.query(querieOfDeletion, function (err) {
-        if (err) {
-            console.log(err);
-            res.status(400).send("deletion error");
-        }
-        else {
-            res.status(200).send("Deleted!");
-        }
-    });
+ app.get('/deleteItems', function (req, res) {
+ var querieOfDeletion = "DELETE FROM `textra_db`.`students_per_group` WHERE `StudentId`='12121211' and`GroupId`='123456';"
+ + "DELETE FROM `textra_db`.`users` WHERE `PersonalID`='12121211';"
+ + "DELETE FROM `textra_db`.`instances_of_answers` WHERE `A_id`='1' and`Q_id`='1' and`T_id`='1' and`studentId`='2';";
+ console.log('\n' + querieOfDeletion + '\n');
+ connection.query(querieOfDeletion, function (err) {
+ if (err) {
+ console.log(err);
+ res.status(400).send("deletion error");
+ }
+ else {
+ res.status(200).send("Deleted!");
+ }
+ });
 
-});*/
+ });*/
 
 
 app.post('/login', function (req, res) {
@@ -142,7 +143,6 @@ app.post('/getQuestion', function (req, res) {
     });
 });
 
-/*
 
 app.post('/questionDone', function deleteQuestionFromQueue(req, res) {
     var quest_id = req.body.q_id;
@@ -160,7 +160,6 @@ app.post('/questionDone', function deleteQuestionFromQueue(req, res) {
         }
     });
 });
-*/
 
 
 app.post('/updateAnswer', function (req, res) {
@@ -259,12 +258,11 @@ app.post('/addTaskToGroup', function (req, res) {
 });
 
 
-function makeid()
-{
+function makeid() {
     var text = "";
     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-    for( var i=0; i < 5; i++ )
+    for (var i = 0; i < 5; i++)
         text += possible.charAt(Math.floor(Math.random() * possible.length));
 
     return text;
@@ -274,11 +272,15 @@ function makeid()
 app.post('/createGroup', function (req, res) {
     var teacherId = req.body.teacher_id;
     var gName = req.body.group_name;
+    var school = req.body.school;
+    var city = req.body.city;
+    var isTeacherGroup = req.body.is_teacher_group;
+    var groupUserType = req.body.group_user_type;
     var isMaster = req.body.is_master;
     var isApp = req.body.is_approved;
     var gCode = makeid();
 
-    var query = queries.createGroup(gName, teacherId, isMaster, gCode,isApp);
+    var query = queries.createGroup(gName, school, city, teacherId, isTeacherGroup, isMaster, gCode, groupUserType, isApp);
     console.log('\n' + query + '\n');
     connection.query(query, function (err) {
         if (err) {
@@ -293,22 +295,22 @@ app.post('/createGroup', function (req, res) {
 
 
 /*
-app.post('/checkGroup', function (req, res) {
-    var groupCode = req.body.group_code;
+ app.post('/checkGroup', function (req, res) {
+ var groupCode = req.body.group_code;
 
-    var query = queries.getGroupIdfromcode(groupCode);
-    console.log('\n' + query + '\n');
-    connection.query(query, function (err, isTeacher, field) {
-        if (err) {
-            console.log(err);
-            res.status(400).send("No group found by code error!");
-        }
-        else {
-            res.status(200).send(isTeacher[0].);
-        }
-    });
-});
-*/
+ var query = queries.getGroupIdfromcode(groupCode);
+ console.log('\n' + query + '\n');
+ connection.query(query, function (err, isTeacher, field) {
+ if (err) {
+ console.log(err);
+ res.status(400).send("No group found by code error!");
+ }
+ else {
+ res.status(200).send(isTeacher[0].);
+ }
+ });
+ });
+ */
 
 
 app.post('/registerUser', function (req, res) {
@@ -316,8 +318,6 @@ app.post('/registerUser', function (req, res) {
     var groupCode = req.body.group_code;
     var lastName = req.body.last_name;
     var firstName = req.body.first_name;
-    var school = req.body.school;
-    var city = req.body.city;
     var userType = req.body.user_type;
     var email = req.body.email;
     var password = req.body.password;
@@ -332,7 +332,7 @@ app.post('/registerUser', function (req, res) {
         else {
             var group_id = groups[0].GroupId;
 
-            var query2 = queries.registerUser(personalId, lastName, firstName, school, city, userType, email, password);
+            var query2 = queries.registerUser(personalId, lastName, firstName, userType, email, password);
             console.log('\n' + query2 + '\n');
             connection.query(query2, function (err) {
                 if (err) {
