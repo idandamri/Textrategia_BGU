@@ -180,3 +180,42 @@ API:
 	input:group_id
 	input example:{"group_id":"0123"}
 	output: status 200 / 400 - "No group found by code error!"*/
+
+
+	/***************** MARATON  *********************/
+16.post('/getAllTasks')
+    output: status 200 with json
+    [
+      {
+        "T_id": 1,
+        "T_title": "מטלת ניסוי",
+        "T_description": "מטלת ניסוי לבסיס הנתונים",
+        "T_owner": "1",
+        "T_approved": 1
+      },
+      {
+        "T_id": 2,
+        "T_title": "2מטלת ניסוי",
+        "T_description": "מטלת ניסוי לבסיס הנתונים",
+        "T_owner": "4",
+        "T_approved": 1
+      }
+    ]
+
+
+16.post('/getAllGroupForTask')
+input: task_id,teacher_id
+output: status 200 with list of group / status 204 - no group for this task/  400 -error
+
+[
+  {
+    "GroupId": 1234567,
+    "GroupName": "שיעור פרטי",
+    "teacherID": "1",
+    "IsMasterGroup": 0,
+    "GroupeCode": "0123456",
+    "isApproved": 0
+  }
+]
+
+

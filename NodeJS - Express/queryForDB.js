@@ -158,10 +158,13 @@ module.exports =
                 email + "';";
         },
 
-        bla: function (email) {
-            // return "select Email"+ " from textra_db.users where Email like '" +
-            //     + email.toString() + "';";
-            return email;
+        chooseGroupsAvalibleToTask : function (task_id,teacher_id) {
+            return "SELECT * FROM textra_db.groups where GroupId not in ("
+            +"SELECT distinct GroupId FROM textra_db.students_per_group where StudentId in (" +
+                "SELECT distinct studentId FROM textra_db.tasks_and_question_for_student_instances where T_id in (" + task_id + ") ))" +
+                "and teacherID="+ teacher_id+";"
         }
+
+
 
     };

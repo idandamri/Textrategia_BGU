@@ -305,6 +305,25 @@ textrategiaApp.controller("GroupManagementController",function($scope,$http,$loc
     $scope.messageSent = false; // set Error flag
     $scope.serverFeedback = "אופס... אין תשובה מהשרת.";
 
+    $scope.getAllGroupForTask= function (task_id) {
+
+        var req = {
+            method: 'POST',
+            cache: false,
+            url: _url +'/getAllGroupForTask',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            data: 'task_id='+task_id + '&teacher_id='+getUserID()
+        };
+
+        $http(req)
+            .success(function(data,status,headers,config){
+                $scope.groups = data;
+            }).error(function(data,status,headers,config){
+        });
+    };
+
     $scope.goToTeacher = function () {
         $location.path('teacher');
     };
@@ -365,6 +384,8 @@ textrategiaApp.controller("GroupManagementController",function($scope,$http,$loc
         var tasks = document.getElementById("available_task");
         var group;
         var task;
+
+        var selectedTask;
 
         for (i = 0 ; i < groups.options.length ; i++){
             group = groups.options[i];

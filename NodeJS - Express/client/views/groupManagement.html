@@ -50,17 +50,7 @@
 
       <div class="form-group">
 
-        <!-- 2 -->
-        <div class="col-sm-6">
-          <label for="available_task" class="control-label pull-right" >מטלות זמינות:</label>
 
-          <select class="form-control inputstl" id="available_task" size =1>
-          <!--<select class="form-control inputstl" id="available_task" multiple>-->
-            <option ng-repeat="y in info.tasks" value="{{y.T_id}}">{{y.T_title}}</option>
-            <option ng-show="info.tasks==0" disabled>אין מטלות זמינות</option>
-          </select>
-
-      </div>
 
 
       <!-- 1 -->
@@ -68,11 +58,26 @@
           <label for="available_group" class="control-label pull-right">קבוצות זמינות:</label>
 
           <select class="form-control inputstl" id="available_group" size =1>
-            <option ng-repeat="x in info.groups" value="{{x.GroupId}}">{{x.GroupName}}</option>
-            <option ng-show="info.groups==0" disabled>אין קבוצות זמינות</option>
+            <option ng-repeat="x in groups" value="{{x.GroupId}}">{{x.GroupName}}</option>
+            <option ng-show="groups==0" disabled>אין קבוצות זמינות</option>
           </select>
 
         </div>
+
+        <!-- 2 -->
+        <div class="col-sm-6">
+          <label for="available_task" class="control-label pull-right" >מטלות זמינות:</label>
+
+          <select class="form-control inputstl" id="available_task" size=1>
+            <!--<select class="form-control inputstl" id="available_task" multiple>-->
+            <option ng-click ="getAllGroupForTask(y.T_id)" ng-repeat="y in info.tasks" value="{{y.T_id}}">{{y.T_title}}</option>
+            <option ng-show="info.tasks==0" disabled>אין מטלות זמינות</option>
+          </select>
+
+        </div>
+
+
+
       </div>
 
       <div class="col-sm-12"><br></div>
