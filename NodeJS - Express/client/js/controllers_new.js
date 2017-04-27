@@ -7,14 +7,19 @@ var _url = "http://localhost:8081";
 // ########################### GENERAL CONTROLLERS ###########################//
 
 
-textrategiaApp.controller("RegisterController",function($scope){
-    
+textrategiaApp.controller("RegisterController",function($scope,$http ,$location){
+
+    $scope.doneRegister = false;
     $scope.checkedCode = false ;            // init to false
     $scope.userCode = "";                   // must be kept as global
 
     $(document).ready(function(){
-        $('[data-toggle="tooltip"]').tooltip();   
+        $('[data-toggle="tooltip"]').tooltip()  ;
     });
+
+    $scope.goToLogin = function () {
+        $location.path('login');
+    };
 
     // validate user code with server, and set feedback
     $scope.checkUserCode  = function(){
@@ -24,6 +29,7 @@ textrategiaApp.controller("RegisterController",function($scope){
 
 
         $scope.userCode  = $scope.user.userCode;
+        setGroupCode($scope.userCode);
         // alert($scope.userCode);
 
         // ################################################
@@ -46,10 +52,11 @@ textrategiaApp.controller("RegisterController",function($scope){
         $scope.registerMod = true;
 
         var userFirstName = $scope.user.userFirstName;
+        var userLastName = $scope.user.userLastName;
         var userEmail1 = $scope.user.userEmail1;
         var userPassword1 = $scope.user.userPassword1;
+        var userIdNumber = $scope.user.userIdNumber;
 
-        var userLastName = $scope.user.userLastName;
         var userEmail2 = $scope.user.userEmail2;
         var userPassword2 = $scope.user.userPassword2;
 
@@ -65,7 +72,31 @@ textrategiaApp.controller("RegisterController",function($scope){
 
         if (userEmail1 == userEmail2 && userPassword1 == userPassword2 ){
             //contact server
-            $scope.serverFeedback = "הרישום התבצע בהצלחה!"
+            var req = {
+                method: 'POST',
+                cache: false,
+                url: _url +'/registerUser',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                data: 'personal_id='+ userIdNumber +'&group_code='+getGroupCode()
+                + '&last_name=' + userLastName + '&first_name=' + userFirstName +
+                '&user_type=' + '2' + '&email=' + userEmail1 + '&password=' + userPassword1
+            };
+
+
+            $http(req)
+                .success(function(data,status,headers,config){
+                    $scope.serverFeedback = "הרישום התבצע בהצלחה!"
+                    $scope.doneRegister = true;
+                }).error(function(data,status,headers,config){
+                    if (status==401){
+                        $scope.serverFeedback = "כתובת מייל כבר קיימת במערכת";
+                    }
+                    else {
+                        $scope.serverFeedback = "שגיאה ברישום";
+                    }
+            });
         }
 
 
@@ -76,17 +107,21 @@ textrategiaApp.controller("RegisterController",function($scope){
 
 // ########################### TEACHER CONTROLLERS ###########################//
 
-textrategiaApp.controller("TeacherController",function($scope){
+textrategiaApp.controller("TeacherController",function($scope, $http,$location){
     $scope.teacherName = getUserName();
 
 });
 
 
 
-textrategiaApp.controller("CreateQuestionController",function($scope){
+textrategiaApp.controller("CreateQuestionController",function($scope,$location,$http){
     $scope.teacherName = getUserName();
     $scope.insertPossibleAnswersMode = false;
+    $scope.doneRegisterQuestion = false;
 
+    $scope.goToTeacher = function () {
+        $location.path('teacher');
+    };
 
     $scope.editQuestionMode = function(){
         $scope.insertPossibleAnswersMode = false;
@@ -101,38 +136,48 @@ textrategiaApp.controller("CreateQuestionController",function($scope){
 
 
     $scope.sendNewQuestion = function (){
-
         // question_title is argument 1
         var question_title = $scope.question.question_title;
 
         // (IS MULTIPLE ANS QUESTION) opt1.value is argument 2
-        var opt1;
+        var is_multiple;
         var sel1 = document.getElementById("is_multiple_ans");
         for (i = 0 ; i < sel1.options.length ; i++){
-            opt1 = sel1.options[i];
-            if (opt1.selected == true){
-                //alert(opt1.value);              // 1 means yes, 0 means no
+            is_multiple = sel1.options[i];
+            if (is_multiple.selected == true){
+                // alert(is_multiple.value);              // 1 means yes, 0 means no
                 break;
             }
         }
         
         // (MEDIA TYPE) opt2.value is argument 3  
-        var opt2;
+        var media_type;
         var sel2 = document.getElementById("media_type");
         for (i = 0 ; i < sel2.options.length ; i++){
-            opt2 = sel2.options[i];
-            if (opt2.selected == true){
-                //alert(opt2.value);              // 0 is no media.... @SHAKED - CHANGE AS YOU WISH
+            media_type = sel2.options[i];
+            if (media_type.selected == true){
+                // alert(media_type.value);              // 0 is no media.... @SHAKED - CHANGE AS YOU WISH
                 break;
             }
         }
+
+        var quest_difficulty;
+        var sel_quest_difficulty = document.getElementById("quest_difficulty");
+        for (i = 0 ; i < sel_quest_difficulty.options.length ; i++){
+            quest_difficulty = sel_quest_difficulty.options[i];
+            if (media_type.selected == true){
+                // alert(quest_difficulty.value);              // 0 is no media.... @SHAKED - CHANGE AS YOU WISH
+                break;
+            }
+        }
+
 
         // arguments 4 - 8
         var question_media = $scope.question.question_media;
         var quest_correct_fb = $scope.question.quest_correct_fb;
         var quest_incorrect_fb = $scope.question.quest_incorrect_fb;
         var quest_skill = $scope.question.quest_skill
-        var quest_difficulty = $scope.question.quest_difficulty
+        // var quest_difficulty = $scope.question.quest_difficulty
 
 
         // the information: 
@@ -168,7 +213,47 @@ textrategiaApp.controller("CreateQuestionController",function($scope){
 
 
         // change server feedback acording to succuss or failure!
-        $scope.serverFeedback = "השאלה נשלחה בהצלחה!"
+
+
+        var req = {
+            method: 'POST',
+            cache: false,
+            url: _url +'/addQuestion',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            data: 'question_title='+ question_title
+            +'&is_multiple_ans='+ is_multiple.value
+            + '&question_media_type=' + media_type.value
+            + '&question_media=' + question_media
+            + '&quest_correct_fb=' + quest_correct_fb
+            +'&quest_incorrect_fb=' + quest_incorrect_fb
+            +'&quest_skill=' +  quest_skill
+            + '&quest_difficulty=' +   quest_difficulty.value
+            + '&quest_proffesion=' + 'הבעה'
+            + '&quest_is_approved=' + '1'
+            + '&quest_disabled=' + '0'
+            + '&who_created=' + '1'
+        };
+
+        alert(JSON.stringify(req));
+
+        $http(req)
+            .success(function(data,status,headers,config){
+                $scope.serverFeedback = "השאלה נשלחה בהצלחה!"
+                $scope.doneRegisterQuestion = true;
+            }).error(function(data,status,headers,config){
+                $scope.serverFeedback = "שגיאה בהכנסת שאלה";
+
+        });
+
+
+
+        // $scope.serverFeedback = "השאלה נשלחה בהצלחה!"
+
+
+
+
     }
 
 });
@@ -214,12 +299,35 @@ textrategiaApp.controller("CreateGroupController",function($scope){
 
 
 
-textrategiaApp.controller("GroupManagementController",function($scope,$http){
+textrategiaApp.controller("GroupManagementController",function($scope,$http,$location){
     $scope.teacherName = getUserName();
     // $scope.info = empty;
-
+    $scope.doneSendTask =false;
     $scope.messageSent = false; // set Error flag
     $scope.serverFeedback = "אופס... אין תשובה מהשרת.";
+
+    $scope.getAllGroupForTask= function (task_id) {
+
+        var req = {
+            method: 'POST',
+            cache: false,
+            url: _url +'/getAllGroupForTask',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            data: 'task_id='+task_id + '&teacher_id='+getUserID()
+        };
+
+        $http(req)
+            .success(function(data,status,headers,config){
+                $scope.groups = data;
+            }).error(function(data,status,headers,config){
+        });
+    };
+
+    $scope.goToTeacher = function () {
+        $location.path('teacher');
+    };
 
     // $scope.info = groups_and_tasks_mock;
     var req = {
@@ -241,31 +349,132 @@ textrategiaApp.controller("GroupManagementController",function($scope,$http){
 
 
     // these function alert the choise the user made.
+    // $scope.sendTaskToGroup = function(){
+    //     //get group selection
+    //
+    //     var sel1 = document.getElementById("available_group");
+    //
+    //     var opt1;
+    //     for (i = 0 ; i < sel1.options.length ; i++){
+    //         opt1 = sel1.options[i];
+    //         if (opt1.selected == true){
+    //              alert(opt1.value);              // this is GroupID
+    //             break;
+    //         }
+    //     }
+    //     //get tasks selection
+    //     var sel2 = document.getElementById("available_task");
+    //
+    //     var opt2;
+    //     for (i = 0 ; i < sel2.options.length ; i++){
+    //         opt2 = sel2.options[i];
+    //         if (opt2.selected == true){
+    //              alert(opt2.value);              // this is T_id
+    //             break;
+    //         }
+    //     }
+    //
+    //
+    // }
+
+
     $scope.sendTaskToGroup = function(){
-        //get group selection
+        //get group and task selection
 
-        var sel1 = document.getElementById("available_group");
+        var groups = document.getElementById("available_group");
+        var tasks = document.getElementById("available_task");
+        var group;
+        var task;
 
-        var opt1;
-        for (i = 0 ; i < sel1.options.length ; i++){
-            opt1 = sel1.options[i];
-            if (opt1.selected == true){
-                // alert(opt1.value);              // this is GroupID
+        var selectedTask;
+
+        for (i = 0 ; i < groups.options.length ; i++){
+            group = groups.options[i];
+            if (group.selected == true){
+                for (j = 0 ; j < tasks.options.length ; j++){
+                    task = tasks.options[j];
+                    if (task.selected == true){
+                        break;
+                    }
+                }
                 break;
             }
         }
-        //get tasks selection
-        var sel2 = document.getElementById("available_task");
 
-        var opt2;
-        for (i = 0 ; i < sel2.options.length ; i++){
-            opt2 = sel2.options[i];
-            if (opt2.selected == true){
-                // alert(opt2.value);              // this is T_id
+        var req = {
+            method: 'POST',
+            cache: false,
+            url: _url +'/addTaskToGroup',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            data: 'group_id='+group.value + '&task_id=' + task.value
+        };
+
+        // alert(JSON.stringify(req));
+
+        $http(req)
+            .success(function(data,status,headers,config){
+                $scope.serverFeedback = "המטלה נשלחה בהצלחה"
+                $scope.doneSendTask = true;
+            }).error(function(data,status,headers,config){
+            $scope.serverFeedback = "שגיאה בשליחת המטלה"
+
+        });
+
+        // alert("group" + group.value  + "\n task:"  + task.value);              // this is T_id
+
+    }
+
+
+
+
+
+
+
+    $scope.sendTaskToGroup = function(){
+        //get group and task selection
+
+        var groups = document.getElementById("available_group");
+        var tasks = document.getElementById("available_task");
+        var group;
+        var task;
+
+        for (i = 0 ; i < groups.options.length ; i++){
+            group = groups.options[i];
+            if (group.selected == true){
+                for (j = 0 ; j < tasks.options.length ; j++){
+                    task = tasks.options[j];
+                    if (task.selected == true){
+                        break;
+                    }
+                }
                 break;
             }
         }
 
+        var req = {
+            method: 'POST',
+            cache: false,
+            url: _url +'/addTaskToGroup',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            data: 'group_id='+group.value + '&task_id=' + task.value
+        };
+
+        // alert(JSON.stringify(req));
+
+        $http(req)
+            .success(function(data,status,headers,config){
+                $scope.serverFeedback = "המטלה נשלחה בהצלחה"
+                $scope.doneSendTask = true;
+            }).error(function(data,status,headers,config){
+                $scope.serverFeedback = "שגיאה בשליחת המטלה"
+
+        });
+
+        // alert("group" + group.value  + "\n task:"  + task.value);              // this is T_id
 
     }
 
@@ -318,7 +527,7 @@ var get_correct_answer_index = function(myJason) {
 };
 
 /*TO-DO*/
-function updateAnswer (question_id , ans_id){
+function updateAnswer (quest_id , ans_id){
     $http = angular.injector(["ng"]).get("$http");
     var req = {
         method: 'POST',
@@ -327,7 +536,7 @@ function updateAnswer (question_id , ans_id){
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
-        data: 'stud_id='+getUserID()+'&task_id='+getTaskID() + '&quest_id=' + question_id + '&ans_id=' + ans_id
+        data: 'user_id='+getUserID()+'&task_id='+getTaskID() + '&quest_id=' + quest_id + '&ans_id=' + ans_id
     };
     $http(req)
         .success(function(data,status,headers,config){
@@ -546,7 +755,7 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
 
     };
 
-    $scope.nextQuestion = function(question_id){
+    $scope.nextQuestion = function(quest_id){
         $scope.triedOnce = false;
         var req = {
             method: 'POST',
@@ -555,7 +764,7 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            data: 's_id=' + getUserID() +'&t_id='+getTaskID() + '&q_id=' + $scope.questionID
+            data: 'user_id=' + getUserID() +'&task_id='+getTaskID() + '&quest_id=' + $scope.questionID
         };
 
         $http(req)

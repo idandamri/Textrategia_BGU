@@ -103,18 +103,19 @@ module.exports =
                 + quest_disabled + "," + quest_creator + ");";
         },
 
-        createGroup: function (g_name, teacher_id, is_master_g, g_code, is_app) {
+        createGroup: function (g_name, school, city, is_teacher_group, teacher_id, is_master_g, g_code, group_user_type, is_app) {
             return "INSERT INTO textra_db.groups VALUES (null," +
-                "'" + g_name + "'," + teacher_id + "," + is_master_g + ",'" + g_code + "'," + is_app + ");";
+                "'" + g_name + "','" + school + "','" + city + "'," + teacher_id + "," + is_teacher_group + ","
+                + is_master_g + ",'" + g_code + "'," + group_user_type + "," + is_app + ");";
         },
 
         getGroupIdfromcode: function (g_code) {
             return "select GroupId from textra_db.groups where GroupeCode = " + g_code + ";";
         },
 
-        registerUser: function (personalId, lastName, firstName, school, city, userType, email, password) {
-            return "insert into textra_db.users values('" + personalId + "', '" + lastName + "', '" + firstName + "',' " + school
-                + "', '" + city + "', '" + userType + "', '" + email + "', '" + password + "');";
+        registerUser: function (personalId, lastName, firstName, userType, email, password) {
+            return "insert into textra_db.users values('" + personalId + "', '" + lastName + "', '" + firstName + "', "
+                + userType + ", '" + email + "', '" + password + "');";
         },
 
         approveQuestion: function (q_id, isApproved) {
@@ -134,23 +135,25 @@ module.exports =
                 "where studentId = " + user_id + " and T_id = " + t_id + " limit 1;";
         },
 
-        //TODO check if needed..
-        /*getAnswersByTidQidSid: function (/!*s_id, t_id, *!/q_id) {
-         var query = "select * from textra_db.tasks where Q_id like /'" + q_id + "'/";
-         return query;
-         }*/
-        addNewTask: function (t_title, t_description, t_owner, t_approved) {
-            return "insert into textra_db.tasks values(null,'" + t_title + "','" + t_description + "',"
-                + t_owner + "," + t_approved + ");";
-        },
+//TODO check if needed..
+    /*getAnswersByTidQidSid: function (/!*s_id, t_id, *!/q_id) {
+     var query = "select * from textra_db.tasks where Q_id like /'" + q_id + "'/";
+     return query;
+     }*/
 
-        joinNewTaskWithQuestion: function (t_id, q_id) {
-            return "insert into textra_db.tasks_joined_with_questions values(" + t_id + "," + q_id + ");";
-        },
+    addNewTask: function (t_title, t_description, t_owner, t_approved) {
+        return "insert into textra_db.tasks values(null,'" + t_title + "','" + t_description + "',"
+            + t_owner + "," + t_approved + ");";
+    },
 
-        getHighestIdFromTable: function (table_name, attribute_id) {
-            return "select " + attribute_id + " from textra_db." + table_name + " where " + attribute_id
-                + " = ( select max(" + attribute_id + ") from textra_db." + table_name + " );";
-        }
+    joinNewTaskWithQuestion: function (t_id, q_id) {
+        return "insert into textra_db.tasks_joined_with_questions values(" + t_id + "," + q_id + ");";
+    },
 
-    };
+    getHighestIdFromTable: function (table_name, attribute_id) {
+        return "select " + attribute_id + " from textra_db." + table_name + " where " + attribute_id
+            + " = ( select max(" + attribute_id + ") from textra_db." + table_name + " );";
+    }
+
+}
+;

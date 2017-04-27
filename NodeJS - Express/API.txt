@@ -84,14 +84,15 @@ API:
                           ]
                         }
 
-/*5. post('questionDone')
-    input: question_id , user_id , task_id
+
+5. post('questionDone')
+    input: quest_id , user_id , task_id
     action: delete question from student queue
     output: status 200 -success / 400 - failure
-*/
+
 
 6. post('updateAnswer')
-    input: user_id, task_id , question_id , ans_id
+    input: user_id, task_id , quest_id , ans_id
     action: add instance of answer to db
     output: status 200 -success / 400 - failure
 
@@ -163,7 +164,7 @@ API:
     
 
 13.post('/addQuestion')
-	input:  question_title, is_multiple_ans, question_media_type, question_media, quest_correct_fb, quest_incorrect_fb, quest_skill, quest_difficulty, quest_profession, quest_is_approved, quest_disabled, who_created
+	input:  question_title, is_multiple_ans, question_media_type, question_media, quest_correct_fb, quest_incorrect_fb, quest_skill, quest_difficulty, quest_proffesion, quest_is_approved, quest_disabled, who_created
     output: status 200 "inserted!" /400 - Insertion error - check DB (group/student does not exist or relation error!)
     example to output : 
 	
@@ -179,3 +180,42 @@ API:
 	input:group_id
 	input example:{"group_id":"0123"}
 	output: status 200 / 400 - "No group found by code error!"*/
+
+
+	/***************** MARATON  *********************/
+16.post('/getAllTasks')
+    output: status 200 with json
+    [
+      {
+        "T_id": 1,
+        "T_title": "מטלת ניסוי",
+        "T_description": "מטלת ניסוי לבסיס הנתונים",
+        "T_owner": "1",
+        "T_approved": 1
+      },
+      {
+        "T_id": 2,
+        "T_title": "2מטלת ניסוי",
+        "T_description": "מטלת ניסוי לבסיס הנתונים",
+        "T_owner": "4",
+        "T_approved": 1
+      }
+    ]
+
+
+16.post('/getAllGroupForTask')
+input: task_id,teacher_id
+output: status 200 with list of group / status 204 - no group for this task/  400 -error
+
+[
+  {
+    "GroupId": 1234567,
+    "GroupName": "שיעור פרטי",
+    "teacherID": "1",
+    "IsMasterGroup": 0,
+    "GroupeCode": "0123456",
+    "isApproved": 0
+  }
+]
+
+

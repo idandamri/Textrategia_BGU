@@ -38,7 +38,15 @@ function getTaskName(){
     return taskName ;
 };
 
+var groupCode ="";
 
+function setGroupCode(_groupCode){
+    groupCode= _groupCode;
+};
+
+function getGroupCode(){
+    return this.groupCode;
+};
 
 
 
