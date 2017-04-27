@@ -275,7 +275,7 @@ INSERT INTO `textra_db`.`answers` (`answer`, `Q_id`, `isCorrect`) VALUES ('כי 
 
 /*------------------ users -----------------*/
 insert into users
-values (1,"דמרי","עידן",2,"idandamri@gmail.com","123456");
+values (1,"דמרי","עידן",1	,"idandamri@gmail.com","123456");
 
 insert into users
 values (2,"קריגל","שקד",0,"shakedkr@post.bgu.ac.il","123456");

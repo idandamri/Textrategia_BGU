@@ -346,14 +346,14 @@ app.post('/registerUser', function (req, res) {
                     else {
                         var group_id = groups[0].GroupId;
 
-            var query2 = queries.registerUser(personalId, lastName, firstName, userType, email, password);
-            console.log('\n' + query2 + '\n');
-            connection.query(query2, function (err) {
-                if (err) {
-                    console.log(err);
-                    res.status(400).send("Insertion error - check DB (student does not exist or relation) error!");
-                }
-                else {
+                        var query2 = queries.registerUser(personalId, lastName, firstName, userType, email, password);
+                        console.log('\n' + query2 + '\n');
+                        connection.query(query2, function (err) {
+                            if (err) {
+                                console.log(err);
+                                res.status(400).send("Insertion error - check DB (student does not exist or relation) error!");
+                            }
+                            else {
 
                                 var query3 = queries.getUserId(email);
                                 console.log('\n' + query3 + '\n');
@@ -555,10 +555,9 @@ app.post('/getAllTasks', function (req, res) {
 
 
 app.post('/getAllGroupForTask', function (req, res) {
-
-    var task_id= req.body.task_id;
-    var teacher_id= req.body.teacher_id;
-    var query = queries.chooseGroupsAvalibleToTask(task_id,teacher_id);
+    var task_id = req.body.task_id;
+    var teacher_id = req.body.teacher_id;
+    var query = queries.chooseGroupsAvalibleToTask(task_id, teacher_id);
     console.log('\n' + query + '\n');
     connection.query(query, function (err, groups) {
         if (err) {
@@ -575,10 +574,28 @@ app.post('/getAllGroupForTask', function (req, res) {
 });
 
 
+app.post('/checkIfGroupCodeExists', function (req, res) {
+    var groupCode = req.body.group_code;
+    var query = queries.checkIfGroupCodeExists(groupCode);
+    console.log('\n' + query + '\n');
+    connection.query(query, function (err, isTeacher) {
+        if (err) {
+            console.log(err);
+            res.status(400).send("DB error");
+        }
+        else {
+            var responseJson = {};
+            responseJson["userType"] = isTeacher[0].isTeacherGroup;
+            res.status(200).send(responseJson);//
+        }
+    });
+});
+
+
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '123456',//'1q2w3e4r' to upload*/
+    password: '1q2w3e4r',//'1q2w3e4r' to upload*/
     database: 'textra_db',
     multipleStatements: true
 });
