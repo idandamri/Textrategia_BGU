@@ -110,7 +110,7 @@ module.exports =
         },
 
         getGroupIdfromcode: function (g_code) {
-            return "select GroupId from textra_db.groups where GroupeCode = " + g_code + ";";
+            return "select GroupId from textra_db.groups where GroupeCode = '" + g_code + "';";
         },
 
         registerUser: function (personalId, lastName, firstName, userType, email, password) {
@@ -160,7 +160,7 @@ module.exports =
     },
 
     checkIfEmailExist: function (email) {
-        return "select Email" + " from textra_db.users where Email like '" + +email + "';";
+        return "select Email" + " from textra_db.users where Email like '" + email + "';";
     },
 
     chooseGroupsAvalibleToTask: function (task_id, teacher_id) {
