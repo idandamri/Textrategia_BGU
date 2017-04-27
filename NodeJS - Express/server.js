@@ -593,7 +593,7 @@ app.post('/checkIfGroupCodeExists', function (req, res) {
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '123456',//'1q2w3e4r' to upload*/
+    password: '1q2w3e4r',//'1q2w3e4r' to upload*/
     database: 'textra_db',
     multipleStatements: true
 });

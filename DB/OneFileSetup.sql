@@ -376,7 +376,7 @@ values(1,2,4);*/
 
 
 
-/*arnon user*/
+/*arnon user
 insert into tasks_and_question_for_student_instances
 values(3,1,1);
 
@@ -400,7 +400,7 @@ insert into tasks_and_question_for_student_instances
 values(3,2,3);
 
 insert into tasks_and_question_for_student_instances
-values(3,2,4);
+values(3,2,4);*/
 
 /*shaked user
 insert into tasks_and_question_for_student_instances
