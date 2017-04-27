@@ -11,7 +11,6 @@ textrategiaApp.controller("RegisterController",function($scope,$http ,$location)
 
     $scope.doneRegister = false;
     $scope.checkedCode = false ;            // init to false
-    $scope.userCode = "";                   // must be kept as global
 
     $(document).ready(function(){
         $('[data-toggle="tooltip"]').tooltip()  ;
@@ -44,11 +43,12 @@ textrategiaApp.controller("RegisterController",function($scope,$http ,$location)
             $http(req)
                 .success(function(data,status,headers,config){
                     $scope.checkedCode = true; 
-                    // alert(data);
-                    // alert(data.userType);
-                    // alert(idan[0]);
-                    setUserType(data.userType);
-                    alert(getUserType());
+                    //$scope.tmp = data.userType;
+                    //alert(data);
+                    //alert(data[0].isTeacherGroup);
+                    //alert($scope.tmp); 
+                    setUserType(data[0].isTeacherGroup);
+                    //alert(getUserType());
 
                     $scope.serverFeedback = "הקוד נקלט, הנך מוזמן להמשיך בתהליך הרישום " ;
                 }).error(function(data,status,headers,config){
@@ -834,7 +834,7 @@ textrategiaApp.controller("LoginController", function($scope, $http,$location) {
                 // alert("go teacher!");
                 $location.path('teacher');
             }
-            else if (data[0].UserType == "2") {
+            else if (data[0].UserType == "0") {
                 // alert("go student!");
                 $location.path('student');
             }
