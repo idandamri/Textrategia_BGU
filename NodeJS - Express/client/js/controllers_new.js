@@ -25,26 +25,46 @@ textrategiaApp.controller("RegisterController",function($scope,$http ,$location)
     $scope.checkUserCode  = function(){
 
         var badFeedback = "הקוד לא תקין, אנא פנה לרכז טקסטרטגיה";
-        var goodFeedback = "הקוד נקלט, הנך מוזמן להמשיך בתהליך הרישום";
-
 
         $scope.userCode  = $scope.user.userCode;
         setGroupCode($scope.userCode);
-        // alert($scope.userCode);
 
-        // ################################################
-        // ######### send userCode to server here ######### 
-        // ################################################
+        var req = {
+                method: 'POST',
+                cache: false,
+                url: _url +'/checkIfGroupCodeExists',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                data: 'group_code='+ getGroupCode()
+            };
+
+      
+
+            $http(req)
+                .success(function(data,status,headers,config){
+                    $scope.checkedCode = true; 
+                    // alert(data);
+                    // alert(data.userType);
+                    // alert(idan[0]);
+                    setUserType(data.userType);
+                    alert(getUserType());
+
+                    $scope.serverFeedback = "הקוד נקלט, הנך מוזמן להמשיך בתהליך הרישום " ;
+                }).error(function(data,status,headers,config){
+                    if (status==400){
+                        $scope.serverFeedback = "הקוד לא קיים במערכת!";
+                    }
+                    else {
+                        $scope.serverFeedback = "שגיאה בשרת";
+                    }
+               });
+
+                  //alert("dude!!!");
 
         $scope.isUserTeacher = false; // this get set by server response
         
-        // if 200 then good feedback + change flag.
-        $scope.serverFeedback = goodFeedback;
-        $scope.checkedCode = true; // flag, change after server 'OK' response only.        
-        
-        // else bad feedback + DONT CHANGE FLAG
-        // $scope.serverFeedback = badFeedback;
-    }
+   }
 
 
     // send information to server + $scope.userCode must be also sent.
@@ -81,7 +101,7 @@ textrategiaApp.controller("RegisterController",function($scope,$http ,$location)
                 },
                 data: 'personal_id='+ userIdNumber +'&group_code='+getGroupCode()
                 + '&last_name=' + userLastName + '&first_name=' + userFirstName +
-                '&user_type=' + '2' + '&email=' + userEmail1 + '&password=' + userPassword1
+                '&user_type=' + getUserType() + '&email=' + userEmail1 + '&password=' + userPassword1
             };
 
 

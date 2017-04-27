@@ -48,5 +48,25 @@ function getGroupCode(){
     return this.groupCode;
 };
 
+// var = userType = ""; //0- student ; 1- teacher ; 2 - superUser
+
+// function setUserType(_userType){
+// 	userType = _userType;
+// };
+
+// function getUserType(){
+//     return this.userType;
+// }
+
+var userType ="";
+
+function setUserType(_userType){
+    userType= _userType;
+};
+
+function getUserType(){
+    return this.userType;
+};
+
 
 

@@ -584,9 +584,9 @@ app.post('/checkIfGroupCodeExists', function (req, res) {
             res.status(400).send("DB error");
         }
         else {
-            var responseJson = {};
-            responseJson["userType"] = isTeacher[0].isTeacherGroup;
-            res.status(200).send(responseJson);//
+            // var responseJson = {};
+            // responseJson["userType"] = [0].isTeacherGroup;
+            res.status(200).send(isTeacher);//
         }
     });
 });
@@ -595,7 +595,7 @@ app.post('/checkIfGroupCodeExists', function (req, res) {
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '1q2w3e4r',//'1q2w3e4r' to upload*/
+    password: '123456',//'1q2w3e4r' to upload*/
     database: 'textra_db',
     multipleStatements: true
 });

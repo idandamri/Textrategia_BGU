@@ -40,12 +40,13 @@
       </div>  
       <div class="col-sm-5">
         <form name="myFirstForm" class="form-group row" role="form">
-              <input type="text" name="code" required class="form-control inputstl form-control-lg" id="lgFormGroupInput" placeholder="הכנס קוד משתמש" ng-model="user.userCode"> 
+          <input type="text" name="code" required class="form-control inputstl form-control-lg" id="lgFormGroupInput" placeholder="הכנס קוד משתמש" ng-model="user.userCode"> 
         </form>
       </div>
       <div class="col-sm-3"> <br> </div>
 
       <div class="col-sm-12 text-center">
+      <!-- button! -->
         <button ng-click="checkUserCode()" ng-disabled="myFirstForm.$invalid" type="submit" class="btn btn-lg btn-info" data-toggle="modal" data-target="#fedbackModal">שלח קוד</button>
       </div>
 </div>
