@@ -308,7 +308,7 @@ textrategiaApp.controller("GroupManagementController",function($scope,$http,$loc
     $scope.serverFeedback = "אופס... אין תשובה מהשרת.";
 
     $scope.getAllGroupForTask= function (task_id) {
-
+        alert("!!!)");
         var req = {
             method: 'POST',
             cache: false,

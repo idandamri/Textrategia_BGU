@@ -219,3 +219,16 @@ output: status 200 with list of group / status 204 - no group for this task/  40
 ]
 
 
+17.post('/checkIfGroupCodeExists')
+input: group_code
+output: status 200 with json  / 400 - "DB error"
+
+{"userType":1}
+
+0-student
+1-teacher
+2-superuser
+
+
+
+

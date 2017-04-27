@@ -155,6 +155,10 @@ module.exports =
             + " = ( select max(" + attribute_id + ") from textra_db." + table_name + " );";
     },
 
+    checkIfGroupCodeExists: function (group_code) {
+        return "select groups.isTeacherGroup from textra_db.groups where GroupeCode = '" +  group_code + "';";
+    },
+
     chooseGroupsAvalibleToTask : function (task_id,teacher_id) {
                     return "SELECT * FROM textra_db.groups where GroupId not in ("
                         +"SELECT distinct GroupId FROM textra_db.students_per_group where StudentId in (" +
