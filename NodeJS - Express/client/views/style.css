@@ -73,14 +73,38 @@ removed active.
 .checkbox-inline input[type="checkbox"]
 {
     float: right;
-    margin-right: 2.5%;
-    margin-left: 0;
     margin-right: -20px;
     margin-left: auto;
 }
 
 form div label{
     margin-right: 2%;
+}
+
+
+.login-page-container {
+    text-align: center;
+}
+
+.login-subtitle{
+    margin-bottom: 30px;
+}
+
+.login-input-label {
+
+}
+
+.login-input {
+    margin: auto; /* will always push the element from its sides to center */
+    max-width: 450px;
+    min-width: 350px;
+    margin-top: 7px;
+    margin-bottom: 15px;
+    padding: 7px;
+}
+
+.login-inputs-container {
+    display: grid;
 }
 
 
@@ -195,8 +219,7 @@ thead tr th{
     left:50%;
 }
 
-
-/* ------------------- Bottom page ------------------- */
+/* ------------------- input style ------------------- */
 .inputstl {
     padding: 9px;
     border: solid 1px #0F75BC;
@@ -207,4 +230,9 @@ thead tr th{
     -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
     -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
 
+}
+
+
+.button-center {
+    margin: auto;
 }
