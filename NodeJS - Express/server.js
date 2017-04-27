@@ -584,9 +584,7 @@ app.post('/checkIfGroupCodeExists', function (req, res) {
             res.status(400).send("DB error");
         }
         else {
-            var responseJson = {};
-            responseJson["userType"] = isTeacher[0].isTeacherGroup;
-            res.status(200).send(responseJson);//
+            res.status(200).send(isTeacher);//
         }
     });
 });

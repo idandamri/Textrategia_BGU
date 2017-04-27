@@ -4,11 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/server.js" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c1dd669-4d78-476f-9d51-553f8449f360" name="Default" comment="changed DB Marathon day">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../DB/OneFileSetup.sql" afterPath="$PROJECT_DIR$/../DB/OneFileSetup.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/js/controllers_new.js" afterPath="$PROJECT_DIR$/client/js/controllers_new.js" />
-    </list>
+    <list default="true" id="7c1dd669-4d78-476f-9d51-553f8449f360" name="Default" comment="changed DB Marathon day" />
     <list id="c6aab38b-e232-4e80-b2df-d49c82aaa698" name="Rejected commit: Default" comment="comm test" />
     <list id="b7d62d89-dbb7-429a-833f-f97ac1f737a4" name="Rejected commit: Default (2)" comment="comm test" />
     <list id="bd2b0358-3acb-4d5b-978a-3ae71efebf61" name="Rejected commit: Default (3)" comment="19 of 20cstopped only 4 failed.." />
@@ -43,11 +39,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="queryForDB.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="queryForDB.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/queryForDB.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="158" column="107" lean-forward="false" selection-start-line="158" selection-start-column="107" selection-end-line="158" selection-end-column="107" />
+            <state relative-caret-position="163">
+              <caret line="161" column="41" lean-forward="false" selection-start-line="161" selection-start-column="41" selection-end-line="161" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -56,18 +52,18 @@
       <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="588" column="49" lean-forward="false" selection-start-line="588" selection-start-column="49" selection-end-line="588" selection-end-column="49" />
+            <state relative-caret-position="78">
+              <caret line="324" column="41" lean-forward="false" selection-start-line="324" selection-start-column="24" selection-end-line="324" selection-end-column="41" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="API.txt" pinned="false" current-in-tab="true">
+      <file leaf-file-name="API.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/API.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="247">
-              <caret line="229" column="11" lean-forward="false" selection-start-line="229" selection-start-column="11" selection-end-line="229" selection-end-column="11" />
+              <caret line="229" column="11" lean-forward="true" selection-start-line="229" selection-start-column="11" selection-end-line="229" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -77,9 +73,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>createTa</find>
-      <find>insertStudentToGroup</find>
-      <find>addUsersToGroup</find>
       <find>insertstu</find>
       <find>createTask</find>
       <find>createTas</find>
@@ -105,8 +98,11 @@
       <find>getGroupByUser</find>
       <find>registeru</find>
       <find>registerUser</find>
-      <find>checkIfGroupCodeExists</find>
       <find>register</find>
+      <find>checkIfGroupCodeExists</find>
+      <find>group_code</find>
+      <find>checkife</find>
+      <find>regist</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -127,10 +123,10 @@
         <option value="$PROJECT_DIR$/server_test.js" />
         <option value="$PROJECT_DIR$/test/tools-spec-delete.js" />
         <option value="$PROJECT_DIR$/client/js/controllers_new.js" />
-        <option value="$PROJECT_DIR$/queryForDB.js" />
         <option value="$PROJECT_DIR$/test/tools-spec.js" />
-        <option value="$PROJECT_DIR$/server.js" />
         <option value="$PROJECT_DIR$/API.txt" />
+        <option value="$PROJECT_DIR$/server.js" />
+        <option value="$PROJECT_DIR$/queryForDB.js" />
       </list>
     </option>
   </component>
@@ -867,7 +863,7 @@
       <workItem from="1492187269906" duration="7478000" />
       <workItem from="1492633175187" duration="24485000" />
       <workItem from="1493292496165" duration="7745000" />
-      <workItem from="1493306570355" duration="2378000" />
+      <workItem from="1493306570355" duration="5011000" />
     </task>
     <task id="LOCAL-00001" summary="done updating getQuestion">
       <created>1490566647810</created>
@@ -968,7 +964,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="125558000" />
+    <option name="totallyTimeSpent" value="128191000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1376" height="744" extended-state="6" />
@@ -1100,12 +1096,6 @@
           <url>file://$PROJECT_DIR$/server.js</url>
           <line>431</line>
           <option name="timeStamp" value="234" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/server.js</url>
-          <line>588</line>
-          <properties />
-          <option name="timeStamp" value="237" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -1458,6 +1448,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1465,14 +1456,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
           <caret line="50" column="20" lean-forward="false" selection-start-line="50" selection-start-column="11" selection-end-line="50" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/queryForDB.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="158" column="107" lean-forward="false" selection-start-line="158" selection-start-column="107" selection-end-line="158" selection-end-column="107" />
           <folding />
         </state>
       </provider>
@@ -1485,18 +1468,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server.js">
+    <entry file="file://$PROJECT_DIR$/API.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="247">
-          <caret line="588" column="49" lean-forward="false" selection-start-line="588" selection-start-column="49" selection-end-line="588" selection-end-column="49" />
+          <caret line="229" column="11" lean-forward="true" selection-start-line="229" selection-start-column="11" selection-end-line="229" selection-end-column="11" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/API.txt">
+    <entry file="file://$PROJECT_DIR$/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="229" column="11" lean-forward="false" selection-start-line="229" selection-start-column="11" selection-end-line="229" selection-end-column="11" />
+        <state relative-caret-position="78">
+          <caret line="324" column="41" lean-forward="false" selection-start-line="324" selection-start-column="24" selection-end-line="324" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/queryForDB.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="161" column="41" lean-forward="false" selection-start-line="161" selection-start-column="41" selection-end-line="161" selection-end-column="41" />
           <folding />
         </state>
       </provider>
