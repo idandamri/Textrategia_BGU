@@ -29,8 +29,7 @@
 
     <div class="row">
 
-      <div class="col-sm-12">  <h1>שלום, {{teacherName}}!</h1>  <h3>צור קבוצת לימוד חדשה: </h3>  </div>
-
+   <div class="col-sm-12">  <h1>שלום, {{teacherName}}!</h1>  <h3>צור קבוצת לימוד חדשה: </h3>  </div>
 
       <form name="myForm" class="form-horizontal" role="form">
 
@@ -39,19 +38,20 @@
         <div class="col-sm-4">
 
           <!--  2 -->
-          <label class="control-label pull-right">האם קבוצת אם:&nbsp;&nbsp;</label>
+            <label class="control-label pull-right">סוג קבוצה:&nbsp;&nbsp;</label>
             <select class="form-control inputstl" id="group_master">
-              <option value=1>כן</option>
+              <option value=1>קבוצת-אם תלמידים</option>
+              <option value=2>קבוצת תלמידים</option>
+              <option value=3>קבוצת-אם מורים</option>
+              <!-- <option value=1>קבוצת אם למורים</option> -->
+            </select>   
               <!-- <option value=0>לא</option> -->
             </select>    
 
 			<!-- 4 -->
            <label class="control-label pull-right">בחר עיר:&nbsp;&nbsp;</label>
-            <select class="form-control inputstl" id="group_city">
-              <option value=1>אשדוד</option>
-              <option value=2>באר שבע</option>
-              <option value=3>דימונה</option>
-              <!-- <option value=0>לא</option> -->
+            <select class="form-control inputstl" id="group_city" size=5>
+              <option ng-repeat="city in myCities.cities" value={{city}}>{{city}}</option>
             </select>                 
         
 
