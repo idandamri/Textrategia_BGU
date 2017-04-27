@@ -569,7 +569,7 @@ app.post('/getAllGroupForTask', function (req, res) {
             if (groups.length > 0)
                 res.status(200).json(groups);
             else
-                res.status(204);
+                res.status(204).send();
         }
     });
 });
