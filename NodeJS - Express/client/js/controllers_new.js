@@ -52,10 +52,11 @@ textrategiaApp.controller("RegisterController",function($scope,$http ,$location)
         $scope.registerMod = true;
 
         var userFirstName = $scope.user.userFirstName;
+        var userLastName = $scope.user.userLastName;
         var userEmail1 = $scope.user.userEmail1;
         var userPassword1 = $scope.user.userPassword1;
+        var userIdNumber = $scope.user.userIdNumber;
 
-        var userLastName = $scope.user.userLastName;
         var userEmail2 = $scope.user.userEmail2;
         var userPassword2 = $scope.user.userPassword2;
 
@@ -78,9 +79,9 @@ textrategiaApp.controller("RegisterController",function($scope,$http ,$location)
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
-                data: 'personal_id='+ Math.floor((Math.random() * 1000) + 1) +'&group_code='+getGroupCode()
+                data: 'personal_id='+ userIdNumber +'&group_code='+getGroupCode()
                 + '&last_name=' + userLastName + '&first_name=' + userFirstName +
-                '&school='+'temp' +'&city=' +'temp' + '&user_type=' + '2' + '&email=' + userEmail1 + '&password=' + userPassword1
+                '&user_type=' + '2' + '&email=' + userEmail1 + '&password=' + userPassword1
             };
 
 
