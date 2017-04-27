@@ -318,11 +318,65 @@ describe("Testing Textrategia API", function () {
     //     });
     // });
     //
+    //
+    // describe("Testing If Group Code Exists", function () {
+    //     it('Test If Group Code Exists - correct deatils', function (done) {
+    //         request(app).post("/checkIfGroupCodeExists").send({
+    //             "group_code" : "teach"
+    //         })
+    //             .expect(200)
+    //             .end(function (err, res) {
+    //                 console.log("response: " + JSON.stringify(res.body));
+    //                 done();
+    //             });
+    //     });
+    // }
+    //
+    // describe("Testing get Student List From Group Id", function () {
+    //     it('Test get Student List From Group Id - correct deatils', function (done) {
+    //         request(app).post("/getStudentListFromGroupId").send({
+    //             "group_id": "123456"
+    //         })
+    //             .expect(200)
+    //             .end(function (err, res) {
+    //                 console.log("response: " + JSON.stringify(res.body));
+    //                 done();
+    //             });
+    //     });
+    // });
+    //
+    // describe("Testing get Groups By School", function () {
+    //     it('Test get Groups By School - correct deatils', function (done) {
+    //         request(app).post("/getGroupsBySchool").send({
+    //             "school": "מבועות"
+    //         })
+    //             .expect(200)
+    //             .end(function (err, res) {
+    //                 console.log("response: " + JSON.stringify(res.body));
+    //                 done();
+    //             });
+    //     });
+    // });
+    //
+    // describe("Testing get Valid Questions", function () {
+    //     it('Test get Valid Questions - correct deatils', function (done) {
+    //         request(app).post("/getValidQuestions").send({
+    //             "is_app": "1",
+    //             "is_disabled": "0"
+    //         })
+    //             .expect(200)
+    //             .end(function (err, res) {
+    //                 console.log("response: " + JSON.stringify(res.body));
+    //                 done();
+    //             });
+    //     });
+    // });
 
-    describe("Testing adding Task", function () {
-        it('Test create task - correct deatils', function (done) {
-            request(app).post("/checkIfGroupCodeExists").send({
-                "group_code" : "teach"
+    describe("Testing get Groups By Teacher And City", function () {
+        it('Test get Groups By Teacher And City - correct deatils', function (done) {
+            request(app).post("/getGroupsByTeacherAndCity").send({
+                "teacher_id": "1",
+                "city": "אשדוד"
             })
                 .expect(200)
                 .end(function (err, res) {
@@ -331,5 +385,9 @@ describe("Testing Textrategia API", function () {
                 });
         });
     });
+
+    //);
+    //
+
 
 });

@@ -590,6 +590,72 @@ app.post('/checkIfGroupCodeExists', function (req, res) {
 });
 
 
+app.post('/getStudentListFromGroupId', function (req, res) {
+    var groupCode = req.body.group_id;
+    var query = queries.getStudentsFromGroup(groupCode);
+    console.log('\n' + query + '\n');
+    connection.query(query, function (err, listOfStudents) {
+        if (err) {
+            console.log(err);
+            res.status(400).send("DB error");
+        }
+        else {
+            res.status(200).send(listOfStudents);//
+        }
+    });
+});
+
+
+app.post('/getGroupsBySchool', function (req, res) {
+    var schoolName = req.body.school;
+    var query = queries.getGroupsBySchool(schoolName);
+    console.log('\n' + query + '\n');
+    connection.query(query, function (err, listOfGroups) {
+        if (err) {
+            console.log(err);
+            res.status(400).send("DB error");
+        }
+        else {
+            res.status(200).send(listOfGroups);
+        }
+    });
+});
+
+
+app.post('/getValidQuestions', function (req, res) {
+    var isApproved = req.body.is_app;
+    var isDisabled = req.body.is_disabled;
+    var query = queries.getValidQuestions(isApproved,isDisabled);
+    console.log('\n' + query + '\n');
+    connection.query(query, function (err, listOfQuestions) {
+        if (err) {
+            console.log(err);
+            res.status(400).send("DB error");
+        }
+        else {
+            res.status(200).send(listOfQuestions);
+        }
+    });
+});
+
+
+app.post('/getGroupsByTeacherAndCity', function (req, res) {
+    var teacherId = req.body.teacher_id;
+    var CityName = req.body.city;
+    var query = queries.getGroupsByTeacherAndCity(teacherId,CityName);
+    console.log('\n' + query + '\n');
+    connection.query(query, function (err, listOfQuestions) {
+        if (err) {
+            console.log(err);
+            res.status(400).send("DB error");
+        }
+        else {
+            res.status(200).send(listOfQuestions);
+        }
+    });
+});
+
+
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',

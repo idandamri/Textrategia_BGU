@@ -82,6 +82,18 @@ module.exports =
             return "SELECT StudentId FROM textra_db.students_per_group where GroupId = " + group_id + ";";
         },
 
+        getGroupsByTeacherAndCity: function (teacherId,city) {
+            return "SELECT * FROM textra_db.groups where teacherID = '" + teacherId + "' and City = '" + city + "';";
+        },
+
+        getValidQuestions: function (is_app, is_disabled) {
+            return "SELECT * FROM textra_db.questions where Q_approved = " + is_app + " and Q_disabled = " + is_disabled + ";";
+        },
+
+        getGroupsBySchool: function (schoolName) {
+            return "SELECT * FROM textra_db.groups where School = '" + schoolName + "';";
+        },
+
         getUserId: function (email) {
             return "SELECT PersonalID FROM textra_db.users where Email = '" + email + "';";
         },
