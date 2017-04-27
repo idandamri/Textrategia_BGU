@@ -77,11 +77,6 @@ removed active.
     margin-left: auto;
 }
 
-form div label{
-    margin-right: 2%;
-}
-
-
 .login-page-container {
     text-align: center;
 }
@@ -90,8 +85,11 @@ form div label{
     margin-bottom: 30px;
 }
 
-.login-input-label {
-
+.login-input-label1 {
+    margin-left: 233px;
+}
+.login-input-label2 {
+    margin-left: 285px;
 }
 
 .login-input {
@@ -106,6 +104,11 @@ form div label{
 .login-inputs-container {
     display: grid;
 }
+
+.login-button {
+    padding: 10px 50px;
+}
+
 
 
 /* ------------------- student ------------------- */
