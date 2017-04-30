@@ -33,6 +33,11 @@ textrategiaApp.config(function($routeProvider){
 		controller :'oneQuestionController'
 	})
 
+    // ~~~~~~~~~~~~ SuperUser routs ~~~~~~~~~~~~~
+        .when('/superUser', {
+            templateUrl:'views/superUser.html',
+            controller :'TeacherController'
+        })
 
 // ~~~~~~~~~~~~ Teacher routs ~~~~~~~~~~~~~
 	.when('/teacher', {

@@ -837,6 +837,11 @@ textrategiaApp.controller("LoginController", function($scope, $http,$location) {
                 // alert("go student!");
                 $location.path('student');
             }
+            else if (data[0].UserType == "2") {
+                // alert("go student!");
+                $location.path('superUser');
+            }
+
 
         }).error(function(data,status,headers,config){
             $scope.showError = true;
@@ -847,8 +852,13 @@ textrategiaApp.controller("LoginController", function($scope, $http,$location) {
 
     }
 
+    // textrategiaApp.controller("SuperUserController", function($scope,$http,$location ,$sce) {
+    //
+    // });
 
-});
+
+
+    });
 
 
 var cities =

@@ -111,7 +111,7 @@ API:
 
 
 9.post('/createGroup')
-	input: teacher_id, group_name, is_master, is_approved
+	input: group_name,school,city,is_teacher_group,group_user_type,teacher_id,is_master,is_approved
     output: status 200 /400 - Insertion error - check DB (group/student does not exist or relation error!"
     example to output : No output
 

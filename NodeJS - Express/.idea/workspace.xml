@@ -4,7 +4,9 @@
     <bookmark url="file://$PROJECT_DIR$/server.js" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c1dd669-4d78-476f-9d51-553f8449f360" name="Default" comment="changed DB Marathon day" />
+    <list default="true" id="7c1dd669-4d78-476f-9d51-553f8449f360" name="Default" comment="changed DB Marathon day">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <list id="c6aab38b-e232-4e80-b2df-d49c82aaa698" name="Rejected commit: Default" comment="comm test" />
     <list id="b7d62d89-dbb7-429a-833f-f97ac1f737a4" name="Rejected commit: Default (2)" comment="comm test" />
     <list id="bd2b0358-3acb-4d5b-978a-3ae71efebf61" name="Rejected commit: Default (3)" comment="19 of 20cstopped only 4 failed.." />
@@ -32,8 +34,8 @@
       <file leaf-file-name="tools-spec.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/tools-spec.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="112">
-              <caret line="132" column="30" lean-forward="false" selection-start-line="132" selection-start-column="24" selection-end-line="132" selection-end-column="30" />
+            <state relative-caret-position="248">
+              <caret line="256" column="31" lean-forward="false" selection-start-line="256" selection-start-column="31" selection-end-line="256" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -49,11 +51,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="server.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="146">
-              <caret line="273" column="35" lean-forward="false" selection-start-line="273" selection-start-column="25" selection-end-line="273" selection-end-column="35" />
+            <state relative-caret-position="78">
+              <caret line="269" column="0" lean-forward="true" selection-start-line="269" selection-start-column="0" selection-end-line="269" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -63,17 +65,47 @@
         <entry file="file://$PROJECT_DIR$/client/js/controllers_new.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="146">
-              <caret line="288" column="27" lean-forward="false" selection-start-line="288" selection-start-column="27" selection-end-line="288" selection-end-column="27" />
+              <caret line="132" column="17" lean-forward="false" selection-start-line="132" selection-start-column="17" selection-end-line="132" selection-end-column="17" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="API.txt" pinned="false" current-in-tab="false">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/js/app.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="169">
+              <caret line="41" column="42" lean-forward="false" selection-start-line="41" selection-start-column="42" selection-end-line="41" selection-end-column="42" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="superUser.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/views/superUser.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="104">
+              <caret line="29" column="39" lean-forward="false" selection-start-line="29" selection-start-column="28" selection-end-line="29" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="teacher.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/views/teacher.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="37" column="20" lean-forward="true" selection-start-line="37" selection-start-column="20" selection-end-line="37" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="API.txt" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/API.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="229" column="11" lean-forward="true" selection-start-line="229" selection-start-column="11" selection-end-line="229" selection-end-column="11" />
+            <state relative-caret-position="112">
+              <caret line="112" column="22" lean-forward="true" selection-start-line="112" selection-start-column="22" selection-end-line="112" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -81,11 +113,15 @@
       </file>
     </leaf>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>regi</find>
-      <find>676</find>
-      <find>updateAnswer</find>
       <find>createT</find>
       <find>addQuestion</find>
       <find>questionD</find>
@@ -95,8 +131,6 @@
       <find>quest_proffesion</find>
       <find>questionDone</find>
       <find>questiond</find>
-      <find>creategroup</find>
-      <find>createg</find>
       <find>createG</find>
       <find>createGroup</find>
       <find>addTaskToGroup</find>
@@ -107,12 +141,17 @@
       <find>group_code</find>
       <find>regist</find>
       <find>checkife</find>
-      <find>login</find>
       <find>getStudentsFromGroup</find>
       <find>checkIfGroupCodeExists</find>
       <find>GroupId from</find>
       <find>create</find>
+      <find>login</find>
+      <find>אבטליון</find>
+      <find>שלום</find>
+      <find>teacherName</find>
       <find>createGr</find>
+      <find>createg</find>
+      <find>creategroup</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -132,11 +171,14 @@
         <option value="$APPLICATION_CONFIG_DIR$/extensions/אקדא" />
         <option value="$PROJECT_DIR$/server_test.js" />
         <option value="$PROJECT_DIR$/test/tools-spec-delete.js" />
-        <option value="$PROJECT_DIR$/API.txt" />
-        <option value="$PROJECT_DIR$/client/js/controllers_new.js" />
         <option value="$PROJECT_DIR$/server.js" />
         <option value="$PROJECT_DIR$/queryForDB.js" />
         <option value="$PROJECT_DIR$/test/tools-spec.js" />
+        <option value="$PROJECT_DIR$/client/js/app.js" />
+        <option value="$PROJECT_DIR$/client/js/controllers_new.js" />
+        <option value="$PROJECT_DIR$/client/views/superUser.html" />
+        <option value="$PROJECT_DIR$/client/views/teacher.html" />
+        <option value="$PROJECT_DIR$/API.txt" />
       </list>
     </option>
   </component>
@@ -310,6 +352,68 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NodeJS - Express" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Textrategia_BGU" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NodeJS - Express" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NodeJS - Express" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Textrategia_BGU" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NodeJS - Express" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NodeJS - Express" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Textrategia_BGU" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NodeJS - Express" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scratches">
@@ -357,6 +461,7 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
     <property name="SearchEverywhereHistoryKey" value="contr&#9;FILE&#9;file://C:/Users/idan/Desktop/Textrategia/Textrategia_BGU/NodeJS - Express/client/js/controllers_new.js" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -364,7 +469,7 @@
       <recent name="C:\Users\idan\Desktop\Textrategia\Textrategia_BGU\NodeJS - Express\test" />
     </key>
   </component>
-  <component name="RunManager" selected="Mocha.Testing Textrategia API.Testing get Groups By Teacher And City.Test get Groups By Teacher And City - correct deatils">
+  <component name="RunManager" selected="Node.js.server.js">
     <configuration default="false" name="server.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="D:/Proj/node" path-to-js-file="server.js" working-dir="$PROJECT_DIR$">
       <profiling v8-profiler-path="" />
       <EXTENSION ID="com.jetbrains.nodejs.run.NodeJSProfilingRunConfigurationExtension">
@@ -845,11 +950,11 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing get Groups By Teacher And City.Test get Groups By Teacher And City - correct deatils" />
-        <item index="1" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing get Valid Questions.Test get Valid Questions - correct deatils" />
-        <item index="2" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing get Groups By School.Test get Groups By School - correct deatils" />
-        <item index="3" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing get Student List From Group Id.Test get Student List From Group Id - correct deatils" />
-        <item index="4" class="java.lang.String" itemvalue="Node.js.server.js" />
+        <item index="0" class="java.lang.String" itemvalue="Node.js.server.js" />
+        <item index="1" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing get Groups By Teacher And City.Test get Groups By Teacher And City - correct deatils" />
+        <item index="2" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing get Valid Questions.Test get Valid Questions - correct deatils" />
+        <item index="3" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing get Groups By School.Test get Groups By School - correct deatils" />
+        <item index="4" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing get Student List From Group Id.Test get Student List From Group Id - correct deatils" />
       </list>
     </recent_temporary>
   </component>
@@ -875,7 +980,7 @@
       <workItem from="1492187269906" duration="7478000" />
       <workItem from="1492633175187" duration="24485000" />
       <workItem from="1493292496165" duration="7745000" />
-      <workItem from="1493306570355" duration="9943000" />
+      <workItem from="1493306570355" duration="12860000" />
     </task>
     <task id="LOCAL-00001" summary="done updating getQuestion">
       <created>1490566647810</created>
@@ -944,9 +1049,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="NodeJS_-_Express_test_tools-spec_js - 2017.04.27 at 18h 58m 12s.xml">
-      <configuration name="NodeJS - Express\test\tools-spec.js" configurationId="mocha-javascript-test-runner" />
-    </history-entry>
     <history-entry file="Testing_Textrategia_API_Testing_get_Groups_By_School_Test_get_Groups_By_School_-_correct_deatils - 2017.04.27 at 23h 07m 25s.xml">
       <configuration name="Testing Textrategia API.Testing get Groups By School.Test get Groups By School - correct deatils" configurationId="mocha-javascript-test-runner" />
     </history-entry>
@@ -960,6 +1062,9 @@
       <configuration name="Testing Textrategia API.Testing get Groups By Teacher And City.Test get Groups By Teacher And City - correct deatils" configurationId="mocha-javascript-test-runner" />
     </history-entry>
     <history-entry file="Testing_Textrategia_API_Testing_get_Groups_By_Teacher_And_City_Test_get_Groups_By_Teacher_And_City_-_correct_deatils - 2017.04.27 at 23h 20m 31s.xml">
+      <configuration name="Testing Textrategia API.Testing get Groups By Teacher And City.Test get Groups By Teacher And City - correct deatils" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="Testing_Textrategia_API_Testing_get_Groups_By_Teacher_And_City_Test_get_Groups_By_Teacher_And_City_-_correct_deatils - 2017.04.28 at 10h 15m 48s.xml">
       <configuration name="Testing Textrategia API.Testing get Groups By Teacher And City.Test get Groups By Teacher And City - correct deatils" configurationId="mocha-javascript-test-runner" />
     </history-entry>
     <history-entry file="Testing_Textrategia_API_Testing_get_Student_List_From_Group_Id_Test_get_Student_List_From_Group_Id_-_correct_deatils - 2017.04.27 at 23h 02m 42s.xml">
@@ -976,10 +1081,10 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="133123000" />
+    <option name="totallyTimeSpent" value="136040000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1376" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1376" height="744" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -997,7 +1102,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32935154" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16033435" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20288754" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1127,30 +1232,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/test/tools-spec.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4165">
-          <caret line="245" column="0" lean-forward="false" selection-start-line="245" selection-start-column="0" selection-end-line="245" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/queryForDB.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5678">
-          <caret line="334" column="41" lean-forward="false" selection-start-line="334" selection-start-column="41" selection-end-line="334" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/API.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1462">
@@ -1464,14 +1545,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/API.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="229" column="11" lean-forward="true" selection-start-line="229" selection-start-column="11" selection-end-line="229" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/queryForDB.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -1480,10 +1553,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/tools-spec.js">
+    <entry file="file://$PROJECT_DIR$/client/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="132" column="30" lean-forward="false" selection-start-line="132" selection-start-column="24" selection-end-line="132" selection-end-column="30" />
+        <state relative-caret-position="169">
+          <caret line="41" column="42" lean-forward="false" selection-start-line="41" selection-start-column="42" selection-end-line="41" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/views/teacher.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="37" column="20" lean-forward="true" selection-start-line="37" selection-start-column="20" selection-end-line="37" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/views/superUser.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="29" column="39" lean-forward="false" selection-start-line="29" selection-start-column="28" selection-end-line="29" selection-end-column="39" />
           <folding />
         </state>
       </provider>
@@ -1491,15 +1580,31 @@
     <entry file="file://$PROJECT_DIR$/client/js/controllers_new.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="146">
-          <caret line="288" column="27" lean-forward="false" selection-start-line="288" selection-start-column="27" selection-end-line="288" selection-end-column="27" />
+          <caret line="132" column="17" lean-forward="false" selection-start-line="132" selection-start-column="17" selection-end-line="132" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="273" column="35" lean-forward="false" selection-start-line="273" selection-start-column="25" selection-end-line="273" selection-end-column="35" />
+        <state relative-caret-position="78">
+          <caret line="269" column="0" lean-forward="true" selection-start-line="269" selection-start-column="0" selection-end-line="269" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/tools-spec.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="256" column="31" lean-forward="false" selection-start-line="256" selection-start-column="31" selection-end-line="256" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/API.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="112" column="22" lean-forward="true" selection-start-line="112" selection-start-column="22" selection-end-line="112" selection-end-column="22" />
           <folding />
         </state>
       </provider>
