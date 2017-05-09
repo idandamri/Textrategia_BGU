@@ -34,10 +34,14 @@ textrategiaApp.config(function($routeProvider){
 	})
 
     // ~~~~~~~~~~~~ SuperUser routs ~~~~~~~~~~~~~
-        .when('/superUser', {
-            templateUrl:'views/superUser.html',
-            controller :'TeacherController'
-        })
+    .when('/superUser', {
+        templateUrl:'views/superUser.html',
+        controller :'SuperUserController'
+    })
+    .when('/addSchoolInCity', {
+        templateUrl:'views/addSchoolInCity.html',
+        controller :'AddSchoolInCityController'
+    })
 
 // ~~~~~~~~~~~~ Teacher routs ~~~~~~~~~~~~~
 	.when('/teacher', {

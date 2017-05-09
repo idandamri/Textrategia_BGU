@@ -321,6 +321,7 @@ textrategiaApp.controller("LoginController", function($scope, $http,$location) {
             .success(function(data,status,headers,config){
                 setUserName(data[0].FirstName);
                 setUserID(data[0].PersonalID);
+                setUserType(data[0].UserType);
                 $scope.showError = false;
                 $scope.showSuccess = true;
                 if (data[0].UserType == "1"){
@@ -328,7 +329,6 @@ textrategiaApp.controller("LoginController", function($scope, $http,$location) {
                     $location.path('teacher');
                 }
                 else if (data[0].UserType == "0") {
-                    // alert("go student!");
                     $location.path('student');
                 }
                 else if (data[0].UserType == "2") {

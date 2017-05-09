@@ -5,9 +5,6 @@
 textrategiaApp.controller("TeacherController",function($scope, $http,$location){
     $scope.teacherName = getUserName();
 
-    $scope.myCities = cities;
-
-
 });
 
 
