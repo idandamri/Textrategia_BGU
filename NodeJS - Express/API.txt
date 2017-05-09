@@ -118,7 +118,7 @@ API:
 
 10.post('/registerUser')
 	input: personal_id, group_code, last_name, first_name, school, city, user_type, email, password
-    output: status 200 /400 - No group Id found error!/Insertion error - check DB (student does not exist or relation) error!
+    output: status 200 / 409 (conflict. while insert new user. probably duplicate id insertion) / 400 - No group Id found error!/Insertion error - check DB (student does not exist or relation) error!
     example to output : No output
 
 
@@ -221,7 +221,7 @@ output: status 200 with list of group / status 204 - no group for this task/  40
 
 17.post('/checkIfGroupCodeExists')
 input: group_code
-output: status 200 with json  / 400 - "DB error"
+output: status 200 with json  / 401- group code does not exist / 400 - "DB error"
 
 {"userType":1}
 

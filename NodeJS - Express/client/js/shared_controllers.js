@@ -35,8 +35,6 @@ textrategiaApp.controller("RegisterController",function($scope,$http ,$location)
             data: 'group_code='+ getGroupCode()
         };
 
-
-
         $http(req)
             .success(function(data,status,headers,config){
                 $scope.checkedCode = true;
@@ -46,10 +44,9 @@ textrategiaApp.controller("RegisterController",function($scope,$http ,$location)
                 //alert($scope.tmp);
                 setUserType(data[0].isTeacherGroup);
                 //alert(getUserType());
-
                 $scope.serverFeedback = "הקוד נקלט, הנך מוזמן להמשיך בתהליך הרישום " ;
             }).error(function(data,status,headers,config){
-            if (status==400){
+            if (status==401){
                 $scope.serverFeedback = "הקוד לא קיים במערכת!";
             }
             else {
@@ -110,6 +107,9 @@ textrategiaApp.controller("RegisterController",function($scope,$http ,$location)
                 if (status==401){
                     $scope.serverFeedback = "כתובת מייל כבר קיימת במערכת";
                 }
+                else if (status==409) {
+                    $scope.serverFeedback = "שגיאה בהכנסת הפרטים. יכול להיות שאתה כבר רשום למערכת?";
+                }
                 else {
                     $scope.serverFeedback = "שגיאה ברישום";
                 }
@@ -120,4 +120,3 @@ textrategiaApp.controller("RegisterController",function($scope,$http ,$location)
     }
 
 });
-

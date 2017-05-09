@@ -350,10 +350,9 @@ app.post('/registerUser', function (req, res) {
                         connection.query(query2, function (err) {
                             if (err) {
                                 console.log(err);
-                                res.status(400).send("Insertion error - check DB (student does not exist or relation) error!");
+                                res.status(409).send("Insertion error - check DB (student does not exist or relation) error!");
                             }
                             else {
-
                                 var query3 = queries.getUserId(email);
                                 console.log('\n' + query3 + '\n');
                                 connection.query(query3, function (err, u_id) {
@@ -362,8 +361,10 @@ app.post('/registerUser', function (req, res) {
                                         res.status(400).send("No PersonalID found error!");
                                     }
                                     else {
-                                        var user_id = u_id[0].PersonalID;
+                                        console.log(" u_id[0]: " + JSON.stringify(u_id[0]));
+                                        console.log(" u_id: " + JSON.stringify(u_id));
 
+                                        var user_id = u_id[0].PersonalID;
                                         var query4 = queries.addUsersToGroup(user_id, group_id);
                                         console.log('\n' + query4 + '\n');
                                         connection.query(query4, function (err) {
