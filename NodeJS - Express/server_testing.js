@@ -353,6 +353,7 @@ app.post('/registerUser', function (req, res) {
                                 res.status(409).send("Insertion error - check DB (student does not exist or relation) error!");
                             }
                             else {
+
                                 var query3 = queries.getUserId(email);
                                 console.log('\n' + query3 + '\n');
                                 connection.query(query3, function (err, u_id) {
@@ -365,6 +366,7 @@ app.post('/registerUser', function (req, res) {
                                         console.log(" u_id: " + JSON.stringify(u_id));
 
                                         var user_id = u_id[0].PersonalID;
+
                                         var query4 = queries.addUsersToGroup(user_id, group_id);
                                         console.log('\n' + query4 + '\n');
                                         connection.query(query4, function (err) {
@@ -584,7 +586,10 @@ app.post('/checkIfGroupCodeExists', function (req, res) {
             res.status(400).send("DB error");
         }
         else {
-            res.status(200).send(isTeacher);//
+            if (isTeacher.length==0)
+                res.status(401).send();//
+            else
+                res.status(200).send(isTeacher);//
         }
     });
 });
