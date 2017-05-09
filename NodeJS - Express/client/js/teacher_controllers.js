@@ -14,6 +14,13 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
     $scope.insertPossibleAnswersMode = false;
     $scope.doneRegisterQuestion = false;
 
+    
+    if (getUserType()==2){
+        $scope.isAdmin = true;
+    } else {
+        $scope.isAdmin = false; 
+    }
+
     $scope.goToTeacher = function () {
         $location.path('teacher');
     };
