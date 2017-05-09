@@ -19,23 +19,23 @@ app.get('/', function (req, res) {
     res.redirect('/index.html');
 });
 
+/*
+ app.get('/deleteItems', function (req, res) {
+ var querieOfDeletion = "DELETE FROM `textra_db`.`students_per_group` WHERE `StudentId`='12121211' and`GroupId`='123456';"
+ + "DELETE FROM `textra_db`.`users` WHERE `PersonalID`='12121211';"
+ + "DELETE FROM `textra_db`.`instances_of_answers` WHERE `A_id`='1' and`Q_id`='1' and`T_id`='1' and`studentId`='2';";
+ console.log('\n' + querieOfDeletion + '\n');
+ connection.query(querieOfDeletion, function (err) {
+ if (err) {
+ console.log(err);
+ res.status(400).send("deletion error");
+ }
+ else {
+ res.status(200).send("Deleted!");
+ }
+ });
 
-app.get('/deleteItems', function (req, res) {
-    var querieOfDeletion = "DELETE FROM `textra_db`.`students_per_group` WHERE `StudentId`='12121211' and`GroupId`='123456';"
-        + "DELETE FROM `textra_db`.`users` WHERE `PersonalID`='12121211';"
-        + "DELETE FROM `textra_db`.`instances_of_answers` WHERE `A_id`='1' and`Q_id`='1' and`T_id`='1' and`studentId`='2';";
-    console.log('\n' + querieOfDeletion + '\n');
-    connection.query(querieOfDeletion, function (err) {
-        if (err) {
-            console.log(err);
-            res.status(400).send("deletion error");
-        }
-        else {
-            res.status(200).send("Deleted!");
-        }
-    });
-
-});
+ });*/
 
 
 app.post('/login', function (req, res) {
@@ -272,11 +272,15 @@ function makeid() {
 app.post('/createGroup', function (req, res) {
     var teacherId = req.body.teacher_id;
     var gName = req.body.group_name;
+    var school = req.body.school;
+    var city = req.body.city;
+    var isTeacherGroup = req.body.is_teacher_group;
+    var groupUserType = req.body.group_user_type;
     var isMaster = req.body.is_master;
     var isApp = req.body.is_approved;
     var gCode = makeid();
 
-    var query = queries.createGroup(gName, teacherId, isMaster, gCode, isApp);
+    var query = queries.createGroup(gName, school, city, teacherId, isTeacherGroup, isMaster, gCode, groupUserType, isApp);
     console.log('\n' + query + '\n');
     connection.query(query, function (err) {
         if (err) {
@@ -308,41 +312,11 @@ app.post('/createGroup', function (req, res) {
  });
  */
 
-
-function extracted(email, res) {
-    var query = queries.checkIfEmailExist(email);
-    console.log(query);
-    connection.query(query, function (err, ans) {
-        if (err) {
-            console.log(err);
-            return 400;
-        }
-        else {
-            console.log(ans);
-            if (ans.size > 0)
-                return 401;
-            else
-                return 200;
-        }
-    });
-}
-app.post('/registerUser_test', function (req, res) {
-    var email = req.body.email;
-    var status = extracted(email, res);
-    console.log(status);
-    res.status(status);
-
-
-});
-
-
 app.post('/registerUser', function (req, res) {
     var personalId = req.body.personal_id;
     var groupCode = req.body.group_code;
     var lastName = req.body.last_name;
     var firstName = req.body.first_name;
-    var school = req.body.school;
-    var city = req.body.city;
     var userType = req.body.user_type;
     var email = req.body.email;
     var password = req.body.password;
@@ -371,7 +345,7 @@ app.post('/registerUser', function (req, res) {
                     else {
                         var group_id = groups[0].GroupId;
 
-                        var query2 = queries.registerUser(personalId, lastName, firstName, school, city, userType, email, password);
+                        var query2 = queries.registerUser(personalId, lastName, firstName, userType, email, password);
                         console.log('\n' + query2 + '\n');
                         connection.query(query2, function (err) {
                             if (err) {
@@ -558,6 +532,124 @@ app.post('/createTask', function (req, res) {
                     });
                 }
             });
+        }
+    });
+});
+
+/***************MARATON2*****************/
+app.post('/getAllTasks', function (req, res) {
+
+    var query = queries.getTasks();
+    console.log('\n' + query + '\n');
+    connection.query(query, function (err, tasks) {
+        if (err) {
+            console.log(err);
+            res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
+        }
+        else {
+            res.status(200).json(tasks);
+        }
+    });
+});
+
+
+app.post('/getAllGroupForTask', function (req, res) {
+    var task_id = req.body.task_id;
+    var teacher_id = req.body.teacher_id;
+    var query = queries.chooseGroupsAvalibleToTask(task_id, teacher_id);
+    console.log('\n' + query + '\n');
+    connection.query(query, function (err, groups) {
+        if (err) {
+            console.log(err);
+            res.status(400).send("DB error");
+        }
+        else {
+            if (groups.length > 0)
+                res.status(200).json(groups);
+            else
+                res.status(204).send();
+        }
+    });
+});
+
+
+app.post('/checkIfGroupCodeExists', function (req, res) {
+    var groupCode = req.body.group_code;
+    var query = queries.checkIfGroupCodeExists(groupCode);
+    console.log('\n' + query + '\n');
+    connection.query(query, function (err, isTeacher) {
+        if (err) {
+            console.log(err);
+            res.status(400).send("DB error");
+        }
+        else {
+            res.status(200).send(isTeacher);//
+        }
+    });
+});
+
+
+app.post('/getStudentListFromGroupId', function (req, res) {
+    var groupCode = req.body.group_id;
+    var query = queries.getStudentsFromGroup(groupCode);
+    console.log('\n' + query + '\n');
+    connection.query(query, function (err, listOfStudents) {
+        if (err) {
+            console.log(err);
+            res.status(400).send("DB error");
+        }
+        else {
+            res.status(200).send(listOfStudents);//
+        }
+    });
+});
+
+
+app.post('/getGroupsBySchool', function (req, res) {
+    var schoolName = req.body.school;
+    var query = queries.getGroupsBySchool(schoolName);
+    console.log('\n' + query + '\n');
+    connection.query(query, function (err, listOfGroups) {
+        if (err) {
+            console.log(err);
+            res.status(400).send("DB error");
+        }
+        else {
+            res.status(200).send(listOfGroups);
+        }
+    });
+});
+
+
+app.post('/getValidQuestions', function (req, res) {
+    var isApproved = req.body.is_app;
+    var isDisabled = req.body.is_disabled;
+    var query = queries.getValidQuestions(isApproved,isDisabled);
+    console.log('\n' + query + '\n');
+    connection.query(query, function (err, listOfQuestions) {
+        if (err) {
+            console.log(err);
+            res.status(400).send("DB error");
+        }
+        else {
+            res.status(200).send(listOfQuestions);
+        }
+    });
+});
+
+
+app.post('/getGroupsByTeacherAndCity', function (req, res) {
+    var teacherId = req.body.teacher_id;
+    var CityName = req.body.city;
+    var query = queries.getGroupsByTeacherAndCity(teacherId,CityName);
+    console.log('\n' + query + '\n');
+    connection.query(query, function (err, listOfQuestions) {
+        if (err) {
+            console.log(err);
+            res.status(400).send("DB error");
+        }
+        else {
+            res.status(200).send(listOfQuestions);
         }
     });
 });

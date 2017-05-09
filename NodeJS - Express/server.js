@@ -312,7 +312,6 @@ app.post('/createGroup', function (req, res) {
  });
  */
 
-
 app.post('/registerUser', function (req, res) {
     var personalId = req.body.personal_id;
     var groupCode = req.body.group_code;
@@ -659,7 +658,7 @@ app.post('/getGroupsByTeacherAndCity', function (req, res) {
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '1q2w3e4r',//'1q2w3e4r' to upload*/
+    password: '123456',//'1q2w3e4r' to upload*/
     database: 'textra_db',
     multipleStatements: true
 });
