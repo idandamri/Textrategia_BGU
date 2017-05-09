@@ -6,7 +6,7 @@ var _url = "http://localhost:8081";
 
 // ########################### GENERAL CONTROLLERS ###########################//
 
-
+-
 textrategiaApp.controller("RegisterController",function($scope,$http ,$location){
 
     $scope.doneRegister = false;
