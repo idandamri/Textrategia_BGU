@@ -162,25 +162,53 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
 textrategiaApp.controller("CreateGroupController",function($scope){
 
     $scope.teacherName = getUserName();
-
-    $scope.test = "dude!!!!";
     $scope.myCities = cities;
+
+    // ####################################################
+    // GET FROM SERVER SCHOOL FROM THIS CITY
+    // ####################################################
 
 
     // Only 2 arguments. name & is_master_group
     $scope.createGroup = function (){
         // groupName is argument 1
         var groupName = $scope.group.groupName;
-        // opt1.value is argument 2
-        var opt1;
+
+        //group_master is argument 2
+        var group_master;
         var sel1 = document.getElementById("group_master");
         for (i = 0 ; i < sel1.options.length ; i++){
-            opt1 = sel1.options[i];
-            if (opt1.selected == true){
-                //alert(opt1.value);              // 1 means yes, 0 means no
+            group_master = sel1.options[i];
+            if (group_master.selected == true){
+                //alert(group_master.value);              // 1 means yes, 0 means no
                 break;
             }
         }
+
+        // group_city is argument 3
+        var group_city;
+        sel1 = document.getElementById("group_city");
+        for (i = 0 ; i < sel1.options.length ; i++){
+            group_city = sel1.options[i];
+            if (group_city.selected == true){
+                //alert(group_city.value);              // 1 means yes, 0 means no
+                break;
+            }
+        } 
+
+        // group_school is argument 4
+        var group_school;
+        sel1 = document.getElementById("group_school");
+        for (i = 0 ; i < sel1.options.length ; i++){
+            group_school = sel1.options[i];
+            if (group_school.selected == true){
+                //alert(group_school.value);              // 1 means yes, 0 means no
+                break;
+            }
+        }     
+
+      // alert("v1: " + groupName + " v2: " +
+         // group_master.value + " v3: " +group_school.value + " v4: " + group_city.value);
 
         // ####################################################
         // SEND INFORMATION TO SERVER HERE

@@ -285,6 +285,10 @@ values (3,"גנים","הדס",0,"hadasganim@gmail.com","123456");
 
 insert into users
 values (4,"שטורם","ארנון",1,"sturm@bgu.ac.il","123456");
+
+insert into users
+values (5,"שפייזר","מתן",2,"matan@gmail.com","123456");
+
 /*------------------------------------------*/
 
 /*-------------- tasks ---------------------*/

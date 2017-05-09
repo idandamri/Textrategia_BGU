@@ -49,10 +49,13 @@
             </select>    
 
 			<!-- 4 -->
-           <label class="control-label pull-right">בחר עיר:&nbsp;&nbsp;</label>
-            <select class="form-control inputstl" id="group_city" size=5>
-              <option ng-repeat="city in myCities.cities" value={{city}}>{{city}}</option>
-            </select>                 
+                <label class="control-label pull-right">בחר בית ספר:&nbsp;&nbsp;</label>
+            <select class="form-control inputstl" id="group_school">
+              <option value=1>רעים</option>
+              <option value=2>רננים</option>
+              <option value=3>שז"ר</option>
+              <!-- <option value=0>לא</option> -->
+            </select>   
         
 
         </div>
@@ -67,13 +70,12 @@
           <input type="text" name="groupName" class="form-control inputstl pull-right" required placeholder="הכנס שם קבוצה:" ng-model="group.groupName">
 
            <!-- 3 -->
-          <label class="control-label pull-right">בחר בית ספר:&nbsp;&nbsp;</label>
-            <select class="form-control inputstl" id="group_city">
-              <option value=1>רעים</option>
-              <option value=2>רננים</option>
-              <option value=3>שז"ר</option>
-              <!-- <option value=0>לא</option> -->
-            </select>   
+           
+           <label class="control-label pull-right">בחר עיר:&nbsp;&nbsp;</label>
+            <select class="form-control inputstl" id="group_city" size=5>
+              <option ng-repeat="city in myCities.cities" value={{city}}>{{city}}</option>
+            </select>                 
+
 
 
         </div>
