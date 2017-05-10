@@ -473,19 +473,54 @@ app.post('/addQuestion', function (req, res) {
     var qIsApp = req.body.quest_is_approved;
     var qDisabled = req.body.quest_disabled;
     var qWhoCreated = req.body.who_created;
+    var correctAnswerIndex = req.body.correctAnswerIndex;
+    var answers = [];
+    answers.push(req.body.answer1);
+    answers.push(req.body.answer2);
+    answers.push(req.body.answer3);
+    answers.push(req.body.answer4);
 
-    console.log('QPROF: ' + qProff);
+    // var answer1 = req.body.answer1;
+    // var answer2 = req.body.answer2;
+    // var answer3 = req.body.answer3;
+    // var answer4 = req.body.answer4;
+
+    // console.log('QPROF: ' + qProff);
 
     var query = queries.addQustion(qTitle, isMulAns, qMedia, qMediaType, qCorrFB, qIncorrFB,
         qSkill, qDiff, qProff, qIsApp, qDisabled, qWhoCreated);
     console.log('\n' + query + '\n');
-    connection.query(query, function (err) {
+    connection.query(query, function (err,ans) {
         if (err) {
             console.log(err);
             res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
         }
         else {
-            res.status(200).send("inserted!");
+            console.log(ans);
+            console.log("insertId: " + ans.insertId);
+            var insertCommandList=[];
+            var question_id  = ans.insertId;
+            // var query = queries.insertAllAnswer(correctAnswer,answer1,answer2,answer3,answer4);
+            var i;
+            for (i= 0 ; i< answers.length ; i++ ){
+                if (correctAnswerIndex==i)
+                    insertCommandList.push(queries.insertAnswer(question_id, answers[i],1));
+                else
+                    insertCommandList.push(queries.insertAnswer(question_id, answers[i],0));
+            }
+
+            var bigQuery = insertCommandList.join(" ");
+            console.log(bigQuery);
+            connection.query(bigQuery,function (err) {
+                if (err){
+                    console.log(err);
+                    res.status(400).send();
+                }
+                else{
+                    res.status(200).send("inserted!");
+                }
+                
+            });
         }
     });
 });

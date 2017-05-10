@@ -180,7 +180,16 @@ module.exports =
             + "SELECT distinct GroupId FROM textra_db.students_per_group where StudentId in (" +
             "SELECT distinct studentId FROM textra_db.tasks_and_question_for_student_instances where T_id in (" + task_id + ") ))" +
             "and teacherID=" + teacher_id + ";"
+    },
+
+
+    insertAnswer : function (question_id,answer,isCorrect) {
+        return "insert into textra_db.answers values (null," + question_id+ ",'" + answer + "'," + isCorrect + ");"
     }
+
+
+
+
 
 
 }

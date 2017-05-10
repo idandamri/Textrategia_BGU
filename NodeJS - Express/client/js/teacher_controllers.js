@@ -82,8 +82,6 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
         // quest_proffesion /// quest_is_approved //// who_created /// quest_disabled
         // is not user inserted
 
-
-
         // get possible answers infomation!
         var possible_ans_1 = $scope.question.possible_ans_1;
         var possible_ans_2 = $scope.question.possible_ans_2;
@@ -132,6 +130,11 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
             + '&quest_is_approved=' + '1'
             + '&quest_disabled=' + '0'
             + '&who_created=' + '1'
+            + '&answer1=' + possible_ans_1
+            + '&answer2=' + possible_ans_2
+            + '&answer3=' + possible_ans_3
+            + '&answer4=' + possible_ans_4
+            + '&correctAnswerIndex=' + opt3.value
         };
 
         alert(JSON.stringify(req));
