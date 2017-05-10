@@ -35,8 +35,6 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
 
     }
 
-
-
     $scope.sendNewQuestion = function (){
         // question_title is argument 1
         var question_title = $scope.question.question_title;
@@ -141,7 +139,7 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
             + '&correctAnswerIndex=' + opt3.value
         };
 
-        alert(JSON.stringify(req));
+        // alert(JSON.stringify(req));
 
         $http(req)
             .success(function(data,status,headers,config){
