@@ -185,6 +185,15 @@ module.exports =
 
     insertAnswer : function (question_id,answer,isCorrect) {
         return "insert into textra_db.answers values (null," + question_id+ ",'" + answer + "'," + isCorrect + ");"
+    },
+
+    getAllStudentForGroup : function (group_id) {
+        return "select * from textra_db.users where PersonalId in (" +
+        "SELECT StudentId FROM textra_db.students_per_group where GroupId =" + group_id+");"
+    },
+
+    getAllGroupForTeacher : function (user_id) {
+        return "select * from textra_db.groups where teacherID =" +  user_id +";"
     }
 
 

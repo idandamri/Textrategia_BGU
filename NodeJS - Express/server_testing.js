@@ -695,6 +695,39 @@ app.post('/getGroupsByTeacherAndCity', function (req, res) {
     });
 });
 
+app.post('/getAllStudentForGroup', function (req, res) {
+    var group_id = req.body.group_id;
+    var query = queries.getAllStudentForGroup(group_id);
+    console.log('\n' + query + '\n');
+    connection.query(query, function (err, listOfStudents) {
+        if (err) {
+            console.log(err);
+            res.status(400).send("DB error");
+        }
+        else {
+            res.status(200).send(listOfStudents);
+        }
+    });
+});
+
+
+app.post('/getAllGroupForTeacher', function (req, res) {
+    var user_id = req.body.user_id;
+    console.log(user_id);
+    var query = queries.getAllGroupForTeacher(user_id);
+    console.log('\n' + query + '\n');
+    connection.query(query, function (err, groups) {
+        if (err) {
+            console.log(err);
+            res.status(400).send("DB error");
+        }
+        else {
+            res.status(200).send(groups);
+        }
+    });
+});
+
+
 
 var connection = mysql.createConnection({
     host: 'localhost',

@@ -227,6 +227,84 @@ output: status 200 with json  / 401- group code does not exist / 400 - "DB error
 
 {"userType":1}
 
+
+18. post('/getAllStudentForGroup')
+input: group_id
+output: status 200 with json  / 400 - "DB error"
+example:
+[
+  {
+    "PersonalID": "1111",
+    "LastName": "משפחה",
+    "FirstName": "שם",
+    "UserType": 0,
+    "Email": "howqw1@gmail.com",
+    "Pass": "123456"
+  },
+  {
+    "PersonalID": "2",
+    "LastName": "קריגל",
+    "FirstName": "שקד",
+    "UserType": 0,
+    "Email": "shakedkr@post.bgu.ac.il",
+    "Pass": "123456"
+  },
+  {
+    "PersonalID": "2030",
+    "LastName": "משפחה",
+    "FirstName": "שם",
+    "UserType": 0,
+    "Email": "new@gmail.com",
+    "Pass": "123456"
+  },
+  {
+    "PersonalID": "3",
+    "LastName": "גנים",
+    "FirstName": "הדס",
+    "UserType": 0,
+    "Email": "hadasganim@gmail.com",
+    "Pass": "123456"
+  }
+]
+
+
+
+19. post('getAllGroupForTeacher')
+input: user_id (of the teacher)
+output: status 200 with json  / 400 - "DB error"
+
+example:
+*  no groups: []
+* otherwise :
+[
+  {
+    "GroupId": 1,
+    "GroupName": "קבוצת מורים",
+    "School": "מענית",
+    "City": "באר שבע",
+    "teacherID": "1",
+    "isTeacherGroup": 1,
+    "IsMasterGroup": 1,
+    "GroupeCode": "teach",
+    "GroupUserType": 1,
+    "isApproved": 1
+  },
+  {
+    "GroupId": 1234567,
+    "GroupName": "שיעור פרטי",
+    "School": "מבועות",
+    "City": "אשדוד",
+    "teacherID": "1",
+    "isTeacherGroup": 0,
+    "IsMasterGroup": 1,
+    "GroupeCode": "0123456",
+    "GroupUserType": 1,
+    "isApproved": 1
+  }
+]
+
+
+
 0-student
 1-teacher
 2-superuser
