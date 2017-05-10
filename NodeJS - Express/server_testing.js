@@ -705,7 +705,12 @@ app.post('/getAllStudentForGroup', function (req, res) {
             res.status(400).send("DB error");
         }
         else {
-            res.status(200).send(listOfStudents);
+            if (listOfStudents.length==0){
+                res.status(204).send();
+            }
+            else {
+                res.status(200).send(listOfStudents);
+            }
         }
     });
 });
@@ -722,7 +727,13 @@ app.post('/getAllGroupForTeacher', function (req, res) {
             res.status(400).send("DB error");
         }
         else {
-            res.status(200).send(groups);
+            if (groups.length == 0) {
+                res.status(204).send();
+            }
+            else {
+                res.status(200).send(groups);
+
+            }
         }
     });
 });
@@ -738,10 +749,54 @@ app.post('/getAllSchollByCity', function (req, res) {
             res.status(400).send("DB error");
         }
         else {
-            res.status(200).send(schools);
+            if (schools.length==0){
+                res.status(204).send();
+            }
+            else {
+                res.status(200).send(schools);
+            }
         }
     });
 });
+
+app.post('/getGroupBySchoolAndCity', function (req, res) {
+    var city = req.body.city;
+    var school = req.body.school;
+    var query = queries.getGroupBySchoolAndCity(school,city);
+    console.log('\n' + query + '\n');
+    connection.query(query, function (err, groups) {
+        if (err) {
+            console.log(err);
+            res.status(400).send("DB error");
+        }
+        else {
+            if (groups.length==0){
+                res.status(204).send();
+            }
+            else {
+                res.status(200).send(groups);
+            }
+        }
+    });
+});
+
+
+app.post('/addNewSchool', function (req, res) {
+    var city = req.body.city;
+    var school= req.body.school;
+    var query = queries.addNewSchool(city,school);
+    console.log('\n' + query + '\n');
+    connection.query(query, function (err) {
+        if (err) {
+            console.log(err);
+            res.status(400).send("DB error");
+        }
+        else {
+            res.status(200).send();
+        }
+    });
+});
+
 
 
 

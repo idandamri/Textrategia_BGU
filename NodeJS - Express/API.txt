@@ -230,7 +230,7 @@ output: status 200 with json  / 401- group code does not exist / 400 - "DB error
 
 18. post('/getAllStudentForGroup')
 input: group_id
-output: status 200 with json  / 400 - "DB error"
+output: status 200 with json / 204 - no content  / 400 - "DB error"
 example:
 [
   {
@@ -271,10 +271,9 @@ example:
 
 19. post('getAllGroupForTeacher')
 input: user_id (of the teacher)
-output: status 200 with json  / 400 - "DB error"
+output: status 200 with json  / 204 - no content / 400 - "DB error"
 
 example:
-*  no groups: []
 * otherwise :
 [
   {
@@ -322,8 +321,42 @@ exmple:
   }
 ]
 
+21. post('addNewSchool')
+input:city,school
+output: status 200 with json  / 400 - double insertion - school already exist in this city
 
 
+22. post('getGroupBySchoolAndCity')
+input: school , city
+output: status 200 with json  / 204 - no content/ 400 - "DB error"
+example:
+
+[
+  {
+    "GroupId": 123456,
+    "GroupName": "טקסטרטגיה",
+    "School": "מבועות",
+    "City": "אשדוד",
+    "teacherID": "4",
+    "isTeacherGroup": 0,
+    "IsMasterGroup": 1,
+    "GroupeCode": "0123",
+    "GroupUserType": 1,
+    "isApproved": 1
+  },
+  {
+    "GroupId": 1234567,
+    "GroupName": "שיעור פרטי",
+    "School": "מבועות",
+    "City": "אשדוד",
+    "teacherID": "1",
+    "isTeacherGroup": 0,
+    "IsMasterGroup": 1,
+    "GroupeCode": "0123456",
+    "GroupUserType": 1,
+    "isApproved": 1
+  }
+]
 
 0-student
 1-teacher

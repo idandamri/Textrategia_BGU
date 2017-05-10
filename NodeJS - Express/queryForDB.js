@@ -193,11 +193,19 @@ module.exports =
     },
 
     getAllGroupForTeacher : function (user_id) {
-        return "select * from textra_db.groups where teacherID =" +  user_id +";"
+        return "select * from textra_db.groups where teacherID ='" +  user_id +"';"
+    },
+
+        getGroupBySchoolAndCity: function (school, city) {
+        return "select * from textra_db.groups where School like '" + school+ "' and City like '" + city + "';"
     },
 
     getAllSchollByCity : function (city) {
       return "select * from textra_db.cities_and_schools where City like '" + city+ "';"
+    },
+
+    addNewSchool: function (city,school) {
+        return "insert into textra_db.cities_and_schools values ('" + school +"' , '" + city + "');"
     }
 
 
