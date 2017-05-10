@@ -147,7 +147,6 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
                 $scope.doneRegisterQuestion = true;
             }).error(function(data,status,headers,config){
             $scope.serverFeedback = "שגיאה בהכנסת שאלה";
-
         });
 
 

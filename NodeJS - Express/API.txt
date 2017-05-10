@@ -164,7 +164,9 @@ API:
     
 
 13.post('/addQuestion')
-	input:  question_title, is_multiple_ans, question_media_type, question_media, quest_correct_fb, quest_incorrect_fb, quest_skill, quest_difficulty, quest_proffesion, quest_is_approved, quest_disabled, who_created
+	input:  question_title, is_multiple_ans, question_media_type, question_media, quest_correct_fb, quest_incorrect_fb,
+	quest_skill, quest_difficulty, quest_proffesion, quest_is_approved, quest_disabled, who_created,
+	answer1, answer2, answer3, answer4,correctAnswerIndex
     output: status 200 "inserted!" /400 - Insertion error - check DB (group/student does not exist or relation error!)
     example to output : 
 	
