@@ -194,6 +194,10 @@ module.exports =
 
     getAllGroupForTeacher : function (user_id) {
         return "select * from textra_db.groups where teacherID =" +  user_id +";"
+    },
+
+    getAllSchollByCity : function (city) {
+      return "select * from textra_db.cities_and_schools where City like '" + city+ "';"
     }
 
 

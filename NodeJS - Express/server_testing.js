@@ -728,6 +728,22 @@ app.post('/getAllGroupForTeacher', function (req, res) {
 });
 
 
+app.post('/getAllSchollByCity', function (req, res) {
+    var city = req.body.city;
+    var query = queries.getAllSchollByCity(city);
+    console.log('\n' + query + '\n');
+    connection.query(query, function (err, schools) {
+        if (err) {
+            console.log(err);
+            res.status(400).send("DB error");
+        }
+        else {
+            res.status(200).send(schools);
+        }
+    });
+});
+
+
 
 var connection = mysql.createConnection({
     host: 'localhost',
