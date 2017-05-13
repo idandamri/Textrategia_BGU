@@ -158,6 +158,11 @@ module.exports =
             + t_owner + "," + t_approved + ");";
     },
 
+    addNewTaskGenRand: function (t_title, t_description, t_owner, t_approved) {
+        return "insert into textra_db.tasks values(null,'" + t_title + "','" + t_description + "',"
+            + t_owner + "," + t_approved + ") RETURNING T_id;";
+    },
+
     joinNewTaskWithQuestion: function (t_id, q_id) {
         return "insert into textra_db.tasks_joined_with_questions values(" + t_id + "," + q_id + ");";
     },
