@@ -422,7 +422,6 @@ app.post('/registerUser', function (req, res) {
                     }
                     else {
                         var group_id = groups[0].GroupId;
-
                         var query2 = queries.registerUser(personalId, lastName, firstName, userType, email, password);
                         console.log('\n' + query2 + '\n');
                         connection.query(query2, function (err) {
@@ -916,6 +915,30 @@ app.post('/addNewSchool', function (req, res) {
         }
         else {
             res.status(200).send();
+        }
+    });
+});
+
+
+app.post('/getQuestionsByParamter', function (req, res) {
+    var media_types = req.body.media_types.split(",");
+    var skills = req.body.skills.split(",");
+    var difficulties = req.body.difficulties.split(",");
+
+    var query = queries.getQuestionsByParamter(media_types,skills,difficulties);
+    console.log('\n' + query + '\n');
+    connection.query(query, function (err, questions) {
+        if (err) {
+            console.log(err);
+            res.status(400).send("DB error");
+        }
+        else {
+            if (questions.length==0){
+                res.status(204).send();
+            }
+            else {
+                res.status(200).send(questions);
+            }
         }
     });
 });

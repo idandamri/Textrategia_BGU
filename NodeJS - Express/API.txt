@@ -170,7 +170,6 @@ API:
     output: status 200 "inserted!" /400 - Insertion error - check DB (group/student does not exist or relation error!)
     example to output : 
 	
-
 14.post('/createTask')
 	input:t_title, t_description, t_owner, t_approved, questions
 	input example:{"t_title":"TiTlE-TeSt","t_description":"desc_desc_desc","t_owner":1,
@@ -303,6 +302,7 @@ example:
 ]
 
 20. post('getAllSchollByCity')
+20. post('getAllSchollByCity')
 input: city
 output: status 200 with json  / 204 - no content/ 400 - "DB error"
 exmple:
@@ -354,6 +354,30 @@ example:
     "isApproved": 1
   }
 ]
+
+23. post('getQuestionsByParamter')
+inpupt: media_types,skills,difficulties
+        for example: difficulties = "קלה", "בינונית" or difficulties = "קלה"
+output: status 200 with list of Question / status 204 - no content
+exmple :
+[
+  {
+    "Q_id": 1,
+    "Q_qeustion": "האזן לשיחה המוקלטת. לשם מה החליטו במפעל הפיס להקליט שיחות של אנשים עם אראלה?",
+    "isMultipuleAns": 0,
+    "Q_mediaType": "page",
+    "Q_media": "http://rr-d.vidnt.com/vod/aod/pas/240/26?path=&files[]=9-3-16.mp3&autoplay=true",
+    "Q_correctFB": "שיחה כזאת מעבר להזדהות וההתרגשות אכן גורמת לאנשים לחוש שזכייה היא דבר אפשרי.",
+    "Q_notCorrectFB": "נסו לחשוב אם יש מטרה אחת בולטת שהאחרות עשויות לשרת אותה.",
+    "Q_skill": "זיהוי מטרה מרכזית",
+    "Q_difficulty": "קלה",
+    "Q_proffession": "הבעה",
+    "Q_approved": 1,
+    "Q_disabled": 0,
+    "Q_owner": "1"
+  }
+]
+
 
 0-student
 1-teacher
