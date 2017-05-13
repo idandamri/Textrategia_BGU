@@ -10,7 +10,7 @@ var app = rewire('../server_testing');
 var sinon = require("sinon");
 describe("Testing Textrategia API", function () {
 
-/*
+
     it("Loads home page", function (done) {
         request(app).get("/").expect(200).end(done);
     });
@@ -434,7 +434,7 @@ describe("Testing Textrategia API", function () {
         });
     });
 
-*/
+
     describe("Testing get Groups By Teacher And City", function () {
         it('Test get Groups By Teacher And City - correct deatils', function (done) {
             request(app).post("/generateRandTask").send({

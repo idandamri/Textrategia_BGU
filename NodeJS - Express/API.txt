@@ -399,6 +399,18 @@ exmple :
 
 
 
+23. post('generateRandTask')
+input:
+{
+   "media_types": "text",
+   "skills": "הסקת מסקנות",
+   "rand_num": "3",
+   "difficulties": "קלה"
+}
+output: status 200 / status 415 - not enough questions
+exmple :
+
+
 0-student
 1-teacher
 2-superuser
