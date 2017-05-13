@@ -909,7 +909,7 @@
       <workItem from="1492633175187" duration="24485000" />
       <workItem from="1493292496165" duration="7745000" />
       <workItem from="1493306570355" duration="13365000" />
-      <workItem from="1494668296254" duration="17225000" />
+      <workItem from="1494668296254" duration="17294000" />
     </task>
     <task id="LOCAL-00001" summary="done updating getQuestion">
       <created>1490566647810</created>
@@ -1010,7 +1010,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="153770000" />
+    <option name="totallyTimeSpent" value="153839000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1376" height="744" extended-state="6" />
