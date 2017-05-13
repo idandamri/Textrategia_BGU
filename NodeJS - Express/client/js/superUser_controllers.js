@@ -11,7 +11,7 @@ textrategiaApp.controller("SuperUserController",function($scope, $http,$location
 });
 
 
-textrategiaApp.controller("AddSchoolInCityController",function($scope){
+textrategiaApp.controller("AddSchoolInCityController",function($scope,$http){
 
     $scope.getUserName = getUserName();
     $scope.myCities = cities;
@@ -40,12 +40,12 @@ textrategiaApp.controller("AddSchoolInCityController",function($scope){
     $scope.showSchoolsList = function (){
 
         // group_city is argument 3
-        var group_city;
+        var city;
         sel1 = document.getElementById("group_city");
         for (i = 0 ; i < sel1.options.length ; i++){
-            group_city = sel1.options[i];
-            if (group_city.selected == true){
-                //alert(group_city.value);             
+            city = sel1.options[i];
+            if (city.selected == true){
+                //alert(city.value);
                 break;
             }
         } 
@@ -55,14 +55,73 @@ textrategiaApp.controller("AddSchoolInCityController",function($scope){
         // ####################################################
 
 
-        $scope.schools = $scope.schoolsMock;
- 		$scope.showSchools = true;
+        var req = {
+            method: 'POST',
+            cache: false,
+            url: _url +'/getAllSchollByCity',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            data: 'city=' + city.value
+        };
+
+        // alert(JSON.stringify(req));
+        $http(req)
+            .success(function(data,status,headers,config){
+                $scope.showSchools = true;
+                if (status==200) {
+                    $scope.schools = data;
+                }
+                else if (status==204){
+                    $scope.schools = [{"School":"אין בתי ספר זמינים בעיר זו"}]
+                }
+                // alert("data: " + $scope.schools);
+            })
+            .error(function(data,status,headers,config) {
+            });
 	}
 
 
     $scope.createNewSchool = function (){
+        var city;
+        sel1 = document.getElementById("group_city");
+        for (i = 0 ; i < sel1.options.length ; i++){
+            city = sel1.options[i];
+            if (city.selected == true){
+                //alert(city.value);
+                break;
+            }
+        }
+
+        var schoolName = $scope.user.schoolName;
+
+		// alert("schoolname: " + schoolName );
+		// alert("city.value: " + city.value );
+
+        var req = {
+            method: 'POST',
+            cache: false,
+            url: _url +'/addNewSchool',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            data: 'city=' + city.value +'&school='+ schoolName
+        };
+
+        $http(req)
+            .success(function(data,status,headers,config){
+            	alert("בית ספר התווסף בהצלחה לרשימה");
+                $scope.showSchoolsList();
+            })
+            .error(function(data,status,headers,config) {
+            	alert("שגיאה בהכנסת בית הספר. יכול להיות שבית הספר כבר קיים בעיר זו?");
+            	$scope.showSchoolsList();
+            });
 
 
+    }
+
+    $scope.createNewSchoolMock = function (){
       	var schoolName = $scope.user.schoolName;
 
         // ####################################################

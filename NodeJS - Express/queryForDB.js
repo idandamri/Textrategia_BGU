@@ -201,7 +201,7 @@ module.exports =
     },
 
     getAllSchollByCity : function (city) {
-      return "select * from textra_db.cities_and_schools where City like '" + city+ "';"
+      return "select School from textra_db.cities_and_schools where City like '" + city+ "';"
     },
 
     addNewSchool: function (city,school) {

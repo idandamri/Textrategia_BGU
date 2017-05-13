@@ -30,7 +30,7 @@
     <div class="row">
 
     <div class="col-sm-12">  
-      <h1>שלום, {{getUserName}}!</h1>  <h3>צור קבוצת לימוד חדשה: </h3>
+      <h1>שלום, {{getUserName}}!</h1>  <h3>הוסף בתי ספר חדשים: </h3>
     </div>
 
 
@@ -42,7 +42,7 @@
           <table class="table table-responsive table-fixed table-hover">
             <thead> <tr> <th>בית ספר:</th> </tr> </thead>
             <tbody> <tr  ng-repeat="school in schools">
-               <td> {{school.S_Name}}</td>
+               <td> {{school.School}}</td>
             </tr></tbody>
           </table>
         </div>
@@ -97,10 +97,7 @@
      
 </form>
 
-
-
-      
-    </div>      
+    </div>
   </div>
 </div>
 
