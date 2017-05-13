@@ -567,7 +567,7 @@ app.post('/addQuestion', function (req, res) {
     var query = queries.addQustion(qTitle, isMulAns, qMedia, qMediaType, qCorrFB, qIncorrFB,
         qSkill, qDiff, qProff, qIsApp, qDisabled, qWhoCreated);
     console.log('\n' + query + '\n');
-    connection.query(query, function (err,ans) {
+    connection.query(query, function (err, ans) {
         if (err) {
             console.log(err);
             res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
@@ -575,28 +575,28 @@ app.post('/addQuestion', function (req, res) {
         else {
             console.log(ans);
             console.log("insertId: " + ans.insertId);
-            var insertCommandList=[];
-            var question_id  = ans.insertId;
+            var insertCommandList = [];
+            var question_id = ans.insertId;
             // var query = queries.insertAllAnswer(correctAnswer,answer1,answer2,answer3,answer4);
             var i;
-            for (i= 0 ; i< answers.length ; i++ ){
-                if (correctAnswerIndex==i)
-                    insertCommandList.push(queries.insertAnswer(question_id, answers[i],1));
+            for (i = 0; i < answers.length; i++) {
+                if (correctAnswerIndex == i)
+                    insertCommandList.push(queries.insertAnswer(question_id, answers[i], 1));
                 else
-                    insertCommandList.push(queries.insertAnswer(question_id, answers[i],0));
+                    insertCommandList.push(queries.insertAnswer(question_id, answers[i], 0));
             }
 
             var bigQuery = insertCommandList.join(" ");
             console.log(bigQuery);
-            connection.query(bigQuery,function (err) {
-                if (err){
+            connection.query(bigQuery, function (err) {
+                if (err) {
                     console.log(err);
                     res.status(400).send();
                 }
-                else{
+                else {
                     res.status(200).send("inserted!");
                 }
-                
+
             });
         }
     });
@@ -698,7 +698,7 @@ app.post('/checkIfGroupCodeExists', function (req, res) {
             res.status(400).send("DB error");
         }
         else {
-            if (isTeacher.length==0)
+            if (isTeacher.length == 0)
                 res.status(401).send();//
             else
                 res.status(200).send(isTeacher);//
@@ -742,7 +742,7 @@ app.post('/getGroupsBySchool', function (req, res) {
 app.post('/getValidQuestions', function (req, res) {
     var isApproved = req.body.is_app;
     var isDisabled = req.body.is_disabled;
-    var query = queries.getValidQuestions(isApproved,isDisabled);
+    var query = queries.getValidQuestions(isApproved, isDisabled);
     console.log('\n' + query + '\n');
     connection.query(query, function (err, listOfQuestions) {
         if (err) {
@@ -756,10 +756,56 @@ app.post('/getValidQuestions', function (req, res) {
 });
 
 
+app.post('/generateRandTask', function (req, res) {
+
+    var tTitle = "task" + (queries.getHighestIdFromTable('tasks', 'T_id') + 1);
+    var tDesc = "Random task Generated";
+    var tOwner = -100;
+    var tApproved = 1;
+    var num = res.rand_number;
+    // var questionsForTask = req.body.questions;
+
+    var query = queries.addNewTask(tTitle, tDesc, tOwner, tApproved);
+    console.log('\n' + query + '\n');
+    connection.query(query, function (err) {
+        if (err) {
+            console.log(err, insertedRow);
+            res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
+        }
+        else {
+            tId = taskRow[0].T_id;
+
+            /////////////
+            // getting questions by tag - returns items
+            ////////////
+
+            var questionsArray = [];
+            
+            for (i = 0; i < num; i++) {
+                var item = questionsArray.add(items[Math.floor(Math.random()*num)]);
+                var qId = item.Q_id;
+                questionsArray[i] = queries.joinNewTaskWithQuestion(tId, qId);
+            }
+
+            var insertStatement = questionsArray.join(" ");
+
+            connection.query(insertStatement, function (err) {
+                if (err) {
+                    console.log(err);
+                    res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
+                } else {
+                    res.status(200).send("inserted!");
+                }
+            });
+        }
+    });
+});
+
+
 app.post('/getGroupsByTeacherAndCity', function (req, res) {
     var teacherId = req.body.teacher_id;
     var CityName = req.body.city;
-    var query = queries.getGroupsByTeacherAndCity(teacherId,CityName);
+    var query = queries.getGroupsByTeacherAndCity(teacherId, CityName);
     console.log('\n' + query + '\n');
     connection.query(query, function (err, listOfQuestions) {
         if (err) {
@@ -782,7 +828,7 @@ app.post('/getAllStudentForGroup', function (req, res) {
             res.status(400).send("DB error");
         }
         else {
-            if (listOfStudents.length==0){
+            if (listOfStudents.length == 0) {
                 res.status(204).send();
             }
             else {
@@ -826,7 +872,7 @@ app.post('/getAllSchollByCity', function (req, res) {
             res.status(400).send("DB error");
         }
         else {
-            if (schools.length==0){
+            if (schools.length == 0) {
                 res.status(204).send();
             }
             else {
@@ -839,7 +885,7 @@ app.post('/getAllSchollByCity', function (req, res) {
 app.post('/getGroupBySchoolAndCity', function (req, res) {
     var city = req.body.city;
     var school = req.body.school;
-    var query = queries.getGroupBySchoolAndCity(school,city);
+    var query = queries.getGroupBySchoolAndCity(school, city);
     console.log('\n' + query + '\n');
     connection.query(query, function (err, groups) {
         if (err) {
@@ -847,7 +893,7 @@ app.post('/getGroupBySchoolAndCity', function (req, res) {
             res.status(400).send("DB error");
         }
         else {
-            if (groups.length==0){
+            if (groups.length == 0) {
                 res.status(204).send();
             }
             else {
@@ -860,8 +906,8 @@ app.post('/getGroupBySchoolAndCity', function (req, res) {
 
 app.post('/addNewSchool', function (req, res) {
     var city = req.body.city;
-    var school= req.body.school;
-    var query = queries.addNewSchool(city,school);
+    var school = req.body.school;
+    var query = queries.addNewSchool(city, school);
     console.log('\n' + query + '\n');
     connection.query(query, function (err) {
         if (err) {
@@ -873,8 +919,6 @@ app.post('/addNewSchool', function (req, res) {
         }
     });
 });
-
-
 
 
 var connection = mysql.createConnection({
