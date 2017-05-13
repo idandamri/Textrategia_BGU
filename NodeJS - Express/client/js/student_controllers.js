@@ -122,6 +122,82 @@ textrategiaApp.controller("historyTasksController",function($scope){
 
 
 
+
+textrategiaApp.controller("autodidactController",function($scope){
+    $scope.getUserName = getUserName();
+    
+    // ####################################################
+    // get skills list from server
+    // ####################################################
+
+    $scope.skills = [
+    {"q_skill": "בלימפים"},
+    {"q_skill": "דוליז"},
+    {"q_skill": "בובים"}
+    ];
+
+    $scope.selectedMedia = [];              // Arg1
+    $scope.checkdMediaSelected = function (checkStatus,element){
+        if(checkStatus)        {
+            $scope.selectedMedia.push(element);
+        }
+        else{
+            const index = $scope.selectedMedia.indexOf(element);
+            if (index !== -1){
+               $scope.selectedMedia.splice(index, 1);
+            }
+        }
+    };
+
+    $scope.selectedDiff = [];           // Arg2
+    $scope.checkDiffSelected = function (checkStatus,element){
+        if(checkStatus){
+            $scope.selectedDiff.push(element);
+        }
+        else{
+            const index = $scope.selectedDiff.indexOf(element);
+            if (index !== -1){
+               $scope.selectedDiff.splice(index, 1);
+            }
+        }
+    };
+
+    
+    $scope.selectedSkill = [];          // Arg3
+    $scope.checkSkillSelected = function (checkStatus,element){
+        if(checkStatus){
+            $scope.selectedSkill.push(element);
+        }
+        else{
+            const index = $scope.selectedSkill.indexOf(element);
+            if (index !== -1){
+               $scope.selectedSkill.splice(index, 1);
+            }
+        }
+    };
+
+
+    $scope.showSelectedQuestion = function(){
+        alert("selectedMedia: " + $scope.selectedMedia + 
+            " | selectedDiff: " + $scope.selectedDiff +
+            " | selectedSkill: " + $scope.selectedSkill
+            );
+    };
+
+
+    // ####################################################
+    // send the list: selectedMedia, selectedDiff, selectedSkill 
+    //  get task and go to task page
+    // ####################################################
+
+
+});
+
+
+
+
+
+
 textrategiaApp.controller("TasksController",function($scope,$http,$location){
     //$scope.tasks = tasks_parsed_jason_lst;
 

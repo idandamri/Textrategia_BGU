@@ -32,6 +32,10 @@ textrategiaApp.config(function($routeProvider){
 		templateUrl:'views/one_question.html',
 		controller :'oneQuestionController'
 	})
+	.when('/autodidact', {
+		templateUrl:'views/autodidact.html',
+		controller :'autodidactController'
+	})
 
     // ~~~~~~~~~~~~ SuperUser routs ~~~~~~~~~~~~~
     .when('/superUser', {
