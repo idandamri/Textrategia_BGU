@@ -60,7 +60,7 @@ app.post('/login', function (req, res) {
                 console.log('OK');
             }
             else {
-                res.status(401).send('ERROR');
+                res.status(204).send('ERROR');
                 console.log('ERROR \n');
             }
         }
@@ -94,6 +94,7 @@ app.post('/getQuestion', function (req, res) {
     var t_id = req.body.t_id;
     var question = "";
     var tasksQid = queries.getSingleQuestionIdFromTaskIdAndUserId(user_id, t_id);
+    console.log("This is the query: " + tasksQid);
     connection.query(tasksQid, function (err, row) {
         if (err) {
             console.log("Error with query for question for task");
@@ -116,7 +117,7 @@ app.post('/getQuestion', function (req, res) {
                                 res.send("ERR in question request:" + err);
                             }
                             else if (listOfAnswers.length == 0) {
-                                res.status(204).send("No more Question for this task");
+                                res.status(676).send("No more Question for this task");
                                 /*empty content*/
                             }
                             else {
@@ -137,7 +138,7 @@ app.post('/getQuestion', function (req, res) {
             }
             else {
                 console.log("Question id amount is smaller then one");
-                res.status(676).send("End of task");//End of task
+                res.status(204).send("End of task");//End of task
             }
         }
     });
@@ -163,7 +164,7 @@ app.post('/questionDone', function deleteQuestionFromQueue(req, res) {
 
 
 app.post('/updateAnswer', function (req, res) {
-    var sId = req.body.user_id;
+    var sId = req.body.stud_id;
     var tId = req.body.task_id;
     var qId = req.body.quest_id;
     var aId = req.body.ans_id;
@@ -194,7 +195,7 @@ app.post('/questionApproveOrNot', function (req, res) {
         }
         else {
             if (ans.affectedRows == 0) {
-                res.status(400).send("Update error - check DB (Question may not exist or value is same!)");
+                res.status(204).send("Update error - check DB (Question may not exist or value is same!)");
             }
             else {
                 res.status(200).send("updated!");
@@ -294,6 +295,83 @@ app.post('/createGroup', function (req, res) {
 });
 
 
+app.post('/truncateTasksAndStudTable', function (req, res) {
+    var query = "TRUNCATE TABLE textra_db.tasks_and_question_for_student_instances;";
+    connection.query(query, function (err) {
+        if (err) {
+            console.log(err);
+            res.status(400).send("DB error - check DB!");
+        }
+        else {
+            res.status(200).send("inserted!");
+        }
+    });
+});
+
+
+app.post('/removeTestUsersFromGroup', function (req, res) {
+    var query = "delete from textra_db.students_per_group where studentId = 3 or 2;";
+    connection.query(query, function (err) {
+        if (err) {
+            console.log(err);
+            res.status(400).send("DB error - check DB!");
+        }
+        else {
+            res.status(200).send("inserted!");
+        }
+    });
+});
+
+
+app.post('/addTestTaskQuestions', function (req, res) {
+    var query = "insert into tasks_and_question_for_student_instances values(3,1,1);" +
+        "insert into tasks_and_question_for_student_instances" +
+        "values(3,1,2);" +
+        "insert into tasks_and_question_for_student_instances" +
+        "values(3,1,3);" +
+        "insert into tasks_and_question_for_student_instances" +
+        "values(3,1,4);";
+    connection.query(query, function (err) {
+        if (err) {
+            console.log(err);
+            res.status(400).send("DB error - check DB!");
+        }
+        else {
+            res.status(200).send("inserted!");
+        }
+    });
+});
+
+
+app.post('/removeRegisterUser', function (req, res) {
+    var query = "delete from textra_db.students_per_group where StudentId = 12121211;" +
+        "delete from textra_db.users where PersonalID = 12121211;";
+    connection.query(query, function (err) {
+        if (err) {
+            console.log(err);
+            res.status(400).send("DB error - check DB!");
+        }
+        else {
+            res.status(200).send("inserted!");
+        }
+    });
+});
+
+
+app.post('/truncateInstancesOfAnswers', function (req, res) {
+    var query = "TRUNCATE TABLE textra_db.instances_of_answers;";
+    connection.query(query, function (err) {
+        if (err) {
+            console.log(err);
+            res.status(400).send("DB error - check DB!");
+        }
+        else {
+            res.status(200).send("inserted!");
+        }
+    });
+});
+
+
 /*
  app.post('/checkGroup', function (req, res) {
  var groupCode = req.body.group_code;
@@ -332,8 +410,8 @@ app.post('/registerUser', function (req, res) {
             console.log(ans);
             console.log(ans.length);
 
-            if (ans.length > 0)
-                res.send(401);
+            if (ans.length < 0)
+                res.status(401).send("Email already exists");
             else {
                 var query = queries.getGroupIdfromcode(groupCode);
                 console.log('\n' + query + '\n');
@@ -349,10 +427,9 @@ app.post('/registerUser', function (req, res) {
                         connection.query(query2, function (err) {
                             if (err) {
                                 console.log(err);
-                                res.status(409).send("Insertion error - check DB (student does not exist or relation) error!");
+                                res.status(409).send("Already registered");
                             }
                             else {
-
                                 var query3 = queries.getUserId(email);
                                 console.log('\n' + query3 + '\n');
                                 connection.query(query3, function (err, u_id) {
@@ -824,7 +901,7 @@ app.post('/getQuestionsByParamter', function (req, res) {
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '123456',//'1q2w3e4r' to upload*/
+    password: '1q2w3e4r',//'1q2w3e4r' to upload*/
     database: 'textra_db',
     multipleStatements: true
 });
@@ -837,16 +914,16 @@ connection.connect(function (err) {
 });
 
 
-// var server = app.listen(8081, function () {
-//     var host = server.address().address;
-//     var port = server.address().port;
-//     console.log("Example app listening at http://%s:%s", host, port)
-// });
+var server = app.listen(8081, function () {
+    var host = server.address().address;
+    var port = server.address().port;
+    console.log("Example app listening at http://%s:%s", host, port)
+});
 
 // //TODO - Hadas you need this/TESTS!!!
-app.listen(8081, "127.0.0.1", function () {
-    console.log("App is running ");
-});
+// app.listen(8081, "127.0.0.1", function () {
+//     console.log("App is running ");
+// });
 
 setInterval(function () {
     connection.query('SELECT 1');
