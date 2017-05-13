@@ -42,6 +42,10 @@ textrategiaApp.config(function($routeProvider){
         templateUrl:'views/addSchoolInCity.html',
         controller :'AddSchoolInCityController'
     })
+    .when('/creatTask', {
+        templateUrl:'views/creatTask.html',
+        controller :'CreatTaskController'
+    })
 
 // ~~~~~~~~~~~~ Teacher routs ~~~~~~~~~~~~~
 	.when('/teacher', {
