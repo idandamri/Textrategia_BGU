@@ -898,10 +898,31 @@ app.post('/getQuestionsByParamter', function (req, res) {
 });
 
 
+app.post('/getAllSkills', function (req, res) {
+
+    var query = queries.getAllSkills();
+    console.log('\n' + query + '\n');
+    connection.query(query, function (err, skills) {
+        if (err) {
+            console.log(err);
+            res.status(400).send("DB error");
+        }
+        else {
+            if (skills.length==0){
+                res.status(204).send();
+            }
+            else {
+                res.status(200).send(skills);
+            }
+        }
+    });
+});
+
+
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '1q2w3e4r',//'1q2w3e4r' to upload*/
+    password: '123456',//'1q2w3e4r' to upload*/
     database: 'textra_db',
     multipleStatements: true
 });

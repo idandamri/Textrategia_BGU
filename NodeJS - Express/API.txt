@@ -378,6 +378,26 @@ exmple :
   }
 ]
 
+23. post('getAllSkills')
+inpupt: none
+output: status 200 with list of Skills / status 204 - no content
+exmple :
+[
+  {
+    "Q_skill": "זיהוי מטרה מרכזית"
+  },
+  {
+    "Q_skill": "הסקת מסקנות"
+  },
+  {
+    "Q_skill": "רעיון מרכזי"
+  },
+  {
+    "Q_skill": "איתור מידע"
+  }
+]
+
+
 
 0-student
 1-teacher
