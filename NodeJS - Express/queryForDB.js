@@ -215,5 +215,9 @@ module.exports =
             "where Q_mediaType in (" + media_types + ") " +
             "and Q_skill in (" + skills + ") " +
             "and Q_difficulty in (" + difficulties +");"
+    },
+
+    getAllSkills : function (skills) {
+      return "SELECT distinct Q_skill FROM textra_db.questions;"
     }
 };
