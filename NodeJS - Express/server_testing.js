@@ -927,7 +927,6 @@ var connection = mysql.createConnection({
     multipleStatements: true
 });
 
-
 connection.connect(function (err) {
     if (err) {
         console.log("Connection Error")
