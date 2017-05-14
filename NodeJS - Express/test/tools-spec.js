@@ -230,7 +230,6 @@ describe("Testing Textrategia API", function () {
         });
     });
 
-
     describe("Testing groups", function () {
         it('Testing insert students(plural)', function (done) {
             request(app).post("/removeTestUsersFromGroup").send(/*{"users": [1, 3], "group_id": "1234567"}*/)

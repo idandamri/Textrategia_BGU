@@ -302,7 +302,6 @@ example:
 ]
 
 20. post('getAllSchollByCity')
-20. post('getAllSchollByCity')
 input: city
 output: status 200 with json  / 204 - no content/ 400 - "DB error"
 exmple:

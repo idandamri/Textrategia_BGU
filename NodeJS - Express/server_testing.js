@@ -283,13 +283,29 @@ app.post('/createGroup', function (req, res) {
 
     var query = queries.createGroup(gName, school, city, teacherId, isTeacherGroup, isMaster, gCode, groupUserType, isApp);
     console.log('\n' + query + '\n');
-    connection.query(query, function (err) {
+    connection.query(query, function (err,ans) {
         if (err) {
             console.log(err);
             res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
         }
         else {
-            res.status(200).send("inserted!");
+            var group_id = ans.insertId;
+            var query = queries.getGroupCode(group_id );
+            console.log('\n' + query + '\n');
+            connection.query(query, function (err,ans) {
+                if (err) {
+                    console.log(err);
+                    res.status(400).send("");
+                }
+                else {
+                    res.status(200).send(ans);
+                }
+            });
+
+            // res.status(200).send();
+
+
+
         }
     });
 });
@@ -963,7 +979,6 @@ app.post('/getAllSkills', function (req, res) {
         }
     });
 });
-
 
 var connection = mysql.createConnection({
     host: 'localhost',
