@@ -318,9 +318,8 @@ textrategiaApp.controller("CreateGroupController",function($scope,$http,$locatio
         });
     };
 
-
     $scope.createGroup = function () {
-        var groupName = $scope.group.groupName;
+        var groupName = $scope.text_group;
         var city = $scope.selected_city;
         var school = $scope.selected_school;
         var type= $scope.selected_group_master;
@@ -332,7 +331,7 @@ textrategiaApp.controller("CreateGroupController",function($scope,$http,$locatio
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            data: 'group_name='+group_master
+            data: 'group_name='+groupName
             +'&school='+ school
             +'&city='+ city
             +'&is_teacher_group='+ type
