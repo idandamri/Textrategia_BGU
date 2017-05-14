@@ -32,6 +32,10 @@ textrategiaApp.config(function($routeProvider){
 		templateUrl:'views/one_question.html',
 		controller :'oneQuestionController'
 	})
+	.when('/autodidact', {
+		templateUrl:'views/autodidact.html',
+		controller :'autodidactController'
+	})
 
     // ~~~~~~~~~~~~ SuperUser routs ~~~~~~~~~~~~~
     .when('/superUser', {
@@ -41,6 +45,10 @@ textrategiaApp.config(function($routeProvider){
     .when('/addSchoolInCity', {
         templateUrl:'views/addSchoolInCity.html',
         controller :'AddSchoolInCityController'
+    })
+    .when('/creatTask', {
+        templateUrl:'views/creatTask.html',
+        controller :'CreatTaskController'
     })
 
 // ~~~~~~~~~~~~ Teacher routs ~~~~~~~~~~~~~

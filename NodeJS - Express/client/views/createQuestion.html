@@ -37,20 +37,28 @@
 
         <div class="col-sm-4">
 
-          <!--  2 - 4 - 6 -->
-        <label class="control-label pull-right">האם שאלת רב בחירה?:&nbsp;&nbsp;</label>
-	        <select class="form-control inputstl" id="is_multiple_ans">
-	        	<!-- <option value=1>כן</option> FOR NOW ONLY 'NO' is available--> 
-	            <option value=0>לא</option>
-	        </select>                  
-        
+          <!--  2  -->
+               
+            <label class="control-label pull-right">מהו סוג המדיה של השאלה?:&nbsp;&nbsp;</label>
+              <select class="form-control inputstl" id="media_type">
+                <!-- <option value=0>אין מדיה</option> -->
+                    <option value="youtube">סרטון youtube</option>
+                    <option value="page">אודיו</option>
+                    <option value="img">תמונה</option>
+                    <option value="text">טקסט</option>
+              </select>   
+
+     
+
         <!-- 4 -->
         <label class="control-label pull-right">הכנס מדייה: &nbsp;&nbsp;</label>
        		<input type="text" name="question_media" class="form-control inputstl pull-right" required placeholder="קישור למדיה" ng-model="question.question_media">	
 
 		<!-- 6 -->
-    	<label class="control-label pull-right">הכנס פידבק לתשובה שגויה: &nbsp;&nbsp;</label>
-       		<input type="text" name="quest_incorrect_fb" class="form-control inputstl pull-right" required placeholder="פידבק שלילי" ng-model="question.quest_incorrect_fb">
+
+          <label class="control-label pull-right">הכנס מיומנות למידה: &nbsp;&nbsp;</label>
+          <input type="text" name="quest_skill" class="form-control inputstl pull-right" required placeholder="מיומנות למידה" ng-model="question.quest_skill">  
+
 
 
        	<!-- 8 -->
@@ -75,28 +83,24 @@
         <div class="col-sm-1"></div>
         <div class="col-sm-4">
       
-          <!-- 1 - 3 - 5 -->
+          <!-- 1 -->
           <label class="control-label pull-right">הכנס ניסוח שאלה:&nbsp;&nbsp;</label>
           	<input type="text" name="question_title" class="form-control inputstl pull-right" required placeholder="ניסוח שאלה חדשה" ng-model="question.question_title">
 
 
-          <!-- @@@ SHAKED, CHANGE AS YOU WISH THE VALUES @@@ -->
-          	<label class="control-label pull-right">מהו סוג המדיה של השאלה?:&nbsp;&nbsp;</label>
-	            <select class="form-control inputstl" id="media_type">
-		            <!-- <option value=0>אין מדיה</option> -->
-                    <option value="youtube">סרטון youtube</option>
-                    <option value="page">אודיו</option>
-                    <option value="img">תמונה</option>
-                    <option value="text">טקסט</option>
-	            </select>   
-
+          <!-- 3 -->
+                  <label class="control-label pull-right">האם שאלת רב בחירה?:&nbsp;&nbsp;</label>
+          <select class="form-control inputstl" id="is_multiple_ans">
+            <!-- <option value=1>כן</option> FOR NOW ONLY 'NO' is available--> 
+              <option value=0>לא</option>
+          </select>   
 	            <!-- 5 -->
     		<label class="control-label pull-right">הכנס פידבק לתשובה נכונה: &nbsp;&nbsp;</label>
        		<input type="text" name="quest_correct_fb" class="form-control inputstl pull-right" required placeholder="פידבק חיובי" ng-model="question.quest_correct_fb">
 
 			<!-- 7 -->
-        	<label class="control-label pull-right">הכנס מיומנות למידה: &nbsp;&nbsp;</label>
-       		<input type="text" name="quest_skill" class="form-control inputstl pull-right" required placeholder="מיומנות למידה" ng-model="question.quest_skill">	
+            <label class="control-label pull-right">הכנס פידבק לתשובה שגויה: &nbsp;&nbsp;</label>
+          <input type="text" name="quest_incorrect_fb" class="form-control inputstl pull-right" required placeholder="פידבק שלילי" ng-model="question.quest_incorrect_fb">
 
         </div>
  

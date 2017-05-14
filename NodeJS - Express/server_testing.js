@@ -1,6 +1,7 @@
 //dependencies
 var express = require('express');
 var mysql = require('mysql');
+var _ = require('underscore');
 var cors = require('cors');
 /*var path = */
 require('path');
@@ -773,48 +774,77 @@ app.post('/getValidQuestions', function (req, res) {
 
 app.post('/generateRandTask', function (req, res) {
 
-    var tTitle = "task" + (queries.getHighestIdFromTable('tasks', 'T_id') + 1);
-    var tDesc = "Random task Generated";
-    var tOwner = -100;
-    var tApproved = 1;
-    var num = res.rand_number;
-    // var questionsForTask = req.body.questions;
 
-    var query = queries.addNewTask(tTitle, tDesc, tOwner, tApproved);
-    console.log('\n' + query + '\n');
-    connection.query(query, function (err) {
+    var tDesc = "Random task Generated";
+    var tOwner = 6;
+    var tApproved = 1;
+    var num = req.body.rand_num;
+    var media_types = req.body.media_types.split(",");
+    var skills = req.body.skills.split(",");
+    var difficulties = req.body.difficulties.split(",");
+    var query = queries.getHighestIdFromTable('tasks', 'T_id');
+    connection.query(query, function (err, item) {
         if (err) {
-            console.log(err, insertedRow);
-            res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
+            res.status(400).send("DB error");
         }
         else {
-            tId = taskRow[0].T_id;
+            var tTitle = "Task - " + (item[0].T_id + 1);
 
-            /////////////
-            // getting questions by tag - returns items
-            ////////////
-
-            var questionsArray = [];
-            
-            for (i = 0; i < num; i++) {
-                var item = questionsArray.add(items[Math.floor(Math.random()*num)]);
-                var qId = item.Q_id;
-                questionsArray[i] = queries.joinNewTaskWithQuestion(tId, qId);
-            }
-
-            var insertStatement = questionsArray.join(" ");
-
-            connection.query(insertStatement, function (err) {
+            var query = queries.addNewTask(tTitle, tDesc, tOwner, tApproved);
+            console.log('\n' + query + '\n');
+            connection.query(query, function (err, taskRow) {
                 if (err) {
-                    console.log(err);
+                    console.log(err, taskRow);
                     res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
-                } else {
-                    res.status(200).send("inserted!");
+                }
+                else {
+                    // if (taskRow.length > 0) {
+                    var tId = taskRow.insertId;
+                    // [0].T_id;
+
+                    var query = queries.getQuestionsByParamter(JSON.stringify(media_types[0]), JSON.stringify(skills[0]),
+                        JSON.stringify(difficulties[0]));
+                    console.log('\n' + query + '\n');
+                    connection.query(query, function (err, questions) {
+                        if (err) {
+                            console.log(err);
+                            res.status(400).send("DB error");
+                        } else {
+                            var questionsArray = [];
+
+                            if (questions.length >= num) {
+                                var questIds = _.sample(questions, num);
+
+                                for (var i = 0; i < num; i++) {
+                                    questionsArray[i] = queries.joinNewTaskWithQuestion(tId, questIds[i].Q_id);
+                                }
+
+                                var insertStatement = questionsArray.join(" ");
+
+                                connection.query(insertStatement, function (err) {
+                                    if (err) {
+                                        console.log(err);
+                                        res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
+                                    } else {
+                                        res.status(200).send("inserted!");
+                                    }
+                                });
+                            }
+                            else {
+                                res.status(415).send("Not Enough questions to generate task by filtering");
+                            }
+                        }
+                    });
+                    // }
+                    // else {
+                    //     res.status(415).send("Not Enough questions to generate task by filtering");
+                    // }
                 }
             });
         }
     });
-});
+})
+;
 
 
 app.post('/getGroupsByTeacherAndCity', function (req, res) {
@@ -941,7 +971,7 @@ app.post('/getQuestionsByParamter', function (req, res) {
     var skills = req.body.skills.split(",");
     var difficulties = req.body.difficulties.split(",");
 
-    var query = queries.getQuestionsByParamter(media_types,skills,difficulties);
+    var query = queries.getQuestionsByParamter(media_types, skills, difficulties);
     console.log('\n' + query + '\n');
     connection.query(query, function (err, questions) {
         if (err) {
@@ -949,7 +979,7 @@ app.post('/getQuestionsByParamter', function (req, res) {
             res.status(400).send("DB error");
         }
         else {
-            if (questions.length==0){
+            if (questions.length == 0) {
                 res.status(204).send();
             }
             else {
@@ -995,16 +1025,16 @@ connection.connect(function (err) {
 });
 
 
-var server = app.listen(8081, function () {
-    var host = server.address().address;
-    var port = server.address().port;
-    console.log("Example app listening at http://%s:%s", host, port)
-});
+// var server = app.listen(8081, function () {
+//     var host = server.address().address;
+//     var port = server.address().port;
+//     console.log("Example app listening at http://%s:%s", host, port)
+// });
 
 // //TODO - Hadas you need this/TESTS!!!
-// app.listen(8081, "127.0.0.1", function () {
-//     console.log("App is running ");
-// });
+app.listen(8081, "127.0.0.1", function () {
+    console.log("App is running ");
+});
 
 setInterval(function () {
     connection.query('SELECT 1');
