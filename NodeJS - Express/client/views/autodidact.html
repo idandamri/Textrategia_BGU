@@ -74,8 +74,8 @@
     <div ng-repeat="sk in skills">
       <label>
       <input type="checkbox"  ng-init='checkStatus41=false' ng-model="checkStatus41"
-       ng-change="checkSkillSelected(checkStatus41,sk.q_skill)" >
-            &nbsp;&nbsp;{{sk.q_skill}}
+       ng-change="checkSkillSelected(checkStatus41,sk.Q_skill)" >
+            &nbsp;&nbsp;{{sk.Q_skill}}
       </label>
     </div>
   </div>
@@ -84,8 +84,8 @@
 </form>
   <div class="col-sm-12 text-center">
   <!-- Button -->
-    <button ng-click="showSelectedQuestion()" class="btn btn-lg btn-info" > 
-      הצג שאלות לבחירה  
+    <button ng-click="generateTask()" class="btn btn-lg btn-info" >
+צור מטלה!
       <span class="glyphicon glyphicon-king"></span>
     </button>
   </div>

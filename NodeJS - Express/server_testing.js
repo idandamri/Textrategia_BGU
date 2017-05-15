@@ -774,9 +774,8 @@ app.post('/getValidQuestions', function (req, res) {
 
 app.post('/generateRandTask', function (req, res) {
 
-
     var tDesc = "Random task Generated";
-    var tOwner = 6;
+    var tOwner = req.body.user_id;
     var tApproved = 1;
     var num = req.body.rand_num;
     var media_types = req.body.media_types.split(",");
@@ -789,7 +788,6 @@ app.post('/generateRandTask', function (req, res) {
         }
         else {
             var tTitle = "Task - " + (item[0].T_id + 1);
-
             var query = queries.addNewTask(tTitle, tDesc, tOwner, tApproved);
             console.log('\n' + query + '\n');
             connection.query(query, function (err, taskRow) {
@@ -801,9 +799,12 @@ app.post('/generateRandTask', function (req, res) {
                     // if (taskRow.length > 0) {
                     var tId = taskRow.insertId;
                     // [0].T_id;
-
-                    var query = queries.getQuestionsByParamter(JSON.stringify(media_types[0]), JSON.stringify(skills[0]),
-                        JSON.stringify(difficulties[0]));
+                    // var query = queries.getQuestionsByParamter(JSON.stringify(media_types[0]), JSON.stringify(skills[0]),
+                    //     JSON.stringify(difficulties[0]));
+                    var query = queries.getQuestionsByParamter(
+                        JSON.stringify(media_types).toString().replace("[","").replace("]",""),
+                        JSON.stringify(skills).toString().replace("[","").replace("]",""),
+                        JSON.stringify(difficulties).toString()).replace("[","").replace("]","");
                     console.log('\n' + query + '\n');
                     connection.query(query, function (err, questions) {
                         if (err) {
@@ -826,7 +827,7 @@ app.post('/generateRandTask', function (req, res) {
                                         console.log(err);
                                         res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
                                     } else {
-                                        res.status(200).send("inserted!");
+                                        res.status(200).send(tId);
                                     }
                                 });
                             }

@@ -123,18 +123,39 @@ textrategiaApp.controller("historyTasksController",function($scope){
 
 
 
-textrategiaApp.controller("autodidactController",function($scope){
+textrategiaApp.controller("autodidactController",function($scope,$http){
     $scope.getUserName = getUserName();
     
     // ####################################################
     // get skills list from server
     // ####################################################
 
-    $scope.skills = [
-    {"q_skill": "בלימפים"},
-    {"q_skill": "דוליז"},
-    {"q_skill": "בובים"}
-    ];
+    // $scope.skills = [
+    // {"q_skill": "בלימפים"},
+    // {"q_skill": "דוליז"},
+    // {"q_skill": "בובים"}
+    // ];
+
+
+    var req = {
+        method: 'POST',
+        cache: false,
+        url: _url +'/getAllSkills',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        data: ''
+    };
+
+    $http(req)
+        .success(function(data,status,headers,config){
+            if (status==200) {
+                $scope.skills = data;
+            }
+        }).error(function(data,status,headers,config){
+            $scope.skills =[];
+    });
+
 
     $scope.selectedMedia = [];              // Arg1
     $scope.checkdMediaSelected = function (checkStatus,element){
@@ -177,11 +198,43 @@ textrategiaApp.controller("autodidactController",function($scope){
     };
 
 
-    $scope.showSelectedQuestion = function(){
-        alert("selectedMedia: " + $scope.selectedMedia + 
-            " | selectedDiff: " + $scope.selectedDiff +
-            " | selectedSkill: " + $scope.selectedSkill
-            );
+    $scope.generateTask = function(){
+        // alert("selectedMedia: " + $scope.selectedMedia +
+        //     " | selectedDiff: " + $scope.selectedDiff +
+        //     " | selectedSkill: " + $scope.selectedSkill
+        //     );
+
+        var req = {
+            method: 'POST',
+            cache: false,
+            url: _url +'/generateRandTask',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            data: 'media_types='+$scope.selectedMedia
+                    +'&skills='+$scope.selectedSkill
+                    +'&rand_num= 5'
+                    +'&difficulties='+$scope.selectedDiff
+                    +'&user_id='+getUserID()
+        };
+
+        // alert(JSON.stringify(req));
+
+        $http(req)
+            .success(function(data,status,headers,config){
+                if (status==200){
+                    //go to task
+                    $location.path('tasks');
+
+                }
+            }).error(function(data,status,headers,config){
+                if (status==415){
+                    alert("אין מספיק שאלות מתאימות. אנא הרחב את הבחירה.");
+                }
+                else{
+                    alert("בעיה ביצירת מטלה");
+                }
+        });
     };
 
 
