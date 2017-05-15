@@ -273,9 +273,6 @@ textrategiaApp.controller("CreatTaskController",function($scope,$http){
 
 });
 
-
-
-
 textrategiaApp.controller("CreateGroupController",function($scope,$http,$location){
 
     $scope.teacherName = getUserName();

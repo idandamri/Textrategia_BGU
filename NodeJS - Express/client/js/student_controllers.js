@@ -120,10 +120,7 @@ textrategiaApp.controller("historyTasksController",function($scope){
 
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-
-
-
-textrategiaApp.controller("autodidactController",function($scope,$http){
+textrategiaApp.controller("autodidactController",function($scope,$http,$location){
     $scope.getUserName = getUserName();
     
     // ####################################################
@@ -198,11 +195,18 @@ textrategiaApp.controller("autodidactController",function($scope,$http){
     };
 
 
+    $scope.goToTasks = function () {
+        $location.path('tasks');
+    };
+
     $scope.generateTask = function(){
         // alert("selectedMedia: " + $scope.selectedMedia +
         //     " | selectedDiff: " + $scope.selectedDiff +
         //     " | selectedSkill: " + $scope.selectedSkill
         //     );
+
+        $scope.feedback = "";
+        $scope.generate_task= false;
 
         var req = {
             method: 'POST',
@@ -222,17 +226,20 @@ textrategiaApp.controller("autodidactController",function($scope,$http){
 
         $http(req)
             .success(function(data,status,headers,config){
-                if (status==200){
+                // if (status==200){
                     //go to task
-                    $location.path('tasks');
-
-                }
+                    // $location.path('tasks');
+                    $scope.feedback = "המטלה נוספה בהצלחה";
+                    $scope.generate_task =true;
+//                }
             }).error(function(data,status,headers,config){
                 if (status==415){
-                    alert("אין מספיק שאלות מתאימות. אנא הרחב את הבחירה.");
+                    $scope.feedback = "אין מספיק שאלות. נסה להוסיף התמקצעויות נוספות";
+                    // alert("אין מספיק שאלות מתאימות. אנא הרחב את הבחירה.");
                 }
                 else{
-                    alert("בעיה ביצירת מטלה");
+                    // alert("בעיה ביצירת מטלה");
+                    $scope.feedback = "שגיאה ביצירת מטלה";
                 }
         });
     };
@@ -289,7 +296,6 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
 
     $scope.numberOfQuestions = 0;
     $scope.triedOnce = false;
-
 
     $scope.finishTask = function () {
         $location.path('tasks');
