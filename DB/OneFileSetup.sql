@@ -287,8 +287,29 @@ insert into users
 values (4,"שטורם","ארנון",1,"sturm@bgu.ac.il","123456");
 
 insert into users
-values (5,"שפייזר","מתן",2,"matan@gmail.com","123456");
+values (5,"שפייזר","מתן",0,"matan@gmail.com","123456");
 
+insert into users
+values (6,"Rand","Tasker",2,"rand@tasker.com","123456");
+/*
+insert into users
+values (7,"אורנה","MindCet",0,"Orna@student.com","123456");
+*/
+insert into users
+values (8,"אורנה","MindCet",1,"Orna@teacher.com","123456");
+/*
+insert into users
+values (9,"אורנה","MindCet",2,"Orna@superuser.com","123456");
+
+insert into users
+values (10,"מוריה","MindCet",0,"Morya@student.com","123456");
+*/
+insert into users
+values (11,"מוריה","MindCet",1,"Morya@teacher.com","123456");
+/*
+insert into users
+values (12,"מוריה","MindCet",2,"Morya@superuser.com","123456");
+*/
 /*------------------------------------------*/
 
 /*-------------- tasks ---------------------*/
@@ -306,6 +327,12 @@ values(123456,"טקסטרטגיה","מבועות", "אשדוד", 4, 0, 1,"0123",
 
 insert into groups
 values(1234567,"שיעור פרטי","מבועות","אשדוד", 1, 0, 1, "0123456", 1, 1);
+
+insert into groups
+values(1234321,"כיתת ניסוי 1","בית ספר אשכולות","אשדוד", 8, 0, 1, "School-Orna", 1, 1);
+
+insert into groups
+values(1235321,"כיתת ניסוי 2","בית ספר אשכולות","אשדוד", 11, 0, 1, "School-Morya", 1, 1);
 
 insert into groups
 values(1, "קבוצת מורים", "מענית", "באר שבע", 1, 1,1,"teach",1,1);
@@ -406,34 +433,34 @@ values(3,2,3);
 insert into tasks_and_question_for_student_instances
 values(3,2,4);*/
 
-/*shaked user
+/*hadas user*/
 insert into tasks_and_question_for_student_instances
-values(2,1,1);
+values(3,1,1);
 
 insert into tasks_and_question_for_student_instances
-values(2,1,2);
+values(3,1,2);
 
 insert into tasks_and_question_for_student_instances
-values(2,1,3);
+values(3,1,3);
 
 insert into tasks_and_question_for_student_instances
-values(2,1,4);
+values(3,1,4);
 
+/*task 2
+insert into tasks_and_question_for_student_instances
+values(3,2,1);
 
 insert into tasks_and_question_for_student_instances
-values(2,2,1);
+values(3,2,2);
 
 insert into tasks_and_question_for_student_instances
-values(2,2,2);
+values(3,2,3);
 
 insert into tasks_and_question_for_student_instances
-values(2,2,3);
+values(3,2,4);
 
 insert into tasks_and_question_for_student_instances
-values(2,2,4);
-
-insert into tasks_and_question_for_student_instances
-values(2,2,8);*/
+values(3,2,8);*/
 
 /*------------------------------------------*/
 
