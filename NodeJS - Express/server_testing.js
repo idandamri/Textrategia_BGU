@@ -758,7 +758,7 @@ app.post('/getValidQuestions', function (req, res) {
 
 app.post('/generateRandTask', function (req, res) {
 
-
+    var stud_id = req.body.student_id;
     var tDesc = "Random task Generated";
     var tOwner = 6;
     var tApproved = 1;
@@ -810,7 +810,29 @@ app.post('/generateRandTask', function (req, res) {
                                         console.log(err);
                                         res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
                                     } else {
-                                        res.status(200).send("inserted!");
+                                        var megaQuery = [];
+
+                                        var index = 0;
+
+                                        while (questIds.length > index) {
+                                            var qid = questIds[index].Q_id;
+                                            var query3 = queries.addTaskQuestionStudentInstance(stud_id, tId, qid);
+                                            console.log('\n' + query3 + '\n');
+                                            megaQuery[index] = query3;
+                                            index++;
+                                        }
+
+                                        var bigQuery = megaQuery.join(" ");
+
+                                        connection.query(bigQuery, function (err3) {
+                                            if (err3) {
+                                                console.log(err3);
+                                                res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
+                                            } else {
+                                                console.log("Added: " + bigQuery);
+                                                res.status(200).send("inserted!");
+                                            }
+                                        });
                                     }
                                 });
                             }
@@ -819,16 +841,11 @@ app.post('/generateRandTask', function (req, res) {
                             }
                         }
                     });
-                    // }
-                    // else {
-                    //     res.status(415).send("Not Enough questions to generate task by filtering");
-                    // }
                 }
             });
         }
     });
-})
-;
+});
 
 
 app.post('/getGroupsByTeacherAndCity', function (req, res) {
@@ -984,7 +1001,7 @@ app.post('/getAllSkills', function (req, res) {
             res.status(400).send("DB error");
         }
         else {
-            if (skills.length==0){
+            if (skills.length == 0) {
                 res.status(204).send();
             }
             else {
@@ -998,7 +1015,7 @@ app.post('/getAllSkills', function (req, res) {
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '123456',//'1q2w3e4r' to upload*/
+    password: '1q2w3e4r',//'1q2w3e4r' to upload*/
     database: 'textra_db',
     multipleStatements: true
 });
@@ -1010,16 +1027,16 @@ connection.connect(function (err) {
 });
 
 
-// var server = app.listen(8081, function () {
-//     var host = server.address().address;
-//     var port = server.address().port;
-//     console.log("Example app listening at http://%s:%s", host, port)
-// });
-
-// //TODO - Hadas you need this/TESTS!!!
-app.listen(8081, "127.0.0.1", function () {
-    console.log("App is running ");
+var server = app.listen(8081, function () {
+    var host = server.address().address;
+    var port = server.address().port;
+    console.log("Example app listening at http://%s:%s", host, port)
 });
+
+//TODO - Hadas you need this/TESTS!!!
+// app.listen(8081, "127.0.0.1", function () {
+//     console.log("App is running ");
+// });
 
 setInterval(function () {
     connection.query('SELECT 1');
