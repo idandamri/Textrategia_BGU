@@ -842,9 +842,7 @@ app.post('/generateRandTask', function (req, res) {
                                             megaQuery[index] = query3;
                                             index++;
                                         }
-
                                         var bigQuery = megaQuery.join(" ");
-
                                         connection.query(bigQuery, function (err3) {
                                             if (err3) {
                                                 console.log(err3);
