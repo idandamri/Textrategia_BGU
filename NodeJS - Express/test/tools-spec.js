@@ -29,7 +29,7 @@ describe("Testing Textrategia API", function () {
     });
 
     describe("Testing adding task to group", function () {
-        it('Test adding', function (done) {
+        it('Test adding task', function (done) {
             request(app).post("/addTaskToGroup").send({"group_id": "1234567", "task_id": "2"})
                 .expect(200)
                 .end(done);
@@ -215,7 +215,7 @@ describe("Testing Textrategia API", function () {
                 });
         });
 
-        it('Testing approve FAIL', function (done) {
+            it('Testing approve FAIL', function (done) {
             request(app).post("/questionApproveOrNot").send({"q_id": "1000000000000000009", "is_approved": "1"})
                 .end(function (err, res) {
                     if (err) {
@@ -233,7 +233,6 @@ describe("Testing Textrategia API", function () {
     describe("Testing groups", function () {
         it('Testing insert students(plural)', function (done) {
             request(app).post("/removeTestUsersFromGroup").send()
-            //{"users": [1, 3], "group_id": "1234567"}
                 .end(function (err, res) {
                     if (err) {
                         console.log("ERR: " + err);
@@ -438,6 +437,7 @@ describe("Testing Textrategia API", function () {
         it('Test get Groups By Teacher And City - correct deatils', function (done) {
             request(app).post("/generateRandTask").send({
                 "media_types": "text",
+                "student_id": "4",
                 "skills": "הסקת מסקנות",
                 "rand_num": "3",
                 "difficulties": "קלה"

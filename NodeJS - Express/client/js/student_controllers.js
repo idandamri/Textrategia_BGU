@@ -215,7 +215,7 @@ textrategiaApp.controller("autodidactController",function($scope,$http){
                     +'&skills='+$scope.selectedSkill
                     +'&rand_num= 5'
                     +'&difficulties='+$scope.selectedDiff
-                    +'&user_id='+getUserID()
+                    +'&student_id='+getUserID()
         };
 
         // alert(JSON.stringify(req));
