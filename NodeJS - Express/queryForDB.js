@@ -219,5 +219,9 @@ module.exports =
 
     getAllSkills : function (skills) {
       return "SELECT distinct Q_skill FROM textra_db.questions;"
+    },
+
+    getGroupCode : function (group_id) {
+        return "SELECT GroupeCode FROM textra_db.groups where GroupId =" + group_id + ";"
     }
 };

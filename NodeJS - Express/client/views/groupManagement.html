@@ -57,8 +57,8 @@
           <label for="available_task" class="control-label pull-right" >מטלות זמינות:</label>
 
             <!--<select class="form-control inputstl" id="available_task" multiple>-->
-          <select class="form-control inputstl" id="available_task" size=1>
-          <option ng-click ="getAllGroupForTask(y.T_id)" ng-repeat="y in info.tasks" value="{{y.T_id}}">{{y.T_title}}</option>
+          <select class="form-control inputstl" id="available_task" ng-model="selected" ng-change="getAllGroupForTask()" size=1>
+          <option ng-repeat="y in info.tasks" value="{{y.T_id}}">{{y.T_title}}</option>
             <option ng-show="info.tasks==0" disabled>אין מטלות זמינות</option>
           </select>
 
