@@ -1,8 +1,8 @@
-/**
+﻿/**
  * Created by krigel on 5/9/2017.
  */
-var _url = "http://localhost:8081";
-
+var _url = "";
+//var _url = "http://localhost:8081";
 
 textrategiaApp.controller("RegisterController",function($scope,$http ,$location){
 
