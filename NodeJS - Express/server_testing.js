@@ -776,7 +776,7 @@ app.post('/generateRandTask', function (req, res) {
 
     var stud_id = req.body.student_id;
     var tDesc = "Random task Generated";
-    var tOwner = 6;
+    var tOwner = stud_id;
     var tApproved = 1;
     var num = req.body.rand_num;
     var media_types = req.body.media_types.split(",");
@@ -802,8 +802,13 @@ app.post('/generateRandTask', function (req, res) {
                     var tId = taskRow.insertId;
                     // [0].T_id;
 
-                    var query = queries.getQuestionsByParamter(JSON.stringify(media_types[0]), JSON.stringify(skills[0]),
-                        JSON.stringify(difficulties[0]));
+                    // var query = queries.getQuestionsByParamter(JSON.stringify(media_types[0]), JSON.stringify(skills[0]),
+                    //     JSON.stringify(difficulties[0]));
+
+                    var query = queries.getQuestionsByParamter(
+                        JSON.stringify(media_types).toString().replace("[","").replace("]",""),
+                        JSON.stringify(skills).toString().replace("[","").replace("]",""),
+                        JSON.stringify(difficulties).toString()).replace("[","").replace("]","");
                     console.log('\n' + query + '\n');
                     connection.query(query, function (err, questions) {
                         if (err) {
@@ -846,7 +851,7 @@ app.post('/generateRandTask', function (req, res) {
                                                 res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
                                             } else {
                                                 console.log("Added: " + bigQuery);
-                                                res.status(200).send("inserted!");
+                                                res.status(200).send(tId.toString());
                                             }
                                         });
                                     }
@@ -1030,7 +1035,7 @@ app.post('/getAllSkills', function (req, res) {
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '1q2w3e4r',//'1q2w3e4r' to upload*/
+    password: '123456',//'1q2w3e4r' to upload*/
     database: 'textra_db',
     multipleStatements: true
 });
