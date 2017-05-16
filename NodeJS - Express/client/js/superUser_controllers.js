@@ -16,6 +16,7 @@ textrategiaApp.controller("AddSchoolInCityController",function($scope,$http){
     $scope.getUserName = getUserName();
     $scope.myCities = cities;
     $scope.showSchools = false;
+    $scope.serverFeedback = "";
 
     $scope.schoolsMock = [
           {
@@ -110,11 +111,13 @@ textrategiaApp.controller("AddSchoolInCityController",function($scope,$http){
 
         $http(req)
             .success(function(data,status,headers,config){
-                alert("בית ספר התווסף בהצלחה לרשימה");
+                //alert("בית ספר התווסף בהצלחה לרשימה");
+                $scope.serverFeedback = "בית ספר התווסף בהצלחה לרשימה";
                 $scope.showSchoolsList();
             })
             .error(function(data,status,headers,config) {
-                alert("שגיאה בהכנסת בית הספר. יכול להיות שבית הספר כבר קיים בעיר זו?");
+               // alert("שגיאה בהכנסת בית הספר. יכול להיות שבית הספר כבר קיים בעיר זו?");
+                $scope.serverFeedback = "שגיאה בהכנסת בית הספר. יכול להיות שבית הספר כבר קיים בעיר זו?";
                 $scope.showSchoolsList();
             });
 
