@@ -296,6 +296,8 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
 
     $scope.numberOfQuestions = 0;
     $scope.triedOnce = false;
+    $scope.sendFeedbackMode = false;
+    $scope.lastQuestionReported = "blimp";
 
     $scope.finishTask = function () {
         $location.path('tasks');
@@ -425,6 +427,39 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
                 // $scope.start();
             });
     };
+
+
+    $scope.wanaReport = function(){
+
+        $scope.sendFeedbackMode = true;
+        $scope.feedback = "האם ברצונך לדווח על שאלה זו כבעיתית?"
+       
+
+    };
+    $scope.reportQuestion = function(q){
+
+        alert("q?: " + q + "scope: " + $scope.lastQuestionReported);
+        if ( q == $scope.lastQuestionReported ){
+             //// DONT REPORT
+        } else {
+            
+        //########################## SEND REPORT HERE ##########################
+        //alert("report send.");
+        }
+
+        $scope.lastQuestionReported = q;
+        $scope.sendFeedbackMode = false;
+
+
+    };    
+
+    $scope.dontReportQuestion = function(){
+
+        $scope.feedback = "";
+        $scope.sendFeedbackMode = false;
+
+    };
+
 
     $scope.reset();
 
