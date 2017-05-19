@@ -1,6 +1,7 @@
-var _url = "http://localhost:8081";
+﻿//var _url = "http://localhost:8081";
 //var _url = "http://textrategia.com";
 
+var _url = "132.72.23.65";
 
 //* TEACHER CONTROLLERS*//
 

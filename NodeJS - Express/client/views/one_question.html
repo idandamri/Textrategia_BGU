@@ -39,9 +39,15 @@
       <div class="quiz-area">
         <div ng-show="!quizOver">
       
-          <div class="col-sm-12">
-            <h3 id="question">{{question}}</h3>
+          <div class="col-sm-2">
+             <button ng-click="wanaReport()" type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#fedbackModal">
+              דווח על שאלה בעייתית
+            </button>
           </div>
+
+          <div class="col-sm-10">
+            <h3 id="question">{{question}}</h3>
+            </div>
 
           <div class="col-sm-6">
             <div class="col-sm-1"></div>
@@ -75,7 +81,8 @@
 
           <button ng-click="checkAnswer()" ng-show="answerMode" type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#fedbackModal">
             בדוק
-          </button>
+          </button>         
+
 
         </div> <!-- ng-show="!quizOver" -->
 
@@ -115,20 +122,25 @@
                   <img alt="תרגול" class="img-circle student_actions" src="views/pic/logo2.png" >
                 </div>
                 <div class="col-xs-7 col-sm-9">
-                  <span ng-show="correctAns">כל הכבוד, תשובה נכונה! </span>
-                  <span ng-show="!correctAns">אופס... <br> תשובה לא נכונה. </span>
+                  <span ng-show="correctAns  && !sendFeedbackMode">כל הכבוד, תשובה נכונה! </span>
+                  <span ng-show="!correctAns  && !sendFeedbackMode">אופס... <br> תשובה לא נכונה. </span>
                   <br><p> {{feedback}}</p>
                 </div>
               </div>
             </div>
-            <div class="modal-footer">
-              <div ng-show="correctAns">
+            <div class="modal-footer ">
+              <div ng-show="correctAns  && !sendFeedbackMode">
                 <!-- <button type="button" class="btn btn-default" data-dismiss="modal">סגור</button> -->
                 <button type="button" data-dismiss="modal" ng-click="nextQuestion()" class="btn btn-primary" >שאלה הבאה</button>
               </div>
-              <div ng-show="!correctAns">
+              <div ng-show="!correctAns && !sendFeedbackMode">
                  <button ng-show="!triedOnce" type="button" data-dismiss="modal" ng-click="oneMoreTry()" class="btn btn-default" > נסה פעם נוספת!</button>
                 <button type="button" data-dismiss="modal" ng-click="nextQuestion()" class="btn btn-link" >שאלה הבאה...</button>
+              </div>
+
+              <div ng-show="sendFeedbackMode">
+                <button type="button" data-dismiss="modal" ng-click="dontReportQuestion()" class="btn btn-success" >לא לדווח</button>
+                <button type="button" data-dismiss="modal" ng-click="reportQuestion(question)" class="btn btn-danger" >לדווח</button>
               </div>
             </div>
           </div><!-- /.modal-content -->

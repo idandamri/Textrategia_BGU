@@ -87,9 +87,8 @@
           <input type="text" name="groupName" class="form-control inputstl pull-right" required placeholder="הכנס שם בית ספר חדש:" ng-model="user.schoolName">
           </div>
 
-
         <!-- button -->
-          <button ng-click="createNewSchool()" ng-disabled="myForm2.$invalid" type="submit" class="btn btn-lg btn-info" style="margin: 20px 0; margin-bottom: 15px;">הוסף בית ספר חדש!  <span class="glyphicon glyphicon-king"></span>
+          <button ng-click="createNewSchool()" ng-disabled="myForm2.$invalid" type="submit" class="btn btn-lg btn-info"  data-toggle="modal" data-target="#fedbackModal" style="margin: 20px 0; margin-bottom: 15px;">הוסף בית ספר חדש!  <span class="glyphicon glyphicon-king"></span>
           </button>
         </div>
     </form>
@@ -120,7 +119,6 @@
                 <div class="col-xs-7 col-sm-9">
                 <br>
                   <span> {{serverFeedback}}</span>   
-                  <span class="text-info"> <strong><em>{{output_groupCode}}</em></strong></span>       
                 </div>
               </div>
             </div>

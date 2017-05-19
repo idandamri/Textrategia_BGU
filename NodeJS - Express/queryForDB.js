@@ -115,7 +115,7 @@ module.exports =
                 + quest_disabled + "," + quest_creator + ");";
         },
 
-        createGroup: function (g_name, school, city, is_teacher_group, teacher_id, is_master_g, g_code, group_user_type, is_app) {
+        createGroup: function (g_name, school, city, teacher_id,is_teacher_group, is_master_g, g_code, group_user_type, is_app) {
             return "INSERT INTO textra_db.groups VALUES (null," +
                 "'" + g_name + "','" + school + "','" + city + "'," + teacher_id + "," + is_teacher_group + ","
                 + is_master_g + ",'" + g_code + "'," + group_user_type + "," + is_app + ");";
