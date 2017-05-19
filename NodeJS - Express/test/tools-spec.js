@@ -338,7 +338,7 @@ describe("Testing Textrategia API", function () {
                 });
         });
         it('Test group of user - empty group', function (done) {
-            request(app).post("/getGroupByUser").send({"teacher_id": "9"})
+            request(app).post("/getGroupByUser").send({"teacher_id": "19"})
                 .end(function (err, res) {
                     if (err)
                         throw err;

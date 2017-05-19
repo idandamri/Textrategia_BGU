@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7c1dd669-4d78-476f-9d51-553f8449f360" name="Default" comment="changed DB Marathon day">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../DB/OneFileSetup.sql" afterPath="$PROJECT_DIR$/../DB/OneFileSetup.sql" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server_testing.js" afterPath="$PROJECT_DIR$/server_testing.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/tools-spec.js" afterPath="$PROJECT_DIR$/test/tools-spec.js" />
     </list>
     <list id="c6aab38b-e232-4e80-b2df-d49c82aaa698" name="Rejected commit: Default" comment="comm test" />
     <list id="b7d62d89-dbb7-429a-833f-f97ac1f737a4" name="Rejected commit: Default (2)" comment="comm test" />
@@ -36,8 +36,8 @@
       <file leaf-file-name="tools-spec.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/tools-spec.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="422" column="11" lean-forward="false" selection-start-line="422" selection-start-column="11" selection-end-line="422" selection-end-column="11" />
+            <state relative-caret-position="-3553">
+              <caret line="113" column="11" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="451" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -46,8 +46,18 @@
       <file leaf-file-name="server_testing.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server_testing.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="98">
-              <caret line="832" column="82" lean-forward="false" selection-start-line="832" selection-start-column="82" selection-end-line="832" selection-end-column="82" />
+            <state relative-caret-position="1275">
+              <caret line="829" column="32" lean-forward="false" selection-start-line="829" selection-start-column="32" selection-end-line="829" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OneFileSetup.sql" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../DB/OneFileSetup.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="292" column="13" lean-forward="false" selection-start-line="292" selection-start-column="13" selection-end-line="292" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -56,8 +66,8 @@
       <file leaf-file-name="queryForDB.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/queryForDB.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="42" column="72" lean-forward="false" selection-start-line="42" selection-start-column="63" selection-end-line="42" selection-end-column="72" />
+            <state relative-caret-position="969">
+              <caret line="57" column="39" lean-forward="false" selection-start-line="57" selection-start-column="8" selection-end-line="57" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -66,7 +76,7 @@
       <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="78">
+            <state relative-caret-position="4505">
               <caret line="265" column="52" lean-forward="false" selection-start-line="265" selection-start-column="52" selection-end-line="265" selection-end-column="52" />
               <folding />
             </state>
@@ -76,8 +86,8 @@
       <file leaf-file-name="API.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/API.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="201">
-              <caret line="405" column="19" lean-forward="false" selection-start-line="405" selection-start-column="19" selection-end-line="405" selection-end-column="19" />
+            <state relative-caret-position="1598">
+              <caret line="94" column="18" lean-forward="false" selection-start-line="94" selection-start-column="11" selection-end-line="94" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -94,36 +104,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>אבטליון</find>
-      <find>שלום</find>
-      <find>teacherName</find>
-      <find>createGr</find>
-      <find>createg</find>
-      <find>creategroup</find>
-      <find>createt</find>
-      <find>login</find>
-      <find>getList</find>
-      <find>updateAnswer</find>
-      <find>questionApproveOrNot</find>
-      <find>getQuestion</find>
-      <find>truncate</find>
-      <find>getQ</find>
-      <find>registerUser</find>
-      <find>remove</find>
-      <find>addTaskToGroup</find>
-      <find>remo</find>
-      <find>getValidQuestions</find>
-      <find>approv</find>
       <find>createTas</find>
       <find>randTas</find>
-      <find>tasks</find>
       <find>insertId</find>
       <find>_.sample(</find>
       <find>addTestTaskQuestions</find>
       <find>getGroupByUser</find>
       <find>tasks_joi</find>
       <find>Rand</find>
+      <find>question</find>
+      <find>adduser</find>
+      <find>addTaskToGroup</find>
+      <find>teacher_id</find>
+      <find>is_ap</find>
+      <find>/getGrou</find>
+      <find>addusers</find>
+      <find>/getquestion</find>
+      <find>fail</find>
+      <find>group</find>
+      <find>tasks</find>
+      <find>getgroup</find>
+      <find>6,</find>
       <find>rand</find>
+      <find>addtask</find>
+      <find>empty t</find>
+      <find>getQuestion</find>
+      <find>415</find>
+      <find>is smaller</find>
+      <find>insert into textra_d</find>
+      <find>submitStudentsAnswerForQuestion</find>
+      <find>updateAnswer</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -299,6 +309,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -359,8 +370,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="Scratches">
         <subPane>
           <PATH>
@@ -389,6 +398,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -412,7 +422,19 @@
       <recent name="C:\Users\idan\Desktop\Textrategia\Textrategia_BGU\NodeJS - Express\test" />
     </key>
   </component>
-  <component name="RunManager" selected="Mocha.Testing Textrategia API">
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
     <configuration default="false" name="NodeJS - Express\test\tools-spec.js" type="mocha-javascript-test-runner" factoryName="Mocha" temporary="true" nameIsGenerated="true">
       <node-interpreter>D:/Proj/node</node-interpreter>
       <node-options />
@@ -423,6 +445,21 @@
       <extra-mocha-options />
       <test-kind>TEST_FILE</test-kind>
       <test-file>$PROJECT_DIR$/test/tools-spec.js</test-file>
+      <method />
+    </configuration>
+    <configuration default="false" name="Testing Textrategia API" type="mocha-javascript-test-runner" factoryName="Mocha" temporary="true" nameIsGenerated="true">
+      <node-interpreter>D:/Proj/node</node-interpreter>
+      <node-options />
+      <working-directory>$PROJECT_DIR$/..</working-directory>
+      <pass-parent-env>true</pass-parent-env>
+      <envs />
+      <ui>bdd</ui>
+      <extra-mocha-options />
+      <test-kind>SUITE</test-kind>
+      <test-file>$PROJECT_DIR$/test/tools-spec.js</test-file>
+      <test-names>
+        <name value="Testing Textrategia API" />
+      </test-names>
       <method />
     </configuration>
     <configuration default="false" name="Testing Textrategia API.Testing Get question.Get Question For an Empty Task" type="mocha-javascript-test-runner" factoryName="Mocha" temporary="true" nameIsGenerated="true">
@@ -456,21 +493,6 @@
         <name value="Testing Textrategia API" />
         <name value="Testing approve question" />
         <name value="Testing approve OK" />
-      </test-names>
-      <method />
-    </configuration>
-    <configuration default="false" name="Testing Textrategia API" type="mocha-javascript-test-runner" factoryName="Mocha" temporary="true" nameIsGenerated="true">
-      <node-interpreter>D:/Proj/node</node-interpreter>
-      <node-options />
-      <working-directory>$PROJECT_DIR$/..</working-directory>
-      <pass-parent-env>true</pass-parent-env>
-      <envs />
-      <ui>bdd</ui>
-      <extra-mocha-options />
-      <test-kind>SUITE</test-kind>
-      <test-file>$PROJECT_DIR$/test/tools-spec.js</test-file>
-      <test-names>
-        <name value="Testing Textrategia API" />
       </test-names>
       <method />
     </configuration>
@@ -759,6 +781,13 @@
       <envs />
       <method />
     </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerJest" factoryName="Jest">
+      <node-interpreter value="project" />
+      <working-dir value="" />
+      <envs />
+      <scope-kind value="ALL" />
+      <method />
+    </configuration>
     <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
       <config-file value="" />
       <node-interpreter value="project" />
@@ -791,9 +820,6 @@
       <option name="workingDirectory" />
       <option name="isAlternativeJrePathEnabled" value="false" />
       <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
       <method />
     </configuration>
     <configuration default="true" type="Remote" factoryName="Remote">
@@ -854,41 +880,12 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
-      <node-interpreter>project</node-interpreter>
-      <node-options />
-      <working-directory />
-      <pass-parent-env>true</pass-parent-env>
-      <envs />
-      <ui />
-      <extra-mocha-options />
-      <test-kind>DIRECTORY</test-kind>
-      <test-directory />
-      <recursive>false</recursive>
-      <method />
-    </configuration>
     <configuration default="true" type="osgi.bnd.run" factoryName="Run Launcher">
       <method />
     </configuration>
     <configuration default="true" type="osgi.bnd.run" factoryName="Test Launcher (JUnit)">
       <method />
     </configuration>
-    <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Mocha.NodeJS - Express\test\tools-spec.js" />
-      <item index="1" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing Get question.Get Question For an Empty Task" />
-      <item index="2" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing approve question.Testing approve OK" />
-      <item index="3" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API" />
-      <item index="4" class="java.lang.String" itemvalue="Node.js.server_testing.js" />
-    </list>
-    <recent_temporary>
-      <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API" />
-        <item index="1" class="java.lang.String" itemvalue="Node.js.server_testing.js" />
-        <item index="2" class="java.lang.String" itemvalue="Mocha.NodeJS - Express\test\tools-spec.js" />
-        <item index="3" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing approve question.Testing approve OK" />
-        <item index="4" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing Get question.Get Question For an Empty Task" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
@@ -913,7 +910,8 @@
       <workItem from="1492633175187" duration="24485000" />
       <workItem from="1493292496165" duration="7745000" />
       <workItem from="1493306570355" duration="13365000" />
-      <workItem from="1494668296254" duration="28297000" />
+      <workItem from="1494668296254" duration="37189000" />
+      <workItem from="1495219301466" duration="1433000" />
     </task>
     <task id="LOCAL-00001" summary="done updating getQuestion">
       <created>1490566647810</created>
@@ -982,39 +980,39 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Testing_Textrategia_API - 2017.05.13 at 20h 31m 59s.xml">
-      <configuration name="Testing Textrategia API" configurationId="mocha-javascript-test-runner" />
-    </history-entry>
-    <history-entry file="Testing_Textrategia_API - 2017.05.13 at 20h 42m 15s.xml">
-      <configuration name="Testing Textrategia API" configurationId="mocha-javascript-test-runner" />
-    </history-entry>
-    <history-entry file="Testing_Textrategia_API - 2017.05.13 at 20h 43m 02s.xml">
-      <configuration name="Testing Textrategia API" configurationId="mocha-javascript-test-runner" />
-    </history-entry>
-    <history-entry file="Testing_Textrategia_API - 2017.05.13 at 20h 46m 15s.xml">
-      <configuration name="Testing Textrategia API" configurationId="mocha-javascript-test-runner" />
-    </history-entry>
-    <history-entry file="Testing_Textrategia_API - 2017.05.13 at 20h 47m 21s.xml">
-      <configuration name="Testing Textrategia API" configurationId="mocha-javascript-test-runner" />
-    </history-entry>
-    <history-entry file="Testing_Textrategia_API - 2017.05.13 at 20h 48m 10s.xml">
-      <configuration name="Testing Textrategia API" configurationId="mocha-javascript-test-runner" />
-    </history-entry>
-    <history-entry file="Testing_Textrategia_API - 2017.05.15 at 09h 24m 51s.xml">
-      <configuration name="Testing Textrategia API" configurationId="mocha-javascript-test-runner" />
-    </history-entry>
-    <history-entry file="Testing_Textrategia_API - 2017.05.15 at 09h 25m 36s.xml">
-      <configuration name="Testing Textrategia API" configurationId="mocha-javascript-test-runner" />
-    </history-entry>
-    <history-entry file="Testing_Textrategia_API - 2017.05.15 at 09h 26m 09s.xml">
-      <configuration name="Testing Textrategia API" configurationId="mocha-javascript-test-runner" />
-    </history-entry>
     <history-entry file="Testing_Textrategia_API - 2017.05.15 at 09h 27m 20s.xml">
+      <configuration name="Testing Textrategia API" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="Testing_Textrategia_API - 2017.05.15 at 09h 32m 36s.xml">
+      <configuration name="Testing Textrategia API" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="Testing_Textrategia_API - 2017.05.15 at 09h 32m 41s.xml">
+      <configuration name="Testing Textrategia API" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="Testing_Textrategia_API - 2017.05.16 at 11h 58m 42s.xml">
+      <configuration name="Testing Textrategia API" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="Testing_Textrategia_API - 2017.05.16 at 11h 58m 48s.xml">
+      <configuration name="Testing Textrategia API" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="Testing_Textrategia_API - 2017.05.16 at 11h 59m 24s.xml">
+      <configuration name="Testing Textrategia API" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="Testing_Textrategia_API - 2017.05.16 at 12h 00m 39s.xml">
+      <configuration name="Testing Textrategia API" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="Testing_Textrategia_API - 2017.05.16 at 12h 00m 51s.xml">
+      <configuration name="Testing Textrategia API" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="Testing_Textrategia_API - 2017.05.16 at 12h 01m 17s.xml">
+      <configuration name="Testing Textrategia API" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="Testing_Textrategia_API - 2017.05.16 at 12h 02m 43s.xml">
       <configuration name="Testing Textrategia API" configurationId="mocha-javascript-test-runner" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="164842000" />
+    <option name="totallyTimeSpent" value="175167000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1376" height="744" extended-state="6" />
@@ -1034,14 +1032,14 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32935154" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20592706" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20972644" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3993174" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3993174" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1076,7 +1074,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32935154" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32764506" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32935154" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15577507" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20592706" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
@@ -1104,68 +1102,57 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/server_testing.js</url>
-          <line>798</line>
-          <properties />
+          <line>819</line>
           <option name="timeStamp" value="317" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/server_testing.js</url>
-          <line>808</line>
-          <properties />
+          <line>829</line>
           <option name="timeStamp" value="322" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/server_testing.js</url>
-          <line>826</line>
-          <properties />
+          <line>847</line>
           <option name="timeStamp" value="323" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/test/tools-spec.js</url>
-          <line>437</line>
-          <properties />
+          <line>436</line>
           <option name="timeStamp" value="324" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/server_testing.js</url>
-          <line>791</line>
-          <properties />
+          <line>812</line>
           <option name="timeStamp" value="325" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/server_testing.js</url>
-          <line>792</line>
-          <properties />
+          <line>813</line>
           <option name="timeStamp" value="327" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/server_testing.js</url>
-          <line>779</line>
-          <properties />
+          <line>795</line>
           <option name="timeStamp" value="328" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/server_testing.js</url>
-          <line>778</line>
-          <properties />
+          <line>794</line>
           <option name="timeStamp" value="329" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/server_testing.js</url>
-          <line>774</line>
-          <properties />
+          <line>790</line>
           <option name="timeStamp" value="330" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/server_testing.js</url>
-          <line>770</line>
-          <properties />
+          <line>786</line>
           <option name="timeStamp" value="331" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/server_testing.js</url>
-          <line>831</line>
-          <properties />
+          <line>852</line>
           <option name="timeStamp" value="332" />
         </line-breakpoint>
       </breakpoints>
@@ -1476,26 +1463,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/server_test2.js" />
     <entry file="file://$PROJECT_DIR$/test/tools-spec-delete.js" />
-    <entry file="file://$PROJECT_DIR$/server_V2.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/server_V2.js" />
     <entry file="file://$PROJECT_DIR$/client/views/teacher.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="35" column="20" lean-forward="false" selection-start-line="35" selection-start-column="20" selection-end-line="35" selection-end-column="20" />
-          <folding>
-            <marker date="1494668859897" expanded="true" signature="1385:2447" ph="..." />
-            <marker date="1494668859897" expanded="true" signature="1419:2428" ph="..." />
-            <marker date="1494668859897" expanded="true" signature="1475:1755" ph="..." />
-            <marker date="1494668859897" expanded="true" signature="1527:1728" ph="..." />
-            <marker date="1494668859897" expanded="true" signature="1809:2082" ph="..." />
-            <marker date="1494668859897" expanded="true" signature="1860:2055" ph="..." />
-            <marker date="1494668859897" expanded="true" signature="2135:2404" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1503,7 +1475,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="29" column="39" lean-forward="false" selection-start-line="29" selection-start-column="39" selection-end-line="29" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1511,15 +1482,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="65">
           <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
-          <folding>
-            <marker date="1494783701692" expanded="true" signature="142:1902" ph="{...}" />
-            <marker date="1494783701692" expanded="true" signature="1320:1325" ph="{&quot;templateUrl&quot;: 'views/superUser.html'...}" />
-            <marker date="1494783701692" expanded="true" signature="1391:1465" ph="{&quot;templateUrl&quot;: 'views/teacher.html'...}" />
-            <marker date="1494783701692" expanded="true" signature="1495:1585" ph="{&quot;templateUrl&quot;: 'views/groupManagement.html'...}" />
-            <marker date="1494783701692" expanded="true" signature="1611:1693" ph="{&quot;templateUrl&quot;: 'views/createGroup.html'...}" />
-            <marker date="1494783701692" expanded="true" signature="1722:1810" ph="{&quot;templateUrl&quot;: 'views/createQuestion.html'...}" />
-            <marker date="1494783701692" expanded="true" signature="1825:1897" ph="{&quot;templateUrl&quot;: 'views/welcome.html'...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1527,151 +1489,53 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="132" column="17" lean-forward="false" selection-start-line="132" selection-start-column="17" selection-end-line="132" selection-end-column="17" />
-          <folding>
-            <marker date="1494668859882" expanded="true" signature="11808:16130" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="11847:11889" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="11950:12175" ph="{&quot;method&quot;: 'POST'...}" />
-            <marker date="1494668859882" expanded="true" signature="12053:12128" ph="{&quot;Content-Type&quot;: 'application/x-www-form-urlencoded'...}" />
-            <marker date="1494668859882" expanded="true" signature="12247:12290" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="12350:13253" ph="//..." />
-            <marker date="1494668859882" expanded="true" signature="13295:14699" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="13583:13937" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="13663:13927" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="13725:13890" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="13818:13872" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="13957:14239" ph="{&quot;method&quot;: 'POST'...}" />
-            <marker date="1494668859882" expanded="true" signature="14076:14159" ph="{&quot;Content-Type&quot;: 'application/x-www-form-urlencoded'...}" />
-            <marker date="1494668859882" expanded="true" signature="14358:14478" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="14522:14591" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="14746:16127" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="15007:15361" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="15087:15351" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="15149:15314" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="15242:15296" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="15381:15663" ph="{&quot;method&quot;: 'POST'...}" />
-            <marker date="1494668859882" expanded="true" signature="15500:15583" ph="{&quot;Content-Type&quot;: 'application/x-www-form-urlencoded'...}" />
-            <marker date="1494668859882" expanded="true" signature="15782:15902" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="15946:16019" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="16399:16632" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="16477:16559" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="16571:16629" ph="{&quot;ans_lst&quot;: ans...}" />
-            <marker date="1494668859882" expanded="true" signature="16694:16872" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="16750:16852" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="16782:16846" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="16926:17095" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="16980:17077" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="17020:17071" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="17098:17107" ph="/*...*/" />
-            <marker date="1494668859882" expanded="true" signature="17149:17644" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="17216:17508" ph="{&quot;method&quot;: 'POST'...}" />
-            <marker date="1494668859882" expanded="true" signature="17317:17392" ph="{&quot;Content-Type&quot;: 'application/x-www-form-urlencoded'...}" />
-            <marker date="1494668859882" expanded="true" signature="17633:17640" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="17711:17754" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="17850:17996" ph="/*...*/" />
-            <marker date="1494668859882" expanded="true" signature="17997:18047" ph="/*...*/" />
-            <marker date="1494668859882" expanded="true" signature="18072:18732" ph="[...]" />
-            <marker date="1494668859882" expanded="true" signature="18074:18729" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="18090:18259" ph="{&quot;Q_qeustion&quot;: &quot;האזן לשיחה המוקלטת. לשם מה החליטו במפעל הפיס להקליט שיחות של אנשים עם אראלה?&quot;...}" />
-            <marker date="1494668859882" expanded="true" signature="18274:18727" ph="[...]" />
-            <marker date="1494668859882" expanded="true" signature="18280:18388" ph="{&quot;answer&quot;: &quot;כדי לשכנע אנשים שהזכייה בפיס אפשרית&quot;...}" />
-            <marker date="1494668859882" expanded="true" signature="18394:18490" ph="{&quot;answer&quot;: &quot;כדי לגרום לאנשים להתרגש&quot;...}" />
-            <marker date="1494668859882" expanded="true" signature="18496:18603" ph="{&quot;answer&quot;: &quot;כדי שאנשים ירגישו הזדהות עם הזוכים&quot;...}" />
-            <marker date="1494668859882" expanded="true" signature="18609:18723" ph="{&quot;answer&quot;: &quot;כדי שאנשים יחשבו כיצד הם היו מגיבים לשיחה&quot;...}" />
-            <marker date="1494668859882" expanded="true" signature="18803:18891" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="19065:19935" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="19131:19436" ph="{&quot;method&quot;: 'POST'...}" />
-            <marker date="1494668859882" expanded="true" signature="19266:19357" ph="{&quot;Content-Type&quot;: 'application/x-www-form-urlencoded'...}" />
-            <marker date="1494668859882" expanded="true" signature="19406:19426" ph="/*...*/" />
-            <marker date="1494668859882" expanded="true" signature="19513:19558" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="19602:19647" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="19830:19931" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="20082:24881" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="20187:20228" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="20265:20329" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="20360:22761" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="20380:20680" ph="{&quot;method&quot;: 'POST'...}" />
-            <marker date="1494668859882" expanded="true" signature="20497:20580" ph="{&quot;Content-Type&quot;: 'application/x-www-form-urlencoded'...}" />
-            <marker date="1494668859882" expanded="true" signature="20650:20670" ph="/*...*/" />
-            <marker date="1494668859882" expanded="true" signature="20763:22497" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="20813:20822" ph="/*...*/" />
-            <marker date="1494668859882" expanded="true" signature="21465:21775" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="21838:22104" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="22166:22297" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="22360:22482" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="22546:22753" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="22584:22742" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="22794:22919" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="22957:23458" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="23530:24190" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="23764:24007" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="23946:23996" ph="/*...*/" />
-            <marker date="1494668859882" expanded="true" signature="24013:24148" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="24112:24138" ph="/*...*/" />
-            <marker date="1494668859882" expanded="true" signature="24237:24856" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="24291:24605" ph="{&quot;method&quot;: 'POST'...}" />
-            <marker date="1494668859882" expanded="true" signature="24408:24491" ph="{&quot;Content-Type&quot;: 'application/x-www-form-urlencoded'...}" />
-            <marker date="1494668859882" expanded="true" signature="24684:24731" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="24789:24840" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="24964:26560" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="25141:26435" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="25281:25566" ph="{&quot;method&quot;: 'POST'...}" />
-            <marker date="1494668859882" expanded="true" signature="25407:25498" ph="{&quot;Content-Type&quot;: 'application/x-www-form-urlencoded'...}" />
-            <marker date="1494668859882" expanded="true" signature="25681:26292" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="25887:25986" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="26033:26132" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="26179:26280" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="26336:26425" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="26441:26551" ph="//..." />
-            <marker date="1494668859882" expanded="true" signature="26578:41844" ph="{...}" />
-            <marker date="1494668859882" expanded="true" signature="26592:41842" ph="[...]" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../DB/OneFileSetup.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="46" column="25" lean-forward="true" selection-start-line="46" selection-start-column="25" selection-end-line="46" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
+        <state relative-caret-position="4505">
           <caret line="265" column="52" lean-forward="false" selection-start-line="265" selection-start-column="52" selection-end-line="265" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/API.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="405" column="19" lean-forward="false" selection-start-line="405" selection-start-column="19" selection-end-line="405" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/queryForDB.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="42" column="72" lean-forward="false" selection-start-line="42" selection-start-column="63" selection-end-line="42" selection-end-column="72" />
+        <state relative-caret-position="969">
+          <caret line="57" column="39" lean-forward="false" selection-start-line="57" selection-start-column="8" selection-end-line="57" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/API.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1598">
+          <caret line="94" column="18" lean-forward="false" selection-start-line="94" selection-start-column="11" selection-end-line="94" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../DB/OneFileSetup.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="292" column="13" lean-forward="false" selection-start-line="292" selection-start-column="13" selection-end-line="292" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/tools-spec.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="422" column="11" lean-forward="false" selection-start-line="422" selection-start-column="11" selection-end-line="422" selection-end-column="11" />
+        <state relative-caret-position="-3553">
+          <caret line="113" column="11" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="451" selection-end-column="3" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server_testing.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
-          <caret line="832" column="82" lean-forward="false" selection-start-line="832" selection-start-column="82" selection-end-line="832" selection-end-column="82" />
+        <state relative-caret-position="1275">
+          <caret line="829" column="32" lean-forward="false" selection-start-line="829" selection-start-column="32" selection-end-line="829" selection-end-column="32" />
           <folding />
         </state>
       </provider>

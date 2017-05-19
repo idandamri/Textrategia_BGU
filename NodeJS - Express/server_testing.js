@@ -139,7 +139,7 @@ app.post('/getQuestion', function (req, res) {
             }
             else {
                 console.log("Question id amount is smaller then one");
-                res.status(204).send("End of task");//End of task
+                res.status(676).send("End of task");//End of task
             }
         }
     });
@@ -165,7 +165,7 @@ app.post('/questionDone', function deleteQuestionFromQueue(req, res) {
 
 
 app.post('/updateAnswer', function (req, res) {
-    var sId = req.body.stud_id;
+    var sId = req.body.user_id;
     var tId = req.body.task_id;
     var qId = req.body.quest_id;
     var aId = req.body.ans_id;
@@ -776,7 +776,7 @@ app.post('/generateRandTask', function (req, res) {
 
     var stud_id = req.body.student_id;
     var tDesc = "Random task Generated";
-    var tOwner = stud_id;
+    var tOwner = 6;
     var tApproved = 1;
     var num = req.body.rand_num;
     var media_types = req.body.media_types.split(",");
@@ -1035,7 +1035,7 @@ app.post('/getAllSkills', function (req, res) {
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '123456',//'1q2w3e4r' to upload*/
+    password: '1q2w3e4r',//'1q2w3e4r' to upload*/
     database: 'textra_db',
     multipleStatements: true
 });
