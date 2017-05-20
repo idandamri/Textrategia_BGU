@@ -218,43 +218,48 @@ app.post('/addTaskToGroup', function (req, res) {
             res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
         }
         else {
-            var query2 = queries.getQestionsAndTasksForinstance(tId);
-            console.log('\n' + query2 + '\n');
-            connection.query(query2, function (err2, QuestsAndTasks) {
-                if (err2) {
-                    console.log(err);
-                    res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
-                } else {
-                    var indxStud = 0;
-                    var megaQuery = [];
+            if (students.length > 0) {
+                var query2 = queries.getQestionsAndTasksForinstance(tId);
+                console.log('\n' + query2 + '\n');
+                connection.query(query2, function (err2, QuestsAndTasks) {
+                    if (err2) {
+                        console.log(err);
+                        res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
+                    } else {
+                        var indxStud = 0;
+                        var megaQuery = [];
 
-                    while (students.length > indxStud) {
-                        var indxTask = 0;
-                        while (QuestsAndTasks.length > indxTask) {
-                            var s_id = Number(students[indxStud].StudentId);
-                            var t_id = QuestsAndTasks[indxTask].T_id;
-                            var q_id = QuestsAndTasks[indxTask].Q_id;
-                            var query3 = queries.addTaskQuestionStudentInstance(s_id, t_id, q_id);
-                            console.log('\n' + query3 + '\n');
-                            megaQuery[indxTask + indxStud * QuestsAndTasks.length] = query3;
-                            indxTask++;
+                        while (students.length > indxStud) {
+                            var indxTask = 0;
+                            while (QuestsAndTasks.length > indxTask) {
+                                var s_id = Number(students[indxStud].StudentId);
+                                var t_id = QuestsAndTasks[indxTask].T_id;
+                                var q_id = QuestsAndTasks[indxTask].Q_id;
+                                var query3 = queries.addTaskQuestionStudentInstance(s_id, t_id, q_id);
+                                console.log('\n' + query3 + '\n');
+                                megaQuery[indxTask + indxStud * QuestsAndTasks.length] = query3;
+                                indxTask++;
+                            }
+                            indxStud++;
                         }
-                        indxStud++;
+
+                        var bigQuery = megaQuery.join(" ");
+
+                        connection.query(bigQuery, function (err3) {
+                            if (err3) {
+                                console.log(err3);
+                                res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
+                            } else {
+                                console.log("Added: " + bigQuery);
+                                res.status(200).send();
+                            }
+                        });
                     }
-
-                    var bigQuery = megaQuery.join(" ");
-
-                    connection.query(bigQuery, function (err3) {
-                        if (err3) {
-                            console.log(err3);
-                            res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
-                        } else {
-                            console.log("Added: " + bigQuery);
-                            res.status(200).send();
-                        }
-                    });
-                }
-            });
+                });
+            }
+            else{
+                res.status(200).send();//empty list of group - added to all (actually no one)
+            }
         }
     });
 });
@@ -1045,16 +1050,16 @@ connection.connect(function (err) {
 });
 
 
-// var server = app.listen(80, function () {
-//     var host = server.address().address;
-//     var port = server.address().port;
-//     console.log("Example app listening at http://%s:%s", host, port)
-// });
-
-//TODO - Hadas you need this/TESTS!!!
-app.listen(8081, "127.0.0.1", function () {
-    console.log("App is running ");
+var server = app.listen(80, function () {
+    var host = server.address().address;
+    var port = server.address().port;
+    console.log("Example app listening at http://%s:%s", host, port)
 });
+
+// TODO - Hadas you need this/TESTS!!!
+// app.listen(8081, "127.0.0.1", function () {
+//     console.log("App is running ");
+// });
 
 setInterval(function () {
     connection.query('SELECT 1');

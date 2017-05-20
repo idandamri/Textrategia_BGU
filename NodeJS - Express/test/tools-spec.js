@@ -30,7 +30,7 @@ describe("Testing Textrategia API", function () {
 
     describe("Testing adding task to group", function () {
         it('Test adding task', function (done) {
-            request(app).post("/addTaskToGroup").send({"group_id": "1234567", "task_id": "2"})
+            request(app).post("/addTaskToGroup").send({"group_id": "123456", "task_id": "2"})
                 .expect(200)
                 .end(done);
         });
@@ -92,7 +92,7 @@ describe("Testing Textrategia API", function () {
                     if (err)
                         throw err;
                     console.log("returned status " + res.status);
-                    res.status.should.be.equal(204);
+                    res.status.should.be.equal(676);
                     done();
                 });
         });
@@ -100,7 +100,7 @@ describe("Testing Textrategia API", function () {
 
     describe("Testing update answer", function () {
         it('Testing update answer', function (done) {
-            request(app).post("/updateAnswer").send({"ans_id": "1", "quest_id": "1", "stud_id": "3", "task_id": "2"})
+            request(app).post("/updateAnswer").send({"ans_id": "1", "quest_id": "1", "user_id": "3", "task_id": "2"})
                 .end(function (err, res) {
                     if (err) {
                         console.log("ERR: " + err);
@@ -323,7 +323,7 @@ describe("Testing Textrategia API", function () {
         it('Test group of user', function (done) {
             request(app).post("/addTestTaskQuestions").send()
                 .end(function (err, res) {
-                    if (err)
+                   if (err)
                         throw err;
                     done();
                 });

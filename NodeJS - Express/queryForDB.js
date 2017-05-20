@@ -67,7 +67,7 @@ module.exports =
         },
 
         getTasks: function () {
-            return "select * from textra_db.tasks;";
+            return "select * from textra_db.tasks where T_owner != 6;";
         },
 
         addUsersToGroup: function (user_id, group_id) {
@@ -82,7 +82,7 @@ module.exports =
             return "SELECT StudentId FROM textra_db.students_per_group where GroupId = " + group_id + ";";
         },
 
-        getGroupsByTeacherAndCity: function (teacherId,city) {
+        getGroupsByTeacherAndCity: function (teacherId, city) {
             return "SELECT * FROM textra_db.groups where teacherID = '" + teacherId + "' and City = '" + city + "';";
         },
 
@@ -111,11 +111,11 @@ module.exports =
                               quest_is_approved, quest_disabled, quest_creator) {
             return "INSERT INTO textra_db.questions VALUES (null,'" + question_title + "'," + isMultipleAns + ",'"
                 + question_media_type + "','" + question_media + "','" + quest_correct_FB + "','" + quest_incorrect_FB + "','"
-                + quest_skill + "','" + quest_difficulty + "','" + quest_proffesion + "'," + quest_is_approved + ","
+                + quest_skill + "','" + quest_difficulty + "','" + quest_proffesion + "', 0," + quest_is_approved + ","
                 + quest_disabled + "," + quest_creator + ");";
         },
 
-        createGroup: function (g_name, school, city, teacher_id,is_teacher_group, is_master_g, g_code, group_user_type, is_app) {
+        createGroup: function (g_name, school, city, teacher_id, is_teacher_group, is_master_g, g_code, group_user_type, is_app) {
             return "INSERT INTO textra_db.groups VALUES (null," +
                 "'" + g_name + "','" + school + "','" + city + "'," + teacher_id + "," + is_teacher_group + ","
                 + is_master_g + ",'" + g_code + "'," + group_user_type + "," + is_app + ");";
@@ -188,40 +188,40 @@ module.exports =
     },
 
 
-    insertAnswer : function (question_id,answer,isCorrect) {
-        return "insert into textra_db.answers values (null," + question_id+ ",'" + answer + "'," + isCorrect + ");"
+    insertAnswer: function (question_id, answer, isCorrect) {
+        return "insert into textra_db.answers values (null," + question_id + ",'" + answer + "'," + isCorrect + ");"
     },
 
-    getAllStudentForGroup : function (group_id) {
+    getAllStudentForGroup: function (group_id) {
         return "select * from textra_db.users where PersonalId in (" +
-        "SELECT StudentId FROM textra_db.students_per_group where GroupId =" + group_id+");"
+            "SELECT StudentId FROM textra_db.students_per_group where GroupId =" + group_id + ");"
     },
 
-    getAllGroupForTeacher : function (user_id) {
-        return "select * from textra_db.groups where teacherID ='" +  user_id +"';"
+    getAllGroupForTeacher: function (user_id) {
+        return "select * from textra_db.groups where teacherID ='" + user_id + "';"
     },
-        getGroupBySchoolAndCity: function (school, city) {
-        return "select * from textra_db.groups where School like '" + school+ "' and City like '" + city + "';"
+    getGroupBySchoolAndCity: function (school, city) {
+        return "select * from textra_db.groups where School like '" + school + "' and City like '" + city + "';"
     },
-    getAllSchollByCity : function (city) {
-      return "select School from textra_db.cities_and_schools where City like '" + city+ "';"
+    getAllSchollByCity: function (city) {
+        return "select School from textra_db.cities_and_schools where City like '" + city + "';"
     },
 
-    addNewSchool: function (city,school) {
-        return "insert into textra_db.cities_and_schools values ('" + school +"' , '" + city + "');"
+    addNewSchool: function (city, school) {
+        return "insert into textra_db.cities_and_schools values ('" + school + "' , '" + city + "');"
     },
-    getQuestionsByParamter : function (media_types,skills,difficulties) {
+    getQuestionsByParamter: function (media_types, skills, difficulties) {
         return "SELECT * FROM textra_db.questions " +
             "where Q_mediaType in (" + media_types + ") " +
             "and Q_skill in (" + skills + ") " +
-            "and Q_difficulty in (" + difficulties +");"
+            "and Q_difficulty in (" + difficulties + ");"
     },
 
-    getAllSkills : function (skills) {
-      return "SELECT distinct Q_skill FROM textra_db.questions;"
+    getAllSkills: function (skills) {
+        return "SELECT distinct Q_skill FROM textra_db.questions;"
     },
 
-    getGroupCode : function (group_id) {
+    getGroupCode: function (group_id) {
         return "SELECT GroupeCode FROM textra_db.groups where GroupId =" + group_id + ";"
     }
 };
