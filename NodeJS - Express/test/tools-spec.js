@@ -215,7 +215,7 @@ describe("Testing Textrategia API", function () {
                 });
         });
 
-            it('Testing approve FAIL', function (done) {
+        it('Testing approve FAIL', function (done) {
             request(app).post("/questionApproveOrNot").send({"q_id": "1000000000000000009", "is_approved": "1"})
                 .end(function (err, res) {
                     if (err) {
@@ -323,7 +323,7 @@ describe("Testing Textrategia API", function () {
         it('Test group of user', function (done) {
             request(app).post("/addTestTaskQuestions").send()
                 .end(function (err, res) {
-                   if (err)
+                    if (err)
                         throw err;
                     done();
                 });
@@ -423,6 +423,41 @@ describe("Testing Textrategia API", function () {
             request(app).post("/getGroupsByTeacherAndCity").send({
                 "teacher_id": "1",
                 "city": "אשדוד"
+            })
+                .expect(200)
+                .end(function (err, res) {
+                    console.log("response: " + JSON.stringify(res.body));
+                    done();
+                });
+        });
+    });
+
+
+    describe("Testing report a question", function () {
+        it('Test report a question - correct deatils', function (done) {
+            request(app).post("/reportQuestion").send({"q_id": "1"})
+                .expect(200)
+                .end(function (err, res) {
+                    console.log("response: " + JSON.stringify(res.body));
+                    done();
+                });
+        });
+    });
+
+
+    describe("Testing edit a question", function () {
+        it('Test edit a question - correct deatils', function (done) {
+            request(app).post("/editQuestion").send({
+                "id": "19",
+                "question": "update Test",
+                "media": "a_qZypVdTgo",
+                "correctFB": "all good!",
+                "notCorrectFB": "not all good!",
+                "skill": "bla",
+                "difficulty": "easy",
+                "proffesion": "test",
+                "approved": "1",
+                "disabled": "0"
             })
                 .expect(200)
                 .end(function (err, res) {

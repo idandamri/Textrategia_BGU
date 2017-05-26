@@ -6,6 +6,7 @@ module.exports =
                 "WHERE (PersonalID like \'" + user_identifier + "\' or Email like \'" + user_identifier + "\')  and Pass like \'" + password + "\';";
         },
 
+
         /*get all tasks's information (id,title and description) by student id*/
         gelAllTaskTitleByStudentId: function (user_id) {
             return "select tasks.* from " +
@@ -121,6 +122,10 @@ module.exports =
                 + is_master_g + ",'" + g_code + "'," + group_user_type + "," + is_app + ");";
         },
 
+        reportQuestion: function (q_id) {
+            return "UPDATE textra_db.questions SET Q_reported=Q_reported+1 WHERE Q_id = " + q_id + ";";
+        },
+
         getGroupIdfromcode: function (g_code) {
             return "select GroupId from textra_db.groups where GroupeCode = '" + g_code + "';";
         },
@@ -134,8 +139,15 @@ module.exports =
             return "UPDATE textra_db.questions SET Q_approved = " + isApproved + " WHERE Q_id = " + q_id + ";";
         },
 
+        updateQuestion: function (q_id, q_question, q_media, q_correctFB, q_notCorrectFB, q_skill, q_diff, q_proff, q_app, q_disable) {
+            return "UPDATE textra_db.questions SET Q_question  = '" + q_question + "', Q_media = '" + q_media +
+                "', Q_correctFB = '" + q_correctFB + "', Q_notCorrectFB = '" + q_notCorrectFB + "', Q_skill = '" + q_skill +
+                "', Q_difficulty = '" + q_diff + "', Q_proffession = '" + q_proff + "', Q_disabled = " + q_disable +
+                ", Q_approved = " + q_app + " WHERE Q_id = " + q_id + ";";
+        },
+
         getFullQuestionByQid: function (q_id) {
-            return "select T.Q_id, T.Q_qeustion, T.isMultipuleAns, " +
+            return "select T.Q_id, T.Q_question, T.isMultipuleAns, " +
                 "T.Q_correctFB, T.Q_mediaType, T.Q_media," +
                 "T.Q_notCorrectFB, T.Q_skill, T.Q_difficulty," +
                 "T.Q_proffession, T.Q_approved, T.Q_disabled " +
