@@ -309,28 +309,35 @@ app.post('/createGroup', function (req, res) {
     var isMaster = mysql.escape(req.body.is_master);
     var isApp = mysql.escape(req.body.is_approved);
     var gCode = makeid();
-//TODO - Idan, check if code exists in system
-    var query = queries.createGroup(gName, school, city, teacherId, isTeacherGroup, isMaster, gCode, groupUserType, isApp);
-    console.log('\n' + query + '\n');
-    connection.query(query, function (err,ans) {
-        if (err) {
-            console.log(err);
-            res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
-        }
-        else {
-            var group_id = ans.insertId;
-            var query = queries.getGroupCode(group_id );
-            console.log('\n' + query + '\n');
-            connection.query(query, function (err,ans) {
-                if (err) {
-                    console.log(err);
-                    res.status(400).send("");
+
+    connection.query(queries.checkIfGroupCodeExists(gCode), function (err, ans) {
+
+
+        var query = queries.createGroup(gName, school, city, teacherId, isTeacherGroup, isMaster, gCode, groupUserType, isApp);
+        console.log('\n' + query + '\n');
+        connection.query(query, function (err, ans) {
+            if (err) {
+                console.log(err);
+                res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
+            }
+            else {
+                if (ans == null || ans.length > 0) {
+                    gCode =(makeid() + (Math.floor(Math.random() * 1000)));
                 }
-                else {
-                    res.status(200).send(ans);
-                }
-            });
-        }
+                var group_id = ans.insertId;
+                var query = queries.getGroupCode(group_id);
+                console.log('\n' + query + '\n');
+                connection.query(query, function (err, ans) {
+                    if (err) {
+                        console.log(err);
+                        res.status(400).send("");
+                    }
+                    else {
+                        res.status(200).send(ans);
+                    }
+                });
+            }
+        });
     });
 });
 
@@ -945,6 +952,44 @@ app.post('/getGroupsByTeacherAndCity', function (req, res) {
         }
     });
 });
+
+
+app.post('/getAllTeachersBySchoolAndCity', function (req, res) {
+    var school = mysql.escape(req.body.school);
+    var CityName = mysql.escape(req.body.city);
+    var query = queries.getTeachesByCityAndSchool(CityName, school);
+    console.log('\n' + query + '\n');
+    connection.query(query, function (err, listOfTeachers) {
+        if (err) {
+            console.log(err);
+            res.status(400).send("DB error");
+        }
+        else {
+            if (listOfTeachers.length > 0) {
+                var indexOfTeacher = 0;
+                var query = queries.getUserById(listOfTeachers[indexOfTeacher]);
+                if(listOfTeachers.length>1) {
+                    indexOfTeacher = indexOfTeacher + 1;
+                    while (indexOfTeacher <= listOfTeachers.length) {
+                        query = query + " or PersonalID = " + listOfTeachers[indexOfTeacher];
+                        indexOfTeacher = indexOfTeacher + 1;
+                    }
+                }
+                query = query + ";";
+                console.log('\n' + query + '\n');
+                connection.query(query, function (err, fullListOfTeachers) {
+                    if (err) {
+                        console.log(err);
+                        res.status(400).send("DB error");
+                    }else{
+                        res.status(200).send(fullListOfTeachers);
+                    }
+                });
+            }
+        }
+    });
+});
+
 
 app.post('/getAllStudentForGroup', function (req, res) {
     var group_id = mysql.escape(req.body.group_id);
