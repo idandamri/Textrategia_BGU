@@ -179,24 +179,34 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
 
 textrategiaApp.controller("GroupManagementController",function($scope,$http,$location){
     $scope.teacherName = getUserName();
-    // $scope.info = empty;
-    $scope.doneSendTask =false;
-    $scope.messageSent = false; // set Error flag
+
+    $scope.doneSendTask =false;         // different model button in case of server error
     $scope.serverFeedback = "אופס... אין תשובה מהשרת.";
 
     var groups = document.getElementById("available_group");
     var tasks = document.getElementById("available_task");
 
-    // var select = document.querySelector('#available_task');
-    // select.addEventListener('change',function(){
-    //     for (i = 0 ; i < groups.options.length ; i++){
-    //         group = groups.options[i];
-    //         if (group.selected == true) {
-    //             getAllGroupForTask(group.value);
-    //         }
-    //     }
-    // });
 
+    $scope.send_task_mod = false;  // else group managment mode
+
+    $scope.sendTaskMode = function (){
+        $scope.send_task_mod = true;
+    }
+
+    $scope.groupManagmentMode = function (){
+        $scope.send_task_mod = false;
+    }
+
+    // ~~~~~~ group managment mode ~~~~~~
+
+
+
+
+
+
+
+
+    // ~~~~~ send task mode ~~~~~~~~
 
     $scope.getAllGroupForTask= function () {
         task_id = $scope.selected;
@@ -222,7 +232,7 @@ textrategiaApp.controller("GroupManagementController",function($scope,$http,$loc
         $location.path('teacher');
     };
 
-    // $scope.info = groups_and_tasks_mock;
+
     var req = {
         method: 'POST',
         cache: false,
@@ -241,34 +251,6 @@ textrategiaApp.controller("GroupManagementController",function($scope,$http,$loc
     });
 
 
-    // these function alert the choise the user made.
-    // $scope.sendTaskToGroup = function(){
-    //     //get group selection
-    //
-    //     var sel1 = document.getElementById("available_group");
-    //
-    //     var opt1;
-    //     for (i = 0 ; i < sel1.options.length ; i++){
-    //         opt1 = sel1.options[i];
-    //         if (opt1.selected == true){
-    //              alert(opt1.value);              // this is GroupID
-    //             break;
-    //         }
-    //     }
-    //     //get tasks selection
-    //     var sel2 = document.getElementById("available_task");
-    //
-    //     var opt2;
-    //     for (i = 0 ; i < sel2.options.length ; i++){
-    //         opt2 = sel2.options[i];
-    //         if (opt2.selected == true){
-    //              alert(opt2.value);              // this is T_id
-    //             break;
-    //         }
-    //     }
-    //
-    //
-    // }
 
 
     $scope.sendTaskToGroup = function(){
