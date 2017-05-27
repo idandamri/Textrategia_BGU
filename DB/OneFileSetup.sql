@@ -288,7 +288,7 @@ insert into users
 values (4,"שטורם","ארנון",1,"sturm@bgu.ac.il","123456");
 
 insert into users
-values (5,"שפייזר","מתן",0,"matan@gmail.com","123456");
+values (5,"שפייזר","מתן",2,"matan@gmail.com","123456");
 
 insert into users
 values (6,"Rand","Tasker",2,"rand@tasker.com","123456");

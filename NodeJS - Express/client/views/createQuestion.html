@@ -57,8 +57,26 @@
 		<!-- 6 -->
 
           <label class="control-label pull-right">הכנס מיומנות למידה: &nbsp;&nbsp;</label>
-          <input type="text" name="quest_skill" class="form-control inputstl pull-right" required placeholder="מיומנות למידה" ng-model="question.quest_skill">  
+<!--               <select class="form-control inputstl" id="skill_type">
+                    <option  ng-repeat="sk in mock_skills" value="text">{{sk.Q_skill}}</option>
+              </select>    -->
 
+
+    <select class="form-control inputstl" id="skill_type" ng-model="question.selected_skill" ng-change="new_skill_mode()">
+      <option  ng-repeat="sk in mock_skills" value={{sk.Q_skill}}>
+        {{sk.Q_skill}}
+        </option>
+        <option value="enter_new_skill">   מיומנות חדשה:     </option>
+         <input type="text" ng-show="enter_new_skill_mode" class="form-control inputstl pull-right" placeholder="מיומנות למידה" ng-model="question.selected_skill"> 
+
+    </select>
+
+
+
+
+<!-- 
+          <input type="text" name="quest_skill" class="form-control inputstl pull-right" required placeholder="מיומנות למידה" ng-model="question.quest_skill">  
+ -->
 
 
        	<!-- 8 -->
@@ -85,8 +103,9 @@
       
           <!-- 1 -->
           <label class="control-label pull-right">הכנס ניסוח שאלה:&nbsp;&nbsp;</label>
-          	<input type="text" name="question_title" class="form-control inputstl pull-right" required placeholder="ניסוח שאלה חדשה" ng-model="question.question_title">
+          	<textarea type="text" rows="2" name="question_title" class="form-control inputstl pull-right" required placeholder="ניסוח שאלה חדשה" ng-model="question.question_title">
 
+          </textarea>
 
           <!-- 3 -->
                   <label class="control-label pull-right">האם שאלת רב בחירה?:&nbsp;&nbsp;</label>
@@ -96,11 +115,11 @@
           </select>   
 	            <!-- 5 -->
     		<label class="control-label pull-right">הכנס פידבק לתשובה נכונה: &nbsp;&nbsp;</label>
-       		<input type="text" name="quest_correct_fb" class="form-control inputstl pull-right" required placeholder="פידבק חיובי" ng-model="question.quest_correct_fb">
+       		<textarea type="text" name="quest_correct_fb" rows="1" class="form-control inputstl pull-right" required placeholder="פידבק חיובי" ng-model="question.quest_correct_fb"></textarea>
 
 			<!-- 7 -->
             <label class="control-label pull-right">הכנס פידבק לתשובה שגויה: &nbsp;&nbsp;</label>
-          <input type="text" name="quest_incorrect_fb" class="form-control inputstl pull-right" required placeholder="פידבק שלילי" ng-model="question.quest_incorrect_fb">
+          <textarea type="text" name="quest_incorrect_fb" rows="1" class="form-control inputstl pull-right" required placeholder="פידבק שלילי" ng-model="question.quest_incorrect_fb"> </textarea>
 
         </div>
  
@@ -121,31 +140,53 @@
 	<div class="col-sm-12">  <h3>הכנס את התשובות: </h3>  </div>
 
 <form name="mySecondForm" class="form-horizontal" role="form">
-	<div class="col-sm-4"></div>
+
 
 	<div class="col-sm-4 text-center">
+      <!-- 3 -->
+      <label class="control-label pull-right">תשובה 3: &nbsp;&nbsp;</label>
+       <textarea  type="text" rows="2" name="possible_ans_3" class="form-control inputstl pull-right" required  ng-model="question.possible_ans_3"> 
+       </textarea>
+          <!-- 4 -->
+      <label class="control-label pull-right">תשובה 4: &nbsp;&nbsp;</label>
+        <textarea type="text" rows="2" name="possible_ans_4" class="form-control inputstl pull-right" required  ng-model="question.possible_ans_4"> 
+        </textarea>
+      <br>
+  </div>
 
-		<!-- 1 -->
-		<label class="control-label pull-right">תשובה 1: &nbsp;&nbsp;</label>
-		<input type="text" name="possible_ans_1" class="form-control inputstl pull-right" required ng-model="question.possible_ans_1">	
+    <div class="col-sm-4 text-center">
+      <!-- 1 -->
+      <label class="control-label pull-right">תשובה 1: &nbsp;&nbsp;</label>
+        <textarea type="text" rows="2" name="possible_ans_1" class="form-control inputstl pull-right" required ng-model="question.possible_ans_1">  
+        </textarea>
+          <!-- 2 -->
+      <label class="control-label pull-right">תשובה 2: &nbsp;&nbsp;</label>
+        <textarea type="text" rows="2" name="possible_ans_2" class="form-control inputstl pull-right" required ng-model="question.possible_ans_2">  
+        </textarea>
 
-				<!-- 2 -->
-		<label class="control-label pull-right">תשובה 2: &nbsp;&nbsp;</label>
-		<input type="text" name="possible_ans_2" class="form-control inputstl pull-right" required ng-model="question.possible_ans_2">	
+    </div>
 
-				<!-- 3 -->
-		<label class="control-label pull-right">תשובה 3: &nbsp;&nbsp;</label>
-		<input type="text" name="possible_ans_3" class="form-control inputstl pull-right" required  ng-model="question.possible_ans_3">	
 
-				<!-- 4 -->
-		<label class="control-label pull-right">תשובה 4: &nbsp;&nbsp;</label>
-		<input type="text" name="possible_ans_4" class="form-control inputstl pull-right" required  ng-model="question.possible_ans_4">	
+  <!-- buttons -->
+  <div class="col-sm-4 text-center">
+    <div class="btn-group-vertical">
+          <button ng-click="editQuestionMode()" class="btn btn-lg btn-info" >חזור להכנסת שאלה!
+          <span class="glyphicon glyphicon-hand-right"></span> </button>
 
-		<br>
+        <button ng-click="sendNewQuestion()" ng-disabled="mySecondForm.$invalid" type="submit" class="btn btn-lg btn-info" data-toggle="modal" data-target="#fedbackModal">הוסף שאלה למאגר!
+         <span class="glyphicon glyphicon-send"></span> </button>
+    </div>
+  </div>
 
+
+
+<div class="col-sm-12 text-center"><br><br></div>
+<div class="col-sm-4 text-center"></div>
+
+<div class="col-sm-4 text-center">
 		<!-- 5 -->
-      	<label class="control-label pull-right ">מהי התשובה הנכונה?:&nbsp;&nbsp;</label>
-            <select class="form-control inputstl " id="correct_ans">
+      	<label class="control-label pull-right ">מהי התשובה הנכונה?:&nbsp;&nbsp; &nbsp;&nbsp;</label>
+            <select class="form-control inputstl " id="correct_ans" style="max-width: 160px;">
 	            <option value=0>1</option>
 	            <option value=1>2</option>
 	            <option value=2>3</option>
@@ -153,16 +194,9 @@
             </select> 
 	</div>
 
-	<!-- buttons -->
-  <div class="col-sm-4 text-center">
-		<div class="btn-group-vertical">
-          <button ng-click="editQuestionMode()" class="btn btn-lg btn-info" >חזור להכנסת שאלה!
-          <span class="glyphicon glyphicon-hand-right"></span> </button>
+  <div class="col-sm-4 text-center"></div>
 
-	      <button ng-click="sendNewQuestion()" ng-disabled="mySecondForm.$invalid" type="submit" class="btn btn-lg btn-info" data-toggle="modal" data-target="#fedbackModal">הוסף שאלה למאגר!
-         <span class="glyphicon glyphicon-send"></span> </button>
-  	</div>
-	</div>
+
 
 </form>
 </div> <!-- //ng-show insertPossibleAnswersMode -->

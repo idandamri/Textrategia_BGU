@@ -61,7 +61,7 @@ app.post('/login', function (req, res) {
                 console.log('OK');
             }
             else {
-                res.status(204).send('ERROR');
+                res.status(401).send('ERROR');
                 console.log('ERROR \n');
             }
         }
@@ -1038,7 +1038,7 @@ app.post('/getAllSkills', function (req, res) {
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '1q2w3e4r',//'1q2w3e4r' to upload*/
+    password: '123456',//'1q2w3e4r' to upload*/
     database: 'textra_db',
     multipleStatements: true
 });
@@ -1050,16 +1050,16 @@ connection.connect(function (err) {
 });
 
 
-var server = app.listen(80, function () {
-    var host = server.address().address;
-    var port = server.address().port;
-    console.log("Example app listening at http://%s:%s", host, port)
-});
+// var server = app.listen(80, function () {
+//     var host = server.address().address;
+//     var port = server.address().port;
+//     console.log("Example app listening at http://%s:%s", host, port)
+// });
 
 // TODO - Hadas you need this/TESTS!!!
-// app.listen(8081, "127.0.0.1", function () {
-//     console.log("App is running ");
-// });
+app.listen(8081, "127.0.0.1", function () {
+    console.log("App is running ");
+});
 
 setInterval(function () {
     connection.query('SELECT 1');
