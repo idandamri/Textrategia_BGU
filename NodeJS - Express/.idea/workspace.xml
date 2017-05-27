@@ -7,8 +7,6 @@
     <list default="true" id="7c1dd669-4d78-476f-9d51-553f8449f360" name="Default" comment="changed DB Marathon day">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../DB/OneFileSetup.sql" afterPath="$PROJECT_DIR$/../DB/OneFileSetup.sql" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server_testing.js" afterPath="$PROJECT_DIR$/server_testing.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/tools-spec.js" afterPath="$PROJECT_DIR$/test/tools-spec.js" />
     </list>
     <list id="c6aab38b-e232-4e80-b2df-d49c82aaa698" name="Rejected commit: Default" comment="comm test" />
     <list id="b7d62d89-dbb7-429a-833f-f97ac1f737a4" name="Rejected commit: Default (2)" comment="comm test" />
@@ -37,8 +35,8 @@
       <file leaf-file-name="tools-spec.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/tools-spec.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="177">
-              <caret line="298" column="30" lean-forward="false" selection-start-line="298" selection-start-column="22" selection-end-line="298" selection-end-column="30" />
+            <state relative-caret-position="130">
+              <caret line="32" column="46" lean-forward="false" selection-start-line="32" selection-start-column="32" selection-end-line="32" selection-end-column="46" />
               <folding />
             </state>
           </provider>
@@ -47,8 +45,18 @@
       <file leaf-file-name="server_testing.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server_testing.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="1081" column="39" lean-forward="true" selection-start-line="1081" selection-start-column="39" selection-end-line="1081" selection-end-column="39" />
+            <state relative-caret-position="150">
+              <caret line="260" column="85" lean-forward="false" selection-start-line="260" selection-start-column="85" selection-end-line="260" selection-end-column="85" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OneFileSetup.sql" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../DB/OneFileSetup.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="293" column="13" lean-forward="false" selection-start-line="293" selection-start-column="13" selection-end-line="293" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -57,8 +65,8 @@
       <file leaf-file-name="queryForDB.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/queryForDB.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="10" lean-forward="true" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="10" />
+            <state relative-caret-position="208">
+              <caret line="113" column="91" lean-forward="false" selection-start-line="113" selection-start-column="91" selection-end-line="113" selection-end-column="91" />
               <folding />
             </state>
           </provider>
@@ -74,141 +82,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OneFileSetup.sql" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../DB/OneFileSetup.sql">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4998">
-              <caret line="294" column="13" lean-forward="false" selection-start-line="294" selection-start-column="13" selection-end-line="294" selection-end-column="13" />
-              <folding>
-                <marker date="1495277719284" expanded="true" signature="16352:17421" ph="INSERT INTO `textra_db`.`questions`... " />
-                <marker date="1495277719284" expanded="true" signature="17758:17878" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="17880:17988" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="17990:18109" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="18111:18237" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="18239:18352" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="18354:18483" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="18485:18603" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="18712:18859" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="18861:18998" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="19000:19162" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="19164:19320" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="19322:19439" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="19441:19563" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="19565:19689" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="19691:19830" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="19832:19954" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="19956:20067" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="20069:20191" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="20193:20320" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="20322:20455" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="20457:20572" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="20574:20715" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="20717:20830" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="20832:20986" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="20988:21118" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="21120:21259" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="21261:21403" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="21405:21538" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="21540:21666" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="21668:21798" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="21800:21932" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="21934:22044" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="22046:22153" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="22155:22269" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="22271:22395" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="22397:22508" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="22510:22623" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="22625:22744" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="22746:22859" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="22861:22972" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="22974:23082" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="23084:23210" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="23212:23337" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="23339:23451" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="23453:23568" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="23570:23698" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="23700:23810" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="23812:23904" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="23906:24000" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="24002:24097" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="24099:24192" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="24194:24307" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="24309:24417" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="24419:24544" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="24546:24661" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="24663:24784" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="24786:24899" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="24901:25028" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="25030:25146" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="25148:25263" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="25265:25384" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="25386:25497" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="25499:25621" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="25623:25733" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="25735:25857" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="25859:25969" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="25971:26106" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="26108:26238" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="26240:26373" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="26375:26512" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="26514:26649" ph="INSERT INTO `textra_db`.`answers`... " />
-                <marker date="1495277719284" expanded="true" signature="26653:26699" ph="/*----------... " />
-                <marker date="1495277719284" expanded="true" signature="26700:26776" ph="insert into users... " />
-                <marker date="1495277719284" expanded="true" signature="26779:26858" ph="insert into users... " />
-                <marker date="1495277719284" expanded="true" signature="26861:26936" ph="insert into users... " />
-                <marker date="1495277719284" expanded="true" signature="26939:27012" ph="insert into users... " />
-                <marker date="1495277719284" expanded="true" signature="27015:27087" ph="insert into users... " />
-                <marker date="1495277719284" expanded="true" signature="27090:27163" ph="insert into users... " />
-                <marker date="1495277719284" expanded="true" signature="27165:27248" ph="/* insert in... " />
-                <marker date="1495277719284" expanded="true" signature="27249:27325" ph="insert into users... " />
-                <marker date="1495277719284" expanded="true" signature="27327:27493" ph="/* insert in... " />
-                <marker date="1495277719284" expanded="true" signature="27494:27572" ph="insert into users... " />
-                <marker date="1495277719284" expanded="true" signature="27574:27661" ph="/* insert in... " />
-                <marker date="1495277719284" expanded="true" signature="27662:27708" ph="/*----------... " />
-                <marker date="1495277719284" expanded="true" signature="27710:27756" ph="/*----------... " />
-                <marker date="1495277719284" expanded="true" signature="27757:27833" ph="insert into tasks... " />
-                <marker date="1495277719284" expanded="true" signature="27836:27913" ph="insert into tasks... " />
-                <marker date="1495277719284" expanded="true" signature="27916:27962" ph="/*----------... " />
-                <marker date="1495277719284" expanded="true" signature="27964:28010" ph="/*----------... " />
-                <marker date="1495277719284" expanded="true" signature="28011:28096" ph="insert into groups... " />
-                <marker date="1495277719284" expanded="true" signature="28099:28189" ph="insert into groups... " />
-                <marker date="1495277719284" expanded="true" signature="28192:28297" ph="insert into groups... " />
-                <marker date="1495277719284" expanded="true" signature="28300:28407" ph="insert into groups... " />
-                <marker date="1495277719284" expanded="true" signature="28410:28493" ph="insert into groups... " />
-                <marker date="1495277719284" expanded="true" signature="28495:28541" ph="/*----------... " />
-                <marker date="1495277719284" expanded="true" signature="28543:28589" ph="/*----------... " />
-                <marker date="1495277719284" expanded="true" signature="28590:28637" ph="insert into students_per_group... " />
-                <marker date="1495277719284" expanded="true" signature="28640:28687" ph="insert into students_per_group... " />
-                <marker date="1495277719284" expanded="true" signature="28690:28738" ph="insert into students_per_group... " />
-                <marker date="1495277719284" expanded="true" signature="28740:28786" ph="/*----------... " />
-                <marker date="1495277719284" expanded="true" signature="28788:28851" ph="/*----------... " />
-                <marker date="1495277719284" expanded="true" signature="28853:28905" ph="insert into tasks_joined_with_questions... " />
-                <marker date="1495277719284" expanded="true" signature="28908:28960" ph="insert into tasks_joined_with_questions... " />
-                <marker date="1495277719284" expanded="true" signature="28963:29015" ph="insert into tasks_joined_with_questions... " />
-                <marker date="1495277719284" expanded="true" signature="29018:29070" ph="insert into tasks_joined_with_questions... " />
-                <marker date="1495277719284" expanded="true" signature="29083:29135" ph="insert into tasks_joined_with_questions... " />
-                <marker date="1495277719284" expanded="true" signature="29138:29190" ph="insert into tasks_joined_with_questions... " />
-                <marker date="1495277719284" expanded="true" signature="29193:29245" ph="insert into tasks_joined_with_questions... " />
-                <marker date="1495277719284" expanded="true" signature="29248:29300" ph="insert into tasks_joined_with_questions... " />
-                <marker date="1495277719284" expanded="true" signature="29305:29371" ph="/*----------... " />
-                <marker date="1495277719284" expanded="true" signature="29372:29937" ph="/*idan user " />
-                <marker date="1495277719284" expanded="true" signature="29941:30507" ph="/*arnon user... " />
-                <marker date="1495277719284" expanded="true" signature="30509:30523" ph="/*hadas user... " />
-                <marker date="1495277719284" expanded="true" signature="30524:30590" ph="insert into tasks_and_question_for_student_instances... " />
-                <marker date="1495277719284" expanded="true" signature="30593:30659" ph="insert into tasks_and_question_for_student_instances... " />
-                <marker date="1495277719284" expanded="true" signature="30662:30728" ph="insert into tasks_and_question_for_student_instances... " />
-                <marker date="1495277719284" expanded="true" signature="30731:30797" ph="insert into tasks_and_question_for_student_instances... " />
-                <marker date="1495277719284" expanded="true" signature="30800:31154" ph="/*task 2 ins... " />
-                <marker date="1495277719284" expanded="true" signature="31156:31202" ph="/*----------... " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="API.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/API.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1598">
+            <state relative-caret-position="17">
               <caret line="94" column="18" lean-forward="false" selection-start-line="94" selection-start-column="11" selection-end-line="94" selection-end-column="18" />
               <folding />
             </state>
@@ -226,6 +103,16 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
+      <find>_.sample(</find>
+      <find>addTestTaskQuestions</find>
+      <find>getGroupByUser</find>
+      <find>tasks_joi</find>
+      <find>Rand</find>
+      <find>question</find>
+      <find>adduser</find>
+      <find>addTaskToGroup</find>
+      <find>teacher_id</find>
+      <find>is_ap</find>
       <find>/getGrou</find>
       <find>addusers</find>
       <find>/getquestion</find>
@@ -246,16 +133,6 @@
       <find>addques</find>
       <find>updateAnswer</find>
       <find>trun</find>
-      <find>Q_qeustion</find>
-      <find>update</find>
-      <find>appr</find>
-      <find>addTaskToGroup</find>
-      <find>app</find>
-      <find>skill</find>
-      <find>login</find>
-      <find>getDar</find>
-      <find>!!!</find>
-      <find>register</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -281,9 +158,9 @@
         <option value="$PROJECT_DIR$/client/views/superUser.html" />
         <option value="$PROJECT_DIR$/client/views/teacher.html" />
         <option value="$PROJECT_DIR$/API.txt" />
+        <option value="$PROJECT_DIR$/queryForDB.js" />
         <option value="$PROJECT_DIR$/../DB/OneFileSetup.sql" />
         <option value="$PROJECT_DIR$/test/tools-spec.js" />
-        <option value="$PROJECT_DIR$/queryForDB.js" />
         <option value="$PROJECT_DIR$/server_testing.js" />
       </list>
     </option>
@@ -432,7 +309,34 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="Scratches">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.intellij.ide.scratch.ScratchProjectViewPane$MyProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Extensions" />
+              <option name="myItemType" value="com.intellij.ide.scratch.ScratchProjectViewPane$MyRootNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.intellij.ide.scratch.ScratchProjectViewPane$MyProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Extensions" />
+              <option name="myItemType" value="com.intellij.ide.scratch.ScratchProjectViewPane$MyRootNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com.intellij.database" />
+              <option name="myItemType" value="com.intellij.ide.scratch.ScratchProjectViewPane$MyPsiNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -493,41 +397,14 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.intellij.ide.scratch.ScratchProjectViewPane$MyProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Extensions" />
-              <option name="myItemType" value="com.intellij.ide.scratch.ScratchProjectViewPane$MyRootNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.intellij.ide.scratch.ScratchProjectViewPane$MyProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Extensions" />
-              <option name="myItemType" value="com.intellij.ide.scratch.ScratchProjectViewPane$MyRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com.intellij.database" />
-              <option name="myItemType" value="com.intellij.ide.scratch.ScratchProjectViewPane$MyPsiNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../nodeI/node.exe" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../node.exe" />
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
     <property name="js.eslint.eslintPackage" value="" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
@@ -557,7 +434,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Node.js.server_testing.js">
+  <component name="RunManager" selected="Mocha.NodeJS - Express\test\tools-spec.js">
     <configuration default="false" name="Testing Textrategia API" type="mocha-javascript-test-runner" factoryName="Mocha" temporary="true" nameIsGenerated="true">
       <node-interpreter>D:/Proj/node</node-interpreter>
       <node-options />
@@ -607,8 +484,11 @@
       </test-names>
       <method />
     </configuration>
+    <configuration default="false" name="server_testing.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="project" path-to-js-file="server_testing.js" working-dir="$PROJECT_DIR$">
+      <method />
+    </configuration>
     <configuration default="false" name="NodeJS - Express\test\tools-spec.js" type="mocha-javascript-test-runner" factoryName="Mocha" temporary="true" nameIsGenerated="true">
-      <node-interpreter>$PROJECT_DIR$/../nodeI/node</node-interpreter>
+      <node-interpreter>$PROJECT_DIR$/../node</node-interpreter>
       <node-options />
       <working-directory>$PROJECT_DIR$/..</working-directory>
       <pass-parent-env>true</pass-parent-env>
@@ -617,9 +497,6 @@
       <extra-mocha-options />
       <test-kind>TEST_FILE</test-kind>
       <test-file>$PROJECT_DIR$/test/tools-spec.js</test-file>
-      <method />
-    </configuration>
-    <configuration default="false" name="server_testing.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="$PROJECT_DIR$/../nodeI/node" path-to-js-file="server_testing.js" working-dir="$PROJECT_DIR$">
       <method />
     </configuration>
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
@@ -1043,13 +920,12 @@
       <item index="1" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API" />
       <item index="2" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing Get question.Get Question For an Empty Task" />
       <item index="3" class="java.lang.String" itemvalue="Mocha.Testing Textrategia API.Testing approve question.Testing approve OK" />
-      <item index="4" class="java.lang.String" itemvalue="Mocha.NodeJS - Express\test\tools-spec.js" />
-      <item index="5" class="java.lang.String" itemvalue="Node.js.server_testing.js" />
+      <item index="4" class="java.lang.String" itemvalue="Node.js.server_testing.js" />
+      <item index="5" class="java.lang.String" itemvalue="Mocha.NodeJS - Express\test\tools-spec.js" />
     </list>
     <recent_temporary>
-      <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="Node.js.server_testing.js" />
-        <item index="1" class="java.lang.String" itemvalue="Mocha.NodeJS - Express\test\tools-spec.js" />
+      <list size="1">
+        <item index="0" class="java.lang.String" itemvalue="Mocha.NodeJS - Express\test\tools-spec.js" />
       </list>
     </recent_temporary>
   </component>
@@ -1078,8 +954,7 @@
       <workItem from="1493306570355" duration="13365000" />
       <workItem from="1494668296254" duration="37189000" />
       <workItem from="1495219301466" duration="4179000" />
-      <workItem from="1495223978001" duration="11478000" />
-      <workItem from="1495691468542" duration="3911000" />
+      <workItem from="1495223978001" duration="5216000" />
     </task>
     <task id="LOCAL-00001" summary="done updating getQuestion">
       <created>1490566647810</created>
@@ -1148,42 +1023,42 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="NodeJS_-_Express_test_tools-spec_js - 2017.05.20 at 13h 42m 00s.xml">
+    <history-entry file="NodeJS_-_Express_test_tools-spec_js - 2017.05.20 at 11h 51m 58s.xml">
       <configuration name="NodeJS - Express\test\tools-spec.js" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="NodeJS_-_Express_test_tools-spec_js - 2017.05.20 at 13h 42m 07s.xml">
+    <history-entry file="NodeJS_-_Express_test_tools-spec_js - 2017.05.20 at 11h 52m 08s.xml">
       <configuration name="NodeJS - Express\test\tools-spec.js" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="NodeJS_-_Express_test_tools-spec_js - 2017.05.20 at 13h 45m 53s.xml">
+    <history-entry file="NodeJS_-_Express_test_tools-spec_js - 2017.05.20 at 11h 52m 41s.xml">
       <configuration name="NodeJS - Express\test\tools-spec.js" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="NodeJS_-_Express_test_tools-spec_js - 2017.05.20 at 13h 45m 59s.xml">
+    <history-entry file="NodeJS_-_Express_test_tools-spec_js - 2017.05.20 at 11h 53m 05s.xml">
       <configuration name="NodeJS - Express\test\tools-spec.js" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="NodeJS_-_Express_test_tools-spec_js - 2017.05.20 at 13h 47m 45s.xml">
+    <history-entry file="NodeJS_-_Express_test_tools-spec_js - 2017.05.20 at 11h 53m 12s.xml">
       <configuration name="NodeJS - Express\test\tools-spec.js" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="NodeJS_-_Express_test_tools-spec_js - 2017.05.20 at 13h 49m 43s.xml">
+    <history-entry file="NodeJS_-_Express_test_tools-spec_js - 2017.05.20 at 11h 55m 59s.xml">
       <configuration name="NodeJS - Express\test\tools-spec.js" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="NodeJS_-_Express_test_tools-spec_js - 2017.05.20 at 13h 53m 27s.xml">
+    <history-entry file="NodeJS_-_Express_test_tools-spec_js - 2017.05.20 at 11h 56m 06s.xml">
       <configuration name="NodeJS - Express\test\tools-spec.js" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="NodeJS_-_Express_test_tools-spec_js - 2017.05.20 at 13h 54m 26s.xml">
+    <history-entry file="NodeJS_-_Express_test_tools-spec_js - 2017.05.20 at 11h 56m 18s.xml">
       <configuration name="NodeJS - Express\test\tools-spec.js" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="NodeJS_-_Express_test_tools-spec_js - 2017.05.20 at 13h 54m 31s.xml">
+    <history-entry file="NodeJS_-_Express_test_tools-spec_js - 2017.05.20 at 11h 56m 53s.xml">
       <configuration name="NodeJS - Express\test\tools-spec.js" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="NodeJS_-_Express_test_tools-spec_js - 2017.05.20 at 13h 54m 45s.xml">
+    <history-entry file="NodeJS_-_Express_test_tools-spec_js - 2017.05.20 at 11h 57m 08s.xml">
       <configuration name="NodeJS - Express\test\tools-spec.js" configurationId="mocha-javascript-test-runner" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="193302000" />
+    <option name="totallyTimeSpent" value="183129000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1376" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1376" height="744" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1195,12 +1070,12 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32935154" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32764506" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32764506" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32935154" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21580547" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21276596" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1239,24 +1114,107 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/server_testing.js</url>
-          <line>422</line>
-          <option name="timeStamp" value="344" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/test/tools-spec.js</url>
-          <line>449</line>
-          <option name="timeStamp" value="349" />
+          <line>824</line>
+          <option name="timeStamp" value="317" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/server_testing.js</url>
-          <line>421</line>
-          <option name="timeStamp" value="350" />
+          <line>834</line>
+          <option name="timeStamp" value="322" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/server_testing.js</url>
+          <line>850</line>
+          <option name="timeStamp" value="323" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/server_testing.js</url>
+          <line>817</line>
+          <option name="timeStamp" value="325" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/server_testing.js</url>
+          <line>818</line>
+          <option name="timeStamp" value="327" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/server_testing.js</url>
+          <line>800</line>
+          <option name="timeStamp" value="328" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/server_testing.js</url>
+          <line>799</line>
+          <option name="timeStamp" value="329" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/server_testing.js</url>
+          <line>795</line>
+          <option name="timeStamp" value="330" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/server_testing.js</url>
+          <line>791</line>
+          <option name="timeStamp" value="331" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/server_testing.js</url>
+          <line>855</line>
+          <option name="timeStamp" value="332" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/server_testing.js</url>
+          <line>171</line>
+          <properties />
+          <option name="timeStamp" value="334" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/server_testing.js</url>
+          <line>174</line>
+          <properties />
+          <option name="timeStamp" value="335" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/server_testing.js</url>
+          <line>212</line>
+          <properties />
+          <option name="timeStamp" value="336" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/server_testing.js</url>
+          <line>215</line>
+          <properties />
+          <option name="timeStamp" value="337" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/server_testing.js</url>
+          <line>223</line>
+          <properties />
+          <option name="timeStamp" value="338" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/server_testing.js</url>
+          <line>224</line>
+          <properties />
+          <option name="timeStamp" value="339" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/server_testing.js</url>
+          <line>247</line>
+          <properties />
+          <option name="timeStamp" value="340" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/server_testing.js</url>
+          <line>248</line>
+          <properties />
+          <option name="timeStamp" value="341" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="354" />
+      <option name="time" value="342" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="mocha-javascript-test-runner">
@@ -1597,163 +1555,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/API.txt">
+    <entry file="file://$PROJECT_DIR$/queryForDB.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1598">
-          <caret line="94" column="18" lean-forward="false" selection-start-line="94" selection-start-column="11" selection-end-line="94" selection-end-column="18" />
+        <state relative-caret-position="208">
+          <caret line="113" column="91" lean-forward="false" selection-start-line="113" selection-start-column="91" selection-end-line="113" selection-end-column="91" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../DB/OneFileSetup.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4998">
-          <caret line="294" column="13" lean-forward="false" selection-start-line="294" selection-start-column="13" selection-end-line="294" selection-end-column="13" />
-          <folding>
-            <marker date="1495277719284" expanded="true" signature="16352:17421" ph="INSERT INTO `textra_db`.`questions`... " />
-            <marker date="1495277719284" expanded="true" signature="17758:17878" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="17880:17988" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="17990:18109" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="18111:18237" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="18239:18352" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="18354:18483" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="18485:18603" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="18712:18859" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="18861:18998" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="19000:19162" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="19164:19320" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="19322:19439" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="19441:19563" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="19565:19689" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="19691:19830" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="19832:19954" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="19956:20067" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="20069:20191" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="20193:20320" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="20322:20455" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="20457:20572" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="20574:20715" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="20717:20830" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="20832:20986" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="20988:21118" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="21120:21259" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="21261:21403" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="21405:21538" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="21540:21666" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="21668:21798" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="21800:21932" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="21934:22044" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="22046:22153" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="22155:22269" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="22271:22395" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="22397:22508" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="22510:22623" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="22625:22744" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="22746:22859" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="22861:22972" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="22974:23082" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="23084:23210" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="23212:23337" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="23339:23451" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="23453:23568" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="23570:23698" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="23700:23810" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="23812:23904" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="23906:24000" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="24002:24097" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="24099:24192" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="24194:24307" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="24309:24417" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="24419:24544" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="24546:24661" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="24663:24784" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="24786:24899" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="24901:25028" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="25030:25146" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="25148:25263" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="25265:25384" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="25386:25497" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="25499:25621" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="25623:25733" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="25735:25857" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="25859:25969" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="25971:26106" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="26108:26238" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="26240:26373" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="26375:26512" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="26514:26649" ph="INSERT INTO `textra_db`.`answers`... " />
-            <marker date="1495277719284" expanded="true" signature="26653:26699" ph="/*----------... " />
-            <marker date="1495277719284" expanded="true" signature="26700:26776" ph="insert into users... " />
-            <marker date="1495277719284" expanded="true" signature="26779:26858" ph="insert into users... " />
-            <marker date="1495277719284" expanded="true" signature="26861:26936" ph="insert into users... " />
-            <marker date="1495277719284" expanded="true" signature="26939:27012" ph="insert into users... " />
-            <marker date="1495277719284" expanded="true" signature="27015:27087" ph="insert into users... " />
-            <marker date="1495277719284" expanded="true" signature="27090:27163" ph="insert into users... " />
-            <marker date="1495277719284" expanded="true" signature="27165:27248" ph="/* insert in... " />
-            <marker date="1495277719284" expanded="true" signature="27249:27325" ph="insert into users... " />
-            <marker date="1495277719284" expanded="true" signature="27327:27493" ph="/* insert in... " />
-            <marker date="1495277719284" expanded="true" signature="27494:27572" ph="insert into users... " />
-            <marker date="1495277719284" expanded="true" signature="27574:27661" ph="/* insert in... " />
-            <marker date="1495277719284" expanded="true" signature="27662:27708" ph="/*----------... " />
-            <marker date="1495277719284" expanded="true" signature="27710:27756" ph="/*----------... " />
-            <marker date="1495277719284" expanded="true" signature="27757:27833" ph="insert into tasks... " />
-            <marker date="1495277719284" expanded="true" signature="27836:27913" ph="insert into tasks... " />
-            <marker date="1495277719284" expanded="true" signature="27916:27962" ph="/*----------... " />
-            <marker date="1495277719284" expanded="true" signature="27964:28010" ph="/*----------... " />
-            <marker date="1495277719284" expanded="true" signature="28011:28096" ph="insert into groups... " />
-            <marker date="1495277719284" expanded="true" signature="28099:28189" ph="insert into groups... " />
-            <marker date="1495277719284" expanded="true" signature="28192:28297" ph="insert into groups... " />
-            <marker date="1495277719284" expanded="true" signature="28300:28407" ph="insert into groups... " />
-            <marker date="1495277719284" expanded="true" signature="28410:28493" ph="insert into groups... " />
-            <marker date="1495277719284" expanded="true" signature="28495:28541" ph="/*----------... " />
-            <marker date="1495277719284" expanded="true" signature="28543:28589" ph="/*----------... " />
-            <marker date="1495277719284" expanded="true" signature="28590:28637" ph="insert into students_per_group... " />
-            <marker date="1495277719284" expanded="true" signature="28640:28687" ph="insert into students_per_group... " />
-            <marker date="1495277719284" expanded="true" signature="28690:28738" ph="insert into students_per_group... " />
-            <marker date="1495277719284" expanded="true" signature="28740:28786" ph="/*----------... " />
-            <marker date="1495277719284" expanded="true" signature="28788:28851" ph="/*----------... " />
-            <marker date="1495277719284" expanded="true" signature="28853:28905" ph="insert into tasks_joined_with_questions... " />
-            <marker date="1495277719284" expanded="true" signature="28908:28960" ph="insert into tasks_joined_with_questions... " />
-            <marker date="1495277719284" expanded="true" signature="28963:29015" ph="insert into tasks_joined_with_questions... " />
-            <marker date="1495277719284" expanded="true" signature="29018:29070" ph="insert into tasks_joined_with_questions... " />
-            <marker date="1495277719284" expanded="true" signature="29083:29135" ph="insert into tasks_joined_with_questions... " />
-            <marker date="1495277719284" expanded="true" signature="29138:29190" ph="insert into tasks_joined_with_questions... " />
-            <marker date="1495277719284" expanded="true" signature="29193:29245" ph="insert into tasks_joined_with_questions... " />
-            <marker date="1495277719284" expanded="true" signature="29248:29300" ph="insert into tasks_joined_with_questions... " />
-            <marker date="1495277719284" expanded="true" signature="29305:29371" ph="/*----------... " />
-            <marker date="1495277719284" expanded="true" signature="29372:29937" ph="/*idan user " />
-            <marker date="1495277719284" expanded="true" signature="29941:30507" ph="/*arnon user... " />
-            <marker date="1495277719284" expanded="true" signature="30509:30523" ph="/*hadas user... " />
-            <marker date="1495277719284" expanded="true" signature="30524:30590" ph="insert into tasks_and_question_for_student_instances... " />
-            <marker date="1495277719284" expanded="true" signature="30593:30659" ph="insert into tasks_and_question_for_student_instances... " />
-            <marker date="1495277719284" expanded="true" signature="30662:30728" ph="insert into tasks_and_question_for_student_instances... " />
-            <marker date="1495277719284" expanded="true" signature="30731:30797" ph="insert into tasks_and_question_for_student_instances... " />
-            <marker date="1495277719284" expanded="true" signature="30800:31154" ph="/*task 2 ins... " />
-            <marker date="1495277719284" expanded="true" signature="31156:31202" ph="/*----------... " />
-          </folding>
+        <state relative-caret-position="17">
+          <caret line="293" column="13" lean-forward="false" selection-start-line="293" selection-start-column="13" selection-end-line="293" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/queryForDB.js">
+    <entry file="file://$PROJECT_DIR$/API.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="10" lean-forward="true" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="10" />
+        <state relative-caret-position="17">
+          <caret line="94" column="18" lean-forward="false" selection-start-line="94" selection-start-column="11" selection-end-line="94" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/tools-spec.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="298" column="30" lean-forward="false" selection-start-line="298" selection-start-column="22" selection-end-line="298" selection-end-column="30" />
+        <state relative-caret-position="130">
+          <caret line="32" column="46" lean-forward="false" selection-start-line="32" selection-start-column="32" selection-end-line="32" selection-end-column="46" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server_testing.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="1081" column="39" lean-forward="true" selection-start-line="1081" selection-start-column="39" selection-end-line="1081" selection-end-column="39" />
+        <state relative-caret-position="150">
+          <caret line="260" column="85" lean-forward="false" selection-start-line="260" selection-start-column="85" selection-end-line="260" selection-end-column="85" />
           <folding />
         </state>
       </provider>
