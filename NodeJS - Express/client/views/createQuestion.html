@@ -33,70 +33,44 @@
     <div class="col-sm-12">  <h1>שלום, {{teacherName}}!</h1>  <h3>צור שאלה חדשה: </h3>  </div>
     <form name="myForm" class="form-horizontal" role="form">
 
-        <div class="col-sm-2"></div>
+    <div class="col-sm-2"></div>
 
-        <div class="col-sm-4">
+    <div class="col-sm-4">
 
-          <!--  2  -->
-               
-            <label class="control-label pull-right">מהו סוג המדיה של השאלה?:&nbsp;&nbsp;</label>
-              <select class="form-control inputstl" id="media_type">
-                <!-- <option value=0>אין מדיה</option> -->
-                    <option value="youtube">סרטון youtube</option>
-                    <option value="page">אודיו</option>
-                    <option value="img">תמונה</option>
-                    <option value="text">טקסט</option>
-              </select>   
+      <!--  2  -->       
+      <label class="control-label pull-right">מהו סוג המדיה של השאלה?:&nbsp;&nbsp;</label>
+        <select class="form-control inputstl" id="media_type">
+          <!-- <option value=0>אין מדיה</option> -->
+              <option value="youtube">סרטון youtube</option>
+              <option value="page">אודיו</option>
+              <option value="img">תמונה</option>
+              <option value="text">טקסט</option>
+        </select>   
 
-     
+    <!-- 4 -->
+    <label class="control-label pull-right">הכנס מדייה: &nbsp;&nbsp;</label>
+   		<input type="text" name="question_media" class="form-control inputstl pull-right" required placeholder="קישור למדיה" ng-model="question.question_media">	
 
-        <!-- 4 -->
-        <label class="control-label pull-right">הכנס מדייה: &nbsp;&nbsp;</label>
-       		<input type="text" name="question_media" class="form-control inputstl pull-right" required placeholder="קישור למדיה" ng-model="question.question_media">	
+      <!-- 6 -->
+      <label class="control-label pull-right">הכנס מיומנות למידה: &nbsp;&nbsp;</label>
+      <select class="form-control inputstl" id="skill_type" ng-model="question.selected_skill" ng-change="new_skill_mode()">
+        <option  ng-repeat="sk in mock_skills" value={{sk.Q_skill}}>
+          {{sk.Q_skill}}
+          </option>
+          <option value="enter_new_skill">   מיומנות חדשה:     </option>
+        <input type="text" ng-show="enter_new_skill_mode" class="form-control inputstl pull-right" placeholder="מיומנות למידה" ng-model="question.selected_skill">
+      </select>
 
-		<!-- 6 -->
+     	<!-- 8 -->
+      <label class="control-label pull-right">מהו קושי השאלה?:&nbsp;&nbsp;</label>
+      <select class="form-control inputstl" id="quest_difficulty">
+          <!-- <option value=0>אין מדיה</option> -->
+          <option value="קלה">קלה</option>
+          <option value="בינונית">בינונית</option>
+          <option value="קשה">קשה</option>
+      </select>
 
-          <label class="control-label pull-right">הכנס מיומנות למידה: &nbsp;&nbsp;</label>
-<!--               <select class="form-control inputstl" id="skill_type">
-                    <option  ng-repeat="sk in mock_skills" value="text">{{sk.Q_skill}}</option>
-              </select>    -->
-
-
-    <select class="form-control inputstl" id="skill_type" ng-model="question.selected_skill" ng-change="new_skill_mode()">
-      <option  ng-repeat="sk in mock_skills" value={{sk.Q_skill}}>
-        {{sk.Q_skill}}
-        </option>
-        <option value="enter_new_skill">   מיומנות חדשה:     </option>
-         <input type="text" ng-show="enter_new_skill_mode" class="form-control inputstl pull-right" placeholder="מיומנות למידה" ng-model="question.selected_skill"> 
-
-    </select>
-
-
-
-
-<!-- 
-          <input type="text" name="quest_skill" class="form-control inputstl pull-right" required placeholder="מיומנות למידה" ng-model="question.quest_skill">  
- -->
-
-
-       	<!-- 8 -->
-          <!--<label class="control-label pull-right">הכנס קושי שאלה:&nbsp;&nbsp;</label>-->
-          	<!--<input type="number"  min="1" max="10" name="quest_difficulty" class="form-control inputstl pull-right" required placeholder="מ-1 עד 10" ng-model="question.quest_difficulty">-->
-
-
-            <label class="control-label pull-right">מהו קושי השאלה?:&nbsp;&nbsp;</label>
-            <select class="form-control inputstl" id="quest_difficulty">
-                <!-- <option value=0>אין מדיה</option> -->
-                <option value="קלה">קלה</option>
-                <option value="בינונית">בינונית</option>
-                <option value="קשה">קשה</option>
-            </select>
-
-
-
-
-
-        </div>
+    </div>
  
         <div class="col-sm-1"></div>
         <div class="col-sm-4">
@@ -108,18 +82,19 @@
           </textarea>
 
           <!-- 3 -->
-                  <label class="control-label pull-right">האם שאלת רב בחירה?:&nbsp;&nbsp;</label>
+          <label class="control-label pull-right">האם שאלת רב בחירה?:&nbsp;&nbsp;</label>
           <select class="form-control inputstl" id="is_multiple_ans">
-            <!-- <option value=1>כן</option> FOR NOW ONLY 'NO' is available--> 
+              <!-- <option value=1>כן</option> FOR NOW ONLY 'NO' is available--> 
               <option value=0>לא</option>
           </select>   
-	            <!-- 5 -->
-    		<label class="control-label pull-right">הכנס פידבק לתשובה נכונה: &nbsp;&nbsp;</label>
-       		<textarea type="text" name="quest_correct_fb" rows="1" class="form-control inputstl pull-right" required placeholder="פידבק חיובי" ng-model="question.quest_correct_fb"></textarea>
+	            
+          <!-- 5 -->
+    		    <label class="control-label pull-right">הכנס פידבק לתשובה נכונה: &nbsp;&nbsp;</label>
+         		<textarea type="text" name="quest_correct_fb" rows="1" class="form-control inputstl pull-right" required placeholder="פידבק חיובי" ng-model="question.quest_correct_fb"></textarea>
 
-			<!-- 7 -->
+    			<!-- 7 -->
             <label class="control-label pull-right">הכנס פידבק לתשובה שגויה: &nbsp;&nbsp;</label>
-          <textarea type="text" name="quest_incorrect_fb" rows="1" class="form-control inputstl pull-right" required placeholder="פידבק שלילי" ng-model="question.quest_incorrect_fb"> </textarea>
+            <textarea type="text" name="quest_incorrect_fb" rows="1" class="form-control inputstl pull-right" required placeholder="פידבק שלילי" ng-model="question.quest_incorrect_fb"> </textarea>
 
         </div>
  
@@ -178,8 +153,6 @@
     </div>
   </div>
 
-
-
 <div class="col-sm-12 text-center"><br><br></div>
 <div class="col-sm-4 text-center"></div>
 
@@ -195,7 +168,6 @@
 	</div>
 
   <div class="col-sm-4 text-center"></div>
-
 
 
 </form>
