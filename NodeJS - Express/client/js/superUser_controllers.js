@@ -136,11 +136,32 @@ textrategiaApp.controller("CreatTaskController",function($scope,$http){
     // get skills list from server
     // ####################################################
 
-    $scope.skills = [
-    {"q_skill": "בלימפים"},
-    {"q_skill": "דוליז"},
-    {"q_skill": "בובים"}
-    ];
+    // $scope.skills = [
+    // {"q_skill": "בלימפים"},
+    // {"q_skill": "דוליז"},
+    // {"q_skill": "בובים"}
+    // ];
+
+    var req = {
+        method: 'POST',
+        cache: false,
+        url: _url +'/getAllSkills',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        data: ''
+    };
+
+    $http(req)
+        .success(function(data,status,headers,config){
+            if (status==200) {
+                $scope.skills = data;
+            }
+        }).error(function(data,status,headers,config){
+        $scope.skills =[];
+    });
+
+
 
     $scope.addQuestions = function(){
         $scope.searchQuestion = true;
@@ -176,8 +197,6 @@ textrategiaApp.controller("CreatTaskController",function($scope,$http){
         }
     };
 
-
-    
     $scope.selectedSkill = [];          // Arg3
     $scope.checkSkillSelected = function (checkStatus,element){
         if(checkStatus){
@@ -193,10 +212,37 @@ textrategiaApp.controller("CreatTaskController",function($scope,$http){
 
 
     $scope.showSelectedQuestion = function(){
-        alert("selectedMedia: " + $scope.selectedMedia + 
-            " | selectedDiff: " + $scope.selectedDiff +
-            " | selectedSkill: " + $scope.selectedSkill
-            );
+        // alert("selectedMedia: " + $scope.selectedMedia +
+        //     " | selectedDiff: " + $scope.selectedDiff +
+        //     " | selectedSkill: " + $scope.selectedSkill
+        //     );
+        $scope.feedback = "";
+        $scope.generate_task= false;
+
+        var req = {
+            method: 'POST',
+            cache: false,
+            url: _url +'/getQuestionsByParamter',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            data: 'media_types='+$scope.selectedMedia
+            +'&skills='+$scope.selectedSkill
+            +'&difficulties='+$scope.selectedDiff
+        };
+
+        // alert(JSON.stringify(req));
+
+        $http(req)
+            .success(function(data,status,headers,config){
+                if (status==200){
+                    $scope.myQuestions = data;
+                }
+                else if ( status==204){
+                    $scope.myQuestions = [];
+                }
+            }).error(function(data,status,headers,config){
+        });
     };
 
 
@@ -207,11 +253,11 @@ textrategiaApp.controller("CreatTaskController",function($scope,$http){
 
 
     // Cיhange questions to server response question
-    $scope.myQuestions = [
-    { "Q_id": 2,"Q_qeustion": "לפניך סרטון קצר. צפה בו וענה על השאלה - מהי מטרתו המרכזית של יוצר הסרטון? "},
-    { "Q_id": 3,"Q_qeustion": "קאפקייק אנד פיש אנד צ'יפס? דיס איז מאדנס' "},
-    { "Q_id": 4,"Q_qeustion": "בוב, בוב,בוב, בוב,בוב, בוב,בוב, בוב,בוב, בוב,בוב, בוב,בוב, בוב, "}
-    ];
+    // $scope.myQuestions = [
+    // { "Q_id": 2,"Q_qeustion": "לפניך סרטון קצר. צפה בו וענה על השאלה - מהי מטרתו המרכזית של יוצר הסרטון? "},
+    // { "Q_id": 3,"Q_qeustion": "קאפקייק אנד פיש אנד צ'יפס? דיס איז מאדנס' "},
+    // { "Q_id": 4,"Q_qeustion": "בוב, בוב,בוב, בוב,בוב, בוב,בוב, בוב,בוב, בוב,בוב, בוב,בוב, בוב, "}
+    // ];
 
 // This is the scope choosen question
     $scope.selectedQuestionsIndex = [];  //// [2,3,5,6]
@@ -236,7 +282,7 @@ textrategiaApp.controller("CreatTaskController",function($scope,$http){
     $scope.addSelectedQuestions = function(){ 
         for (i= 0 ; i< $scope.selectedQuestionsIndex.length ; i++){
             for (j= 0 ; j< $scope.myQuestions.length ; j++){
-                if ( $scope.myQuestions[j].Q_id== $scope.selectedQuestionsIndex[i]){
+                if ( $scope.myQuestions[j].Q_id== $scope.selectedQuestionsIndex[i] ){
                     $scope.myTaskQuestions.push($scope.myQuestions[j]);
                 }
             }
@@ -257,14 +303,43 @@ textrategiaApp.controller("CreatTaskController",function($scope,$http){
 
     $scope.sendTaskToServer = function(){
         var questionID = [];
-        alert("test");
+        // alert("test");
 
         for (i = 0 ; i< $scope.myTaskQuestions.length ; i++){
             questionID.push($scope.myTaskQuestions[i].Q_id);
         }
+        // alert(questionID);
 
-        alert(questionID);
+        //
+        // alert(getUserID());
+        // alert(questionID);
+        //
+        // alert($scope.task.taskName);
+        // alert($scope.task.taskDesc);
 
+
+        var req = {
+            method: 'POST',
+            cache: false,
+            url: _url +'/createTask',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            data: 't_title='+$scope.task.taskName
+            +'&t_description='+$scope.task.taskDesc
+            +'&t_owner=' + getUserID()
+            +'&t_approved=1'
+            +'&questions=' +questionID
+        };
+
+        $http(req)
+            .success(function(data,status,headers,config){
+                $scope.serverFeedback = "המטלה נוספה בהצלחה!";
+                alert("המטלה נוספה בהצלחה");
+                // $location.path('superUser');
+            }).error(function(data,status,headers,config){
+            $scope.serverFeedback = "שגיאה בהוספת המטלה";
+        });
 
     };
 
