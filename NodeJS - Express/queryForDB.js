@@ -3,7 +3,8 @@ module.exports =
         /*get user data (names,school name,user type) by user identifier (id or email) and password*/
         getDataForUserByIdOrEmail: function (user_identifier, password) {
             return "SELECT * FROM textra_db.users " +
-                "WHERE (PersonalID like \'" + user_identifier + "\' or Email like \'" + user_identifier + "\')  and Pass like \'" + password + "\';";
+                "WHERE (PersonalID like " + user_identifier + " or Email like " + user_identifier + ") " +
+                " and Pass like " + password + ";";
         },
 
 
@@ -12,7 +13,7 @@ module.exports =
             return "select tasks.* from " +
                 "(select T_id " +
                 "from tasks_and_question_for_student_instances " +
-                "where studentId like \'" + user_id + "\' " +
+                "where studentId like " + user_id + " " +
                 "group by (T_id)) as t1 " +
                 "inner join tasks " +
                 "on t1.T_id like tasks.T_id;";
@@ -50,9 +51,9 @@ module.exports =
             return "select " + /*T.Q_id, T.Q_qeustion, T.isMultipuleAns, T.Q_correctFB, T.Q_notCorrectFB,*/" answers.A_id, " +
                 "answers.answer, answers.isCorrect from ((select * from questions " +
                 "where questions.Q_id = (select questions.Q_id from tasks_and_question_for_student_instances " +
-                "join questions on tasks_and_question_for_student_instances.T_id = \'" + t_id + "\'" +
-                "and tasks_and_question_for_student_instances.studentID = \'" + user_id + "\' " +
-                "and tasks_and_question_for_student_instances.Q_id = questions.Q_id limit 1))" +
+                "join questions on tasks_and_question_for_student_instances.T_id = " + t_id +
+                " and tasks_and_question_for_student_instances.studentID = " + user_id +
+                " and tasks_and_question_for_student_instances.Q_id = questions.Q_id limit 1))" +
                 "as T JOIN answers on T.Q_id = answers.Q_id);";
         },
 
@@ -63,8 +64,8 @@ module.exports =
 
         //delete from textra_db.tasks_and_question_for_student_instances where studentId like '2' and T_id = '1' and Q_id = '1'
         deleteQuestionsFromInstance: function (student_id, task_id, q_id) {
-            return "delete from textra_db.tasks_and_question_for_student_instances where studentId like \'" +
-                student_id + "\' and T_id = \'" + task_id + "\' and Q_id = \'" + q_id + "\';";
+            return "delete from textra_db.tasks_and_question_for_student_instances where studentId like " +
+                student_id + " and T_id = " + task_id + " and Q_id = " + q_id + ";";
         },
 
         getTasks: function () {
@@ -84,7 +85,7 @@ module.exports =
         },
 
         getGroupsByTeacherAndCity: function (teacherId, city) {
-            return "SELECT * FROM textra_db.groups where teacherID = '" + teacherId + "' and City = '" + city + "';";
+            return "SELECT * FROM textra_db.groups where teacherID = " + teacherId + " and City = " + city + ";";
         },
 
         getValidQuestions: function (is_app, is_disabled) {
@@ -92,11 +93,11 @@ module.exports =
         },
 
         getGroupsBySchool: function (schoolName) {
-            return "SELECT * FROM textra_db.groups where School = '" + schoolName + "';";
+            return "SELECT * FROM textra_db.groups where School = " + schoolName + ";";
         },
 
         getUserId: function (email) {
-            return "SELECT PersonalID FROM textra_db.users where Email = '" + email + "';";
+            return "SELECT PersonalID FROM textra_db.users where Email = " + email + ";";
         },
 
         getQestionsAndTasksForinstance: function (t_id) {
@@ -110,16 +111,16 @@ module.exports =
         addQustion: function (question_title, isMultipleAns, question_media, question_media_type,
                               quest_correct_FB, quest_incorrect_FB, quest_skill, quest_difficulty, quest_proffesion,
                               quest_is_approved, quest_disabled, quest_creator) {
-            return "INSERT INTO textra_db.questions VALUES (null,'" + question_title + "'," + isMultipleAns + ",'"
-                + question_media_type + "','" + question_media + "','" + quest_correct_FB + "','" + quest_incorrect_FB + "','"
-                + quest_skill + "','" + quest_difficulty + "','" + quest_proffesion + "', 0," + quest_is_approved + ","
+            return "INSERT INTO textra_db.questions VALUES (null," + question_title + "," + isMultipleAns + ","
+                + question_media_type + "," + question_media + "," + quest_correct_FB + "," + quest_incorrect_FB + ","
+                + quest_skill + "," + quest_difficulty + "," + quest_proffesion + ", 0," + quest_is_approved + ","
                 + quest_disabled + "," + quest_creator + ");";
         },
 
         createGroup: function (g_name, school, city, teacher_id, is_teacher_group, is_master_g, g_code, group_user_type, is_app) {
             return "INSERT INTO textra_db.groups VALUES (null," +
-                "'" + g_name + "','" + school + "','" + city + "'," + teacher_id + "," + is_teacher_group + ","
-                + is_master_g + ",'" + g_code + "'," + group_user_type + "," + is_app + ");";
+                g_name + "," + school + "," + city + "," + teacher_id + "," + is_teacher_group + ","
+                + is_master_g + "," + g_code + "," + group_user_type + "," + is_app + ");";
         },
 
         reportQuestion: function (q_id) {
@@ -127,22 +128,26 @@ module.exports =
         },
 
         getGroupIdfromcode: function (g_code) {
-            return "select GroupId from textra_db.groups where GroupeCode = '" + g_code + "';";
+            return "select GroupId from textra_db.groups where GroupeCode = " + g_code + ";";
         },
 
         registerUser: function (personalId, lastName, firstName, userType, email, password) {
-            return "insert into textra_db.users values('" + personalId + "', '" + lastName + "', '" + firstName + "', "
-                + userType + ", '" + email + "', '" + password + "');";
+            return "insert into textra_db.users values(" + personalId + ", " + lastName + ", " + firstName + ", "
+                + userType + ", " + email + ", " + password + ");";
         },
 
         approveQuestion: function (q_id, isApproved) {
             return "UPDATE textra_db.questions SET Q_approved = " + isApproved + " WHERE Q_id = " + q_id + ";";
         },
 
+        disableQuestion: function (q_id, isDisabled) {
+            return "UPDATE textra_db.questions SET Q_approved = " + isDisabled + " WHERE Q_id = " + q_id + ";";
+        },
+
         updateQuestion: function (q_id, q_question, q_media, q_correctFB, q_notCorrectFB, q_skill, q_diff, q_proff, q_app, q_disable) {
-            return "UPDATE textra_db.questions SET Q_question  = '" + q_question + "', Q_media = '" + q_media +
-                "', Q_correctFB = '" + q_correctFB + "', Q_notCorrectFB = '" + q_notCorrectFB + "', Q_skill = '" + q_skill +
-                "', Q_difficulty = '" + q_diff + "', Q_proffession = '" + q_proff + "', Q_disabled = " + q_disable +
+            return "UPDATE textra_db.questions SET Q_question  = " + q_question + ", Q_media = " + q_media +
+                ", Q_correctFB = " + q_correctFB + ", Q_notCorrectFB = " + q_notCorrectFB + ", Q_skill = " + q_skill +
+                ", Q_difficulty = " + q_diff + ", Q_proffession = " + q_proff + ", Q_disabled = " + q_disable +
                 ", Q_approved = " + q_app + " WHERE Q_id = " + q_id + ";";
         },
 
@@ -151,7 +156,7 @@ module.exports =
                 "T.Q_correctFB, T.Q_mediaType, T.Q_media," +
                 "T.Q_notCorrectFB, T.Q_skill, T.Q_difficulty," +
                 "T.Q_proffession, T.Q_approved, T.Q_disabled " +
-                "from (select * from questions where questions.Q_id = \'" + q_id + "\') as T;";
+                "from (select * from questions where questions.Q_id = " + q_id + ") as T;";
         },
 
         getSingleQuestionIdFromTaskIdAndUserId: function (user_id, t_id) {
@@ -166,7 +171,7 @@ module.exports =
      }*/
 
     addNewTask: function (t_title, t_description, t_owner, t_approved) {
-        return "insert into textra_db.tasks values(null,'" + t_title + "','" + t_description + "',"
+        return "insert into textra_db.tasks values(null," + t_title + "," + t_description + ","
             + t_owner + "," + t_approved + ");";
     },
 
@@ -185,18 +190,18 @@ module.exports =
     },
 
     checkIfGroupCodeExists: function (group_code) {
-        return "select groups.isTeacherGroup from textra_db.groups where GroupeCode = '" + group_code + "';";
+        return "select groups.isTeacherGroup from textra_db.groups where GroupeCode = " + group_code + ";";
     },
 
     checkIfEmailExist: function (email) {
-        return "select Email" + " from textra_db.users where Email like '" + email + "';";
+        return "select Email from textra_db.users where Email like " + email + ";";
     },
 
     chooseGroupsAvalibleToTask: function (task_id, teacher_id) {
         return "SELECT * FROM textra_db.groups where GroupId not in ("
             + "SELECT distinct GroupId FROM textra_db.students_per_group where StudentId in (" +
-            "SELECT distinct studentId FROM textra_db.tasks_and_question_for_student_instances where T_id in (" + task_id + ") ))" +
-            "and teacherID=" + teacher_id + ";"
+            "SELECT distinct studentId FROM textra_db.tasks_and_question_for_student_instances where T_id in (" + task_id + ")))" +
+            "and teacherID = " + teacher_id + ";"
     },
 
 
@@ -210,17 +215,17 @@ module.exports =
     },
 
     getAllGroupForTeacher: function (user_id) {
-        return "select * from textra_db.groups where teacherID ='" + user_id + "';"
+        return "select * from textra_db.groups where teacherID =" + user_id + ";"
     },
     getGroupBySchoolAndCity: function (school, city) {
-        return "select * from textra_db.groups where School like '" + school + "' and City like '" + city + "';"
+        return "select * from textra_db.groups where School like " + school + " and City like " + city + ";"
     },
     getAllSchollByCity: function (city) {
-        return "select School from textra_db.cities_and_schools where City like '" + city + "';"
+        return "select School from textra_db.cities_and_schools where City like " + city + ";"
     },
 
     addNewSchool: function (city, school) {
-        return "insert into textra_db.cities_and_schools values ('" + school + "' , '" + city + "');"
+        return "insert into textra_db.cities_and_schools values (" + school + " , " + city + ");"
     },
     getQuestionsByParamter: function (media_types, skills, difficulties) {
         return "SELECT * FROM textra_db.questions " +

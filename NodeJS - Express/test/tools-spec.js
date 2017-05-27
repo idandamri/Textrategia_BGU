@@ -230,6 +230,38 @@ describe("Testing Textrategia API", function () {
         });
     });
 
+
+    describe("Testing disable question", function () {
+        it('Testing disable OK', function (done) {
+            request(app).post("/disableQuestion").send({"q_id": "1", "disable_status": "1"})
+                .end(function (err, res) {
+                    if (err) {
+                        console.log("ERR: " + err);
+                        throw err;
+                    }
+                    else {
+                        res.status.should.be.equal(200);
+                    }
+                    done();
+                });
+        });
+
+        it('Testing approve FAIL', function (done) {
+            request(app).post("/disableQuestion").send({"q_id": "1000000000000000009", "disable_status": "1"})
+                .end(function (err, res) {
+                    if (err) {
+                        console.log("ERR: " + err);
+                        throw err;
+                    }
+                    else {
+                        res.status.should.be.equal(204);
+                    }
+                    done();
+                });
+        });
+    });
+
+
     describe("Testing groups", function () {
         it('Testing insert students(plural)', function (done) {
             request(app).post("/removeTestUsersFromGroup").send()

@@ -206,6 +206,29 @@ app.post('/questionApproveOrNot', function (req, res) {
 });
 
 
+app.post('/disableQuestion', function (req, res) {
+    var disableStatus = mysql.escape(req.body.disable_status);
+    var qId = mysql.escape(req.body.q_id);
+
+    var query = queries.approveQuestion(qId, disableStatus);
+    console.log('\n' + query + '\n');
+    connection.query(query, function (err, ans) {
+        if (err) {
+            console.log(err);
+            res.status(400).send("Update error - check DB (Question may not exist or value is same!)");
+        }
+        else {
+            if (ans.affectedRows == 0) {
+                res.status(204).send("Update error - check DB (Question may not exist or value is same!)");
+            }
+            else {
+                res.status(200).send("updated!");
+            }
+        }
+    });
+});
+
+
 app.post('/addTaskToGroup', function (req, res) {
     var gId = mysql.escape(req.body.group_id);
     var tId = mysql.escape(req.body.task_id);
