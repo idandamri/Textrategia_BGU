@@ -116,19 +116,31 @@ API:
     example to output : No output
 
 
-10.post('/registerUser')
+10.post('/reportQuestion')
+	input: q_id
+    output: status 200 / 400 - No group Id found error!/Insertion error - check DB (student does not exist or relation) error!
+    example to output : No output
+
+
+11.post('/editQuestion')
+	input: id, question, media, correctFB, notCorrectFB, skill, difficulty, proffesion, approved, disabled
+    output: status 200 / 400 - No group Id found error!/Insertion error - check DB (student does not exist or relation) error!
+    example to output : No output
+
+
+12.post('/registerUser')
 	input: personal_id, group_code, last_name, first_name, school, city, user_type, email, password
     output: status 200 / 409 (conflict. while insert new user. probably duplicate id insertion) / 400 - No group Id found error!/Insertion error - check DB (student does not exist or relation) error!
     example to output : No output
 
 
-11.post('/addUsersToGroup')
+13.post('/addUsersToGroup')
 	input: users/* array of users */, group_id
     output: status 200 "inserted!" /400 - Insertion error - check DB (group/student does not exist or relation error!
     example to output : No output
 
 
-12.post('/getGroupByUser')
+14.post('/getGroupByUser')
 	input: teacher_id /** not user_id inorder to show that it only happens when it is a user type of a teacher  **/
     output: status 200 / 400 - Insertion error - check DB (group/student does not exist or relation error!
     example to output : 	
@@ -163,14 +175,14 @@ API:
 }
     
 
-13.post('/addQuestion')
+15.post('/addQuestion')
 	input:  question_title, is_multiple_ans, question_media_type, question_media, quest_correct_fb, quest_incorrect_fb,
 	quest_skill, quest_difficulty, quest_proffesion, quest_is_approved, quest_disabled, who_created,
 	answer1, answer2, answer3, answer4,correctAnswerIndex
     output: status 200 "inserted!" /400 - Insertion error - check DB (group/student does not exist or relation error!)
     example to output : 
 	
-14.post('/createTask')
+16.post('/createTask')
 	input:t_title, t_description, t_owner, t_approved, questions
 	input example:{"t_title":"TiTlE-TeSt","t_description":"desc_desc_desc","t_owner":1,
                 "t_approved":1,"questions":[1,3,4,15,8,7]}
@@ -184,7 +196,7 @@ API:
 
 
 	/***************** MARATON  *********************/
-16.post('/getAllTasks')
+17.post('/getAllTasks')
     output: status 200 with json
     [
       {
@@ -204,7 +216,7 @@ API:
     ]
 
 
-16.post('/getAllGroupForTask')
+18.post('/getAllGroupForTask')
 input: task_id,teacher_id
 output: status 200 with list of group / status 204 - no group for this task/  400 -error
 
@@ -220,14 +232,14 @@ output: status 200 with list of group / status 204 - no group for this task/  40
 ]
 
 
-17.post('/checkIfGroupCodeExists')
+19.post('/checkIfGroupCodeExists')
 input: group_code
 output: status 200 with json  / 401- group code does not exist / 400 - "DB error"
 
 {"userType":1}
 
 
-18. post('/getAllStudentForGroup')
+20. post('/getStudentListFromGroupId')
 input: group_id
 output: status 200 with json / 204 - no content  / 400 - "DB error"
 example:
@@ -268,7 +280,7 @@ example:
 
 
 
-19. post('getAllGroupForTeacher')
+21. post('getAllGroupForTeacher')
 input: user_id (of the teacher)
 output: status 200 with json  / 204 - no content / 400 - "DB error"
 
@@ -301,7 +313,7 @@ example:
   }
 ]
 
-20. post('getAllSchollByCity')
+22. post('getAllSchollByCity')
 input: city
 output: status 200 with json  / 204 - no content/ 400 - "DB error"
 exmple:
@@ -317,12 +329,32 @@ exmple:
   }
 ]
 
-21. post('addNewSchool')
+23. post('getGroupsBySchool')
+input: school
+output: status 200 with json  / 204 - no content/ 400 - "DB error"
+exmple:
+
+24. post('addNewSchool')
 input:city,school
 output: status 200 with json  / 400 - double insertion - school already exist in this city
 
+25. post('getValidQuestions')
+input:is_app,is_disabled
+output: status 200 with json  / 400 - double insertion - school already exist in this city
 
-22. post('getGroupBySchoolAndCity')
+26. post('getGroupsByTeacherAndCity')
+input:teacher_id,city
+output: status 200 with json  / 400 - double insertion - school already exist in this city
+
+27. post('getAllTeachersBySchoolAndCity')
+input:school,city
+output: status 200 with json  / 400 - double insertion - school already exist in this city
+
+28. post('getAllStudentForGroup')
+input:group_id
+output: status 200 with json  / 204 - empty / 400 - double insertion - school already exist in this city
+
+29. post('getGroupBySchoolAndCity')
 input: school , city
 output: status 200 with json  / 204 - no content/ 400 - "DB error"
 example:
@@ -354,7 +386,7 @@ example:
   }
 ]
 
-23. post('getQuestionsByParamter')
+30. post('getQuestionsByParamter')
 inpupt: media_types,skills,difficulties
         for example: difficulties = "קלה", "בינונית" or difficulties = "קלה"
 output: status 200 with list of Question / status 204 - no content
@@ -377,7 +409,7 @@ exmple :
   }
 ]
 
-23. post('getAllSkills')
+31. post('getAllSkills')
 inpupt: none
 output: status 200 with list of Skills / status 204 - no content
 exmple :
@@ -398,7 +430,7 @@ exmple :
 
 
 
-23. post('generateRandTask')
+32. post('generateRandTask')
 input:
 {
    "media_types": "text",
@@ -414,7 +446,3 @@ exmple :
 0-student
 1-teacher
 2-superuser
-
-
-
-

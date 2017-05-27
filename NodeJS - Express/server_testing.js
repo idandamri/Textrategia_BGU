@@ -795,8 +795,8 @@ app.post('/checkIfGroupCodeExists', function (req, res) {
 
 
 app.post('/getStudentListFromGroupId', function (req, res) {
-    var groupCode = mysql.escape(req.body.group_id);
-    var query = queries.getStudentsFromGroup(groupCode);
+    var groupId = mysql.escape(req.body.group_id);
+    var query = queries.getStudentsFromGroup(groupId);
     console.log('\n' + query + '\n');
     connection.query(query, function (err, listOfStudents) {
         if (err) {
@@ -1076,7 +1076,6 @@ app.post('/getGroupBySchoolAndCity', function (req, res) {
     });
 });
 
-
 app.post('/addNewSchool', function (req, res) {
     var city = mysql.escape(req.body.city);
     var school = mysql.escape(req.body.school);
@@ -1092,7 +1091,6 @@ app.post('/addNewSchool', function (req, res) {
         }
     });
 });
-
 
 app.post('/getQuestionsByParamter', function (req, res) {
     var media_types = mysql.escape(req.body.media_types.split(","));
@@ -1117,7 +1115,6 @@ app.post('/getQuestionsByParamter', function (req, res) {
     });
 });
 
-
 app.post('/getAllSkills', function (req, res) {
 
     var query = queries.getAllSkills();
@@ -1141,7 +1138,7 @@ app.post('/getAllSkills', function (req, res) {
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '123456',//'1q2w3e4r' to upload*/
+    password: '1q2w3e4r',//'123456' to upload*/
     database: 'textra_db',
     multipleStatements: true
 });
@@ -1153,16 +1150,16 @@ connection.connect(function (err) {
 });
 
 
-// var server = app.listen(8081, function () {
-//     var host = server.address().address;
-//     var port = server.address().port;
-//     console.log("Example app listening at http://%s:%s", host, port)
-// });
+var server = app.listen(8081, function () {
+    var host = server.address().address;
+    var port = server.address().port;
+    console.log("Example app listening at http://%s:%s", host, port)
+});
 
 // TODO - Hadas you need this/TESTS!!!
-app.listen(8081, "127.0.0.1", function () {
-    console.log("App is running ");
-});
+// app.listen(8081, "127.0.0.1", function () {
+//     console.log("App is running ");
+// });
 
 setInterval(function () {
     connection.query('SELECT 1');
