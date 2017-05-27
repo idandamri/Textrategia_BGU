@@ -9,5 +9,8 @@
     "chai": "^3.5.0",
     "mocha-steps": "^1.0.2",
     "supertest": "^3.0.0"
-  }
+  },
+  "scripts": {
+    "mocha": "./node_modules/mocha/bin/mocha  --harmony ./tests/"
+  },
 }

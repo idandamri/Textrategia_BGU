@@ -967,11 +967,11 @@ app.post('/getAllTeachersBySchoolAndCity', function (req, res) {
         else {
             if (listOfTeachers.length > 0) {
                 var indexOfTeacher = 0;
-                var query = queries.getUserById(listOfTeachers[indexOfTeacher]);
+                var query = queries.getUserById(listOfTeachers[indexOfTeacher].teacherID);
                 if(listOfTeachers.length>1) {
                     indexOfTeacher = indexOfTeacher + 1;
-                    while (indexOfTeacher <= listOfTeachers.length) {
-                        query = query + " or PersonalID = " + listOfTeachers[indexOfTeacher];
+                    while (indexOfTeacher < listOfTeachers.length) {
+                        query = query + " or PersonalID = " + listOfTeachers[indexOfTeacher].teacherID;
                         indexOfTeacher = indexOfTeacher + 1;
                     }
                 }
