@@ -324,6 +324,8 @@ textrategiaApp.controller("CreateGroupController",function($scope,$http,$locatio
         var school = $scope.selected_school;
         var type= $scope.selected_group_master;
 
+        var teacher_id = 4;
+
         var req = {
             method: 'POST',
             cache: false,
@@ -336,7 +338,7 @@ textrategiaApp.controller("CreateGroupController",function($scope,$http,$locatio
             +'&city='+ city
             +'&is_teacher_group='+ type
             +'&group_user_type=1'
-            +'&teacher_id='+ getUserID()
+            +'&teacher_id='+ teacher_id
             +'&is_master=1'
             +'&is_approved= 1'
         };
