@@ -7,7 +7,6 @@ module.exports =
                 " and Pass like " + password + ";";
         },
 
-
         /*get all tasks's information (id,title and description) by student id*/
         gelAllTaskTitleByStudentId: function (user_id) {
             return "select tasks.* from " +
@@ -123,10 +122,6 @@ module.exports =
                 + is_master_g + "," + g_code + "," + group_user_type + "," + is_app + ");";
         },
 
-        reportQuestion: function (q_id) {
-            return "UPDATE textra_db.questions SET Q_reported=Q_reported+1 WHERE Q_id = " + q_id + ";";
-        },
-
         getGroupIdfromcode: function (g_code) {
             return "select GroupId from textra_db.groups where GroupeCode = " + g_code + ";";
         },
@@ -152,7 +147,7 @@ module.exports =
         },
 
         getFullQuestionByQid: function (q_id) {
-            return "select T.Q_id, T.Q_question, T.isMultipuleAns, " +
+            return "select T.Q_id, T.Q_qeustion, T.isMultipuleAns, " +
                 "T.Q_correctFB, T.Q_mediaType, T.Q_media," +
                 "T.Q_notCorrectFB, T.Q_skill, T.Q_difficulty," +
                 "T.Q_proffession, T.Q_approved, T.Q_disabled " +

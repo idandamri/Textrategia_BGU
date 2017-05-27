@@ -40,11 +40,11 @@ app.get('/', function (req, res) {
 
 
 app.post('/login', function (req, res) {
-    var user_name = mysql.escape(req.body.user);
+    var user_name = req.body.user;
     /* user_name can be id or email */
-    var password = mysql.escape(req.body.password);
+    var password = req.body.password;
 
-    console.log('Got a login request from: \n' + user_name + "," + password);
+    console.log('Got a login request from: \n\n!!!\n\n' + user_name + "," + password);
     var query = queries.getDataForUserByIdOrEmail(user_name, password);
     console.log("This is the query: " + query);
     connection.query(query, function (err, ans) {
@@ -61,7 +61,7 @@ app.post('/login', function (req, res) {
                 console.log('OK');
             }
             else {
-                res.status(204).send('ERROR');
+                res.status(401).send('ERROR');
                 console.log('ERROR \n');
             }
         }
@@ -70,7 +70,7 @@ app.post('/login', function (req, res) {
 
 
 app.post('/getListOfTasks', function (req, res) {
-    var user_id = mysql.escape(req.body.user_id);
+    var user_id = req.body.user_id;
     var query = queries.gelAllTaskTitleByStudentId(user_id);
     console.log(query);
     connection.query(query, function (err, tasks) {
@@ -91,8 +91,8 @@ app.post('/getListOfTasks', function (req, res) {
 
 app.post('/getQuestion', function (req, res) {
     console.log("Got a question request");
-    var user_id = mysql.escape(req.body.user_id);
-    var t_id = mysql.escape(req.body.t_id);
+    var user_id = req.body.user_id;
+    var t_id = req.body.t_id;
     var question = "";
     var tasksQid = queries.getSingleQuestionIdFromTaskIdAndUserId(user_id, t_id);
     console.log("This is the query: " + tasksQid);
@@ -147,9 +147,9 @@ app.post('/getQuestion', function (req, res) {
 
 
 app.post('/questionDone', function deleteQuestionFromQueue(req, res) {
-    var quest_id = mysql.escape(req.body.quest_id);
-    var stud_id = mysql.escape(req.body.user_id);
-    var task_id = mysql.escape(req.body.task_id);
+    var quest_id = req.body.quest_id;
+    var stud_id = req.body.user_id;
+    var task_id = req.body.task_id;
 
     var query2 = queries.deleteQuestionsFromInstance(stud_id, task_id, quest_id);
     console.log('\n' + query2 + '\n');
@@ -165,10 +165,10 @@ app.post('/questionDone', function deleteQuestionFromQueue(req, res) {
 
 
 app.post('/updateAnswer', function (req, res) {
-    var sId = mysql.escape(req.body.user_id);
-    var tId = mysql.escape(req.body.task_id);
-    var qId = mysql.escape(req.body.quest_id);
-    var aId = mysql.escape(req.body.ans_id);
+    var sId = req.body.user_id;
+    var tId = req.body.task_id;
+    var qId = req.body.quest_id;
+    var aId = req.body.ans_id;
     var query = queries.submitStudentsAnswerForQuestion(sId, tId, qId, aId);
     console.log('\n' + query + '\n');
     connection.query(query, function (err) {
@@ -184,8 +184,8 @@ app.post('/updateAnswer', function (req, res) {
 
 
 app.post('/questionApproveOrNot', function (req, res) {
-    var isApproved = mysql.escape(req.body.is_approved);
-    var qId = mysql.escape(req.body.q_id);
+    var isApproved = req.body.is_approved;
+    var qId = req.body.q_id;
 
     var query = queries.approveQuestion(qId, isApproved);
     console.log('\n' + query + '\n');
@@ -230,8 +230,8 @@ app.post('/disableQuestion', function (req, res) {
 
 
 app.post('/addTaskToGroup', function (req, res) {
-    var gId = mysql.escape(req.body.group_id);
-    var tId = mysql.escape(req.body.task_id);
+    var gId = req.body.group_id;
+    var tId = req.body.task_id;
 
     var query = queries.getStudentsFromGroup(gId);
     console.log('\n' + query + '\n');
@@ -300,16 +300,16 @@ function makeid() {
 
 
 app.post('/createGroup', function (req, res) {
-    var teacherId = mysql.escape(req.body.teacher_id);
-    var gName = mysql.escape(req.body.group_name);
-    var school = mysql.escape(req.body.school);
-    var city = mysql.escape(req.body.city);
-    var isTeacherGroup = mysql.escape(req.body.is_teacher_group);
-    var groupUserType = mysql.escape(req.body.group_user_type);
-    var isMaster = mysql.escape(req.body.is_master);
-    var isApp = mysql.escape(req.body.is_approved);
+    var teacherId = req.body.teacher_id;
+    var gName = req.body.group_name;
+    var school = req.body.school;
+    var city = req.body.city;
+    var isTeacherGroup = req.body.is_teacher_group;
+    var groupUserType = req.body.group_user_type;
+    var isMaster = req.body.is_master;
+    var isApp = req.body.is_approved;
     var gCode = makeid();
-//TODO - Idan, check if code exists in system
+
     var query = queries.createGroup(gName, school, city, teacherId, isTeacherGroup, isMaster, gCode, groupUserType, isApp);
     console.log('\n' + query + '\n');
     connection.query(query, function (err,ans) {
@@ -330,6 +330,11 @@ app.post('/createGroup', function (req, res) {
                     res.status(200).send(ans);
                 }
             });
+
+            // res.status(200).send();
+
+
+
         }
     });
 });
@@ -358,22 +363,6 @@ app.post('/removeTestUsersFromGroup', function (req, res) {
         }
         else {
             res.status(200).send("inserted!");
-        }
-    });
-});
-
-
-app.post('/reportQuestion', function (req, res) {
-    var QID = mysql.escape(req.body.q_id);
-
-    var query = queries.reportQuestion(QID);
-    connection.query(query, function (err) {
-        if (err) {
-            console.log(err);
-            res.status(400).send("DB error - check DB!");
-        }
-        else {
-            res.status(200).send("reported!");
         }
     });
 });
@@ -428,32 +417,6 @@ app.post('/truncateInstancesOfAnswers', function (req, res) {
 });
 
 
-app.post('/editQuestion', function (req, res) {
-
-    var q_id = mysql.escape(req.body.id);
-    var q_question = mysql.escape(req.body.question);
-    var q_media = mysql.escape(req.body.media);
-    var q_correctFB = mysql.escape(req.body.correctFB);
-    var q_notCorrectFB = mysql.escape(req.body.notCorrectFB);
-    var q_skill = mysql.escape(req.body.skill);
-    var q_diff = mysql.escape(req.body.difficulty);
-    var q_prof = mysql.escape(req.body.proffesion);
-    var q_app = mysql.escape(req.body.approved);
-    var q_disabled = mysql.escape(req.body.disabled);
-
-    var query = queries.updateQuestion(q_id,q_question,q_media,q_correctFB, q_notCorrectFB, q_skill, q_diff,q_prof,q_app,q_disabled);
-    connection.query(query, function (err) {
-        if (err) {
-            console.log(err);
-            res.status(400).send("DB error - check DB!");
-        }
-        else {
-            res.status(200).send("updated!");
-        }
-    });
-});
-
-
 /*
  app.post('/checkGroup', function (req, res) {
  var groupCode = req.body.group_code;
@@ -473,13 +436,13 @@ app.post('/editQuestion', function (req, res) {
  */
 
 app.post('/registerUser', function (req, res) {
-    var personalId = mysql.escape(req.body.personal_id);
-    var groupCode = mysql.escape(req.body.group_code);
-    var lastName = mysql.escape(req.body.last_name);
-    var firstName = mysql.escape(req.body.first_name);
-    var userType = mysql.escape(req.body.user_type);
-    var email = mysql.escape(req.body.email);
-    var password = mysql.escape(req.body.password);
+    var personalId = req.body.personal_id;
+    var groupCode = req.body.group_code;
+    var lastName = req.body.last_name;
+    var firstName = req.body.first_name;
+    var userType = req.body.user_type;
+    var email = req.body.email;
+    var password = req.body.password;
 
     var query = queries.checkIfEmailExist(email);
     console.log(query);
@@ -542,6 +505,8 @@ app.post('/registerUser', function (req, res) {
                         });
                     }
                 });
+
+
             }
         }
     });
@@ -550,8 +515,8 @@ app.post('/registerUser', function (req, res) {
 
 app.post('/addUsersToGroup', function (req, res) {
 
-    var users = mysql.escape(req.body.users);
-    var groupId = mysql.escape(req.body.group_id);
+    var users = req.body.users;
+    var groupId = req.body.group_id;
     var indx = 0;
     var queriesArr = [];
 
@@ -585,7 +550,7 @@ app.post('/addUsersToGroup', function (req, res) {
 
 
 app.post('/getGroupByUser', function (req, res) {
-    var teacherId = mysql.escape(req.body.teacher_id);
+    var teacherId = req.body.teacher_id;
 
     var query = queries.getTasks();
     console.log('\n' + query + '\n');
@@ -617,19 +582,19 @@ app.post('/getGroupByUser', function (req, res) {
 
 
 app.post('/addQuestion', function (req, res) {
-    var qTitle = mysql.escape(req.body.question_title);
-    var isMulAns = mysql.escape(req.body.is_multiple_ans);
-    var qMediaType = mysql.escape(req.body.question_media_type);
-    var qMedia = mysql.escape(req.body.question_media);
-    var qCorrFB = mysql.escape(req.body.quest_correct_fb);
-    var qIncorrFB = mysql.escape(req.body.quest_incorrect_fb);
-    var qSkill = mysql.escape(req.body.quest_skill);
-    var qDiff = mysql.escape(req.body.quest_difficulty);
-    var qProff = mysql.escape(req.body.quest_proffesion);
-    var qIsApp = mysql.escape(req.body.quest_is_approved);
-    var qDisabled = mysql.escape(req.body.quest_disabled);
-    var qWhoCreated = mysql.escape(req.body.who_created);
-    var correctAnswerIndex = mysql.escape(req.body.correctAnswerIndex);
+    var qTitle = req.body.question_title;
+    var isMulAns = req.body.is_multiple_ans;
+    var qMediaType = req.body.question_media_type;
+    var qMedia = req.body.question_media;
+    var qCorrFB = req.body.quest_correct_fb;
+    var qIncorrFB = req.body.quest_incorrect_fb;
+    var qSkill = req.body.quest_skill;
+    var qDiff = req.body.quest_difficulty;
+    var qProff = req.body.quest_proffesion;
+    var qIsApp = req.body.quest_is_approved;
+    var qDisabled = req.body.quest_disabled;
+    var qWhoCreated = req.body.who_created;
+    var correctAnswerIndex = req.body.correctAnswerIndex;
     var answers = [];
     answers.push(req.body.answer1);
     answers.push(req.body.answer2);
@@ -684,11 +649,11 @@ app.post('/addQuestion', function (req, res) {
 
 app.post('/createTask', function (req, res) {
 
-    var tTitle = mysql.escape(req.body.t_title);
-    var tDesc = mysql.escape(req.body.t_description);
-    var tOwner = mysql.escape(req.body.t_owner);
-    var tApproved = mysql.escape(req.body.t_approved);
-    var questionsForTask = mysql.escape(req.body.questions);
+    var tTitle = req.body.t_title;
+    var tDesc = req.body.t_description;
+    var tOwner = req.body.t_owner;
+    var tApproved = req.body.t_approved;
+    var questionsForTask = req.body.questions;
 
     var query = queries.addNewTask(tTitle, tDesc, tOwner, tApproved);
     console.log('\n' + query + '\n');
@@ -748,8 +713,8 @@ app.post('/getAllTasks', function (req, res) {
 
 
 app.post('/getAllGroupForTask', function (req, res) {
-    var task_id = mysql.escape(req.body.task_id);
-    var teacher_id = mysql.escape(req.body.teacher_id);
+    var task_id = req.body.task_id;
+    var teacher_id = req.body.teacher_id;
     var query = queries.chooseGroupsAvalibleToTask(task_id, teacher_id);
     console.log('\n' + query + '\n');
     connection.query(query, function (err, groups) {
@@ -768,7 +733,7 @@ app.post('/getAllGroupForTask', function (req, res) {
 
 
 app.post('/checkIfGroupCodeExists', function (req, res) {
-    var groupCode = mysql.escape(req.body.group_code);
+    var groupCode = req.body.group_code;
     var query = queries.checkIfGroupCodeExists(groupCode);
     console.log('\n' + query + '\n');
     connection.query(query, function (err, isTeacher) {
@@ -787,7 +752,7 @@ app.post('/checkIfGroupCodeExists', function (req, res) {
 
 
 app.post('/getStudentListFromGroupId', function (req, res) {
-    var groupCode = mysql.escape(req.body.group_id);
+    var groupCode = req.body.group_id;
     var query = queries.getStudentsFromGroup(groupCode);
     console.log('\n' + query + '\n');
     connection.query(query, function (err, listOfStudents) {
@@ -803,7 +768,7 @@ app.post('/getStudentListFromGroupId', function (req, res) {
 
 
 app.post('/getGroupsBySchool', function (req, res) {
-    var schoolName = mysql.escape(req.body.school);
+    var schoolName = req.body.school;
     var query = queries.getGroupsBySchool(schoolName);
     console.log('\n' + query + '\n');
     connection.query(query, function (err, listOfGroups) {
@@ -819,8 +784,8 @@ app.post('/getGroupsBySchool', function (req, res) {
 
 
 app.post('/getValidQuestions', function (req, res) {
-    var isApproved = mysql.escape(req.body.is_app);
-    var isDisabled = mysql.escape(req.body.is_disabled);
+    var isApproved = req.body.is_app;
+    var isDisabled = req.body.is_disabled;
     var query = queries.getValidQuestions(isApproved, isDisabled);
     console.log('\n' + query + '\n');
     connection.query(query, function (err, listOfQuestions) {
@@ -837,7 +802,7 @@ app.post('/getValidQuestions', function (req, res) {
 
 app.post('/generateRandTask', function (req, res) {
 
-    var stud_id = mysql.escape(req.body.student_id);
+    var stud_id = req.body.student_id;
     var tDesc = "Random task Generated";
     var tOwner = 6;
     var tApproved = 1;
@@ -931,8 +896,8 @@ app.post('/generateRandTask', function (req, res) {
 
 
 app.post('/getGroupsByTeacherAndCity', function (req, res) {
-    var teacherId = mysql.escape(req.body.teacher_id);
-    var CityName = mysql.escape(req.body.city);
+    var teacherId = req.body.teacher_id;
+    var CityName = req.body.city;
     var query = queries.getGroupsByTeacherAndCity(teacherId, CityName);
     console.log('\n' + query + '\n');
     connection.query(query, function (err, listOfQuestions) {
@@ -947,7 +912,7 @@ app.post('/getGroupsByTeacherAndCity', function (req, res) {
 });
 
 app.post('/getAllStudentForGroup', function (req, res) {
-    var group_id = mysql.escape(req.body.group_id);
+    var group_id = req.body.group_id;
     var query = queries.getAllStudentForGroup(group_id);
     console.log('\n' + query + '\n');
     connection.query(query, function (err, listOfStudents) {
@@ -968,7 +933,7 @@ app.post('/getAllStudentForGroup', function (req, res) {
 
 
 app.post('/getAllGroupForTeacher', function (req, res) {
-    var user_id = mysql.escape(req.body.user_id);
+    var user_id = req.body.user_id;
     console.log(user_id);
     var query = queries.getAllGroupForTeacher(user_id);
     console.log('\n' + query + '\n');
@@ -983,6 +948,7 @@ app.post('/getAllGroupForTeacher', function (req, res) {
             }
             else {
                 res.status(200).send(groups);
+
             }
         }
     });
@@ -990,7 +956,7 @@ app.post('/getAllGroupForTeacher', function (req, res) {
 
 
 app.post('/getAllSchollByCity', function (req, res) {
-    var city = mysql.escape(req.body.city);
+    var city = req.body.city;
     var query = queries.getAllSchollByCity(city);
     console.log('\n' + query + '\n');
     connection.query(query, function (err, schools) {
@@ -1010,8 +976,8 @@ app.post('/getAllSchollByCity', function (req, res) {
 });
 
 app.post('/getGroupBySchoolAndCity', function (req, res) {
-    var city = mysql.escape(req.body.city);
-    var school = mysql.escape(req.body.school);
+    var city = req.body.city;
+    var school = req.body.school;
     var query = queries.getGroupBySchoolAndCity(school, city);
     console.log('\n' + query + '\n');
     connection.query(query, function (err, groups) {
@@ -1032,8 +998,8 @@ app.post('/getGroupBySchoolAndCity', function (req, res) {
 
 
 app.post('/addNewSchool', function (req, res) {
-    var city = mysql.escape(req.body.city);
-    var school = mysql.escape(req.body.school);
+    var city = req.body.city;
+    var school = req.body.school;
     var query = queries.addNewSchool(city, school);
     console.log('\n' + query + '\n');
     connection.query(query, function (err) {
@@ -1049,9 +1015,9 @@ app.post('/addNewSchool', function (req, res) {
 
 
 app.post('/getQuestionsByParamter', function (req, res) {
-    var media_types = mysql.escape(req.body.media_types.split(","));
-    var skills = mysql.escape(req.body.skills.split(","));
-    var difficulties = mysql.escape(req.body.difficulties.split(","));
+    var media_types = req.body.media_types.split(",");
+    var skills = req.body.skills.split(",");
+    var difficulties = req.body.difficulties.split(",");
 
     var query = queries.getQuestionsByParamter(media_types, skills, difficulties);
     console.log('\n' + query + '\n');
@@ -1095,7 +1061,7 @@ app.post('/getAllSkills', function (req, res) {
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '1q2w3e4r',//'1q2w3e4r' to upload*/
+    password: '123456',//'1q2w3e4r' to upload*/
     database: 'textra_db',
     multipleStatements: true
 });
@@ -1107,16 +1073,16 @@ connection.connect(function (err) {
 });
 
 
-var server = app.listen(8081, function () {
-    var host = server.address().address;
-    var port = server.address().port;
-    console.log("Example app listening at http://%s:%s", host, port)
-});
+// var server = app.listen(80, function () {
+//     var host = server.address().address;
+//     var port = server.address().port;
+//     console.log("Example app listening at http://%s:%s", host, port)
+// });
 
 // TODO - Hadas you need this/TESTS!!!
-// app.listen(8081, "127.0.0.1", function () {
-//     console.log("App is running ");
-// });
+app.listen(8081, "127.0.0.1", function () {
+    console.log("App is running ");
+});
 
 setInterval(function () {
     connection.query('SELECT 1');

@@ -13,6 +13,16 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
     $scope.teacherName = getUserName();
     $scope.insertPossibleAnswersMode = false;
     $scope.doneRegisterQuestion = false;
+    $scope.enter_new_skill_mode = false;
+
+
+    $scope.new_skill_mode = function(){
+        if ($scope.question.selected_skill == "enter_new_skill"){
+            $scope.enter_new_skill_mode = true;            
+        } else {
+        $scope.enter_new_skill_mode = false;
+        }
+    };
 
     
     if (getUserType()==2){
@@ -34,6 +44,13 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
         $scope.insertPossibleAnswersMode = true;
 
     }
+
+    $scope.mock_skills = [
+    {"Q_skill": "בלימפים"},
+    {"Q_skill": "דוליז"},
+    {"Q_skill": "בובים"}
+    ];
+
 
     $scope.sendNewQuestion = function (){
         // question_title is argument 1
@@ -76,8 +93,11 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
         var question_media = $scope.question.question_media;
         var quest_correct_fb = $scope.question.quest_correct_fb;
         var quest_incorrect_fb = $scope.question.quest_incorrect_fb;
-        var quest_skill = $scope.question.quest_skill
-        // var quest_difficulty = $scope.question.quest_difficulty
+
+
+
+
+        var quest_skill = $scope.question.selected_skill;
 
 
         // the information:
@@ -102,7 +122,7 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
         }
 
         // alert("title: " + question_title + " op1: " + opt1.value + " op2: " + opt2.value + " question_media :" + question_media);
-        // alert("y: " + quest_correct_fb + " n: " + quest_incorrect_fb + " skill: " + quest_skill +" diff: " + quest_difficulty);
+        // alert("y: " + quest_correct_fb + " n: " + quest_incorrect_fb + " skill: " + quest_skill );
         // alert("1: " + possible_ans_1 + " 2: " + possible_ans_2 + " 3: " +  possible_ans_3 + " 4: " + possible_ans_4)
 
         // ####################################################

@@ -167,6 +167,7 @@ textrategiaApp.controller("LoginController", function($scope, $http,$location) {
             $scope.showError = true;
             $scope.showSuccess = false;
 
+
         });
 
 

@@ -5,6 +5,7 @@
 var get_answers_lst_from_jason = function(myJason) {
     var ans = [];
     var ans_id =[];
+    shuffle(myJason);
     for(i=0 ; i< myJason.length ; i++){
         ans.push(myJason[i].answer);
         ans_id.push(myJason[i].A_id);
@@ -39,6 +40,18 @@ var get_correct_answer_index = function(myJason) {
     }
     return ans;
 };
+
+
+function shuffle(a) {
+    var j, x, i;
+    for (i = a.length; i; i--) {
+        j = Math.floor(Math.random() * i);
+        x = a[i - 1];
+        a[i - 1] = a[j];
+        a[j] = x;
+    }
+}
+
 
 /*TO-DO*/
 function updateAnswer (quest_id , ans_id){
