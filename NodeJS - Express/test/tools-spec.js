@@ -8,6 +8,7 @@ var app = rewire('../server_testing');
 
 // var app = rewire('../server_V2');//TODO hide above and expose this for stable V2 version
 var sinon = require("sinon");
+
 describe("Testing Textrategia API", function () {
 
 
@@ -473,6 +474,21 @@ describe("Testing Textrategia API", function () {
                 "skills": "הסקת מסקנות",
                 "rand_num": "3",
                 "difficulties": "קלה"
+            })
+                .expect(200)
+                .end(function (err, res) {
+                    console.log("response: " + JSON.stringify(res.body));
+                    done();
+                });
+        });
+    });
+
+
+    describe("Testing get Groups By Teacher And City", function () {
+        it('Test get Teachers By School And City - correct deatils', function (done) {
+            request(app).post("/getAllTeachersBySchoolAndCity").send({
+                "school": "מבועות",
+                "city": "אשדוד"
             })
                 .expect(200)
                 .end(function (err, res) {

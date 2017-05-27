@@ -240,5 +240,13 @@ module.exports =
 
     getGroupCode: function (group_id) {
         return "SELECT GroupeCode FROM textra_db.groups where GroupId =" + group_id + ";"
+    },
+
+    getTeachesByCityAndSchool: function (city, school) {
+        return "SELECT teacherID FROM textra_db.groups where City =" + city + " and School = " + school + ";"
+    },
+
+    getUserById: function (user_id) {
+        return "SELECT * FROM textra_db.users where PersonalID =" + user_id
     }
 };
