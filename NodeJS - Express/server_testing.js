@@ -786,7 +786,7 @@ app.post('/checkIfGroupCodeExists', function (req, res) {
         }
         else {
             if (isTeacher.length == 0)
-                res.status(401).send();//
+                res.status(204).send();//
             else
                 res.status(200).send(isTeacher);//
         }

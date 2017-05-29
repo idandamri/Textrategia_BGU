@@ -234,7 +234,7 @@ output: status 200 with list of group / status 204 - no group for this task/  40
 
 19.post('/checkIfGroupCodeExists')
 input: group_code
-output: status 200 with json  / 401- group code does not exist / 400 - "DB error"
+output: status 200 with json  / 204 - group code does not exist / 400 - "DB error"
 
 {"userType":1}
 
