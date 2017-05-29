@@ -429,7 +429,6 @@ exmple :
 ]
 
 
-
 32. post('generateRandTask')
 input:
 {
@@ -440,6 +439,16 @@ input:
    "difficulties": "קלה"
 }
 output: status 200 / status 415 - not enough questions
+exmple :
+
+
+33. post('sendTaskToStudents')
+input:
+{
+   "students": "[2,3]",
+   "task_id": "2",
+}
+output: status 200 / status 204 - not enough questions / 400 - "DB Error"
 exmple :
 
 

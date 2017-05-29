@@ -1135,6 +1135,55 @@ app.post('/getAllSkills', function (req, res) {
     });
 });
 
+
+app.post('/sendTaskToStudents', function (req, res) {
+    var studentsArray = JSON.parse(req.body.students);
+    var taskId = req.body.task_id;
+
+    if(studentsArray == null || studentsArray.length>0){
+        var query = queries.getQestionsListForTasks(taskId);
+        console.log('\n' + query + '\n');
+        connection.query(query, function (err, questions) {
+            if (err) {
+                console.log(err);
+                res.status(400).send("DB error");
+            }
+            else {
+                if (questions == null || questions.length == 0) {
+                    res.status(204).send();
+                }
+                else {
+                    var questionsArray = [];
+                    var j = 0
+                    while(j < studentsArray.length){
+                        var i = 0;
+                        while (i < questions.length) {
+                            questionsArray[i+j*questions.length] = queries.addTaskQuestionStudentInstance(studentsArray[j],taskId,questions[i].Q_id);
+                            i++;
+                        }
+                        j++;
+                    }
+                    var bigQuery = questionsArray.join(" ");
+                    console.log('\n' + bigQuery + '\n');
+                    connection.query(bigQuery, function (err, ans) {
+                        if (err) {
+                            console.log(err);
+                            res.status(400).send("DB error");
+                        }
+                        else {
+                            res.status(200).send();
+                        }
+                    });
+                }
+            }
+        });
+    }
+    else{
+        res.status(204).send("No Students selected");
+    }
+});
+
+
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',

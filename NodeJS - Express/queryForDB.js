@@ -104,6 +104,10 @@ module.exports =
             return "select T_id, Q_id from textra_db.tasks_joined_with_questions where T_id = " + t_id + ";";
         },
 
+        getQestionsListForTasks: function (t_id) {
+            return "select Q_id from textra_db.tasks_joined_with_questions where T_id = " + t_id + ";";
+        },
+
         addTaskQuestionStudentInstance: function (stud_id, t_id, q_id) {
             return "insert into textra_db.tasks_and_question_for_student_instances values(" + stud_id + "," + t_id + "," + q_id + ");";
         },
