@@ -54,21 +54,24 @@
 
   <div ng-show="myTaskQuestions.length!=0" class="col-sm-4 well">
   <h3> שאלות המטלה </h3>
-   <div id="accordion">
+   <div id="accordion1">
     <div class="panel" ng-repeat="q in myTaskQuestions track by $index">
       <button class="button btn-danger" ng-click="deleteThisQuestion(q)" > מחק
       </button>
-      <a data-toggle="collapse" data-parent="#accordion" data-target="#collapse{{ $index + 1 }}" class="ng-binding collapsed" > 
+      <a data-toggle="collapse" data-parent="#accordion1" data-target="#collapse{{ $index + 1 }}" class="ng-binding collapsed" >
        &nbsp;&nbsp;{{q.Q_qeustion}}
       </a>
-      <div id="collapse{{ $index + 1 }}" >  בעתיד יהיו פה מסיחים </div>
+      <!--<div id="collapse{{ $index + 1 }}" >  בעתיד יהיו פה מסיחים </div>-->
     </div>
   </div>
 
     <div class="text-center">
-      <button ng-click="sendTaskToServer()" ng-disabled="myForm1.$invalid || myTaskQuestions.length==0" class="btn btn-lg btn-success">
+      <button ng-click="sendTaskToServer()" ng-disabled="myForm1.$invalid || myTaskQuestions.length==0" class="btn btn-lg btn-success" data-toggle="modal" data-target="#fedbackModal">
         שלח מטלה לשרת  
       </button>
+
+
+
     </div>
 
   </div>
@@ -78,17 +81,16 @@
   <div class="col-sm-5 well">
     
  
- <div id="accordion">
+ <div id="accordion2">
     <div class="panel" ng-repeat="q in myQuestions track by $index">
       <input type="checkbox"  ng-init='checkStatus51=false' ng-model="checkStatus51"
       ng-change="checkQuestionSelected(checkStatus51,q.Q_id)" >
-      <a data-toggle="collapse" data-parent="#accordion" data-target="#collapse{{ $index + 1 }}" class="ng-binding collapsed" > 
+      <a data-toggle="collapse" data-parent="#accordion2" data-target="#collapse{{ $index + 1 }}" class="ng-binding collapsed" >
        &nbsp;&nbsp;{{q.Q_qeustion}}
       </a>
-      <div id="collapse{{ $index + 1 }}" >   <div ng-show="false" > בעתיד יהיו פה מסיחים </div> </div>
+      <!--<div id="collapse{{ $index + 1 }}" >   <div ng-show="false" > בעתיד יהיו פה מסיחים </div> </div>-->
     </div>
   </div>
-
 
 <div class="text-center">
   <!-- Button -->
@@ -227,7 +229,7 @@
       </div>
       <div class="modal-footer">
           <!-- <button type="button" class="btn btn-default" data-dismiss="modal">סגור</button> -->
-           <button type="button" data-dismiss="modal" class="btn btn-default"  ng-click="goToTeacher()" > סגור </button>
+           <button type="button" data-dismiss="modal" class="btn btn-default"  ng-click="goToSuperUser()" > סגור </button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

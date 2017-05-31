@@ -127,10 +127,14 @@ textrategiaApp.controller("AddSchoolInCityController",function($scope,$http){
 });
 
 
-textrategiaApp.controller("CreatTaskController",function($scope,$http){
+textrategiaApp.controller("CreatTaskController",function($scope,$http,$location){
 
     $scope.getUserName = getUserName();
     $scope.searchQuestion = false;
+
+    $scope.goToSuperUser = function () {
+        $location.path('superUser');
+    };
 
     // ####################################################
     // get skills list from server
@@ -282,7 +286,8 @@ textrategiaApp.controller("CreatTaskController",function($scope,$http){
     $scope.addSelectedQuestions = function(){ 
         for (i= 0 ; i< $scope.selectedQuestionsIndex.length ; i++){
             for (j= 0 ; j< $scope.myQuestions.length ; j++){
-                if ( $scope.myQuestions[j].Q_id== $scope.selectedQuestionsIndex[i] ){
+                if ( $scope.myQuestions[j].Q_id == $scope.selectedQuestionsIndex[i]
+                    && $scope.myTaskQuestions.indexOf($scope.myQuestions[j]) == -1 ){
                     $scope.myTaskQuestions.push($scope.myQuestions[j]);
                 }
             }
@@ -292,14 +297,11 @@ textrategiaApp.controller("CreatTaskController",function($scope,$http){
     // this function delete a spesific answer from tasks's answers list
     $scope.deleteThisQuestion = function (element){
         const index = $scope.myTaskQuestions.indexOf(element);
-
         if (index !== -1)
         {
            $scope.myTaskQuestions.splice(index, 1);
         }
     };
-
-
 
     $scope.sendTaskToServer = function(){
         var questionID = [];
@@ -335,10 +337,10 @@ textrategiaApp.controller("CreatTaskController",function($scope,$http){
         $http(req)
             .success(function(data,status,headers,config){
                 $scope.serverFeedback = "המטלה נוספה בהצלחה!";
-                alert("המטלה נוספה בהצלחה");
+                // alert("המטלה נוספה בהצלחה");
                 // $location.path('superUser');
             }).error(function(data,status,headers,config){
-            $scope.serverFeedback = "שגיאה בהוספת המטלה";
+                $scope.serverFeedback = "שגיאה בהוספת המטלה";
         });
 
     };

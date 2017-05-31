@@ -695,7 +695,10 @@ app.post('/createTask', function (req, res) {
     var tDesc = mysql.escape(req.body.t_description);
     var tOwner = mysql.escape(req.body.t_owner);
     var tApproved = mysql.escape(req.body.t_approved);
-    var questionsForTask = mysql.escape(req.body.questions);
+    // var questionsForTask = mysql.escape(req.body.questions);
+    var questionsForTask = req.body.questions;
+    // console.log("questionsForTask: " + questionsForTask.toString() );
+
 
     var query = queries.addNewTask(tTitle, tDesc, tOwner, tApproved);
     console.log('\n' + query + '\n');
@@ -723,7 +726,7 @@ app.post('/createTask', function (req, res) {
                     }
 
                     var insertStatement = questionsArray.join(" ");
-
+                    console.log(insertStatement);
                     connection.query(insertStatement, function (err) {
                         if (err) {
                             console.log(err);
@@ -1187,7 +1190,7 @@ app.post('/sendTaskToStudents', function (req, res) {
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '1q2w3e4r',//'123456' to upload*/
+    password: '123456',//'123456' to upload*/
     database: 'textra_db',
     multipleStatements: true
 });
