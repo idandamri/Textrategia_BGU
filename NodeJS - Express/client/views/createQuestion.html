@@ -54,7 +54,7 @@
       <!-- 6 -->
       <label class="control-label pull-right">הכנס מיומנות למידה: &nbsp;&nbsp;</label>
       <select class="form-control inputstl" id="skill_type" ng-model="question.selected_skill" ng-change="new_skill_mode()">
-        <option  ng-repeat="sk in mock_skills" value={{sk.Q_skill}}>
+        <option  ng-repeat="sk in skills" value={{sk.Q_skill}}>
           {{sk.Q_skill}}
           </option>
           <option value="enter_new_skill">   מיומנות חדשה:     </option>
@@ -82,11 +82,11 @@
           </textarea>
 
           <!-- 3 -->
-          <label class="control-label pull-right">האם שאלת רב בחירה?:&nbsp;&nbsp;</label>
-          <select class="form-control inputstl" id="is_multiple_ans">
-              <!-- <option value=1>כן</option> FOR NOW ONLY 'NO' is available--> 
-              <option value=0>לא</option>
-          </select>   
+          <!--<label class="control-label pull-right">האם שאלת רב בחירה?:&nbsp;&nbsp;</label>-->
+          <!--<select class="form-control inputstl" id="is_multiple_ans">-->
+              <!--&lt;!&ndash; <option value=1>כן</option> FOR NOW ONLY 'NO' is available&ndash;&gt; -->
+              <!--<option value=0>לא</option>-->
+          <!--</select>   -->
 	            
           <!-- 5 -->
     		    <label class="control-label pull-right">הכנס פידבק לתשובה נכונה: &nbsp;&nbsp;</label>

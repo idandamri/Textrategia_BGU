@@ -45,11 +45,33 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
 
     }
 
-    $scope.mock_skills = [
-    {"Q_skill": "בלימפים"},
-    {"Q_skill": "דוליז"},
-    {"Q_skill": "בובים"}
-    ];
+    // $scope.mock_skills = [
+    // {"Q_skill": "בלימפים"},
+    // {"Q_skill": "דוליז"},
+    // {"Q_skill": "בובים"}
+    // ];
+
+
+    var req = {
+        method: 'POST',
+        cache: false,
+        url: _url +'/getAllSkills',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        data: ''
+    };
+
+    $http(req)
+        .success(function(data,status,headers,config){
+            if (status==200) {
+                $scope.skills = data;
+            }
+        }).error(function(data,status,headers,config){
+        $scope.skills =[];
+    });
+
+
 
 
     $scope.sendNewQuestion = function (){
@@ -57,15 +79,15 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
         var question_title = $scope.question.question_title;
 
         // (IS MULTIPLE ANS QUESTION) opt1.value is argument 2
-        var is_multiple;
-        var sel1 = document.getElementById("is_multiple_ans");
-        for (i = 0 ; i < sel1.options.length ; i++){
-            is_multiple = sel1.options[i];
-            if (is_multiple.selected == true){
-                // alert(is_multiple.value);              // 1 means yes, 0 means no
-                break;
-            }
-        }
+        // var is_multiple;
+        // var sel1 = document.getElementById("is_multiple_ans");
+        // for (i = 0 ; i < sel1.options.length ; i++){
+        //     is_multiple = sel1.options[i];
+        //     if (is_multiple.selected == true){
+        //         // alert(is_multiple.value);              // 1 means yes, 0 means no
+        //         break;
+        //     }
+        // }
 
         // (MEDIA TYPE) opt2.value is argument 3
         var media_type;
@@ -133,6 +155,13 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
         // change server feedback acording to succuss or failure!
 
 
+        /*set quest_is_approved */
+        var is_approved;
+        if (getUserType() == 2)
+            is_approved=1;
+        else
+            is_approved=0;
+
         var req = {
             method: 'POST',
             cache: false,
@@ -141,7 +170,7 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             data: 'question_title='+ question_title
-            +'&is_multiple_ans='+ is_multiple.value
+            +'&is_multiple_ans='+ '0'
             + '&question_media_type=' + media_type.value
             + '&question_media=' + question_media
             + '&quest_correct_fb=' + quest_correct_fb
@@ -149,9 +178,9 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
             +'&quest_skill=' +  quest_skill
             + '&quest_difficulty=' +   quest_difficulty.value
             + '&quest_proffesion=' + 'הבעה'
-            + '&quest_is_approved=' + '1'
-            + '&quest_disabled=' + '0'
-            + '&who_created=' + '1'
+            + '&quest_is_approved=' + is_approved
+            + '&quest_disabled=' + '1'
+            + '&who_created=' + getUserID()
             + '&answer1=' + possible_ans_1
             + '&answer2=' + possible_ans_2
             + '&answer3=' + possible_ans_3
