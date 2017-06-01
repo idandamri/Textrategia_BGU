@@ -395,13 +395,48 @@ textrategiaApp.controller("CreateGroupController",function($scope,$http,$locatio
         });
     };
 
+
+
+    $scope.getTeacherByCityAndSchool= function () {
+        city = $scope.selected_city;
+        school = $scope.selected_school;
+        var req = {
+            method: 'POST',
+            cache: false,
+            url: _url +'/getAllTeachersBySchoolAndCity',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            data: 'city='+city + '&school=' + school
+        };
+
+        $http(req)
+            .success(function(data,status,headers,config){
+                if (status==200) {
+                    $scope.teachers = data;
+                }
+                else if (status==204){
+                    $scope.teachers = [];
+                    $scope.teachers.push({
+                        "School": "אין מורים בבית ספר זה"
+                    });
+                }
+            }).error(function(data,status,headers,config){
+            $scope.teachers = 0;
+        });
+    };
+
+
+
+
+
     $scope.createGroup = function () {
         var groupName = $scope.text_group;
         var city = $scope.selected_city;
         var school = $scope.selected_school;
         var type= $scope.selected_group_master;
 
-        var teacher_id = 4;
+        var teacher_id = $scope.selected_teacher;
 
         var req = {
             method: 'POST',

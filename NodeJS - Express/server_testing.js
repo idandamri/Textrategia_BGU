@@ -308,7 +308,7 @@ app.post('/createGroup', function (req, res) {
     var groupUserType = mysql.escape(req.body.group_user_type);
     var isMaster = mysql.escape(req.body.is_master);
     var isApp = mysql.escape(req.body.is_approved);
-    var gCode = makeid();
+    var gCode = mysql.escape(makeid());
 
     connection.query(queries.checkIfGroupCodeExists(gCode), function (err, ans) {
 

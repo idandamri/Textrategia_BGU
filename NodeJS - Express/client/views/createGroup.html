@@ -57,12 +57,17 @@
               <!--&lt;!&ndash; <option value=0>לא</option> &ndash;&gt;-->
             <!--</select>-->
 
-          <select required class="form-control inputstl" ng-model="selected_school" id="group_school">
+          <select required class="form-control inputstl" ng-model="selected_school" id="group_school" ng-change="getTeacherByCityAndSchool()">
             <option ng-repeat="y in group_school" value="{{y.School}}">{{y.School}}</option>
             <!--<option ng-show="group_school==0" disabled>אין בתי ספר קיימים</option>-->
           </select>
 
 
+          <label class="control-label pull-right">בחר מורה אחראי:&nbsp;&nbsp;</label>
+
+          <select required class="form-control inputstl" ng-model="selected_teacher" id="teachers">
+            <option ng-repeat="y in teachers" value="{{y.PersonalID}}">{{y.FirstName}}</option>
+          </select>
 
         </div>
  
