@@ -72,6 +72,14 @@ module.exports =
             return "select * from textra_db.tasks where T_owner != 6;";
         },
 
+        getAllTasks: function () {
+            return "select * from textra_db.tasks where T_owner != 6 and T_approved=1;";
+        },
+
+        getMyTasks: function (t_owner) {
+            return "select * from textra_db.tasks where T_owner =" + t_owner + ";";
+        },
+
         addUsersToGroup: function (user_id, group_id) {
             return "insert into textra_db.students_per_group values (" + user_id + "," + group_id + ");";
         },
@@ -205,7 +213,7 @@ module.exports =
         return "SELECT * FROM textra_db.groups where GroupId not in ("
             + "SELECT distinct GroupId FROM textra_db.students_per_group where StudentId in (" +
             "SELECT distinct studentId FROM textra_db.tasks_and_question_for_student_instances where T_id in (" + task_id + ")))" +
-            "and teacherID = " + teacher_id + ";"
+            "and teacherID = " + teacher_id + " and isTeacherGroup!=1;"
     },
 
 
