@@ -1162,8 +1162,9 @@ app.post('/getQuestionsByParamter', function (req, res) {
     var media_types = mysql.escape(req.body.media_types.split(","));
     var skills = mysql.escape(req.body.skills.split(","));
     var difficulties = mysql.escape(req.body.difficulties.split(","));
+    var user_id = mysql.escape(req.body.user_id);
 
-    var query = queries.getQuestionsByParamter(media_types, skills, difficulties);
+    var query = queries.getQuestionsByParamterAndId(media_types, skills, difficulties,user_id);
     console.log('\n' + query + '\n');
     connection.query(query, function (err, questions) {
         if (err) {

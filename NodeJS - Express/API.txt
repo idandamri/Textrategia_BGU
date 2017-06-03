@@ -387,7 +387,7 @@ example:
 ]
 
 30. post('getQuestionsByParamter')
-inpupt: media_types,skills,difficulties
+inpupt: media_types,skills,difficulties,user_id
         for example: difficulties = "קלה", "בינונית" or difficulties = "קלה"
 output: status 200 with list of Question / status 204 - no content
 exmple :
