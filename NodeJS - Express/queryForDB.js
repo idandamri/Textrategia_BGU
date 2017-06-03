@@ -72,7 +72,7 @@ module.exports =
             return "select * from textra_db.tasks where T_owner != 6;";
         },
 
-        getAllTasks: function () {
+        getAllApprovedTasks: function () {
             return "select * from textra_db.tasks where T_owner != 6 and T_approved=1;";
         },
 

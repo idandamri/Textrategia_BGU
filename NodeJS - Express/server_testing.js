@@ -655,6 +655,34 @@ app.post('/getMyTasks', function (req, res) {
     });
 });
 
+app.post('/getAllApprovedTasks', function (req, res) {
+    var query = queries.getAllApprovedTasks();
+    console.log('\n' + query + '\n');
+    connection.query(query, function (err, ans) {
+        if (err) {
+            console.log(err);
+            res.status(400).send("DB error");
+        }
+        else {
+            res.status(200).json(ans);
+        }
+    });
+});
+
+app.post('/getMyTasks', function (req, res) {
+    var user_id = mysql.escape(req.body.user_id);
+    var query = queries.getMyTasks(user_id);
+    console.log('\n' + query + '\n');
+    connection.query(query, function (err, ans) {
+        if (err) {
+            console.log(err);
+            res.status(400).send("DB error");
+        }
+        else {
+            res.status(200).json(ans);
+        }
+    });
+});
 
 
 
