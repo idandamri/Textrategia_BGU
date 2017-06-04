@@ -12,5 +12,6 @@
   },
   "scripts": {
     "mocha": "./node_modules/mocha/bin/mocha  --harmony ./tests/"
+    "test": "./node_modules/./bin/mocha  -V"
   },
 }

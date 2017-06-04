@@ -883,8 +883,8 @@ app.post('/getValidQuestions', function (req, res) {
 
 app.post('/generateRandTask', function (req, res) {
 
-    var stud_id = mysql.escape(req.body.student_id);
-    var tDesc = "Random task Generated";
+    var stud_id = req.body.student_id;
+    var tDesc = "מטלה לתרגול עצמאי";
     var tOwner = 6;
     var tApproved = 1;
     var num = req.body.rand_num;
@@ -897,7 +897,7 @@ app.post('/generateRandTask', function (req, res) {
             res.status(400).send("DB error");
         }
         else {
-            var tTitle = "Task - " + (item[0].T_id + 1);
+            var tTitle = "מטלה מספר " + (item[0].T_id + 1);
 
             var query = queries.addNewTask(tTitle, tDesc, tOwner, tApproved);
             console.log('\n' + query + '\n');
@@ -1225,7 +1225,7 @@ app.post('/sendTaskToStudents', function (req, res) {
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '123456',//'123456' to upload*/
+    password: '1q2w3e4r',//'123456' to upload*/
     database: 'textra_db',
     multipleStatements: true
 });
