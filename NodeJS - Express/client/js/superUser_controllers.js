@@ -132,9 +132,19 @@ textrategiaApp.controller("CreatTaskController",function($scope,$http,$location)
     $scope.getUserName = getUserName();
     $scope.searchQuestion = false;
 
-    $scope.goToSuperUser = function () {
-        $location.path('superUser');
+    // $scope.goToSuperUser = function () {
+    //     $location.path('superUser');
+    // };
+
+    $scope.backToHomePage = function () {
+        if (getUserType() == 2)
+            $location.path('superUser');
+        else
+            $location.path('teacher');
+
     };
+
+
 
     // ####################################################
     // get skills list from server
@@ -233,6 +243,7 @@ textrategiaApp.controller("CreatTaskController",function($scope,$http,$location)
             data: 'media_types='+$scope.selectedMedia
             +'&skills='+$scope.selectedSkill
             +'&difficulties='+$scope.selectedDiff
+            +'&user_id=' + getUserID()
         };
 
         // alert(JSON.stringify(req));
@@ -320,6 +331,12 @@ textrategiaApp.controller("CreatTaskController",function($scope,$http,$location)
         // alert($scope.task.taskDesc);
 
 
+        var is_approved;
+        if (getUserType() == 2)
+            is_approved=1;
+        else
+            is_approved=0;
+
         var req = {
             method: 'POST',
             cache: false,
@@ -330,7 +347,7 @@ textrategiaApp.controller("CreatTaskController",function($scope,$http,$location)
             data: 't_title='+$scope.task.taskName
             +'&t_description='+$scope.task.taskDesc
             +'&t_owner=' + getUserID()
-            +'&t_approved=1'
+            +'&t_approved=' + is_approved
             +'&questions=' +questionID
         };
 

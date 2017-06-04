@@ -72,7 +72,7 @@ module.exports =
             return "select * from textra_db.tasks where T_owner != 6;";
         },
 
-        getAllTasks: function () {
+        getAllApprovedTasks: function () {
             return "select * from textra_db.tasks where T_owner != 6 and T_approved=1;";
         },
 
@@ -243,7 +243,17 @@ module.exports =
         return "SELECT * FROM textra_db.questions " +
             "where Q_mediaType in (" + media_types + ") " +
             "and Q_skill in (" + skills + ") " +
-            "and Q_difficulty in (" + difficulties + ");"
+            "and Q_difficulty in (" + difficulties + ")" +
+            "and Q_approved=1;"
+    },
+
+    getQuestionsByParamterAndId: function (media_types, skills, difficulties, user_id) {
+        return "SELECT * FROM textra_db.questions " +
+            "where Q_mediaType in (" + media_types + ") " +
+            "and Q_skill in (" + skills + ") " +
+            "and Q_difficulty in (" + difficulties + ")" +
+            "and (Q_approved=1 or Q_owner=" + user_id +
+            ");"
     },
 
     getAllSkills: function (skills) {

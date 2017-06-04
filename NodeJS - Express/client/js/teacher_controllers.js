@@ -202,7 +202,6 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
 
         // $scope.serverFeedback = "השאלה נשלחה בהצלחה!"
     }
-
 });
 
 
@@ -214,7 +213,6 @@ textrategiaApp.controller("GroupManagementController",function($scope,$http,$loc
 
     var groups = document.getElementById("available_group");
     var tasks = document.getElementById("available_task");
-
 
     $scope.send_task_mod = false;  // else group managment mode
 
@@ -230,15 +228,10 @@ textrategiaApp.controller("GroupManagementController",function($scope,$http,$loc
 
 
 
-
-
-
-
-
     // ~~~~~ send task mode ~~~~~~~~
 
     $scope.getAllGroupForTask= function () {
-        task_id = $scope.selected;
+        task_id = $scope.selected_task;
         var req = {
             method: 'POST',
             cache: false,
@@ -257,54 +250,92 @@ textrategiaApp.controller("GroupManagementController",function($scope,$http,$loc
     };
 
 
+    $scope.changeTaskType= function () {
+        type = $scope.selected_type;
+        if (type==0){
+            $scope.allTasks =$scope.allApprovedTasks;
+        }
+        else {
+            $scope.allTasks =$scope.myTasks;
+        }
+        // var req = {
+        //     method: 'POST',
+        //     cache: false,
+        //     url: _url +'/getAllGroupForTask',
+        //     headers: {
+        //         'Content-Type': 'application/x-www-form-urlencoded'
+        //     },
+        //     data: 'task_id='+task_id + '&teacher_id='+getUserID()
+        // };
+        //
+        // $http(req)
+        //     .success(function(data,status,headers,config){
+        //         $scope.groups = data;
+        //     }).error(function(data,status,headers,config){
+        // });
+    };
+
+
     $scope.goToTeacher = function () {
         $location.path('teacher');
     };
 
+    var req = {
+        method: 'POST',
+        cache: false,
+        url: _url +'/getAllApprovedTasks',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+    };
+
+    $http(req)
+        .success(function(data,status,headers,config){
+            $scope.allTasks = data;
+            $scope.allApprovedTasks= data;
+        }).error(function(data,status,headers,config){
+    });
 
     var req = {
         method: 'POST',
         cache: false,
-        url: _url +'/getGroupByUser',
+        url: _url +'/getMyTasks',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
-        data: 'teacher_id='+getUserID()
+        data: 'user_id='+getUserID()
     };
-
 
     $http(req)
         .success(function(data,status,headers,config){
-            $scope.info = data;
+            $scope.myTasks = data;
+        }).error(function(data,status,headers,config){
+    });
+
+    var req = {
+        method: 'POST',
+        cache: false,
+        url: _url +'/getAllGroupForTeacher',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        data: 'user_id='+getUserID()
+    };
+
+    $http(req)
+        .success(function(data,status,headers,config){
+            $scope.allGroups= data;
         }).error(function(data,status,headers,config){
     });
 
 
 
 
+
+
     $scope.sendTaskToGroup = function(){
-        //get group and task selection
-
-        var groups = document.getElementById("available_group");
-        var tasks = document.getElementById("available_task");
-        var group;
-        var task;
-
-        var selectedTask;
-
-        for (i = 0 ; i < groups.options.length ; i++){
-            group = groups.options[i];
-            if (group.selected == true){
-                for (j = 0 ; j < tasks.options.length ; j++){
-                    task = tasks.options[j];
-                    if (task.selected == true){
-                        break;
-                    }
-                }
-                break;
-            }
-        }
-
+        var group = selected_group;
+        var task = selected_task;
         var req = {
             method: 'POST',
             cache: false,
@@ -312,7 +343,7 @@ textrategiaApp.controller("GroupManagementController",function($scope,$http,$loc
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            data: 'group_id='+group.value + '&task_id=' + task.value
+            data: 'group_id='+group + '&task_id=' + task
         };
 
         // alert(JSON.stringify(req));

@@ -33,9 +33,6 @@
       <h1>שלום, {{teacherName}}!</h1>  <h3>לרשותך, רשימת הקבוצות שבניהולך: </h3>
     </div>
 
-      
-
-
       <div class="col-sm-3">
 
         <!-- Button -->
@@ -59,7 +56,7 @@
   
       <div class="col-sm-8">
         
-          <div class="col-sm-4 panel-group panel-hover" ng-repeat="y in info.groups">
+          <div class="col-sm-4 panel-group panel-hover" ng-repeat="y in allGroups">
             <div class="panel panel-default">
               <div class="panel-heading">
                 <h4 class="panel-title">
@@ -95,11 +92,21 @@
 
       <div class="form-group">
       <div class="col-sm-1"><br></div>
+        <!--NEED TO CHANGE LOCATION-->
+        <div class="col-sm-5">
+          <label for="task_type" class="control-label pull-right">בחר סוג מטלה:</label>
+
+          <select class="form-control inputstl" id="task_type" ng-model="selected_type" ng-change="changeTaskType()" size =2>
+            <option value="0">מאגר מטלות</option>
+            <option value="1">המטלות שלי</option>
+          </select>
+        </div>
+
         <!-- 1 -->
         <div class="col-sm-5">
           <label for="available_group" class="control-label pull-right">קבוצות זמינות:</label>
 
-          <select class="form-control inputstl" id="available_group" size =1>
+          <select class="form-control inputstl" id="available_group" ng-model="selected_group" size =1>
             <option ng-repeat="x in groups" value="{{x.GroupId}}">{{x.GroupName}}</option>
             <option ng-show="groups==0" disabled>אין קבוצות זמינות</option>
           </select>
@@ -108,8 +115,8 @@
         <!-- 2 -->
         <div class="col-sm-5">
           <label for="available_task" class="control-label pull-right" >מטלות זמינות:</label>
-          <select class="form-control inputstl" id="available_task" ng-model="selected" ng-change="getAllGroupForTask()" size=1>
-            <option ng-repeat="y in info.tasks" value="{{y.T_id}}">{{y.T_title}}</option>
+          <select class="form-control inputstl" id="available_task" ng-model="selected_task" ng-change="getAllGroupForTask()" size=1>
+            <option ng-repeat="y in allTasks" value="{{y.T_id}}">{{y.T_title}}</option>
             <option ng-show="info.tasks==0" disabled>אין מטלות זמינות</option>
           </select>
         </div>
