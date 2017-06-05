@@ -483,3 +483,26 @@ INSERT INTO `textra_db`.`instances_of_answers` (`studentId`, `T_id`, `Q_id`, `A_
 INSERT INTO `textra_db`.`instances_of_answers` (`studentId`, `T_id`, `Q_id`, `A_id`) VALUES ('1', '1', '4', '3');
 INSERT INTO `textra_db`.`instances_of_answers` (`studentId`, `T_id`, `Q_id`, `A_id`) VALUES ('1', '1', '4', '4');
 /*------------------------------------------*/
+
+
+/*******questions wtih multiple answers ********/
+
+INSERT INTO `textra_db`.`questions` (`Q_qeustion`, `isMultipuleAns`, `Q_mediaType`, `Q_media`, `Q_correctFB`, `Q_notCorrectFB`, `Q_skill`, `Q_difficulty`, `Q_proffession`, `Q_reported`, `Q_approved`, `Q_disabled`, `Q_owner`) 
+VALUES ('מה שמות הסטודנטים שבנו את טקסטרטגיה?', '1','text','רמז - שלושת המופלאים!','אח/ות על מלא את/ה!','וולאק לא משהו..','זיהוי מטרה מרכזית','קלה','הבעה','0','1','0','1');
+
+INSERT INTO `textra_db`.`questions` (`Q_qeustion`, `isMultipuleAns`, `Q_mediaType`, `Q_media`, `Q_correctFB`, `Q_notCorrectFB`, `Q_skill`, `Q_difficulty`, `Q_proffession`, `Q_reported`, `Q_approved`, `Q_disabled`, `Q_owner`) 
+VALUES ('איזה מהמקצועות הבאים נחשבים קשים בתואר שלנו?', '1','text','התואר שלנו - הנדסת תוכנה','אח/ות על מלא את/ה!','וולאק לא משהו..','זיהוי מטרה מרכזית','קלה','הבעה','0','1','0','1');
+
+/**********************************************/
+
+/***** answers ******/
+INSERT INTO `textra_db`.`answers` (`answer`, `Q_id`, `isCorrect`) VALUES ('הדס','19','1');
+INSERT INTO `textra_db`.`answers` (`answer`, `Q_id`, `isCorrect`) VALUES ('שקד','19','1');
+INSERT INTO `textra_db`.`answers` (`answer`, `Q_id`, `isCorrect`) VALUES ('ארנון','19','0');
+INSERT INTO `textra_db`.`answers` (`answer`, `Q_id`, `isCorrect`) VALUES ('סופרמן','19','0');
+INSERT INTO `textra_db`.`answers` (`answer`, `Q_id`, `isCorrect`) VALUES ('גק ספארו','19','0');
+INSERT INTO `textra_db`.`answers` (`answer`, `Q_id`, `isCorrect`) VALUES ('אלגוריתמים','20','1');
+INSERT INTO `textra_db`.`answers` (`answer`, `Q_id`, `isCorrect`) VALUES ('הסתברות','20','0');
+INSERT INTO `textra_db`.`answers` (`answer`, `Q_id`, `isCorrect`) VALUES ('מבוא להנדסת תוכנה','20','0');
+INSERT INTO `textra_db`.`answers` (`answer`, `Q_id`, `isCorrect`) VALUES ('אימות תכנה בשיטות פורמאליות','20','1');
+/*******************/
