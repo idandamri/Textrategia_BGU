@@ -70,6 +70,7 @@ app.post('/login', function (req, res) {
         });
     } catch (err) {
         console.log("Error - " + err);
+        res.status(404).send();
     }
 });
 
@@ -94,6 +95,7 @@ app.post('/getListOfTasks', function (req, res) {
         });
     } catch (err) {
         console.log("Error - " + err);
+        res.status(404).send();
     }
 });
 
@@ -143,6 +145,7 @@ app.post('/getQuestion', function (req, res) {
                                     });
                                 } catch (err) {
                                     console.log("Error - " + err);
+                                    res.status(404).send();
                                 }
                             });
                         }
@@ -156,11 +159,13 @@ app.post('/getQuestion', function (req, res) {
                     }
                 } catch (err) {
                     console.log("Error - " + err);
+                    res.status(404).send();
                 }
             }
         });
     } catch (err) {
         console.log("Error - " + err);
+        res.status(404).send();
     }
 });
 
@@ -183,6 +188,7 @@ app.post('/questionDone', function deleteQuestionFromQueue(req, res) {
         });
     } catch (err) {
         console.log("Error - " + err);
+        res.status(404).send();
     }
 });
 
@@ -206,6 +212,7 @@ app.post('/updateAnswer', function (req, res) {
         });
     } catch (err) {
         console.log("Error - " + err);
+        res.status(404).send();
     }
 });
 
@@ -233,6 +240,7 @@ app.post('/questionApproveOrNot', function (req, res) {
         });
     } catch (err) {
         console.log("Error - " + err);
+        res.status(404).send();
     }
 });
 
@@ -260,6 +268,7 @@ app.post('/disableQuestion', function (req, res) {
         });
     } catch (err) {
         console.log("Error - " + err);
+        res.status(404).send();
     }
 });
 
@@ -319,6 +328,7 @@ app.post('/addTaskToGroup', function (req, res) {
                                 });
                             } catch (err) {
                                 console.log("Error - " + err);
+                                res.status(404).send();
                             }
                         }
                     });
@@ -330,6 +340,7 @@ app.post('/addTaskToGroup', function (req, res) {
         });
     } catch (err) {
         console.log("Error - " + err);
+        res.status(404).send();
     }
 });
 
@@ -345,6 +356,7 @@ function makeid() {
         return text;
     } catch (err) {
         console.log("Error - " + err);
+        res.status(404).send();
     }
 }
 
@@ -390,12 +402,14 @@ app.post('/createGroup', function (req, res) {
                         });
                     } catch (err) {
                         console.log("Error - " + err);
+                        res.status(404).send();
                     }
                 }
             });
         });
     } catch (err) {
         console.log("Error - " + err);
+        res.status(404).send();
     }
 });
 
@@ -444,6 +458,7 @@ app.post('/reportQuestion', function (req, res) {
         });
     } catch (err) {
         console.log("Error - " + err);
+        res.status(404).send();
     }
 });
 
@@ -523,6 +538,7 @@ app.post('/editQuestion', function (req, res) {
         });
     } catch (err) {
         console.log("Error - " + err);
+        res.status(404).send();
     }
 });
 
@@ -615,6 +631,7 @@ app.post('/registerUser', function (req, res) {
                                                         });
                                                     } catch (err) {
                                                         console.log("Error - " + err);
+                                                        res.status(404).send();
                                                     }
                                                 }
                                             });
@@ -622,17 +639,20 @@ app.post('/registerUser', function (req, res) {
                                     });
                                 } catch (err) {
                                     console.log("Error - " + err);
+                                    res.status(404).send();
                                 }
                             }
                         });
                     }
                 } catch (err) {
                     console.log("Error - " + err);
+                    res.status(404).send();
                 }
             }
         });
     } catch (err) {
         console.log("Error - " + err);
+        res.status(404).send();
     }
 });
 
@@ -673,6 +693,7 @@ app.post('/addUsersToGroup', function (req, res) {
         }
     } catch (err) {
         console.log("Error - " + err);
+        res.status(404).send();
     }
 });
 
@@ -709,6 +730,7 @@ app.post('/getGroupByUser', function (req, res) {
         });
     } catch (err) {
         console.log("Error - " + err);
+        res.status(404).send();
     }
 });
 
@@ -728,6 +750,7 @@ app.post('/getAllTasks', function (req, res) {
         });
     } catch (err) {
         console.log("Error - " + err);
+        res.status(404).send();
     }
 });
 
@@ -747,6 +770,7 @@ app.post('/getMyTasks', function (req, res) {
         });
     } catch (err) {
         console.log("Error - " + err);
+        res.status(404).send();
     }
 });
 
@@ -765,6 +789,7 @@ app.post('/getAllApprovedTasks', function (req, res) {
         });
     } catch (err) {
         console.log("Error - " + err);
+        res.status(404).send();
     }
 });
 
@@ -784,6 +809,7 @@ app.post('/getMyTasks', function (req, res) {
         });
     } catch (err) {
         console.log("Error - " + err);
+        res.status(404).send();
     }
 });
 
@@ -850,11 +876,13 @@ app.post('/addQuestion', function (req, res) {
                     });
                 } catch (err) {
                     console.log("Error - " + err);
+                    res.status(404).send();
                 }
             }
         });
     } catch (err) {
         console.log("Error - " + err);
+        res.status(404).send();
     }
 });
 
@@ -906,6 +934,7 @@ app.post('/createTask', function (req, res) {
                             });
                         } catch (err) {
                             console.log("Error - " + err);
+                            res.status(404).send();
                         }
                     }
                 });
@@ -913,6 +942,7 @@ app.post('/createTask', function (req, res) {
         });
     } catch (err) {
         console.log("Error - " + err);
+        res.status(404).send();
     }
 });
 
@@ -933,6 +963,7 @@ app.post('/getAllTasks', function (req, res) {
         });
     } catch (err) {
         console.log("Error - " + err);
+        res.status(404).send();
     }
 });
 
@@ -957,6 +988,7 @@ app.post('/getAllGroupForTask', function (req, res) {
         });
     } catch (err) {
         console.log("Error - " + err);
+        res.status(404).send();
     }
 });
 
@@ -980,6 +1012,7 @@ app.post('/checkIfGroupCodeExists', function (req, res) {
         });
     } catch (err) {
         console.log("Error - " + err);
+        res.status(404).send();
     }
 });
 
@@ -1000,6 +1033,7 @@ app.post('/getStudentListFromGroupId', function (req, res) {
         });
     } catch (err) {
         console.log("Error - " + err);
+        res.status(404).send();
     }
 });
 
@@ -1020,6 +1054,7 @@ app.post('/getGroupsBySchool', function (req, res) {
         });
     } catch (err) {
         console.log("Error - " + err);
+        res.status(404).send();
     }
 });
 
@@ -1041,6 +1076,7 @@ app.post('/getValidQuestions', function (req, res) {
         });
     } catch (err) {
         console.log("Error - " + err);
+        res.status(404).send();
     }
 });
 
@@ -1123,6 +1159,7 @@ app.post('/generateRandTask', function (req, res) {
                                                 });
                                             } catch (err) {
                                                 console.log("Error - " + err);
+                                                res.status(404).send();
                                             }
                                         }
                                     });
@@ -1132,16 +1169,19 @@ app.post('/generateRandTask', function (req, res) {
                                 }
                             } catch (err) {
                                 console.log("Error - " + err);
+                                res.status(404).send();
                             }
                         }
                     });
                 } catch (err) {
                     console.log("Error - " + err);
+                    res.status(404).send();
                 }
             }
         });
     } catch (err) {
         console.log("Error - " + err);
+        res.status(404).send();
     }
 });
 
@@ -1163,6 +1203,7 @@ app.post('/getGroupsByTeacherAndCity', function (req, res) {
         });
     } catch (err) {
         console.log("Error - " + err);
+        res.status(404).send();
     }
 });
 
@@ -1203,11 +1244,13 @@ app.post('/getAllTeachersBySchoolAndCity', function (req, res) {
                     }
                 } catch (err) {
                     console.log("Error - " + err);
+                    res.status(404).send();
                 }
             }
         });
     } catch (err) {
         console.log("Error - " + err);
+        res.status(404).send();
     }
 });
 
@@ -1233,6 +1276,7 @@ app.post('/getAllStudentForGroup', function (req, res) {
         });
     } catch (err) {
         console.log("Error - " + err);
+        res.status(404).send();
     }
 });
 
@@ -1259,6 +1303,7 @@ app.post('/getAllGroupForTeacher', function (req, res) {
         });
     } catch (err) {
         console.log("Error - " + err);
+        res.status(404).send();
     }
 });
 
@@ -1284,6 +1329,7 @@ app.post('/getAllSchollByCity', function (req, res) {
         });
     } catch (err) {
         console.log("Error - " + err);
+        res.status(404).send();
     }
 });
 
@@ -1309,6 +1355,7 @@ app.post('/getGroupBySchoolAndCity', function (req, res) {
         });
     } catch (err) {
         console.log("Error - " + err);
+        res.status(404).send();
     }
 });
 
@@ -1329,6 +1376,7 @@ app.post('/addNewSchool', function (req, res) {
         });
     } catch (err) {
         console.log("Error - " + err);
+        res.status(404).send();
     }
 });
 
@@ -1357,6 +1405,7 @@ app.post('/getQuestionsByParamter', function (req, res) {
         });
     } catch (err) {
         console.log("Error - " + err);
+        res.status(404).send();
     }
 });
 
@@ -1381,6 +1430,7 @@ app.post('/getAllSkills', function (req, res) {
         });
     } catch (err) {
         console.log("Error - " + err);
+        res.status(404).send();
     }
 });
 
@@ -1428,6 +1478,7 @@ app.post('/sendTaskToStudents', function (req, res) {
                         }
                     } catch (err) {
                         console.log("Error - " + err);
+                        res.status(404).send();
                     }
                 }
             });
@@ -1437,6 +1488,7 @@ app.post('/sendTaskToStudents', function (req, res) {
         }
     } catch (err) {
         console.log("Error - " + err);
+        res.status(404).send();
     }
 });
 

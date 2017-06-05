@@ -2,8 +2,8 @@
 204 - empty - no such question/task/groups..
 400 - Error, general error with server and DB
 401 - Email already exists
+404 - Server crashed
 409 - already registered
 415 - not enough questions to create task
-404 - Server crashed
 
 676 - end of task (no instances left)
