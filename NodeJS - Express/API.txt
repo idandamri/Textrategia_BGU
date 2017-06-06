@@ -180,7 +180,26 @@ API:
 	quest_skill, quest_difficulty, quest_proffesion, quest_is_approved, quest_disabled, who_created,
 	answer1, answer2, answer3, answer4,correctAnswerIndex
     output: status 200 "inserted!" /400 - Insertion error - check DB (group/student does not exist or relation error!)
-    example to output : 
+    example to input :
+     {
+                     "question_title": "testQ title",
+                     "is_multiple_ans": "0",
+                     "question_media": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec qu",
+                     "question_media_type": "text",
+                     "quest_correct_fb": "well done",
+                     "quest_incorrect_fb": "it was not the correct answer",
+                     "quest_skill": "testing skills!",
+                     "quest_difficulty": "easy",
+                     "quest_proffesion": "test profesion",
+                     "quest_is_approved": "1",
+                     "who_created": "1",
+                     "quest_disabled": "0",
+                     "answer1": "a",
+                     "answer2": "b",
+                     "answer3": "c",
+                     "answer4": "d",
+                     "correctAnswerIndex": "2"
+                 }
 	
 16.post('/createTask')
 	input:t_title, t_description, t_owner, t_approved, questions

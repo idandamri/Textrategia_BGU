@@ -164,7 +164,7 @@ module.exports =
         },
 
         getFullQuestionByQid: function (q_id) {
-            return "select T.Q_id, T.Q_question, T.isMultipuleAns, " +
+            return "select T.Q_id, T.Q_qeustion, T.isMultipuleAns, " +
                 "T.Q_correctFB, T.Q_mediaType, T.Q_media," +
                 "T.Q_notCorrectFB, T.Q_skill, T.Q_difficulty," +
                 "T.Q_proffession, T.Q_approved, T.Q_disabled " +
@@ -183,7 +183,7 @@ module.exports =
      }*/
 
     addNewTask: function (t_title, t_description, t_owner, t_approved) {
-        return "insert into textra_db.tasks values(null,'" + t_title + "','" + t_description + "',"
+        return "insert into textra_db.tasks values(null," + t_title + "," + t_description + ","
             + t_owner + "," + t_approved + ");";
     },
 

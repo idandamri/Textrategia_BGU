@@ -660,7 +660,7 @@ app.post('/registerUser', function (req, res) {
 app.post('/addUsersToGroup', function (req, res) {
 
     try {
-        var users = mysql.escape(req.body.users);
+        var users = req.body.users;
         var groupId = mysql.escape(req.body.group_id);
         var indx = 0;
         var queriesArr = [];
@@ -828,7 +828,7 @@ app.post('/addQuestion', function (req, res) {
         var qIsApp = mysql.escape(req.body.quest_is_approved);
         var qDisabled = mysql.escape(req.body.quest_disabled);
         var qWhoCreated = mysql.escape(req.body.who_created);
-        var correctAnswerIndex = mysql.escape(req.body.correctAnswerIndex);
+        var correctAnswerIndex = req.body.correctAnswerIndex;
         var answers = [];
         answers.push(mysql.escape(req.body.answer1));
         answers.push(mysql.escape(req.body.answer2));
@@ -916,7 +916,7 @@ app.post('/createTask', function (req, res) {
                         try {
                             tId = taskRow[0].T_id;
                             var questionsArray = [];
-                            questionsForTask = questionsForTask.split(",");
+                            // questionsForTask = questionsForTask.split(",");
                             for (i = 0; i < questionsForTask.length; i++) {
                                 var qId = questionsForTask[i];
                                 questionsArray[i] = queries.joinNewTaskWithQuestion(tId, qId);
