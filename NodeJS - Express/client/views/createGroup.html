@@ -11,8 +11,8 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <!-- <li><a href="student.html">תלמיד</a></li> -->
-        <li><a href="#teacher">מורה</a></li>
-        <li class="disabled"><a href="#" >הקבוצות שלי</a></li>
+        <li ng-show="!isAdmin"><a href="#teacher">מורה</a></li>
+        <li ng-show="isAdmin"><a href="#superUser">משתמש על</a></li>
       </ul>
       <p class="navbar-text">בהצלחה</p>
       <ul class="nav navbar-nav navbar-right">
@@ -39,7 +39,7 @@
 
           <!--  2 -->
             <label class="control-label pull-right">סוג קבוצה:&nbsp;&nbsp;</label>
-            <select required class="form-control inputstl" ng-model="selected_group_master" id="group_master">
+            <select required class="form-control inputstl" ng-model="selected_group_master" id="group_master" style="padding: 5px 5px;">
               <option value=1>קבוצת-אם תלמידים</option>
               <!--<option value=2>קבוצת תלמידים</option>-->
               <!--<option value=3>קבוצת-אם מורים</option>-->
@@ -57,7 +57,7 @@
               <!--&lt;!&ndash; <option value=0>לא</option> &ndash;&gt;-->
             <!--</select>-->
 
-          <select required class="form-control inputstl" ng-model="selected_school" id="group_school" ng-change="getTeacherByCityAndSchool()">
+          <select required class="form-control inputstl" ng-model="selected_school" id="group_school" ng-change="getTeacherByCityAndSchool()" style="padding: 5px 5px;">
             <option ng-repeat="y in group_school" value="{{y.School}}">{{y.School}}</option>
             <!--<option ng-show="group_school==0" disabled>אין בתי ספר קיימים</option>-->
           </select>
@@ -65,7 +65,7 @@
 
           <label class="control-label pull-right">בחר מורה אחראי:&nbsp;&nbsp;</label>
 
-          <select required class="form-control inputstl" ng-model="selected_teacher" id="teachers">
+          <select required class="form-control inputstl" ng-model="selected_teacher" id="teachers" style="padding: 5px 5px;">
             <option ng-repeat="y in teachers" value="{{y.PersonalID}}">{{y.FirstName}}</option>
           </select>
 
@@ -78,12 +78,12 @@
           <!-- 1 -->
           <label class="control-label pull-right">הכנס שם קבוצה:&nbsp;&nbsp;</label>
           <!-- <span class="label label-danger"> Danger Label</span> -->
-          <input type="text" ng-model="text_group" name="groupName" class="form-control inputstl pull-right" required placeholder="הכנס שם קבוצה:">
+          <input type="text" ng-model="text_group" name="groupName" class="form-control inputstl pull-right" required placeholder="הכנס שם קבוצה:" style="padding: 5px 5px;">
 
            <!-- 3 -->
            
            <label class="control-label pull-right">בחר עיר:&nbsp;&nbsp;</label>
-            <select class="form-control inputstl" id="group_city"  ng-model="selected_city" ng-change="getSchoolByCity()" size=5>
+            <select class="form-control inputstl" id="group_city"  ng-model="selected_city" ng-change="getSchoolByCity()" size=5 style="padding: 5px 5px;">
               <option ng-repeat="city in myCities.cities" value={{city}}>{{city}}</option>
             </select>
 

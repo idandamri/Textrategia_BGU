@@ -144,6 +144,13 @@ textrategiaApp.controller("CreatTaskController",function($scope,$http,$location)
 
     };
 
+        if (getUserType()==2){
+        $scope.isAdmin = true;
+    } else {
+        $scope.isAdmin = false; 
+    }
+
+
 
 
     // ####################################################
@@ -378,6 +385,13 @@ textrategiaApp.controller("CreateGroupController",function($scope,$http,$locatio
     $scope.goToSuperUser = function () {
         $location.path('superUser');
     };
+
+    if (getUserType()==2){
+        $scope.isAdmin = true;
+    } else {
+        $scope.isAdmin = false; 
+    }
+
 
     // ####################################################
     // GET FROM SERVER SCHOOL FROM THIS CITY
