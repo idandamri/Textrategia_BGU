@@ -471,6 +471,24 @@ output: status 200 / status 204 - not enough questions / 400 - "DB Error"
 exmple :
 
 
+33. post('getReported')
+input:
+output: status 200 / status 204 - not enough questions / 400 - "DB Error"
+exmple :
+
+
+33. post('getApprovedQuestion')
+input:
+output: status 200 / status 204 - not enough questions / 400 - "DB Error"
+exmple :
+
+
+33. post('getUnapprovedQuestion')
+input:
+output: status 200 / status 204 - not enough questions / 400 - "DB Error"
+exmple :
+
+
 0-student
 1-teacher
 2-superuser

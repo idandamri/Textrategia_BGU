@@ -1380,6 +1380,73 @@ app.post('/addNewSchool', function (req, res) {
     }
 });
 
+app.post('/getReported', function (req, res) {
+    try {
+        var query = "select * from textra_db.questions where Q_reported>=1;";
+        console.log('\n' + query + '\n');
+        connection.query(query, function (err, questions) {
+            if (err) {
+                console.log(err);
+                res.status(400).send("DB error");
+            }
+            else {
+                if (questions != null && questions.length == 0) {
+                    res.status(204).send();
+                }
+                res.status(200).send(questions);
+            }
+        });
+    } catch (err) {
+        console.log("Error - " + err);
+        res.status(404).send();
+    }
+});
+
+app.post('/getApprovedQuestion', function (req, res) {
+    try {
+        var query = "select * from textra_db.questions where Q_approved=1;";
+        console.log('\n' + query + '\n');
+        connection.query(query, function (err, questions) {
+            if (err) {
+                console.log(err);
+                res.status(400).send("DB error");
+            }
+            else {
+                if (questions != null && questions.length == 0) {
+                    res.status(204).send();
+                }
+                res.status(200).send(questions);
+            }
+        });
+    } catch (err) {
+        console.log("Error - " + err);
+        res.status(404).send();
+    }
+});
+
+
+app.post('/getUnapprovedQuestion', function (req, res) {
+    try {
+        var query = "select * from textra_db.questions where Q_approved=0;";
+        console.log('\n' + query + '\n');
+        connection.query(query, function (err, questions) {
+            if (err) {
+                console.log(err);
+                res.status(400).send("DB error");
+            }
+            else {
+                if (questions != null && questions.length == 0) {
+                    res.status(204).send();
+                }
+                res.status(200).send(questions);
+            }
+        });
+    } catch (err) {
+        console.log("Error - " + err);
+        res.status(404).send();
+    }
+});
+
 app.post('/getQuestionsByParamter', function (req, res) {
     try {
         var media_types = mysql.escape(req.body.media_types.split(","));
@@ -1455,7 +1522,7 @@ app.post('/sendTaskToStudents', function (req, res) {
                         }
                         else {
                             var questionsArray = [];
-                            var j = 0
+                            var j = 0;
                             while (j < studentsArray.length) {
                                 var i = 0;
                                 while (i < questions.length) {
@@ -1496,7 +1563,7 @@ app.post('/sendTaskToStudents', function (req, res) {
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '123456',//'1q2w3e4r' to upload*/
+    password: '1q2w3e4r',//'123456' to upload*/
     database: 'textra_db',
     multipleStatements: true
 });
