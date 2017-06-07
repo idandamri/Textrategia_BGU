@@ -506,3 +506,9 @@ INSERT INTO `textra_db`.`answers` (`answer`, `Q_id`, `isCorrect`) VALUES ('הס�
 INSERT INTO `textra_db`.`answers` (`answer`, `Q_id`, `isCorrect`) VALUES ('מבוא להנדסת תוכנה','20','0');
 INSERT INTO `textra_db`.`answers` (`answer`, `Q_id`, `isCorrect`) VALUES ('אימות תכנה בשיטות פורמאליות','20','1');
 /*******************/
+
+/************ cities and schools **************/
+INSERT INTO `textra_db`.`cities_and_schools` (`School`, `City`) VALUES ('מבועות','אשדוד');
+INSERT INTO `textra_db`.`cities_and_schools` (`School`, `City`) VALUES ('בית ספר אשכולות','אשדןד');
+INSERT INTO `textra_db`.`cities_and_schools` (`School`, `City`) VALUES ('מענית','באר שבע');
+/**********************************************/
