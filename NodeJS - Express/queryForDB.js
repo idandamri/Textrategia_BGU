@@ -183,7 +183,7 @@ module.exports =
      }*/
 
     addNewTask: function (t_title, t_description, t_owner, t_approved) {
-        return "insert into textra_db.tasks values(null,'" + t_title + "','" + t_description + "',"
+        return "insert into textra_db.tasks values(null," + t_title + "," + t_description + ","
             + t_owner + "," + t_approved + ");";
     },
 

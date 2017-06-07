@@ -381,6 +381,7 @@ textrategiaApp.controller("CreateGroupController",function($scope,$http,$locatio
 
     $scope.teacherName = getUserName();
     $scope.myCities = cities;
+    $scope.isStudentGroup = true;
 
     $scope.goToSuperUser = function () {
         $location.path('superUser');
@@ -390,6 +391,17 @@ textrategiaApp.controller("CreateGroupController",function($scope,$http,$locatio
         $scope.isAdmin = true;
     } else {
         $scope.isAdmin = false; 
+    }
+
+    $scope.changeGroupType = function () {
+        type = $scope.selected_group_master;
+        /*teache group*/
+        if (type ==0){
+            $scope.isStudentGroup = true;
+        }
+        else {
+            $scope.isStudentGroup = false;
+        }
     }
 
 
@@ -458,16 +470,19 @@ textrategiaApp.controller("CreateGroupController",function($scope,$http,$locatio
     };
 
 
-
-
-
     $scope.createGroup = function () {
         var groupName = $scope.text_group;
         var city = $scope.selected_city;
         var school = $scope.selected_school;
         var type= $scope.selected_group_master;
 
-        var teacher_id = $scope.selected_teacher;
+        var teacher_id;
+        if ($scope.isStudentGroup == true){
+            teacher_id = $scope.selected_teacher;
+        }
+        else {
+            teacher_id = getUserID(); /*teacher id = super user id*/
+        }
 
         var req = {
             method: 'POST',
