@@ -27,135 +27,116 @@
   <div class="container" id="c_1">
 
 <!-- GROUP MANAGMENT MODE -->
-  <div class="row" ng-show="!send_task_mod">
+<div class="row" ng-show="!send_task_mod">
 
-    <div class="col-sm-12" >
-      <h1>שלום, {{teacherName}}!</h1>  <h3>לרשותך, רשימת הקבוצות שבניהולך: </h3>
+  <div class="col-sm-12" >
+    <h1>שלום, {{teacherName}}!</h1>  <h3>לרשותך, רשימת הקבוצות שבניהולך: </h3>
+  </div>
+
+  <div class="col-sm-3">
+
+    <!-- Button -->
+    <button ng-click="sendTaskMode()" class="btn btn-info" style="font-size: 15px;">
+     <span class="glyphicon glyphicon-send" style="font-size: 40px;"></span> 
+      <p> שליחת מטלות לקבוצה </p>
+    </button>
+
+  </div>
+
+  <div class="col-sm-1"></div>
+
+  <div class="col-sm-8">
+ 
+    <div class="col-sm-4 panel-group panel-hover" ng-repeat="y in allGroups">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <p><bold>{{y.GroupName}}</bold></p>
+          </h4>
+        </div>
+
+        <div class="panel">
+          <div class="panel-body">קוד קבוצה: <div class="text-info"> {{y.GroupeCode}}</div></div>
+          <!-- <div class="panel-footer">Panel Footer</div> -->
+        </div>
+
+      </div>
     </div>
 
-      <div class="col-sm-3">
+  </div>
+    <div class="col-sm-12"><br></div>
 
-        <!-- Button -->
-         <button ng-click="sendTaskMode()" class="btn btn-info" style="font-size: 15px;" >
-           <span class="glyphicon glyphicon-send" style="font-size: 40px;"></span> 
-           <p>
-           שליחת מטלות לקבוצה
-           </p>
-          </button>
-          
+</div> <!-- /GROUP MANAGMENT MODE -->
 
-      </div>
-
-      <div class="col-sm-1"></div>
-<!-- 
-         <select class="form-control inputstl" id="available_task" ng-model="selected"  size=1>
-            <option ng-repeat="y in info.groups" value="{{y.GroupName}}">{{y.GroupName}}</option>
-            <option ng-show="info.groups==0" disabled>אין מטלות זמינות</option>
-          </select>
- -->
-  
-      <div class="col-sm-8">
-        
-          <div class="col-sm-4 panel-group panel-hover" ng-repeat="y in allGroups">
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h4 class="panel-title">
-                  <p><bold>{{y.GroupName}}</bold></p>
-                </h4>
-              </div>
-              <div class="panel">
-                <div class="panel-body">קוד קבוצה: <div class="text-info"> {{y.GroupeCode}}</div></div>
-                <!-- <div class="panel-footer">Panel Footer</div> -->
-              </div>
-            </div>
-          </div>
-
-
-      </div>
-      <div class="col-sm-12"><br></div>
-
-
-      
-  
-
-
-      <!-- <div class="col-sm-4"></div> -->
-
-</div>
 
 <!-- SEND TASK MODE -->
-    <div class="row" ng-show="send_task_mod">
-
-      <div class="col-sm-12">  <h3>בחר קבוצה והצמד לה מטלה</h3>  </div>
-
-      <br><br>
-
-      <div class="form-group">
-      <div class="col-sm-1"><br></div>
-        <!--NEED TO CHANGE LOCATION-->
-        <div class="col-sm-5">
-          <label for="task_type" class="control-label pull-right">בחר סוג מטלה:</label>
-
-          <select class="form-control inputstl" id="task_type" ng-model="selected_type" ng-change="changeTaskType()" size =2>
-            <option value="0">מאגר מטלות</option>
-            <option value="1">המטלות שלי</option>
-          </select>
-        </div>
-
-        <!-- 1 -->
-        <div class="col-sm-5">
-          <label for="available_group" class="control-label pull-right">קבוצות זמינות:</label>
-
-          <select class="form-control inputstl" id="available_group" ng-model="selected_group" size =1>
-            <option ng-repeat="x in groups" value="{{x.GroupId}}">{{x.GroupName}}</option>
-            <option ng-show="groups==0" disabled>אין קבוצות זמינות</option>
-          </select>
-        </div>
-
-        <!-- 2 -->
-        <div class="col-sm-5">
-          <label for="available_task" class="control-label pull-right" >מטלות זמינות:</label>
-          <select class="form-control inputstl" id="available_task" ng-model="selected_task" ng-change="getAllGroupForTask()" size=1>
-            <option ng-repeat="y in allTasks" value="{{y.T_id}}">{{y.T_title}}</option>
-            <option ng-show="info.tasks==0" disabled>אין מטלות זמינות</option>
-          </select>
-        </div>
-
-      <div class="col-sm-1"><br></div>
-      </div>
-
-      <div class="col-sm-12"><br></div>
-
-      <div class="col-sm-12 text-center">
-
-        <!-- Button -->
-         <button ng-click="groupManagmentMode()" class="btn btn-info" style="font-size: 15px;" >
-           <span class="glyphicon glyphicon-education" style="font-size: 40px;"></span> 
-           <p>
-            <span class="glyphicon glyphicon-menu-right"></span> 
-            חזור לניהול קבוצות
-           </p>
-          </button> 
-
-           <!-- Button -->
-         <button ng-click="sendTaskToGroup()" class="btn btn-info" style="font-size: 15px;" data-toggle="modal" data-target="#fedbackModal">
-           <span class="glyphicon glyphicon-send" style="font-size: 40px;"></span> 
-           <p>
-            שלח מטלה לקבוצה
-           </p>
-          </button>
+<div class="row" ng-show="send_task_mod">
 
 
 
+  <div class="col-sm-12">  <h3>בחר קבוצה והצמד לה מטלה</h3> 
+    <label for="task_type" class="control-label pull-right">בחר סוג מטלה:</label>
 
-      </div>
+   </div>
 
-    </div> <!-- ng-show send task -->
+  <br><br>
+
+  <div class="form-group">
+
+          <div class="col-sm-12 text-center">
+
+            <div class="btn-group btn-group-lg" data-toggle="buttons">
+              <!-- Button -->
+              <button id="choiseButton0" ng-click="changeTaskType(0)" class="btn btn-info squirish-button1" style="font-size: 15px;" >
+              <p>מאגר מטלות</p>                        </button> 
+
+              <!-- Button -->
+              <button id="choiseButton1" ng-click="changeTaskType(1)" class="btn btn-info squirish-button1" style="font-size: 15px;" >
+              <p>המטלות שלי</p>                          </button>
+            </div>
+          </div>          
+
+           <div class="col-sm-1"></div>
+          <!-- 1 -->
+           <div class="col-sm-10" style = "padding: 60px;">
+            <label for="available_task" class="control-label pull-right" >מטלות זמינות:</label>
+            <select class="form-control inputstl" id="available_task" ng-model="selected_task" ng-change="getAllGroupForTask()" size=1>
+              <option ng-repeat="y in allTasks" value="{{y.T_id}}">{{y.T_title}}</option>
+              <option ng-show="info.tasks==0" disabled>אין מטלות זמינות</option>
+            </select>
+
+          <!-- 2 -->
+            <label for="available_group" class="control-label pull-right">קבוצות זמינות:</label>
+            <select class="form-control inputstl" id="available_group" ng-model="selected_group" size =1>
+              <option ng-repeat="x in groups" value="{{x.GroupId}}">{{x.GroupName}}</option>
+              <option ng-show="groups==0" disabled>אין קבוצות זמינות</option>
+            </select>
+          </div>
+             
+           <div class="col-sm-1"></div>
+
+  </div> <!-- /form-group -->
+
+  <div class="col-sm-12"><br></div>
+
+  <div class="col-sm-12 text-center">
+
+    <!-- Button -->
+     <button ng-click="groupManagmentMode()" class="btn btn-success squirish-button1" style="font-size: 15px;" >
+        <span class="glyphicon glyphicon-menu-right"><span class="glyphicon glyphicon-education" style="font-size: 40px;"> </span> </span> 
+       <p>חזור לניהול קבוצות</p>          </button> 
+
+       <!-- Button -->
+     <button ng-click="sendTaskToGroup()" class="btn btn-success squirish-button1" style="font-size: 15px;" data-toggle="modal" data-target="#fedbackModal">
+       <span class="glyphicon glyphicon-send" style="font-size: 40px;"></span> 
+       <p>שלח מטלה לקבוצה</p>          </button>
+
+  </div>
+
+</div> <!-- ng-show send task -->
 
   </div>
 </div>
-
-
 
       <!-- Modal -->
       <div class="modal fade" id="fedbackModal" tabindex="-1" role="dialog" aria-labelledby="myCurrectModalLabel">

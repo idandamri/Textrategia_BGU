@@ -206,6 +206,9 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
 
 
 textrategiaApp.controller("GroupManagementController",function($scope,$http,$location){
+
+    $().button('toggle')
+    
     $scope.teacherName = getUserName();
 
     $scope.doneSendTask =false;         // different model button in case of server error
@@ -249,30 +252,23 @@ textrategiaApp.controller("GroupManagementController",function($scope,$http,$loc
         });
     };
 
+    $scope.choise = $scope.color;
 
-    $scope.changeTaskType= function () {
-        type = $scope.selected_type;
-        if (type==0){
+    $scope.changeTaskType= function (param) {
+        var choiseButton0 = document.getElementById("choiseButton0");
+        var choiseButton1 = document.getElementById("choiseButton1");
+
+
+        if (param==0){
             $scope.allTasks =$scope.allApprovedTasks;
+             choiseButton0.style.backgroundColor  =  "#269ABC";
+             choiseButton1.style.backgroundColor  = "#5bc0de";
         }
         else {
             $scope.allTasks =$scope.myTasks;
+            choiseButton0.style.backgroundColor  =  "#5bc0de";
+             choiseButton1.style.backgroundColor  = "#269ABC";
         }
-        // var req = {
-        //     method: 'POST',
-        //     cache: false,
-        //     url: _url +'/getAllGroupForTask',
-        //     headers: {
-        //         'Content-Type': 'application/x-www-form-urlencoded'
-        //     },
-        //     data: 'task_id='+task_id + '&teacher_id='+getUserID()
-        // };
-        //
-        // $http(req)
-        //     .success(function(data,status,headers,config){
-        //         $scope.groups = data;
-        //     }).error(function(data,status,headers,config){
-        // });
     };
 
 
