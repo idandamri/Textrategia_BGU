@@ -1086,7 +1086,7 @@ app.post('/generateRandTask', function (req, res) {
 
     try {
         var stud_id = req.body.student_id;
-        var tTitle = "מטלה לתרגול עצמאי";
+        var tTitle = "\'מטלה לתרגול עצמאי\'";
         var tOwner = 6;
         var tApproved = 1;
         var num = req.body.rand_num;
@@ -1094,7 +1094,7 @@ app.post('/generateRandTask', function (req, res) {
         var skills = req.body.skills.split(",");
         var difficulties = req.body.difficulties.split(",");
 
-        var tDesc = "המטלה נוצרה ב- " + moment().format('l') + " , " + moment().format('LTS');
+        var tDesc = "\'"+"המטלה נוצרה ב- " + moment().format('l') + " , " + moment().format('LTS')+"\'";
 
         var query = queries.addNewTask(tTitle, tDesc, tOwner, tApproved);
         console.log('\n' + query + '\n');
@@ -1166,6 +1166,8 @@ app.post('/generateRandTask', function (req, res) {
                                     });
                                 }
                                 else {
+                                    taskId = taskRow[0].T_id;
+                                    queryDel = queries.deleteTaskForNotEnoughQuestions(taskId);
                                     res.status(415).send("Not Enough questions to generate task by filtering");
                                 }
                             } catch (err) {
@@ -1501,6 +1503,32 @@ app.post('/getAllSkills', function (req, res) {
         res.status(404).send();
     }
 });
+
+
+// var storage =   multer.diskStorage({
+//     destination: function (req, file, callback) {
+//         callback(null, './uploads');
+//     },
+//     filename: function (req, file, callback) {
+//         callback(null, var afterDot = file.originalname.substr(file.originalname.indexOf('.'));
+//         );
+//     }
+// });
+//
+// var upload = multer({ storage : storage}).single('userPhoto');
+//
+// app.get('/',function(req,res){
+//     res.sendFile(__dirname + "/index.html");
+// });
+//
+// app.post('/api/photo',function(req,res){
+//     upload(req,res,function(err) {
+//         if(err) {
+//             res.status(400).send(req);
+//         }
+//         res.status(200).send(req);
+//     });
+// });
 
 
 app.post('/sendTaskToStudents', function (req, res) {

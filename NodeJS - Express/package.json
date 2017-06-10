@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "dependencies": {
     "express": "^4.13.4",
-    "mysql": "^2.10.2"
+    "mysql": "^2.10.2",
     "multer": "1.3.0"
   },
   "devDependencies": {
@@ -14,5 +14,5 @@
   "scripts": {
     "mocha": "./node_modules/mocha/bin/mocha  --harmony ./tests/"
     "test": "./node_modules/./bin/mocha  -V"
-  },
+  }
 }

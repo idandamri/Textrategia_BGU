@@ -187,6 +187,10 @@ module.exports =
             + t_owner + "," + t_approved + ");";
     },
 
+    deleteTaskForNotEnoughQuestions: function (task_id) {
+        return "delete from textra_db.tasks where T_id = " + task_id;
+    },
+
     addNewTaskGenRand: function (t_title, t_description, t_owner, t_approved) {
         return "insert into textra_db.tasks values(null," + t_title + "," + t_description + "',"
             + t_owner + "," + t_approved + ") RETURNING T_id;";

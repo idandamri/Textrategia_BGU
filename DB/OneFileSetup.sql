@@ -511,4 +511,5 @@ INSERT INTO `textra_db`.`answers` (`answer`, `Q_id`, `isCorrect`) VALUES ('אי�
 INSERT INTO `textra_db`.`cities_and_schools` (`School`, `City`) VALUES ('מבועות','אשדוד');
 INSERT INTO `textra_db`.`cities_and_schools` (`School`, `City`) VALUES ('בית ספר אשכולות','אשדןד');
 INSERT INTO `textra_db`.`cities_and_schools` (`School`, `City`) VALUES ('מענית','באר שבע');
+INSERT INTO `textra_db`.`cities_and_schools` (`School`, `City`) VALUES ('אשכולות','אשדוד');
 /**********************************************/
