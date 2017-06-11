@@ -50,6 +50,10 @@ textrategiaApp.config(function($routeProvider){
         templateUrl:'views/creatTask.html',
         controller :'CreatTaskController'
     })
+    .when('/questionManagment', {
+        templateUrl:'views/questionManagment.html',
+        controller :'QuestionManagmentController'
+    })
 
 // ~~~~~~~~~~~~ Teacher routs ~~~~~~~~~~~~~
 	.when('/teacher', {
