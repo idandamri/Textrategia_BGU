@@ -4,7 +4,7 @@ var mysql = require('mysql');
 var _ = require('underscore');
 var moment = require('moment');
 var cors = require('cors');
-var multer  = require('multer');
+var multer = require('multer');
 /*var path = */
 require('path');
 var app = express();
@@ -1090,11 +1090,26 @@ app.post('/generateRandTask', function (req, res) {
         var tOwner = 6;
         var tApproved = 1;
         var num = req.body.rand_num;
-        var media_types = req.body.media_types.split(",");
-        var skills = req.body.skills.split(",");
-        var difficulties = req.body.difficulties.split(",");
+        var media_types;
+        if (req.body.media_types != "") {
+            media_types = req.body.media_types.split(",");
+        } else {
+            media_types = [];
+        }
+        var skills;
+        if (req.body.skills != "") {
+            skills = req.body.skills.split(",")
+        } else {
+            skills = [];
+        }
+        var difficulties;
+        if (req.body.difficulties != "") {
+            difficulties = req.body.difficulties.split(",");
+        } else {
+            difficulties = [];
+        }
 
-        var tDesc = "\'"+"המטלה נוצרה ב- " + moment().format('l') + " , " + moment().format('LTS')+"\'";
+        var tDesc = "\'" + "המטלה נוצרה ב- " + moment().format('l') + " , " + moment().format('LTS') + "\'";
 
         var query = queries.addNewTask(tTitle, tDesc, tOwner, tApproved);
         console.log('\n' + query + '\n');
@@ -1109,10 +1124,27 @@ app.post('/generateRandTask', function (req, res) {
                     // [0].T_id;
                     // var query = queries.getQuestionsByParamter(JSON.stringify(media_types[0]), JSON.stringify(skills[0]),
                     //     JSON.stringify(difficulties[0]));
-                    var query = queries.getQuestionsByParamter(
-                        JSON.stringify(media_types).toString().replace("[", "").replace("]", ""),
-                        JSON.stringify(skills).toString().replace("[", "").replace("]", ""),
-                        JSON.stringify(difficulties).toString()).replace("[", "").replace("]", "");
+                    var med = "";
+                    var skil = "";
+                    var diffi = "";
+                    if (media_types.length>0) {
+                        med = JSON.stringify(media_types).toString().replace("[", "").replace("]", "");
+                    }
+                    else{
+                        med = "\"\"";
+                    }
+                    if (skills.length>0) {
+                        skil = JSON.stringify(media_types).toString().replace("[", "").replace("]", "");
+                    }else{
+                        skil= "\"\"";
+                    }
+                    if (difficulties.length>0) {
+                        diffi = JSON.stringify(difficulties).toString().replace("[", "").replace("]", "");
+                    }
+                    else{
+                        diffi = "\"\"";
+                    }
+                    var query = queries.getQuestionsByParamter(med,skil,diffi);
                     console.log('\n' + query + '\n');
                     connection.query(query, function (err, questions) {
                         if (err) {
@@ -1166,9 +1198,16 @@ app.post('/generateRandTask', function (req, res) {
                                     });
                                 }
                                 else {
-                                    taskId = taskRow[0].T_id;
+                                    taskId = tId;
                                     queryDel = queries.deleteTaskForNotEnoughQuestions(taskId);
-                                    res.status(415).send("Not Enough questions to generate task by filtering");
+                                    connection.query(queryDel, function (err3) {
+                                        if (err3) {
+                                            console.log(err3);
+                                            res.status(400).send("Deletion error");
+                                        } else {
+                                            res.status(415).send("Not Enough questions to generate task by filtering");
+                                        }
+                                    });
                                 }
                             } catch (err) {
                                 console.log("Error - " + err);
