@@ -489,6 +489,12 @@ output: status 200 / status 204 - not enough questions / 400 - "DB Error"
 exmple :
 
 
+34. post('getTeachersGroupByCityAndSchool')
+input:school, city (example - {"school": "מענית","city": "באר שבע"})
+output: status 200 + list of teachers(array of StudentId) / 400 - "DB Error"
+exmple : [{"StudentId":"1"}]
+
+
 0-student
 1-teacher
 2-superuser

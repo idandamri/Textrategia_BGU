@@ -1422,6 +1422,28 @@ app.post('/addNewSchool', function (req, res) {
     }
 });
 
+
+app.post('/getTeachersGroupByCityAndSchool', function (req, res) {
+    try {
+        var city = mysql.escape(req.body.city);
+        var school = mysql.escape(req.body.school);
+        var query = queries.getGroupsOfTeachersByCityAndSchool(city, school);
+        console.log('\n' + query + '\n');
+        connection.query(query, function (err,teachers) {
+            if (err) {
+                console.log(err);
+                res.status(400).send("DB error");
+            }
+            else {
+                res.status(200).send(teachers);
+            }
+        });
+    } catch (err) {
+        console.log("Error - " + err);
+        res.status(404).send();
+    }
+});
+
 app.post('/getReported', function (req, res) {
     try {
         var query = "select * from textra_db.questions where Q_reported>=1;";

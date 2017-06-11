@@ -7,6 +7,10 @@ module.exports =
                 " and Pass like " + password + ";";
         },
 
+        getGroupsOfTeachersByCityAndSchool: function (city, school) {
+            return "SELECT StudentId FROM textra_db.groups a join textra_db.students_per_group b  on " +
+                "a.GroupId  = b.GroupId where isTeacherGroup = 1 and City = " + city + " and School = " + school + ";";
+        },
 
         /*get all tasks's information (id,title and description) by student id*/
         gelAllTaskTitleByStudentId: function (user_id) {

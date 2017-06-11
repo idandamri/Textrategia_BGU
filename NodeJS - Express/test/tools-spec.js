@@ -479,11 +479,11 @@ describe("Testing Textrategia API", function () {
     describe("Testing get Groups By Teacher And City", function () {
         it('Test get Groups By Teacher And City - correct deatils', function (done) {
             request(app).post("/generateRandTask").send({
-                "media_types": "text",
+                "media_types": "",
                 "student_id": "4",
-                "skills": "הסקת מסקנות",
-                "rand_num": "3",
-                "difficulties": "קלה"
+                "skills":""/* "הסקת מסקנות"*/,
+                "rand_num": "12",
+                "difficulties":""/* "קלה"*/
             })
                 .expect(200)
                 .end(function (err, res) {
@@ -499,6 +499,20 @@ describe("Testing Textrategia API", function () {
             request(app).post("/getAllTeachersBySchoolAndCity").send({
                 "school": "מבועות",
                 "city": "אשדוד"
+            })
+                .expect(200)
+                .end(function (err, res) {
+                    console.log("response: " + JSON.stringify(res.body));
+                    done();
+                });
+        });
+    });
+
+    describe("Testing get Teachers By School And City", function () {
+        it('Test get Teachers By School And City - correct deatils', function (done) {
+            request(app).post("/getTeachersGroupByCityAndSchool").send({
+                "school": "מענית",
+                "city": "באר שבע"
             })
                 .expect(200)
                 .end(function (err, res) {
