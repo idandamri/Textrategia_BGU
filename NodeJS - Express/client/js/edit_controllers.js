@@ -172,23 +172,36 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
         $scope.searchQuestionByProfiling = false;
         $scope.flagEditQuestionMode = true;
 
+  
+       var jasonIndex = get_jason_index($scope.myQuestionsStock ,  $scope.id_question_to_edit);
+ 
 
-         var jasonIndex = get_jason_index($scope.myQuestionsStock ,  $scope.id_question_to_edit);
-         $scope.jasonOfQuestionToEdit = $scope.myQuestionsStock[jasonIndex];
-        
+    $scope.jasonOfQuestionToEdit = $scope.myQuestionsStock[jasonIndex];
+    //   $scope.jasonOfQuestionToEdit = $scope.myQuestionsStock[1];
+    
+    $scope.question = {
+        question_title:     $scope.myQuestionsStock[jasonIndex].Q_qeustion,
+        quest_correct_fb:   $scope.myQuestionsStock[jasonIndex].Q_correctFB,
+        quest_incorrect_fb: $scope.myQuestionsStock[jasonIndex].Q_notCorrectFB,
+        media_type:         $scope.myQuestionsStock[jasonIndex].Q_mediaType,
+        question_media:     $scope.myQuestionsStock[jasonIndex].Q_media,
+        selected_skill:     $scope.myQuestionsStock[jasonIndex].Q_skill,
+        difficulty:         $scope.myQuestionsStock[jasonIndex].Q_difficulty
 
-
-        $scope.bla = "dude";
+    };
+    
 
     }
 
-    $scope.init = function(param){
-         $scope.question.question_title = "yesh";
-    }
 
-
-
-
+        // $scope.question.question_title = $scope.myQuestionsStock[jasonIndex].Q_qeustion;
+        // $scope.question.quest_correct_fb = $scope.myQuestionsStock[jasonIndex].Q_correctFB;
+        // $scope.question.quest_incorrect_fb = $scope.myQuestionsStock[jasonIndex].Q_notCorrectFB;
+        // $scope.question.media_type = $scope.myQuestionsStock[jasonIndex].Q_mediaType;
+        // $scope.question.question_media = $scope.myQuestionsStock[jasonIndex].Q_media;
+        // $scope.question.selected_skill = $scope.myQuestionsStock[jasonIndex].Q_skill;
+        // $scope.question.difficulty = $scope.myQuestionsStock[jasonIndex].Q_difficulty;
+       
 
 
 
@@ -237,37 +250,16 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
         // question_title is argument 1
         var question_title = $scope.question.question_title;
 
-        // (MEDIA TYPE) opt2.value is argument 3
-        var media_type;
-        var sel2 = document.getElementById("media_type");
-        for (i = 0 ; i < sel2.options.length ; i++){
-            media_type = sel2.options[i];
-            if (media_type.selected == true){
-                // alert(media_type.value);              // 0 is no media.... @SHAKED - CHANGE AS YOU WISH
-                break;
-            }
-        }
-
-        var quest_difficulty;
-        var sel_quest_difficulty = document.getElementById("quest_difficulty");
-        for (i = 0 ; i < sel_quest_difficulty.options.length ; i++){
-            quest_difficulty = sel_quest_difficulty.options[i];
-            if (media_type.selected == true){
-                // alert(quest_difficulty.value);              // 0 is no media.... @SHAKED - CHANGE AS YOU WISH
-                break;
-            }
-        }
-
+        // 3 - 4
+        var media_type =  $scope.question.media_type;
+        var quest_skill = $scope.question.selected_skill;
+        var quest_difficulty = $scope.question.difficulty;
 
         // arguments 4 - 8
         var question_media = $scope.question.question_media;
         var quest_correct_fb = $scope.question.quest_correct_fb;
         var quest_incorrect_fb = $scope.question.quest_incorrect_fb;
 
-
-
-
-        var quest_skill = $scope.question.selected_skill;
 
 
         // the information:
@@ -291,9 +283,9 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
             }
         }
 
-        // alert("title: " + question_title + " op1: " + opt1.value + " op2: " + opt2.value + " question_media :" + question_media);
-        // alert("y: " + quest_correct_fb + " n: " + quest_incorrect_fb + " skill: " + quest_skill );
-        // alert("1: " + possible_ans_1 + " 2: " + possible_ans_2 + " 3: " +  possible_ans_3 + " 4: " + possible_ans_4)
+        alert("title: " + question_title + " media_type: " + media_type + " quest_difficulty: " + quest_difficulty + " question_media :" + question_media);
+        alert("y: " + quest_correct_fb + " n: " + quest_incorrect_fb + " skill: " + quest_skill );
+       // alert("1: " + possible_ans_1 + " 2: " + possible_ans_2 + " 3: " +  possible_ans_3 + " 4: " + possible_ans_4)
 
         // ####################################################
         // SEND INFORMATION TO SERVER HERE
