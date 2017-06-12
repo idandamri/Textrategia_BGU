@@ -26,20 +26,12 @@
 
 <div id="wrap">
   <div class="container" id="c_1">
-
-    <div class="row">
-
-
-  <div class="col-sm-12">  <h1>שלום, {{teacherName}}! <h3>חפש שאלה לעריכה: </h3></h1></div>
+  <div class="row">
 
 
+  <div ng-show="selectTypeOfQuestion" class ="col-sm-9 text-center well" style="height: 118px;"> 
   
-
-  <div ng-show="selectTypeOfQuestion" class ="col-sm-12 text-center well">
-      
-  
-
-      <div class="btn-group text-center" data-toggle="buttons">
+      <div class="btn-group text-center" data-toggle="buttons" style="margin: 8px 85px; ">
        
         <!-- Button -->
         <button id="choiseButton2" ng-click="approvedQuestions(2)" class="btn btn-danger squirish-button2" style="font-size: 15px;" >
@@ -55,14 +47,48 @@
 
       <button ng-show="flagEditQuestionMode" ng-click="backToQuestionStockView()" class="btn btn-success squirish-button2" 
       style="font-size: 15px;" >
-            חזור<br>לשאלות                      </button> 
+            חזור<br>לשאלות                      </button>  
 
-
+     <button ng-show="!flagEditQuestionMode" ng-click="backToEditQuestionView()" class="btn btn-success squirish-button2" 
+      style="font-size: 15px;" >
+            חזור<br>לעריכה                      </button> 
 
   </div>
+  
+  <div class="col-sm-3 text-right">  <h1>שלום, {{teacherName}}! <h3>חפש שאלה לעריכה: </h3></h1></div>
 
 
 <div ng-show="searchQuestionByProfiling">
+
+<div class="col-sm-8">
+
+ <div id="accordion2" >
+
+    <div class="panel" ng-repeat="q in myQuestionsStock track by $index">
+      <div  name="question" ng-model="user.question" value="{{q.Q_id}}" >
+      <a data-toggle="collapse" data-parent="#accordion2" data-target="#collapse{{ $index + 1 }}" class="ng-binding collapsed" >
+       &nbsp;&nbsp;{{q.Q_qeustion}}
+      </a>
+      <div id="collapse{{ $index + 1 }}" >   
+        <!-- <div ng-show="false" >  -->
+       &nbsp;&nbsp;מקצוע: {{q.Q_proffession}} <br>
+       &nbsp;&nbsp;מיומנות למידה: {{q.Q_skill}} <br>
+          <!-- </div>  -->
+      </div>
+      </div>
+
+       <button ng-click="editChosenQuestion(q.Q_id,q.Q_qeustion)" class="btn btn-info text-center" data-toggle="modal" data-target="#fedbackModal" style="margin: 5px 335px;"> 
+        ערוך שאלה
+        <!-- <span class="glyphicon glyphicon-king"></span> -->
+      </button>
+
+    </div>
+  </div>
+
+
+
+</div>
+
 
   <div class="col-sm-3 well" style="margin-bottom: 50px" >
    
@@ -122,34 +148,6 @@
 
 
 
-<div class="col-sm-9">
-
- <div id="accordion2" >
-
-    <div class="panel" ng-repeat="q in myQuestionsStock track by $index">
-      <div  name="question" ng-model="user.question" value="{{q.Q_id}}" >
-      <a data-toggle="collapse" data-parent="#accordion2" data-target="#collapse{{ $index + 1 }}" class="ng-binding collapsed" >
-       &nbsp;&nbsp;{{q.Q_qeustion}}
-      </a>
-      <div id="collapse{{ $index + 1 }}" >   
-        <!-- <div ng-show="false" >  -->
-       &nbsp;&nbsp;מקצוע: {{q.Q_proffession}} <br>
-       &nbsp;&nbsp;מיומנות למידה: {{q.Q_skill}} <br>
-          <!-- </div>  -->
-      </div>
-      </div>
-
-       <button ng-click="editChosenQuestion(q.Q_id,q.Q_qeustion)" class="btn btn-info text-center" data-toggle="modal" data-target="#fedbackModal" style="margin: 5px 335px;"> 
-        ערוך שאלה
-        <!-- <span class="glyphicon glyphicon-king"></span> -->
-      </button>
-
-    </div>
-  </div>
-
-
-
-</div>
 
 
 <div ng-show="searchQuestionByProfiling" >
@@ -305,7 +303,7 @@
 <div class="col-sm-4 text-center">
     <!-- 5 -->
         <label class="control-label pull-right ">מהי התשובה הנכונה?:&nbsp;&nbsp; &nbsp;&nbsp;</label>
-            <select class="form-control inputstl " id="correct_ans" style="max-width: 160px;" tabindex="13">
+            <select class="form-control inputstl " id="correct_ans" style="max-width: 160px;" tabindex="13" ng-model="question.correct_ans">
               <option value=0>1</option>
               <option value=1>2</option>
               <option value=2>3</option>
