@@ -4,9 +4,29 @@
 
 
 
+
+
+var get_jason_index = function(ans_lst, id ) {
+
+    for (i=0 ; i < ans_lst.length ; i++){
+        if (ans_lst[i].Q_id == id){
+           
+            break;
+        }
+    }
+    return i;
+};
+
 textrategiaApp.controller("QuestionManagmentController",function($scope,$location,$http){
     $scope.teacherName = getUserName();
-    $scope.getQuestionsToEditMode = true;  
+    $scope.selectTypeOfQuestion = true;
+    $scope.searchQuestionByProfiling = false;  
+    
+    $scope.flagEditQuestionMode = false;
+
+
+     $scope.serverFeedback = "" ;
+    $scope.serverSecondFeedback= "";
 
     var req = {
         method: 'POST',
@@ -30,17 +50,28 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
     $scope.approvedQuestions= function (param) {
         var choiseButton0 = document.getElementById("choiseButton0");
         var choiseButton1 = document.getElementById("choiseButton1");
+        var choiseButton2 = document.getElementById("choiseButton2");
         $scope.approved = param;
 
-        if (param==0){
+        if (param==1){
              choiseButton0.style.backgroundColor  =  "#269ABC";
              choiseButton1.style.backgroundColor  = "#5bc0de";
-             alert("approved? " + approved);
+             choiseButton2.style.backgroundColor  = "#c9302c";
+             $scope.searchQuestionByProfiling = false;
+             alert("not yet working");
+        }
+        else if (param==0){
+            choiseButton0.style.backgroundColor  =  "#5bc0de";
+            choiseButton1.style.backgroundColor  = "#269ABC";
+            choiseButton2.style.backgroundColor  =  "#c9302c";
+            $scope.searchQuestionByProfiling = true;
         }
         else {
             choiseButton0.style.backgroundColor  =  "#5bc0de";
-            choiseButton1.style.backgroundColor  = "#269ABC";
-            alert("approved? " + approved);
+            choiseButton1.style.backgroundColor  =  "#5bc0de";
+            choiseButton2.style.backgroundColor  = "#9F221C";
+            $scope.searchQuestionByProfiling = false;
+            alert("not yet working");
 
         }
 
@@ -89,8 +120,71 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
 
 
 
+    $scope.searchQuestionsByParamter = function(){   
+        // alert("selectedMedia: " + $scope.selectedMedia +
+        //      " | selectedDiff: " + $scope.selectedDiff +
+        //      " | selectedSkill: " + $scope.selectedSkill
+        //      );
+        $scope.feedback = "";
+        $scope.generate_task= false;
+
+        var req = {
+            method: 'POST',
+            cache: false,
+            url: _url +'/getQuestionsByParamter',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            data: 'media_types='+$scope.selectedMedia
+            +'&skills='+$scope.selectedSkill
+            +'&difficulties='+$scope.selectedDiff
+            +'&user_id=' + getUserID()
+        };
+
+        $http(req)
+            .success(function(data,status,headers,config){
+                if (status==200){
+                    $scope.myQuestionsStock = data;
+                }
+                else if ( status==204){
+                    $scope.myQuestionsStock = [];
+
+                }
+            }).error(function(data,status,headers,config){
+        });
+    };
+
+    $scope.id_question_to_edit = "";
+    $scope.editChosenQuestion = function(q_id, q_question){
+        $scope.serverFeedback = "האם ברצונך לערוך את השאלה:" ;
+        $scope.serverSecondFeedback= q_question;
+        $scope.id_question_to_edit = q_id;
+
+    };
+
+    $scope.backToQuestionStockView = function(){
+        $scope.searchQuestionByProfiling = true;
+        $scope.flagEditQuestionMode = false;
+    }
 
 
+    $scope.getQuestionToEditFromStock = function(){
+        $scope.searchQuestionByProfiling = false;
+        $scope.flagEditQuestionMode = true;
+
+
+         var jasonIndex = get_jason_index($scope.myQuestionsStock ,  $scope.id_question_to_edit);
+         $scope.jasonOfQuestionToEdit = $scope.myQuestionsStock[jasonIndex];
+        
+
+
+        $scope.bla = "dude";
+
+    }
+
+    $scope.init = function(param){
+         $scope.question.question_title = "yesh";
+    }
 
 
 
@@ -142,17 +236,6 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
     $scope.sendNewQuestion = function (){
         // question_title is argument 1
         var question_title = $scope.question.question_title;
-
-        // (IS MULTIPLE ANS QUESTION) opt1.value is argument 2
-        // var is_multiple;
-        // var sel1 = document.getElementById("is_multiple_ans");
-        // for (i = 0 ; i < sel1.options.length ; i++){
-        //     is_multiple = sel1.options[i];
-        //     if (is_multiple.selected == true){
-        //         // alert(is_multiple.value);              // 1 means yes, 0 means no
-        //         break;
-        //     }
-        // }
 
         // (MEDIA TYPE) opt2.value is argument 3
         var media_type;
@@ -227,41 +310,41 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
         else
             is_approved=0;
 
-        var req = {
-            method: 'POST',
-            cache: false,
-            url: _url +'/addQuestion',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            data: 'question_title='+ question_title
-            +'&is_multiple_ans='+ '0'
-            + '&question_media_type=' + media_type.value
-            + '&question_media=' + question_media
-            + '&quest_correct_fb=' + quest_correct_fb
-            +'&quest_incorrect_fb=' + quest_incorrect_fb
-            +'&quest_skill=' +  quest_skill
-            + '&quest_difficulty=' +   quest_difficulty.value
-            + '&quest_proffesion=' + 'הבעה'
-            + '&quest_is_approved=' + is_approved
-            + '&quest_disabled=' + '1'
-            + '&who_created=' + getUserID()
-            + '&answer1=' + possible_ans_1
-            + '&answer2=' + possible_ans_2
-            + '&answer3=' + possible_ans_3
-            + '&answer4=' + possible_ans_4
-            + '&correctAnswerIndex=' + opt3.value
-        };
+        // var req = {
+        //     method: 'POST',
+        //     cache: false,
+        //     url: _url +'/addQuestion',
+        //     headers: {
+        //         'Content-Type': 'application/x-www-form-urlencoded'
+        //     },
+        //     data: 'question_title='+ question_title
+        //     +'&is_multiple_ans='+ '0'
+        //     + '&question_media_type=' + media_type.value
+        //     + '&question_media=' + question_media
+        //     + '&quest_correct_fb=' + quest_correct_fb
+        //     +'&quest_incorrect_fb=' + quest_incorrect_fb
+        //     +'&quest_skill=' +  quest_skill
+        //     + '&quest_difficulty=' +   quest_difficulty.value
+        //     + '&quest_proffesion=' + 'הבעה'
+        //     + '&quest_is_approved=' + is_approved
+        //     + '&quest_disabled=' + '1'
+        //     + '&who_created=' + getUserID()
+        //     + '&answer1=' + possible_ans_1
+        //     + '&answer2=' + possible_ans_2
+        //     + '&answer3=' + possible_ans_3
+        //     + '&answer4=' + possible_ans_4
+        //     + '&correctAnswerIndex=' + opt3.value
+        // };
 
-        // alert(JSON.stringify(req));
+        // // alert(JSON.stringify(req));
 
-        $http(req)
-            .success(function(data,status,headers,config){
-                $scope.serverFeedback = "השאלה נשלחה בהצלחה!"
-                $scope.doneRegisterQuestion = true;
-            }).error(function(data,status,headers,config){
-            $scope.serverFeedback = "שגיאה בהכנסת שאלה";
-        });
+        // $http(req)
+        //     .success(function(data,status,headers,config){
+        //         $scope.serverFeedback = "השאלה נשלחה בהצלחה!"
+        //         $scope.doneRegisterQuestion = true;
+        //     }).error(function(data,status,headers,config){
+        //     $scope.serverFeedback = "שגיאה בהכנסת שאלה";
+        // });
 
 
 

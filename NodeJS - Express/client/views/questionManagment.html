@@ -30,24 +30,43 @@
     <div class="row">
 
 
-<div ng-show="getQuestionsToEditMode">
-  <div class="col-sm-12">  <h1>שלום, {{teacherName}}!</h1>  <h3>חפש שאלה לעריכה: </h3>  </div>
+  <div class="col-sm-12">  <h1>שלום, {{teacherName}}! <h3>חפש שאלה לעריכה: </h3></h1></div>
 
 
+  
+
+  <div ng-show="selectTypeOfQuestion" class ="col-sm-12 text-center well">
+      
+  
+
+      <div class="btn-group text-center" data-toggle="buttons">
+       
+        <!-- Button -->
+        <button id="choiseButton2" ng-click="approvedQuestions(2)" class="btn btn-danger squirish-button2" style="font-size: 15px;" >
+        שאלות<br>בעייתיות                         </button>
+        <!-- Button -->
+        <button id="choiseButton0" ng-click="approvedQuestions(1)" class="btn btn-info squirish-button2" style="font-size: 15px;" >
+        שאלות<br>בהמתנה                      </button> 
+
+        <!-- Button -->
+        <button id="choiseButton1" ng-click="approvedQuestions(0)" class="btn btn-info squirish-button2" style="font-size: 15px;" >
+        חפש<br>שאלה</button>
+      </div>
+
+      <button ng-show="flagEditQuestionMode" ng-click="backToQuestionStockView()" class="btn btn-success squirish-button2" 
+      style="font-size: 15px;" >
+            חזור<br>לשאלות                      </button> 
+
+
+
+  </div>
+
+
+<div ng-show="searchQuestionByProfiling">
 
   <div class="col-sm-3 well" style="margin-bottom: 50px" >
    
     <h3> בחר קריטריונים </h3>  
-      <div class="btn-group text-center" data-toggle="buttons">
-       
-        <!-- Button -->
-        <button id="choiseButton0" ng-click="approvedQuestions(0)" class="btn btn-info squirish-button2" style="font-size: 15px;" >
-        שאלות<br>בהמתנה                      </button> 
-
-        <!-- Button -->
-        <button id="choiseButton1" ng-click="approvedQuestions(1)" class="btn btn-info squirish-button2" style="font-size: 15px;" >
-        שאלות<br>מאושרות                         </button>
-      </div>
 
 
     <form name="myForm2" class="form-horizontal" role="form">
@@ -93,7 +112,7 @@
   
     <div class="text-center">
     <!-- Button -->
-      <button ng-click="showSelectedQuestion()" class="btn btn-lg btn-info" > 
+      <button ng-click="searchQuestionsByParamter()" class="btn btn-lg btn-info" > 
         הצג שאלות לבחירה  
         <span class="glyphicon glyphicon-king"></span>
       </button>
@@ -103,10 +122,43 @@
 
 
 
+<div class="col-sm-9">
+
+ <div id="accordion2" >
+
+    <div class="panel" ng-repeat="q in myQuestionsStock track by $index">
+      <div  name="question" ng-model="user.question" value="{{q.Q_id}}" >
+      <a data-toggle="collapse" data-parent="#accordion2" data-target="#collapse{{ $index + 1 }}" class="ng-binding collapsed" >
+       &nbsp;&nbsp;{{q.Q_qeustion}}
+      </a>
+      <div id="collapse{{ $index + 1 }}" >   
+        <!-- <div ng-show="false" >  -->
+       &nbsp;&nbsp;מקצוע: {{q.Q_proffession}} <br>
+       &nbsp;&nbsp;מיומנות למידה: {{q.Q_skill}} <br>
+          <!-- </div>  -->
+      </div>
+      </div>
+
+       <button ng-click="editChosenQuestion(q.Q_id,q.Q_qeustion)" class="btn btn-info text-center" data-toggle="modal" data-target="#fedbackModal" style="margin: 5px 335px;"> 
+        ערוך שאלה
+        <!-- <span class="glyphicon glyphicon-king"></span> -->
+      </button>
+
+    </div>
+  </div>
 
 
 
-</div> <!-- /getQuestionsToEditMode -->
+</div>
+
+
+<div ng-show="searchQuestionByProfiling" >
+ 
+</div>
+
+
+
+</div> <!-- /searchQuestionByProfiling -->
 
 
 
@@ -120,19 +172,17 @@
 
 
 
-
-<div ng-show="!getQuestionsToEditMode">
+<div ng-show="flagEditQuestionMode">
 
 
 <div ng-show="!insertPossibleAnswersMode">
-    <div class="col-sm-12">  <h1>שלום, {{teacherName}}!</h1>  <h3>צור שאלה חדשה: </h3>  </div>
     <form name="myForm" class="form-horizontal" role="form">
 
     <div class="col-sm-2"></div>
 
     <div class="col-sm-4">
 
-      <!--  2  -->       
+      <!--  4  -->       
       <label class="control-label pull-right">מהו סוג המדיה של השאלה?:&nbsp;&nbsp;</label>
         <select class="form-control inputstl" id="media_type" style="padding: 5px 5px;" tabindex="4">
           <!-- <option value=0>אין מדיה</option> -->
@@ -142,9 +192,9 @@
               <option value="text">טקסט</option>
         </select>   
 
-    <!-- 4 -->
+    <!-- 5 -->
     <label class="control-label pull-right">הכנס מדייה: &nbsp;&nbsp;</label>
-   		<input type="text" name="question_media" class="form-control inputstl pull-right" required placeholder="קישור למדיה" ng-model="question.question_media" tabindex="5">	
+      <input type="text" name="question_media" class="form-control inputstl pull-right" required placeholder="קישור למדיה" ng-model="question.question_media" tabindex="5"> 
 
       <!-- 6 -->
       <label class="control-label pull-right">הכנס מיומנות למידה: &nbsp;&nbsp;</label>
@@ -157,7 +207,7 @@
         <input type="text" ng-show="enter_new_skill_mode" class="form-control inputstl pull-right" placeholder="מיומנות למידה" ng-model="question.selected_skill">
       </select>
 
-     	<!-- 8 -->
+      <!-- 7 -->
       <label class="control-label pull-right">מהו קושי השאלה?:&nbsp;&nbsp;</label>
       <select class="form-control inputstl" id="quest_difficulty" tabindex="7" style="padding: 5px 5px;">
           <!-- <option value=0>אין מדיה</option> -->
@@ -173,22 +223,22 @@
       
           <!-- 1 -->
           <label class="control-label pull-right">הכנס ניסוח שאלה:&nbsp;&nbsp;</label>
-          	<textarea type="text" rows="2" name="question_title" class="form-control inputstl pull-right" required placeholder="ניסוח שאלה חדשה" ng-model="question.question_title" tabindex="1">
+            <textarea type="text" rows="2" name="question_title" class="form-control inputstl pull-right" ng-model="question.question_title" tabindex="1" ng-init="question.question_title=bla">
 
           </textarea>
 
-          <!-- 3 -->
+          <!-- note - need to rearange tabindex if this is activ -->
           <!--<label class="control-label pull-right">האם שאלת רב בחירה?:&nbsp;&nbsp;</label>-->
-          <!--<select class="form-control inputstl" id="is_multiple_ans">-->
+          <!--<select class="form-control inputstl" id="is_multiple_ans" tabindex="2.5">-->
               <!--&lt;!&ndash; <option value=1>כן</option> FOR NOW ONLY 'NO' is available&ndash;&gt; -->
               <!--<option value=0>לא</option>-->
           <!--</select>   -->
-	            
-          <!-- 5 -->
-    		    <label class="control-label pull-right">הכנס פידבק לתשובה נכונה: &nbsp;&nbsp;</label>
-         		<textarea type="text" name="quest_correct_fb" rows="1" class="form-control inputstl pull-right" required placeholder="פידבק חיובי" ng-model="question.quest_correct_fb" tabindex="2"></textarea>
+              
+          <!-- 2 -->
+            <label class="control-label pull-right">הכנס פידבק לתשובה נכונה: &nbsp;&nbsp;</label>
+            <textarea type="text" name="quest_correct_fb" rows="1" class="form-control inputstl pull-right" required ng-model="question.quest_correct_fb" tabindex="2"  ng-init="question.quest_correct_fb=bla"></textarea>
 
-    			<!-- 7 -->
+          <!-- 3 -->
             <label class="control-label pull-right">הכנס פידבק לתשובה שגויה: &nbsp;&nbsp;</label>
             <textarea type="text" name="quest_incorrect_fb" rows="1" class="form-control inputstl pull-right" required placeholder="פידבק שלילי" ng-model="question.quest_incorrect_fb" tabindex="3"> </textarea>
 
@@ -204,16 +254,16 @@
 
          <br><br><br><br>
         </div>  
-	</form>
+  </form>
 </div>
 
 <div ng-show="insertPossibleAnswersMode">
-	<div class="col-sm-12">  <h3>הכנס את התשובות: </h3>  </div>
+  <div class="col-sm-12">  <h3>הכנס את התשובות: </h3>  </div>
 
 <form name="mySecondForm" class="form-horizontal" role="form">
 
 
-	<div class="col-sm-4 text-center">
+  <div class="col-sm-4 text-center">
       <!-- 3 -->
       <label class="control-label pull-right">תשובה 3: &nbsp;&nbsp;</label>
        <textarea  type="text" rows="2" name="possible_ans_3" class="form-control inputstl pull-right" required  ng-model="question.possible_ans_3" tabindex="11"> 
@@ -253,22 +303,22 @@
 <div class="col-sm-4 text-center"></div>
 
 <div class="col-sm-4 text-center">
-		<!-- 5 -->
-      	<label class="control-label pull-right ">מהי התשובה הנכונה?:&nbsp;&nbsp; &nbsp;&nbsp;</label>
+    <!-- 5 -->
+        <label class="control-label pull-right ">מהי התשובה הנכונה?:&nbsp;&nbsp; &nbsp;&nbsp;</label>
             <select class="form-control inputstl " id="correct_ans" style="max-width: 160px;" tabindex="13">
-	            <option value=0>1</option>
-	            <option value=1>2</option>
-	            <option value=2>3</option>
-	            <option value=3>4</option>
+              <option value=0>1</option>
+              <option value=1>2</option>
+              <option value=2>3</option>
+              <option value=3>4</option>
             </select> 
-	</div>
+  </div>
 
   <div class="col-sm-4 text-center"></div>
 
 
 </form>
 </div> <!-- //ng-show insertPossibleAnswersMode -->
-</div> <!-- //ng-show !getQuestionsToEditMode -->
+</div> <!-- //ng-show !searchQuestionByProfiling -->
 
       
     </div>      
@@ -293,15 +343,17 @@
                 </div>
                 <div class="col-xs-7 col-sm-9">
                 <br>
-                  <span> {{serverFeedback}}</span>   
-                  <span class="text-info"> <strong><em>{{output_groupCode}}</em></strong></span>       
+                  <span> {{serverFeedback}}<br></span>   
+                  <span class="text-info" ng-show="!flagEditQuestionMode"> {{serverSecondFeedback}}</span>   
                 </div>
               </div>
             </div>
             <div class="modal-footer">
                 <!-- <button type="button" class="btn btn-default" data-dismiss="modal">סגור</button> -->
-                 <button type="button" ng-show="doneRegisterQuestion" data-dismiss="modal" class="btn btn-default" ng-click="goToTeacher()" > סגור </button>
-                 <button type="button" ng-show="!doneRegisterQuestion" data-dismiss="modal" class="btn btn-default" > סגור </button>
+                 <button type="button" ng-show="!flagEditQuestionMode" data-dismiss="modal" class="btn btn-default" ng-click="getQuestionToEditFromStock()" > ערוך שאלה </button>
+
+
+                 <button type="button" data-dismiss="modal" class="btn btn-default" > סגור </button>
 
             </div>
           </div><!-- /.modal-content -->
