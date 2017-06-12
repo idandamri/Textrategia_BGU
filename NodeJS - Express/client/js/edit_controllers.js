@@ -23,6 +23,7 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
     $scope.searchQuestionByProfiling = false;  
     
     $scope.flagEditQuestionMode = false;
+    $scope.show_go_back_button = false;
 
 
      $scope.serverFeedback = "" ;
@@ -54,11 +55,14 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
         $scope.approved = param;
 
         if (param==1){
-             choiseButton0.style.backgroundColor  =  "#269ABC";
-             choiseButton1.style.backgroundColor  = "#5bc0de";
-             choiseButton2.style.backgroundColor  = "#c9302c";
-             $scope.searchQuestionByProfiling = false;
-             alert("not yet working");
+            choiseButton0.style.backgroundColor  =  "#269ABC";
+            choiseButton1.style.backgroundColor  = "#5bc0de";
+            choiseButton2.style.backgroundColor  = "#c9302c";
+            $scope.searchQuestionByProfiling = false;
+
+            alert("not yet working");
+            //get_all_questions("getUnapprovedQuestion");
+
         }
         else if (param==0){
             choiseButton0.style.backgroundColor  =  "#5bc0de";
@@ -71,10 +75,38 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
             choiseButton1.style.backgroundColor  =  "#5bc0de";
             choiseButton2.style.backgroundColor  = "#9F221C";
             $scope.searchQuestionByProfiling = false;
+            
             alert("not yet working");
+            //get_all_questions("getUnapprovedQuestion");
 
         }
 
+    };
+
+
+        var get_all_questions = function(request_name){   
+
+        var req = {
+            method: 'POST',
+            cache: false,
+            url: _url + request_name,
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            data: ''
+        };
+
+        $http(req)
+            .success(function(data,status,headers,config){
+                if (status==200){
+                    $scope.myQuestionsStock = data;
+                }
+                else if ( status==204){
+                    $scope.myQuestionsStock = [];
+
+                }
+            }).error(function(data,status,headers,config){
+        });
     };
 
 
@@ -121,13 +153,6 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
 
 
     $scope.searchQuestionsByParamter = function(){   
-        // alert("selectedMedia: " + $scope.selectedMedia +
-        //      " | selectedDiff: " + $scope.selectedDiff +
-        //      " | selectedSkill: " + $scope.selectedSkill
-        //      );
-        $scope.feedback = "";
-        $scope.generate_task= false;
-
         var req = {
             method: 'POST',
             cache: false,
@@ -159,6 +184,8 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
         $scope.serverFeedback = "האם ברצונך לערוך את השאלה:" ;
         $scope.serverSecondFeedback= q_question;
         $scope.id_question_to_edit = q_id;
+
+
 
     };
 
@@ -330,7 +357,7 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
         //     $scope.serverFeedback = "שגיאה בהכנסת שאלה";
         // });
 
-
+        alert("עריכה עדיין לא זמינה כרגע");
 
         // $scope.serverFeedback = "השאלה נשלחה בהצלחה!"
     }
