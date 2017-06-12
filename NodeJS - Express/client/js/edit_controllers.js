@@ -294,41 +294,41 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
         else
             is_approved=0;
 
-        var req = {
-            method: 'POST',
-            cache: false,
-            url: _url +'/editQuestion',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            data: 'question_title='+ question_title
-            +'&is_multiple_ans='+ '0'
-            + '&question_media_type=' + media_type
-            + '&question_media=' + question_media
-            + '&quest_correct_fb=' + quest_correct_fb
-            +'&quest_incorrect_fb=' + quest_incorrect_fb
-            +'&quest_skill=' +  quest_skill
-            + '&quest_difficulty=' +   quest_difficulty
-            + '&quest_proffesion=' + 'הבעה'
-            + '&quest_is_approved=' + is_approved
-            + '&quest_disabled=' + '1'
-            + '&who_created=' + getUserID()
-            // + '&answer1=' + possible_ans_1
-            // + '&answer2=' + possible_ans_2
-            // + '&answer3=' + possible_ans_3
-            // + '&answer4=' + possible_ans_4
-            // + '&correctAnswerIndex=' + correct_ans
-        };
+        // var req = {
+        //     method: 'POST',
+        //     cache: false,
+        //     url: _url +'/editQuestion',
+        //     headers: {
+        //         'Content-Type': 'application/x-www-form-urlencoded'
+        //     },
+        //     data: 'question_title='+ question_title
+        //     +'&is_multiple_ans='+ '0'
+        //     + '&question_media_type=' + media_type
+        //     + '&question_media=' + question_media
+        //     + '&quest_correct_fb=' + quest_correct_fb
+        //     +'&quest_incorrect_fb=' + quest_incorrect_fb
+        //     +'&quest_skill=' +  quest_skill
+        //     + '&quest_difficulty=' +   quest_difficulty
+        //     + '&quest_proffesion=' + 'הבעה'
+        //     + '&quest_is_approved=' + is_approved
+        //     + '&quest_disabled=' + '1'
+        //     + '&who_created=' + getUserID()
+        //     // + '&answer1=' + possible_ans_1
+        //     // + '&answer2=' + possible_ans_2
+        //     // + '&answer3=' + possible_ans_3
+        //     // + '&answer4=' + possible_ans_4
+        //     // + '&correctAnswerIndex=' + correct_ans
+        // };
 
-        // alert(JSON.stringify(req));
+        // // alert(JSON.stringify(req));
 
-        $http(req)
-            .success(function(data,status,headers,config){
-                $scope.serverFeedback = "השאלה נערכה בהצלחה!"
-                $scope.doneRegisterQuestion = true;
-            }).error(function(data,status,headers,config){
-            $scope.serverFeedback = "שגיאה בהכנסת שאלה";
-        });
+        // $http(req)
+        //     .success(function(data,status,headers,config){
+        //         $scope.serverFeedback = "השאלה נערכה בהצלחה!"
+        //         $scope.doneRegisterQuestion = true;
+        //     }).error(function(data,status,headers,config){
+        //     $scope.serverFeedback = "שגיאה בהכנסת שאלה";
+        // });
 
 
 
