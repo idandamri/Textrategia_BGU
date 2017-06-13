@@ -60,8 +60,32 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
             choiseButton2.style.backgroundColor  = "#c9302c";
             $scope.searchQuestionByProfiling = false;
 
-            alert("not yet working");
-            //get_all_questions("getUnapprovedQuestion");
+            //alert("not yet working");
+            //get_all_questions("/getUnapprovedQuestion");
+
+            var req = {
+            method: 'POST',
+            cache: false,
+            url: _url + "/getUnapprovedQuestion",
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            data: ''
+        };
+
+        $http(req)
+            .success(function(data,status,headers,config){
+                if (status==200){
+                    $scope.myQuestionsStock = data;
+                }
+                else if ( status==204){
+                    $scope.myQuestionsStock = [];
+
+                }
+            }).error(function(data,status,headers,config){
+        });
+    };
+
 
         }
         else if (param==0){
@@ -77,7 +101,7 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
             $scope.searchQuestionByProfiling = false;
             
             alert("not yet working");
-            //get_all_questions("getUnapprovedQuestion");
+            //get_all_questions("/getUnapprovedQuestion");
 
         }
 
