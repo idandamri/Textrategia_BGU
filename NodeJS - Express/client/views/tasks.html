@@ -55,14 +55,21 @@
 
   
     <div class="row">
-      <div class="col-sm-4" ng-repeat="x in tasks">
-    		<div class="card text-center" style="width: 20rem;">
-     			<div class="card-block">
-     				<h4 class="card-title"><b>{{x.T_title}}</b></h4>
-     				<p class="card-text">{{x.T_description}}</p>
-     				<!--<p class="card-text"> מספר שאלות: <b>{{questionSum}}</b></p> -->
+      <div class="col-sm-4 panel-group"  ng-repeat="x in tasks">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+           <p><bold>{{x.T_title}}</bold></p>
+          </h4>
+        </div>
+        <div class="panel">
+          <div class="panel-body">
+            <div class="text-info" style="margin: 18px 0px; ">
+              {{x.T_description}}
+            </div>
      				<a ng-click="navigateToOneQuestion(x.T_id, x.T_title)" class="btn btn-primary">התחל מטלה</a>
-            
+              </div> 
+          
      			
           </div>
      		</div>
