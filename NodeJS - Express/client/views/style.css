@@ -325,3 +325,14 @@ thead tr th{
     width: 90px;
     height: 60px;
 }
+
+
+.menu-img-style{
+    padding: 15px;
+}
+
+@media(max-width:767px){
+  .padd-button {
+    margin: 150px 10px;
+  }
+}

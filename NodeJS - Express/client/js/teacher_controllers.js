@@ -218,13 +218,18 @@ textrategiaApp.controller("GroupManagementController",function($scope,$http,$loc
     var tasks = document.getElementById("available_task");
 
     $scope.send_task_mod = false;  // else group managment mode
+    $scope.sendTaskForSomeStudentMod = false;
 
     $scope.sendTaskMode = function (){
         $scope.send_task_mod = true;
     }
+    $scope.sendTaskForSomeStudentMod = function (){
+        $scope.sendTaskForSomeStudentMod = true;
+    }
 
     $scope.groupManagmentMode = function (){
         $scope.send_task_mod = false;
+        $scope.sendTaskForSomeStudentMod = false;
     }
 
     // ~~~~~~ group managment mode ~~~~~~
@@ -408,6 +413,41 @@ textrategiaApp.controller("GroupManagementController",function($scope,$http,$loc
         // alert("group" + group.value  + "\n task:"  + task.value);              // this is T_id
 
     }
+
+
+//~~~~~~~~~~~~~~~~~~ sendTaskForSomeStudentMod ~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+    $scope.sendTaskForSomeStudent = function(){
+        var group = selected_student_lst;
+        var task = selected_task;
+        var req = {
+            method: 'POST',
+            cache: false,
+            url: _url +'/sendTaskToStudents',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            data: 'students='+selected_student_lst + '&task_id=' + task
+        };
+
+        // alert(JSON.stringify(req));
+
+        $http(req)
+            .success(function(data,status,headers,config){
+                $scope.serverFeedback = "המטלה נשלחה בהצלחה"
+                $scope.doneSendTask = true;
+            }).error(function(data,status,headers,config){
+            $scope.serverFeedback = "שגיאה בשליחת המטלה"
+
+        });
+
+        // alert("group" + group.value  + "\n task:"  + task.value);              // this is T_id
+
+    }
+
+
 
 });
 

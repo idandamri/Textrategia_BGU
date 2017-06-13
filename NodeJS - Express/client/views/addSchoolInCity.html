@@ -29,7 +29,7 @@
     <div class="row">
 
     <div class="col-sm-12">  
-      <h1>שלום, {{getUserName}}!</h1>  <h3>הוסף בתי ספר חדשים: </h3>
+      <h1>שלום, {{getUserName}}!</h1>  <h3 style="margin-bottom: 20px">הוסף בתי ספר חדשים: </h3>
     </div>
 
 
@@ -53,9 +53,13 @@
       <!--  City -->
       <form name="myForm" class="form-horizontal" role="form">
       <div class ="col-sm-5">
+
+        <input type="text" id="query" class="form-control inputstl pull-right"  ng-model="query" placeholder="חפש עיר">
+
         <label class="control-label pull-right">בחר עיר:&nbsp;&nbsp;</label>
-        <select required class="form-control inputstl" id="group_city" size=5>
-          <option ng-repeat="city in myCities.cities" value={{city}}>   
+        <select required class="form-control inputstl" id="group_city" size=5 ng-model="city.city_name">
+          <option value=""> - בחר עיר -</option>
+          <option ng-repeat="city in myCities.cities | filter:query | orderBy: orderList" value={{city}}>   
           {{city}}
           </option>
         </select>    
@@ -69,13 +73,7 @@
       </form>
         
 
-      <div class ="col-sm-1"></div>
-
-
-      
-
-        
-
+      <div class ="col-sm-1"></div>  
 
         <div class ="col-sm-4"></div>
         <div class="col-sm-4 text-center">

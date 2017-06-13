@@ -18,38 +18,12 @@ textrategiaApp.controller("AddSchoolInCityController",function($scope,$http){
     $scope.showSchools = false;
     $scope.serverFeedback = "";
 
-    $scope.schoolsMock = [
-          {
-            "S_id": 1,
-            "S_Name": "שזר",
-          },
-          {
-            "S_id": 2,
-            "S_Name": "רעים",
-          },
-        {
-            "S_id": 3,
-            "S_Name": "רננים",
-          },
-          {
-            "S_id": 4,
-            "S_Name": "ביאליק",
-          }
-        ];
-
     // Only 2 arguments. name & is_master_group
     $scope.showSchoolsList = function (){
 
         // group_city is argument 3
-        var city;
-        sel1 = document.getElementById("group_city");
-        for (i = 0 ; i < sel1.options.length ; i++){
-            city = sel1.options[i];
-            if (city.selected == true){
-                //alert(city.value);
-                break;
-            }
-        } 
+        var city = $scope.city.city_name;
+
 
         // ####################################################
         // SEND INFORMATION TO SERVER HERE
@@ -63,7 +37,7 @@ textrategiaApp.controller("AddSchoolInCityController",function($scope,$http){
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            data: 'city=' + city.value
+            data: 'city=' + city
         };
 
         // alert(JSON.stringify(req));
@@ -84,16 +58,7 @@ textrategiaApp.controller("AddSchoolInCityController",function($scope,$http){
 
 
     $scope.createNewSchool = function (){
-        var city;
-        sel1 = document.getElementById("group_city");
-        for (i = 0 ; i < sel1.options.length ; i++){
-            city = sel1.options[i];
-            if (city.selected == true){
-                //alert(city.value);
-                break;
-            }
-        }
-
+        var city =  $scope.city.city_name;;
         var schoolName = $scope.user.schoolName;
 
         // alert("schoolname: " + schoolName );
@@ -106,7 +71,7 @@ textrategiaApp.controller("AddSchoolInCityController",function($scope,$http){
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            data: 'city=' + city.value +'&school='+ schoolName
+            data: 'city=' + city +'&school='+ schoolName
         };
 
         $http(req)
