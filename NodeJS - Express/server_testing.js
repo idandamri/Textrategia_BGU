@@ -526,6 +526,8 @@ app.post('/editQuestion', function (req, res) {
         var q_prof = mysql.escape(req.body.proffesion);
         var q_app = mysql.escape(req.body.approved);
         var q_disabled = mysql.escape(req.body.disabled);
+        var answersArray = mysql.escape(req.body.answers);
+
 
         var query = queries.updateQuestion(q_id, q_question, q_media, q_correctFB, q_notCorrectFB, q_skill, q_diff, q_prof, q_app, q_disabled);
         connection.query(query, function (err) {
@@ -534,6 +536,7 @@ app.post('/editQuestion', function (req, res) {
                 res.status(400).send("DB error - check DB!");
             }
             else {
+
                 res.status(200).send("updated!");
             }
         });
@@ -1477,8 +1480,9 @@ app.post('/getReported', function (req, res) {
             else {
                 if (questions != null && questions.length == 0) {
                     res.status(204).send();
+                } else {
+                    res.status(200).send(questions);
                 }
-                res.status(200).send(questions);
             }
         });
     } catch (err) {
@@ -1499,8 +1503,9 @@ app.post('/getApprovedQuestion', function (req, res) {
             else {
                 if (questions != null && questions.length == 0) {
                     res.status(204).send();
+                } else {
+                    res.status(200).send(questions);
                 }
-                res.status(200).send(questions);
             }
         });
     } catch (err) {
@@ -1522,8 +1527,9 @@ app.post('/getUnapprovedQuestion', function (req, res) {
             else {
                 if (questions != null && questions.length == 0) {
                     res.status(204).send();
+                } else {
+                    res.status(200).send(questions);
                 }
-                res.status(200).send(questions);
             }
         });
     } catch (err) {
