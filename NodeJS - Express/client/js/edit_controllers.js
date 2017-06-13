@@ -19,11 +19,10 @@ var get_jason_index = function(ans_lst, id ) {
 
 textrategiaApp.controller("QuestionManagmentController",function($scope,$location,$http){
     $scope.teacherName = getUserName();
-    $scope.selectTypeOfQuestion = true;
-    $scope.searchQuestionByProfiling = false;  
     
+    $scope.searchQuestionByProfiling = false;  
     $scope.flagEditQuestionMode = false;
-    $scope.show_go_back_button = false;
+    $scope.approved = 5;
 
 
      $scope.serverFeedback = "" ;
@@ -60,32 +59,8 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
             choiseButton2.style.backgroundColor  = "#c9302c";
             $scope.searchQuestionByProfiling = false;
 
-            //alert("not yet working");
-            //get_all_questions("/getUnapprovedQuestion");
-
-            var req = {
-            method: 'POST',
-            cache: false,
-            url: _url + "/getUnapprovedQuestion",
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            data: ''
-        };
-
-        $http(req)
-            .success(function(data,status,headers,config){
-                if (status==200){
-                    $scope.myQuestionsStock = data;
-                }
-                else if ( status==204){
-                    $scope.myQuestionsStock = [];
-
-                }
-            }).error(function(data,status,headers,config){
-        });
-    };
-
+            alert("not yet working1");
+            //get_all_questions("getUnapprovedQuestion");
 
         }
         else if (param==0){
@@ -99,9 +74,8 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
             choiseButton1.style.backgroundColor  =  "#5bc0de";
             choiseButton2.style.backgroundColor  = "#9F221C";
             $scope.searchQuestionByProfiling = false;
-            
-            alert("not yet working");
-            //get_all_questions("/getUnapprovedQuestion");
+            alert("not yet working2");
+            //get_all_questions("getUnapprovedQuestion");
 
         }
 
@@ -214,13 +188,21 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
     };
 
     $scope.backToQuestionStockView = function(){
-        $scope.searchQuestionByProfiling = true;
+        if ($scope.approved == 0){
+            $scope.searchQuestionByProfiling = true;
+        } else {
+            $scope.searchQuestionByProfiling = false;
+        }
         $scope.flagEditQuestionMode = false;
+        $scope.clicked = 1;
     }
+
+
 
     $scope.backToEditQuestionView = function(){
     $scope.searchQuestionByProfiling = false;
     $scope.flagEditQuestionMode = true;
+    $scope.clicked = 0;
 }
 
 

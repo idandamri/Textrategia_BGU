@@ -29,7 +29,7 @@
   <div class="row">
 
 
-  <div ng-show="selectTypeOfQuestion" class ="col-sm-9 text-center well" style="height: 118px;"> 
+  <div class ="col-sm-9 text-center well" style="height: 118px;"> 
   
       <div class="btn-group text-center" data-toggle="buttons" style="margin: 8px 85px; ">
        
@@ -49,9 +49,9 @@
       style="font-size: 15px;" >
             חזור<br>לשאלות                      </button>  
 
-<!--      <button ng-show="!flagEditQuestionMode" ng-click="backToEditQuestionView()" class="btn btn-success squirish-button2" 
+     <button ng-show="!flagEditQuestionMode && clicked > 0" ng-click="backToEditQuestionView()" class="btn btn-success squirish-button2" 
       style="font-size: 15px;" >
-            חזור<br>לעריכה                      </button>  -->
+            חזור<br>לעריכה                      </button> 
 
   </div>
   
