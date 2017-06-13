@@ -39,7 +39,13 @@
     <button ng-click="sendTaskMode()" class="btn btn-info" style="font-size: 15px;">
      <span class="glyphicon glyphicon-send" style="font-size: 40px;"></span> 
       <p> שליחת מטלות לקבוצה </p>
-    </button>
+    </button> 
+
+<!--      Button 
+    <button ng-click="sendTaskForSomeStudentMod()" class="btn btn-info" style="font-size: 15px;">
+     <span class="glyphicon glyphicon-send" style="font-size: 40px;"></span> 
+      <p> שליחת מטלות <br> לתלמידים מסויימים </p>
+    </button> -->
 
   </div>
 
@@ -73,10 +79,8 @@
 <div class="row" ng-show="send_task_mod">
 
 
-
-  <div class="col-sm-12">  <h3>בחר קבוצה והצמד לה מטלה</h3> 
-    <label for="task_type" class="control-label pull-right">בחר סוג מטלה:</label>
-
+  <div class="col-sm-12">  <h3>בחר מטלה והצמד לה קבוצה</h3> 
+   
    </div>
 
   <br><br>
@@ -134,6 +138,46 @@
   </div>
 
 </div> <!-- ng-show send task -->
+
+
+
+
+<!-- SEND TASK MODE -->
+<div class="row" ng-show="sendTaskForSomeStudentMod">
+
+
+<!-- 
+  <div class="col-sm-12">  <h3>בחר קבוצה והצמד לה מטלה</h3> 
+
+
+
+
+
+
+
+
+
+
+
+
+BUTTON
+   <button ng-click="groupManagmentMode()" class="btn btn-success squirish-button1" style="font-size: 15px;" >
+      <span class="glyphicon glyphicon-menu-right"><span class="glyphicon glyphicon-education" style="font-size: 40px;"> </span> </span> 
+     <p>חזור לניהול קבוצות</p>          </button> 
+
+BUTTON
+   <button ng-click="sendTaskForSomeStudent()" class="btn btn-success squirish-button1" style="font-size: 15px;" data-toggle="modal" data-target="#fedbackModal">
+     <span class="glyphicon glyphicon-send" style="font-size: 40px;"></span> 
+     <p>שלח מטלה לקבוצה</p>          </button>
+ -->
+  </div>
+</div>
+
+
+
+
+
+
 
   </div>
 </div>
