@@ -276,6 +276,10 @@ module.exports =
         return "SELECT teacherID FROM textra_db.groups where City =" + city + " and School = " + school + ";"
     },
 
+    getAnswersByQid: function (q_id) {
+        return "select * from textra_db.answers where Q_id = " + q_id + ";";
+    },
+
     getUserById: function (user_id) {
         return "SELECT * FROM textra_db.users where PersonalID =" + user_id
     }

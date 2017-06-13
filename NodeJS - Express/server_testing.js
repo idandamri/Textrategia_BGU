@@ -1039,6 +1039,27 @@ app.post('/getStudentListFromGroupId', function (req, res) {
 });
 
 
+app.post('/getAnswersByQid', function (req, res) {
+    var qId = mysql.escape(req.body.q_id);
+    try {
+        var query = queries.getAnswersByQid(qId);
+        console.log('\n' + query + '\n');
+        connection.query(query, function (err, listOfAnswers) {
+            if (err) {
+                console.log(err);
+                res.status(400).send("DB error");
+            }
+            else {
+                res.status(200).send(listOfAnswers);//
+            }
+        });
+    } catch (err) {
+        console.log("Error - " + err);
+        res.status(404).send();
+    }
+});
+
+
 app.post('/getGroupsBySchool', function (req, res) {
     try {
         var schoolName = mysql.escape(req.body.school);
@@ -1653,7 +1674,7 @@ app.post('/sendTaskToStudents', function (req, res) {
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '123456',//'1q2w3e4r' to upload*/
+    password: '1q2w3e4r',//'1q2w3e4r' to upload*/
     database: 'textra_db',
     multipleStatements: true
 });
