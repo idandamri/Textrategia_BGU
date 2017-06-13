@@ -165,7 +165,7 @@ describe("Testing Textrategia API", function () {
                 "answer2": "b",
                 "answer3": "c",
                 "answer4": "d",
-                "correctAnswerIndex": "2"
+                "correctAnswerIndex": "1,3"
             })
                 .end(function (err, res) {
                     if (err) {

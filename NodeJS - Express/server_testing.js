@@ -838,12 +838,9 @@ app.post('/addQuestion', function (req, res) {
         answers.push(mysql.escape(req.body.answer2));
         answers.push(mysql.escape(req.body.answer3));
         answers.push(mysql.escape(req.body.answer4));
+        var correctAnswerArray = [];
+        correctAnswerArray = correctAnswerIndex.split(',');
 
-        // var answer1 = req.body.answer1;
-        // var answer2 = req.body.answer2;
-        // var answer3 = req.body.answer3;
-        // var answer4 = req.body.answer4;
-        // console.log('QPROF: ' + qProff);
         var query = queries.addQustion(qTitle, isMulAns, qMedia, qMediaType, qCorrFB, qIncorrFB,
             qSkill, qDiff, qProff, qIsApp, qDisabled, qWhoCreated);
         console.log('\n' + query + '\n');
@@ -860,9 +857,17 @@ app.post('/addQuestion', function (req, res) {
                     var question_id = ans.insertId;
                     // var query = queries.insertAllAnswer(correctAnswer,answer1,answer2,answer3,answer4);
                     var i;
+                    var x = 0;
+                    if (correctAnswerArray.length>0 && correctAnswerArray[0] != "") {
+                        x = correctAnswerArray[0];
+                    }
                     for (i = 0; i < answers.length; i++) {
-                        if (correctAnswerIndex == i)
+                        if (x == i) {
                             insertCommandList.push(queries.insertAnswer(question_id, answers[i], 1));
+                            if (correctAnswerArray.length>1) {
+                                x++;
+                            }
+                        }
                         else
                             insertCommandList.push(queries.insertAnswer(question_id, answers[i], 0));
                     }
@@ -1151,24 +1156,24 @@ app.post('/generateRandTask', function (req, res) {
                     var med = "";
                     var skil = "";
                     var diffi = "";
-                    if (media_types.length>0) {
+                    if (media_types.length > 0) {
                         med = JSON.stringify(media_types).toString().replace("[", "").replace("]", "");
                     }
-                    else{
+                    else {
                         med = "\"\"";
                     }
-                    if (skills.length>0) {
+                    if (skills.length > 0) {
                         skil = JSON.stringify(media_types).toString().replace("[", "").replace("]", "");
-                    }else{
-                        skil= "\"\"";
+                    } else {
+                        skil = "\"\"";
                     }
-                    if (difficulties.length>0) {
+                    if (difficulties.length > 0) {
                         diffi = JSON.stringify(difficulties).toString().replace("[", "").replace("]", "");
                     }
-                    else{
+                    else {
                         diffi = "\"\"";
                     }
-                    var query = queries.getQuestionsByParamter(med,skil,diffi);
+                    var query = queries.getQuestionsByParamter(med, skil, diffi);
                     console.log('\n' + query + '\n');
                     connection.query(query, function (err, questions) {
                         if (err) {
@@ -1453,7 +1458,7 @@ app.post('/getTeachersGroupByCityAndSchool', function (req, res) {
         var school = mysql.escape(req.body.school);
         var query = queries.getGroupsOfTeachersByCityAndSchool(city, school);
         console.log('\n' + query + '\n');
-        connection.query(query, function (err,teachers) {
+        connection.query(query, function (err, teachers) {
             if (err) {
                 console.log(err);
                 res.status(400).send("DB error");
@@ -1471,6 +1476,30 @@ app.post('/getTeachersGroupByCityAndSchool', function (req, res) {
 app.post('/getReported', function (req, res) {
     try {
         var query = "select * from textra_db.questions where Q_reported>=1;";
+        console.log('\n' + query + '\n');
+        connection.query(query, function (err, questions) {
+            if (err) {
+                console.log(err);
+                res.status(400).send("DB error");
+            }
+            else {
+                if (questions != null && questions.length == 0) {
+                    res.status(204).send();
+                } else {
+                    res.status(200).send(questions);
+                }
+            }
+        });
+    } catch (err) {
+        console.log("Error - " + err);
+        res.status(404).send();
+    }
+});
+
+
+app.post('/disableQuestion', function (req, res) {
+    try {
+        var query = "";
         console.log('\n' + query + '\n');
         connection.query(query, function (err, questions) {
             if (err) {

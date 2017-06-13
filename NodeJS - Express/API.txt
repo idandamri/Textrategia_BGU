@@ -198,7 +198,7 @@ API:
                      "answer2": "b",
                      "answer3": "c",
                      "answer4": "d",
-                     "correctAnswerIndex": "2"
+                     "correctAnswerIndex": "2,3"    //indexes are: 0,1,2,3
                  }
 	
 16.post('/createTask')
