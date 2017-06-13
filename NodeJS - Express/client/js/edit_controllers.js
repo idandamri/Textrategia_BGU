@@ -58,6 +58,7 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
             choiseButton1.style.backgroundColor  = "#5bc0de";
             choiseButton2.style.backgroundColor  = "#c9302c";
             $scope.searchQuestionByProfiling = false;
+            $scope.myQuestionsStock = [];
 
             alert("not yet working1");
             //get_all_questions("getUnapprovedQuestion");
@@ -74,6 +75,8 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
             choiseButton1.style.backgroundColor  =  "#5bc0de";
             choiseButton2.style.backgroundColor  = "#9F221C";
             $scope.searchQuestionByProfiling = false;
+            $scope.myQuestionsStock = [];
+
             alert("not yet working2");
             //get_all_questions("getUnapprovedQuestion");
 
