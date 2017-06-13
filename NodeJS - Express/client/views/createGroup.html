@@ -38,7 +38,8 @@
 
         <!--  2 -->
         <label class="control-label pull-right">סוג קבוצה:&nbsp;&nbsp;</label>
-        <select required class="form-control inputstl" ng-model="selected_group_master" id="group_master" ng-change="changeGroupType()" style="padding: 5px 5px;">
+        <select required class="form-control inputstl" ng-model="selected_group_master" id="group_master" ng-change="changeGroupType()" style="padding: 5px 5px;" placeholder="הכנס סוג קבוצה">
+          <option value=""> - בחר סוג קבוצה - </option>
           <option value=0>קבוצת-אם תלמידים</option>
           <option value=1>קבוצת מורים</option>
           <!--<option value=2>קבוצת תלמידים</option>-->
@@ -51,6 +52,7 @@
         <label class="control-label pull-right">בחר בית ספר:&nbsp;&nbsp;</label>
 
         <select required class="form-control inputstl" ng-model="selected_school" id="group_school" ng-change="getTeacherByCityAndSchool()" style="padding: 5px 5px;">
+         <option value=""> - הכנס בית ספר - </option>
           <option ng-repeat="y in group_school" value="{{y.School}}">{{y.School}}</option>
           <!--<option ng-show="group_school==0" disabled>אין בתי ספר קיימים</option>-->
         </select>
@@ -59,6 +61,7 @@
           <label class="control-label pull-right">בחר מורה אחראי:&nbsp;&nbsp;</label>
 
           <select required class="form-control inputstl" ng-model="selected_teacher" id="teachers" style="padding: 5px 5px;">
+          <option value=""> - בחר מורה אחראי קבוצה - </option>
             <option ng-repeat="y in teachers" value="{{y.PersonalID}}">{{y.FirstName}}</option>
           </select>
         </div>
