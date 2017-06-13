@@ -68,10 +68,11 @@
        &nbsp;&nbsp;{{q.Q_qeustion}}
       </a>
       <div id="collapse{{ $index + 1 }}" >   
-        <!-- <div ng-show="false" >  -->
        &nbsp;&nbsp;מקצוע: {{q.Q_proffession}} <br>
-       &nbsp;&nbsp;מיומנות למידה: {{q.Q_skill}} <br>
-          <!-- </div>  -->
+       &nbsp;&nbsp;מיומנות למידה: {{q.Q_skill}} <br><br>
+      <div class="bg-info" ng-show="!{{q.Q_approved}}"><strong> &nbsp;&nbsp;יש לערוך ולאשר שאלה זו&nbsp;&nbsp;</strong></div>
+      <div class="bg-danger" ng-show="!{{q.Q_approved}}" ><strong> &nbsp;&nbsp;יש התרעת משתמש על שאלה זו&nbsp;&nbsp;</strong></div>
+
       </div>
       </div>
 
