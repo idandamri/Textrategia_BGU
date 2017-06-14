@@ -498,26 +498,26 @@ $scope.studentToSendTaskToList = [];
 
         $scope.serverFeedback = "didnot finish just yet.....";
 
-        // var req = {
-        //     method: 'POST',
-        //     cache: false,
-        //     url: _url +'/sendTaskToStudents',
-        //     headers: {
-        //         'Content-Type': 'application/x-www-form-urlencoded'
-        //     },
-        //     data: 'students='+selected_student_lst + '&task_id=' + task
-        // };
+        var req = {
+            method: 'POST',
+            cache: false,
+            url: _url +'/sendTaskToStudents',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            data: 'students='+ studentIDlst + '&task_id=' + $scope.selected_task
+        };
 
-        // // alert(JSON.stringify(req));
+        // alert(JSON.stringify(req));
 
-        // $http(req)
-        //     .success(function(data,status,headers,config){
-        //         $scope.serverFeedback = "המטלה נשלחה בהצלחה"
-        //         $scope.doneSendTask = true;
-        //     }).error(function(data,status,headers,config){
-        //     $scope.serverFeedback = "שגיאה בשליחת המטלה"
+        $http(req)
+            .success(function(data,status,headers,config){
+                $scope.serverFeedback = "המטלה נשלחה בהצלחה"
+                $scope.doneSendTask = true;
+            }).error(function(data,status,headers,config){
+            $scope.serverFeedback = "שגיאה בשליחת המטלה"
 
-        // });
+        });
 
         // alert("group" + group.value  + "\n task:"  + task.value);              // this is T_id
 

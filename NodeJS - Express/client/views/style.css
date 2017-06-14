@@ -298,7 +298,7 @@ thead tr th{
     padding: 20px;
     box-shadow: 0 0 14px 5px #31b0d5;
 }
-.panel-active:{
+.panel-click:active{
     padding: 20px;
     box-shadow: 0 0 14px 5px #31b0d5;
 }

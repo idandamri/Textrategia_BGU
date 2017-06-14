@@ -145,15 +145,15 @@
 <!-- SEND TASK FOR STUDENT MODE -->
 <div class="row" ng-show="send_task_for_some_student_mod">
 
-  <div class="col-sm-12">   <h3>חפש תלמידים לפי קבוצות</h3> 
-    <label class="control-label pull-right">חפש תלמידים:</label>
-   </div> 
+  <div class="col-sm-12"> 
+  <h3> בחר מטלה, בחר קבוצה, סמן תלמידים ושלח! </h3>
+  <br><br>
+  </div>
+
 
   <div class="col-sm-4"> 
 
-<br><br>
-
-        
+       
         <div ng-show="$scope.groupsStudentLst!=0">
         <!-- <div ng-show="$scope.groupsStudentLst!=0">  -->
           <table class="table table-responsive table-fixed table-hover">
@@ -180,26 +180,30 @@
           </table>
         </div>
 
-
+<br><br><br>
 
 <!-- BUTTON -->
    <button ng-click="groupManagmentMode()" class="btn btn-success squirish-button1" style="font-size: 15px;" >
-      <span class="glyphicon glyphicon-menu-right"><span class="glyphicon glyphicon-education" style="font-size: 40px;"> </span> </span> 
+      <span class="glyphicon glyphicon-menu-right"><span class="glyphicon glyphicon-education"> </span> </span> 
      <p>חזור לניהול קבוצות</p>          </button> 
 
     <!-- BUTTON -->
-   <button ng-click="sendTaskForSomeStudent()" class="btn btn-success squirish-button1" style="font-size: 15px;" data-toggle="modal" data-target="#fedbackModal">
-     <span class="glyphicon glyphicon-send" style="font-size: 40px;"></span> 
+   <button ng-click="sendTaskForSomeStudent()" class="btn btn-success squirish-button1" data-toggle="modal" data-target="#fedbackModal" style="font-size: 15px;">
+     <span class="glyphicon glyphicon-send"></span> 
      <p>שלח מטלה לרשימת <br> תלמידים</p>          </button>
 
 
 
   </div>
 
-  <div class="col-sm-8">
 
 
-    <div class="col-sm-6 panel-group panel-hover panel-click" ng-repeat="y in allGroups " id="panelID-{{y.GroupId}}" ng-click="showGroupsMembersList(y.GroupId)">
+
+
+  <div class="col-sm-4">
+
+
+    <div class="panel-group panel-hover panel-click" ng-repeat="y in groups " id="panelID-{{y.GroupId}}" ng-click="showGroupsMembersList(y.GroupId)">
       <div class="panel panel-default">
         <div class="panel-heading">
           <h4 class="panel-title">
@@ -208,18 +212,45 @@
             </p>
           </h4>
         </div>
-
         <div class="panel">
           <div class="panel-body">קוד קבוצה: <div class="text-info"> {{y.GroupeCode}}</div></div>
         </div>
       </div>
-    </div>
-
-
-
-    
+    </div>   
 
   </div>
+
+
+
+  <div class="form-group col-sm-4" style="grid-row: initial;">
+
+      <div class="btn-group btn-group-lg text-right" data-toggle="buttons">
+        <!-- Button -->
+        <button id="choiseButton0" ng-click="changeTaskType(0)" 
+        class="btn btn-info squirish-button1" style="font-size: 15px;" >
+        מאגר <br> המשותף                       </button> 
+
+        <!-- Button -->
+        <button id="choiseButton1" ng-click="changeTaskType(1)" class="btn btn-info squirish-button1" style="font-size: 15px;" >
+        <p>המטלות <br> שלי</p>                          </button>
+      </div>
+
+<br><br><br>
+
+      <!-- 1 -->
+        <label  class="control-label pull-right" >מטלות זמינות:</label>
+        <select class="form-control inputstl" id="available_task" ng-model="selected_task" ng-change="getAllGroupForTask()" size=1>
+          <option ng-repeat="y in allTasks" value="{{y.T_id}}">{{y.T_title}}</option>
+          <option ng-show="info.tasks==0" disabled>אין מטלות זמינות</option>
+        </select>
+
+               
+
+ </div> <!-- /form-group -->
+
+
+
+
 </div>   <!-- /send_task_for_some_student_mod -->
 
 
