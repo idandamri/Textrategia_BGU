@@ -93,7 +93,9 @@ module.exports =
         },
 
         getStudentsFromGroup: function (group_id) {
-            return "SELECT * FROM textra_db.students_per_group where GroupId = " + group_id + ";";
+            return "SELECT PersonalID, LastName, FirstName,UserType, Email,Pass FROM (select * from textra_db.users AS users " +
+                "join textra_db.students_per_group AS instances where users.PersonalID = instances.StudentId) " +
+                "AS a where a.GroupId = " + group_id + ";";
         },
 
         getGroupsByTeacherAndCity: function (teacherId, city) {
