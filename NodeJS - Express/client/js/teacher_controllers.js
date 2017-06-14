@@ -190,7 +190,7 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
             + '&quest_difficulty=' +   quest_difficulty
             + '&quest_proffesion=' + 'הבעה'
             + '&quest_is_approved=' + is_approved
-            + '&quest_disabled=' + '1'
+            + '&quest_disabled=' + '0'
             + '&who_created=' + getUserID()
             + '&answer1=' + possible_ans_1
             + '&answer2=' + possible_ans_2
@@ -431,9 +431,8 @@ textrategiaApp.controller("GroupManagementController",function($scope,$http,$loc
 
 
 
-    $scope.showGroupsKidList = function(g_id){
+    $scope.showGroupsMembersList = function(g_id){
 
-      //  alert(g_id);
 
 
 
@@ -453,7 +452,6 @@ textrategiaApp.controller("GroupManagementController",function($scope,$http,$loc
             .success(function(data,status,headers,config){
                 if (status==200) {
                     $scope.groupsStudentLst = data;
-                    alert(data);
                 }
                 else if (status==204){
                     $scope.groupsStudentLst = [];
@@ -462,6 +460,7 @@ textrategiaApp.controller("GroupManagementController",function($scope,$http,$loc
                 }
             }).error(function(data,status,headers,config){
                 $scope.groupsStudentLst = [];
+                alert("אין ילדים בקבוצה");
 
         });
 

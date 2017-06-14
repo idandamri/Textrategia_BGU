@@ -148,7 +148,28 @@
   <div class="col-sm-12">   <h3>בחר קבוצה והצמד לה מטלה</h3>  </div> 
 
 
-  <div class="col-sm-2"> 
+  <div class="col-sm-4"> 
+
+<br><br>
+
+        
+        <!-- <div ng-show="$scope.studentsToSendTaskToList!=0"> -->
+        <div ng-show="$scope.groupsStudentLst!=0"> 
+          <table class="table table-responsive table-fixed table-hover">
+            <thead> <tr> 
+              <th>מספר זהות</th>
+              <th>שם פרטי</th>
+              <th>שם משפחה</th>
+            </tr> </thead>
+            <tbody> <tr  ng-repeat="stud in groupsStudentLst">
+               <td> {{stud.PersonalID}}</td>
+               <td> {{stud.FirstName}}</td>
+               <td> {{stud.LastName}}</td>
+            </tr></tbody>
+          </table>
+        </div>
+
+
 
 <!-- BUTTON -->
    <button ng-click="groupManagmentMode()" class="btn btn-success squirish-button1" style="font-size: 15px;" >
@@ -161,26 +182,12 @@
      <p>שלח מטלה לקבוצה</p>          </button> -->
 
 
-      <div class ="col-sm-4">
-        <div ng-show="$scope.groupsStudentLst!=0">
-          <table class="table table-responsive table-fixed table-hover">
-            <thead> <tr> <th>שם תלמיד:</th> </tr> </thead>
-            <tbody> <tr  ng-repeat="stud in groupsStudentLst">
-               <td> {{stud.FirstName}}</td>
-            </tr></tbody>
-          </table>
-        </div>
-      </div>
-
-
-
-
 
   </div>
 
-  <div class="col-sm-10">
+  <div class="col-sm-8">
 
-    <div class="col-sm-4 panel-group panel-hover" ng-repeat="y in allGroups" ng-click="showGroupsKidList(y.GroupId)">
+    <div class="col-sm-6 panel-group panel-hover panel-click" ng-repeat="y in allGroups " id="panelid-{{$index}}" ng-click="showGroupsMembersList(y.GroupId)">
       <div class="panel panel-default">
         <div class="panel-heading">
           <h4 class="panel-title">
@@ -192,6 +199,8 @@
           <div class="panel-body">קוד קבוצה: <div class="text-info"> {{y.GroupeCode}}</div></div>
           <!-- <div class="panel-footer">Panel Footer</div> -->
         </div>
+
+      <!--   <div ng-show="$scope.groupsStudentLst!=0"> -->
       </div>
     </div>
 
