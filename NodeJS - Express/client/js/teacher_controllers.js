@@ -151,9 +151,9 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
 
 
 
-        alert("is MULTIPLE? " + opt3.value + " what are correct answers?" 
-            + $scope.checkCorrectAnsLst +
-            "קושי: " + quest_difficulty);
+        //alert("is MULTIPLE? " + opt3.value + " what are correct answers?" 
+            // + $scope.checkCorrectAnsLst +
+            // "קושי: " + quest_difficulty);
         // alert("title: " + question_title + " op1: " + opt1.value + " op2: " + opt2.value + " question_media :" + question_media);
         // alert("y: " + quest_correct_fb + " n: " + quest_incorrect_fb + " skill: " + quest_skill );
         // alert("1: " + possible_ans_1 + " 2: " + possible_ans_2 + " 3: " +  possible_ans_3 + " 4: " + possible_ans_4)
@@ -199,7 +199,7 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
             + '&correctAnswerIndex=' + $scope.checkCorrectAnsLst  // is it $scope.checkCorrectAns?!
         };
 
-        // alert(JSON.stringify(req));
+        //alert(JSON.stringify(req));
 
         $http(req)
             .success(function(data,status,headers,config){
