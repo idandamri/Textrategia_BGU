@@ -196,7 +196,7 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
             + '&answer2=' + possible_ans_2
             + '&answer3=' + possible_ans_3
             + '&answer4=' + possible_ans_4
-            + '&correctAnswerIndex=' + $scope.checkCorrectAnsLst  // is it $scope.checkCorrectAns?!
+            + '&correctAnswerIndex=' + $scope.checkCorrectAnsLst 
         };
 
         //alert(JSON.stringify(req));
@@ -430,11 +430,28 @@ textrategiaApp.controller("GroupManagementController",function($scope,$http,$loc
 //~~~~~~~~~~~~~~~~~~ send_task_for_some_student_mod ~~~~~~~~~~~~~~~~~~~~~~~
 
 
+$scope.studentToSendTaskToList = [];
+
+
+    $scope.deleteThisStudent = function (element){
+        const index = $scope.studentToSendTaskToList.indexOf(element);
+        if (index !== -1)
+        {
+           $scope.studentToSendTaskToList.splice(index, 1);
+        }
+    };
+
+    $scope.addThisStudent = function (element){
+        const index = $scope.studentToSendTaskToList.indexOf(element);
+                if (index == -1)
+                {
+                   $scope.studentToSendTaskToList.push(element);
+                }
+        };
+
+
 
     $scope.showGroupsMembersList = function(g_id){
-
-
-
 
  var req = {
             method: 'POST',
@@ -466,54 +483,41 @@ textrategiaApp.controller("GroupManagementController",function($scope,$http,$loc
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 
 
 
 
     $scope.sendTaskForSomeStudent = function(){
-        var group = selected_student_lst;
-        var task = selected_task;
-        var req = {
-            method: 'POST',
-            cache: false,
-            url: _url +'/sendTaskToStudents',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            data: 'students='+selected_student_lst + '&task_id=' + task
-        };
 
-        // alert(JSON.stringify(req));
+        var studentIDlst = [];
 
-        $http(req)
-            .success(function(data,status,headers,config){
-                $scope.serverFeedback = "המטלה נשלחה בהצלחה"
-                $scope.doneSendTask = true;
-            }).error(function(data,status,headers,config){
-            $scope.serverFeedback = "שגיאה בשליחת המטלה"
+        for (i=0 ; i< $scope.studentToSendTaskToList.length ; i++){
+            studentIDlst.push($scope.studentToSendTaskToList[i].PersonalID);
+        }
 
-        });
+        $scope.serverFeedback = "didnot finish just yet.....";
+
+        // var req = {
+        //     method: 'POST',
+        //     cache: false,
+        //     url: _url +'/sendTaskToStudents',
+        //     headers: {
+        //         'Content-Type': 'application/x-www-form-urlencoded'
+        //     },
+        //     data: 'students='+selected_student_lst + '&task_id=' + task
+        // };
+
+        // // alert(JSON.stringify(req));
+
+        // $http(req)
+        //     .success(function(data,status,headers,config){
+        //         $scope.serverFeedback = "המטלה נשלחה בהצלחה"
+        //         $scope.doneSendTask = true;
+        //     }).error(function(data,status,headers,config){
+        //     $scope.serverFeedback = "שגיאה בשליחת המטלה"
+
+        // });
 
         // alert("group" + group.value  + "\n task:"  + task.value);              // this is T_id
 
