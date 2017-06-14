@@ -93,7 +93,7 @@ module.exports =
         },
 
         getStudentsFromGroup: function (group_id) {
-            return "SELECT StudentId FROM textra_db.students_per_group where GroupId = " + group_id + ";";
+            return "SELECT * FROM textra_db.students_per_group where GroupId = " + group_id + ";";
         },
 
         getGroupsByTeacherAndCity: function (teacherId, city) {
