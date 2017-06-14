@@ -4,7 +4,7 @@ var mysql = require('mysql');
 var _ = require('underscore');
 var moment = require('moment');
 var cors = require('cors');
-var multer  = require('multer');
+var multer = require('multer');
 /*var path = */
 require('path');
 var app = express();
@@ -526,6 +526,8 @@ app.post('/editQuestion', function (req, res) {
         var q_prof = mysql.escape(req.body.proffesion);
         var q_app = mysql.escape(req.body.approved);
         var q_disabled = mysql.escape(req.body.disabled);
+        var answersArray = mysql.escape(req.body.answers);
+
 
         var query = queries.updateQuestion(q_id, q_question, q_media, q_correctFB, q_notCorrectFB, q_skill, q_diff, q_prof, q_app, q_disabled);
         connection.query(query, function (err) {
@@ -534,6 +536,7 @@ app.post('/editQuestion', function (req, res) {
                 res.status(400).send("DB error - check DB!");
             }
             else {
+
                 res.status(200).send("updated!");
             }
         });
@@ -835,12 +838,9 @@ app.post('/addQuestion', function (req, res) {
         answers.push(mysql.escape(req.body.answer2));
         answers.push(mysql.escape(req.body.answer3));
         answers.push(mysql.escape(req.body.answer4));
+        var correctAnswerArray = [];
+        correctAnswerArray = correctAnswerIndex.split(',');
 
-        // var answer1 = req.body.answer1;
-        // var answer2 = req.body.answer2;
-        // var answer3 = req.body.answer3;
-        // var answer4 = req.body.answer4;
-        // console.log('QPROF: ' + qProff);
         var query = queries.addQustion(qTitle, isMulAns, qMedia, qMediaType, qCorrFB, qIncorrFB,
             qSkill, qDiff, qProff, qIsApp, qDisabled, qWhoCreated);
         console.log('\n' + query + '\n');
@@ -857,9 +857,21 @@ app.post('/addQuestion', function (req, res) {
                     var question_id = ans.insertId;
                     // var query = queries.insertAllAnswer(correctAnswer,answer1,answer2,answer3,answer4);
                     var i;
+                    var x = 0;
+                    if (correctAnswerArray.length > 0 && correctAnswerArray[0] != "") {
+                        x = correctAnswerArray[0];
+                        if(correctAnswerArray.length>1 && isMulAns == "'0'"){
+                            correctAnswerArray = [correctAnswerArray[0]];//makes it array in size of one with first cell
+                        }
+                    }
                     for (i = 0; i < answers.length; i++) {
-                        if (correctAnswerIndex == i)
+                        if (x == i) {
                             insertCommandList.push(queries.insertAnswer(question_id, answers[i], 1));
+                            if (correctAnswerArray.length > 1) {
+                                x++;
+                                x = correctAnswerArray[x];
+                            }
+                        }
                         else
                             insertCommandList.push(queries.insertAnswer(question_id, answers[i], 0));
                     }
@@ -1039,6 +1051,27 @@ app.post('/getStudentListFromGroupId', function (req, res) {
 });
 
 
+app.post('/getAnswersByQid', function (req, res) {
+    var qId = mysql.escape(req.body.q_id);
+    try {
+        var query = queries.getAnswersByQid(qId);
+        console.log('\n' + query + '\n');
+        connection.query(query, function (err, listOfAnswers) {
+            if (err) {
+                console.log(err);
+                res.status(400).send("DB error");
+            }
+            else {
+                res.status(200).send(listOfAnswers);//
+            }
+        });
+    } catch (err) {
+        console.log("Error - " + err);
+        res.status(404).send();
+    }
+});
+
+
 app.post('/getGroupsBySchool', function (req, res) {
     try {
         var schoolName = mysql.escape(req.body.school);
@@ -1090,11 +1123,26 @@ app.post('/generateRandTask', function (req, res) {
         var tOwner = 6;
         var tApproved = 1;
         var num = req.body.rand_num;
-        var media_types = req.body.media_types.split(",");
-        var skills = req.body.skills.split(",");
-        var difficulties = req.body.difficulties.split(",");
+        var media_types;
+        if (req.body.media_types != "") {
+            media_types = req.body.media_types.split(",");
+        } else {
+            media_types = [];
+        }
+        var skills;
+        if (req.body.skills != "") {
+            skills = req.body.skills.split(",")
+        } else {
+            skills = [];
+        }
+        var difficulties;
+        if (req.body.difficulties != "") {
+            difficulties = req.body.difficulties.split(",");
+        } else {
+            difficulties = [];
+        }
 
-        var tDesc = "\'"+"המטלה נוצרה ב- " + moment().format('l') + " , " + moment().format('LTS')+"\'";
+        var tDesc = "\'" + "המטלה נוצרה ב- " + moment().format('l') + " , " + moment().format('LTS') + "\'";
 
         var query = queries.addNewTask(tTitle, tDesc, tOwner, tApproved);
         console.log('\n' + query + '\n');
@@ -1109,10 +1157,27 @@ app.post('/generateRandTask', function (req, res) {
                     // [0].T_id;
                     // var query = queries.getQuestionsByParamter(JSON.stringify(media_types[0]), JSON.stringify(skills[0]),
                     //     JSON.stringify(difficulties[0]));
-                    var query = queries.getQuestionsByParamter(
-                        JSON.stringify(media_types).toString().replace("[", "").replace("]", ""),
-                        JSON.stringify(skills).toString().replace("[", "").replace("]", ""),
-                        JSON.stringify(difficulties).toString()).replace("[", "").replace("]", "");
+                    var med = "";
+                    var skil = "";
+                    var diffi = "";
+                    if (media_types.length > 0) {
+                        med = JSON.stringify(media_types).toString().replace("[", "").replace("]", "");
+                    }
+                    else {
+                        med = "\"\"";
+                    }
+                    if (skills.length > 0) {
+                        skil = JSON.stringify(media_types).toString().replace("[", "").replace("]", "");
+                    } else {
+                        skil = "\"\"";
+                    }
+                    if (difficulties.length > 0) {
+                        diffi = JSON.stringify(difficulties).toString().replace("[", "").replace("]", "");
+                    }
+                    else {
+                        diffi = "\"\"";
+                    }
+                    var query = queries.getQuestionsByParamter(med, skil, diffi);
                     console.log('\n' + query + '\n');
                     connection.query(query, function (err, questions) {
                         if (err) {
@@ -1166,9 +1231,16 @@ app.post('/generateRandTask', function (req, res) {
                                     });
                                 }
                                 else {
-                                    taskId = taskRow[0].T_id;
+                                    taskId = tId;
                                     queryDel = queries.deleteTaskForNotEnoughQuestions(taskId);
-                                    res.status(415).send("Not Enough questions to generate task by filtering");
+                                    connection.query(queryDel, function (err3) {
+                                        if (err3) {
+                                            console.log(err3);
+                                            res.status(400).send("Deletion error");
+                                        } else {
+                                            res.status(415).send("Not Enough questions to generate task by filtering");
+                                        }
+                                    });
                                 }
                             } catch (err) {
                                 console.log("Error - " + err);
@@ -1383,6 +1455,28 @@ app.post('/addNewSchool', function (req, res) {
     }
 });
 
+
+app.post('/getTeachersGroupByCityAndSchool', function (req, res) {
+    try {
+        var city = mysql.escape(req.body.city);
+        var school = mysql.escape(req.body.school);
+        var query = queries.getGroupsOfTeachersByCityAndSchool(city, school);
+        console.log('\n' + query + '\n');
+        connection.query(query, function (err, teachers) {
+            if (err) {
+                console.log(err);
+                res.status(400).send("DB error");
+            }
+            else {
+                res.status(200).send(teachers);
+            }
+        });
+    } catch (err) {
+        console.log("Error - " + err);
+        res.status(404).send();
+    }
+});
+
 app.post('/getReported', function (req, res) {
     try {
         var query = "select * from textra_db.questions where Q_reported>=1;";
@@ -1395,8 +1489,33 @@ app.post('/getReported', function (req, res) {
             else {
                 if (questions != null && questions.length == 0) {
                     res.status(204).send();
+                } else {
+                    res.status(200).send(questions);
                 }
-                res.status(200).send(questions);
+            }
+        });
+    } catch (err) {
+        console.log("Error - " + err);
+        res.status(404).send();
+    }
+});
+
+
+app.post('/disableQuestion', function (req, res) {
+    try {
+        var query = "";
+        console.log('\n' + query + '\n');
+        connection.query(query, function (err, questions) {
+            if (err) {
+                console.log(err);
+                res.status(400).send("DB error");
+            }
+            else {
+                if (questions != null && questions.length == 0) {
+                    res.status(204).send();
+                } else {
+                    res.status(200).send(questions);
+                }
             }
         });
     } catch (err) {
@@ -1417,8 +1536,9 @@ app.post('/getApprovedQuestion', function (req, res) {
             else {
                 if (questions != null && questions.length == 0) {
                     res.status(204).send();
+                } else {
+                    res.status(200).send(questions);
                 }
-                res.status(200).send(questions);
             }
         });
     } catch (err) {
@@ -1440,8 +1560,9 @@ app.post('/getUnapprovedQuestion', function (req, res) {
             else {
                 if (questions != null && questions.length == 0) {
                     res.status(204).send();
+                } else {
+                    res.status(200).send(questions);
                 }
-                res.status(200).send(questions);
             }
         });
     } catch (err) {
@@ -1592,7 +1713,7 @@ app.post('/sendTaskToStudents', function (req, res) {
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '123456',//'1q2w3e4r' to upload*/
+    password: '1q2w3e4r',//'1q2w3e4r' to upload*/
     database: 'textra_db',
     multipleStatements: true
 });
@@ -1604,16 +1725,16 @@ connection.connect(function (err) {
 });
 
 
-// var server = app.listen(8081, function () {
-//     var host = server.address().address;
-//     var port = server.address().port;
-//     console.log("Example app listening at http://%s:%s", host, port)
-// });
+var server = app.listen(8081, function () {
+    var host = server.address().address;
+    var port = server.address().port;
+    console.log("Example app listening at http://%s:%s", host, port)
+});
 
 // TODO - Hadas you need this/TESTS!!!
-app.listen(8081, "127.0.0.1", function () {
-    console.log("App is running ");
-});
+// app.listen(8081, "127.0.0.1", function () {
+//     console.log("App is running ");
+// });
 
 setInterval(function () {
     connection.query('SELECT 1');
