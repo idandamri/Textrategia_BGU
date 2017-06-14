@@ -27,7 +27,7 @@
   <div class="container" id="c_1">
 
 <!-- GROUP MANAGMENT MODE -->
-<div class="row" ng-show="!send_task_mod">
+<div class="row" ng-show="!send_task_mod && !send_task_for_some_student_mod">
 
   <div class="col-sm-12" >
     <h1>שלום, {{teacherName}}!</h1>  <h3>לרשותך, רשימת הקבוצות שבניהולך: </h3>
@@ -41,11 +41,11 @@
       <p> שליחת מטלות לקבוצה </p>
     </button> 
 
-<!--      Button 
+    <!-- Button  -->
     <button ng-click="sendTaskForSomeStudentMod()" class="btn btn-info" style="font-size: 15px;">
      <span class="glyphicon glyphicon-send" style="font-size: 40px;"></span> 
       <p> שליחת מטלות <br> לתלמידים מסויימים </p>
-    </button> -->
+    </button>
 
   </div>
 
@@ -143,35 +143,64 @@
 
 
 <!-- SEND TASK MODE -->
-<div class="row" ng-show="sendTaskForSomeStudentMod">
+<div class="row" ng-show="send_task_for_some_student_mod">
+
+  <div class="col-sm-12">   <h3>בחר קבוצה והצמד לה מטלה</h3>  </div> 
 
 
-<!-- 
-  <div class="col-sm-12">  <h3>בחר קבוצה והצמד לה מטלה</h3> 
+  <div class="col-sm-2"> 
 
-
-
-
-
-
-
-
-
-
-
-
-BUTTON
+<!-- BUTTON -->
    <button ng-click="groupManagmentMode()" class="btn btn-success squirish-button1" style="font-size: 15px;" >
       <span class="glyphicon glyphicon-menu-right"><span class="glyphicon glyphicon-education" style="font-size: 40px;"> </span> </span> 
      <p>חזור לניהול קבוצות</p>          </button> 
 
-BUTTON
-   <button ng-click="sendTaskForSomeStudent()" class="btn btn-success squirish-button1" style="font-size: 15px;" data-toggle="modal" data-target="#fedbackModal">
+    <!-- BUTTON -->
+  <!--  <button ng-click="sendTaskForSomeStudent()" class="btn btn-success squirish-button1" style="font-size: 15px;" data-toggle="modal" data-target="#fedbackModal">
      <span class="glyphicon glyphicon-send" style="font-size: 40px;"></span> 
-     <p>שלח מטלה לקבוצה</p>          </button>
- -->
+     <p>שלח מטלה לקבוצה</p>          </button> -->
+
+
+      <div class ="col-sm-4">
+        <div ng-show="$scope.groupsStudentLst!=0">
+          <table class="table table-responsive table-fixed table-hover">
+            <thead> <tr> <th>שם תלמיד:</th> </tr> </thead>
+            <tbody> <tr  ng-repeat="stud in groupsStudentLst">
+               <td> {{stud.FirstName}}</td>
+            </tr></tbody>
+          </table>
+        </div>
+      </div>
+
+
+
+
+
   </div>
-</div>
+
+  <div class="col-sm-10">
+
+    <div class="col-sm-4 panel-group panel-hover" ng-repeat="y in allGroups" ng-click="showGroupsKidList(y.GroupId)">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <p><bold>{{y.GroupName}}</bold></p>
+          </h4>
+        </div>
+
+        <div class="panel">
+          <div class="panel-body">קוד קבוצה: <div class="text-info"> {{y.GroupeCode}}</div></div>
+          <!-- <div class="panel-footer">Panel Footer</div> -->
+        </div>
+      </div>
+    </div>
+
+
+
+    
+
+  </div>
+</div>   <!-- /send_task_for_some_student_mod -->
 
 
 
