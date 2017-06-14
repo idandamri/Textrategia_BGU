@@ -1657,7 +1657,7 @@ app.post('/sendTaskToStudents', function (req, res) {
         var studentsArray = JSON.parse(req.body.students);
         var taskId = req.body.task_id;
 
-        if (studentsArray == null || studentsArray.length > 0) {
+        if (studentsArray != null || studentsArray.length > 0) {
             var query = queries.getQestionsListForTasks(taskId);
             console.log('\n' + query + '\n');
             connection.query(query, function (err, questions) {
