@@ -858,14 +858,18 @@ app.post('/addQuestion', function (req, res) {
                     // var query = queries.insertAllAnswer(correctAnswer,answer1,answer2,answer3,answer4);
                     var i;
                     var x = 0;
-                    if (correctAnswerArray.length>0 && correctAnswerArray[0] != "") {
+                    if (correctAnswerArray.length > 0 && correctAnswerArray[0] != "") {
                         x = correctAnswerArray[0];
+                        if(correctAnswerArray.length>1 && isMulAns == "'0'"){
+                            correctAnswerArray = [correctAnswerArray[0]];//makes it array in size of one with first cell
+                        }
                     }
                     for (i = 0; i < answers.length; i++) {
                         if (x == i) {
                             insertCommandList.push(queries.insertAnswer(question_id, answers[i], 1));
-                            if (correctAnswerArray.length>1) {
+                            if (correctAnswerArray.length > 1) {
                                 x++;
+                                x = correctAnswerArray[x];
                             }
                         }
                         else
@@ -1721,16 +1725,16 @@ connection.connect(function (err) {
 });
 
 
-// var server = app.listen(8081, function () {
-//     var host = server.address().address;
-//     var port = server.address().port;
-//     console.log("Example app listening at http://%s:%s", host, port)
-// });
+var server = app.listen(8081, function () {
+    var host = server.address().address;
+    var port = server.address().port;
+    console.log("Example app listening at http://%s:%s", host, port)
+});
 
 // TODO - Hadas you need this/TESTS!!!
-app.listen(8081, "127.0.0.1", function () {
-    console.log("App is running ");
-});
+// app.listen(8081, "127.0.0.1", function () {
+//     console.log("App is running ");
+// });
 
 setInterval(function () {
     connection.query('SELECT 1');
