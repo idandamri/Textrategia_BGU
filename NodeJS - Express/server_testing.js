@@ -1122,7 +1122,7 @@ app.post('/generateRandTask', function (req, res) {
         var tTitle = "\'מטלה לתרגול עצמאי\'";
         var tOwner = 6;
         var tApproved = 1;
-        var num = req.body.rand_num;
+        var num = 3;//req.body.rand_num;
         var media_types;
         if (req.body.media_types != "") {
             media_types = req.body.media_types.split(",");
@@ -1167,7 +1167,7 @@ app.post('/generateRandTask', function (req, res) {
                         med = "\"\"";
                     }
                     if (skills.length > 0) {
-                        skil = JSON.stringify(media_types).toString().replace("[", "").replace("]", "");
+                        skil = JSON.stringify(skills).toString().replace("[", "").replace("]", "");
                     } else {
                         skil = "\"\"";
                     }
