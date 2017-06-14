@@ -72,7 +72,18 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
     });
 
 
-
+        $scope.checkCorrectAnsLst = [];              // Arg1
+        $scope.checkCorrectAns = function (checkStatus,element){
+            if(checkStatus)        {
+                $scope.checkCorrectAnsLst.push(element);
+            }
+            else{
+                const index = $scope.checkCorrectAnsLst.indexOf(element);
+                if (index !== -1){
+                   $scope.checkCorrectAnsLst.splice(index, 1);
+                }
+            }
+        };
 
     $scope.sendNewQuestion = function (){
         // question_title is argument 1
@@ -100,15 +111,8 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
             }
         }
 
-        var quest_difficulty;
-        var sel_quest_difficulty = document.getElementById("quest_difficulty");
-        for (i = 0 ; i < sel_quest_difficulty.options.length ; i++){
-            quest_difficulty = sel_quest_difficulty.options[i];
-            if (media_type.selected == true){
-                // alert(quest_difficulty.value);              // 0 is no media.... @SHAKED - CHANGE AS YOU WISH
-                break;
-            }
-        }
+        var quest_difficulty = $scope.question.quest_difficulty;
+
 
 
         // arguments 4 - 8
@@ -132,9 +136,11 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
         var possible_ans_3 = $scope.question.possible_ans_3;
         var possible_ans_4 = $scope.question.possible_ans_4;
 
-        // (CORRECT ANS) opt3.value is argument
+
+
+        // (IS MULTPLE QUESTION?) opt3.value is argument
         var opt3;
-        var sel3 = document.getElementById("correct_ans");
+        var sel3 = document.getElementById("is_multiple_ans");
         for (i = 0 ; i < sel3.options.length ; i++){
             opt3 = sel3.options[i];
             if (opt3.selected == true){
@@ -143,6 +149,11 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
             }
         }
 
+
+
+        alert("is MULTIPLE? " + opt3.value + " what are correct answers?" 
+            + $scope.checkCorrectAnsLst +
+            "קושי: " + quest_difficulty);
         // alert("title: " + question_title + " op1: " + opt1.value + " op2: " + opt2.value + " question_media :" + question_media);
         // alert("y: " + quest_correct_fb + " n: " + quest_incorrect_fb + " skill: " + quest_skill );
         // alert("1: " + possible_ans_1 + " 2: " + possible_ans_2 + " 3: " +  possible_ans_3 + " 4: " + possible_ans_4)
@@ -170,13 +181,13 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             data: 'question_title='+ question_title
-            +'&is_multiple_ans='+ '0'
+            +'&is_multiple_ans='+ opt3.value
             + '&question_media_type=' + media_type.value
             + '&question_media=' + question_media
             + '&quest_correct_fb=' + quest_correct_fb
             +'&quest_incorrect_fb=' + quest_incorrect_fb
             +'&quest_skill=' +  quest_skill
-            + '&quest_difficulty=' +   quest_difficulty.value
+            + '&quest_difficulty=' +   quest_difficulty
             + '&quest_proffesion=' + 'הבעה'
             + '&quest_is_approved=' + is_approved
             + '&quest_disabled=' + '1'
@@ -185,7 +196,7 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
             + '&answer2=' + possible_ans_2
             + '&answer3=' + possible_ans_3
             + '&answer4=' + possible_ans_4
-            + '&correctAnswerIndex=' + opt3.value
+            + '&correctAnswerIndex=' + $scope.checkCorrectAnsLst  // is it $scope.checkCorrectAns?!
         };
 
         // alert(JSON.stringify(req));

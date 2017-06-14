@@ -60,21 +60,21 @@ textrategiaApp.config(function($routeProvider){
 		templateUrl:'views/teacher.html',
 		controller :'TeacherController'
 	})
-		.when('/groupManagement', {
-		templateUrl:'views/groupManagement.html',
-		controller :'GroupManagementController'
+	.when('/groupManagement', {
+	templateUrl:'views/groupManagement.html',
+	controller :'GroupManagementController'
 	})
-		.when('/createGroup', {
-		templateUrl:'views/createGroup.html',
-		controller :'CreateGroupController'
+	.when('/createGroup', {
+	templateUrl:'views/createGroup.html',
+	controller :'CreateGroupController'
 	})
-		.when('/createQuestion', {
-		templateUrl:'views/createQuestion.html',
-		controller :'CreateQuestionController'
+	.when('/createQuestion', {
+	templateUrl:'views/createQuestion.html',
+	controller :'CreateQuestionController'
 	})
-		.otherwise({
-		templateUrl:'views/welcome.html'
-		//controller :'lalaController'
+	.otherwise({
+	templateUrl:'views/welcome.html'
+	//controller :'lalaController'
 	});
 
 }); 
