@@ -58,9 +58,9 @@
     <div class="panel" ng-repeat="q in myTaskQuestions track by $index">
       <button class="button btn-danger" ng-click="deleteThisQuestion(q)" > מחק
       </button>
-      <a data-toggle="collapse" data-parent="#accordion1" data-target="#collapse{{ $index + 1 }}" class="ng-binding collapsed" >
+      <p data-toggle="collapse" data-parent="#accordion1" data-target="#collapse{{ $index + 1 }}" class="ng-binding collapsed" >
        &nbsp;&nbsp;{{q.Q_qeustion}}
-      </a>
+      </p>
       <!--<div id="collapse{{ $index + 1 }}" >  בעתיד יהיו פה מסיחים </div>-->
     </div>
   </div>
@@ -85,9 +85,9 @@
     <div class="panel" ng-repeat="q in myQuestions track by $index">
       <input type="checkbox"  ng-init='checkStatus51=false' ng-model="checkStatus51"
       ng-change="checkQuestionSelected(checkStatus51,q.Q_id)" >
-      <a data-toggle="collapse" data-parent="#accordion2" data-target="#collapse{{ $index + 1 }}" class="ng-binding collapsed" >
+      <p data-toggle="collapse" data-parent="#accordion2" data-target="#collapse{{ $index + 1 }}" class="ng-binding collapsed"  >
        &nbsp;&nbsp;{{q.Q_qeustion}}
-      </a>
+      </p>
       <!--<div id="collapse{{ $index + 1 }}" >   <div ng-show="false" > בעתיד יהיו פה מסיחים </div> </div>-->
     </div>
   </div>

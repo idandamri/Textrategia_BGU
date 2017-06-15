@@ -305,7 +305,7 @@ app.post('/addTaskToGroup', function (req, res) {
                                 while (students.length > indxStud) {
                                     var indxTask = 0;
                                     while (QuestsAndTasks.length > indxTask) {
-                                        var s_id = Number(students[indxStud].StudentId);
+                                        var s_id = Number(students[indxStud].PersonalID);
                                         var t_id = QuestsAndTasks[indxTask].T_id;
                                         var q_id = QuestsAndTasks[indxTask].Q_id;
                                         var query3 = queries.addTaskQuestionStudentInstance(s_id, t_id, q_id);
@@ -929,7 +929,7 @@ app.post('/createTask', function (req, res) {
                         try {
                             tId = taskRow[0].T_id;
                             var questionsArray = [];
-                            // questionsForTask = questionsForTask.split(",");
+                            questionsForTask = questionsForTask.split(",");
                             for (i = 0; i < questionsForTask.length; i++) {
                                 var qId = questionsForTask[i];
                                 questionsArray[i] = queries.joinNewTaskWithQuestion(tId, qId);

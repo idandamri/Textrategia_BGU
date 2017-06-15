@@ -416,7 +416,6 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
             /*need to add update ans*/
         }
         $scope.answerMode = false;
-
     };
 
     $scope.nextQuestion = function(quest_id){

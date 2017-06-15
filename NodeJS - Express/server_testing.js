@@ -929,7 +929,7 @@ app.post('/createTask', function (req, res) {
                         try {
                             tId = taskRow[0].T_id;
                             var questionsArray = [];
-                            // questionsForTask = questionsForTask.split(",");
+                            questionsForTask = questionsForTask.split(",");
                             for (i = 0; i < questionsForTask.length; i++) {
                                 var qId = questionsForTask[i];
                                 questionsArray[i] = queries.joinNewTaskWithQuestion(tId, qId);
