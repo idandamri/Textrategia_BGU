@@ -538,6 +538,11 @@ exmple : [
          ]
 
 
+38. post('addQuestionStatistics')
+input:q_id, s_id, a_id, is_correct, second_chance
+output: status 200 "inserted" / 400 - "DB Error"
+
+
 
 0-student
 1-teacher

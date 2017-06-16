@@ -1462,6 +1462,32 @@ app.post('/getTeachersGroupByCityAndSchool', function (req, res) {
     }
 });
 
+
+app.post('/addQuestionStatistics', function (req, res) {
+    try {
+        var qID = mysql.escape(req.body.q_id);
+        var sID = mysql.escape(req.body.s_id);
+        var aID = mysql.escape(req.body.a_id);
+        var is_correct = mysql.escape(req.body.is_correct);
+        var second_chance = mysql.escape(req.body.second_chance);
+        var query = queries.addSQuestionStatisticsWhenAnswering(qID,sID,aID,is_correct, second_chance);
+        console.log('\n' + query + '\n');
+        connection.query(query, function (err) {
+            if (err) {
+                console.log(err);
+                res.status(400).send("DB error");
+            }
+            else {
+                res.status(200).send("inserted!");
+            }
+        });
+    } catch (err) {
+        console.log("Error - " + err);
+        res.status(404).send();
+    }
+});
+
+
 app.post('/getReported', function (req, res) {
     try {
         var query = "select * from textra_db.questions where Q_reported_Offensive>=1" +
@@ -1723,7 +1749,7 @@ app.post('/sendTaskToStudents', function (req, res) {
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '123456',//'1q2w3e4r' to upload*/
+    password: '1q2w3e4r',//'123465' to upload*/
     database: 'textra_db',
     multipleStatements: true
 });
