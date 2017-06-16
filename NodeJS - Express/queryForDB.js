@@ -131,7 +131,7 @@ module.exports =
                               quest_is_approved, quest_disabled, quest_creator) {
             return "INSERT INTO textra_db.questions VALUES (null," + question_title + "," + isMultipleAns + ","
                 + question_media_type + "," + question_media + "," + quest_correct_FB + "," + quest_incorrect_FB + ","
-                + quest_skill + "," + quest_difficulty + "," + quest_proffesion + ", 0," + quest_is_approved + ","
+                + quest_skill + "," + quest_difficulty + "," + quest_proffesion + ", 0,0,0," + quest_is_approved + ","
                 + quest_disabled + "," + quest_creator + ");";
         },
 
@@ -141,8 +141,25 @@ module.exports =
                 + is_master_g + "," + g_code + "," + group_user_type + "," + is_app + ");";
         },
 
-        reportQuestion: function (q_id) {
-            return "UPDATE textra_db.questions SET Q_reported=Q_reported+1 WHERE Q_id = " + q_id + ";";
+        reportQuestion: function (q_id, report_offensive, report_question, report_answer) {
+            var head = "UPDATE textra_db.questions SET ";
+            var tail = " WHERE Q_id = " + q_id + ";";
+            if(report_offensive!='0'){
+                head = head + "Q_reported_Offensive = Q_reported_Offensive+1";
+                if(report_question!='0' || report_answer!='0'){
+                    head = head + ","
+                }
+            }
+            if(report_question!='0'){
+                head = head + " Q_reported_Question = Q_reported_Question + 1";
+                if(report_answer!='0'){
+                    head = head + ","
+                }
+            }
+            if(report_answer!='0'){
+                head = head + " Q_reported_Answer = Q_reported_Answer + 1";
+            }
+            return head + tail;
         },
 
         getGroupIdfromcode: function (g_code) {
@@ -171,7 +188,7 @@ module.exports =
 
         updateAnswer: function (a_id, q_id, answer, is_correct) {
             return "UPDATE textra_db.answers SET answer = '" + answer + "', isCorrect = " + is_correct +
-            " WHERE A_id  = " + a_id + " and Q_id = " + q_id +";";
+                " WHERE A_id  = " + a_id + " and Q_id = " + q_id + ";";
         },
 
         getFullQuestionByQid: function (q_id) {

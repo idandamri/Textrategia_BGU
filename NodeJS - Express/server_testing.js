@@ -446,8 +446,11 @@ app.post('/removeTestUsersFromGroup', function (req, res) {
 app.post('/reportQuestion', function (req, res) {
     try {
         var QID = mysql.escape(req.body.q_id);
+        var reportOffensive = req.body.report_offensive;
+        var reportQuestion = req.body.report_question;
+        var reportAnswer = req.body.report_answer;
 
-        var query = queries.reportQuestion(QID);
+        var query = queries.reportQuestion(QID, reportOffensive,reportQuestion,reportAnswer);
         connection.query(query, function (err) {
             if (err) {
                 console.log(err);
@@ -1500,7 +1503,9 @@ app.post('/getTeachersGroupByCityAndSchool', function (req, res) {
 
 app.post('/getReported', function (req, res) {
     try {
-        var query = "select * from textra_db.questions where Q_reported>=1;";
+        var query = "select * from textra_db.questions where Q_reported_Offensive>=1" +
+            " or Q_reported_Question>=1" +
+            " or Q_reported_Answer>=1;";
         console.log('\n' + query + '\n');
         connection.query(query, function (err, questions) {
             if (err) {
