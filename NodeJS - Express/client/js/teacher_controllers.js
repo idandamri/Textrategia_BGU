@@ -40,7 +40,7 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
         }
     }
 
-    var imgUrl;
+    var imgUrl="";
     $scope.uploadFile = function(){
 
         var file = $scope.myFile;
@@ -87,10 +87,18 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
         $scope.insertPossibleAnswersMode = false;
     }
 
-
     $scope.possibleAnswersMode = function(){
-        $scope.insertPossibleAnswersMode = true;
 
+        if (media_type.value=="img" && imgUrl==""){
+            alert("אל תשכח להעלות את התמוהנ - לחץ על כפתור upload")
+        }
+        else if ($scope.question.question_media=="" || $scope.question.question_media==null){
+            alert("יכול להיות ששכחת להוסיף מדיה?")
+        }
+        else {
+            alert($scope.question.question_media);
+            $scope.insertPossibleAnswersMode = true;
+        }
     }
 
     // $scope.mock_skills = [
@@ -148,8 +156,6 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
             }
         }
 
-
-
         var quest_difficulty = $scope.question.quest_difficulty;
 
         // arguments 4 - 8
@@ -157,7 +163,7 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
         var question_media;
         if (media_type.value=="img"){
             question_media = imgUrl;
-            alert("question_media = imgURL: " + question_media);
+            // alert("question_media = imgURL: " + question_media);
         }
         else {
             question_media = $scope.question.question_media;
