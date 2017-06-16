@@ -114,15 +114,17 @@
      </div>
 
     <!-- 2 -->
-      <label class="control-label pull-right">מהו קושי השאלה?:&nbsp;&nbsp;</label><br>
-      <div class="padded-20-elemnt" >
-        <label><input type="checkbox"  ng-init='checkStatus21=false' ng-model="checkStatus21" ng-change="checkDiffSelected(checkStatus21,'קלה')" >
-        &nbsp;&nbsp;קלה</label><br>
-        <label> <input type="checkbox"  ng-init='checkStatus22=false' ng-model="checkStatus22" ng-change="checkDiffSelected(checkStatus22,'בינונית')">
-        &nbsp;&nbsp;בינונית</label><br>
-        <label><input type="checkbox"  ng-init='checkStatus23=false' ng-model="checkStatus23" ng-change="checkDiffSelected(checkStatus23,'קשה')">
-        &nbsp;&nbsp;קשה</label><br>
-      </div>
+      <label class="control-label pull-right">מהו קושי השאלה?:&nbsp;&nbsp;</label><br>    
+        <div class="padded-20-elemnt" >
+          <label><input type="checkbox"  ng-init='checkStatus21=false' ng-model="checkStatus21" ng-change="checkDiffSelected(checkStatus21,'קלה')" >
+          &nbsp;&nbsp;קלה</label><br>
+          <label> <input type="checkbox"  ng-init='checkStatus22=false' ng-model="checkStatus22" ng-change="checkDiffSelected(checkStatus22,'בינונית')">
+          &nbsp;&nbsp;בינונית</label><br>
+          <label><input type="checkbox"  ng-init='checkStatus23=false' ng-model="checkStatus23" ng-change="checkDiffSelected(checkStatus23,'קשה')">
+          &nbsp;&nbsp;קשה</label><br>
+        </div>
+
+
 
     <!-- 1 -->
       <label class="control-label pull-right">סוג מיומנות למידה:&nbsp;&nbsp;</label><br>
@@ -194,7 +196,11 @@
 
     <!-- 5 -->
     <label class="control-label pull-right">הכנס מדייה: &nbsp;&nbsp;</label>
-      <input type="text" name="question_media" class="form-control inputstl pull-right" required placeholder="קישור למדיה" ng-model="question.question_media" tabindex="5"> 
+    <span class="text-info" ng-show="question.media_type=='img'" style="font-size: 18px;">
+       לא ניתן לערוך מדיה מסוג תמונה</span>
+      <div ng-show="question.media_type!='img'">
+         <input type="text" name="question_media" class="form-control inputstl pull-right" required placeholder="קישור למדיה" ng-model="question.question_media" tabindex="5"> 
+      </div>
 
       <!-- 6 -->
       <label class="control-label pull-right">הכנס מיומנות למידה: &nbsp;&nbsp;</label>
