@@ -36,14 +36,14 @@
   <div class="col-sm-3">
 
     <!-- Button -->
-    <button ng-click="sendTaskMode()" class="btn btn-info" style="font-size: 15px;">
-     <span class="glyphicon glyphicon-send" style="font-size: 40px;"></span> 
-      <p> שליחת מטלות לקבוצה </p>
+    <button ng-click="sendTaskMode()" class="btn btn-info squirish-button1" style="font-size: 15px;">
+     <span class="glyphicon glyphicon-education" style="font-size: 25px;"></span> 
+      <p> שליחת מטלות<br>לקבוצה </p>
     </button> 
 
     <!-- Button  -->
-    <button ng-click="sendTaskForSomeStudentMod()" class="btn btn-info" style="font-size: 15px;">
-     <span class="glyphicon glyphicon-send" style="font-size: 40px;"></span> 
+    <button ng-click="sendTaskForSomeStudentMod()" class="btn btn-info squirish-button1" style="font-size: 15px;">
+     <span class="glyphicon glyphicon-pawn" style="font-size: 25px;"></span> 
       <p> שליחת מטלות <br> לתלמידים מסויימים </p>
     </button>
 
@@ -53,7 +53,7 @@
 
   <div class="col-sm-8">
  
-    <div class="col-sm-4 panel-group panel-hover" ng-repeat="y in allGroups">
+    <div class="col-sm-6 panel-group panel-hover" ng-repeat="y in allGroups">
       <div class="panel panel-default">
         <div class="panel-heading">
           <h4 class="panel-title">
@@ -63,7 +63,8 @@
 
         <div class="panel">
           <div class="panel-body">קוד קבוצה: <div class="text-info"> {{y.GroupeCode}}</div></div>
-          <!-- <div class="panel-footer">Panel Footer</div> -->
+
+          
         </div>
 
       </div>
@@ -154,43 +155,46 @@
   <div class="col-sm-4"> 
 
        
-        <div ng-show="$scope.groupsStudentLst!=0">
-        <!-- <div ng-show="$scope.groupsStudentLst!=0">  -->
-          <table class="table table-responsive table-fixed table-hover">
-            <thead ng-show="$scope.groupsStudentLst!=0"> <tr> 
-              <th>מספר זהות</th>
-              <th>שם פרטי</th>
-            </tr> </thead>
-            <tbody> 
-            <tr class="success" ng-repeat="stud1 in studentToSendTaskToList">
-               <td> {{stud1.PersonalID}}</td>
-               <td> {{stud1.FirstName}}</td>
-               <td> {{stud1.LastName}}</td>
-               <td> <button class="button btn-danger" ng-click="deleteThisStudent(stud1)" > מחק
-      </button>
-            </tr>
+    <div ng-show="$scope.groupsStudentLst!=0">
+      <table class="table table-responsive table-fixed table-hover">
+        <thead ng-show="$scope.groupsStudentLst!=0 ">  
+        <tr> 
+          <th>מספר זהות</th>
+          <th>שם</th>
+          <th></th><th></th>
+        </tr> 
+        </thead>
+        <tbody> 
+        <tr class="success"><td>תלמידים שנבחרו:</td><td></td><td></td><td></td></tr>
+        <tr class="success" ng-repeat="stud1 in studentToSendTaskToList">
+          <td> {{stud1.PersonalID}}</td>
+          <td> {{stud1.FirstName}}</td>
+          <td> {{stud1.LastName}}</td>
+          <td> <button class="button btn-danger" ng-click="deleteThisStudent(stud1)"> מחק </button></td>
+        </tr>
+          <tr class="warning" style="border-top: thick solid #286044;">
+            <td>תלמידים לבחירה:</td><td></td><td></td><td></td>
+          </tr>
+        <tr class="warning" ng-repeat="stud2 in groupsStudentLst">
+          <td> {{stud2.PersonalID}}</td>
+          <td> {{stud2.FirstName}}</td>
+          <td> {{stud2.LastName}}</td>
+          <td> <button class="button btn-success" ng-click="addThisStudent(stud2)" > הוסף  </button></td>
 
-            <tr  ng-repeat="stud2 in groupsStudentLst">
-               <td> {{stud2.PersonalID}}</td>
-               <td> {{stud2.FirstName}}</td>
-               <td> {{stud2.LastName}}</td>
- <td> <button class="button btn-success" ng-click="addThisStudent(stud2)" > הוסף  </button>
-
-            </tr></tbody>
-          </table>
-        </div>
+        </tr></tbody>
+      </table>
+    </div>
 
 <br><br><br>
 
 <!-- BUTTON -->
-   <button ng-click="groupManagmentMode()" class="btn btn-success squirish-button1" style="font-size: 15px;" >
-      <span class="glyphicon glyphicon-menu-right"><span class="glyphicon glyphicon-education"> </span> </span> 
-     <p>חזור לניהול קבוצות</p>          </button> 
+   <button ng-click="groupManagmentMode()" class="btn btn-success squirish-button3" style="font-size: 15px;" >
+      <span class="glyphicon glyphicon-menu-right"> <p>חזור לניהול<br>קבוצות</p> </span> 
+             </button> 
 
     <!-- BUTTON -->
-   <button ng-click="sendTaskForSomeStudent()" class="btn btn-success squirish-button1" data-toggle="modal" data-target="#fedbackModal" style="font-size: 15px;">
-     <span class="glyphicon glyphicon-send"></span> 
-     <p>שלח מטלה לרשימת <br> תלמידים</p>          </button>
+   <button ng-click="sendTaskForSomeStudent()" class="btn btn-success squirish-button3" data-toggle="modal" data-target="#fedbackModal" style="font-size: 15px;">
+     <span class="glyphicon glyphicon-send">   <p>שלח<br> תלמידים</p></span>          </button>
 
 
 
@@ -227,11 +231,11 @@
       <div class="btn-group btn-group-lg text-right" data-toggle="buttons">
         <!-- Button -->
         <button id="choiseButton0" ng-click="changeTaskType(0)" 
-        class="btn btn-info squirish-button1" style="font-size: 15px;" >
-        מאגר <br> המשותף                       </button> 
+        class="btn btn-info squirish-button3" style="font-size: 15px;" >
+        <p>מאגר<br>המשותף</p>                       </button> 
 
         <!-- Button -->
-        <button id="choiseButton1" ng-click="changeTaskType(1)" class="btn btn-info squirish-button1" style="font-size: 15px;" >
+        <button id="choiseButton1" ng-click="changeTaskType(1)" class="btn btn-info squirish-button3" style="font-size: 15px;" >
         <p>המטלות <br> שלי</p>                          </button>
       </div>
 

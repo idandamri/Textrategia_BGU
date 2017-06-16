@@ -251,6 +251,7 @@ textrategiaApp.controller("GroupManagementController",function($scope,$http,$loc
     // ~~~~~ send task mode ~~~~~~~~
 
     $scope.getAllGroupForTask= function () {
+        $scope.studentToSendTaskToList = [];
         task_id = $scope.selected_task;
         var req = {
             method: 'POST',
