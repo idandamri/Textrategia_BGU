@@ -144,7 +144,42 @@ describe("Testing Textrategia API", function () {
     //             });
     //     });
     // });
-
+    //
+    // describe("Testing edit question", function () {
+    //     it('Testing edit question', function (done) {
+    //         request(app).post("/editQuestion").send({
+    //             "id": "1",
+    //             "question": "testQ title",
+    //             "mediaType": "text",
+    //             "media": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec qu",
+    //             "is_multiple_ans": "0",
+    //             "correctFB": "well done",
+    //             "notCorrectFB": "it was not the correct answer",
+    //             "skill": "testing skills!",
+    //             "difficulty": "easy",
+    //             "proffesion": "test profesion",
+    //             "approved": "1",
+    //             "disabled": "0",
+    //             "answers": [
+    //                 {"A_id": "1", "answer": "idan", "isCorrect": "1"},
+    //                 {"A_id": "2", "answer": "idan2", "isCorrect": "0"},
+    //                 {"A_id": "3", "answer": "idan3", "isCorrect": "0"},
+    //                 {"A_id": "4", "answer": "idan4", "isCorrect": "0"}
+    //             ]
+    //         })
+    //             .end(function (err, res) {
+    //                 if (err) {
+    //                     console.log("ERR: " + err);
+    //                     throw err;
+    //                 }
+    //                 else {
+    //                     res.status.should.be.equal(200);
+    //                 }
+    //                 done();
+    //             });
+    //     });
+    // });
+    //
     describe("Testing edit question", function () {
         it('Testing edit question', function (done) {
             request(app).post("/editQuestion").send({
@@ -160,12 +195,11 @@ describe("Testing Textrategia API", function () {
                 "proffesion": "test profesion",
                 "approved": "1",
                 "disabled": "0",
-                "answers": [
-                    {"A_id": "1", "answer": "idan", "isCorrect": "1"},
-                    {"A_id": "2", "answer": "idan2", "isCorrect": "0"},
-                    {"A_id": "3", "answer": "idan3", "isCorrect": "0"},
-                    {"A_id": "4", "answer": "idan4", "isCorrect": "0"}
-                ]
+                "answers": "[{\"A_id\": \"1\", \"answer\": \"idan\", \"isCorrect\": \"1\"}," +
+                "{\"A_id\": \"2\", \"answer\": \"idan2\", \"isCorrect\": \"0\"}," +
+                "{\"A_id\": \"3\", \"answer\": \"idan3\", \"isCorrect\": \"0\"}," +
+                "{\"A_id\": \"4\", \"answer\": \"idan4\", \"isCorrect\": \"0\"}" +
+                "]"
             })
                 .end(function (err, res) {
                     if (err) {
