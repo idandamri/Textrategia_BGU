@@ -229,15 +229,17 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
 
         $http(req)
             .success(function(data,status,headers,config){
+            $scope.question.answer = data;
+
             $scope.question.possible_ans_1 = data[0].answer;
             $scope.question.possible_ans_2 = data[1].answer;
             $scope.question.possible_ans_3 = data[2].answer;
             $scope.question.possible_ans_4 = data[3].answer;
 
-            $scope.question.answer.answer1_is_correct = data[0].isCorrect;
-            $scope.question.answer.answer2_is_correct = data[1].isCorrect;
-            $scope.question.answer.answer3_is_correct = data[2].isCorrect;
-            $scope.question.answer.answer4_is_correct = data[3].isCorrect;
+            $scope.question.answer1_is_correct = data[0].isCorrect;
+            $scope.question.answer2_is_correct = data[1].isCorrect;
+            $scope.question.answer3_is_correct = data[2].isCorrect;
+            $scope.question.answer4_is_correct = data[3].isCorrect;
 
             }).error(function(data,status,headers,config){
             $scope.question.possible_ans_1 = [];
@@ -301,8 +303,49 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
 
 
     }
+       $scope.changeStatusOfAnswer = function(changed_element){
+
+            switch(changed_element) {
+                case "0":
+                    $scope.question.answer1_is_correct = 1 - $scope.question.answer1_is_correct;
+                    break;
+                case "1":
+                    $scope.question.answer2_is_correct = 1 - $scope.question.answer2_is_correct;
+                    break;
+                case "2":
+                    $scope.question.answer3_is_correct = 1 - $scope.question.answer3_is_correct;
+                    break;
+                case "3":
+                    $scope.question.answer4_is_correct = 1- $scope.question.answer4_is_correct;
+                    break;
+                case "blimp":
+                    $scope.question.isMultipuleAns = 1- $scope.question.isMultipuleAns;
+                    break;
+            } ;
+
+        };
 
 
+
+    $scope.sendNewQuestionWraper = function(){
+        $scope.question_is_legal = false;   
+        var isMultipuleAns = parseInt($scope.question.isMultipuleAns);
+        var sum = parseInt($scope.question.answer1_is_correct) +  parseInt($scope.question.answer2_is_correct) +
+            parseInt($scope.question.answer3_is_correct) +  parseInt($scope.question.answer4_is_correct) ;
+
+        if (sum == 0){
+            $scope.serverFeedback = "חייב לבחור לבחות תשובה נכונה אחת";
+        }
+        else if( !isMultipuleAns && sum != 1){
+            $scope.serverFeedback = "אסור לבחור יותר מתשובה נכונה אחת";    
+
+        }
+        else {
+            $scope.serverFeedback = "האם ברצונך לשלוח את השאלה לעריכה?";   
+            $scope.question_is_legal = true;       
+        };
+
+    };
     $scope.sendNewQuestion = function (){
 
         var question_title = $scope.question.question_title;
@@ -312,28 +355,26 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
         var question_media = $scope.question.question_media;
         var quest_correct_fb = $scope.question.quest_correct_fb;
         var quest_incorrect_fb = $scope.question.quest_incorrect_fb;
+        var isMultipuleAns = $scope.question.isMultipuleAns;
 
         // get possible answers infomation!
-        var possible_ans_1 = $scope.answer.possible_ans_1;
-        var possible_ans_2 = $scope.answer.possible_ans_2;
-        var possible_ans_3 = $scope.answer.possible_ans_3;
-        var possible_ans_4 = $scope.answer.possible_ans_4;
-        
+        var possible_ans_1 = $scope.question.possible_ans_1;
+        var possible_ans_2 = $scope.question.possible_ans_2;
+        var possible_ans_3 = $scope.question.possible_ans_3;
+        var possible_ans_4 = $scope.question.possible_ans_4;
+                
 
-        var correct_ans = $scope.answer.is_correct;
+        var correct_ans = [];
+        correct_ans.push($scope.question.answer1_is_correct);
+        correct_ans.push($scope.question.answer2_is_correct);
+        correct_ans.push($scope.question.answer3_is_correct);
+        correct_ans.push($scope.question.answer4_is_correct);
 
-       
-        //alert("title: " + question_title + " media_type: " + media_type + " quest_difficulty: " + quest_difficulty + " question_media :" + question_media);
-        //  alert("y: " + quest_correct_fb + " n: " + quest_incorrect_fb + " skill: " + quest_skill );
-       // alert("1: " + possible_ans_1 + " 2: " + possible_ans_2 + " 3: " +  possible_ans_3 + " 4: " + possible_ans_4)
+        // alert(correct_ans);
 
         // ####################################################
         // SEND INFORMATION TO SERVER HERE
         // ####################################################
-
-
-        // change server feedback acording to succuss or failure!
-
 
         /*set quest_is_approved */
         var is_approved;
@@ -378,7 +419,7 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
         //     $scope.serverFeedback = "שגיאה בהכנסת שאלה";
         // });
 
-        alert("עריכה עדיין לא זמינה כרגע");
+ 
 
         // $scope.serverFeedback = "השאלה נשלחה בהצלחה!"
     }
