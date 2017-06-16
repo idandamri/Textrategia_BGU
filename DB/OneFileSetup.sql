@@ -54,6 +54,19 @@ foreign key (T_owner) references users(PersonalID),
 primary key (T_id)
 );
 
+create table statistics
+(
+Q_id bigint unsigned not null,
+S_id varchar(100) not null,
+A_id bigint unsigned not null,
+isCorrect boolean not null,
+Second_Chance boolean not null,
+foreign key (Q_id) references questions(Q_id),
+foreign key (A_id) references answers(A_id),
+foreign key (S_id) references users(PersonalID),
+primary key (Q_id,S_id,A_id,isCorrect)
+);
+
 create table tasks_joined_with_questions(
 T_id bigint unsigned not null,
 Q_id bigint unsigned not null,

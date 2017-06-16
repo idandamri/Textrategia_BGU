@@ -5,7 +5,6 @@ var _ = require('underscore');
 var moment = require('moment');
 var cors = require('cors');
 var multer = require('multer');
-/*var path = */
 require('path');
 var app = express();
 app.use(cors());
@@ -21,24 +20,6 @@ app.use(bodyParser.json());
 app.get('/', function (req, res) {
     res.redirect('/index.html');
 });
-
-/*
- app.get('/deleteItems', function (req, res) {
- var querieOfDeletion = "DELETE FROM `textra_db`.`students_per_group` WHERE `StudentId`='12121211' and`GroupId`='123456';"
- + "DELETE FROM `textra_db`.`users` WHERE `PersonalID`='12121211';"
- + "DELETE FROM `textra_db`.`instances_of_answers` WHERE `A_id`='1' and`Q_id`='1' and`T_id`='1' and`studentId`='2';";
- console.log('\n' + querieOfDeletion + '\n');
- connection.query(querieOfDeletion, function (err) {
- if (err) {
- console.log(err);
- res.status(400).send("deletion error");
- }
- else {
- res.status(200).send("Deleted!");
- }
- });
-
- });*/
 
 
 app.post('/login', function (req, res) {
@@ -57,8 +38,7 @@ app.post('/login', function (req, res) {
             }
             else {
                 console.log("ans:" + ans);
-                //res.send(row[1]);
-                if (ans.length > 0) { /*check if the resault is empty*/
+                if (ans.length > 0) {
                     res.status(200).json(ans);
                     /*change to user id*/
                     console.log('OK');
@@ -82,7 +62,6 @@ app.post('/getListOfTasks', function (req, res) {
         var query = queries.gelAllTaskTitleByStudentId(user_id);
         console.log(query);
         connection.query(query, function (err, tasks) {
-
             if (!err) {
                 console.log("got a list of task response");
                 console.log(JSON.stringify(tasks));
@@ -116,7 +95,7 @@ app.post('/getQuestion', function (req, res) {
             else {
                 try {
                     console.log("Got a question id");
-                    if (row.length > 0 /*&& row != null*/) {
+                    if (row.length > 0) {
                         console.log("Question id is larger then one");
                         if (row[0].Q_id != null) {
                             var query = queries.getFullQuestionByQid(row[0].Q_id);
@@ -343,7 +322,7 @@ app.post('/addTaskToGroup', function (req, res) {
                     });
                 }
                 else {
-                    res.status(200).send();//empty list of group - added to all (actually no one)
+                    res.status(200).send();
                 }
             }
         });
@@ -359,7 +338,7 @@ function makeid() {
         var text = "";
         var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-        for (var i = 0; i < 5; i++)
+        for (var i = 0; i < 8; i++)
             text += possible.charAt(Math.floor(Math.random() * possible.length));
 
         return text;
@@ -383,8 +362,6 @@ app.post('/createGroup', function (req, res) {
         var gCode = mysql.escape(makeid());
 
         connection.query(queries.checkIfGroupCodeExists(gCode), function (err, ans) {
-
-
             var query = queries.createGroup(gName, school, city, teacherId, isTeacherGroup, isMaster, gCode, groupUserType, isApp);
             console.log('\n' + query + '\n');
             connection.query(query, function (err, ans) {
@@ -577,24 +554,6 @@ app.post('/editQuestion', function (req, res) {
 });
 
 
-/*
- app.post('/checkGroup', function (req, res) {
- var groupCode = req.body.group_code;
-
- var query = queries.getGroupIdfromcode(groupCode);
- console.log('\n' + query + '\n');
- connection.query(query, function (err, isTeacher, field) {
- if (err) {
- console.log(err);
- res.status(400).send("No group found by code error!");
- }
- else {
- res.status(200).send(isTeacher[0].);
- }
- });
- });
- */
-
 app.post('/registerUser', function (req, res) {
     try {
         var personalId = mysql.escape(req.body.personal_id);
@@ -692,7 +651,6 @@ app.post('/registerUser', function (req, res) {
 
 
 app.post('/addUsersToGroup', function (req, res) {
-
     try {
         var users = req.body.users;
         var groupId = mysql.escape(req.body.group_id);
@@ -1182,11 +1140,8 @@ app.post('/generateRandTask', function (req, res) {
                 res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
             }
             else {
-                try { // if (taskRow.length > 0) {
+                try {
                     var tId = taskRow.insertId;
-                    // [0].T_id;
-                    // var query = queries.getQuestionsByParamter(JSON.stringify(media_types[0]), JSON.stringify(skills[0]),
-                    //     JSON.stringify(difficulties[0]));
                     var med = "";
                     var skil = "";
                     var diffi = "";
@@ -1629,6 +1584,7 @@ app.post('/checkIfpassIsCorrectByID', function (req, res) {
     }
 });
 
+
 app.post('/getQuestionsByParamter', function (req, res) {
     try {
         var media_types = mysql.escape(req.body.media_types.split(","));
@@ -1660,7 +1616,6 @@ app.post('/getQuestionsByParamter', function (req, res) {
 
 
 app.post('/getAllSkills', function (req, res) {
-
     try {
         var query = queries.getAllSkills();
         console.log('\n' + query + '\n');
@@ -1684,32 +1639,28 @@ app.post('/getAllSkills', function (req, res) {
     }
 });
 
+var storage =   multer.diskStorage({
+    destination: function (req, file, callback) {
+        callback(null, './client/views/img');
+    },
+    filename: function (req, file, callback) {
+        // callback(null, +file.originalname.substr(file.originalname.indexOf('.'))
+        callback(null, Date.now() + "_" + file.originalname
+        );
+    }
+});
 
-// var storage =   multer.diskStorage({
-//     destination: function (req, file, callback) {
-//         callback(null, './uploads');
-//     },
-//     filename: function (req, file, callback) {
-//         callback(null, var afterDot = file.originalname.substr(file.originalname.indexOf('.'));
-//         );
-//     }
-// });
-//
-// var upload = multer({ storage : storage}).single('userPhoto');
-//
-// app.get('/',function(req,res){
-//     res.sendFile(__dirname + "/index.html");
-// });
-//
-// app.post('/api/photo',function(req,res){
-//     upload(req,res,function(err) {
-//         if(err) {
-//             res.status(400).send(req);
-//         }
-//         res.status(200).send(req);
-//     });
-// });
+var upload = multer({ storage : storage}).single('file');
 
+app.post('/multer',function(req,res){
+    upload(req,res,function(err) {
+        if(err) {
+            res.status(400).send();
+        }
+        var s = req.file.filename;
+        res.status(200).send(s);
+    });
+});
 
 app.post('/sendTaskToStudents', function (req, res) {
     try {
@@ -1772,7 +1723,7 @@ app.post('/sendTaskToStudents', function (req, res) {
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '1q2w3e4r',//'1q2w3e4r' to upload*/
+    password: '123456',//'1q2w3e4r' to upload*/
     database: 'textra_db',
     multipleStatements: true
 });
