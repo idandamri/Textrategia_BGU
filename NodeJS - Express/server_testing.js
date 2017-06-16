@@ -305,7 +305,7 @@ app.post('/addTaskToGroup', function (req, res) {
                                 while (students.length > indxStud) {
                                     var indxTask = 0;
                                     while (QuestsAndTasks.length > indxTask) {
-                                        var s_id = Number(students[indxStud].StudentId);
+                                        var s_id = Number(students[indxStud].PersonalID);
                                         var t_id = QuestsAndTasks[indxTask].T_id;
                                         var q_id = QuestsAndTasks[indxTask].Q_id;
                                         var query3 = queries.addTaskQuestionStudentInstance(s_id, t_id, q_id);
@@ -518,7 +518,9 @@ app.post('/editQuestion', function (req, res) {
     try {
         var q_id = mysql.escape(req.body.id);
         var q_question = mysql.escape(req.body.question);
+        var q_media_type = mysql.escape(req.body.mediaType);
         var q_media = mysql.escape(req.body.media);
+        var isMul = mysql.escape(req.body.is_multiple_ans);
         var q_correctFB = mysql.escape(req.body.correctFB);
         var q_notCorrectFB = mysql.escape(req.body.notCorrectFB);
         var q_skill = mysql.escape(req.body.skill);
@@ -526,21 +528,40 @@ app.post('/editQuestion', function (req, res) {
         var q_prof = mysql.escape(req.body.proffesion);
         var q_app = mysql.escape(req.body.approved);
         var q_disabled = mysql.escape(req.body.disabled);
-        var answersArray = mysql.escape(req.body.answers);
+        // var ansStr = JSON.stringify("\'{\"answers\":" + req.body.answers + "}\'").toString();
+        var answersArray = req.body.answers;
 
 
-        var query = queries.updateQuestion(q_id, q_question, q_media, q_correctFB, q_notCorrectFB, q_skill, q_diff, q_prof, q_app, q_disabled);
+        var query = queries.updateQuestion(q_id, q_question, q_media, q_media_type, isMul, q_correctFB, q_notCorrectFB, q_skill, q_diff, q_prof, q_app, q_disabled);
         connection.query(query, function (err) {
             if (err) {
                 console.log(err);
-                res.status(400).send("DB error - check DB!");
+                res.status(400).send("DB error - check DB! - question not updated");
             }
             else {
-
-                res.status(200).send("updated!");
+                var bigQuery = "";
+                for (var i = 0; i < answersArray.length; i++) {
+                    var a_id = answersArray[i].A_id;
+                    var answer = answersArray[i].answer;
+                    var is_corr = answersArray[i].isCorrect;
+                    var query = queries.updateAnswer(a_id, q_id, answer, is_corr);
+                    bigQuery = bigQuery + query;
+                }
+                connection.query(bigQuery, function (err) {
+                        if (err) {
+                            console.log(err);
+                            res.status(400).send("DB error - check DB! - answers not updated");
+                        }
+                        else {
+                            res.status(200).send("updated!");
+                        }
+                    }
+                );
             }
         });
-    } catch (err) {
+
+    } catch
+        (err) {
         console.log("Error - " + err);
         res.status(404).send();
     }
@@ -860,7 +881,7 @@ app.post('/addQuestion', function (req, res) {
                     var x = 0;
                     if (correctAnswerArray.length > 0 && correctAnswerArray[0] != "") {
                         x = correctAnswerArray[0];
-                        if(correctAnswerArray.length>1 && isMulAns == "'0'"){
+                        if (correctAnswerArray.length > 1 && isMulAns == "'0'") {
                             correctAnswerArray = [correctAnswerArray[0]];//makes it array in size of one with first cell
                         }
                     }

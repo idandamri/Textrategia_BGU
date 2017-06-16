@@ -162,11 +162,16 @@ module.exports =
             return "UPDATE textra_db.questions SET Q_approved = " + isDisabled + " WHERE Q_id = " + q_id + ";";
         },
 
-        updateQuestion: function (q_id, q_question, q_media, q_correctFB, q_notCorrectFB, q_skill, q_diff, q_proff, q_app, q_disable) {
-            return "UPDATE textra_db.questions SET Q_question  = " + q_question + ", Q_media = " + q_media +
-                ", Q_correctFB = " + q_correctFB + ", Q_notCorrectFB = " + q_notCorrectFB + ", Q_skill = " + q_skill +
+        updateQuestion: function (q_id, q_question, q_media, q_mediaType, is_mul, q_correctFB, q_notCorrectFB, q_skill, q_diff, q_proff, q_app, q_disable) {
+            return "UPDATE textra_db.questions SET Q_qeustion  = " + q_question + ", Q_media = " + q_media +
+                ", Q_mediaType = " + q_mediaType + ", isMultipuleAns = " + is_mul + ", Q_correctFB = " + q_correctFB + ", Q_notCorrectFB = " + q_notCorrectFB + ", Q_skill = " + q_skill +
                 ", Q_difficulty = " + q_diff + ", Q_proffession = " + q_proff + ", Q_disabled = " + q_disable +
                 ", Q_approved = " + q_app + " WHERE Q_id = " + q_id + ";";
+        },
+
+        updateAnswer: function (a_id, q_id, answer, is_correct) {
+            return "UPDATE textra_db.answers SET answer = '" + answer + "', isCorrect = " + is_correct +
+            " WHERE A_id  = " + a_id + " and Q_id = " + q_id +";";
         },
 
         getFullQuestionByQid: function (q_id) {

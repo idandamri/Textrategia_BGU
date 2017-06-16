@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7c1dd669-4d78-476f-9d51-553f8449f360" name="Default" comment="changed DB Marathon day">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server.js" afterPath="$PROJECT_DIR$/server.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="c6aab38b-e232-4e80-b2df-d49c82aaa698" name="Rejected commit: Default" comment="comm test" />
     <list id="b7d62d89-dbb7-429a-833f-f97ac1f737a4" name="Rejected commit: Default (2)" comment="comm test" />
@@ -17,11 +17,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="tools-spec.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="tools-spec.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/tools-spec.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="130">
-              <caret line="423" column="25" lean-forward="false" selection-start-line="423" selection-start-column="17" selection-end-line="423" selection-end-column="25" />
+            <state relative-caret-position="78">
+              <caret line="157" column="43" lean-forward="true" selection-start-line="157" selection-start-column="43" selection-end-line="157" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -30,8 +30,8 @@
       <file leaf-file-name="server_testing.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server_testing.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="1711" selection-end-column="0" />
+            <state relative-caret-position="116">
+              <caret line="550" column="23" lean-forward="false" selection-start-line="550" selection-start-column="23" selection-end-line="550" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -51,7 +51,7 @@
         <entry file="file://$PROJECT_DIR$/Status explanetion">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="136">
-              <caret line="8" column="19" lean-forward="true" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
+              <caret line="8" column="19" lean-forward="false" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -60,18 +60,18 @@
       <file leaf-file-name="queryForDB.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/queryForDB.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="122" column="7" lean-forward="false" selection-start-line="122" selection-start-column="7" selection-end-line="122" selection-end-column="7" />
+            <state relative-caret-position="218">
+              <caret line="173" column="41" lean-forward="false" selection-start-line="173" selection-start-column="41" selection-end-line="173" selection-end-column="41" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="server.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="123">
-              <caret line="1711" column="0" lean-forward="true" selection-start-line="1711" selection-start-column="0" selection-end-line="1711" selection-end-column="0" />
+            <state relative-caret-position="555">
+              <caret line="1716" column="28" lean-forward="true" selection-start-line="1716" selection-start-column="28" selection-end-line="1716" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -81,12 +81,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>insertAnswer</find>
-      <find>insertA</find>
-      <find>insertAnswe</find>
-      <find>todo</find>
-      <find>'&quot;</find>
-      <find>getstu</find>
       <find>gette</find>
       <find>getuser</find>
       <find>getuse</find>
@@ -107,10 +101,16 @@
       <find>equals</find>
       <find>getStude</find>
       <find>getStudentListFromGroupId</find>
-      <find>addQ</find>
       <find>answer</find>
       <find>send</find>
       <find>/sendTas</find>
+      <find>update</find>
+      <find>updateQ</find>
+      <find>JSON</find>
+      <find>parse</find>
+      <find>addQ</find>
+      <find>UPDATE</find>
+      <find>replace</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -125,14 +125,14 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/../DB/OneFileSetup.sql" />
-        <option value="$PROJECT_DIR$/test/tools-spec.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
         <option value="$PROJECT_DIR$/API.txt" />
         <option value="$PROJECT_DIR$/Status explanetion" />
-        <option value="$PROJECT_DIR$/queryForDB.js" />
-        <option value="$PROJECT_DIR$/server_testing.js" />
         <option value="$PROJECT_DIR$/server.js" />
+        <option value="$PROJECT_DIR$/server_testing.js" />
+        <option value="$PROJECT_DIR$/queryForDB.js" />
+        <option value="$PROJECT_DIR$/test/tools-spec.js" />
       </list>
     </option>
   </component>
@@ -256,8 +256,8 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="nodejs.mocha.mocha_node_package_dir" value="C:\Users\idan\Desktop\Textrategia\Textrategia_BGU\NodeJS - Express\node_modules\mocha" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+    <property name="nodejs.mocha.mocha_node_package_dir" value="C:\Users\idan\AppData\Roaming\npm\node_modules\mocha" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/test" />
     <property name="project.structure.last.edited" value="Problems" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -279,9 +279,15 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/client/js/app.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../.idea/workspace.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/client/js/student_controllers.js</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/client/js/teacher_controllers.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/client/views/creatTask.html</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/client/views/createQuestion.html</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/client/views/student.html</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/client/views/tasks.html</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/server.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/server_testing.js</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -389,7 +395,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Node.js.server_testing.js">
+  <component name="RunManager" selected="Mocha.tests">
     <configuration default="false" name="tools-spec.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="$PROJECT_DIR$/../nodeI/node" path-to-js-file="tools-spec.js" working-dir="$PROJECT_DIR$/test">
       <method />
     </configuration>
@@ -800,7 +806,7 @@
       <method />
     </configuration>
     <configuration default="false" name="tools-spec" type="mocha-javascript-test-runner" factoryName="Mocha">
-      <node-interpreter>$PROJECT_DIR$/../nodeI/node</node-interpreter>
+      <node-interpreter>project</node-interpreter>
       <node-options />
       <working-directory>$PROJECT_DIR$/test</working-directory>
       <pass-parent-env>true</pass-parent-env>
@@ -812,15 +818,29 @@
       <recursive>false</recursive>
       <method />
     </configuration>
-    <list size="3">
+    <configuration default="false" name="tests" type="mocha-javascript-test-runner" factoryName="Mocha">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <working-directory>$PROJECT_DIR$</working-directory>
+      <pass-parent-env>true</pass-parent-env>
+      <envs />
+      <ui>bdd</ui>
+      <extra-mocha-options />
+      <test-kind>DIRECTORY</test-kind>
+      <test-directory>$PROJECT_DIR$/test</test-directory>
+      <recursive>false</recursive>
+      <method />
+    </configuration>
+    <list size="4">
       <item index="0" class="java.lang.String" itemvalue="Mocha.tools-spec" />
-      <item index="1" class="java.lang.String" itemvalue="Node.js.tools-spec.js" />
-      <item index="2" class="java.lang.String" itemvalue="Node.js.server_testing.js" />
+      <item index="1" class="java.lang.String" itemvalue="Mocha.tests" />
+      <item index="2" class="java.lang.String" itemvalue="Node.js.tools-spec.js" />
+      <item index="3" class="java.lang.String" itemvalue="Node.js.server_testing.js" />
     </list>
     <recent_temporary>
       <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="Node.js.server_testing.js" />
-        <item index="1" class="java.lang.String" itemvalue="Node.js.tools-spec.js" />
+        <item index="0" class="java.lang.String" itemvalue="Node.js.tools-spec.js" />
+        <item index="1" class="java.lang.String" itemvalue="Node.js.server_testing.js" />
       </list>
     </recent_temporary>
   </component>
@@ -835,38 +855,44 @@
       <option name="presentableId" value="Default" />
       <updated>1496478157636</updated>
       <workItem from="1496478190632" duration="106000" />
-      <workItem from="1497433806950" duration="7129000" />
+      <workItem from="1497433806950" duration="16817000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file=" - 2017.05.27 at 19h 50m 15s.xml">
-      <configuration name="" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="tests - 2017.06.15 at 22h 12m 48s.xml">
+      <configuration name="tests" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="Unnamed - 2017.05.27 at 19h 46m 29s.xml">
-      <configuration name="Unnamed" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="tests - 2017.06.15 at 22h 14m 44s.xml">
+      <configuration name="tests" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="Unnamed - 2017.05.27 at 19h 47m 17s.xml">
-      <configuration name="Unnamed" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="tests - 2017.06.15 at 22h 15m 06s.xml">
+      <configuration name="tests" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="tools-spec - 2017.05.27 at 19h 50m 37s.xml">
-      <configuration name="tools-spec" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="tests - 2017.06.15 at 22h 35m 56s.xml">
+      <configuration name="tests" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="tools-spec - 2017.05.27 at 19h 51m 45s.xml">
-      <configuration name="tools-spec" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="tests - 2017.06.15 at 22h 36m 23s.xml">
+      <configuration name="tests" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="tools-spec - 2017.05.27 at 20h 26m 38s.xml">
-      <configuration name="tools-spec" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="tests - 2017.06.15 at 22h 37m 56s.xml">
+      <configuration name="tests" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="tools-spec - 2017.05.27 at 20h 29m 52s.xml">
-      <configuration name="tools-spec" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="tests - 2017.06.15 at 22h 40m 25s.xml">
+      <configuration name="tests" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="tools-spec - 2017.05.27 at 20h 37m 09s.xml">
-      <configuration name="tools-spec" configurationId="mocha-javascript-test-runner" />
+    <history-entry file="tests - 2017.06.15 at 22h 45m 45s.xml">
+      <configuration name="tests" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="tests - 2017.06.15 at 22h 46m 52s.xml">
+      <configuration name="tests" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="tests - 2017.06.15 at 22h 47m 04s.xml">
+      <configuration name="tests" configurationId="mocha-javascript-test-runner" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20446000" />
+    <option name="totallyTimeSpent" value="30134000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1376" height="744" extended-state="6" />
@@ -939,93 +965,44 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/test/tools-spec.js</url>
-          <line>450</line>
-          <option name="timeStamp" value="349" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/server_testing.js</url>
-          <line>1021</line>
-          <option name="timeStamp" value="359" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/server_testing.js</url>
-          <line>1022</line>
-          <option name="timeStamp" value="360" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/server_testing.js</url>
-          <line>1023</line>
-          <option name="timeStamp" value="361" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/server_testing.js</url>
-          <line>1016</line>
-          <option name="timeStamp" value="362" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/server_testing.js</url>
-          <line>1210</line>
+          <line>1231</line>
           <option name="timeStamp" value="372" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/server_testing.js</url>
-          <line>1215</line>
+          <line>1236</line>
           <option name="timeStamp" value="375" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/server_testing.js</url>
-          <line>866</line>
-          <properties />
-          <option name="timeStamp" value="376" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/server_testing.js</url>
-          <line>877</line>
-          <properties />
-          <option name="timeStamp" value="377" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/server_testing.js</url>
-          <line>860</line>
-          <properties />
-          <option name="timeStamp" value="378" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/server_testing.js</url>
-          <line>1182</line>
-          <properties />
-          <option name="timeStamp" value="380" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/server_testing.js</url>
-          <line>1179</line>
-          <properties />
-          <option name="timeStamp" value="381" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/server_testing.js</url>
-          <line>1162</line>
-          <properties />
-          <option name="timeStamp" value="383" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/server_testing.js</url>
-          <line>1659</line>
+          <line>1680</line>
           <properties />
           <option name="timeStamp" value="384" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/server_testing.js</url>
-          <line>1663</line>
+          <line>1684</line>
           <properties />
           <option name="timeStamp" value="385" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/server_testing.js</url>
+          <line>549</line>
+          <properties />
+          <option name="timeStamp" value="393" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/server_testing.js</url>
+          <line>550</line>
+          <properties />
+          <option name="timeStamp" value="395" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="386" />
+      <option name="time" value="401" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="mocha-javascript-test-runner">
@@ -1358,23 +1335,7 @@
     <entry file="file://$PROJECT_DIR$/Status explanetion">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
-          <caret line="8" column="19" lean-forward="true" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/tools-spec.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="423" column="25" lean-forward="false" selection-start-line="423" selection-start-column="17" selection-end-line="423" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/queryForDB.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="122" column="7" lean-forward="false" selection-start-line="122" selection-start-column="7" selection-end-line="122" selection-end-column="7" />
+          <caret line="8" column="19" lean-forward="false" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
           <folding />
         </state>
       </provider>
@@ -1387,18 +1348,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server_testing.js">
+    <entry file="file://$PROJECT_DIR$/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="1711" selection-end-column="0" />
+        <state relative-caret-position="555">
+          <caret line="1716" column="28" lean-forward="true" selection-start-line="1716" selection-start-column="28" selection-end-line="1716" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server.js">
+    <entry file="file://$PROJECT_DIR$/queryForDB.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="1711" column="0" lean-forward="true" selection-start-line="1711" selection-start-column="0" selection-end-line="1711" selection-end-column="0" />
+        <state relative-caret-position="218">
+          <caret line="173" column="41" lean-forward="false" selection-start-line="173" selection-start-column="41" selection-end-line="173" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server_testing.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="550" column="23" lean-forward="false" selection-start-line="550" selection-start-column="23" selection-end-line="550" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/tools-spec.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="78">
+          <caret line="157" column="43" lean-forward="true" selection-start-line="157" selection-start-column="43" selection-end-line="157" selection-end-column="43" />
           <folding />
         </state>
       </provider>

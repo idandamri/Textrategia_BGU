@@ -1709,7 +1709,6 @@ app.post('/sendTaskToStudents', function (req, res) {
     }
 });
 
-
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',

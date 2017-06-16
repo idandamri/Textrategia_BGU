@@ -145,6 +145,40 @@ describe("Testing Textrategia API", function () {
         });
     });
 
+    describe("Testing edit question", function () {
+        it('Testing edit question', function (done) {
+            request(app).post("/editQuestion").send({
+                "id": "1",
+                "question": "testQ title",
+                "mediaType": "text",
+                "media": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec qu",
+                "is_multiple_ans": "0",
+                "correctFB": "well done",
+                "notCorrectFB": "it was not the correct answer",
+                "skill": "testing skills!",
+                "difficulty": "easy",
+                "proffesion": "test profesion",
+                "approved": "1",
+                "disabled": "0",
+                "answers": [
+                    {"A_id": "1", "answer": "idan", "isCorrect": "1"},
+                    {"A_id": "2", "answer": "idan2", "isCorrect": "0"},
+                    {"A_id": "3", "answer": "idan3", "isCorrect": "0"},
+                    {"A_id": "4", "answer": "idan4", "isCorrect": "0"}
+                ]
+            })
+                .end(function (err, res) {
+                    if (err) {
+                        console.log("ERR: " + err);
+                        throw err;
+                    }
+                    else {
+                        res.status.should.be.equal(200);
+                    }
+                    done();
+                });
+        });
+    });
 
     describe("Testing add question", function () {
         it('Testing adding question', function (done) {
@@ -225,7 +259,7 @@ describe("Testing Textrategia API", function () {
                 });
         });
 
-            it('Testing approve FAIL', function (done) {
+        it('Testing approve FAIL', function (done) {
             request(app).post("/questionApproveOrNot").send({"q_id": "1000000000000000009", "is_approved": "1"})
                 .end(function (err, res) {
                     if (err) {
@@ -366,7 +400,7 @@ describe("Testing Textrategia API", function () {
         it('Test group of user', function (done) {
             request(app).post("/addTestTaskQuestions").send()
                 .end(function (err, res) {
-                   if (err)
+                    if (err)
                         throw err;
                     done();
                 });
@@ -481,9 +515,9 @@ describe("Testing Textrategia API", function () {
             request(app).post("/generateRandTask").send({
                 "media_types": "",
                 "student_id": "4",
-                "skills":""/* "הסקת מסקנות"*/,
+                "skills": ""/* "הסקת מסקנות"*/,
                 "rand_num": "12",
-                "difficulties":""/* "קלה"*/
+                "difficulties": ""/* "קלה"*/
             })
                 .expect(200)
                 .end(function (err, res) {
