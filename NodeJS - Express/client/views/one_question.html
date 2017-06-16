@@ -68,16 +68,17 @@
             <div class="col-sm-1"></div>
           </div>
 
-          <div ng-show="!isMultipleAnswers" class="col-sm-6">
-            <dl id="options">
-              <dt ng-repeat="option in options">
-                <label>
-                  <input type="radio" name="answer" value="{{option}}">
-                  {{option}}
-                </label>
-              </dt>
-            </dl>
-          </div>
+            <div ng-show="!isMultipleAnswers" class="col-sm-6">
+                <dl id="options_single">
+                    <dt ng-repeat="option in options">
+                        <label>
+                            <input type="radio" name="answer" value="{{option}}" ng-init='checkStatus51=false' ng-model="checkStatus51"
+                                   ng-change="checkSelectedAnswers(checkStatus51,option)" >
+                            {{option}}
+                        </label>
+                    </dt>
+                </dl>
+            </div>
 
           <div ng-show="isMultipleAnswers" class="col-sm-6">
             <dl id="options_multi">

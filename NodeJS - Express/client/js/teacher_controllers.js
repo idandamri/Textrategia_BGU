@@ -89,10 +89,10 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
 
     $scope.possibleAnswersMode = function(){
 
-        if (media_type.value=="img" && imgUrl==""){
-            alert("אל תשכח להעלות את התמוהנ - לחץ על כפתור upload")
+        if (media_type.value=="img" && (imgUrl=="" ||imgUrl==null)){
+            alert("אל תשכח להעלות את התמונה - לחץ על כפתור upload")
         }
-        else if ($scope.question.question_media=="" || $scope.question.question_media==null){
+        else if (media_type.value!="img" && ($scope.question.question_media=="" || $scope.question.question_media==null)){
             alert("יכול להיות ששכחת להוסיף מדיה?")
         }
         else {
@@ -220,11 +220,11 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
         if (! $scope.isMultipleAns){
             alert("!");
             correctAnswer = $scope.selected_ans;
-            alert(correctAnswer);
+            // alert(correctAnswer);
         }
         else{
             correctAnswer = $scope.checkCorrectAnsLst;
-            alert(correctAnswer);
+            // alert(correctAnswer);
         }
 
         var req = {
