@@ -66,6 +66,11 @@ module.exports =
                 "values(current_timestamp," + student_id + "," + task_id + "," + q_id + "," + a_id + ");\n";
         },
 
+        checkIfAnsExists: function (student_id, task_id, q_id, a_id) {
+            return "select * from textra_db.instances_of_answers " +
+                "where studentId = " + student_id + " and T_id = " + task_id + " and Q_id = " + q_id + " and A_id = " + a_id + ";";
+        },
+
         //delete from textra_db.tasks_and_question_for_student_instances where studentId like '2' and T_id = '1' and Q_id = '1'
         deleteQuestionsFromInstance: function (student_id, task_id, q_id) {
             return "delete from textra_db.tasks_and_question_for_student_instances where studentId like " +

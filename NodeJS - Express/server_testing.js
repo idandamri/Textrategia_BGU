@@ -200,15 +200,23 @@ app.post('/updateAnswer', function (req, res) {
         var tId = mysql.escape(req.body.task_id);
         var qId = mysql.escape(req.body.quest_id);
         var aId = mysql.escape(req.body.ans_id);
-        var query = queries.submitStudentsAnswerForQuestion(sId, tId, qId, aId);
-        console.log('\n' + query + '\n');
-        connection.query(query, function (err) {
-            if (err) {
-                console.log(err);
-                res.status(400).send("Update had an error - check DB");
+        var queryCheckIfExists = queries.checkIfAnsExists(sId, tId, qId, aId);
+        connection.query(queryCheckIfExists, function (err, rows) {
+            if(rows!=null && rows.length>0) {
+                res.status(200).send("Same answer!");
             }
-            else {
-                res.status(200).send("Updated!");
+            else{
+                var query = queries.submitStudentsAnswerForQuestion(sId, tId, qId, aId);
+                console.log('\n' + query + '\n');
+                connection.query(query, function (err) {
+                    if (err) {
+                        console.log(err);
+                        res.status(400).send("Update had an error - check DB");
+                    }
+                    else {
+                        res.status(200).send("Updated!");
+                    }
+                });
             }
         });
     } catch (err) {
@@ -450,7 +458,7 @@ app.post('/reportQuestion', function (req, res) {
         var reportQuestion = req.body.report_question;
         var reportAnswer = req.body.report_answer;
 
-        var query = queries.reportQuestion(QID, reportOffensive,reportQuestion,reportAnswer);
+        var query = queries.reportQuestion(QID, reportOffensive, reportQuestion, reportAnswer);
         connection.query(query, function (err) {
             if (err) {
                 console.log(err);
