@@ -214,43 +214,52 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
         $scope.searchQuestionByProfiling = false;
         $scope.flagEditQuestionMode = true;
 
+        var jasonIndex = get_jason_index($scope.myQuestionsStock ,  $scope.id_question_to_edit);
+        var question_id = $scope.myQuestionsStock[jasonIndex].Q_id;
   
-       var jasonIndex = get_jason_index($scope.myQuestionsStock ,  $scope.id_question_to_edit);
- 
+        var req = {
+            method: 'POST',
+            cache: false,
+            url: _url +'/getAnswersByQid',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            data: 'q_id='+question_id
+        };
 
-        $scope.jasonOfQuestionToEdit = $scope.myQuestionsStock[jasonIndex];
-        //   $scope.jasonOfQuestionToEdit = $scope.myQuestionsStock[1];
+        $http(req)
+            .success(function(data,status,headers,config){
+            $scope.question.answer = data;
+
+            $scope.question.possible_ans_1 = data[0].answer;
+            $scope.question.possible_ans_2 = data[1].answer;
+            $scope.question.possible_ans_3 = data[2].answer;
+            $scope.question.possible_ans_4 = data[3].answer;
+
+            $scope.question.answer1_is_correct = data[0].isCorrect;
+            $scope.question.answer2_is_correct = data[1].isCorrect;
+            $scope.question.answer3_is_correct = data[2].isCorrect;
+            $scope.question.answer4_is_correct = data[3].isCorrect;
+
+            }).error(function(data,status,headers,config){
+            $scope.question.possible_ans_1 = [];
+        });
         
         $scope.question = {
+            question_id:        $scope.myQuestionsStock[jasonIndex].Q_id,
             question_title:     $scope.myQuestionsStock[jasonIndex].Q_qeustion,
             quest_correct_fb:   $scope.myQuestionsStock[jasonIndex].Q_correctFB,
             quest_incorrect_fb: $scope.myQuestionsStock[jasonIndex].Q_notCorrectFB,
             media_type:         $scope.myQuestionsStock[jasonIndex].Q_mediaType,
             question_media:     $scope.myQuestionsStock[jasonIndex].Q_media,
             selected_skill:     $scope.myQuestionsStock[jasonIndex].Q_skill,
-            difficulty:         $scope.myQuestionsStock[jasonIndex].Q_difficulty
+            difficulty:         $scope.myQuestionsStock[jasonIndex].Q_difficulty,
+            isMultipuleAns:     $scope.myQuestionsStock[jasonIndex].isMultipuleAns,
         };
 
-        alert("does jason OF question works? " + jasonOfQuestionToEdit.Q_qeustion);
-    
+ 
+           
     }
-
-
-// ~~~~~~~~~~~~~~~~~~~~~~~~~ TO DO TO DO TO DO ~~~~~~~~~~~~~~~~~~~~~~~~~
-
-        // ####################################################
-        // GET POSSIBLE ANSWER HERE!!!!!
-        // ####################################################
-
-
-
-
-
-
-
-// ~~~~~~~~~~~~~~~~~~~~~~~~~ /TO DO TO DO TO DO ~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
 
 
 
@@ -288,11 +297,58 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
     $scope.possibleAnswersMode = function(){
         $scope.insertPossibleAnswersMode = true;
 
+
+
+
+
+
     }
+       $scope.changeStatusOfAnswer = function(changed_element){
+
+            switch(changed_element) {
+                case "0":
+                    $scope.question.answer1_is_correct = 1 - $scope.question.answer1_is_correct;
+                    break;
+                case "1":
+                    $scope.question.answer2_is_correct = 1 - $scope.question.answer2_is_correct;
+                    break;
+                case "2":
+                    $scope.question.answer3_is_correct = 1 - $scope.question.answer3_is_correct;
+                    break;
+                case "3":
+                    $scope.question.answer4_is_correct = 1- $scope.question.answer4_is_correct;
+                    break;
+                case "blimp":
+                    $scope.question.isMultipuleAns = 1- $scope.question.isMultipuleAns;
+                    break;
+            } ;
+
+        };
 
 
+
+    $scope.sendNewQuestionWraper = function(){
+        $scope.question_is_legal = false;   
+        var isMultipuleAns = parseInt($scope.question.isMultipuleAns);
+        var sum = parseInt($scope.question.answer1_is_correct) +  parseInt($scope.question.answer2_is_correct) +
+            parseInt($scope.question.answer3_is_correct) +  parseInt($scope.question.answer4_is_correct) ;
+
+        if (sum == 0){
+            $scope.serverFeedback = "חייב לבחור לבחות תשובה נכונה אחת";
+        }
+        else if( !isMultipuleAns && sum != 1){
+            $scope.serverFeedback = "אסור לבחור יותר מתשובה נכונה אחת";    
+
+        }
+        else {
+            $scope.serverFeedback = "האם ברצונך לשלוח את השאלה לעריכה?";   
+            $scope.question_is_legal = true;       
+        };
+
+    };
     $scope.sendNewQuestion = function (){
 
+        var question_id = $scope.question.question_id;
         var question_title = $scope.question.question_title;
         var media_type =  $scope.question.media_type;
         var quest_skill = $scope.question.selected_skill;
@@ -300,28 +356,57 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
         var question_media = $scope.question.question_media;
         var quest_correct_fb = $scope.question.quest_correct_fb;
         var quest_incorrect_fb = $scope.question.quest_incorrect_fb;
+        var isMultipuleAns = $scope.question.isMultipuleAns;
 
         // get possible answers infomation!
         var possible_ans_1 = $scope.question.possible_ans_1;
         var possible_ans_2 = $scope.question.possible_ans_2;
         var possible_ans_3 = $scope.question.possible_ans_3;
         var possible_ans_4 = $scope.question.possible_ans_4;
-        
+                
 
-        var correct_ans = $scope.question.correct_ans;
+        // var correct_ans = [];
+        // correct_ans.push($scope.question.answer1_is_correct);
+        // correct_ans.push($scope.question.answer2_is_correct);
+        // correct_ans.push($scope.question.answer3_is_correct);
+        // correct_ans.push($scope.question.answer4_is_correct);
 
-       
-        //alert("title: " + question_title + " media_type: " + media_type + " quest_difficulty: " + quest_difficulty + " question_media :" + question_media);
-        //  alert("y: " + quest_correct_fb + " n: " + quest_incorrect_fb + " skill: " + quest_skill );
-       // alert("1: " + possible_ans_1 + " 2: " + possible_ans_2 + " 3: " +  possible_ans_3 + " 4: " + possible_ans_4)
+        var isCorrect_a1 = $scope.question.answer1_is_correct;
+        var isCorrect_a2 = $scope.question.answer2_is_correct;
+        var isCorrect_a3 = $scope.question.answer3_is_correct;
+        var isCorrect_a4 = $scope.question.answer4_is_correct;
+
+        var ans1 = {
+            "A_id": "1",
+            "answer": possible_ans_1,
+            "isCorrect": isCorrect_a1
+        };
+        var ans2 = {
+            "A_id": "2",
+            "answer": possible_ans_2,
+            "isCorrect": isCorrect_a2
+        };
+        var ans3 = {
+            "A_id": "3",
+            "answer": possible_ans_3,
+            "isCorrect": isCorrect_a3
+        };
+        var ans4 = {
+            "A_id": "4",
+            "answer": possible_ans_4,
+            "isCorrect": isCorrect_a4
+        };
+        var correct_ans = [];
+        correct_ans.push(JSON.stringify(ans1));
+        correct_ans.push(JSON.stringify(ans2));
+        correct_ans.push(JSON.stringify(ans3));
+        correct_ans.push(JSON.stringify(ans4));
+
+        // alert(correct_ans);
 
         // ####################################################
         // SEND INFORMATION TO SERVER HERE
         // ####################################################
-
-
-        // change server feedback acording to succuss or failure!
-
 
         /*set quest_is_approved */
         var is_approved;
@@ -330,44 +415,41 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
         else
             is_approved=0;
 
-        // var req = {
-        //     method: 'POST',
-        //     cache: false,
-        //     url: _url +'/editQuestion',
-        //     headers: {
-        //         'Content-Type': 'application/x-www-form-urlencoded'
-        //     },
-        //     data: 'question_title='+ question_title
-        //     +'&is_multiple_ans='+ '0'
-        //     + '&question_media_type=' + media_type
-        //     + '&question_media=' + question_media
-        //     + '&quest_correct_fb=' + quest_correct_fb
-        //     +'&quest_incorrect_fb=' + quest_incorrect_fb
-        //     +'&quest_skill=' +  quest_skill
-        //     + '&quest_difficulty=' +   quest_difficulty
-        //     + '&quest_proffesion=' + 'הבעה'
-        //     + '&quest_is_approved=' + is_approved
-        //     + '&quest_disabled=' + '1'
-        //     + '&who_created=' + getUserID()
-        //     // + '&answer1=' + possible_ans_1
-        //     // + '&answer2=' + possible_ans_2
-        //     // + '&answer3=' + possible_ans_3
-        //     // + '&answer4=' + possible_ans_4
-        //     // + '&correctAnswerIndex=' + correct_ans
-        // };
+        var req = {
+            method: 'POST',
+            cache: false,
+            url: _url +'/editQuestion',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            data: 'id='+ question_id
+            + '&question='+ question_title
+            + '&mediaType=' + media_type
+            + '&media=' + question_media
+            + '&is_multiple_ans=' + isMultipuleAns
+            + '&correctFB=' + quest_correct_fb
+            + '&notCorrectFB=' +  quest_incorrect_fb
+            + '&skill=' +   quest_skill
+            + '&difficulty=' + quest_difficulty
+            + '&proffesion=' + 'הבעה'
+            + '&approved=' + '1'
+            + '&disabled=' + '0'
+            + '&answers=[' + correct_ans + ']'
+        };
+        // data: 'students=['+ studentIDlst + ']
 
-        // // alert(JSON.stringify(req));
+         alert(JSON.stringify(req));
 
-        // $http(req)
-        //     .success(function(data,status,headers,config){
-        //         $scope.serverFeedback = "השאלה נערכה בהצלחה!"
-        //         $scope.doneRegisterQuestion = true;
-        //     }).error(function(data,status,headers,config){
-        //     $scope.serverFeedback = "שגיאה בהכנסת שאלה";
-        // });
+        $http(req)
+            .success(function(data,status,headers,config){
+                $scope.serverFeedback = "השאלה נערכה בהצלחה!"
+                $scope.doneRegisterQuestion = true;
+            }).error(function(data,status,headers,config){
+            $scope.serverFeedback = "שגיאה בעריכת השאלה שאלה";
+        });
 
-        alert("עריכה עדיין לא זמינה כרגע");
+ 
 
-        // $scope.serverFeedback = "השאלה נשלחה בהצלחה!"
+        $scope.serverFeedback = "השאלה נשלחה בהצלחה!"
     }
 });
