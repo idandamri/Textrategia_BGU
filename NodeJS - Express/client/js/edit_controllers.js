@@ -348,6 +348,7 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
     };
     $scope.sendNewQuestion = function (){
 
+        var question_id = $scope.question.question_id;
         var question_title = $scope.question.question_title;
         var media_type =  $scope.question.media_type;
         var quest_skill = $scope.question.selected_skill;
@@ -364,11 +365,42 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
         var possible_ans_4 = $scope.question.possible_ans_4;
                 
 
+        // var correct_ans = [];
+        // correct_ans.push($scope.question.answer1_is_correct);
+        // correct_ans.push($scope.question.answer2_is_correct);
+        // correct_ans.push($scope.question.answer3_is_correct);
+        // correct_ans.push($scope.question.answer4_is_correct);
+
+        var isCorrect_a1 = $scope.question.answer1_is_correct;
+        var isCorrect_a2 = $scope.question.answer2_is_correct;
+        var isCorrect_a3 = $scope.question.answer3_is_correct;
+        var isCorrect_a4 = $scope.question.answer4_is_correct;
+
+        var ans1 = {
+            "A_id": "1",
+            "answer": possible_ans_1,
+            "isCorrect": isCorrect_a1
+        };
+        var ans2 = {
+            "A_id": "2",
+            "answer": possible_ans_2,
+            "isCorrect": isCorrect_a2
+        };
+        var ans3 = {
+            "A_id": "3",
+            "answer": possible_ans_3,
+            "isCorrect": isCorrect_a3
+        };
+        var ans4 = {
+            "A_id": "4",
+            "answer": possible_ans_4,
+            "isCorrect": isCorrect_a4
+        };
         var correct_ans = [];
-        correct_ans.push($scope.question.answer1_is_correct);
-        correct_ans.push($scope.question.answer2_is_correct);
-        correct_ans.push($scope.question.answer3_is_correct);
-        correct_ans.push($scope.question.answer4_is_correct);
+        correct_ans.push(JSON.stringify(ans1));
+        correct_ans.push(JSON.stringify(ans2));
+        correct_ans.push(JSON.stringify(ans3));
+        correct_ans.push(JSON.stringify(ans4));
 
         // alert(correct_ans);
 
@@ -383,44 +415,41 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
         else
             is_approved=0;
 
-        // var req = {
-        //     method: 'POST',
-        //     cache: false,
-        //     url: _url +'/editQuestion',
-        //     headers: {
-        //         'Content-Type': 'application/x-www-form-urlencoded'
-        //     },
-        //     data: 'question_title='+ question_title
-        //     +'&is_multiple_ans='+ '0'
-        //     + '&question_media_type=' + media_type
-        //     + '&question_media=' + question_media
-        //     + '&quest_correct_fb=' + quest_correct_fb
-        //     +'&quest_incorrect_fb=' + quest_incorrect_fb
-        //     +'&quest_skill=' +  quest_skill
-        //     + '&quest_difficulty=' +   quest_difficulty
-        //     + '&quest_proffesion=' + 'הבעה'
-        //     + '&quest_is_approved=' + is_approved
-        //     + '&quest_disabled=' + '1'
-        //     + '&who_created=' + getUserID()
-        //     // + '&answer1=' + possible_ans_1
-        //     // + '&answer2=' + possible_ans_2
-        //     // + '&answer3=' + possible_ans_3
-        //     // + '&answer4=' + possible_ans_4
-        //     // + '&correctAnswerIndex=' + correct_ans
-        // };
+        var req = {
+            method: 'POST',
+            cache: false,
+            url: _url +'/editQuestion',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            data: 'id='+ question_id
+            + '&question='+ question_title
+            + '&mediaType=' + media_type
+            + '&media=' + question_media
+            + '&is_multiple_ans=' + isMultipuleAns
+            + '&correctFB=' + quest_correct_fb
+            + '&notCorrectFB=' +  quest_incorrect_fb
+            + '&skill=' +   quest_skill
+            + '&difficulty=' + quest_difficulty
+            + '&proffesion=' + 'הבעה'
+            + '&approved=' + '1'
+            + '&disabled=' + '0'
+            + '&answers=[' + correct_ans + ']'
+        };
+        // data: 'students=['+ studentIDlst + ']
 
-        // // alert(JSON.stringify(req));
+         alert(JSON.stringify(req));
 
-        // $http(req)
-        //     .success(function(data,status,headers,config){
-        //         $scope.serverFeedback = "השאלה נערכה בהצלחה!"
-        //         $scope.doneRegisterQuestion = true;
-        //     }).error(function(data,status,headers,config){
-        //     $scope.serverFeedback = "שגיאה בהכנסת שאלה";
-        // });
+        $http(req)
+            .success(function(data,status,headers,config){
+                $scope.serverFeedback = "השאלה נערכה בהצלחה!"
+                $scope.doneRegisterQuestion = true;
+            }).error(function(data,status,headers,config){
+            $scope.serverFeedback = "שגיאה בעריכת השאלה שאלה";
+        });
 
  
 
-        // $scope.serverFeedback = "השאלה נשלחה בהצלחה!"
+        $scope.serverFeedback = "השאלה נשלחה בהצלחה!"
     }
 });
