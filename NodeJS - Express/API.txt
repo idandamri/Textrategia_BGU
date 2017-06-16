@@ -528,6 +528,17 @@ output: status 200 + list of answers / 400 - "DB Error"
 exmple : [{"StudentId":"1"}]
 
 
+37. post('checkIfpassIsCorrectByID')
+input:personal_id, password
+output: status 200 + list of answers / 205 - wrong password / 400 - "DB Error"
+exmple : [
+             {
+                 "PersonalID": "1"
+             }
+         ]
+
+
+
 0-student
 1-teacher
 2-superuser

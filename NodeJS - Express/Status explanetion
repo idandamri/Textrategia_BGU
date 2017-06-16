@@ -1,5 +1,6 @@
 200 - OK
 204 - empty - no such question/task/groups..
+205 - wrong password
 400 - Error, general error with server and DB
 401 - Email already exists
 404 - Server crashed

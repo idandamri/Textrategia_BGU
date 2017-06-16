@@ -66,6 +66,10 @@ module.exports =
                 "values(current_timestamp," + student_id + "," + task_id + "," + q_id + "," + a_id + ");\n";
         },
 
+        checkIfPassIsCorrectForID: function (personal_id, pass) {
+            return "select PersonalID from textra_db.users where PersonalID = " + personal_id + " and Pass = " + pass + ";";
+        },
+
         checkIfAnsExists: function (student_id, task_id, q_id, a_id) {
             return "select * from textra_db.instances_of_answers " +
                 "where studentId = " + student_id + " and T_id = " + task_id + " and Q_id = " + q_id + " and A_id = " + a_id + ";";
