@@ -214,43 +214,50 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
         $scope.searchQuestionByProfiling = false;
         $scope.flagEditQuestionMode = true;
 
+        var jasonIndex = get_jason_index($scope.myQuestionsStock ,  $scope.id_question_to_edit);
+        var question_id = $scope.myQuestionsStock[jasonIndex].Q_id;
   
-       var jasonIndex = get_jason_index($scope.myQuestionsStock ,  $scope.id_question_to_edit);
- 
+        var req = {
+            method: 'POST',
+            cache: false,
+            url: _url +'/getAnswersByQid',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            data: 'q_id='+question_id
+        };
 
-        $scope.jasonOfQuestionToEdit = $scope.myQuestionsStock[jasonIndex];
-        //   $scope.jasonOfQuestionToEdit = $scope.myQuestionsStock[1];
+        $http(req)
+            .success(function(data,status,headers,config){
+            $scope.question.possible_ans_1 = data[0].answer;
+            $scope.question.possible_ans_2 = data[1].answer;
+            $scope.question.possible_ans_3 = data[2].answer;
+            $scope.question.possible_ans_4 = data[3].answer;
+
+            $scope.question.answer.answer1_is_correct = data[0].isCorrect;
+            $scope.question.answer.answer2_is_correct = data[1].isCorrect;
+            $scope.question.answer.answer3_is_correct = data[2].isCorrect;
+            $scope.question.answer.answer4_is_correct = data[3].isCorrect;
+
+            }).error(function(data,status,headers,config){
+            $scope.question.possible_ans_1 = [];
+        });
         
         $scope.question = {
+            question_id:        $scope.myQuestionsStock[jasonIndex].Q_id,
             question_title:     $scope.myQuestionsStock[jasonIndex].Q_qeustion,
             quest_correct_fb:   $scope.myQuestionsStock[jasonIndex].Q_correctFB,
             quest_incorrect_fb: $scope.myQuestionsStock[jasonIndex].Q_notCorrectFB,
             media_type:         $scope.myQuestionsStock[jasonIndex].Q_mediaType,
             question_media:     $scope.myQuestionsStock[jasonIndex].Q_media,
             selected_skill:     $scope.myQuestionsStock[jasonIndex].Q_skill,
-            difficulty:         $scope.myQuestionsStock[jasonIndex].Q_difficulty
+            difficulty:         $scope.myQuestionsStock[jasonIndex].Q_difficulty,
+            isMultipuleAns:     $scope.myQuestionsStock[jasonIndex].isMultipuleAns,
         };
 
-        alert("does jason OF question works? " + jasonOfQuestionToEdit.Q_qeustion);
-    
+ 
+           
     }
-
-
-// ~~~~~~~~~~~~~~~~~~~~~~~~~ TO DO TO DO TO DO ~~~~~~~~~~~~~~~~~~~~~~~~~
-
-        // ####################################################
-        // GET POSSIBLE ANSWER HERE!!!!!
-        // ####################################################
-
-
-
-
-
-
-
-// ~~~~~~~~~~~~~~~~~~~~~~~~~ /TO DO TO DO TO DO ~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
 
 
 
@@ -288,6 +295,11 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
     $scope.possibleAnswersMode = function(){
         $scope.insertPossibleAnswersMode = true;
 
+
+
+
+
+
     }
 
 
@@ -302,13 +314,13 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
         var quest_incorrect_fb = $scope.question.quest_incorrect_fb;
 
         // get possible answers infomation!
-        var possible_ans_1 = $scope.question.possible_ans_1;
-        var possible_ans_2 = $scope.question.possible_ans_2;
-        var possible_ans_3 = $scope.question.possible_ans_3;
-        var possible_ans_4 = $scope.question.possible_ans_4;
+        var possible_ans_1 = $scope.answer.possible_ans_1;
+        var possible_ans_2 = $scope.answer.possible_ans_2;
+        var possible_ans_3 = $scope.answer.possible_ans_3;
+        var possible_ans_4 = $scope.answer.possible_ans_4;
         
 
-        var correct_ans = $scope.question.correct_ans;
+        var correct_ans = $scope.answer.is_correct;
 
        
         //alert("title: " + question_title + " media_type: " + media_type + " quest_difficulty: " + quest_difficulty + " question_media :" + question_media);

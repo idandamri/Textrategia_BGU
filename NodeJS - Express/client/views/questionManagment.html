@@ -266,11 +266,13 @@
   <div class="col-sm-4 text-center">
       <!-- 3 -->
       <label class="control-label pull-right">תשובה 3: &nbsp;&nbsp;</label>
-       <textarea  type="text" rows="2" name="possible_ans_3" class="form-control inputstl pull-right" required  ng-model="question.possible_ans_3" tabindex="11"> 
+       <textarea  type="text" rows="2" name="possible_ans_3" class="form-control inputstl pull-right" required  
+       ng-model="question.possible_ans_3" tabindex="11"> 
        </textarea>
           <!-- 4 -->
       <label class="control-label pull-right">תשובה 4: &nbsp;&nbsp;</label>
-        <textarea type="text" rows="2" name="possible_ans_4" class="form-control inputstl pull-right" required  ng-model="question.possible_ans_4" tabindex="12"> 
+        <textarea type="text" rows="2" name="possible_ans_4" class="form-control inputstl pull-right" required  
+        ng-model="question.possible_ans_4" tabindex="12"> 
         </textarea>
       <br>
   </div>
@@ -278,11 +280,13 @@
     <div class="col-sm-4 text-center">
       <!-- 1 -->
       <label class="control-label pull-right">תשובה 1: &nbsp;&nbsp;</label>
-        <textarea type="text" rows="2" name="possible_ans_1" class="form-control inputstl pull-right" required ng-model="question.possible_ans_1" tabindex="9" >  
+        <textarea type="text" rows="2" name="possible_ans_1" class="form-control inputstl pull-right" required 
+        ng-model="question.possible_ans_1" tabindex="9" >  
         </textarea>
           <!-- 2 -->
       <label class="control-label pull-right">תשובה 2: &nbsp;&nbsp;</label>
-        <textarea type="text" rows="2" name="possible_ans_2" class="form-control inputstl pull-right" required ng-model="question.possible_ans_2" tabindex="10">  
+        <textarea type="text" rows="2" name="possible_ans_2" class="form-control inputstl pull-right" required 
+        ng-model="question.possible_ans_2" tabindex="10">  
         </textarea>
 
     </div>
@@ -300,21 +304,39 @@
   </div>
 
 <div class="col-sm-12 text-center"><br><br></div>
+
 <div class="col-sm-4 text-center"></div>
 
 <div class="col-sm-4 text-center">
     <!-- 5 -->
-        <label class="control-label pull-right ">מהי התשובה הנכונה?:&nbsp;&nbsp; &nbsp;&nbsp;</label>
-            <select class="form-control inputstl " id="correct_ans" style="max-width: 160px;" tabindex="13" ng-model="question.correct_ans">
-              <option value=0>1</option>
-              <option value=1>2</option>
-              <option value=2>3</option>
-              <option value=3>4</option>
+        <label class="control-label pull-right ">כמה תשובות נכונה יש?&nbsp;&nbsp; &nbsp;&nbsp;</label>
+            <select class="form-control inputstl " id="is_multiple_ans" style="max-width: 160px;" tabindex="13" ng-model="question.isMultipuleAns">
+              <option value="">לא ידוע</option>
+              <option value=0>תשובה אחת בלבד</option>
+              <option value=1>יותר מתשובה אחת</option>
+            
             </select> 
+  
+<br><br>
+
+
+  <label class="control-label pull-right">סמן תשובות נכונות:&nbsp;&nbsp;</label><br>
+  <div class="padded-20-elemnt well" style="max-width: 240px">
+    <label><input type="checkbox" ng-init='answer.is_correct.answer1=false' ng-model="answer.is_correct.answer1" ng-change="checkCorrectAns(answer.is_correct.answer1,'0')" >
+    &nbsp;&nbsp;1</label><br>
+    <label> <input type="checkbox" ng-init='answer.is_correct.answer2=false' ng-model="answer.is_correct.answer2" ng-change="checkCorrectAns(answer.is_correct.answer2,'1')">
+    &nbsp;&nbsp;2</label><br>
+    <label> <input type="checkbox" ng-init='answer.is_correct.answer3=false' ng-model="answer.is_correct.answer3" ng-change="checkCorrectAns(answer.is_correct.answer3,'2')">
+    &nbsp;&nbsp;3</label><br>
+    <label> <input type="checkbox" ng-init='answer.is_correct.answer4=false' ng-model="answer.is_correct.answer4" ng-change="checkCorrectAns(answer.is_correct.answer4,'3')">
+    &nbsp;&nbsp;4</label><br>
+ </div>
+
+
+
   </div>
 
   <div class="col-sm-4 text-center"></div>
-
 
 </form>
 </div> <!-- //ng-show insertPossibleAnswersMode -->

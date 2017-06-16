@@ -498,7 +498,32 @@ exmple : [{"StudentId":"1"}]
 35. post('getAnswersByQid')
 input:q_id
 output: status 200 + list of answers / 400 - "DB Error"
-exmple : [{"StudentId":"1"}]
+exmple : [
+    {
+        "A_id": 1,
+        "Q_id": 1,
+        "answer": "כדי לשכנע אנשים שהזכייה בפיס אפשרית",
+        "isCorrect": 1
+    },
+    {
+        "A_id": 2,
+        "Q_id": 1,
+        "answer": "כדי לגרום לאנשים להתרגש",
+        "isCorrect": 0
+    },
+    {
+        "A_id": 3,
+        "Q_id": 1,
+        "answer": "כדי שאנשים ירגישו הזדהות עם הזוכים",
+        "isCorrect": 0
+    },
+    {
+        "A_id": 4,
+        "Q_id": 1,
+        "answer": "כדי שאנשים יחשבו כיצד הם היו מגיבים לשיחה",
+        "isCorrect": 0
+    }
+]
 
 
 36. post('editQuestion')
