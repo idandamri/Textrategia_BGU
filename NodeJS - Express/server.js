@@ -539,9 +539,7 @@ app.post('/editQuestion', function (req, res) {
         var q_prof = mysql.escape(req.body.proffesion);
         var q_app = mysql.escape(req.body.approved);
         var q_disabled = mysql.escape(req.body.disabled);
-        // var ansStr = JSON.stringify("\'{\"answers\":" + req.body.answers + "}\'").toString();
         var answersArray = req.body.answers;
-
 
         var query = queries.updateQuestion(q_id, q_question, q_media, q_media_type, isMul, q_correctFB, q_notCorrectFB, q_skill, q_diff, q_prof, q_app, q_disabled);
         connection.query(query, function (err) {
@@ -1605,6 +1603,32 @@ app.post('/getUnapprovedQuestion', function (req, res) {
     }
 });
 
+
+app.post('/checkIfpassIsCorrectByID', function (req, res) {
+    try {
+        var id = req.body.personal_id;
+        var pass = mysql.escape(req.body.password);
+        var query = queries.checkIfPassIsCorrectForID(id, pass);
+        console.log('\n' + query + '\n');
+        connection.query(query, function (err, id) {
+            if (err) {
+                console.log(err);
+                res.status(400).send("DB error");
+            }
+            else {
+                if (id != null && id.length > 0) {
+                    res.status(200).send(id);
+                } else {
+                    res.status(205).send("wrong pass");
+                }
+            }
+        });
+    } catch (err) {
+        console.log("Error - " + err);
+        res.status(404).send();
+    }
+});
+
 app.post('/getQuestionsByParamter', function (req, res) {
     try {
         var media_types = mysql.escape(req.body.media_types.split(","));
@@ -1633,6 +1657,7 @@ app.post('/getQuestionsByParamter', function (req, res) {
         res.status(404).send();
     }
 });
+
 
 app.post('/getAllSkills', function (req, res) {
 
@@ -1742,7 +1767,6 @@ app.post('/sendTaskToStudents', function (req, res) {
         res.status(404).send();
     }
 });
-
 
 var connection = mysql.createConnection({
     host: 'localhost',
