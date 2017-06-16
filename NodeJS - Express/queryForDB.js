@@ -12,6 +12,11 @@ module.exports =
                 "a.GroupId  = b.GroupId where isTeacherGroup = 1 and City = " + city + " and School = " + school + ";";
         },
 
+        addSQuestionStatisticsWhenAnswering: function (q_id, s_id, a_id, is_correct, second_chance) {
+            return "insert into textra_db.statistics " +
+                "values(" + q_id + "," + s_id + "," + a_id + "," + is_correct + "," + second_chance + ");";
+        },
+
         /*get all tasks's information (id,title and description) by student id*/
         gelAllTaskTitleByStudentId: function (user_id) {
             return "select tasks.* from " +
@@ -153,19 +158,19 @@ module.exports =
         reportQuestion: function (q_id, report_offensive, report_question, report_answer) {
             var head = "UPDATE textra_db.questions SET ";
             var tail = " WHERE Q_id = " + q_id + ";";
-            if(report_offensive!='0'){
+            if (report_offensive != '0') {
                 head = head + "Q_reported_Offensive = Q_reported_Offensive+1";
-                if(report_question!='0' || report_answer!='0'){
+                if (report_question != '0' || report_answer != '0') {
                     head = head + ","
                 }
             }
-            if(report_question!='0'){
+            if (report_question != '0') {
                 head = head + " Q_reported_Question = Q_reported_Question + 1";
-                if(report_answer!='0'){
+                if (report_answer != '0') {
                     head = head + ","
                 }
             }
-            if(report_answer!='0'){
+            if (report_answer != '0') {
                 head = head + " Q_reported_Answer = Q_reported_Answer + 1";
             }
             return head + tail;
