@@ -533,7 +533,7 @@ app.post('/editQuestion', function (req, res) {
                     var query = queries.updateAnswer(a_id, q_id, answer, is_corr);
                     bigQuery = bigQuery + query;
                 }
-                connection.query(bigQuery, function (err) {
+                connection.query(bigQuery, function (err, rows) {
                         if (err) {
                             console.log(err);
                             res.status(400).send("DB error - check DB! - answers not updated");

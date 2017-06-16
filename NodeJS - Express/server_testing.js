@@ -487,6 +487,22 @@ app.post('/removeRegisterUser', function (req, res) {
 });
 
 
+app.post('/getQuestionStatistics', function (req, res) {
+
+    var qID = req.body.q_id;
+    var query = queries.getQuestionStatistics(qID);
+    connection.query(query, function (err,ans) {
+        if (err) {
+            console.log(err);
+            res.status(400).send("DB error - check DB!");
+        }
+        else {
+            res.status(200).send(ans);
+        }
+    });
+});
+
+
 app.post('/truncateInstancesOfAnswers', function (req, res) {
     var query = "TRUNCATE TABLE textra_db.instances_of_answers;";
     connection.query(query, function (err) {

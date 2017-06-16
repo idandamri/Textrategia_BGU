@@ -568,6 +568,19 @@ input:q_id, s_id, a_id, is_correct, second_chance
 output: status 200 "inserted" / 400 - "DB Error"
 
 
+39. post('addQuestionStatistics')
+input:q_id
+output: status 200 / 400 - "DB Error"
+example:
+[
+    {
+        "StudentsThatWereWrong": 3,
+        "StudentsCorrectFirstTry": 1,
+        "StudentsCorrectSecondTry": 1
+    }
+]
+// the total stats are the sum of the three above
+
 
 0-student
 1-teacher

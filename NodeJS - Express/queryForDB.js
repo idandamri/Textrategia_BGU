@@ -17,6 +17,13 @@ module.exports =
                 "values(" + q_id + "," + s_id + "," + a_id + "," + is_correct + "," + second_chance + ");";
         },
 
+        getQuestionStatistics: function (q_id) {
+            return "select" +
+                "(select count(*) from textra_db.statistics where Q_id = " + q_id + " and isCorrect = 0) AS StudentsThatWereWrong," +
+                "(select count(*) from textra_db.statistics where Q_id = " + q_id + " and isCorrect = 1 and Second_Chance = 0) AS StudentsCorrectFirstTry," +
+                "(select count(*) from textra_db.statistics where Q_id = " + q_id + " and  isCorrect = 1 and Second_Chance = 1) AS StudentsCorrectSecondTry;";
+        },
+
         /*get all tasks's information (id,title and description) by student id*/
         gelAllTaskTitleByStudentId: function (user_id) {
             return "select tasks.* from " +
