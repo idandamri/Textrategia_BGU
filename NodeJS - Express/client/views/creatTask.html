@@ -58,10 +58,8 @@
     <div class="panel" ng-repeat="q in myTaskQuestions track by $index">
       <button class="button btn-danger" ng-click="deleteThisQuestion(q)" > מחק
       </button>
-      <p data-toggle="collapse" data-parent="#accordion1" data-target="#collapse{{ $index + 1 }}" class="ng-binding collapsed" >
-       &nbsp;&nbsp;{{q.Q_qeustion}}
-      </p>
-      <!--<div id="collapse{{ $index + 1 }}" >  בעתיד יהיו פה מסיחים </div>-->
+      <p>&nbsp;&nbsp;{{q.Q_qeustion}}</p>
+      
     </div>
   </div>
 
@@ -85,10 +83,12 @@
     <div class="panel" ng-repeat="q in myQuestions track by $index">
       <input type="checkbox"  ng-init='checkStatus51=false' ng-model="checkStatus51"
       ng-change="checkQuestionSelected(checkStatus51,q.Q_id)" >
-      <p data-toggle="collapse" data-parent="#accordion2" data-target="#collapse{{ $index + 1 }}" class="ng-binding collapsed"  >
-       &nbsp;&nbsp;{{q.Q_qeustion}}
-      </p>
-      <!--<div id="collapse{{ $index + 1 }}" >   <div ng-show="false" > בעתיד יהיו פה מסיחים </div> </div>-->
+      <p>&nbsp;&nbsp;{{q.Q_qeustion}}</p>
+      <span class="label label-info">{{q.Q_skill}}</span>
+      <span ng-show="q.Q_mediaType=='page'" class="label label-warning">אודיו</span>
+      <span ng-show="q.Q_mediaType=='img'" class="label label-warning">תמונה</span>
+      <span ng-show="q.Q_mediaType=='youtube'" class="label label-warning">סרטון</span>
+      <span ng-show="q.Q_mediaType=='text'" class="label label-warning">קטע</span>
     </div>
   </div>
 
