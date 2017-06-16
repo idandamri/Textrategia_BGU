@@ -200,15 +200,23 @@ app.post('/updateAnswer', function (req, res) {
         var tId = mysql.escape(req.body.task_id);
         var qId = mysql.escape(req.body.quest_id);
         var aId = mysql.escape(req.body.ans_id);
-        var query = queries.submitStudentsAnswerForQuestion(sId, tId, qId, aId);
-        console.log('\n' + query + '\n');
-        connection.query(query, function (err) {
-            if (err) {
-                console.log(err);
-                res.status(400).send("Update had an error - check DB");
+        var queryCheckIfExists = queries.checkIfAnsExists(sId, tId, qId, aId);
+        connection.query(queryCheckIfExists, function (err, rows) {
+            if(rows!=null && rows.length>0) {
+                res.status(200).send("Same answer!");
             }
-            else {
-                res.status(200).send("Updated!");
+            else{
+                var query = queries.submitStudentsAnswerForQuestion(sId, tId, qId, aId);
+                console.log('\n' + query + '\n');
+                connection.query(query, function (err) {
+                    if (err) {
+                        console.log(err);
+                        res.status(400).send("Update had an error - check DB");
+                    }
+                    else {
+                        res.status(200).send("Updated!");
+                    }
+                });
             }
         });
     } catch (err) {
@@ -446,8 +454,11 @@ app.post('/removeTestUsersFromGroup', function (req, res) {
 app.post('/reportQuestion', function (req, res) {
     try {
         var QID = mysql.escape(req.body.q_id);
+        var reportOffensive = req.body.report_offensive;
+        var reportQuestion = req.body.report_question;
+        var reportAnswer = req.body.report_answer;
 
-        var query = queries.reportQuestion(QID);
+        var query = queries.reportQuestion(QID, reportOffensive, reportQuestion, reportAnswer);
         connection.query(query, function (err) {
             if (err) {
                 console.log(err);
@@ -518,7 +529,9 @@ app.post('/editQuestion', function (req, res) {
     try {
         var q_id = mysql.escape(req.body.id);
         var q_question = mysql.escape(req.body.question);
+        var q_media_type = mysql.escape(req.body.mediaType);
         var q_media = mysql.escape(req.body.media);
+        var isMul = mysql.escape(req.body.is_multiple_ans);
         var q_correctFB = mysql.escape(req.body.correctFB);
         var q_notCorrectFB = mysql.escape(req.body.notCorrectFB);
         var q_skill = mysql.escape(req.body.skill);
@@ -526,21 +539,40 @@ app.post('/editQuestion', function (req, res) {
         var q_prof = mysql.escape(req.body.proffesion);
         var q_app = mysql.escape(req.body.approved);
         var q_disabled = mysql.escape(req.body.disabled);
-        var answersArray = mysql.escape(req.body.answers);
+        // var ansStr = JSON.stringify("\'{\"answers\":" + req.body.answers + "}\'").toString();
+        var answersArray = req.body.answers;
 
 
-        var query = queries.updateQuestion(q_id, q_question, q_media, q_correctFB, q_notCorrectFB, q_skill, q_diff, q_prof, q_app, q_disabled);
+        var query = queries.updateQuestion(q_id, q_question, q_media, q_media_type, isMul, q_correctFB, q_notCorrectFB, q_skill, q_diff, q_prof, q_app, q_disabled);
         connection.query(query, function (err) {
             if (err) {
                 console.log(err);
-                res.status(400).send("DB error - check DB!");
+                res.status(400).send("DB error - check DB! - question not updated");
             }
             else {
-
-                res.status(200).send("updated!");
+                var bigQuery = "";
+                for (var i = 0; i < answersArray.length; i++) {
+                    var a_id = answersArray[i].A_id;
+                    var answer = answersArray[i].answer;
+                    var is_corr = answersArray[i].isCorrect;
+                    var query = queries.updateAnswer(a_id, q_id, answer, is_corr);
+                    bigQuery = bigQuery + query;
+                }
+                connection.query(bigQuery, function (err) {
+                        if (err) {
+                            console.log(err);
+                            res.status(400).send("DB error - check DB! - answers not updated");
+                        }
+                        else {
+                            res.status(200).send("updated!");
+                        }
+                    }
+                );
             }
         });
-    } catch (err) {
+
+    } catch
+        (err) {
         console.log("Error - " + err);
         res.status(404).send();
     }
@@ -860,7 +892,7 @@ app.post('/addQuestion', function (req, res) {
                     var x = 0;
                     if (correctAnswerArray.length > 0 && correctAnswerArray[0] != "") {
                         x = correctAnswerArray[0];
-                        if(correctAnswerArray.length>1 && isMulAns == "'0'"){
+                        if (correctAnswerArray.length > 1 && isMulAns == "'0'") {
                             correctAnswerArray = [correctAnswerArray[0]];//makes it array in size of one with first cell
                         }
                     }
@@ -1479,7 +1511,9 @@ app.post('/getTeachersGroupByCityAndSchool', function (req, res) {
 
 app.post('/getReported', function (req, res) {
     try {
-        var query = "select * from textra_db.questions where Q_reported>=1;";
+        var query = "select * from textra_db.questions where Q_reported_Offensive>=1" +
+            " or Q_reported_Question>=1" +
+            " or Q_reported_Answer>=1;";
         console.log('\n' + query + '\n');
         connection.query(query, function (err, questions) {
             if (err) {
@@ -1708,6 +1742,7 @@ app.post('/sendTaskToStudents', function (req, res) {
         res.status(404).send();
     }
 });
+
 
 var connection = mysql.createConnection({
     host: 'localhost',
