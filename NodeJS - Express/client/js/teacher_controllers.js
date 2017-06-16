@@ -14,7 +14,55 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
     $scope.insertPossibleAnswersMode = false;
     $scope.doneRegisterQuestion = false;
     $scope.enter_new_skill_mode = false;
+    $scope.isImg= false;
+    $scope.isMultipleAns= false;
 
+
+    $scope.changeMultiple= function () {
+        type = $scope.question.is_multiple_ans;
+        /*one question only*/
+        if (type ==0){
+            $scope.isMultipleAns= false;
+        }
+        else {
+            $scope.isMultipleAns= true;
+        }
+    }
+
+    $scope.changeMediaType = function () {
+        type = $scope.question.question_media_type;
+        /*teache group*/
+        if (type =="img"){
+            $scope.isImg= true;
+        }
+        else {
+            $scope.isImg= false;
+        }
+    }
+
+    var imgUrl;
+    $scope.uploadFile = function(){
+
+        var file = $scope.myFile;
+        var uploadUrl = "/multer";
+        var fd = new FormData();
+        fd.append('file', file);
+
+        $http.post(uploadUrl,fd, {
+            transformRequest: angular.identity,
+            headers: {'Content-Type': undefined}
+        })
+            .success(function(data,status,headers,config){
+                // alert("data:" +   data);
+                // alert("data to string:" + data.toString());
+
+                imgUrl = "img/" + data ;
+                alert("קובץ עלה בהצלחה!");
+            })
+            .error(function(){
+                // alert("error!!");
+            });
+    };
 
     $scope.new_skill_mode = function(){
         if ($scope.question.selected_skill == "enter_new_skill"){
@@ -89,17 +137,6 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
         // question_title is argument 1
         var question_title = $scope.question.question_title;
 
-        // (IS MULTIPLE ANS QUESTION) opt1.value is argument 2
-        // var is_multiple;
-        // var sel1 = document.getElementById("is_multiple_ans");
-        // for (i = 0 ; i < sel1.options.length ; i++){
-        //     is_multiple = sel1.options[i];
-        //     if (is_multiple.selected == true){
-        //         // alert(is_multiple.value);              // 1 means yes, 0 means no
-        //         break;
-        //     }
-        // }
-
         // (MEDIA TYPE) opt2.value is argument 3
         var media_type;
         var sel2 = document.getElementById("media_type");
@@ -111,17 +148,24 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
             }
         }
 
+
+
         var quest_difficulty = $scope.question.quest_difficulty;
 
-
-
         // arguments 4 - 8
-        var question_media = $scope.question.question_media;
+
+        var question_media;
+        if (media_type.value=="img"){
+            question_media = imgUrl;
+            alert("question_media = imgURL: " + question_media);
+        }
+        else {
+            question_media = $scope.question.question_media;
+        }
+
+
         var quest_correct_fb = $scope.question.quest_correct_fb;
         var quest_incorrect_fb = $scope.question.quest_incorrect_fb;
-
-
-
 
         var quest_skill = $scope.question.selected_skill;
 
@@ -151,13 +195,6 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
 
 
 
-        //alert("is MULTIPLE? " + opt3.value + " what are correct answers?" 
-            // + $scope.checkCorrectAnsLst +
-            // "קושי: " + quest_difficulty);
-        // alert("title: " + question_title + " op1: " + opt1.value + " op2: " + opt2.value + " question_media :" + question_media);
-        // alert("y: " + quest_correct_fb + " n: " + quest_incorrect_fb + " skill: " + quest_skill );
-        // alert("1: " + possible_ans_1 + " 2: " + possible_ans_2 + " 3: " +  possible_ans_3 + " 4: " + possible_ans_4)
-
         // ####################################################
         // SEND INFORMATION TO SERVER HERE
         // ####################################################
@@ -165,13 +202,24 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
 
         // change server feedback acording to succuss or failure!
 
-
         /*set quest_is_approved */
         var is_approved;
         if (getUserType() == 2)
             is_approved=1;
         else
             is_approved=0;
+
+        alert("isMultipleAns:" + $scope.isMultipleAns);
+        var correctAnswer;
+        if (! $scope.isMultipleAns){
+            alert("!");
+            correctAnswer = $scope.selected_ans;
+            alert(correctAnswer);
+        }
+        else{
+            correctAnswer = $scope.checkCorrectAnsLst;
+            alert(correctAnswer);
+        }
 
         var req = {
             method: 'POST',
@@ -196,7 +244,7 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
             + '&answer2=' + possible_ans_2
             + '&answer3=' + possible_ans_3
             + '&answer4=' + possible_ans_4
-            + '&correctAnswerIndex=' + $scope.checkCorrectAnsLst 
+            + '&correctAnswerIndex=' + correctAnswer
         };
 
         //alert(JSON.stringify(req));

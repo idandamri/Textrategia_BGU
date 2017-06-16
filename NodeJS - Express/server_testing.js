@@ -1684,31 +1684,28 @@ app.post('/getAllSkills', function (req, res) {
     }
 });
 
+var storage =   multer.diskStorage({
+    destination: function (req, file, callback) {
+        callback(null, './client/views/img');
+    },
+    filename: function (req, file, callback) {
+        // callback(null, +file.originalname.substr(file.originalname.indexOf('.'))
+        callback(null, Date.now() + "_" + file.originalname
+        );
+    }
+});
 
-// var storage =   multer.diskStorage({
-//     destination: function (req, file, callback) {
-//         callback(null, './uploads');
-//     },
-//     filename: function (req, file, callback) {
-//         callback(null, var afterDot = file.originalname.substr(file.originalname.indexOf('.'));
-//         );
-//     }
-// });
-//
-// var upload = multer({ storage : storage}).single('userPhoto');
-//
-// app.get('/',function(req,res){
-//     res.sendFile(__dirname + "/index.html");
-// });
-//
-// app.post('/api/photo',function(req,res){
-//     upload(req,res,function(err) {
-//         if(err) {
-//             res.status(400).send(req);
-//         }
-//         res.status(200).send(req);
-//     });
-// });
+var upload = multer({ storage : storage}).single('file');
+
+app.post('/multer',function(req,res){
+    upload(req,res,function(err) {
+        if(err) {
+            res.status(400).send();
+        }
+        var s = req.file.filename;
+        res.status(200).send(s);
+    });
+});
 
 
 app.post('/sendTaskToStudents', function (req, res) {
@@ -1772,7 +1769,7 @@ app.post('/sendTaskToStudents', function (req, res) {
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '1q2w3e4r',//'1q2w3e4r' to upload*/
+    password: '123456',//'1q2w3e4r' to upload*/
     database: 'textra_db',
     multipleStatements: true
 });
