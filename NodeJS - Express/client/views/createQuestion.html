@@ -39,7 +39,7 @@
 
       <!--  2  -->       
       <label class="control-label pull-right">מהו סוג המדיה של השאלה?:&nbsp;&nbsp;</label>
-        <select class="form-control inputstl" id="media_type" style="padding: 5px 5px;" tabindex="4">
+        <select class="form-control inputstl" id="media_type" ng-model="question.question_media_type" ng-change="changeMediaType()" style="padding: 5px 5px;" tabindex="4">
           <!-- <option value=0>אין מדיה</option> -->
               <option value="youtube">סרטון youtube</option>
               <option value="page">אודיו</option>
@@ -48,12 +48,21 @@
         </select>   
 
     <!-- 4 -->
-    <label class="control-label pull-right">הכנס מדייה: &nbsp;&nbsp;</label>
-   		<input type="text" name="question_media" class="form-control inputstl pull-right" required placeholder="קישור למדיה" ng-model="question.question_media" tabindex="5">	
+
+        <div ng-show="isImg">
+            <input type="file" file-model="myFile"/>&nbsp;
+            <button ng-click="uploadFile()">Upload</button>
+        </div>
+
+        <div  ng-show="!isImg">
+            <label class="control-label pull-right">הכנס מדייה: &nbsp;&nbsp;</label>
+            <input type="text" name="question_media" class="form-control inputstl pull-right" placeholder="קישור למדיה" ng-model="question.question_media" tabindex="5">
+        </div>
+
 
       <!-- 6 -->
       <label class="control-label pull-right">הכנס מיומנות למידה: &nbsp;&nbsp;</label>
-      <select class="form-control inputstl" id="skill_type" ng-model="question.selected_skill" ng-change="new_skill_mode()" tabindex="6" style="padding: 5px 5px;">
+      <select class="form-control inputstl" id="skill_type" ng-model="question.selected_skill" ng-change="ne_skill_mode()" tabindex="6" style="padding: 5px 5px;">
         <option  ng-repeat="sk in skills" value={{sk.Q_skill}}>
           {{sk.Q_skill}}
           </option>
@@ -154,7 +163,7 @@
 <div class="col-sm-4 text-center">
 		<!-- 5 -->
       	<label class="control-label pull-right ">כמה תשובות נכונה יש?&nbsp;&nbsp; &nbsp;&nbsp;</label>
-            <select class="form-control inputstl " id="is_multiple_ans" style="max-width: 160px;" tabindex="13">
+            <select class="form-control inputstl " id="is_multiple_ans" ng-model="question.is_multiple_ans" ng-change="changeMultiple()"  style="max-width: 160px;" tabindex="13">
 	            <option value=0>תשובה אחת בלבד</option>
 	            <option value=1>יותר מתשובה אחת</option>
 	          
@@ -163,6 +172,7 @@
 <br><br>
 
 
+    <div ng-show="isMultipleAns">
   <label class="control-label pull-right">סמן תשובות נכונות:&nbsp;&nbsp;</label><br>
   <div class="padded-20-elemnt well" style="max-width: 240px">
     <label><input type="checkbox" ng-init='checkStatus11=false' ng-model="checkStatus11" ng-change="checkCorrectAns(checkStatus11,'0')" >
@@ -174,6 +184,21 @@
     <label> <input type="checkbox" ng-init='checkStatus14=false' ng-model="checkStatus14" ng-change="checkCorrectAns(checkStatus14,'3')">
     &nbsp;&nbsp;4</label><br>
  </div>
+    </div>
+
+    <div ng-show="!isMultipleAns">
+        <label class="control-label pull-right">סמן תשובות נכונות:&nbsp;&nbsp;</label><br>
+        <div class="padded-20-elemnt well" style="max-width: 240px">
+            <label><input ng-model="selected_ans" ng-value="1" type="radio" >
+                &nbsp;&nbsp;1</label><br>
+            <label><input ng-model="selected_ans" ng-value="2" type="radio" >
+                &nbsp;&nbsp;2</label><br>
+            <label><input ng-model="selected_ans" ng-value="3" type="radio" >
+                &nbsp;&nbsp;3</label><br>
+            <label><input ng-model="selected_ans" ng-value="4" type="radio" >
+                &nbsp;&nbsp;4</label><br>
+        </div>
+    </div>
 
 
 

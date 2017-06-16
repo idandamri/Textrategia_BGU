@@ -29,49 +29,72 @@
 <!-- GROUP MANAGMENT MODE -->
 <div class="row" ng-show="!send_task_mod && !send_task_for_some_student_mod">
 
-  <div class="col-sm-12" >
-    <h1>שלום, {{teacherName}}!</h1>  <h3>לרשותך, רשימת הקבוצות שבניהולך: </h3>
-  </div>
-
-  <div class="col-sm-3">
+  <div class="col-sm-6 well text-center">
 
     <!-- Button -->
-    <button ng-click="sendTaskMode()" class="btn btn-info squirish-button1" style="font-size: 15px;">
+    <button ng-click="sendTaskMode()" class="btn btn-info squirish-button3" style="font-size: 15px;">
      <span class="glyphicon glyphicon-education" style="font-size: 25px;"></span> 
-      <p> שליחת מטלות<br>לקבוצה </p>
+      <p> שלח מטלות<br>לקבוצה </p>
     </button> 
 
     <!-- Button  -->
-    <button ng-click="sendTaskForSomeStudentMod()" class="btn btn-info squirish-button1" style="font-size: 15px;">
+    <button ng-click="sendTaskForSomeStudentMod()" class="btn btn-info squirish-button3" style="font-size: 15px;">
      <span class="glyphicon glyphicon-pawn" style="font-size: 25px;"></span> 
-      <p> שליחת מטלות <br> לתלמידים מסויימים </p>
+      <p> שלח מטלות<br>לתלמידים</p>
     </button>
 
   </div>
 
-  <div class="col-sm-1"></div>
+  <div class="col-sm-6" >
+    <h1>שלום, {{teacherName}}!</h1>  <h3>לרשותך, רשימת הקבוצות שבניהולך: </h3>
+  </div>
+
+
+  <div class="col-sm-12"><br></div>
+
+  <div class="col-sm-4">
+      <table class="table table-responsive table-fixed table-hover">
+      <thead ng-show="$scope.groupsStudentLst!=0 ">  
+        <tr> 
+          <th>מספר זהות</th>
+          <th>שם</th>
+          <th>משפחה</th>
+          <th>אימייל</th>
+          <th>סיסמא</th>
+        </tr> 
+      </thead>
+      <tbody> 
+        <tr class="" ng-repeat="stud2 in groupsStudentLst">
+          <td> {{stud2.PersonalID}}</td>
+          <td> {{stud2.FirstName}}</td>
+          <td> {{stud2.LastName}}</td>
+          <td> {{stud2.Email}}</td>
+          <td>
+          <button class="button btn-success" ng-click="showStudnetPassword(stud2)" data-toggle="modal" data-target="#fedbackModal" > הצג סיסמא  </button>
+          </td>
+        </tr>
+      </tbody>
+      </table>
+  </div>
+
 
   <div class="col-sm-8">
- 
     <div class="col-sm-6 panel-group panel-hover" ng-repeat="y in allGroups">
-      <div class="panel panel-default">
+      <div class="panel panel-default" ng-click="showGroupsMembersList(y.GroupId)">
         <div class="panel-heading">
           <h4 class="panel-title">
             <p><bold>{{y.GroupName}}</bold></p>
           </h4>
         </div>
-
         <div class="panel">
           <div class="panel-body">קוד קבוצה: <div class="text-info"> {{y.GroupeCode}}</div></div>
-
-          
         </div>
-
       </div>
     </div>
-
   </div>
-    <div class="col-sm-12"><br></div>
+
+
+  
 
 </div> <!-- /GROUP MANAGMENT MODE -->
 
@@ -80,9 +103,9 @@
 <div class="row" ng-show="send_task_mod">
 
 
-  <div class="col-sm-12">  <h3>בחר מטלה והצמד לה קבוצה</h3> 
-   
-   </div>
+  <div class="col-sm-12">  
+    <h3>בחר מטלה והצמד לה קבוצה</h3> 
+  </div>
 
   <br><br>
 
@@ -92,18 +115,18 @@
 
             <div class="btn-group btn-group-lg" data-toggle="buttons">
               <!-- Button -->
-              <button id="choiseButton0" ng-click="changeTaskType(0)" class="btn btn-info squirish-button1" style="font-size: 15px;" >
-              מאגר המטלות <br> המשותף                       </button> 
+              <button id="choiseButton0" ng-click="changeTaskType(0)" class="btn btn-info squirish-button3" style="font-size: 15px;" >
+              מאגר<br>המטלות<br>המשותף                       </button> 
 
               <!-- Button -->
-              <button id="choiseButton1" ng-click="changeTaskType(1)" class="btn btn-info squirish-button1" style="font-size: 15px;" >
+              <button id="choiseButton1" ng-click="changeTaskType(1)" class="btn btn-info squirish-button3" style="font-size: 15px;" >
               <p>המטלות שלי</p>                          </button>
             </div>
           </div>          
 
-           <div class="col-sm-1"></div>
+           <div class="col-sm-2"></div>
           <!-- 1 -->
-           <div class="col-sm-10" style = "padding: 60px;">
+           <div class="col-sm-8" style = "padding: 60px;">
             <label for="available_task" class="control-label pull-right" >מטלות זמינות:</label>
             <select class="form-control inputstl" id="available_task" ng-model="selected_task" ng-change="getAllGroupForTask()" size=1>
               <option ng-repeat="y in allTasks" value="{{y.T_id}}">{{y.T_title}}</option>
@@ -118,7 +141,7 @@
             </select>
           </div>
              
-           <div class="col-sm-1"></div>
+           <div class="col-sm-2"></div>
 
   </div> <!-- /form-group -->
 
@@ -127,14 +150,14 @@
   <div class="col-sm-12 text-center">
 
     <!-- Button -->
-     <button ng-click="groupManagmentMode()" class="btn btn-success squirish-button1" style="font-size: 15px;" >
-        <span class="glyphicon glyphicon-menu-right"><span class="glyphicon glyphicon-education" style="font-size: 40px;"> </span> </span> 
-       <p>חזור לניהול קבוצות</p>          </button> 
+     <button ng-click="groupManagmentMode()" class="btn btn-success squirish-button4" style="font-size: 15px;" >
+        <span class="glyphicon glyphicon-menu-right"><span class="glyphicon glyphicon-education" style="font-size: 20px;"> </span> </span> 
+       <p>חזור<br>לניהול<br>קבוצות</p>          </button> 
 
        <!-- Button -->
-     <button ng-click="sendTaskToGroup()" class="btn btn-success squirish-button1" style="font-size: 15px;" data-toggle="modal" data-target="#fedbackModal">
-       <span class="glyphicon glyphicon-send" style="font-size: 40px;"></span> 
-       <p>שלח מטלה לקבוצה</p>          </button>
+     <button ng-click="sendTaskToGroup()" class="btn btn-success squirish-button4" style="font-size: 15px;" data-toggle="modal" data-target="#fedbackModal">
+       <span class="glyphicon glyphicon-send" style="font-size: 20px;"></span> 
+       <p>שלח<br>מטלה<br>לקבוצה</p>          </button>
 
   </div>
 
@@ -207,7 +230,7 @@
   <div class="col-sm-4">
 
 
-    <div class="panel-group panel-hover panel-click" ng-repeat="y in groups " id="panelID-{{y.GroupId}}" ng-click="showGroupsMembersList(y.GroupId)">
+    <div class="panel-group panel-hover" ng-repeat="y in groups " id="panelID-{{y.GroupId}}" ng-click="showGroupsMembersList(y.GroupId)">
       <div class="panel panel-default">
         <div class="panel-heading">
           <h4 class="panel-title">
@@ -283,12 +306,25 @@
                 <div class="col-xs-7 col-sm-9">
                 <br>
                   <span> {{serverFeedback}}</span>           
+                  <div ng-show = "askForUserPassword">
+
+                   <input type="password" ng-model="pass.superPassword" class="form-control inputstl pull-right" placeholder="הכנס את ססמתך האישית" style="max-width:200px ; margin:20px; padding: 5px 5px;">
+
+                   <button type="button" class="btn btn-default" ng-click="askPremession()" style="margin:20px 0px;"> שלח </button>
+                  </div>
+
+                  <div ng-show="showPassword">
+                    <span class="text-info">
+                    <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      {{studentObject.Pass}}
+                    </strong></span>
+                  </div>
 
                 </div>
               </div>
             </div>
             <div class="modal-footer">
-              <button type="button" ng-show="doneSendTask" data-dismiss="modal" class="btn btn-default" ng-click="goToTeacher()"> סגור </button>
+              <button type="button" ng-show="doneSendTask && !askForUserPassword" data-dismiss="modal" class="btn btn-default" ng-click="goToTeacher()"> סגור </button>
               <button type="button" ng-show="!doneSendTask" data-dismiss="modal" class="btn btn-default" > סגור </button>
 
             </div>
