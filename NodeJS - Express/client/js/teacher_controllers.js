@@ -224,7 +224,7 @@ textrategiaApp.controller("GroupManagementController",function($scope,$http,$loc
 
     $scope.doneSendTask =false;         // different model button in case of server error
     $scope.serverFeedback = "אופס... אין תשובה מהשרת.";
-
+    $scope.askForUserPassword = false;
 
     var groups = document.getElementById("available_group");
     var tasks = document.getElementById("available_task");
@@ -524,6 +524,50 @@ $scope.studentToSendTaskToList = [];
 
     }
 
+
+    $scope.showStudnetPassword = function(stud){
+        $scope.askForUserPassword = true;
+        $scope.serverFeedback = "הזן את ססימתך האישית, על מנת לקבל קישה לסיסמת התלמיד"
+        $scope.studentObject = stud;
+        $scope.showPassword = false;
+
+    }
+
+    $scope.askPremession = function(){
+
+    // ask server here
+    var userPass = $scope.pass.superPassword;
+    var userId = getUserID();
+
+    var req = {
+            method: 'POST',
+            cache: false,
+            url: _url +'/checkIfpassIsCorrectByID',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            data: 'personal_id='+userId + '&password=' + userPass
+        };
+
+        // alert(JSON.stringify(req));
+
+        $http(req)
+            .success(function(data,status,headers,config){
+                if (status==200) {
+                $scope.showPassword = true;
+                $scope.serverFeedback = "סיסמת התלמיד/ה "+ $scope.studentObject.FirstName +  " היא: "
+                }  else if (status==204){
+                    $scope.showPassword = false;
+                     $scope.serverFeedback = "הסיסמא ששלחת אינה סיסמתך"
+                    }
+            }).error(function(data,status,headers,config){
+            $scope.serverFeedback = "שגיאת שרת"
+
+        });
+
+
+    $scope.askForUserPassword = false;
+    }
 
 
 });
