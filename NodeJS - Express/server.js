@@ -175,19 +175,27 @@ app.post('/questionDone', function deleteQuestionFromQueue(req, res) {
 
 app.post('/updateAnswer', function (req, res) {
     try {
-        var sId = mysql.escape(req.body.user_id);
-        var tId = mysql.escape(req.body.task_id);
-        var qId = mysql.escape(req.body.quest_id);
-        var aId = mysql.escape(req.body.ans_id);
-        var queryCheckIfExists = queries.checkIfAnsExists(sId, tId, qId, aId);
+        var sId = req.body.user_id;
+        var tId = req.body.task_id;
+        var qId = req.body.quest_id;
+        var aId = req.body.ans_id;
+        var secondChance = mysql.escape(req.body.second_chance);
+        var queryCheckIfExists = queries.checkIfAnsExists(sId, tId, qId, aId, secondChance);
         connection.query(queryCheckIfExists, function (err, rows) {
-            if(rows!=null && rows.length>0) {
+            if (rows != null && rows.length > 0) {
                 res.status(200).send("Same answer!");
             }
-            else{
-                var query = queries.submitStudentsAnswerForQuestion(sId, tId, qId, aId);
-                console.log('\n' + query + '\n');
-                connection.query(query, function (err) {
+            else {
+                answers = [];
+                answers = aId.split(',');
+                var bigQuery = "";
+                for (var i = 0; i < answers.length; i++) {
+                    a_id = answers[i];
+                    var query = queries.submitStudentsAnswerForQuestion(sId, tId, qId, a_id, secondChance);
+                    bigQuery = bigQuery + query;
+                }
+                console.log('\n' + bigQuery + '\n');
+                connection.query(bigQuery, function (err) {
                     if (err) {
                         console.log(err);
                         res.status(400).send("Update had an error - check DB");
@@ -487,6 +495,39 @@ app.post('/removeRegisterUser', function (req, res) {
 });
 
 
+app.post('/getQuestionStatistics', function (req, res) {
+
+    var qID = req.body.q_id;
+    var query = queries.getQuestionStatistics(qID);
+    connection.query(query, function (err, ans) {
+        if (err) {
+            console.log(err);
+            res.status(400).send("DB error - check DB!");
+        }
+        else {
+            res.status(200).send(ans);
+        }
+    });
+});
+
+
+app.post('/getStudentsMissingTaskInGroup', function (req, res) {
+
+    var taskID = req.body.t_id;
+    var groupID = req.body.group_id;
+    var query = queries.getStudentsMissingTaskInGroup(taskID, groupID);
+    connection.query(query, function (err, listOfStudents) {
+        if (err) {
+            console.log(err);
+            res.status(400).send("DB error - check DB!");
+        }
+        else {
+            res.status(200).send(listOfStudents);
+        }
+    });
+});
+
+
 app.post('/truncateInstancesOfAnswers', function (req, res) {
     var query = "TRUNCATE TABLE textra_db.instances_of_answers;";
     connection.query(query, function (err) {
@@ -525,6 +566,7 @@ app.post('/editQuestion', function (req, res) {
                 res.status(400).send("DB error - check DB! - question not updated");
             }
             else {
+                answersArray = answersArray.split(',');
                 var bigQuery = "";
                 for (var i = 0; i < answersArray.length; i++) {
                     var a_id = answersArray[i].A_id;
@@ -533,7 +575,7 @@ app.post('/editQuestion', function (req, res) {
                     var query = queries.updateAnswer(a_id, q_id, answer, is_corr);
                     bigQuery = bigQuery + query;
                 }
-                connection.query(bigQuery, function (err, rows) {
+                connection.query(bigQuery, function (err) {
                         if (err) {
                             console.log(err);
                             res.status(400).send("DB error - check DB! - answers not updated");
@@ -1470,7 +1512,7 @@ app.post('/addQuestionStatistics', function (req, res) {
         var aID = mysql.escape(req.body.a_id);
         var is_correct = mysql.escape(req.body.is_correct);
         var second_chance = mysql.escape(req.body.second_chance);
-        var query = queries.addSQuestionStatisticsWhenAnswering(qID,sID,aID,is_correct, second_chance);
+        var query = queries.addSQuestionStatisticsWhenAnswering(qID, sID, aID, is_correct, second_chance);
         console.log('\n' + query + '\n');
         connection.query(query, function (err) {
             if (err) {
@@ -1665,7 +1707,7 @@ app.post('/getAllSkills', function (req, res) {
     }
 });
 
-var storage =   multer.diskStorage({
+var storage = multer.diskStorage({
     destination: function (req, file, callback) {
         callback(null, './client/views/img');
     },
@@ -1676,11 +1718,11 @@ var storage =   multer.diskStorage({
     }
 });
 
-var upload = multer({ storage : storage}).single('file');
+var upload = multer({storage: storage}).single('file');
 
-app.post('/multer',function(req,res){
-    upload(req,res,function(err) {
-        if(err) {
+app.post('/multer', function (req, res) {
+    upload(req, res, function (err) {
+        if (err) {
             res.status(400).send();
         }
         var s = req.file.filename;
@@ -1744,7 +1786,6 @@ app.post('/sendTaskToStudents', function (req, res) {
         res.status(404).send();
     }
 });
-
 
 var connection = mysql.createConnection({
     host: 'localhost',
