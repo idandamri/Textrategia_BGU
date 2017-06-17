@@ -19,9 +19,15 @@ module.exports =
 
         getQuestionStatistics: function (q_id) {
             return "select" +
-                "(select count(*) from textra_db.statistics where Q_id = " + q_id + " and isCorrect = 0) AS StudentsThatWereWrong," +
-                "(select count(*) from textra_db.statistics where Q_id = " + q_id + " and isCorrect = 1 and Second_Chance = 0) AS StudentsCorrectFirstTry," +
-                "(select count(*) from textra_db.statistics where Q_id = " + q_id + " and  isCorrect = 1 and Second_Chance = 1) AS StudentsCorrectSecondTry;";
+                "(SELECT count(*) FROM instances_of_answers inner join answers on answers.A_id = instances_of_answers.A_id " +
+                "and answers.Q_id = " + q_id + " and instances_of_answers.Q_id = " + q_id + " and textra_db.answers.isCorrect = 0) " +
+                "as StudentsThatWereWrong, " +
+                "(SELECT count(*) FROM instances_of_answers inner join answers on answers.A_id = instances_of_answers.A_id and " +
+                "answers.Q_id = " + q_id + " and instances_of_answers.Q_id = " + q_id + " and textra_db.answers.isCorrect = 1 " +
+                "and instances_of_answers.Second_Chance = 0) as StudentsCorrectFirstTry," +
+                "(SELECT count(*) FROM instances_of_answers inner join answers on answers.A_id = instances_of_answers.A_id " +
+                "and answers.Q_id = " + q_id + " and instances_of_answers.Q_id = " + q_id + " and textra_db.answers.isCorrect = 1 " +
+                "and instances_of_answers.Second_Chance = 1) as StudentsCorrectSecondTry;"
         },
 
         /*get all tasks's information (id,title and description) by student id*/
@@ -73,18 +79,28 @@ module.exports =
                 "as T JOIN answers on T.Q_id = answers.Q_id);";
         },
 
-        submitStudentsAnswerForQuestion: function (student_id, task_id, q_id, a_id) {
+        submitStudentsAnswerForQuestion: function (student_id, task_id, q_id, a_id, second_chance) {
             return "insert into textra_db.instances_of_answers " +
-                "values(current_timestamp," + student_id + "," + task_id + "," + q_id + "," + a_id + ");\n";
+                "values(current_timestamp," + student_id + "," + task_id + "," + q_id + "," + a_id + "," + second_chance + ");\n";
         },
 
         checkIfPassIsCorrectForID: function (personal_id, pass) {
             return "select PersonalID from textra_db.users where PersonalID = " + personal_id + " and Pass = " + pass + ";";
         },
 
-        checkIfAnsExists: function (student_id, task_id, q_id, a_id) {
+        checkIfAnsExists: function (student_id, task_id, q_id, a_id, second_chance) {
             return "select * from textra_db.instances_of_answers " +
-                "where studentId = " + student_id + " and T_id = " + task_id + " and Q_id = " + q_id + " and A_id = " + a_id + ";";
+                "where studentId = " + student_id + " and T_id = " + task_id + " and Q_id = " + q_id +
+                " and A_id = " + a_id + " and Secon_chance = " + second_chance + ";";
+        },
+
+        getStudentsMissingTaskInGroup: function (task_id, group_id) {
+            return "select Table_a.StudentId from " +
+                "(select StudentId from students_per_group where GroupId = " + group_id + ") as Table_a " +
+                "join tasks_and_question_for_student_instances " +
+                "on Table_a.StudentId = tasks_and_question_for_student_instances.studentId " +
+                "where tasks_and_question_for_student_instances.T_id != " + task_id +
+                " group by StudentId;"
         },
 
         //delete from textra_db.tasks_and_question_for_student_instances where studentId like '2' and T_id = '1' and Q_id = '1'
@@ -318,7 +334,11 @@ module.exports =
     },
 
     getTeachesByCityAndSchool: function (city, school) {
-        return "SELECT teacherID FROM textra_db.groups where City =" + city + " and School = " + school + ";"
+        return "select StudentId as teacherID from textra_db.students_per_group " +
+            "where GroupId IN " +
+            "(SELECT GroupId FROM textra_db.groups where City =" + city + " and School = " + school + "and isTeacherGroup=1);"
+            ;
+        // return "SELECT teacherID FROM textra_db.groups where City =" + city + " and School = " + school + ";"
     },
 
     getAnswersByQid: function (q_id) {
