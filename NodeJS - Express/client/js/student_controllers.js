@@ -357,7 +357,7 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
 
     $scope.selectedAnswers = [];          // Arg3
     $scope.checkSelectedAnswers= function (checkStatus,element){
-        alert(element);
+        // alert(element);
         if(checkStatus ){
             if ($scope.selectedAnswers.indexOf(element) == -1 ){
                 $scope.selectedAnswers.push(element);
@@ -373,7 +373,7 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
 
         // alert("checkStatus: " + checkStatus);
         // alert("element: " + element);
-        alert("$scope.selectedAnswers: " + $scope.selectedAnswers);
+        // alert("$scope.selectedAnswers: " + $scope.selectedAnswers);
 
     };
 
@@ -612,7 +612,7 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
 
 
     $scope.reportQuestion = function(q){
-        alert("q?: " + q + "scope: " + $scope.lastQuestionReported);
+        // alert("q?: " + q + "scope: " + $scope.lastQuestionReported);
         if ( q == $scope.lastQuestionReported ){
             //// DONT REPORT
         } else {

@@ -325,7 +325,11 @@ module.exports =
     },
 
     getTeachesByCityAndSchool: function (city, school) {
-        return "SELECT teacherID FROM textra_db.groups where City =" + city + " and School = " + school + ";"
+        return "select StudentId as teacherID from textra_db.students_per_group " +
+            "where GroupId IN " +
+            "(SELECT GroupId FROM textra_db.groups where City =" +city + " and School = "+ school+"and isTeacherGroup=1);"
+        ;
+        // return "SELECT teacherID FROM textra_db.groups where City =" + city + " and School = " + school + ";"
     },
 
     getAnswersByQid: function (q_id) {
