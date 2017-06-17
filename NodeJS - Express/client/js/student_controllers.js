@@ -82,9 +82,16 @@ function shuffle(a) {
     }
 }
 
-
 /*TO-DO*/
-function updateAnswer (quest_id , ans_id){
+function updateAnswer (quest_id , ans_id,triedOnce ){
+    var second_chance;
+    if (triedOnce ==true){
+        second_chance = 1;
+    }
+    else{
+        second_chance = 0;
+    }
+
     $http = angular.injector(["ng"]).get("$http");
     var req = {
         method: 'POST',
@@ -94,6 +101,7 @@ function updateAnswer (quest_id , ans_id){
             'Content-Type': 'application/x-www-form-urlencoded'
         },
         data: 'user_id='+getUserID()+'&task_id='+getTaskID() + '&quest_id=' + quest_id + '&ans_id=' + ans_id
+        + '&second_chance=' + second_chance
     };
     $http(req)
         .success(function(data,status,headers,config){
@@ -317,8 +325,9 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
 
     $scope.selectedAnswers = [];          // Arg3
 
-    $scope.checkSelectedAnswers = function (checkStatus,element){
-        alert("clicked?? " + checkStatus + " element: " + element);
+    $scope.checkSelectedAnswers= function (checkStatus,element){
+        // alert("clicked?? " + checkStatus + " element: " + element);
+        // alert(element);
 
         if(checkStatus ){
             if ($scope.selectedAnswers.indexOf(element) == -1 ){
@@ -468,7 +477,7 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
             // alert(JSON.stringify($scope.answers.sort()));
             // alert(JSON.stringify(index.sort()));
             var lala = JSON.stringify(index.sort())==JSON.stringify($scope.answers.sort());
-            updateAnswer($scope.questionID, index_id);
+            updateAnswer($scope.questionID, index_id,$scope.triedOnce );
 
             if (lala) {
                 $scope.score++;
@@ -494,7 +503,7 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
             // var ans = $scope.selected_singleAns;
             // alert("$scope.selected_singleAns:" + $scope.selected_singleAns);
             var ans_id = get_answer_index($scope.options, $scope.options_id, ans);
-            updateAnswer($scope.questionID, ans_id);
+            updateAnswer($scope.questionID, ans_id,$scope.triedOnce );
             if (ans == $scope.options[$scope.answer]) {
                 $scope.score++;
                 $scope.feedback = $scope.correctFB;

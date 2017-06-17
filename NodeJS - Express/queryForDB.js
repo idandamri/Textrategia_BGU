@@ -325,6 +325,15 @@ module.exports =
             ");"
     },
 
+    getQuestionsByParamterAndIdWithOneAns: function (media_types, skills, difficulties, user_id) {
+        return "SELECT * FROM textra_db.questions " +
+            "where Q_mediaType in (" + media_types + ") " +
+            "and Q_skill in (" + skills + ") " +
+            "and Q_difficulty in (" + difficulties + ")" +
+            "and (Q_approved=1 or Q_owner=" + user_id +
+            "and isMultipuleAns=0);"
+    },
+
     getAllSkills: function (skills) {
         return "SELECT distinct Q_skill FROM textra_db.questions;"
     },

@@ -54,19 +54,6 @@ foreign key (T_owner) references users(PersonalID),
 primary key (T_id)
 );
 
-create table statistics
-(
-Q_id bigint unsigned not null,
-S_id varchar(100) not null,
-A_id bigint unsigned not null,
-isCorrect boolean not null,
-Second_Chance boolean not null,
-foreign key (Q_id) references questions(Q_id),
-foreign key (A_id) references answers(A_id),
-foreign key (S_id) references users(PersonalID),
-primary key (Q_id,S_id,A_id,isCorrect)
-);
-
 create table tasks_joined_with_questions(
 T_id bigint unsigned not null,
 Q_id bigint unsigned not null,
@@ -111,11 +98,12 @@ studentId varchar(10) not null,
 T_id bigint unsigned not null,
 Q_id bigint unsigned not null,
 A_id bigint unsigned not null,
+Second_Chance boolean not null,
 foreign key (T_id) references tasks(T_id),
 foreign key (studentId) references users(PersonalID),
 foreign key (Q_id) references questions(Q_id),
 foreign key (A_id) references answers(A_id),
-primary key (A_id,Q_id,T_id,studentId)
+primary key (A_id,Q_id,T_id,studentId,Second_Chance)
 );
 
 create table tasks_and_question_for_student_instances
@@ -351,7 +339,7 @@ insert into groups
 values(1235321,"כיתת ניסוי 2","בית ספר אשכולות","אשדוד", 11, 0, 1, "School-Morya", 1, 1);
 
 insert into groups
-values(1, "קבוצת מורים", "מענית", "באר שבע", 1, 1,1,"teach",1,1);
+values(1, "קבוצת מורים", "מענית", "באר שבע", 5, 1,1,"teach",1,1);
 /*------------------------------------------*/
 
 /*----------- students_per_group -----------*/
@@ -363,6 +351,20 @@ values(3,123456);
 
 insert into students_per_group
 values(2,1234567);
+/*------------------------------------------*/
+
+/*----------- teacherss_per_group -----------*/
+insert into students_per_group
+values(2,1);
+
+insert into students_per_group
+values(4,1);
+
+insert into students_per_group
+values(8,1);
+
+insert into students_per_group
+values(11,1);
 /*------------------------------------------*/
 
 /*----------- textra_db.tasks_joined_with_questions ---------*/
@@ -480,26 +482,6 @@ values(3,2,8);*/
 
 /*------------------------------------------*/
 
-/*----------- instances_of_answers 
-INSERT INTO `textra_db`.`instances_of_answers` (`studentId`, `T_id`, `Q_id`, `A_id`) VALUES ('1', '1', '1', '1');
-INSERT INTO `textra_db`.`instances_of_answers` (`studentId`, `T_id`, `Q_id`, `A_id`) VALUES ('1', '1', '1', '2');
-INSERT INTO `textra_db`.`instances_of_answers` (`studentId`, `T_id`, `Q_id`, `A_id`) VALUES ('1', '1', '1', '3');
-INSERT INTO `textra_db`.`instances_of_answers` (`studentId`, `T_id`, `Q_id`, `A_id`) VALUES ('1', '1', '1', '4');
-INSERT INTO `textra_db`.`instances_of_answers` (`studentId`, `T_id`, `Q_id`, `A_id`) VALUES ('1', '1', '2', '1');
-INSERT INTO `textra_db`.`instances_of_answers` (`studentId`, `T_id`, `Q_id`, `A_id`) VALUES ('1', '1', '2', '2');
-INSERT INTO `textra_db`.`instances_of_answers` (`studentId`, `T_id`, `Q_id`, `A_id`) VALUES ('1', '1', '2', '3');
-INSERT INTO `textra_db`.`instances_of_answers` (`studentId`, `T_id`, `Q_id`, `A_id`) VALUES ('1', '1', '2', '4');
-INSERT INTO `textra_db`.`instances_of_answers` (`studentId`, `T_id`, `Q_id`, `A_id`) VALUES ('1', '1', '3', '1');
-INSERT INTO `textra_db`.`instances_of_answers` (`studentId`, `T_id`, `Q_id`, `A_id`) VALUES ('1', '1', '3', '2');
-INSERT INTO `textra_db`.`instances_of_answers` (`studentId`, `T_id`, `Q_id`, `A_id`) VALUES ('1', '1', '3', '3');
-INSERT INTO `textra_db`.`instances_of_answers` (`studentId`, `T_id`, `Q_id`, `A_id`) VALUES ('1', '1', '3', '4');
-INSERT INTO `textra_db`.`instances_of_answers` (`studentId`, `T_id`, `Q_id`, `A_id`) VALUES ('1', '1', '4', '1');
-INSERT INTO `textra_db`.`instances_of_answers` (`studentId`, `T_id`, `Q_id`, `A_id`) VALUES ('1', '1', '4', '2');
-INSERT INTO `textra_db`.`instances_of_answers` (`studentId`, `T_id`, `Q_id`, `A_id`) VALUES ('1', '1', '4', '3');
-INSERT INTO `textra_db`.`instances_of_answers` (`studentId`, `T_id`, `Q_id`, `A_id`) VALUES ('1', '1', '4', '4');
-/*------------------------------------------*/
-
-
 /*******questions wtih multiple answers ********/
 
 INSERT INTO `textra_db`.`questions` (`Q_qeustion`, `isMultipuleAns`, `Q_mediaType`, `Q_media`, `Q_correctFB`, `Q_notCorrectFB`, `Q_skill`, `Q_difficulty`, `Q_proffession`,  `Q_reported_Offensive`, `Q_reported_Question`, `Q_reported_Answer`,`Q_approved`, `Q_disabled`, `Q_owner`) 
@@ -528,5 +510,5 @@ INSERT INTO `textra_db`.`cities_and_schools` (`School`, `City`) VALUES ('בית 
 INSERT INTO `textra_db`.`cities_and_schools` (`School`, `City`) VALUES ('מענית','באר שבע');
 INSERT INTO `textra_db`.`cities_and_schools` (`School`, `City`) VALUES ('אשכולות','אשדוד');
 /**********************************************/
-INSERT INTO `textra_db`.`questions` (`Q_qeustion`, `isMultipuleAns`, `Q_mediaType`, `Q_media`, `Q_correctFB`, `Q_notCorrectFB`, `Q_skill`, `Q_difficulty`, `Q_proffession`,  `Q_reported_Offensive`, `Q_reported_Question`, `Q_reported_Answer`,`Q_approved`, `Q_disabled`, `Q_owner`) VALUES ('משהו קרה לאדם שבסיפור בלילה הקודם. מה קרה?', '0','text','האופנוע האם אי פעם התעוררת בתחושה שמשהו לא בסדר? זה היה מין יום כזה בשבילי. התיישבתי במיטה. מעט אחר כך הזזתי את הווילונות. היה מזג אוויר נורא – ירד גשם שוטף. ואז הבטתי למטה לחצר. כן! שם הוא עמד – האופנוע. הוא היה הרוס בדיוק כפי שהיה אתמול בלילה. והרגל שלי התחילה לכאוב.','אם נתבונן ברמזים בטקסט - תחושה של משהו לא בסדר, האופנוע ההרוס, הרגל הכואבת - ונחבר הכל יחד נגיע לכך שאכן האדם עבר תאונת אופנוע.','קרא בתשומת לב את הסיפור הקצר ונסה להבחין אילו רמזים נשתלים בתוכו.','הסקת מסקנות','קלה','הבעה','0','0','0','1','0','1');
-INSERT INTO `textra_db`.`questions` (`Q_qeustion`, `isMultipuleAns`, `Q_mediaType`, `Q_media`, `Q_correctFB`, `Q_notCorrectFB`, `Q_skill`, `Q_difficulty`, `Q_proffession`,  `Q_reported_Offensive`, `Q_reported_Question`, `Q_reported_Answer`,`Q_approved`, `Q_disabled`, `Q_owner`) VALUES ('משהו קרה לאדם שבסיפור בלילה הקודם. מה קרה?', '0','text','האופנוע האם אי פעם התעוררת בתחושה שמשהו לא בסדר? זה היה מין יום כזה בשבילי. התיישבתי במיטה. מעט אחר כך הזזתי את הווילונות. היה מזג אוויר נורא – ירד גשם שוטף. ואז הבטתי למטה לחצר. כן! שם הוא עמד – האופנוע. הוא היה הרוס בדיוק כפי שהיה אתמול בלילה. והרגל שלי התחילה לכאוב.','אם נתבונן ברמזים בטקסט - תחושה של משהו לא בסדר, האופנוע ההרוס, הרגל הכואבת - ונחבר הכל יחד נגיע לכך שאכן האדם עבר תאונת אופנוע.','קרא בתשומת לב את הסיפור הקצר ונסה להבחין אילו רמזים נשתלים בתוכו.','הסקת מסקנות','קלה','הבעה','0','0','0','1','0','1');
+INSERT INTO `textra_db`.`questions` (`Q_qeustion`, `isMultipuleAns`, `Q_mediaType`, `Q_media`, `Q_correctFB`, `Q_notCorrectFB`, `Q_skill`, `Q_difficulty`, `Q_proffession`,  `Q_reported_Offensive`, `Q_reported_Question`, `Q_reported_Answer`,`Q_approved`, `Q_disabled`, `Q_owner`) VALUES ('משהו קרה לאדם שבסיפור בלילה הקודם. מה קרה?', '0','text','האופנוע האם אי פעם התעוררת בתחושה שמשהו לא בסדר? זה היה מין יום כזה בשבילי. התיישבתי במיטה. מעט אחר כך הזזתי את הווילונות. היה מזג אוויר נורא – ירד גשם שוטף. ואז הבטתי למטה לחצר. כן! שם הוא עמד – האופנוע. הוא היה הרוס בדיוק כפי שהיה אתמול בלילה. והרגל שלי התחילה לכאוב.','אם נתבונן ברמזים בטקסט - תחושה של משהו לא בסדר, האופנוע ההרוס, הרגל הכואבת - ונחבר הכל יחד נגיע לכך שאכן האדם עבר תאונת אופנוע.','קרא בתשומת לב את הסיפור הקצר ונסה להבחין אילו רמזים נשתלים בתוכו.','רב','קלה','הבעה','0','0','0','1','0','1');
+-- INSERT INTO `textra_db`.`questions` (`Q_qeustion`, `isMultipuleAns`, `Q_mediaType`, `Q_media`, `Q_correctFB`, `Q_notCorrectFB`, `Q_skill`, `Q_difficulty`, `Q_proffession`,  `Q_reported_Offensive`, `Q_reported_Question`, `Q_reported_Answer`,`Q_approved`, `Q_disabled`, `Q_owner`) VALUES ('משהו קרה לאדם שבסיפור בלילה הקודם. מה קרה?', '0','text','האופנוע האם אי פעם התעוררת בתחושה שמשהו לא בסדר? זה היה מין יום כזה בשבילי. התיישבתי במיטה. מעט אחר כך הזזתי את הווילונות. היה מזג אוויר נורא – ירד גשם שוטף. ואז הבטתי למטה לחצר. כן! שם הוא עמד – האופנוע. הוא היה הרוס בדיוק כפי שהיה אתמול בלילה. והרגל שלי התחילה לכאוב.','אם נתבונן ברמזים בטקסט - תחושה של משהו לא בסדר, האופנוע ההרוס, הרגל הכואבת - ונחבר הכל יחד נגיע לכך שאכן האדם עבר תאונת אופנוע.','קרא בתשומת לב את הסיפור הקצר ונסה להבחין אילו רמזים נשתלים בתוכו.','רב','קלה','הבעה','0','0','0','1','0','1');
