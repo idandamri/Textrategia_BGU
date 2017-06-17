@@ -56,7 +56,7 @@
       <div class ="col-sm-1"></div>
 
       <!--  City -->
-      <form class="form-horizontal" >
+      <form name="myForm" class="form-horizontal" >
       <div class ="col-sm-5">
 
         <input type="text" id="query" class="form-control inputstl pull-right"  ng-model="query" placeholder="חפש עיר">
@@ -82,7 +82,6 @@
         <div class ="col-sm-4"></div>
         <div class="col-sm-4 text-center">
          
-           <form name="myForm" class="form-horizontal" role="form">
            <div ng-show="showSchools">
           <label class="control-label pull-right">הכנס שם בית ספר חדש:&nbsp;&nbsp;</label>
           <input type="text" required name="groupName" class="form-control inputstl pull-right"  placeholder="הכנס שם בית ספר חדש:" ng-model="user.schoolName">
@@ -121,8 +120,8 @@
                 <br>
                   <span ng-show="readyToSendServer"> {{serverFeedback}}</span> 
                   <div ng-show="!readyToSendServer">
-                    <span> {{serverFeedback}} <div class="text-info">{{user.schoolName}}</div></span>   
-                    <span> {{secondServerFeedback}} <div class="text-info">{{city.city_name}}?</div></span>   
+                     {{serverFeedback}} <span class="text-info">{{user.schoolName}}</span>   
+                    {{secondServerFeedback}} <span class="text-info"> {{city.city_name}}?</span>   
                   </div>
                 </div>
               </div>

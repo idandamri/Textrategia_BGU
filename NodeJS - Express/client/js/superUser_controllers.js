@@ -211,6 +211,8 @@ textrategiaApp.controller("CreatTaskController",function($scope,$http,$location)
 
     $scope.getUserName = getUserName();
     $scope.searchQuestion = false;
+    $scope.userApprovedSending = false;
+    $scope.showApproveQuestion = false;
 
     // $scope.goToSuperUser = function () {
     //     $location.path('superUser');
@@ -400,6 +402,19 @@ textrategiaApp.controller("CreatTaskController",function($scope,$http,$location)
            $scope.myTaskQuestions.splice(index, 1);
         }
     };
+
+
+       $scope.changeStatusOfAnswer = function(changed_element){
+           $scope.userApprovedSending = 1 - $scope.userApprovedSending;
+       };
+
+    $scope.sendTaskToServerWrapper = function(){
+        $scope.searchQuestion = false;
+        $scope.showApproveQuestion = true;
+
+
+    };
+
 
     $scope.sendTaskToServer = function(){
         var questionID = [];
