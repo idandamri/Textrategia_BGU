@@ -1,4 +1,4 @@
-exports.getListOfTasks = function (app) {
+exports.getListOfTasks = function (app, connection, req, res) {
     try {
         var user_id = mysql.escape(app.req.body.user_id);
         var query = queries.gelAllTaskTitleByStudentId(user_id);
