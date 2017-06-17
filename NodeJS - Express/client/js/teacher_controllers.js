@@ -549,7 +549,6 @@ $scope.studentToSendTaskToList = [];
 
     }
  $scope.showGroupsMembersList2 = function(g_id){
-    alert("showGroupsMembersList2");
     var selected_task2 = $scope.selected_task2;
  var req = {
             method: 'POST',
@@ -561,7 +560,6 @@ $scope.studentToSendTaskToList = [];
             data: 'group_id='+g_id + '&t_id=' + selected_task2
         };
 
-        alert(JSON.stringify(req));
 
         $http(req)
             .success(function(data,status,headers,config){
@@ -589,6 +587,8 @@ $scope.studentToSendTaskToList = [];
     $scope.sendTaskForSomeStudent = function(){
 
         var studentIDlst = [];
+        var selected_task2 = $scope.selected_task2;
+
 
         for (i=0 ; i< $scope.studentToSendTaskToList.length ; i++){
             studentIDlst.push($scope.studentToSendTaskToList[i].PersonalID);
@@ -603,7 +603,7 @@ $scope.studentToSendTaskToList = [];
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            data: 'students=['+ studentIDlst + ']&task_id=' + $scope.selected_task
+            data: 'students=['+ studentIDlst + ']&task_id=' + selected_task2
         };
 
         // alert(JSON.stringify(req));

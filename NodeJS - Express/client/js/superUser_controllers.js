@@ -664,7 +664,8 @@ textrategiaApp.controller("CreateGroupController",function($scope,$http,$locatio
 
 textrategiaApp.controller("StatisticsSuperUserController",function($scope, $http,$location){
 
-    $scope.searchQuestionMode = true;
+    $scope.searchQuestionMode = true
+    ;
 
      var req = {
         method: 'POST',
