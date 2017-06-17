@@ -664,6 +664,41 @@ textrategiaApp.controller("CreateGroupController",function($scope,$http,$locatio
 
 textrategiaApp.controller("StatisticController",function($scope, $http,$location){
 
+    /* output: $scope.questionForStatistics : list of question*/
+    $scope.showSelectedQuestion = function(){
+        // alert("selectedMedia: " + $scope.selectedMedia +
+        //     " | selectedDiff: " + $scope.selectedDiff +
+        //     " | selectedSkill: " + $scope.selectedSkill
+        //     );
+        $scope.feedback = "";
+        $scope.generate_task= false;
+
+        var req = {
+            method: 'POST',
+            cache: false,
+            url: _url +'/getQuestionsWithOneAnsByParamter',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            data: 'media_types='+$scope.selectedMedia
+            +'&skills='+$scope.selectedSkill
+            +'&difficulties='+$scope.selectedDiff
+            +'&user_id=' + getUserID()
+        };
+
+        $http(req)
+            .success(function(data,status,headers,config){
+                if (status==200){
+                    $scope.questionForStatistics= data;
+                }
+                else if ( status==204){
+                    $scope.questionForStatistics = [];
+                }
+            }).error(function(data,status,headers,config){
+        });
+    };
+
+
     $scope.getStatisticForQuestion= function (q_id) {
         var req = {
             method: 'POST',
