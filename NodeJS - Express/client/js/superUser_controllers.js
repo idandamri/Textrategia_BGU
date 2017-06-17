@@ -11,6 +11,114 @@ textrategiaApp.controller("SuperUserController",function($scope, $http,$location
 });
 
 
+
+
+textrategiaApp.controller("superUserGroupManagmentController",function($scope,$http,$location){
+    $scope.userName = getUserName();
+
+        var req = {
+            method: 'POST',
+            cache: false,
+            url: _url +'/getAllGroupForTeacher',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            data: 'user_id='+getUserID()
+        };
+
+        $http(req)
+            .success(function(data,status,headers,config){
+                $scope.allGroups= data;
+            }).error(function(data,status,headers,config){
+        });
+
+    $scope.showGroupsMembersList = function(g_id){
+
+     var req = {
+                method: 'POST',
+                cache: false,
+                url: _url +'/getStudentListFromGroupId',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                data: 'group_id='+g_id
+            };
+
+            $http(req)
+                .success(function(data,status,headers,config){
+                    if (status==200) {
+                        $scope.groupsStudentLst = data;
+                    }
+                    else if (status==204){
+                        $scope.groupsStudentLst = [];
+                        alert("אין ילדים בקבוצה");
+                        $scope.serverFeedback = "אין ילדים בקבוצה";
+                    }
+                }).error(function(data,status,headers,config){
+                    $scope.groupsStudentLst = [];
+                    alert("אין ילדים בקבוצה");
+            });
+        }
+
+
+
+    $scope.showStudnetPassword = function(stud){
+        $scope.askForUserPassword = true;
+        $scope.serverFeedback = "הזן את ססימתך האישית, על מנת לקבל קישה לסיסמת התלמיד"
+        $scope.studentObject = stud;
+        $scope.showPassword = false;
+    }
+
+    $scope.askPremession = function(){
+
+        var userPass = $scope.pass.superPassword;
+        var userId = getUserID();
+
+        var req = {
+                method: 'POST',
+                cache: false,
+                url: _url +'/checkIfpassIsCorrectByID',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                data: 'personal_id='+userId + '&password=' + userPass
+            };
+            // alert(JSON.stringify(req));
+
+            $http(req)
+                .success(function(data,status,headers,config){
+                    if (status==200) {
+                    $scope.showPassword = true;
+                    $scope.serverFeedback = "סיסמת התלמיד/ה "+ $scope.studentObject.FirstName +  " היא: "
+                    }  else if (status==204){
+                        $scope.showPassword = false;
+                         $scope.serverFeedback = "הסיסמא ששלחת אינה סיסמתך"
+                        }
+                }).error(function(data,status,headers,config){
+                $scope.serverFeedback = "שגיאת שרת"
+            });
+
+        $scope.askForUserPassword = false;
+    }
+
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 textrategiaApp.controller("AddSchoolInCityController",function($scope,$http){
 
     $scope.getUserName = getUserName();
@@ -56,8 +164,15 @@ textrategiaApp.controller("AddSchoolInCityController",function($scope,$http){
             });
     }
 
+    $scope.createNewSchoolWraper = function (){
+        $scope.readyToSendServer = false;
+        $scope.serverFeedback = "האם ברוצנך להוסיף את בית הספר: " 
+        $scope.secondServerFeedback = "אל העיר: " 
+    }
+
 
     $scope.createNewSchool = function (){
+        $scope.readyToSendServer = true;
         var city =  $scope.city.city_name;;
         var schoolName = $scope.user.schoolName;
 
