@@ -108,53 +108,6 @@ textrategiaApp.controller("StudentController",function($scope){
 });
 
 
-// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ~~ SHAKED TO-DO ~~ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-/* I need:
- 1. the question itself
- 2. the task name it came from
- 2. what is the right answer
- 3. what was marked. ( CAN ALSO BE INSIDE OF JASON)
- */
-/*Note: if you change tags name, let Hadas know */
-var history_list_mock = [
-    {
-        "question": {
-            "Q_id": 1,
-            "Q_qeustion": "האזן לשיחה המוקלטת. לשם מה החליטו במפעל הפיס להקליט שיחות של אנשים עם אראלה?",
-            "Q_taskName": "מטלת דוגמא",
-            "wasMarked": 0
-        },
-        "answers": [
-            {
-                "A_id": 1,
-                "answer": "כדי לשכנע אנשים שהזכייה בפיס אפשרית",
-                "isCorrect": 1,
-
-            },
-            {
-                "A_id": 2,
-                "answer": "כדי לגרום לאנשים להתרגש",
-                "isCorrect": 0,
-
-            },
-            {
-                "A_id": 3,
-                "answer": "כדי שאנשים ירגישו הזדהות עם הזוכים",
-                "isCorrect": 0,
-
-            },
-            {
-                "A_id": 4,
-                "answer": "כדי שאנשים יחשבו כיצד הם היו מגיבים לשיחה",
-                "isCorrect": 0,
-
-            }
-        ]
-    }
-
-];
-
 
 textrategiaApp.controller("historyTasksController",function($scope){
     $scope.studentName = getUserName();
@@ -348,16 +301,23 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
 
     };
 
+    var remove_check_by_id = function setC(id) {
+        var elm = document.getElementById(id);
+        if (false != elm.checked) {
+            elm.click();
+        }
+    }
+
+
     $scope.oneMoreTry = function(){
-        // $("input:radio").removeAttr("checked");
-        $scope.selectedAnswers = [];
+
         $scope.triedOnce = true;
         $scope.start();
     }
 
     $scope.selectedAnswers = [];          // Arg3
-    $scope.checkSelectedAnswers= function (checkStatus,element){
-        alert(element);
+    $scope.checkSelectedAnswers = function (checkStatus,element){
+        alert("clicked?? " + checkStatus + " element: " + element);
         if(checkStatus ){
             if ($scope.selectedAnswers.indexOf(element) == -1 ){
                 $scope.selectedAnswers.push(element);
@@ -378,7 +338,10 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
     };
 
     $scope.start = function(){
-        $scope.selectedAnswers = [];
+      
+
+  
+
         var req = {
             method: 'POST',
             cache: false,
@@ -409,6 +372,13 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
                 $scope.quizOver = false;
                 $scope.inProgress = true;
                 $scope.getQuestion();
+
+                      $scope.selectedAnswers = [];
+        // remove_check_by_id("oq_checkStatus50");
+        remove_check_by_id("oq_checkStatus51");
+        remove_check_by_id("oq_checkStatus52");
+        remove_check_by_id("oq_checkStatus53");
+        remove_check_by_id("oq_checkStatus54");
 
                 $scope.numberOfQuestions += 1 ;
                 if (data.question.Q_mediaType == "youtube" ){
@@ -516,6 +486,9 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
         else {
             // alert("ISnOT");
             var ans = $('input[name=answer]:checked').val();
+            // var ans  = $scope.selectedAnswers; /*ans = all index of selected ans id*/
+
+
             // var ans = $scope.selected_singleAns;
             // alert("$scope.selected_singleAns:" + $scope.selected_singleAns);
             var ans_id = get_answer_index($scope.options, $scope.options_id, ans);

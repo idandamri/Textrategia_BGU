@@ -28,9 +28,6 @@
 <div id="wrap">
   <div class="container" id="c_1">
 
-    <div id = "myQuiz">
-
-
       <div class="row">
         <div class="col-sm-12">
           <h1><b>{{task_name}}</b> <small> <span class="label label-success" id="bottom-align-text">{{Q_skill}}</span> </small> </h1>
@@ -78,9 +75,8 @@
                 <!-- in single -->
                     <dt ng-repeat="option in options">
                         <label>
-                            <input type="radio" name="answer" value="{{option}}" ng-init='checkStatus51=false' ng-model="checkStatus51"
-                                   ng-change="checkSelectedAnswers(checkStatus51,option)" >
-                            {{option}}
+                  <input type="radio" name="answer" value="{{option}}">
+                  {{option}}
                         </label>
                     </dt>
                 </dl>
@@ -90,22 +86,22 @@
           <div ng-show="isMultipleAnswers" class="col-sm-6">
             <dl id="options_multi">
               <dt>
-                <label><input type="checkbox" name="answer" value="Hadas.answers[0].answer" ng-init='checkStatus51=false' ng-model="checkStatus51" ng-change="checkSelectedAnswers(checkStatus51,Hadas.answers[0].answer)" >
+                <label><input id="oq_checkStatus51" type="checkbox" name="answer" value="Hadas.answers[0].answer" ng-model="checkStatus51" ng-change="checkSelectedAnswers(checkStatus51,Hadas.answers[0].answer)" >
                  {{Hadas.answers[0].answer}}
                 </label>
               </dt>
               <dt>
-                <label><input type="checkbox" name="answer" value="Hadas.answers[1].answer" ng-init='checkStatus52=false' ng-model="checkStatus52" ng-change="checkSelectedAnswers(checkStatus52,Hadas.answers[1].answer)" >
+                <label><input id="oq_checkStatus52" type="checkbox" name="answer" value="Hadas.answers[1].answer" ng-model="checkStatus52" ng-change="checkSelectedAnswers(checkStatus52,Hadas.answers[1].answer)" >
                  {{Hadas.answers[1].answer}}
                 </label>
               </dt>
                 <dt>
-                <label><input type="checkbox" name="answer" value="Hadas.answers[2].answer" ng-init='checkStatus53=false' ng-model="checkStatus53" ng-change="checkSelectedAnswers(checkStatus53,Hadas.answers[2].answer)" >
+                <label><input id="oq_checkStatus53" type="checkbox" name="answer" value="Hadas.answers[2].answer" ng-model="checkStatus53" ng-change="checkSelectedAnswers(checkStatus53,Hadas.answers[2].answer)" >
                  {{Hadas.answers[2].answer}}
                 </label>
               </dt>
               <dt>
-                <label><input type="checkbox" name="answer" value="Hadas.answers[3].answer" ng-init='checkStatus54=false' ng-model="checkStatus54" ng-change="checkSelectedAnswers(checkStatus54,Hadas.answers[3].answer)" >
+                <label><input id="oq_checkStatus54" type="checkbox" name="answer" value="Hadas.answers[3].answer" ng-model="checkStatus54" ng-change="checkSelectedAnswers(checkStatus54,Hadas.answers[3].answer)" >
                  {{Hadas.answers[3].answer}}
                 </label>
               </dt>
@@ -141,6 +137,20 @@
 
       <br><br><br><br><br><br><br><br>
 
+
+
+      <br><br><br><br>
+  </div>
+</div>
+
+<br>
+<div ng-show="showImg">
+  <br><br><br>
+  <br><br><br>
+</div>
+
+
+<img class="img-responsive" id="imag-logo" src="views/pic/bottom.png">
       <!-- Modal -->
       <div class="modal fade" id="fedbackModal" tabindex="-1" role="dialog" aria-labelledby="myCurrectModalLabel">
         <div class="modal-dialog" role="document">
@@ -166,17 +176,17 @@
             <div class="modal-footer ">
               <div ng-show="correctAns  && !sendFeedbackMode">
                 <!-- <button type="button" class="btn btn-default" data-dismiss="modal">סגור</button> -->
-                <button type="button" data-dismiss="modal" ng-click="nextQuestion()" class="btn btn-primary" >שאלה הבאה</button>
+                <button type="button" ng-click="nextQuestion()" class="btn btn-primary" data-dismiss="modal" >שאלה הבאה</button>
               </div>
               <div ng-show="!correctAns && !sendFeedbackMode">
-                <button ng-show="!triedOnce" type="button" data-dismiss="modal" ng-click="oneMoreTry()" class="btn btn-default" > נסה פעם נוספת!</button>
-                <button type="button" data-dismiss="modal" ng-click="nextQuestion()" class="btn btn-link" >שאלה הבאה...</button>
+                <button ng-show="!triedOnce" type="button"  ng-click="oneMoreTry()" class="btn btn-default" data-dismiss="modal"> נסה פעם נוספת!</button>
+                <button type="button"  ng-click="nextQuestion()" class="btn btn-link" data-dismiss="modal" >שאלה הבאה...</button>
               </div>
 
               <div ng-show="sendFeedbackMode">
                 <button type="button" data-dismiss="modal" ng-click="report_offensive()" class="btn btn-info" >תוכן פוגעני</button>
-                <button type="button" data-dismiss="modal" ng-click="report_question()" class="btn btn-info" >בעיה בניסוח שאלה</button>
-                <button type="button" data-dismiss="modal" ng-click="report_answer()" class="btn btn-info" >בעיה בניסוח תשובה</button>
+                <button type="button" ng-click="report_question()" class="btn btn-info" data-dismiss="modal"  >בעיה בניסוח שאלה</button>
+                <button type="button"  ng-click="report_answer()" class="btn btn-info" data-dismiss="modal"  >בעיה בניסוח תשובה</button>
               </div>
             </div>
           </div><!-- /.modal-content -->
@@ -184,16 +194,3 @@
       </div><!-- /.modal -->
 
       <!-- bla bla -->
-
-
-      <br><br><br><br>
-    </div>
-  </div>
-</div>
-
-<br>
-<div ng-show="showImg">
-  <br><br><br>
-  <br><br><br>
-</div>
-<img class="img-responsive" id="imag-logo" src="views/pic/bottom.png">
