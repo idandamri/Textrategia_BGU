@@ -349,6 +349,7 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
     };
 
     $scope.oneMoreTry = function(){
+        $("input:radio").removeAttr("checked");
         $scope.triedOnce = true;
         $scope.start();
     }
@@ -387,6 +388,7 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
         $http(req)
             .success(function (data, status, headers, config) {
                 myJason = data;
+                $scope.Hadas = data;
                 /*flags*/
                 $scope.isMultipleAnswers = data.question.isMultipuleAns;
 
