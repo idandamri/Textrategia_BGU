@@ -103,7 +103,7 @@ foreign key (T_id) references tasks(T_id),
 foreign key (studentId) references users(PersonalID),
 foreign key (Q_id) references questions(Q_id),
 foreign key (A_id) references answers(A_id),
-primary key (A_id,Q_id,T_id,studentId,Second_Chance)
+primary key (instanceTime, A_id,Q_id,T_id,studentId,Second_Chance)
 );
 
 create table tasks_and_question_for_student_instances
@@ -495,7 +495,6 @@ VALUES ('איזה מהמקצועות הבאים נחשבים קשים בתואר
 /***** answers ******/
 INSERT INTO `textra_db`.`answers` (`answer`, `Q_id`, `isCorrect`) VALUES ('הדס','19','1');
 INSERT INTO `textra_db`.`answers` (`answer`, `Q_id`, `isCorrect`) VALUES ('שקד','19','1');
-INSERT INTO `textra_db`.`answers` (`answer`, `Q_id`, `isCorrect`) VALUES ('ארנון','19','0');
 INSERT INTO `textra_db`.`answers` (`answer`, `Q_id`, `isCorrect`) VALUES ('סופרמן','19','0');
 INSERT INTO `textra_db`.`answers` (`answer`, `Q_id`, `isCorrect`) VALUES ('גק ספארו','19','0');
 INSERT INTO `textra_db`.`answers` (`answer`, `Q_id`, `isCorrect`) VALUES ('אלגוריתמים','20','1');
