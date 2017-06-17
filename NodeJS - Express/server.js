@@ -1683,6 +1683,36 @@ app.post('/getQuestionsByParamter', function (req, res) {
 });
 
 
+app.post('/getQuestionsWithOneAnsByParamter', function (req, res) {
+    try {
+        var media_types = mysql.escape(req.body.media_types.split(","));
+        var skills = mysql.escape(req.body.skills.split(","));
+        var difficulties = mysql.escape(req.body.difficulties.split(","));
+        var user_id = mysql.escape(req.body.user_id);
+
+        var query = queries.getQuestionsByParamterAndIdWithOneAns(media_types, skills, difficulties, user_id);
+        console.log('\n' + query + '\n');
+        connection.query(query, function (err, questions) {
+            if (err) {
+                console.log(err);
+                res.status(400).send("DB error");
+            }
+            else {
+                if (questions.length == 0) {
+                    res.status(204).send();
+                }
+                else {
+                    res.status(200).send(questions);
+                }
+            }
+        });
+    } catch (err) {
+        console.log("Error - " + err);
+        res.status(404).send();
+    }
+});
+
+
 app.post('/getAllSkills', function (req, res) {
     try {
         var query = queries.getAllSkills();
@@ -1787,10 +1817,11 @@ app.post('/sendTaskToStudents', function (req, res) {
     }
 });
 
+
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '123456',//'1q2w3e4r' to upload*/
+    password: '123456',//'123465' to upload*/
     database: 'textra_db',
     multipleStatements: true
 });
@@ -1801,7 +1832,7 @@ connection.connect(function (err) {
     }
 });
 
-
+//
 // var server = app.listen(8081, function () {
 //     var host = server.address().address;
 //     var port = server.address().port;

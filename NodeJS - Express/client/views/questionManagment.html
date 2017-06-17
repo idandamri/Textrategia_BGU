@@ -30,28 +30,31 @@
 
 
   <div class ="col-sm-9 text-center well" style="height: 118px;"> 
-  
-      <div class="btn-group text-center" data-toggle="buttons" style="margin: 8px 85px; ">
+
+  <!-- @@@@ Question Buttons!!! @@@@ -->
+  <div class="btn-group text-center" data-toggle="buttons" style="margin: 8px 85px; ">
        
-        <!-- Button -->
-        <button id="choiseButton2" ng-click="approvedQuestions(2)" class="btn btn-danger squirish-button2" style="font-size: 15px;" >
-        שאלות<br>בעייתיות                         </button>
-        <!-- Button -->
-        <button id="choiseButton0" ng-click="approvedQuestions(1)" class="btn btn-info squirish-button2" style="font-size: 15px;" >
-        שאלות<br>בהמתנה                      </button> 
+    <button id="choiseButton2" ng-click="approvedQuestions(2)" class="btn btn-danger squirish-button2" 
+    style="font-size: 15px;" >
+    שאלות<br>בעייתיות                         </button>
 
-        <!-- Button -->
-        <button id="choiseButton1" ng-click="approvedQuestions(0)" class="btn btn-info squirish-button2" style="font-size: 15px;" >
-        חפש<br>שאלה</button>
-      </div>
+    <button id="choiseButton0" ng-click="approvedQuestions(1)" class="btn btn-warning squirish-button2" 
+    style="font-size: 15px;" >
+    שאלות<br>בהמתנה                      </button> 
 
-      <button ng-show="flagEditQuestionMode" ng-click="backToQuestionStockView()" class="btn btn-success squirish-button2" 
-      style="font-size: 15px;" >
-            חזור<br>לשאלות                      </button>  
+    <button id="choiseButton1" ng-click="approvedQuestions(0)" class="btn btn-info squirish-button2" 
+    style="font-size: 15px;" >
+    חפש<br>שאלה</button>
+  
+  </div>  <!-- /Question Buttons! -->
 
-     <button ng-show="!flagEditQuestionMode && clicked == 1" ng-click="backToEditQuestionView()" class="btn btn-success squirish-button2" 
-      style="font-size: 15px;" >
-            חזור<br>לעריכה                      </button> 
+  <button ng-show="flagEditQuestionMode" ng-click="backToQuestionStockView()" class="btn btn-success squirish-button2" 
+  style="font-size: 15px;" >
+        חזור<br>לשאלות                      </button>  
+
+ <button ng-show="!flagEditQuestionMode && clicked == 1" ng-click="backToEditQuestionView()" class="btn btn-success squirish-button2" 
+  style="font-size: 15px;" >
+        חזור<br>לעריכה                      </button> 
 
   </div>
   
@@ -64,16 +67,27 @@
  <div id="accordion2" >
     <div class="panel" ng-repeat="q in myQuestionsStock track by $index">
       <div  name="question" ng-model="user.question" value="{{q.Q_id}}" >
-      <a data-toggle="collapse" data-parent="#accordion2" data-target="#collapse{{ $index + 1 }}" class="ng-binding collapsed" >
-       &nbsp;&nbsp;{{q.Q_qeustion}}
-      </a>
-      <div id="collapse{{ $index + 1 }}" >   
-       &nbsp;&nbsp;מקצוע: {{q.Q_proffession}} <br>
-       &nbsp;&nbsp;מיומנות למידה: {{q.Q_skill}} <br><br>
-      <div class="bg-info" ng-show="!{{q.Q_approved}}"><strong> &nbsp;&nbsp;יש לערוך ולאשר שאלה זו&nbsp;&nbsp;</strong></div>
-      <div class="bg-danger" ng-show="!{{q.Q_approved}}" ><strong> &nbsp;&nbsp;יש התרעת משתמש על שאלה זו&nbsp;&nbsp;</strong></div>
-
+      <p>&nbsp;&nbsp;{{q.Q_qeustion}} </p>
+      
+      <div ng-show="q.Q_reported_Offensive+ q.Q_reported_Question + q.Q_reported_Answer == 0 ">
+        <span class="label label-info">{{q.Q_skill}}</span>
+        <span class="label label-lili">קושי: {{q.Q_difficulty}}</span> 
+        <br>
       </div>
+        
+      <div ng-show="q.Q_reported_Offensive+ q.Q_reported_Question + q.Q_reported_Answer > 0 ">
+        <p class="text-danger bg-danger"> המשתמשים דיווחו על שאלה זו! לרשותך מספר הדיווחים שהתקבלו</p>
+        <span ng-show="q.Q_reported_Offensive>0" class="label label-danger">תוכן פוגעני: {{q.Q_reported_Offensive}}</span> 
+        <span ng-show="q.Q_reported_Question>0" class="label label-danger">בעיה בניסוח השאלה: {{q.Q_reported_Question}}</span> 
+        <span ng-show="q.Q_reported_Answer>0" class="label label-danger">בעיה בניסוח המסיחים: {{q.Q_reported_Answer}}</span> 
+      </div>
+
+      <div ng-show="!q.Q_approved">
+        <p class="bg-warning"> שאלה זו הוכנסה על ידי מורה, ועדיין לא אושרה על ידך</p>
+      </div>
+<!--       <div class="bg-info" ng-show="!{{q.Q_approved}}"><strong> &nbsp;&nbsp;יש לערוך ולאשר שאלה זו&nbsp;&nbsp;</strong></div>
+      <div class="bg-danger" ng-show="!{{q.Q_approved}}" ><strong> &nbsp;&nbsp;יש התרעת משתמש על שאלה זו&nbsp;&nbsp;</strong></div> -->
+
       </div>
 
        <button ng-click="editChosenQuestion(q.Q_id,q.Q_qeustion)" class="btn btn-info text-center" data-toggle="modal" data-target="#fedbackModal" style="margin: 5px 335px;"> 
@@ -86,6 +100,7 @@
 
 </div>
 </div>
+
 
 
 <div ng-show="searchQuestionByProfiling">
@@ -161,14 +176,6 @@
 
 
 </div> <!-- /searchQuestionByProfiling -->
-
-
-
-
-
-
-
-
 
 
 
@@ -255,8 +262,8 @@
 
         <!-- First part Button! -->
         <div class="col-sm-12 text-center">
-          <button ng-click="possibleAnswersMode()" ng-disabled="myForm.$invalid" class="btn btn-lg btn-info" tabindex="8">ערוך מסיחים!
-          <span class="glyphicon glyphicon-ice-lolly"></span> </button>
+          <button ng-click="possibleAnswersMode()" ng-disabled="myForm.$invalid" class="btn btn-lg btn-info squirish-button3" tabindex="8">
+          ערוך <br> מסיחים!           </button>
 
          <br><br><br><br>
         </div>  
@@ -304,12 +311,20 @@
           <button ng-click="editQuestionMode()" class="btn btn-lg btn-info squirish-button3" tabindex="15" >חזור למסך<br> הקודם!
           <span class="glyphicon glyphicon-hand-right"></span> </button>
 
-        <button ng-click="sendNewQuestionWraper()" ng-disabled="mySecondForm.$invalid" type="submit" class="btn btn-lg btn-info squirish-button3" data-toggle="modal" data-target="#fedbackModal" tabindex="14">שלח שאלה<br> לעריכה!!
+        <button ng-click="sendNewQuestionWraper()" ng-disabled="mySecondForm.$invalid" type="submit" class="btn btn-lg btn-success squirish-button3" data-toggle="modal" data-target="#fedbackModal" tabindex="14">סיים<br> וערוך!
          <span class="glyphicon glyphicon-send"></span> </button>
-    </div>
-  </div>
 
-<div class="col-sm-12 text-center"><br><br></div>
+        <button ng-click="dontEdit()" type="submit" class="btn btn-lg btn-danger squirish-button2" tabindex="14">צא ואל<br> תערוך!     </button>
+
+     <span class="text-danger" ng-show="question.Q_reported_Offensive+ question.Q_reported_Question + question.Q_reported_Answer > 0 " style="font-size: 16px;">
+       לשאלה זו יש התראות,<br> לחץ על "סיים וערוך!"<br> על מנת לבטלן </span>
+
+      <span class="text-warning" ng-show="!question.Q_approved" style="font-size: 16px;">
+       שאלה זו הוכנסה על ידי מורה,<br> לחץ על "סיים וערוך!"<br> על מנת לאשר אותה במערכת</span>
+
+    </div>
+    <br>
+  </div>
 
 <div class="col-sm-4 text-center"></div>
 
@@ -373,20 +388,6 @@
       </strong>
       </table>
   </div>
-
-
-   <!-- 
-    <div class="padded-20-elemnt well" style="max-width: 240px">
-    <label><input type="checkbox"  ng-model="question.answer1_is_correct" ng-change="checkCorrectAns(question.answer1_is_correct,'0')" >
-    &nbsp;&nbsp;1</label><br>
-    <label> <input type="checkbox"  ng-model="question.answer2_is_correct" ng-change="checkCorrectAns(question.answer2_is_correct,'1')">
-    &nbsp;&nbsp;2</label><br>
-    <label> <input type="checkbox"  ng-model="question.answer3_is_correct" ng-change="checkCorrectAns(question.answer3_is_correct,'2')">
-    &nbsp;&nbsp;3</label><br>
-    <label> <input type="checkbox"  ng-model="question.answer4_is_correct" ng-change="checkCorrectAns(question.answer4_is_correct,'3')">
-     &nbsp;&nbsp;4</label><br> 
- </div>
-    -->
 
 
 
