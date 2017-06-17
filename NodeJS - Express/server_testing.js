@@ -179,13 +179,14 @@ app.post('/updateAnswer', function (req, res) {
         var tId = mysql.escape(req.body.task_id);
         var qId = mysql.escape(req.body.quest_id);
         var aId = mysql.escape(req.body.ans_id);
-        var queryCheckIfExists = queries.checkIfAnsExists(sId, tId, qId, aId);
+        var secondChance = mysql.escape(req.body.second_chance);
+        var queryCheckIfExists = queries.checkIfAnsExists(sId, tId, qId, aId, secondChance);
         connection.query(queryCheckIfExists, function (err, rows) {
             if(rows!=null && rows.length>0) {
                 res.status(200).send("Same answer!");
             }
             else{
-                var query = queries.submitStudentsAnswerForQuestion(sId, tId, qId, aId);
+                var query = queries.submitStudentsAnswerForQuestion(sId, tId, qId, aId, secondChance);
                 console.log('\n' + query + '\n');
                 connection.query(query, function (err) {
                     if (err) {

@@ -92,7 +92,7 @@ API:
 
 
 6. post('updateAnswer')
-    input: user_id, task_id , quest_id , ans_id
+    input: user_id, task_id , quest_id , ans_id, second_chance
     action: add instance of answer to db
     output: status 200 -success / 400 - failure
 
