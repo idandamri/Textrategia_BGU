@@ -100,7 +100,7 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
                     }
                     else if ( status==204){
                         $scope.myQuestionsStock = [];
-                        alert("no reported qiestopn");
+                        $scope.serverFeedbackForNoQuestions = "אין שאלות שיש לטפל בהן";
 
                     }
                 }).error(function(data,status,headers,config){
@@ -170,6 +170,7 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
             .success(function(data,status,headers,config){
                 if (status==200){
                     $scope.myQuestionsStock = data;
+                    
                 }
                 else if ( status==204){
                     $scope.myQuestionsStock = [];

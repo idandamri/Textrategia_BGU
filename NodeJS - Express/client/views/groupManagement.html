@@ -153,7 +153,7 @@
   <div class="col-sm-12 text-center">
 
     <!-- Button -->
-     <button ng-click="groupManagmentMode()" class="btn btn-success squirish-button4" style="font-size: 15px;" >
+     <button ng-click="groupManagmentMode()" class="btn btn-info squirish-button4" style="font-size: 15px;" >
         <span class="glyphicon glyphicon-menu-right"><span class="glyphicon glyphicon-education" style="font-size: 20px;"> </span> </span> 
        <p>חזור<br>לניהול<br>קבוצות</p>          </button> 
 
@@ -181,9 +181,9 @@
   <div class="col-sm-4"> 
 
        
-    <div ng-show="$scope.groupsStudentLst!=0">
+    <div ng-show="$scope.groupsStudentLst2!=0">
       <table class="table table-responsive table-fixed table-hover">
-        <thead ng-show="$scope.groupsStudentLst!=0 ">  
+        <thead ng-show="$scope.groupsStudentLst2!=0 ">  
         <tr> 
           <th>מספר זהות</th>
           <th>שם</th>
@@ -201,7 +201,7 @@
           <tr class="warning" style="border-top: thick solid #286044;">
             <td>תלמידים לבחירה:</td><td></td><td></td><td></td>
           </tr>
-        <tr class="warning" ng-repeat="stud2 in groupsStudentLst">
+        <tr class="warning" ng-repeat="stud2 in groupsStudentLst2">
           <td> {{stud2.PersonalID}}</td>
           <td> {{stud2.FirstName}}</td>
           <td> {{stud2.LastName}}</td>
@@ -214,7 +214,7 @@
 <br><br><br>
 
 <!-- BUTTON -->
-   <button ng-click="groupManagmentMode()" class="btn btn-success squirish-button3" style="font-size: 15px;" >
+   <button ng-click="groupManagmentMode()" class="btn btn-info squirish-button3" style="font-size: 15px;" >
       <span class="glyphicon glyphicon-menu-right"> <p>חזור לניהול<br>קבוצות</p> </span> 
              </button> 
 
@@ -233,7 +233,7 @@
   <div class="col-sm-4">
 
 
-    <div class="panel-group panel-hover" ng-repeat="y in groups " id="panelID-{{y.GroupId}}" ng-click="showGroupsMembersList(y.GroupId)">
+    <div class="panel-group panel-hover" ng-click="showGroupsMembersList2(y.GroupId)" ng-repeat="y in allGroups" id="panelID-{{y.GroupId}}">
       <div class="panel panel-default">
         <div class="panel-heading">
           <h4 class="panel-title">
@@ -256,12 +256,12 @@
 
       <div class="btn-group btn-group-lg text-right" data-toggle="buttons">
         <!-- Button -->
-        <button id="choiseButton0" ng-click="changeTaskType(0)" 
+        <button id="choiseButton2" ng-click="changeTaskType(0)" 
         class="btn btn-info squirish-button3" style="font-size: 15px;" >
         <p>מאגר<br>המשותף</p>                       </button> 
 
         <!-- Button -->
-        <button id="choiseButton1" ng-click="changeTaskType(1)" class="btn btn-info squirish-button3" style="font-size: 15px;" >
+        <button id="choiseButton3" ng-click="changeTaskType(1)" class="btn btn-info squirish-button3" style="font-size: 15px;" >
         <p>המטלות <br> שלי</p>                          </button>
       </div>
 
@@ -269,7 +269,7 @@
 
       <!-- 1 -->
         <label  class="control-label pull-right" >מטלות זמינות:</label>
-        <select class="form-control inputstl" id="available_task" ng-model="selected_task" ng-change="getAllGroupForTask()" size=1>
+        <select class="form-control inputstl" id="available_task" ng-model="selected_task2" size=1>
           <option ng-repeat="y in allTasks" value="{{y.T_id}}">{{y.T_title}}</option>
           <option ng-show="info.tasks==0" disabled>אין מטלות זמינות</option>
         </select>

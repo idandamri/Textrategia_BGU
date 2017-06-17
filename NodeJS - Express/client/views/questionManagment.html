@@ -64,6 +64,10 @@
   <div ng-show="!flagEditQuestionMode">
 <div class="col-sm-8">
 
+<span ng-show = "myQuestionsStock.length == 0  && !searchQuestionByProfiling" class="text-info" style="font-size: 18px;">
+   {{serverFeedbackForNoQuestions}}
+</span>
+
  <div id="accordion2" >
     <div class="panel" ng-repeat="q in myQuestionsStock track by $index">
       <div  name="question" ng-model="user.question" value="{{q.Q_id}}" >
@@ -103,7 +107,7 @@
 
 
 
-<div ng-show="searchQuestionByProfiling">
+<div ng-show="searchQuestionByProfiling ">
 
 
 

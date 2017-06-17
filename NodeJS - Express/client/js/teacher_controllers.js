@@ -332,17 +332,23 @@ textrategiaApp.controller("GroupManagementController",function($scope,$http,$loc
     $scope.changeTaskType= function (param) {
         var choiseButton0 = document.getElementById("choiseButton0");
         var choiseButton1 = document.getElementById("choiseButton1");
+        var choiseButton2 = document.getElementById("choiseButton2");
+        var choiseButton3 = document.getElementById("choiseButton3");
 
 
         if (param==0){
             $scope.allTasks =$scope.allApprovedTasks;
              choiseButton0.style.backgroundColor  =  "#269ABC";
              choiseButton1.style.backgroundColor  = "#5bc0de";
+             choiseButton2.style.backgroundColor  =  "#269ABC";
+             choiseButton3.style.backgroundColor  = "#5bc0de";
         }
         else {
             $scope.allTasks =$scope.myTasks;
             choiseButton0.style.backgroundColor  =  "#5bc0de";
-             choiseButton1.style.backgroundColor  = "#269ABC";
+            choiseButton1.style.backgroundColor  = "#269ABC";
+            choiseButton2.style.backgroundColor  =  "#5bc0de";
+            choiseButton3.style.backgroundColor  = "#269ABC";
         }
     };
 
@@ -535,6 +541,40 @@ $scope.studentToSendTaskToList = [];
                 }
             }).error(function(data,status,headers,config){
                 $scope.groupsStudentLst = [];
+                alert("אין ילדים בקבוצה");
+
+        });
+
+
+
+    }
+ $scope.showGroupsMembersList2 = function(g_id){
+    alert("showGroupsMembersList2");
+    var selected_task2 = $scope.selected_task2;
+ var req = {
+            method: 'POST',
+            cache: false,
+            url: _url +'/getStudentsMissingTaskInGroup',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            data: 'group_id='+g_id + '&task_id=' + selected_task2
+        };
+
+        alert(JSON.stringify(req));
+
+        $http(req)
+            .success(function(data,status,headers,config){
+                if (status==200) {
+                    $scope.groupsStudentLst2 = data;
+                }
+                else if (status==204){
+                    $scope.groupsStudentLst2 = [];
+                    alert("אין ילדים בקבוצה");
+                    $scope.serverFeedback = "אין ילדים בקבוצה";
+                }
+            }).error(function(data,status,headers,config){
+                $scope.groupsStudentLst2 = [];
                 alert("אין ילדים בקבוצה");
 
         });
