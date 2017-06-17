@@ -516,6 +516,7 @@ app.post('/getStudentsMissingTaskInGroup', function (req, res) {
     var taskID = req.body.t_id;
     var groupID = req.body.group_id;
     var query = queries.getStudentsMissingTaskInGroup(taskID, groupID);
+    console.log(query);
     connection.query(query, function (err, listOfStudents) {
         if (err) {
             console.log(err);
@@ -1825,7 +1826,7 @@ app.post('/sendTaskToStudents', function (req, res) {
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '123456',//'123465' to upload*/
+    password: '1q2w3e4r',//'123465' to upload*/
     database: 'textra_db',
     multipleStatements: true
 });
