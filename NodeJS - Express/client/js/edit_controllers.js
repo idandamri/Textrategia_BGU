@@ -54,61 +54,59 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
         $scope.approved = param;
 
         if (param==1){
-            choiseButton0.style.backgroundColor  =  "#269ABC";
+            choiseButton0.style.backgroundColor  =  "#D58512"; //yellow pressed
             choiseButton1.style.backgroundColor  = "#5bc0de";
             choiseButton2.style.backgroundColor  = "#c9302c";
             $scope.searchQuestionByProfiling = false;
             $scope.myQuestionsStock = [];
 
-            alert("not yet working1");
-            //get_all_questions("getUnapprovedQuestion");
+            get_all_questions("/getUnapprovedQuestion");
 
         }
         else if (param==0){
-            choiseButton0.style.backgroundColor  =  "#5bc0de";
+            choiseButton0.style.backgroundColor  =  "#ec971f"; // yellow
             choiseButton1.style.backgroundColor  = "#269ABC";
             choiseButton2.style.backgroundColor  =  "#c9302c";
             $scope.searchQuestionByProfiling = true;
         }
-        else {
-            choiseButton0.style.backgroundColor  =  "#5bc0de";
+        else if (param==2){
+            choiseButton0.style.backgroundColor  =  "#ec971f"; // yellow
             choiseButton1.style.backgroundColor  =  "#5bc0de";
             choiseButton2.style.backgroundColor  = "#9F221C";
             $scope.searchQuestionByProfiling = false;
             $scope.myQuestionsStock = [];
 
-            alert("not yet working2");
-            //get_all_questions("getUnapprovedQuestion");
+            get_all_questions("/getReported");
+        } 
 
-        }
+     };
 
+
+        var get_all_questions = function(param){   
+
+           var req = {
+                method: 'POST',
+                cache: false,
+                url: _url + param,
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            };
+
+            $http(req)
+                .success(function(data,status,headers,config){
+                    if (status==200){
+                        $scope.myQuestionsStock = data;
+                    }
+                    else if ( status==204){
+                        $scope.myQuestionsStock = [];
+                        alert("no reported qiestopn");
+
+                    }
+                }).error(function(data,status,headers,config){
+            });
     };
 
-
-        var get_all_questions = function(request_name){   
-
-        var req = {
-            method: 'POST',
-            cache: false,
-            url: _url + request_name,
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            data: ''
-        };
-
-        $http(req)
-            .success(function(data,status,headers,config){
-                if (status==200){
-                    $scope.myQuestionsStock = data;
-                }
-                else if ( status==204){
-                    $scope.myQuestionsStock = [];
-
-                }
-            }).error(function(data,status,headers,config){
-        });
-    };
 
 
 
@@ -154,6 +152,7 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
 
 
     $scope.searchQuestionsByParamter = function(){   
+
         var req = {
             method: 'POST',
             cache: false,
@@ -255,9 +254,16 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
             selected_skill:     $scope.myQuestionsStock[jasonIndex].Q_skill,
             difficulty:         $scope.myQuestionsStock[jasonIndex].Q_difficulty,
             isMultipuleAns:     $scope.myQuestionsStock[jasonIndex].isMultipuleAns,
+            
+            Q_reported_Offensive:     $scope.myQuestionsStock[jasonIndex].Q_reported_Offensive,
+            Q_reported_Question:     $scope.myQuestionsStock[jasonIndex].Q_reported_Question,
+            Q_reported_Answer:     $scope.myQuestionsStock[jasonIndex].Q_reported_Answer,
+
+            Q_approved:     $scope.myQuestionsStock[jasonIndex].Q_approved
+
         };
 
- 
+
            
     }
 
@@ -439,6 +445,9 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
             + '&proffesion=' + 'הבעה'
             + '&approved=' + '1'
             + '&disabled=' + '0'
+            + '&Q_reported_Offensive=' + '0'
+            + '&Q_reported_Question=' + '0'
+            + '&Q_reported_Answer=' + '0'
             + '&answers=[' + correct_ans + ']'
         };
         // data: 'students=['+ studentIDlst + ']
@@ -456,5 +465,10 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
  
 
         $scope.serverFeedback = "השאלה נשלחה בהצלחה!"
+    }
+
+
+    $scope.dontEdit = function(){
+        $location.path('superUser');
     }
 });

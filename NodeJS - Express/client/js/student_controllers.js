@@ -316,13 +316,10 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
     }
 
     $scope.selectedAnswers = [];          // Arg3
-<<<<<<< HEAD
+
     $scope.checkSelectedAnswers = function (checkStatus,element){
         alert("clicked?? " + checkStatus + " element: " + element);
-=======
-    $scope.checkSelectedAnswers= function (checkStatus,element){
-        // alert(element);
->>>>>>> 5f77d1684b68197edc597cbf50eb1c78d902a6c1
+
         if(checkStatus ){
             if ($scope.selectedAnswers.indexOf(element) == -1 ){
                 $scope.selectedAnswers.push(element);
