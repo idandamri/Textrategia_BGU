@@ -460,7 +460,6 @@ input:
 output: status 200 / status 415 - not enough questions
 exmple :
 
-
 33. post('sendTaskToStudents')
 input:
 {

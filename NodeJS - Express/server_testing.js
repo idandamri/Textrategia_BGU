@@ -541,6 +541,7 @@ app.post('/editQuestion', function (req, res) {
                 res.status(400).send("DB error - check DB! - question not updated");
             }
             else {
+                answersArray = answersArray.split(',');
                 var bigQuery = "";
                 for (var i = 0; i < answersArray.length; i++) {
                     var a_id = answersArray[i].A_id;
