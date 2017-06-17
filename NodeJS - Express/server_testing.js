@@ -511,6 +511,23 @@ app.post('/getQuestionStatistics', function (req, res) {
 });
 
 
+app.post('/getStudentsMissingTaskInGroup', function (req, res) {
+
+    var taskID = req.body.t_id;
+    var groupID = req.body.group_id;
+    var query = queries.getStudentsMissingTaskInGroup(taskID, groupID);
+    connection.query(query, function (err, listOfStudents) {
+        if (err) {
+            console.log(err);
+            res.status(400).send("DB error - check DB!");
+        }
+        else {
+            res.status(200).send(listOfStudents);
+        }
+    });
+});
+
+
 app.post('/truncateInstancesOfAnswers', function (req, res) {
     var query = "TRUNCATE TABLE textra_db.instances_of_answers;";
     connection.query(query, function (err) {

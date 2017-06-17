@@ -94,6 +94,15 @@ module.exports =
                 " and A_id = " + a_id + " and Secon_chance = " + second_chance + ";";
         },
 
+        getStudentsMissingTaskInGroup: function (task_id, group_id) {
+            return "select Table_a.StudentId from " +
+                "(select StudentId from students_per_group where GroupId = " + group_id + ") as Table_a " +
+                "join tasks_and_question_for_student_instances " +
+                "on Table_a.StudentId = tasks_and_question_for_student_instances.studentId " +
+                "where tasks_and_question_for_student_instances.T_id != " + task_id +
+                " group by StudentId;"
+        },
+
         //delete from textra_db.tasks_and_question_for_student_instances where studentId like '2' and T_id = '1' and Q_id = '1'
         deleteQuestionsFromInstance: function (student_id, task_id, q_id) {
             return "delete from textra_db.tasks_and_question_for_student_instances where studentId like " +
@@ -327,8 +336,8 @@ module.exports =
     getTeachesByCityAndSchool: function (city, school) {
         return "select StudentId as teacherID from textra_db.students_per_group " +
             "where GroupId IN " +
-            "(SELECT GroupId FROM textra_db.groups where City =" +city + " and School = "+ school+"and isTeacherGroup=1);"
-        ;
+            "(SELECT GroupId FROM textra_db.groups where City =" + city + " and School = " + school + "and isTeacherGroup=1);"
+            ;
         // return "SELECT teacherID FROM textra_db.groups where City =" + city + " and School = " + school + ";"
     },
 

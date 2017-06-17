@@ -619,12 +619,7 @@ exmple : [
          ]
 
 
-38. post('addQuestionStatistics')
-input:q_id, s_id, a_id, is_correct, second_chance
-output: status 200 "inserted" / 400 - "DB Error"
-
-
-39. post('addQuestionStatistics')
+38. post('getQuestionStatistics')
 input:q_id
 output: status 200 / 400 - "DB Error"
 example:
@@ -636,6 +631,21 @@ example:
     }
 ]
 // the total stats are the sum of the three above
+
+
+
+39. post('getStudentsMissingTaskInGroup')
+input:t_id, group_id
+output: status 200 / 400 - "DB Error"
+example:
+[
+    {
+        "StudentId": "2"
+    },
+    {
+        "StudentId": "3"
+    }
+]// the total stats are the sum of the three above
 
 
 0-student
