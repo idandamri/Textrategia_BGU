@@ -453,7 +453,7 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
         if(myJason.question.isMultipuleAns == 0){
             // alert("is not multi");
             $scope.answer = get_correct_answer_index(myJason.answers);
-            alert($scope.answer);
+            // alert($scope.answer);
         }
         else {
             // alert("is multi");
@@ -559,21 +559,61 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
 
 
     };
-    $scope.reportQuestion = function(q){
 
+
+    $scope.report_offensive = function () {
+        $scope.report(0,0,1);
+    };
+
+    $scope.report_question = function () {
+        $scope.report(1,0,0);
+    };
+
+    $scope.report_answer= function () {
+        $scope.report(0,1,0);
+    };
+
+    $scope.report = function (r_question,r_answer,r_offensive) {
+        if ( $scope.questionID== $scope.lastQuestionReported ){
+            //// DONT REPORT
+        } else {
+            //########################## SEND REPORT HERE ##########################
+            var req = {
+                method: 'POST',
+                cache: false,
+                url: _url +'/reportQuestion',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                data: 'q_id=' + $scope.questionID +'&report_answer='+r_answer+ '&report_offensive=' + r_offensive
+                + '&report_question=' + r_question
+            };
+
+            $http(req)
+                .success(function(data,status,headers,config){
+                })
+                .error(function(data,status,headers,config) {
+                });
+        }
+
+        $scope.lastQuestionReported = $scope.questionID;
+        $scope.sendFeedbackMode = false;
+    };
+
+
+
+
+    $scope.reportQuestion = function(q){
         alert("q?: " + q + "scope: " + $scope.lastQuestionReported);
         if ( q == $scope.lastQuestionReported ){
             //// DONT REPORT
         } else {
-
             //########################## SEND REPORT HERE ##########################
             //alert("report send.");
         }
 
         $scope.lastQuestionReported = q;
         $scope.sendFeedbackMode = false;
-
-
     };
 
     $scope.dontReportQuestion = function(){

@@ -153,8 +153,9 @@
               </div>
 
               <div ng-show="sendFeedbackMode">
-                <button type="button" data-dismiss="modal" ng-click="dontReportQuestion()" class="btn btn-success" >לא לדווח</button>
-                <button type="button" data-dismiss="modal" ng-click="reportQuestion(question)" class="btn btn-danger" >לדווח</button>
+                <button type="button" data-dismiss="modal" ng-click="report_offensive()" class="btn btn-info" >תוכן פוגעני</button>
+                <button type="button" data-dismiss="modal" ng-click="report_question()" class="btn btn-info" >בעיה בניסוח שאלה</button>
+                <button type="button" data-dismiss="modal" ng-click="report_answer()" class="btn btn-info" >בעיה בניסוח תשובה</button>
               </div>
             </div>
           </div><!-- /.modal-content -->
