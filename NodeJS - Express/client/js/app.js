@@ -31,6 +31,13 @@ textrategiaApp.config(function($routeProvider){
 		controller :'RegisterController'
 	})
 
+// ~~~~~~~~~~~~ statistics routs ~~~~~~~~~~~~~
+
+	.when('/statisticsSuperUser', {
+		templateUrl:'views/statisticsSuperUser.html',
+		controller :'StatisticsSuperUserController'
+	})
+
 // ~~~~~~~~~~~~ Student routs ~~~~~~~~~~~~~
 	.when('/student', {
 		templateUrl:'views/student.html',

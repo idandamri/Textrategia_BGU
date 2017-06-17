@@ -662,14 +662,79 @@ textrategiaApp.controller("CreateGroupController",function($scope,$http,$locatio
 });
 
 
-textrategiaApp.controller("StatisticController",function($scope, $http,$location){
+textrategiaApp.controller("StatisticsSuperUserController",function($scope, $http,$location){
+
+    $scope.searchQuestionMode = true;
+
+     var req = {
+        method: 'POST',
+        cache: false,
+        url: _url +'/getAllSkills',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        data: ''
+    };
+
+    $http(req)
+        .success(function(data,status,headers,config){
+            if (status==200) {
+                $scope.skills = data;
+            }
+        }).error(function(data,status,headers,config){
+            $scope.skills =[];
+    });
+
+
+    $scope.selectedMedia = [];              // Arg1
+    $scope.checkdMediaSelected = function (checkStatus,element){
+        if(checkStatus)        {
+            $scope.selectedMedia.push(element);
+        }
+        else{
+            const index = $scope.selectedMedia.indexOf(element);
+            if (index !== -1){
+               $scope.selectedMedia.splice(index, 1);
+            }
+        }
+    };
+
+    $scope.selectedDiff = [];           // Arg2
+    $scope.checkDiffSelected = function (checkStatus,element){
+        if(checkStatus){
+            $scope.selectedDiff.push(element);
+        }
+        else{
+            const index = $scope.selectedDiff.indexOf(element);
+            if (index !== -1){
+               $scope.selectedDiff.splice(index, 1);
+            }
+        }
+    };
+
+    
+    $scope.selectedSkill = [];          // Arg3
+    $scope.checkSkillSelected = function (checkStatus,element){
+        if(checkStatus){
+            $scope.selectedSkill.push(element);
+        }
+        else{
+            const index = $scope.selectedSkill.indexOf(element);
+            if (index !== -1){
+               $scope.selectedSkill.splice(index, 1);
+            }
+        }
+    };
+
+
+
 
     /* output: $scope.questionForStatistics : list of question*/
     $scope.showSelectedQuestion = function(){
+
         // alert("selectedMedia: " + $scope.selectedMedia +
         //     " | selectedDiff: " + $scope.selectedDiff +
         //     " | selectedSkill: " + $scope.selectedSkill
-        //     );
         $scope.feedback = "";
         $scope.generate_task= false;
 
@@ -690,9 +755,11 @@ textrategiaApp.controller("StatisticController",function($scope, $http,$location
             .success(function(data,status,headers,config){
                 if (status==200){
                     $scope.questionForStatistics= data;
+                    $scope.searchQuestionMode = false;
                 }
                 else if ( status==204){
                     $scope.questionForStatistics = [];
+                    $scope.serverFeedback = "אין שאלות במאגר"
                 }
             }).error(function(data,status,headers,config){
         });
@@ -703,7 +770,7 @@ textrategiaApp.controller("StatisticController",function($scope, $http,$location
         var req = {
             method: 'POST',
             cache: false,
-            url: _url +'/addQuestionStatistics',
+            url: _url +'/getQuestionStatistics',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
@@ -712,12 +779,15 @@ textrategiaApp.controller("StatisticController",function($scope, $http,$location
 
         $http(req)
             .success(function(data,status,headers,config){
-                StudentsThatWereWrong =data[0].StudentsThatWereWrong;
-                StudentsCorrectFirstTry =data[0].StudentsCorrectFirstTry;
-                StudentsCorrectSecondTry =data[0].StudentsCorrectSecondTry;
+                $scope.sThatWereWrong =data[0].StudentsThatWereWrong;
+                $scope.sCorrectFirstTry =data[0].StudentsCorrectFirstTry;
+                $scope.sCorrectSecondTry =data[0].StudentsCorrectSecondTry;
 
             })
             .error(function(data,status,headers,config) {
+                $scope.sThatWereWrong = [];
+                $scope.sCorrectFirstTry = [];
+                $scope.sCorrectSecondTry = [];
             });
 
     };

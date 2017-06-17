@@ -558,7 +558,7 @@ $scope.studentToSendTaskToList = [];
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            data: 'group_id='+g_id + '&task_id=' + selected_task2
+            data: 'group_id='+g_id + '&t_id=' + selected_task2
         };
 
         alert(JSON.stringify(req));

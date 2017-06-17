@@ -1,0 +1,162 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#welcome">טקסטרטגיה</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <!-- <li><a href="student.html">תלמיד</a></li> -->
+        <li><a href="#superUser">משתמש על</a></li>
+      </ul>
+      <p class="navbar-text">בהצלחה</p>
+      <ul class="nav navbar-nav navbar-right">
+        <li> <a href="#register"><span class="glyphicon glyphicon-user"></span> הרשם</a></li>
+        <li><a href="#login"><span class="glyphicon glyphicon-log-in"></span> התחברות</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<div id="wrap">
+  <div class="container " id="c_1">
+
+
+<div ng-show = "searchQuestionMode">
+
+    <div class="col-sm-12">  
+      <h1 >שלום, {{getUserName}}!  <small> חפש שאלות לצפיה בסטטיסטיקה</small></h1>      
+    </div>
+
+  <form name="myForm2" class="form-horizontal" role="form">
+
+<!-- 3 -->
+  <div class="col-sm-4 well" style="margin-bottom: 50px; min-height: 240px" >
+  <label class="control-label pull-right">סוג מדיה:&nbsp;&nbsp;</label><br>
+  <div class="padded-20-elemnt" >
+    <label><input type="checkbox" ng-init='checkStatus11=false' ng-model="checkStatus11" ng-change="checkdMediaSelected(checkStatus11,'youtube')" >
+    &nbsp;&nbsp;סרטון youtube</label><br>
+    <label> <input type="checkbox" ng-init='checkStatus12=false' ng-model="checkStatus12" ng-change="checkdMediaSelected(checkStatus12,'page')">
+    &nbsp;&nbsp;אודיו</label><br>
+    <label> <input type="checkbox" ng-init='checkStatus13=false' ng-model="checkStatus13" ng-change="checkdMediaSelected(checkStatus13,'img')">
+    &nbsp;&nbsp;תמונה</label><br>
+    <label> <input type="checkbox" ng-init='checkStatus14=false' ng-model="checkStatus14" ng-change="checkdMediaSelected(checkStatus14,'text')">
+    &nbsp;&nbsp;טקסט</label><br>
+ </div>
+ </div>
+
+<!-- 2 -->
+  <div class="col-sm-4 well" style="margin-bottom: 50px; min-height: 240px" >
+  <label class="control-label pull-right">מהו קושי השאלה?:&nbsp;&nbsp;</label><br>
+  <div class="padded-20-elemnt" >
+    <label><input type="checkbox"  ng-init='checkStatus21=false' ng-model="checkStatus21" ng-change="checkDiffSelected(checkStatus21,'קלה')" >
+    &nbsp;&nbsp;קלה</label><br>
+    <label> <input type="checkbox"  ng-init='checkStatus22=false' ng-model="checkStatus22" ng-change="checkDiffSelected(checkStatus22,'בינונית')">
+    &nbsp;&nbsp;בינונית</label><br>
+    <label><input type="checkbox"  ng-init='checkStatus23=false' ng-model="checkStatus23" ng-change="checkDiffSelected(checkStatus23,'קשה')">
+    &nbsp;&nbsp;קשה</label><br>
+  </div>
+  </div>
+
+<!-- 1 -->
+  <div class="col-sm-4 well" style="margin-bottom: 50px; min-height: 240px" >
+  <label class="control-label pull-right">סוג מיומנות למידה:&nbsp;&nbsp;</label><br>
+  <div class="padded-20-elemnt" >
+    <div ng-repeat="sk in skills">
+      <label>
+      <input type="checkbox"  ng-init='checkStatus41=false' ng-model="checkStatus41"
+       ng-change="checkSkillSelected(checkStatus41,sk.Q_skill)" >
+            &nbsp;&nbsp;{{sk.Q_skill}}
+      </label>
+    </div>
+  </div>
+  </div>
+
+</form>
+
+  <div class="col-sm-12 text-center">
+  <!-- Button -->
+    <button ng-click="showSelectedQuestion()" class="btn btn-lg btn-info">
+      חפש שאלה!
+      <span class="glyphicon glyphicon-king"></span>
+    </button>
+  </div>
+
+</div>    <!--  /searchQuestionMode -->
+
+
+
+
+<div ng-show="!searchQuestionMode">
+  
+  <span ng-show = "questionForStatistics.length == 0" style="font-size: 17px;" >{{serverFeedback}} </span>
+
+  <div class="panel" ng-repeat="q in questionForStatistics">
+    <div ng-model="user.question" value="{{q.Q_id}}">
+    <p>&nbsp;&nbsp;{{q.Q_qeustion}} </p>
+    
+      <span class="label label-info">{{q.Q_skill}}</span>
+      <span ng-show="q.Q_mediaType=='page'" class="label label-lili">אודיו</span>
+      <span ng-show="q.Q_mediaType=='img'" class="label label-lili">תמונה</span>
+      <span ng-show="q.Q_mediaType=='youtube'" class="label label-lili">סרטון</span>
+      <span ng-show="q.Q_mediaType=='text'" class="label label-lili">קטע</span>
+      <span class="label label-danger">{{}}</span>
+      <span ng-show="q.Q_difficulty=='קלה'" class="label label-success">{{q.Q_difficulty}}</span>
+      <span ng-show="q.Q_difficulty=='בינונית'" class="label label-warning">{{q.Q_difficulty}}</span>
+      <span ng-show="q.Q_difficulty=='קשה'" class="label label-danger">{{q.Q_difficulty}}</span>
+    </div>
+
+     <button ng-click="getStatisticForQuestion(q.Q_id)" class="btn btn-info text-center" data-toggle="modal" data-target="#fedbackModal" style="margin: 5px 335px;"> 
+      הצג סטטיסטיקה
+      <!-- <span class="glyphicon glyphicon-king"></span> -->
+    </button>
+
+  </div>
+</div>
+
+
+
+
+</div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="fedbackModal" tabindex="-1" role="dialog" aria-labelledby="myCurrectModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+         <h4 class="modal-title text-info"> <strong>טקסטרטגיה</strong> <small>מתרגלים אסטרטגיות הבנה</small></h4>
+        </div>
+  
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-xs-5 col-sm-3"> 
+            <img alt="תרגול" class="img-circle student_actions" src="views/pic/logo2.png" >
+          </div>
+          <div class="col-xs-7 col-sm-9">
+          <br>
+            <span> {{feedback}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">סגור</button> -->
+           <button type="button" ng-show="!generate_task" data-dismiss="modal" class="btn btn-default" > סגור </button>
+           <button type="button" ng-show="generate_task" ng-click="goToTasks()" data-dismiss="modal" class="btn btn-default" > סגור </button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+<br><br><br><br><br>
+<img class="img-responsive" id="imag-logo" src="views/pic/bottom.png"> 

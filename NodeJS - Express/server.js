@@ -516,6 +516,7 @@ app.post('/getStudentsMissingTaskInGroup', function (req, res) {
     var taskID = req.body.t_id;
     var groupID = req.body.group_id;
     var query = queries.getStudentsMissingTaskInGroup(taskID, groupID);
+    console.log("AHHHHHHHH: " + query);
     connection.query(query, function (err, listOfStudents) {
         if (err) {
             console.log(err);
