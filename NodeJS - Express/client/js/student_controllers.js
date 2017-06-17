@@ -411,6 +411,7 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
                     $scope.showVoice = false;
                     $scope.showImg= false;
                 }
+
                 else if (data.question.Q_mediaType == "page" ){
                     //$scope.videoURL = 'https://www.youtube.com/embed/crs0TiiYE4I?rel=0'; //data.question.Q_media;
                     $scope.voiceURL = $sce.trustAsResourceUrl(data.question.Q_media);
@@ -424,6 +425,7 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
                     $scope.textData= data.question.Q_media;
                     $scope.showText= true;
                 }
+                alert("A:"+ JSON.stringify($scope.options));
 
             }).error(function (data, status, headers, config) {
             if (status == "676"){
