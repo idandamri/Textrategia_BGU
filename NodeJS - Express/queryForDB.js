@@ -96,13 +96,24 @@ module.exports =
 
         getStudentsMissingTaskInGroup: function (task_id, group_id) {
             return "select * from " +
-                "(select Table_a.StudentId from " +
-                "(select StudentId from students_per_group where GroupId = " + group_id + ") as Table_a " +
-                "join tasks_and_question_for_student_instances " +
-                "on Table_a.StudentId = tasks_and_question_for_student_instances.studentId " +
-                "where tasks_and_question_for_student_instances.T_id != " + task_id +
-                " group by StudentId) as T join users on T.StudentId = users.PersonalID;"
+                "(select * from " +
+                "(select StudentId from students_per_group where GroupId = " + group_id + ") as a" +
+                " WHERE NOT EXISTS (" +
+                "select studentId, T_id from tasks_and_question_for_student_instances " +
+                "where tasks_and_question_for_student_instances.studentId = a.StudentId " +
+                "and tasks_and_question_for_student_instances.T_id != " + task_id + ")) " +
+                "b join users on b.StudentId = users.PersonalID;;"
         },
+        //
+        // getStudentsMissingTaskInGroup: function (task_id, group_id) {
+        //     return "select * from " +
+        //         "(select Table_a.StudentId from " +
+        //         "(select StudentId from students_per_group where GroupId = " + group_id + ") as Table_a " +
+        //         "join tasks_and_question_for_student_instances " +
+        //         "on Table_a.StudentId = tasks_and_question_for_student_instances.studentId " +
+        //         "where tasks_and_question_for_student_instances.T_id != " + task_id +
+        //         " group by StudentId) as T join users on T.StudentId = users.PersonalID;"
+        // },
 
         //delete from textra_db.tasks_and_question_for_student_instances where studentId like '2' and T_id = '1' and Q_id = '1'
         deleteQuestionsFromInstance: function (student_id, task_id, q_id) {
