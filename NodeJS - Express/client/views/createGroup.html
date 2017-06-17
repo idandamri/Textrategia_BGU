@@ -69,7 +69,7 @@
         <div ng-show="isStudentGroup">
           <label class="control-label pull-right">בחר מורה אחראי:&nbsp;&nbsp;</label>
 
-          <select required class="form-control inputstl" ng-model="selected_teacher" id="teachers" style="padding: 5px 5px;">
+          <select ng-required='!selected_group_master' class="form-control inputstl" ng-model="selected_teacher" id="teachers" style="padding: 5px 5px;">
           <option value=""> - בחר מורה אחראי קבוצה - </option>
             <option ng-repeat="y in teachers" value="{{y.PersonalID}}">{{y.FirstName}}</option>
           </select>
@@ -92,7 +92,7 @@
         <input type="text" id="query" class="form-control inputstl pull-right"  ng-model="query" placeholder="חפש עיר">
 
         <label class="control-label pull-right">בחר עיר:&nbsp;&nbsp;</label>
-        <select class="form-control inputstl" id="group_city"  ng-model="selected_city" ng-change="getSchoolByCity()" size=5 style="padding: 5px 5px;">
+        <select required class="form-control inputstl" id="group_city"  ng-model="selected_city" ng-change="getSchoolByCity()" size=5 style="padding: 5px 5px;">
             <option value=""> - בחר עיר -</option>
           <option ng-repeat="city in myCities.cities | filter:query | orderBy: orderList" value={{city}}>{{city}}</option>
         </select>
@@ -106,7 +106,7 @@
 
       <div class="col-sm-12 text-center">
         <!--<button ng-click="createGroup()" ng-disabled="myForm.$invalid" type="submit" class="btn btn-lg btn-info" data-toggle="modal" data-target="#fedbackModal">צור קבוצה!  <span class="glyphicon glyphicon-king"></span>-->
-        <button ng-click="createGroup()" type="submit" class="btn btn-lg btn-info" data-toggle="modal" data-target="#fedbackModal">צור קבוצה!  <span class="glyphicon glyphicon-king"></span>
+        <button ng-click="createGroup()" type="submit" class="btn btn-lg btn-info"  ng-disabled="myForm.$invalid" data-toggle="modal" data-target="#fedbackModal">צור קבוצה!  <span class="glyphicon glyphicon-king"></span>
         </button>
       </div>
 
