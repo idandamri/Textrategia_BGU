@@ -349,14 +349,15 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
     };
 
     $scope.oneMoreTry = function(){
-        $("input:radio").removeAttr("checked");
+        // $("input:radio").removeAttr("checked");
+        $scope.selectedAnswers = [];
         $scope.triedOnce = true;
         $scope.start();
     }
 
     $scope.selectedAnswers = [];          // Arg3
-
     $scope.checkSelectedAnswers= function (checkStatus,element){
+        alert(element);
         if(checkStatus ){
             if ($scope.selectedAnswers.indexOf(element) == -1 ){
                 $scope.selectedAnswers.push(element);
@@ -368,9 +369,11 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
                 $scope.selectedAnswers.splice(index, 1);
             }
         }
+
+
         // alert("checkStatus: " + checkStatus);
         // alert("element: " + element);
-        // alert("$scope.selectedAnswers: " + $scope.selectedAnswers);
+        alert("$scope.selectedAnswers: " + $scope.selectedAnswers);
 
     };
 
@@ -399,19 +402,19 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
 
                 $scope.task_name = getTaskName();  // change to task name
                 $scope.task_id = getTaskID();                    //change to task is
-                $scope.Q_skill = myJason.question.Q_skill;
-                $scope.id = 0;
+
+                // $scope.Q_skill = myJason.question.Q_skill;
+                // $scope.id = 0;
+
                 $scope.quizOver = false;
                 $scope.inProgress = true;
                 $scope.getQuestion();
+
                 $scope.numberOfQuestions += 1 ;
                 if (data.question.Q_mediaType == "youtube" ){
                     $scope.videoURL = $sce.trustAsResourceUrl('https://www.youtube.com/embed/' + data.question.Q_media + '?rel=0'); //data.question.Q_media;
                     $scope.showVideo = true;
-                    $scope.showVoice = false;
-                    $scope.showImg= false;
                 }
-
                 else if (data.question.Q_mediaType == "page" ){
                     //$scope.videoURL = 'https://www.youtube.com/embed/crs0TiiYE4I?rel=0'; //data.question.Q_media;
                     $scope.voiceURL = $sce.trustAsResourceUrl(data.question.Q_media);
@@ -425,7 +428,6 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
                     $scope.textData= data.question.Q_media;
                     $scope.showText= true;
                 }
-                alert("A:"+ JSON.stringify($scope.options));
 
             }).error(function (data, status, headers, config) {
             if (status == "676"){
@@ -479,9 +481,11 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
             // alert("ismULTI");
 
             var ans  = $scope.selectedAnswers; /*ans = all index of selected ans id*/
-            // alert("selected ans id: " + ans);
-            // var ans_id = get_answer_multi_index($scope.options, $scope.options_id, ans); /*ans_id = all selected ans id (by user)*/
+            alert("selected ans id: " + ans + " all answers: " + $scope.options);
+            var temp_answers = $scope.Hadas.answers;
+
             var ans_id = get_answer_multi_index($scope.options, $scope.options_id, ans); /*ans_id = all selected ans id (by user)*/
+            // var ans_id = get_answer_multi_index(temp_answers, $scope.options_id, ans); /*ans_id = all selected ans id (by user)*/
             var index = ans_id.index;
             var index_id = ans_id.index_id;
 

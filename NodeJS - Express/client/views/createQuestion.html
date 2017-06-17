@@ -62,7 +62,7 @@
 
       <!-- 6 -->
       <label class="control-label pull-right">הכנס מיומנות למידה: &nbsp;&nbsp;</label>
-      <select class="form-control inputstl" id="skill_type" ng-model="question.selected_skill" ng-change="ne_skill_mode()" tabindex="6" style="padding: 5px 5px;">
+      <select class="form-control inputstl" id="skill_type" ng-model="question.selected_skill" ng-change="new_skill_mode()" tabindex="6" style="padding: 5px 5px;">
         <option  ng-repeat="sk in skills" value={{sk.Q_skill}}>
           {{sk.Q_skill}}
           </option>

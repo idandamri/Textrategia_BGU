@@ -75,7 +75,7 @@
 
             <div ng-show="!isMultipleAnswers" class="col-sm-6">
                 <dl id="options_single">
-                in single
+                <!-- in single -->
                     <dt ng-repeat="option in options">
                         <label>
                             <input type="radio" name="answer" value="{{option}}" ng-init='checkStatus51=false' ng-model="checkStatus51"
@@ -86,26 +86,26 @@
                 </dl>
             </div>
 
-          <p>options: {{options}}</p>
+          <!-- <p>options: {{options}}</p> -->
           <div ng-show="isMultipleAnswers" class="col-sm-6">
             <dl id="options_multi">
               <dt>
-                <label><input type="checkbox" name="answer" value="Hadas.answers[0].answer" ng-init='checkStatus51=false' ng-model="checkStatus51" ng-change="checkSelectedAnswers(checkStatus51,option)" >
+                <label><input type="checkbox" name="answer" value="Hadas.answers[0].answer" ng-init='checkStatus51=false' ng-model="checkStatus51" ng-change="checkSelectedAnswers(checkStatus51,Hadas.answers[0].answer)" >
                  {{Hadas.answers[0].answer}}
                 </label>
               </dt>
               <dt>
-                <label><input type="checkbox" name="answer" value="Hadas.answers[1].answer" ng-init='checkStatus52=false' ng-model="checkStatus52" ng-change="checkSelectedAnswers(checkStatus52,option)" >
+                <label><input type="checkbox" name="answer" value="Hadas.answers[1].answer" ng-init='checkStatus52=false' ng-model="checkStatus52" ng-change="checkSelectedAnswers(checkStatus52,Hadas.answers[1].answer)" >
                  {{Hadas.answers[1].answer}}
                 </label>
               </dt>
                 <dt>
-                <label><input type="checkbox" name="answer" value="Hadas.answers[2].answer" ng-init='checkStatus53=false' ng-model="checkStatus53" ng-change="checkSelectedAnswers(checkStatus53,option)" >
+                <label><input type="checkbox" name="answer" value="Hadas.answers[2].answer" ng-init='checkStatus53=false' ng-model="checkStatus53" ng-change="checkSelectedAnswers(checkStatus53,Hadas.answers[2].answer)" >
                  {{Hadas.answers[2].answer}}
                 </label>
               </dt>
               <dt>
-                <label><input type="checkbox" name="answer" value="Hadas.answers[3].answer" ng-init='checkStatus54=false' ng-model="checkStatus54" ng-change="checkSelectedAnswers(checkStatus54,option)" >
+                <label><input type="checkbox" name="answer" value="Hadas.answers[3].answer" ng-init='checkStatus54=false' ng-model="checkStatus54" ng-change="checkSelectedAnswers(checkStatus54,Hadas.answers[3].answer)" >
                  {{Hadas.answers[3].answer}}
                 </label>
               </dt>
