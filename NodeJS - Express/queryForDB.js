@@ -216,11 +216,13 @@ module.exports =
             return "UPDATE textra_db.questions SET Q_approved = " + isDisabled + " WHERE Q_id = " + q_id + ";";
         },
 
-        updateQuestion: function (q_id, q_question, q_media, q_mediaType, is_mul, q_correctFB, q_notCorrectFB, q_skill, q_diff, q_proff, q_app, q_disable) {
+        updateQuestion: function (q_id, q_question, q_media, q_mediaType, is_mul, q_correctFB, q_notCorrectFB, q_skill,
+                                  q_diff, q_proff, q_app, q_disable, q_reported_off, q_reported_quest, q_reported_ans) {
             return "UPDATE textra_db.questions SET Q_qeustion  = " + q_question + ", Q_media = " + q_media +
                 ", Q_mediaType = " + q_mediaType + ", isMultipuleAns = " + is_mul + ", Q_correctFB = " + q_correctFB + ", Q_notCorrectFB = " + q_notCorrectFB + ", Q_skill = " + q_skill +
                 ", Q_difficulty = " + q_diff + ", Q_proffession = " + q_proff + ", Q_disabled = " + q_disable +
-                ", Q_approved = " + q_app + " WHERE Q_id = " + q_id + ";";
+                ", Q_approved = " + q_app + ", Q_reported_Offensive = " + q_reported_off + ", Q_reported_Question = " + q_reported_quest +
+                ", Q_reported_Answer = " + q_reported_ans + " WHERE Q_id = " + q_id + ";";
         },
 
         updateAnswer: function (a_id, q_id, answer, is_correct) {

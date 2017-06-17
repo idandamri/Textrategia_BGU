@@ -555,11 +555,15 @@ app.post('/editQuestion', function (req, res) {
         var q_skill = mysql.escape(req.body.skill);
         var q_diff = mysql.escape(req.body.difficulty);
         var q_prof = mysql.escape(req.body.proffesion);
+        var reported_offensive = mysql.escape(req.body.q_reported_offensive);
+        var reported_question = mysql.escape(req.body.q_reported_question);
+        var reported_answer = mysql.escape(req.body.q_reported_answer);
         var q_app = mysql.escape(req.body.approved);
         var q_disabled = mysql.escape(req.body.disabled);
         var answersArray = JSON.parse(req.body.answers);
 
-        var query = queries.updateQuestion(q_id, q_question, q_media, q_media_type, isMul, q_correctFB, q_notCorrectFB, q_skill, q_diff, q_prof, q_app, q_disabled);
+        var query = queries.updateQuestion(q_id, q_question, q_media, q_media_type, isMul, q_correctFB, q_notCorrectFB,
+            q_skill, q_diff, q_prof, q_app, q_disabled,reported_offensive,reported_question,reported_answer);
         connection.query(query, function (err) {
             if (err) {
                 console.log(err);

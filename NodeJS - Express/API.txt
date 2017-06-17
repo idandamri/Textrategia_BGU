@@ -181,6 +181,10 @@ API:
 	answer1, answer2, answer3, answer4,correctAnswerIndex
     output: status 200 "inserted!" /400 - Insertion error - check DB (group/student does not exist or relation error!)
     example to input :
+    Q_reported_Offensive int not null,
+    Q_reported_Question int not null,
+    Q_reported_Answer int not null,
+
      {
                      "question_title": "testQ title",
                      "is_multiple_ans": "0",
@@ -595,6 +599,9 @@ input:
   "skill": "testing skills!",
   "difficulty": "easy",
   "proffesion": "test profesion",
+  "Q_reported_Offensive": 14,
+  "Q_reported_Question": 35,
+  "Q_reported_Answer": 14,
   "approved": "1",
   "disabled": "0",
   "answers":
