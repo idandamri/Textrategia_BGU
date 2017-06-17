@@ -92,7 +92,7 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
         if (media_type.value=="img" && (imgUrl=="" ||imgUrl==null)){
             alert("אל תשכח להעלות את התמונה - לחץ על כפתור upload")
         }
-        else if (media_type.value!="img" && ($scope.question.question_media=="" || $scope.question.question_media==null)){
+        else if (media_type.value=="img" && ($scope.question.question_media=="" || $scope.question.question_media==null)){
             alert("יכול להיות ששכחת להוסיף מדיה?")
         }
         else {
@@ -164,6 +164,9 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
         if (media_type.value=="img"){
             question_media = imgUrl;
             // alert("question_media = imgURL: " + question_media);
+        }
+        else if(media_type.value=="youtube"){
+            question_media = $scope.question.question_media.split('=')[1];
         }
         else {
             question_media = $scope.question.question_media;
