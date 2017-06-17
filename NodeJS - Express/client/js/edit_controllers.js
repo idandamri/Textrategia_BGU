@@ -376,23 +376,28 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
         var isCorrect_a3 = $scope.question.answer3_is_correct;
         var isCorrect_a4 = $scope.question.answer4_is_correct;
 
+        var a_id1 = $scope.question.answer[0].A_id;
+        var a_id2 = $scope.question.answer[1].A_id;
+        var a_id3 = $scope.question.answer[2].A_id;
+        var a_id4 = $scope.question.answer[3].A_id;
+
         var ans1 = {
-            "A_id": "1",
+            "A_id": a_id1,
             "answer": possible_ans_1,
             "isCorrect": isCorrect_a1
         };
         var ans2 = {
-            "A_id": "2",
+            "A_id": a_id2,
             "answer": possible_ans_2,
             "isCorrect": isCorrect_a2
         };
         var ans3 = {
-            "A_id": "3",
+            "A_id": a_id3,
             "answer": possible_ans_3,
             "isCorrect": isCorrect_a3
         };
         var ans4 = {
-            "A_id": "4",
+            "A_id": a_id4,
             "answer": possible_ans_4,
             "isCorrect": isCorrect_a4
         };

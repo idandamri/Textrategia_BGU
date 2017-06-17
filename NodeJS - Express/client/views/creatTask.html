@@ -44,16 +44,18 @@
 
 <!-- ################  SELECTED QUESTIONS ############################ -->
   <div ng-show="myTaskQuestions.length==0"  class="col-sm-4 text-center well">
-          <!-- button -->
-      <button ng-click="sendTaskToServer()"  class="btn btn-lg btn-success" ng-disabled="myForm1.$invalid || myTaskQuestions.length==0"
-               data-toggle="collapse" data-target="#fedbackModal">
-        שלח מטלה לשרת
-      </button>
+     <h4> שאלות המטלה החדשה </h4>
+     <h6> עדיין אין שאלות לשליחה... </h6>
+
+   <button class="btn btn-success" ng-disabled="true">
+        שלח מטלה
+    </button>
+
   </div>
 
 
   <div ng-show="myTaskQuestions.length!=0" class="col-sm-4 well">
-  <h3> שאלות המטלה </h3>
+  <h3> שאלות המטלה החדשה </h3>
    <div id="accordion1">
     <div class="panel" ng-repeat="q in myTaskQuestions track by $index">
       <button class="button btn-danger" ng-click="deleteThisQuestion(q)" > מחק
@@ -64,17 +66,21 @@
   </div>
 
     <div class="text-center">
-      <button ng-click="sendTaskToServer()" ng-disabled="myForm1.$invalid || myTaskQuestions.length==0" class="btn btn-lg btn-success" data-toggle="modal" data-target="#fedbackModal">
-        שלח מטלה לשרת  
+
+      <!-- button -->
+      <button ng-show="!userApprovedSending && searchQuestion" ng-click="sendTaskToServerWrapper()"  class="btn btn-lg btn-success" ng-disabled="myForm1.$invalid || myTaskQuestions.length==0" ">
+        שלח מטלה 
+    </button>
+
+    <button  ng-show="!searchQuestion" ng-click="addQuestions()" ng-disabled="myForm1.$invalid" class="btn btn-lg btn-info">
+       חזור לבניית מטלה
       </button>
-
-
 
     </div>
 
   </div>
 
-<!-- @@@@@@@@@@@@@@@@@@ ng show @@@@@@@@@@@@@@@ -->
+<!-- @@@@@@@@@@@@@@@@@@ searchQuestion @@@@@@@@@@@@@@@ -->
 <div ng-show="searchQuestion">
   <div class="col-sm-5 well">
     
@@ -85,10 +91,14 @@
       ng-change="checkQuestionSelected(checkStatus51,q.Q_id)" >
       <p>&nbsp;&nbsp;{{q.Q_qeustion}}</p>
       <span class="label label-info">{{q.Q_skill}}</span>
-      <span ng-show="q.Q_mediaType=='page'" class="label label-warning">אודיו</span>
-      <span ng-show="q.Q_mediaType=='img'" class="label label-warning">תמונה</span>
-      <span ng-show="q.Q_mediaType=='youtube'" class="label label-warning">סרטון</span>
-      <span ng-show="q.Q_mediaType=='text'" class="label label-warning">קטע</span>
+      <span ng-show="q.Q_mediaType=='page'" class="label label-lili">אודיו</span>
+      <span ng-show="q.Q_mediaType=='img'" class="label label-lili">תמונה</span>
+      <span ng-show="q.Q_mediaType=='youtube'" class="label label-lili">סרטון</span>
+      <span ng-show="q.Q_mediaType=='text'" class="label label-lili">קטע</span>
+      <span class="label label-danger">{{}}</span>
+      <span ng-show="q.Q_difficulty=='קלה'" class="label label-success">{{q.Q_difficulty}}</span>
+      <span ng-show="q.Q_difficulty=='בינונית'" class="label label-warning">{{q.Q_difficulty}}</span>
+      <span ng-show="q.Q_difficulty=='קשה'" class="label label-danger">{{q.Q_difficulty}}</span>
     </div>
   </div>
 
@@ -159,6 +169,9 @@
 </div>    <!--  /well -->
 </div> <!-- ng-show="searchQuestion" -->
 
+
+
+<!-- @@@@@@@@@@@@@@ !searchQuestion @@@@@@@@@@@@@@2222-->
 <div ng-show =  "!searchQuestion">
 
   <div class="col-sm-2"></div>
@@ -183,9 +196,24 @@
     <div class="col-sm-6" style="margin: 20px 0px;">
 
       <!-- button -->
-      <button ng-click="addQuestions()" ng-disabled="myForm1.$invalid" class="btn btn-lg btn-info">
+      <button ng-show="!searchQuestion && !showApproveQuestion" ng-click="addQuestions()" ng-disabled="myForm1.$invalid" class="btn btn-lg btn-info">
         הוסף שאלות!  
       </button>
+
+      <div ng-show="showApproveQuestion">
+            <strong>
+            <span class="text-danger" ng-show="!userApprovedSending" style="font-size: 18px;">אשר מטלה לפני עריכה </span>
+            <span class="text-success" ng-show="userApprovedSending" style="font-size: 18px;">השאלה מאושרת לעריכה!</span>
+            </strong>
+            <button ng-show="!userApprovedSending" type="button" class="btn btn-success" ng-click="changeStatusOfAnswer()"> אשר </button>
+            <button ng-show="userApprovedSending" type="button" class="btn btn-danger" ng-click="changeStatusOfAnswer()"> שנה </button>
+      </div>
+
+    <button ng-show="showApproveQuestion" ng-click="sendTaskToServer()"  class="btn btn-lg btn-success" ng-disabled="myForm1.$invalid || myTaskQuestions.length==0 || !userApprovedSending"
+               data-toggle="collapse" data-target="#fedbackModal">
+        שלח מטלה
+      </button>
+
 
     </div>
   </form>

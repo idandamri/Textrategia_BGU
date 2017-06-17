@@ -28,9 +28,14 @@
 
     <div class="row">
 
-    <div class="col-sm-12">  
-      <h1>שלום, {{getUserName}}!</h1>  <h3 style="margin-bottom: 20px">הוסף בתי ספר חדשים: </h3>
+     <div class=" col-sm-4 text-left text-bottom" style="margin-top: 44px"> 
+         <span> תרצה להוסיף קבוצה חדשה? <a href="#createGroup">הוסף </a></span>
+      </div>
+    <div class="col-sm-8">  
+      <h1>שלום, {{getUserName}}!</h1>  
+      <h3 style="margin-bottom: 20px">הוסף בתי ספר חדשים: </h3>
     </div>
+    
 
 
       <div class ="col-sm-1"></div>
@@ -51,7 +56,7 @@
       <div class ="col-sm-1"></div>
 
       <!--  City -->
-      <form name="myForm" class="form-horizontal" role="form">
+      <form name="myForm" class="form-horizontal" >
       <div class ="col-sm-5">
 
         <input type="text" id="query" class="form-control inputstl pull-right"  ng-model="query" placeholder="חפש עיר">
@@ -65,12 +70,11 @@
         </select>    
 
         <!-- button -->
-        <button ng-click="showSchoolsList()" ng-disabled="myForm.$invalid" class="btn btn-lg btn-info" style="margin: 20px 0;"> 
+        <button ng-click="showSchoolsList()" class="btn btn-lg btn-info" style="margin: 20px 0;"> 
           הצג בתי ספר!  
           <span class="glyphicon glyphicon-king"></span>
         </button>
       </div>
-      </form>
         
 
       <div class ="col-sm-1"></div>  
@@ -78,14 +82,13 @@
         <div class ="col-sm-4"></div>
         <div class="col-sm-4 text-center">
          
-           <form name="myForm2" class="form-horizontal" role="form">
            <div ng-show="showSchools">
           <label class="control-label pull-right">הכנס שם בית ספר חדש:&nbsp;&nbsp;</label>
-          <input type="text" name="groupName" class="form-control inputstl pull-right" required placeholder="הכנס שם בית ספר חדש:" ng-model="user.schoolName">
+          <input type="text" required name="groupName" class="form-control inputstl pull-right"  placeholder="הכנס שם בית ספר חדש:" ng-model="user.schoolName">
           </div>
 
         <!-- button -->
-          <button ng-click="createNewSchool()" ng-disabled="myForm2.$invalid" type="submit" class="btn btn-lg btn-info"  data-toggle="modal" data-target="#fedbackModal" style="margin: 20px 0; margin-bottom: 15px;">הוסף בית ספר חדש!  <span class="glyphicon glyphicon-king"></span>
+          <button type="submit" class="btn btn-lg btn-info" ng-disabled="myForm.$invalid" ng-click="createNewSchoolWraper()" data-toggle="modal" data-target="#fedbackModal" style="margin: 20px 0; margin-bottom: 15px;">הוסף בית ספר חדש!  <span class="glyphicon glyphicon-king"></span>
           </button>
         </div>
     </form>
@@ -115,13 +118,17 @@
                 </div>
                 <div class="col-xs-7 col-sm-9">
                 <br>
-                  <span> {{serverFeedback}}</span>   
+                  <span ng-show="readyToSendServer"> {{serverFeedback}}</span> 
+                  <div ng-show="!readyToSendServer">
+                     {{serverFeedback}} <span class="text-info">{{user.schoolName}}</span>   
+                    {{secondServerFeedback}} <span class="text-info"> {{city.city_name}}?</span>   
+                  </div>
                 </div>
               </div>
             </div>
             <div class="modal-footer">
-                <!-- <button type="button" class="btn btn-default" data-dismiss="modal">סגור</button> -->
-                 <button type="button" data-dismiss="modal" class="btn btn-default" > סגור </button>
+                <button type="button" class="btn btn-info" ng-show="!readyToSendServer" ng-click="createNewSchool()" data-dismiss="modal">הוסף</button>
+                 <button type="button" data-dismiss="modal" class="btn btn-link" > סגור </button>
             </div>
           </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->

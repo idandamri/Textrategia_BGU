@@ -437,7 +437,7 @@ app.post('/reportQuestion', function (req, res) {
         var reportAnswer = req.body.report_answer;
 
         var query = queries.reportQuestion(QID, reportOffensive, reportQuestion, reportAnswer);
-        connection.query(query, function (err) {
+            connection.query(query, function (err) {
             if (err) {
                 console.log(err);
                 res.status(400).send("DB error - check DB!");
@@ -542,6 +542,7 @@ app.post('/editQuestion', function (req, res) {
                 res.status(400).send("DB error - check DB! - question not updated");
             }
             else {
+                answersArray = answersArray.split(',');
                 var bigQuery = "";
                 for (var i = 0; i < answersArray.length; i++) {
                     var a_id = answersArray[i].A_id;
@@ -1766,7 +1767,7 @@ app.post('/sendTaskToStudents', function (req, res) {
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '1q2w3e4r',//'123465' to upload*/
+    password: '123456',//'123465' to upload*/
     database: 'textra_db',
     multipleStatements: true
 });

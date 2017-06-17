@@ -460,7 +460,6 @@ input:
 output: status 200 / status 415 - not enough questions
 exmple :
 
-
 33. post('sendTaskToStudents')
 input:
 {
@@ -475,6 +474,63 @@ exmple :
 input:
 output: status 200 / status 204 - not enough questions / 400 - "DB Error"
 exmple :
+
+[
+    {
+        "Q_id": 1,
+        "Q_qeustion": "האזן לשיחה המוקלטת. לשם מה החליטו במפעל הפיס להקליט שיחות של אנשים עם אראלה?",
+        "isMultipuleAns": 0,
+        "Q_mediaType": "page",
+        "Q_media": "http://rr-d.vidnt.com/vod/aod/pas/240/26?path=&files[]=9-3-16.mp3&autoplay=true",
+        "Q_correctFB": "שיחה כזאת מעבר להזדהות וההתרגשות אכן גורמת לאנשים לחוש שזכייה היא דבר אפשרי.",
+        "Q_notCorrectFB": "נסו לחשוב אם יש מטרה אחת בולטת שהאחרות עשויות לשרת אותה.",
+        "Q_skill": "זיהוי מטרה מרכזית",
+        "Q_difficulty": "קלה",
+        "Q_proffession": "הבעה",
+        "Q_reported_Offensive": 14,
+        "Q_reported_Question": 35,
+        "Q_reported_Answer": 14,
+        "Q_approved": 1,
+        "Q_disabled": 0,
+        "Q_owner": "1"
+    },
+    {
+        "Q_id": 2,
+        "Q_qeustion": "לפניך סרטון קצר. צפה בו וענה על השאלה - מהי מטרתו המרכזית של יוצר הסרטון? ",
+        "isMultipuleAns": 0,
+        "Q_mediaType": "youtube",
+        "Q_media": "crs0TiiYE4I",
+        "Q_correctFB": " הצלחת לזהות שמדובר בטקסט פרסומי שמטרתו להניע את הצופים לרכוש ממוצרי RC קולה. פרטי משרד הפרסום שהופיעו בראשית הסרטון מסייעים להבנה שמדובר בפרסומת, ומכאן צריך רק לבדוק מה מנסים למכור לנו...",
+        "Q_notCorrectFB": "הסרטון הציג אמנם את תשובתך אך לא זו הייתה מטרתו המרכזית. כדאי לחשוב: מי יצר את הסרטון? מהי הכותרת שלו? מה עשויה להיות מטרתו אם כך?",
+        "Q_skill": "זיהוי מטרה מרכזית",
+        "Q_difficulty": "קלה",
+        "Q_proffession": "הבעה",
+        "Q_reported_Offensive": 0,
+        "Q_reported_Question": 1,
+        "Q_reported_Answer": 0,
+        "Q_approved": 1,
+        "Q_disabled": 0,
+        "Q_owner": "1"
+    },
+    {
+        "Q_id": 3,
+        "Q_qeustion": "לפניך סרטון קצר. צפה בו. מה הקשר בין הפרסומת לבין המוצר שאותו היא מנסה למכור? ",
+        "isMultipuleAns": 0,
+        "Q_mediaType": "youtube",
+        "Q_media": "rR3BlwTOvMQ",
+        "Q_correctFB": "יופי של תשובה! איתרת נכון את המסר הסמוי הקיים בפרסומת - הקישור בין סיסמת הפרסום לפרסומת עצמה.",
+        "Q_notCorrectFB": "לא ממש. אמנם תינוקות הם חמודים והסרטון משעשע אבל כשמפרסם בוחר בתוכן מסוים - יש לכך קשר למטרתו. כדאי לחשוב מה מפרסמים כאן ומה המסר המועבר.",
+        "Q_skill": "זיהוי מטרה מרכזית",
+        "Q_difficulty": "קלה",
+        "Q_proffession": "הבעה",
+        "Q_reported_Offensive": 3,
+        "Q_reported_Question": 1,
+        "Q_reported_Answer": 0,
+        "Q_approved": 1,
+        "Q_disabled": 0,
+        "Q_owner": "1"
+    }
+]
 
 
 33. post('getApprovedQuestion')

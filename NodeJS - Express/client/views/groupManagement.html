@@ -46,7 +46,10 @@
   </div>
 
   <div class="col-sm-6" >
-    <h1>שלום, {{teacherName}}!</h1>  <h3>לרשותך, רשימת הקבוצות שבניהולך: </h3>
+    <h1>שלום, {{teacherName}}!</h1>  
+    <span ng-show="allGroups.length!=0"> <h3>לרשותך, רשימת הקבוצות שבניהולך: </h3> </span>
+    <span ng-show="allGroups.length==0"> <h3>עדיין לא קימות קבוצות תלמידים באחריותך.</h3> 
+    
   </div>
 
 

@@ -29,6 +29,25 @@ var get_answer_index = function(ans_lst, ans_id_lst,ans ) {
 };
 
 
+var  get_answer_multi_index = function(ans_lst, ans_id_lst,answers ) {
+    var index_id=[];
+    var index=[];
+    for (i=0 ; i< ans_lst.length ; i++){
+        for (j=0 ; j< answers.length ; j++){
+            if (ans_lst[i] == answers[j]){
+                index_id.push(ans_id_lst[i]);
+                index.push(i);
+            }
+        }
+    }
+
+    return {
+        index_id :index_id,
+        index : index
+    };
+};
+
+
 
 var get_correct_answer_index = function(myJason) {
     var ans;
@@ -40,6 +59,17 @@ var get_correct_answer_index = function(myJason) {
     }
     return ans;
 };
+
+var get_correct_answer_multi_index = function(myJason) {
+    var ans=[];
+    for (i=0 ; i< myJason.length ; i++){
+        if (myJason[i].isCorrect == 1){
+            ans.push(i);
+        }
+    }
+    return ans;
+};
+
 
 
 function shuffle(a) {
@@ -311,6 +341,7 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
     $scope.triedOnce = false;
     $scope.sendFeedbackMode = false;
     $scope.lastQuestionReported = "blimp";
+    $scope.isMultipleAnswers = true;
 
     $scope.finishTask = function () {
         $location.path('tasks');
@@ -318,11 +349,36 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
     };
 
     $scope.oneMoreTry = function(){
+        // $("input:radio").removeAttr("checked");
+        $scope.selectedAnswers = [];
         $scope.triedOnce = true;
         $scope.start();
     }
 
+    $scope.selectedAnswers = [];          // Arg3
+    $scope.checkSelectedAnswers= function (checkStatus,element){
+        alert(element);
+        if(checkStatus ){
+            if ($scope.selectedAnswers.indexOf(element) == -1 ){
+                $scope.selectedAnswers.push(element);
+            }
+        }
+        else{
+            const index = $scope.selectedAnswers.indexOf(element);
+            if (index !== -1){
+                $scope.selectedAnswers.splice(index, 1);
+            }
+        }
+
+
+        // alert("checkStatus: " + checkStatus);
+        // alert("element: " + element);
+        alert("$scope.selectedAnswers: " + $scope.selectedAnswers);
+
+    };
+
     $scope.start = function(){
+        $scope.selectedAnswers = [];
         var req = {
             method: 'POST',
             cache: false,
@@ -335,7 +391,10 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
         $http(req)
             .success(function (data, status, headers, config) {
                 myJason = data;
+                $scope.Hadas = data;
                 /*flags*/
+                $scope.isMultipleAnswers = data.question.isMultipuleAns;
+
                 $scope.showText= false;
                 $scope.showImg= false;
                 $scope.showVoice = false;
@@ -343,17 +402,18 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
 
                 $scope.task_name = getTaskName();  // change to task name
                 $scope.task_id = getTaskID();                    //change to task is
-                $scope.Q_skill = myJason.question.Q_skill;
-                $scope.id = 0;
+
+                // $scope.Q_skill = myJason.question.Q_skill;
+                // $scope.id = 0;
+
                 $scope.quizOver = false;
                 $scope.inProgress = true;
                 $scope.getQuestion();
+
                 $scope.numberOfQuestions += 1 ;
                 if (data.question.Q_mediaType == "youtube" ){
                     $scope.videoURL = $sce.trustAsResourceUrl('https://www.youtube.com/embed/' + data.question.Q_media + '?rel=0'); //data.question.Q_media;
                     $scope.showVideo = true;
-                    $scope.showVoice = false;
-                    $scope.showImg= false;
                 }
                 else if (data.question.Q_mediaType == "page" ){
                     //$scope.videoURL = 'https://www.youtube.com/embed/crs0TiiYE4I?rel=0'; //data.question.Q_media;
@@ -390,32 +450,91 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
         $scope.question =  myJason.question.Q_qeustion;
         var answers_lst = get_answers_lst_from_jason(myJason.answers);
         $scope.options =  answers_lst.ans_lst;
+        // alert("$scope.options : " + $scope.options );
         $scope.options_id =  answers_lst.ans_id_lst;
-        $scope.answer = get_correct_answer_index(myJason.answers);
+        // $scope.answer = get_correct_answer_index(myJason.answers);
+
+        // alert(JSON.stringify(myJason.question.isMultipuleAns));
+        // alert(JSON.stringify(myJason.question));
+        if(myJason.question.isMultipuleAns == 0){
+            // alert("is not multi");
+            $scope.answer = get_correct_answer_index(myJason.answers);
+            // alert($scope.answer);
+        }
+        else {
+            // alert("is multi");
+            $scope.answers = get_correct_answer_multi_index(myJason.answers); /*Those are the right answers (thier index)*/
+            // alert("get_correct_answer_multi_index: " + $scope.answers);
+        }
+
+
         $scope.answerMode = true;
         $scope.questionID = myJason.question.Q_id;
         $scope.correctFB = myJason.question.Q_correctFB;
         $scope.wrongFB = myJason.question.Q_notCorrectFB;
     };
 
+
     //This is function for submit
     $scope.checkAnswer = function(){
-        var ans = $('input[name=answer]:checked').val();
-        var ans_id = get_answer_index($scope.options, $scope.options_id,ans);
-        updateAnswer($scope.questionID,ans_id);
-        if(ans == $scope.options[$scope.answer]) {
-            $scope.score++;
-            $scope.feedback = $scope.correctFB;
-            $scope.correctAns = true;
-            // $scope.AnsID = getAnsID($scope.answer)
-            /*need to add update ans & remove from instances*/
+        if ($scope.isMultipleAnswers){
+            // alert("ismULTI");
 
-        } else {
-            $scope.feedback = $scope.wrongFB;
-            $scope.correctAns = false;
-            /*need to add update ans*/
+            var ans  = $scope.selectedAnswers; /*ans = all index of selected ans id*/
+            alert("selected ans id: " + ans + " all answers: " + $scope.options);
+            var temp_answers = $scope.Hadas.answers;
+
+            var ans_id = get_answer_multi_index($scope.options, $scope.options_id, ans); /*ans_id = all selected ans id (by user)*/
+            // var ans_id = get_answer_multi_index(temp_answers, $scope.options_id, ans); /*ans_id = all selected ans id (by user)*/
+            var index = ans_id.index;
+            var index_id = ans_id.index_id;
+
+            // alert("index_id : " + index_id);
+            // alert("index:" + index);
+            // alert("ans: " + ans);
+            // alert("get_correct_answer_multi_index: " + $scope.answers);
+            // alert(JSON.stringify($scope.answers.sort()));
+            // alert(JSON.stringify(index.sort()));
+            var lala = JSON.stringify(index.sort())==JSON.stringify($scope.answers.sort());
+            updateAnswer($scope.questionID, index_id);
+
+            if (lala) {
+                $scope.score++;
+                $scope.feedback = $scope.correctFB;
+                $scope.correctAns = true;
+                // $scope.AnsID = getAnsID($scope.answer)
+                /*need to add update ans & remove from instances*/
+
+            } else {
+                $scope.feedback = $scope.wrongFB;
+                $scope.correctAns = false;
+                /*need to add update ans*/
+            }
+            $scope.answerMode = false;
+
         }
-        $scope.answerMode = false;
+        else {
+            // alert("ISnOT");
+            var ans = $('input[name=answer]:checked').val();
+            // var ans = $scope.selected_singleAns;
+            // alert("$scope.selected_singleAns:" + $scope.selected_singleAns);
+            var ans_id = get_answer_index($scope.options, $scope.options_id, ans);
+            updateAnswer($scope.questionID, ans_id);
+            if (ans == $scope.options[$scope.answer]) {
+                $scope.score++;
+                $scope.feedback = $scope.correctFB;
+                $scope.correctAns = true;
+                // $scope.AnsID = getAnsID($scope.answer)
+                /*need to add update ans & remove from instances*/
+
+            } else {
+                $scope.feedback = $scope.wrongFB;
+                $scope.correctAns = false;
+                /*need to add update ans*/
+            }
+            $scope.answerMode = false;
+        }
+
     };
 
     $scope.nextQuestion = function(quest_id){
@@ -445,25 +564,65 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
 
         $scope.sendFeedbackMode = true;
         $scope.feedback = "האם ברצונך לדווח על שאלה זו כבעיתית?"
-       
+
 
     };
-    $scope.reportQuestion = function(q){
 
+
+    $scope.report_offensive = function () {
+        $scope.report(0,0,1);
+    };
+
+    $scope.report_question = function () {
+        $scope.report(1,0,0);
+    };
+
+    $scope.report_answer= function () {
+        $scope.report(0,1,0);
+    };
+
+    $scope.report = function (r_question,r_answer,r_offensive) {
+        if ( $scope.questionID== $scope.lastQuestionReported ){
+            //// DONT REPORT
+        } else {
+            //########################## SEND REPORT HERE ##########################
+            var req = {
+                method: 'POST',
+                cache: false,
+                url: _url +'/reportQuestion',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                data: 'q_id=' + $scope.questionID +'&report_answer='+r_answer+ '&report_offensive=' + r_offensive
+                + '&report_question=' + r_question
+            };
+
+            $http(req)
+                .success(function(data,status,headers,config){
+                })
+                .error(function(data,status,headers,config) {
+                });
+        }
+
+        $scope.lastQuestionReported = $scope.questionID;
+        $scope.sendFeedbackMode = false;
+    };
+
+
+
+
+    $scope.reportQuestion = function(q){
         alert("q?: " + q + "scope: " + $scope.lastQuestionReported);
         if ( q == $scope.lastQuestionReported ){
-             //// DONT REPORT
+            //// DONT REPORT
         } else {
-            
-        //########################## SEND REPORT HERE ##########################
-        //alert("report send.");
+            //########################## SEND REPORT HERE ##########################
+            //alert("report send.");
         }
 
         $scope.lastQuestionReported = q;
         $scope.sendFeedbackMode = false;
-
-
-    };    
+    };
 
     $scope.dontReportQuestion = function(){
 
@@ -476,4 +635,3 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
     $scope.reset();
 
 });
-

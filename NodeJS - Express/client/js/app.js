@@ -70,6 +70,10 @@ textrategiaApp.config(function($routeProvider){
         templateUrl:'views/questionManagment.html',
         controller :'QuestionManagmentController'
     })
+    .when('/superUserGroupManagment', {
+        templateUrl:'views/superUserGroupManagment.html',
+        controller :'superUserGroupManagmentController'
+    })
 
 // ~~~~~~~~~~~~ Teacher routs ~~~~~~~~~~~~~
 	.when('/teacher', {
