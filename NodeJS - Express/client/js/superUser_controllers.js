@@ -660,3 +660,35 @@ textrategiaApp.controller("CreateGroupController",function($scope,$http,$locatio
     }
 
 });
+
+
+textrategiaApp.controller("StatisticController",function($scope, $http,$location){
+
+    $scope.getStatisticForQuestion= function (q_id) {
+        var req = {
+            method: 'POST',
+            cache: false,
+            url: _url +'/addQuestionStatistics',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            data: 'q_id=' + q_id
+        };
+
+        $http(req)
+            .success(function(data,status,headers,config){
+                StudentsThatWereWrong =data[0].StudentsThatWereWrong;
+                StudentsCorrectFirstTry =data[0].StudentsCorrectFirstTry;
+                StudentsCorrectSecondTry =data[0].StudentsCorrectSecondTry;
+
+            })
+            .error(function(data,status,headers,config) {
+            });
+
+    };
+
+
+
+
+
+});
