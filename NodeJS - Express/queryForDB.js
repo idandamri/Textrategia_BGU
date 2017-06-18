@@ -228,7 +228,7 @@ module.exports =
         },
 
         disableQuestion: function (q_id, isDisabled) {
-            return "UPDATE textra_db.questions SET Q_approved = " + isDisabled + " WHERE Q_id = " + q_id + ";";
+            return "UPDATE textra_db.questions SET Q_disabled = " + isDisabled + " WHERE Q_id = " + q_id + ";";
         },
 
         updateQuestion: function (q_id, q_question, q_media, q_mediaType, is_mul, q_correctFB, q_notCorrectFB, q_skill,
@@ -330,7 +330,7 @@ module.exports =
             "where Q_mediaType in (" + media_types + ") " +
             "and Q_skill in (" + skills + ") " +
             "and Q_difficulty in (" + difficulties + ")" +
-            "and Q_approved=1;"
+            "and Q_approved=1 and Q_disabled=0;"
     },
 
     getQuestionsByParamterAndId: function (media_types, skills, difficulties, user_id) {
@@ -339,7 +339,7 @@ module.exports =
             "and Q_skill in (" + skills + ") " +
             "and Q_difficulty in (" + difficulties + ")" +
             "and (Q_approved=1 or Q_owner=" + user_id +
-            ");"
+            ") and Q_disabled=0;"
     },
 
     getQuestionsByParamterAndIdWithOneAns: function (media_types, skills, difficulties, user_id) {
@@ -348,7 +348,7 @@ module.exports =
             "and Q_skill in (" + skills + ") " +
             "and Q_difficulty in (" + difficulties + ")" +
             "and (Q_approved=1 or Q_owner=" + user_id +
-            "and isMultipuleAns=0);"
+            "and isMultipuleAns=0) and Q_disabled=0;"
     },
 
     getAllSkills: function (skills) {

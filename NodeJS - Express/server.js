@@ -19,7 +19,12 @@ app.use(bodyParser.json());
 
 
 app.get('/', function (req, res) {
-    res.redirect('/index.html');
+    try {
+        res.redirect('/index.html');
+    } catch (e) {
+        console.log("Error - " + err);
+        res.status(404).send();
+    }
 });
 
 
@@ -247,7 +252,7 @@ app.post('/disableQuestion', function (req, res) {
         var disableStatus = mysql.escape(req.body.disable_status);
         var qId = mysql.escape(req.body.q_id);
 
-        var query = queries.approveQuestion(qId, disableStatus);
+        var query = queries.disableQuestion(qId, disableStatus);
         console.log('\n' + query + '\n');
         connection.query(query, function (err, ans) {
             if (err) {
@@ -498,35 +503,45 @@ app.post('/removeRegisterUser', function (req, res) {
 
 app.post('/getQuestionStatistics', function (req, res) {
 
-    var qID = req.body.q_id;
-    var query = queries.getQuestionStatistics(qID);
-    connection.query(query, function (err, ans) {
-        if (err) {
-            console.log(err);
-            res.status(400).send("DB error - check DB!");
-        }
-        else {
-            res.status(200).send(ans);
-        }
-    });
+    try {
+        var qID = req.body.q_id;
+        var query = queries.getQuestionStatistics(qID);
+        connection.query(query, function (err, ans) {
+            if (err) {
+                console.log(err);
+                res.status(400).send("DB error - check DB!");
+            }
+            else {
+                res.status(200).send(ans);
+            }
+        });
+    } catch (e) {
+        console.log("Error - " + err);
+        res.status(404).send();
+    }
 });
 
 
 app.post('/getStudentsMissingTaskInGroup', function (req, res) {
 
-    var taskID = req.body.t_id;
-    var groupID = req.body.group_id;
-    var query = queries.getStudentsMissingTaskInGroup(taskID, groupID);
-    console.log(query);
-    connection.query(query, function (err, listOfStudents) {
-        if (err) {
-            console.log(err);
-            res.status(400).send("DB error - check DB!");
-        }
-        else {
-            res.status(200).send(listOfStudents);
-        }
-    });
+    try {
+        var taskID = req.body.t_id;
+        var groupID = req.body.group_id;
+        var query = queries.getStudentsMissingTaskInGroup(taskID, groupID);
+        console.log(query);
+        connection.query(query, function (err, listOfStudents) {
+            if (err) {
+                console.log(err);
+                res.status(400).send("DB error - check DB!");
+            }
+            else {
+                res.status(200).send(listOfStudents);
+            }
+        });
+    } catch (e) {
+        console.log("Error - " + err);
+        res.status(404).send();
+    }
 });
 
 
@@ -545,7 +560,6 @@ app.post('/truncateInstancesOfAnswers', function (req, res) {
 
 
 app.post('/editQuestion', function (req, res) {
-
     try {
         var q_id = mysql.escape(req.body.id);
         var q_question = mysql.escape(req.body.question);
@@ -1067,8 +1081,8 @@ app.post('/checkIfGroupCodeExists', function (req, res) {
 
 
 app.post('/getStudentListFromGroupId', function (req, res) {
-    var groupId = mysql.escape(req.body.group_id);
     try {
+        var groupId = mysql.escape(req.body.group_id);
         var query = queries.getStudentsFromGroup(groupId);
         console.log('\n' + query + '\n');
         connection.query(query, function (err, listOfStudents) {
@@ -1088,8 +1102,8 @@ app.post('/getStudentListFromGroupId', function (req, res) {
 
 
 app.post('/getAnswersByQid', function (req, res) {
-    var qId = mysql.escape(req.body.q_id);
     try {
+        var qId = mysql.escape(req.body.q_id);
         var query = queries.getAnswersByQid(qId);
         console.log('\n' + query + '\n');
         connection.query(query, function (err, listOfAnswers) {
@@ -1647,6 +1661,11 @@ app.post('/getStudentStatistics', function (req, res) {
                 if (stats!= null && stats.length == 0) {
                     res.status(204).send();
                 } else {
+                    for(var i=0; i<stats.length;i++){
+                        if(stats[i].correctAnsForSkill == null){
+                            stats[i].correctAnsForSkill = 0;
+                        }
+                    }
                     res.status(200).send(stats);
                 }
             }
@@ -1782,13 +1801,18 @@ var storage = multer.diskStorage({
 var upload = multer({storage: storage}).single('file');
 
 app.post('/multer', function (req, res) {
-    upload(req, res, function (err) {
-        if (err) {
-            res.status(400).send();
-        }
-        var s = req.file.filename;
-        res.status(200).send(s);
-    });
+    try {
+        upload(req, res, function (err) {
+            if (err) {
+                res.status(400).send();
+            }
+            var s = req.file.filename;
+            res.status(200).send(s);
+        });
+    } catch (e) {
+        console.log("Error - " + err);
+        res.status(404).send();
+    }
 });
 
 app.post('/sendTaskToStudents', function (req, res) {
@@ -1852,7 +1876,7 @@ app.post('/sendTaskToStudents', function (req, res) {
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '123456',//'123465' to upload*/
+    password: '1q2w3e4r',//'123465' to upload*/
     database: 'textra_db',
     multipleStatements: true
 });
@@ -1863,17 +1887,17 @@ connection.connect(function (err) {
     }
 });
 
-//
-// var server = app.listen(8081, function () {
-//     var host = server.address().address;
-//     var port = server.address().port;
-//     console.log("Example app listening at http://%s:%s", host, port)
-// });
+
+var server = app.listen(8081, function () {
+    var host = server.address().address;
+    var port = server.address().port;
+    console.log("Example app listening at http://%s:%s", host, port)
+});
 
 // TODO - Hadas you need this/TESTS!!!
-app.listen(8081, "127.0.0.1", function () {
-    console.log("App is running ");
-});
+// app.listen(8081, "127.0.0.1", function () {
+//     console.log("App is running ");
+// });
 
 setInterval(function () {
     connection.query('SELECT 1');
