@@ -664,8 +664,9 @@ textrategiaApp.controller("CreateGroupController",function($scope,$http,$locatio
 
 textrategiaApp.controller("StatisticsSuperUserController",function($scope, $http,$location){
 
-    $scope.searchQuestionMode = true
-    ;
+    // $scope.searchQuestionMode = false;
+    $scope.searchQuestionMode = true;
+    
 
      var req = {
         method: 'POST',
@@ -729,8 +730,7 @@ textrategiaApp.controller("StatisticsSuperUserController",function($scope, $http
 
 
 
-
-    /* output: $scope.questionForStatistics : list of question*/
+    // CHANGE THIS
     $scope.showSelectedQuestion = function(){
 
         // alert("selectedMedia: " + $scope.selectedMedia +
@@ -751,6 +751,19 @@ textrategiaApp.controller("StatisticsSuperUserController",function($scope, $http
             +'&difficulties='+$scope.selectedDiff
             +'&user_id=' + getUserID()
         };
+        // var req = {
+        //     method: 'POST',
+        //     cache: false,
+        //     url: _url +'/getQuestionsWithOneAnsByParamter',
+        //     headers: {
+        //         'Content-Type': 'application/x-www-form-urlencoded'
+        //     },
+        //     data: 'media_types='+ "youtube,page,img"
+        //     +'&skills='+ "זיהוי מטרה מרכזית,הסקת מסקנות,רעיון מרכזי,איתור מידע"
+
+        //     +'&difficulties=' + "קלה,בינונית"
+        //     +'&user_id=' + getUserID()
+        // };
 
         $http(req)
             .success(function(data,status,headers,config){
@@ -764,10 +777,14 @@ textrategiaApp.controller("StatisticsSuperUserController",function($scope, $http
                 }
             }).error(function(data,status,headers,config){
         });
-    };
+    }; 
 
 
-    $scope.getStatisticForQuestion= function (q_id) {
+
+    $scope.getStatisticForQuestion= function (q_id, index) {
+
+        // alert(index);
+
         var req = {
             method: 'POST',
             cache: false,
@@ -780,15 +797,18 @@ textrategiaApp.controller("StatisticsSuperUserController",function($scope, $http
 
         $http(req)
             .success(function(data,status,headers,config){
-                $scope.sThatWereWrong =data[0].StudentsThatWereWrong;
-                $scope.sCorrectFirstTry =data[0].StudentsCorrectFirstTry;
-                $scope.sCorrectSecondTry =data[0].StudentsCorrectSecondTry;
+                $scope.questionForStatistics[index].sThatWereWrong =data[0].StudentsThatWereWrong;
+                $scope.questionForStatistics[index].sCorrectFirstTry =data[0].StudentsCorrectFirstTry;
+                $scope.questionForStatistics[index].sCorrectSecondTry =data[0].StudentsCorrectSecondTry;
+                 $scope.questionForStatistics[index].gotStats = true;
+                // alert(data);
 
             })
             .error(function(data,status,headers,config) {
-                $scope.sThatWereWrong = [];
-                $scope.sCorrectFirstTry = [];
-                $scope.sCorrectSecondTry = [];
+                $scope.questionForStatistics[index].sThatWereWrong = "";
+                $scope.questionForStatistics[index].sCorrectFirstTry = "";
+                $scope.questionForStatistics[index].sCorrectSecondTry = "";
+                $scope.questionForStatistics[index].gotStats = false;
             });
 
     };
