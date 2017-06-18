@@ -102,7 +102,12 @@ router.post('/getStudentsMissingTaskInGroup', function (req, res) {
             res.status(400).send("DB error - check DB!");
         }
         else {
-            res.status(200).send(listOfStudents);
+            if(listOfStudents!= null && listOfStudents>0) {
+                res.status(200).send(listOfStudents);
+            }
+            else{
+                res.status(204).send();
+            }
         }
     });
 });
