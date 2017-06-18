@@ -2,7 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7c1dd669-4d78-476f-9d51-553f8449f360" name="Default" comment="moved to snm ljb">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../.idea/workspace.xml" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/js/app.js" afterPath="$PROJECT_DIR$/client/js/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/js/shared_controllers.js" afterPath="$PROJECT_DIR$/client/js/shared_controllers.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/js/teacher_controllers.js" afterPath="$PROJECT_DIR$/client/js/teacher_controllers.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/views/empty.html" afterPath="$PROJECT_DIR$/client/views/empty.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/views/welcome.html" afterPath="$PROJECT_DIR$/client/views/welcome.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/teacher.js" afterPath="$PROJECT_DIR$/teacher.js" />
     </list>
     <list id="c6aab38b-e232-4e80-b2df-d49c82aaa698" name="Rejected commit: Default" comment="comm test" />
     <list id="b7d62d89-dbb7-429a-833f-f97ac1f737a4" name="Rejected commit: Default (2)" comment="comm test" />
@@ -20,8 +27,18 @@
       <file leaf-file-name="tools-spec.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/tools-spec.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="37">
-              <caret line="454" column="10" lean-forward="false" selection-start-line="454" selection-start-column="10" selection-end-line="454" selection-end-column="10" />
+            <state relative-caret-position="122">
+              <caret line="431" column="60" lean-forward="false" selection-start-line="431" selection-start-column="35" selection-end-line="431" selection-end-column="60" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="superUser_controllers.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/js/superUser_controllers.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="122">
+              <caret line="39" column="29" lean-forward="false" selection-start-line="39" selection-start-column="29" selection-end-line="39" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -70,8 +87,8 @@
       <file leaf-file-name="teacher.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/teacher.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="215">
-              <caret line="104" column="37" lean-forward="true" selection-start-line="104" selection-start-column="37" selection-end-line="104" selection-end-column="37" />
+            <state relative-caret-position="170">
+              <caret line="390" column="18" lean-forward="false" selection-start-line="390" selection-start-column="18" selection-end-line="390" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -111,16 +128,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>getAllTeachersBySchoolAndCity</find>
-      <find>getAllStudentForGroup</find>
-      <find>Parametert</find>
-      <find>group</find>
-      <find>genera</find>
-      <find>getQuestion</find>
-      <find>Approved</find>
-      <find>approved=0</find>
-      <find>editQue</find>
-      <find>D</find>
       <find>DIS</find>
       <find>DISABL</find>
       <find>DISABLq</find>
@@ -141,6 +148,16 @@
       <find>getStudentsMissingTaskInGroup</find>
       <find>/getStudentsMissingTaskInGroup</find>
       <find>reporte</find>
+      <find>ge</find>
+      <find>getStud</find>
+      <find>getStudet</find>
+      <find>getStude</find>
+      <find>getStu</find>
+      <find>getSt</find>
+      <find>getStudent</find>
+      <find>getStudentL</find>
+      <find>Miss</find>
+      <find>getStudentListFromGroupId</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -1055,7 +1072,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="86330000" />
+    <option name="totallyTimeSpent" value="86441000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1454,22 +1471,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/tools-spec.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="37">
-          <caret line="454" column="10" lean-forward="false" selection-start-line="454" selection-start-column="10" selection-end-line="454" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/js/superUser_controllers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/editor.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-6">
@@ -1526,10 +1527,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/test/tools-spec.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="122">
+          <caret line="431" column="60" lean-forward="false" selection-start-line="431" selection-start-column="35" selection-end-line="431" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/js/superUser_controllers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="122">
+          <caret line="39" column="29" lean-forward="false" selection-start-line="39" selection-start-column="29" selection-end-line="39" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/teacher.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="104" column="37" lean-forward="true" selection-start-line="104" selection-start-column="37" selection-end-line="104" selection-end-column="37" />
+        <state relative-caret-position="170">
+          <caret line="390" column="18" lean-forward="false" selection-start-line="390" selection-start-column="18" selection-end-line="390" selection-end-column="18" />
           <folding />
         </state>
       </provider>

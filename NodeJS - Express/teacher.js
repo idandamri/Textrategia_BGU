@@ -102,7 +102,7 @@ router.post('/getStudentsMissingTaskInGroup', function (req, res) {
             res.status(400).send("DB error - check DB!");
         }
         else {
-            if(listOfStudents!= null && listOfStudents>0) {
+            if(listOfStudents!= null && listOfStudents.length > 0) {
                 res.status(200).send(listOfStudents);
             }
             else{
@@ -389,8 +389,13 @@ router.post('/getStudentListFromGroupId', function (req, res) {
                 res.status(400).send("DB error");
             }
             else {
-                res.status(200).send(listOfStudents);//
-            }
+                if(listOfStudents!= null && listOfStudents.length > 0) {
+                    res.status(200).send(listOfStudents);
+                }
+                else{
+                    res.status(204).send();
+                }
+            }            }
         });
     } catch (err) {
         console.log("Error - " + err);
