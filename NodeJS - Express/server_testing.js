@@ -1647,6 +1647,11 @@ app.post('/getStudentStatistics', function (req, res) {
                 if (stats!= null && stats.length == 0) {
                     res.status(204).send();
                 } else {
+                    for(var i=0; i<stats.length;i++){
+                        if(stats[i].correctAnsForSkill == null){
+                            stats[i].correctAnsForSkill = 0;
+                        }
+                    }
                     res.status(200).send(stats);
                 }
             }
@@ -1852,7 +1857,7 @@ app.post('/sendTaskToStudents', function (req, res) {
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '123456',//'123465' to upload*/
+    password: '1q2w3e4r',//'123465' to upload*/
     database: 'textra_db',
     multipleStatements: true
 });

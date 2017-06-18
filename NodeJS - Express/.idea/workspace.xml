@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7c1dd669-4d78-476f-9d51-553f8449f360" name="Default" comment="moved to snm ljb">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/API.txt" afterPath="$PROJECT_DIR$/API.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server.js" afterPath="$PROJECT_DIR$/server.js" />
-    </list>
+    <list default="true" id="7c1dd669-4d78-476f-9d51-553f8449f360" name="Default" comment="moved to snm ljb" />
     <list id="c6aab38b-e232-4e80-b2df-d49c82aaa698" name="Rejected commit: Default" comment="comm test" />
     <list id="b7d62d89-dbb7-429a-833f-f97ac1f737a4" name="Rejected commit: Default (2)" comment="comm test" />
     <list id="bd2b0358-3acb-4d5b-978a-3ae71efebf61" name="Rejected commit: Default (3)" comment="19 of 20cstopped only 4 failed.." />
@@ -29,11 +25,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="server_testing.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="server_testing.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server_testing.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="1849" selection-end-column="0" />
+            <state relative-caret-position="48">
+              <caret line="1651" column="60" lean-forward="true" selection-start-line="1651" selection-start-column="60" selection-end-line="1651" selection-end-column="60" />
               <folding />
             </state>
           </provider>
@@ -89,8 +85,8 @@
       <file leaf-file-name="queryForDB.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/queryForDB.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="137">
-              <caret line="108" column="59" lean-forward="true" selection-start-line="108" selection-start-column="59" selection-end-line="108" selection-end-column="59" />
+            <state relative-caret-position="146">
+              <caret line="107" column="24" lean-forward="false" selection-start-line="107" selection-start-column="24" selection-end-line="107" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -116,10 +112,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="server.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="69">
+            <state relative-caret-position="-50">
               <caret line="1849" column="0" lean-forward="true" selection-start-line="1849" selection-start-column="0" selection-end-line="1849" selection-end-column="0" />
               <folding />
             </state>
@@ -130,7 +126,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>updateQ</find>
       <find>JSON</find>
       <find>UPDATE</find>
       <find>replace</find>
@@ -155,11 +150,12 @@
       <find>getQue</find>
       <find>addQ</find>
       <find>proff</find>
-      <find>getStudentsMissingTaskInGroup</find>
-      <find>group</find>
       <find>edit</find>
       <find>editQ</find>
       <find>Missing</find>
+      <find>getStudentsMissingTaskInGroup</find>
+      <find>Miss</find>
+      <find>group</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -181,10 +177,10 @@
         <option value="$PROJECT_DIR$/test/tools-spec.js" />
         <option value="$PROJECT_DIR$/client/js/teacher_controllers.js" />
         <option value="$PROJECT_DIR$/utils/utils.js" />
-        <option value="$PROJECT_DIR$/queryForDB.js" />
-        <option value="$PROJECT_DIR$/server_testing.js" />
         <option value="$PROJECT_DIR$/API.txt" />
         <option value="$PROJECT_DIR$/server.js" />
+        <option value="$PROJECT_DIR$/queryForDB.js" />
+        <option value="$PROJECT_DIR$/server_testing.js" />
       </list>
     </option>
   </component>
@@ -1098,7 +1094,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="71091000" />
+    <option name="totallyTimeSpent" value="72266000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1123,7 +1119,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32935154" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32764506" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32764506" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32935154" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1136,7 +1132,7 @@
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3993174" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3993174" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1260,11 +1256,35 @@
           <properties />
           <option name="timeStamp" value="451" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/server_testing.js</url>
+          <line>1640</line>
+          <properties />
+          <option name="timeStamp" value="452" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/server_testing.js</url>
+          <line>1641</line>
+          <properties />
+          <option name="timeStamp" value="453" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/server_testing.js</url>
+          <line>1654</line>
+          <properties />
+          <option name="timeStamp" value="454" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/server_testing.js</url>
+          <line>1649</line>
+          <properties />
+          <option name="timeStamp" value="455" />
+        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="452" />
+      <option name="time" value="456" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="mocha-javascript-test-runner">
@@ -1621,14 +1641,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/queryForDB.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="108" column="59" lean-forward="true" selection-start-line="108" selection-start-column="59" selection-end-line="108" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../DB/OneFileSetup.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
@@ -1645,18 +1657,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server_testing.js">
+    <entry file="file://$PROJECT_DIR$/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="1849" selection-end-column="0" />
+        <state relative-caret-position="-50">
+          <caret line="1849" column="0" lean-forward="true" selection-start-line="1849" selection-start-column="0" selection-end-line="1849" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server.js">
+    <entry file="file://$PROJECT_DIR$/queryForDB.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="1849" column="0" lean-forward="true" selection-start-line="1849" selection-start-column="0" selection-end-line="1849" selection-end-column="0" />
+        <state relative-caret-position="146">
+          <caret line="107" column="24" lean-forward="false" selection-start-line="107" selection-start-column="24" selection-end-line="107" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server_testing.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="1651" column="60" lean-forward="true" selection-start-line="1651" selection-start-column="60" selection-end-line="1651" selection-end-column="60" />
           <folding />
         </state>
       </provider>

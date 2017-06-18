@@ -110,7 +110,7 @@ module.exports =
                 "(SELECT Q_skill,count(*) as totalAnsForSkill FROM " +
                 "textra_db.instances_of_answers join questions on questions.Q_id = instances_of_answers.Q_id " +
                 "where studentId = " + s_id + "  and isMultipuleAns=0 group by Q_skill) a " +
-                "join (select Q_skill,count(*) as correctAnsForSkill from " +
+                "left join (select Q_skill,count(*) as correctAnsForSkill from " +
                 "(SELECT Q_skill,A_id FROM textra_db.instances_of_answers " +
                 "join questions on questions.Q_id = instances_of_answers.Q_id " +
                 "where studentId = " + s_id + "  and isMultipuleAns=0 ) t1 " +
