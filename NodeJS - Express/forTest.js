@@ -5,21 +5,19 @@
 var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
-
 var _ = require('underscore');
 var moment = require('moment');
 var cors = require('cors');
 var multer = require('multer');
-// var utils = require('./utils/utils');
 require('path');
 var app = express();
 app.use(cors());
 var queries = require("./queryForDB.js");
 var bodyParser = require('body-parser');
 app.use(express.static(__dirname + '/client'));
-
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
+
 
 router.post('/truncateTasksAndStudTable', function (req, res) {
     var query = "TRUNCATE TABLE textra_db.tasks_and_question_for_student_instances;";
@@ -48,6 +46,7 @@ router.post('/removeTestUsersFromGroup', function (req, res) {
     });
 });
 
+
 router.post('/addTestTaskQuestions', function (req, res) {
     var query = "insert into tasks_and_question_for_student_instances values(3,1,1);" +
         "insert into tasks_and_question_for_student_instances" +
@@ -67,6 +66,7 @@ router.post('/addTestTaskQuestions', function (req, res) {
     });
 });
 
+
 router.post('/removeRegisterUser', function (req, res) {
     var query = "delete from textra_db.students_per_group where StudentId = 12121211;" +
         "delete from textra_db.users where PersonalID = 12121211;";
@@ -80,6 +80,7 @@ router.post('/removeRegisterUser', function (req, res) {
         }
     });
 });
+
 
 router.post('/truncateInstancesOfAnswers', function (req, res) {
     var query = "TRUNCATE TABLE textra_db.instances_of_answers;";
@@ -104,10 +105,12 @@ var connection = mysql.createConnection({
     multipleStatements: true
 });
 
+
 connection.connect(function (err) {
     if (err) {
         console.log("Connection Error")
     }
 });
+
 
 module.exports = router;

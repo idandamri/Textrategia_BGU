@@ -97,13 +97,6 @@ API:
     output: status 200 -success / 400 - failure
 
 
-7.post('/questionApproveOrNot')
-	input: is_approved, q_id
-    output: status 200 /400 - server error
-    example to output : No output
-            notice: if is_approved is the same value of boolean in row it will return an error that value is the same (same error if row dose not exist.
-	
-
 8.post('/addTaskToGroup')
 	input: group_id, task_id
     output: status 200 / 400 - Insertion error - check DB (group/student does not exist or relation error!
@@ -131,12 +124,6 @@ API:
 12.post('/registerUser')
 	input: personal_id, group_code, last_name, first_name, school, city, user_type, email, password
     output: status 200 / 409 (conflict. while insert new user. probably duplicate id insertion) / 400 - No group Id found error!/Insertion error - check DB (student does not exist or relation) error!
-    example to output : No output
-
-
-13.post('/addUsersToGroup')
-	input: users/* array of users */, group_id
-    output: status 200 "inserted!" /400 - Insertion error - check DB (group/student does not exist or relation error!
     example to output : No output
 
 

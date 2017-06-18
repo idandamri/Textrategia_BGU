@@ -4,19 +4,16 @@
 var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
-
 var _ = require('underscore');
 var moment = require('moment');
 var cors = require('cors');
 var multer = require('multer');
-// var utils = require('./utils/utils');
 require('path');
 var app = express();
 app.use(cors());
 var queries = require("./queryForDB.js");
 var bodyParser = require('body-parser');
 app.use(express.static(__dirname + '/client'));
-
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
@@ -43,6 +40,7 @@ router.post('/getListOfTasks', function (req, res) {
         res.status(404).send();
     }
 });
+
 
 router.post('/getQuestion', function (req, res) {
     try {
@@ -136,6 +134,7 @@ router.post('/questionDone', function deleteQuestionFromQueue(req, res) {
     }
 });
 
+
 router.post('/updateAnswer', function (req, res) {
     try {
         var sId = req.body.user_id;
@@ -174,6 +173,7 @@ router.post('/updateAnswer', function (req, res) {
         res.status(404).send();
     }
 });
+
 
 router.post('/reportQuestion', function (req, res) {
     try {
@@ -341,6 +341,7 @@ router.post('/generateRandTask', function (req, res) {
     }
 });
 
+
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -350,10 +351,12 @@ var connection = mysql.createConnection({
     multipleStatements: true
 });
 
+
 connection.connect(function (err) {
     if (err) {
         console.log("Connection Error")
     }
 });
+
 
 module.exports = router;

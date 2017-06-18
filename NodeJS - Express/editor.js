@@ -4,19 +4,16 @@
 var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
-
 var _ = require('underscore');
 var moment = require('moment');
 var cors = require('cors');
 var multer = require('multer');
-// var utils = require('./utils/utils');
 require('path');
 var app = express();
 app.use(cors());
 var queries = require("./queryForDB.js");
 var bodyParser = require('body-parser');
 app.use(express.static(__dirname + '/client'));
-
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
@@ -47,33 +44,6 @@ router.post('/disableQuestion', function (req, res) {
     }
 });
 
-/*NOT IN USE*/
-router.post('/questionApproveOrNot', function (req, res) {
-    try {
-        var isApproved = mysql.escape(req.body.is_approved);
-        var qId = mysql.escape(req.body.q_id);
-
-        var query = queries.approveQuestion(qId, isApproved);
-        console.log('\n' + query + '\n');
-        connection.query(query, function (err, ans) {
-            if (err) {
-                console.log(err);
-                res.status(400).send("Update error - check DB (Question may not exist or value is same!)");
-            }
-            else {
-                if (ans.affectedRows == 0) {
-                    res.status(204).send("Update error - check DB (Question may not exist or value is same!)");
-                }
-                else {
-                    res.status(200).send("updated!");
-                }
-            }
-        });
-    } catch (err) {
-        console.log("Error - " + err);
-        res.status(404).send();
-    }
-});
 
 router.post('/editQuestion', function (req, res) {
 
@@ -153,28 +123,6 @@ router.post('/getAnswersByQid', function (req, res) {
 });
 
 
-/*NOT IN USE*/
-router.post('/getValidQuestions', function (req, res) {
-    try {
-        var isApproved = mysql.escape(req.body.is_app);
-        var isDisabled = mysql.escape(req.body.is_disabled);
-        var query = queries.getValidQuestions(isApproved, isDisabled);
-        console.log('\n' + query + '\n');
-        connection.query(query, function (err, listOfQuestions) {
-            if (err) {
-                console.log(err);
-                res.status(400).send("DB error");
-            }
-            else {
-                res.status(200).send(listOfQuestions);
-            }
-        });
-    } catch (err) {
-        console.log("Error - " + err);
-        res.status(404).send();
-    }
-});
-
 app.post('/getApprovedQuestion', function (req, res) {
     try {
         var query = "select * from textra_db.questions where Q_approved=1;";
@@ -222,6 +170,7 @@ router.post('/getUnapprovedQuestion', function (req, res) {
     }
 });
 
+
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -231,10 +180,12 @@ var connection = mysql.createConnection({
     multipleStatements: true
 });
 
+
 connection.connect(function (err) {
     if (err) {
         console.log("Connection Error")
     }
 });
+
 
 module.exports = router;

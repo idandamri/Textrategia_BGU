@@ -278,37 +278,6 @@ describe("Testing Textrategia API", function () {
     // });
     //
     //
-    // describe("Testing approve question", function () {
-    //     it('Testing approve OK', function (done) {
-    //         request(app).post("/questionApproveOrNot").send({"q_id": "1", "is_approved": "1"})
-    //             .end(function (err, res) {
-    //                 if (err) {
-    //                     console.log("ERR: " + err);
-    //                     throw err;
-    //                 }
-    //                 else {
-    //                     res.status.should.be.equal(200);
-    //                 }
-    //                 done();
-    //             });
-    //     });
-    //
-    //     it('Testing approve FAIL', function (done) {
-    //         request(app).post("/questionApproveOrNot").send({"q_id": "1000000000000000009", "is_approved": "1"})
-    //             .end(function (err, res) {
-    //                 if (err) {
-    //                     console.log("ERR: " + err);
-    //                     throw err;
-    //                 }
-    //                 else {
-    //                     res.status.should.be.equal(204);
-    //                 }
-    //                 done();
-    //             });
-    //     });
-    // });
-    //
-    //
     // describe("Testing disable question", function () {
     //     it('Testing disable OK', function (done) {
     //         request(app).post("/disableQuestion").send({"q_id": "1", "disable_status": "1"})
@@ -354,34 +323,6 @@ describe("Testing Textrategia API", function () {
     //                 done();
     //             });
     //     });
-    //     it('Testing insert students(plural)', function (done) {
-    //         request(app).post("/addUsersToGroup").send({"users": [1, 3], "group_id": "1234567"})
-    //             .end(function (err, res) {
-    //                 if (err) {
-    //                     console.log("ERR: " + err);
-    //                     throw err;
-    //                 }
-    //                 else {
-    //                     res.status.should.be.equal(200);
-    //                 }
-    //                 done();
-    //             });
-    //     });
-    //
-    //     it('Testing insert students(empty)', function (done) {
-    //         request(app).post("/addUsersToGroup").send({"users": [], "group_id": "1213"})
-    //             .end(function (err, res) {
-    //                 if (err) {
-    //                     console.log("ERR: " + err);
-    //                     throw err;
-    //                 }
-    //                 else {
-    //                     res.status.should.be.equal(204);
-    //                 }
-    //                 done();
-    //             });
-    //     });
-    //
     //     it('Testing creation of group', function (done) {
     //         request(app).post("/createGroup").send({
     //             "group_name": "tests 2",
@@ -512,22 +453,6 @@ describe("Testing Textrategia API", function () {
     //             });
     //     });
     // });
-    //
-    //
-    // describe("Testing get Valid Questions", function () {
-    //     it('Test get Valid Questions - correct deatils', function (done) {
-    //         request(app).post("/getValidQuestions").send({
-    //             "is_app": "1",
-    //             "is_disabled": "0"
-    //         })
-    //             .expect(200)
-    //             .end(function (err, res) {
-    //                 console.log("response: " + JSON.stringify(res.body));
-    //                 done();
-    //             });
-    //     });
-    // });
-    //
     //
     // describe("Testing get Groups By Teacher And City", function () {
     //     it('Test get Groups By Teacher And City - correct deatils', function (done) {
