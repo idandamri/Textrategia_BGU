@@ -16,6 +16,8 @@ textrategiaApp.controller("RegisterController",function($scope,$http ,$location)
     $scope.doneRegister = false;
     $scope.checkedCode = false ;            // init to false
 
+    $scope.showError = false; // set Error flag
+
     $(document).ready(function(){
         $('[data-toggle="tooltip"]').tooltip()  ;
     });
@@ -44,26 +46,18 @@ textrategiaApp.controller("RegisterController",function($scope,$http ,$location)
 
         $http(req)
             .success(function(data,status,headers,config){
-                $scope.checkedCode = true;
-                //$scope.tmp = data.userType;
-                //alert(data);
-                //alert(data[0].isTeacherGroup);
-                //alert($scope.tmp);
-                setUserType(data[0].isTeacherGroup);
-                //alert(getUserType());
-                $scope.serverFeedback = "הקוד נקלט, הנך מוזמן להמשיך בתהליך הרישום " ;
+                if (status==200){
+                    $scope.checkedCode = true;
+                    setUserType(data[0].isTeacherGroup);
+                    $scope.serverFeedback = "הקוד נקלט, הנך מוזמן להמשיך בתהליך הרישום " ;               
+                } 
+                else if (status == 204){
+                     $scope.serverFeedback = "הקוד לא קיים במערכת!";
+                }
             }).error(function(data,status,headers,config){
-            if (status==401){
-                $scope.serverFeedback = "הקוד לא קיים במערכת!";
-            }
-            else {
                 $scope.serverFeedback = "שגיאה בשרת";
-            }
         });
 
-        //alert("dude!!!");
-
-        $scope.isUserTeacher = false; // this get set by server response
 
     }
 
@@ -74,22 +68,24 @@ textrategiaApp.controller("RegisterController",function($scope,$http ,$location)
 
         var userFirstName = $scope.user.userFirstName;
         var userLastName = $scope.user.userLastName;
+        var userIdNumber = $scope.user.userIdNumber;
+        
         var userEmail1 = $scope.user.userEmail1;
         var userPassword1 = $scope.user.userPassword1;
-        var userIdNumber = $scope.user.userIdNumber;
 
         var userEmail2 = $scope.user.userEmail2;
         var userPassword2 = $scope.user.userPassword2;
 
         // temporry, will pretty it up later.
         if (userEmail1 != userEmail2){
-            $scope.serverFeedback = "email must be the same!";
+            $scope.inputAlert = "כתובת הדואר האלקטרוני לא זהות";
         }
 
         // temporry, will pretty it up later.
         if (userPassword1 != userPassword2){
-            $scope.serverFeedback = "password must be the same";
+            $scope.inputAlert = "2 הסמסאות שהכנסת אינן זהות";
         }
+
 
         if (userEmail1 == userEmail2 && userPassword1 == userPassword2 ){
             //contact server
