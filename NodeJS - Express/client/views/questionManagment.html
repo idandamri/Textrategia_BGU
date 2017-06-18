@@ -42,7 +42,7 @@
     style="font-size: 15px;" >
     שאלות<br>בהמתנה                      </button> 
 
-    <button id="choiseButton1" ng-click="approvedQuestions(0)" class="btn btn-info squirish-button2" 
+    <button id="choiseButton1" ng-click="goToQuestionManagment()" class="btn btn-info squirish-button2" 
     style="font-size: 15px;" >
     חפש<br>שאלה</button>
   
@@ -161,7 +161,7 @@
   
     <div class="text-center">
     <!-- Button -->
-      <button ng-click="searchQuestionsByParamter()" class="btn btn-lg btn-info" > 
+      <button ng-show="!searched_parameters_once" ng-click="searchQuestionsByParamter()" class="btn btn-lg btn-info" > 
         הצג שאלות לבחירה  
         <span class="glyphicon glyphicon-king"></span>
       </button>

@@ -4,6 +4,13 @@
 var _url = "";
 //var _url = "http://localhost:8081";
 
+textrategiaApp.controller("emptyController",function($scope,$http ,$location){
+
+    $location.path('questionManagment');
+
+
+});
+
 textrategiaApp.controller("RegisterController",function($scope,$http ,$location){
 
     $scope.doneRegister = false;

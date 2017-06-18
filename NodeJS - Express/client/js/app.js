@@ -73,10 +73,6 @@ textrategiaApp.config(function($routeProvider){
         templateUrl:'views/creatTask.html',
         controller :'CreatTaskController'
     })
-    .when('/questionManagment', {
-        templateUrl:'views/questionManagment.html',
-        controller :'QuestionManagmentController'
-    })
     .when('/superUserGroupManagment', {
         templateUrl:'views/superUserGroupManagment.html',
         controller :'superUserGroupManagmentController'
@@ -99,6 +95,20 @@ textrategiaApp.config(function($routeProvider){
 	templateUrl:'views/createQuestion.html',
 	controller :'CreateQuestionController'
 	})
+// ~~~~~~~~~~~~ Edit routs ~~~~~~~~~~~~~
+    .when('/questionManagment', {
+        templateUrl:'views/questionManagment.html',
+        controller :'QuestionManagmentController'
+    })
+    .when('/questionManagment2', {
+        templateUrl:'views/questionManagment.html',
+        controller :'QuestionManagmentController'
+    })
+    .when('/empty', {
+    templateUrl:'views/empty.html',
+    controller :'emptyController'
+    })
+    
 	.otherwise({
 	templateUrl:'views/welcome.html'
 	//controller :'lalaController'

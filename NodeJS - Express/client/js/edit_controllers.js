@@ -20,10 +20,16 @@ var get_jason_index = function(ans_lst, id ) {
 textrategiaApp.controller("QuestionManagmentController",function($scope,$location,$http){
     $scope.teacherName = getUserName();
     
-    $scope.searchQuestionByProfiling = false;  
     $scope.flagEditQuestionMode = false;
     $scope.approved = 5;
+    $scope.searched_parameters_once = false;
 
+
+    // start in searchquestion by profiling mode
+    var choiseButton1 = document.getElementById("choiseButton1");
+    choiseButton1.style.backgroundColor  = "#269ABC";
+    $scope.searchQuestionByProfiling = true;
+    
 
      $scope.serverFeedback = "" ;
     $scope.serverSecondFeedback= "";
@@ -47,6 +53,12 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
         $scope.skills =[];
     });
 
+    $scope.goToQuestionManagment = function () {
+        // $state.reload(true);
+            $location.path('empty');
+    }   
+
+
     $scope.approvedQuestions= function (param) {
         var choiseButton0 = document.getElementById("choiseButton0");
         var choiseButton1 = document.getElementById("choiseButton1");
@@ -55,8 +67,8 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
 
         if (param==1){
             choiseButton0.style.backgroundColor  =  "#D58512"; //yellow pressed
-            choiseButton1.style.backgroundColor  = "#5bc0de";
-            choiseButton2.style.backgroundColor  = "#c9302c";
+            choiseButton1.style.backgroundColor  = "#5bc0de";   // blue 
+            choiseButton2.style.backgroundColor  = "#c9302c";   // red
             $scope.searchQuestionByProfiling = false;
             $scope.myQuestionsStock = [];
 
@@ -64,15 +76,16 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
 
         }
         else if (param==0){
-            choiseButton0.style.backgroundColor  =  "#ec971f"; // yellow
-            choiseButton1.style.backgroundColor  = "#269ABC";
-            choiseButton2.style.backgroundColor  =  "#c9302c";
+            choiseButton0.style.backgroundColor  =  "#ec971f";      // yellow
+            choiseButton1.style.backgroundColor  = "#269ABC";       // blue pressed
+            choiseButton2.style.backgroundColor  =  "#c9302c";      // red
             $scope.searchQuestionByProfiling = true;
+            $location.path('superUser'); // doesnt work
         }
         else if (param==2){
             choiseButton0.style.backgroundColor  =  "#ec971f"; // yellow
-            choiseButton1.style.backgroundColor  =  "#5bc0de";
-            choiseButton2.style.backgroundColor  = "#9F221C";
+            choiseButton1.style.backgroundColor  =  "#5bc0de";  // blue
+            choiseButton2.style.backgroundColor  = "#9F221C";   // red pressed
             $scope.searchQuestionByProfiling = false;
             $scope.myQuestionsStock = [];
 
@@ -170,11 +183,11 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
             .success(function(data,status,headers,config){
                 if (status==200){
                     $scope.myQuestionsStock = data;
+                    $scope.searched_parameters_once = true;
                     
                 }
                 else if ( status==204){
                     $scope.myQuestionsStock = [];
-
                 }
             }).error(function(data,status,headers,config){
         });
@@ -292,9 +305,6 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
         $scope.isAdmin = false; 
     }
 
-    $scope.goToTeacher = function () {
-        $location.path('teacher');
-    };
 
     $scope.editQuestionMode = function(){
         $scope.insertPossibleAnswersMode = false;
