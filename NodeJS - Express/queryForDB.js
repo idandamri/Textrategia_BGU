@@ -101,8 +101,8 @@ module.exports =
                 " WHERE NOT EXISTS (" +
                 "select studentId, T_id from tasks_and_question_for_student_instances " +
                 "where tasks_and_question_for_student_instances.studentId = a.StudentId " +
-                "and tasks_and_question_for_student_instances.T_id != " + task_id + ")) " +
-                "b join users on b.StudentId = users.PersonalID;;"
+                "and tasks_and_question_for_student_instances.T_id = " + task_id + ")) " +
+                "b join users on b.StudentId = users.PersonalID;"
         },
 
         getStudentStatistics: function (s_id) {

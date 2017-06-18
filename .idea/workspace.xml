@@ -1,23 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e9808d4e-b595-43e7-b82a-636bd4b6c94b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/Textrategia_BGU.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/NodeJS - Express/editor.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/NodeJS - Express/forTest.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/NodeJS - Express/student.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/NodeJS - Express/superUser.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/NodeJS - Express/teacher.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/NodeJS - Express/utils.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/NodeJS - Express/utils/utils.js" afterPath="" />
+    <list default="true" id="e9808d4e-b595-43e7-b82a-636bd4b6c94b" name="Default" comment="split serevr to module">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NodeJS - Express/client/index.html" afterPath="$PROJECT_DIR$/NodeJS - Express/client/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NodeJS - Express/client/js/app.js" afterPath="$PROJECT_DIR$/NodeJS - Express/client/js/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NodeJS - Express/client/js/shared_controllers.js" afterPath="$PROJECT_DIR$/NodeJS - Express/client/js/shared_controllers.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NodeJS - Express/client/js/teacher_controllers.js" afterPath="$PROJECT_DIR$/NodeJS - Express/client/js/teacher_controllers.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NodeJS - Express/client/views/welcome.html" afterPath="$PROJECT_DIR$/NodeJS - Express/client/views/welcome.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NodeJS - Express/queryForDB.js" afterPath="$PROJECT_DIR$/NodeJS - Express/queryForDB.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NodeJS - Express/server_testing.js" afterPath="$PROJECT_DIR$/NodeJS - Express/server_testing.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NodeJS - Express/teacher.js" afterPath="$PROJECT_DIR$/NodeJS - Express/teacher.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -35,39 +26,19 @@
       <file leaf-file-name="teacher_controllers.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/NodeJS - Express/client/js/teacher_controllers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="409">
-              <caret line="307" column="26" lean-forward="false" selection-start-line="307" selection-start-column="26" selection-end-line="307" selection-end-column="26" />
-              <folding>
-                <marker date="1497792972480" expanded="true" signature="1730:1741" ph="{...}" />
-                <marker date="1497792972480" expanded="true" signature="18137:18146" ph="{&quot;method&quot;: 'POST'...}" />
-                <marker date="1497792972480" expanded="true" signature="18137:18759" ph="{...}" />
-                <marker date="1497792972480" expanded="true" signature="18137:22230" ph="{...}" />
-                <marker date="1497792972480" expanded="true" signature="18265:18603" ph="{...}" />
-                <marker date="1497792972480" expanded="true" signature="18300:18371" ph="{...}" />
-                <marker date="1497792972480" expanded="true" signature="18409:18589" ph="{...}" />
-                <marker date="1497792972480" expanded="true" signature="18647:18748" ph="{...}" />
-                <marker date="1497792972480" expanded="true" signature="18807:19736" ph="{...}" />
-                <marker date="1497792972480" expanded="true" signature="18868:19159" ph="{&quot;method&quot;: 'POST'...}" />
-                <marker date="1497792972480" expanded="true" signature="19002:19085" ph="{&quot;Content-Type&quot;: 'application/x-www-form-urlencoded'...}" />
-                <marker date="1497792972480" expanded="true" signature="19239:19579" ph="{...}" />
-                <marker date="1497792972480" expanded="true" signature="19274:19346" ph="{...}" />
-                <marker date="1497792972480" expanded="true" signature="19384:19565" ph="{...}" />
-                <marker date="1497792972480" expanded="true" signature="19623:19725" ph="{...}" />
-                <marker date="1497792972480" expanded="true" signature="19787:20867" ph="{...}" />
-                <marker date="1497792972480" expanded="true" signature="19941:20029" ph="{...}" />
-                <marker date="1497792972480" expanded="true" signature="20113:20407" ph="{&quot;method&quot;: 'POST'...}" />
-                <marker date="1497792972480" expanded="true" signature="20236:20319" ph="{&quot;Content-Type&quot;: 'application/x-www-form-urlencoded'...}" />
-                <marker date="1497792972480" expanded="true" signature="20526:20646" ph="{...}" />
-                <marker date="1497792972480" expanded="true" signature="20690:20759" ph="{...}" />
-                <marker date="1497792972480" expanded="true" signature="20917:21128" ph="{...}" />
-                <marker date="1497792972480" expanded="true" signature="21167:22226" ph="{...}" />
-                <marker date="1497792972480" expanded="true" signature="21284:21573" ph="{&quot;method&quot;: 'POST'...}" />
-                <marker date="1497792972480" expanded="true" signature="21413:21496" ph="{&quot;Content-Type&quot;: 'application/x-www-form-urlencoded'...}" />
-                <marker date="1497792972480" expanded="true" signature="21692:22073" ph="{...}" />
-                <marker date="1497792972480" expanded="true" signature="21727:21892" ph="{...}" />
-                <marker date="1497792972480" expanded="true" signature="21915:22059" ph="{...}" />
-                <marker date="1497792972480" expanded="true" signature="22117:22177" ph="{...}" />
-              </folding>
+            <state relative-caret-position="79">
+              <caret line="292" column="13" lean-forward="true" selection-start-line="292" selection-start-column="13" selection-end-line="292" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="server_testing.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/NodeJS - Express/server_testing.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="902">
+              <caret line="296" column="3" lean-forward="true" selection-start-line="296" selection-start-column="3" selection-end-line="296" selection-end-column="3" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -85,38 +56,38 @@
       <file leaf-file-name="superUser.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/NodeJS - Express/superUser.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="334" column="14" lean-forward="false" selection-start-line="334" selection-start-column="13" selection-end-line="334" selection-end-column="14" />
+            <state relative-caret-position="184">
+              <caret line="149" column="43" lean-forward="false" selection-start-line="149" selection-start-column="43" selection-end-line="149" selection-end-column="43" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="editor.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="queryForDB.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/NodeJS - Express/queryForDB.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="175">
+              <caret line="96" column="37" lean-forward="false" selection-start-line="96" selection-start-column="8" selection-end-line="96" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="editor.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/NodeJS - Express/editor.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="474">
-              <caret line="112" column="48" lean-forward="false" selection-start-line="112" selection-start-column="48" selection-end-line="112" selection-end-column="48" />
+            <state relative-caret-position="188">
+              <caret line="99" column="45" lean-forward="true" selection-start-line="99" selection-start-column="45" selection-end-line="99" selection-end-column="45" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Parser.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/NodeJS - Express/node_modules/mysql/lib/protocol/Parser.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="197">
-              <caret line="77" column="0" lean-forward="false" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="teacher.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="teacher.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/NodeJS - Express/teacher.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="7" column="30" lean-forward="false" selection-start-line="7" selection-start-column="30" selection-end-line="7" selection-end-column="30" />
+            <state relative-caret-position="439">
+              <caret line="109" column="35" lean-forward="true" selection-start-line="109" selection-start-column="35" selection-end-line="109" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -143,9 +114,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>cod</find>
-      <find>getmy</find>
-      <find>goToSuperUser</find>
       <find>סגור</find>
       <find>data</find>
       <find>alert</find>
@@ -170,9 +138,12 @@
       <find>host</find>
       <find>disableQuestion</find>
       <find>getListOfTasks</find>
-      <find>isMultipleAns</find>
-      <find>app</find>
       <find>connection.conn</find>
+      <find>app</find>
+      <find>isMultipleAns</find>
+      <find>1q</find>
+      <find>exist</find>
+      <find>getStudentsMissingTaskInGroup</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -205,15 +176,15 @@
         <option value="$PROJECT_DIR$/NodeJS - Express/test/utils.js" />
         <option value="$PROJECT_DIR$/NodeJS - Express/utils.js" />
         <option value="$PROJECT_DIR$/NodeJS - Express/test/student.js" />
-        <option value="$PROJECT_DIR$/NodeJS - Express/queryForDB.js" />
         <option value="$PROJECT_DIR$/NodeJS - Express/client/js/superUser_controllers.js" />
-        <option value="$PROJECT_DIR$/NodeJS - Express/teacher.js" />
         <option value="$PROJECT_DIR$/NodeJS - Express/student.js" />
         <option value="$PROJECT_DIR$/NodeJS - Express/superUser.js" />
         <option value="$PROJECT_DIR$/NodeJS - Express/forTest.js" />
-        <option value="$PROJECT_DIR$/NodeJS - Express/server_testing.js" />
         <option value="$PROJECT_DIR$/NodeJS - Express/client/js/teacher_controllers.js" />
         <option value="$PROJECT_DIR$/NodeJS - Express/editor.js" />
+        <option value="$PROJECT_DIR$/NodeJS - Express/server_testing.js" />
+        <option value="$PROJECT_DIR$/NodeJS - Express/queryForDB.js" />
+        <option value="$PROJECT_DIR$/NodeJS - Express/teacher.js" />
       </list>
     </option>
   </component>
@@ -229,10 +200,8 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-9" />
-    <option name="y" value="-9" />
-    <option name="width" value="1938" />
-    <option name="height" value="1050" />
+    <option name="width" value="1920" />
+    <option name="height" value="1032" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -293,7 +262,7 @@
     <property name="js.eslint.eslintPackage" value="" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
     <property name="nodejs.mocha.mocha_node_package_dir" value="C:\Users\krigel\workspace\Textrategia\Textrategia_BGU\NodeJS - Express\node_modules\mocha" />
-    <property name="SearchEverywhereHistoryKey" value="gener&#9;null&#9;null&#10;super&#9;FILE&#9;file://C:/Users/krigel/workspace/Textrategia_SUNDAY/Textrategia_BGU/NodeJS - Express/client/js/superUser_controllers.js&#10;QUER&#9;FILE&#9;file://C:/Users/krigel/workspace/Textrategia_SUNDAY/Textrategia_BGU/NodeJS - Express/queryForDB.js&#10;util&#9;FILE&#9;file://C:/Users/krigel/workspace/Textrategia_SUNDAY/Textrategia_BGU/NodeJS - Express/utils.js&#10;ser&#9;FILE&#9;file://C:/Users/krigel/workspace/Textrategia_SUNDAY/Textrategia_BGU/NodeJS - Express/server_testing.js&#10;app&#9;FILE&#9;file://C:/Users/krigel/workspace/Textrategia_SUNDAY/Textrategia_BGU/NodeJS - Express/client/js/app.js&#10;inde&#9;FILE&#9;file://C:/Users/krigel/workspace/Textrategia_SUNDAY/Textrategia_BGU/NodeJS - Express/client/index.html&#10;login&#9;FILE&#9;file://C:/Users/krigel/workspace/Textrategia_SUNDAY/Textrategia_BGU/NodeJS - Express/client/views/login.html&#10;shar&#9;FILE&#9;file://C:/Users/krigel/workspace/Textrategia_SUNDAY/Textrategia_BGU/NodeJS - Express/client/js/shared_controllers.js&#10;welco&#9;FILE&#9;file://C:/Users/krigel/workspace/Textrategia_SUNDAY/Textrategia_BGU/NodeJS - Express/client/views/welcome.html&#10;index&#9;FILE&#9;file://C:/Users/krigel/workspace/Textrategia_SUNDAY/Textrategia_BGU/NodeJS - Express/client/index.html&#10;app.j&#9;FILE&#9;file://C:/Users/krigel/workspace/Textrategia_SUNDAY/Textrategia_BGU/NodeJS - Express/client/js/app.js" />
+    <property name="SearchEverywhereHistoryKey" value="serv&#9;FILE&#9;file://C:/Users/krigel/workspace/Textrategia_SUNDAY/Textrategia_BGU/NodeJS - Express/server_testing.js&#10;gener&#9;null&#9;null&#10;super&#9;FILE&#9;file://C:/Users/krigel/workspace/Textrategia_SUNDAY/Textrategia_BGU/NodeJS - Express/client/js/superUser_controllers.js&#10;QUER&#9;FILE&#9;file://C:/Users/krigel/workspace/Textrategia_SUNDAY/Textrategia_BGU/NodeJS - Express/queryForDB.js&#10;util&#9;FILE&#9;file://C:/Users/krigel/workspace/Textrategia_SUNDAY/Textrategia_BGU/NodeJS - Express/utils.js&#10;ser&#9;FILE&#9;file://C:/Users/krigel/workspace/Textrategia_SUNDAY/Textrategia_BGU/NodeJS - Express/server_testing.js&#10;app&#9;FILE&#9;file://C:/Users/krigel/workspace/Textrategia_SUNDAY/Textrategia_BGU/NodeJS - Express/client/js/app.js&#10;inde&#9;FILE&#9;file://C:/Users/krigel/workspace/Textrategia_SUNDAY/Textrategia_BGU/NodeJS - Express/client/index.html&#10;login&#9;FILE&#9;file://C:/Users/krigel/workspace/Textrategia_SUNDAY/Textrategia_BGU/NodeJS - Express/client/views/login.html&#10;shar&#9;FILE&#9;file://C:/Users/krigel/workspace/Textrategia_SUNDAY/Textrategia_BGU/NodeJS - Express/client/js/shared_controllers.js&#10;welco&#9;FILE&#9;file://C:/Users/krigel/workspace/Textrategia_SUNDAY/Textrategia_BGU/NodeJS - Express/client/views/welcome.html&#10;index&#9;FILE&#9;file://C:/Users/krigel/workspace/Textrategia_SUNDAY/Textrategia_BGU/NodeJS - Express/client/index.html&#10;app.j&#9;FILE&#9;file://C:/Users/krigel/workspace/Textrategia_SUNDAY/Textrategia_BGU/NodeJS - Express/client/js/app.js" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -866,7 +835,7 @@
       <workItem from="1496478331322" duration="33000" />
       <workItem from="1497527660786" duration="81000" />
       <workItem from="1497527780801" duration="6000" />
-      <workItem from="1497783199873" duration="9785000" />
+      <workItem from="1497783199873" duration="12186000" />
     </task>
     <task id="LOCAL-00001" summary="add random answers">
       <created>1495894490733</created>
@@ -903,15 +872,22 @@
       <option name="project" value="LOCAL" />
       <updated>1496339971047</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="split serevr to module">
+      <created>1497793180697</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1497793180697</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46583000" />
+    <option name="totallyTimeSpent" value="48984000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1050" extended-state="0" />
-    <editor active="false" />
+    <frame x="0" y="0" width="1920" height="1032" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -921,8 +897,8 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29650506" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2874859" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31300345" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2874859" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -987,7 +963,8 @@
     <MESSAGE value="fix to add new task (work).  removing mysql.escape from questionForTask" />
     <MESSAGE value="change is-approved:&#10;if this is a super user : is-approved = 1&#10;if this is a teacher user : is-approved = 0&#10;&#10;art this moment - is_disable =1" />
     <MESSAGE value="add teacher field to &quot;build new group&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="add teacher field to &quot;build new group&quot;" />
+    <MESSAGE value="split serevr to module" />
+    <option name="LAST_COMMIT_MESSAGE" value="split serevr to module" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1295,42 +1272,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/NodeJS - Express/queryForDB.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="614">
-          <caret line="29" column="52" lean-forward="true" selection-start-line="29" selection-start-column="52" selection-end-line="29" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NodeJS - Express/forTest.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="14" column="7" lean-forward="false" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NodeJS - Express/teacher.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="7" column="30" lean-forward="false" selection-start-line="7" selection-start-column="30" selection-end-line="7" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/NodeJS - Express/student.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="74">
           <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NodeJS - Express/server_testing.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="20" lean-forward="true" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
           <folding />
         </state>
       </provider>
@@ -1351,44 +1296,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/NodeJS - Express/client/js/teacher_controllers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="409">
-          <caret line="307" column="26" lean-forward="false" selection-start-line="307" selection-start-column="26" selection-end-line="307" selection-end-column="26" />
-          <folding>
-            <marker date="1497792972480" expanded="true" signature="1730:1741" ph="{...}" />
-            <marker date="1497792972480" expanded="true" signature="18137:18146" ph="{&quot;method&quot;: 'POST'...}" />
-            <marker date="1497792972480" expanded="true" signature="18137:18759" ph="{...}" />
-            <marker date="1497792972480" expanded="true" signature="18137:22230" ph="{...}" />
-            <marker date="1497792972480" expanded="true" signature="18265:18603" ph="{...}" />
-            <marker date="1497792972480" expanded="true" signature="18300:18371" ph="{...}" />
-            <marker date="1497792972480" expanded="true" signature="18409:18589" ph="{...}" />
-            <marker date="1497792972480" expanded="true" signature="18647:18748" ph="{...}" />
-            <marker date="1497792972480" expanded="true" signature="18807:19736" ph="{...}" />
-            <marker date="1497792972480" expanded="true" signature="18868:19159" ph="{&quot;method&quot;: 'POST'...}" />
-            <marker date="1497792972480" expanded="true" signature="19002:19085" ph="{&quot;Content-Type&quot;: 'application/x-www-form-urlencoded'...}" />
-            <marker date="1497792972480" expanded="true" signature="19239:19579" ph="{...}" />
-            <marker date="1497792972480" expanded="true" signature="19274:19346" ph="{...}" />
-            <marker date="1497792972480" expanded="true" signature="19384:19565" ph="{...}" />
-            <marker date="1497792972480" expanded="true" signature="19623:19725" ph="{...}" />
-            <marker date="1497792972480" expanded="true" signature="19787:20867" ph="{...}" />
-            <marker date="1497792972480" expanded="true" signature="19941:20029" ph="{...}" />
-            <marker date="1497792972480" expanded="true" signature="20113:20407" ph="{&quot;method&quot;: 'POST'...}" />
-            <marker date="1497792972480" expanded="true" signature="20236:20319" ph="{&quot;Content-Type&quot;: 'application/x-www-form-urlencoded'...}" />
-            <marker date="1497792972480" expanded="true" signature="20526:20646" ph="{...}" />
-            <marker date="1497792972480" expanded="true" signature="20690:20759" ph="{...}" />
-            <marker date="1497792972480" expanded="true" signature="20917:21128" ph="{...}" />
-            <marker date="1497792972480" expanded="true" signature="21167:22226" ph="{...}" />
-            <marker date="1497792972480" expanded="true" signature="21284:21573" ph="{&quot;method&quot;: 'POST'...}" />
-            <marker date="1497792972480" expanded="true" signature="21413:21496" ph="{&quot;Content-Type&quot;: 'application/x-www-form-urlencoded'...}" />
-            <marker date="1497792972480" expanded="true" signature="21692:22073" ph="{...}" />
-            <marker date="1497792972480" expanded="true" signature="21727:21892" ph="{...}" />
-            <marker date="1497792972480" expanded="true" signature="21915:22059" ph="{...}" />
-            <marker date="1497792972480" expanded="true" signature="22117:22177" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/NodeJS - Express/node_modules/mysql/lib/protocol/Parser.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="197">
@@ -1397,18 +1304,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/NodeJS - Express/superUser.js">
+    <entry file="file://$PROJECT_DIR$/NodeJS - Express/editor.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="334" column="14" lean-forward="false" selection-start-line="334" selection-start-column="13" selection-end-line="334" selection-end-column="14" />
+        <state relative-caret-position="188">
+          <caret line="99" column="45" lean-forward="true" selection-start-line="99" selection-start-column="45" selection-end-line="99" selection-end-column="45" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/NodeJS - Express/editor.js">
+    <entry file="file://$PROJECT_DIR$/NodeJS - Express/forTest.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="474">
-          <caret line="112" column="48" lean-forward="false" selection-start-line="112" selection-start-column="48" selection-end-line="112" selection-end-column="48" />
+        <state relative-caret-position="272">
+          <caret line="14" column="7" lean-forward="false" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NodeJS - Express/client/js/teacher_controllers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="79">
+          <caret line="292" column="13" lean-forward="true" selection-start-line="292" selection-start-column="13" selection-end-line="292" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NodeJS - Express/server_testing.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="902">
+          <caret line="296" column="3" lean-forward="true" selection-start-line="296" selection-start-column="3" selection-end-line="296" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NodeJS - Express/superUser.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="149" column="43" lean-forward="false" selection-start-line="149" selection-start-column="43" selection-end-line="149" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NodeJS - Express/queryForDB.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="96" column="37" lean-forward="false" selection-start-line="96" selection-start-column="8" selection-end-line="96" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NodeJS - Express/teacher.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="439">
+          <caret line="109" column="35" lean-forward="true" selection-start-line="109" selection-start-column="35" selection-end-line="109" selection-end-column="35" />
           <folding />
         </state>
       </provider>
