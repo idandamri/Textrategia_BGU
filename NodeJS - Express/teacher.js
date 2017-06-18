@@ -449,7 +449,7 @@ router.post('/getStudentStatistics', function (req, res) {
                 res.status(400).send("DB error");
             }
             else {
-                if (stats!= null && stats.length == 0) {
+                if (stats != null && stats.length == 0) {
                     res.status(204).send();
                 } else {
                     res.status(200).send(stats);
@@ -548,7 +548,8 @@ router.post('/sendTaskToStudents', function (req, res) {
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '123456',//'123465' to upload*/
+    password: '1q2w3e4r',//'123465' to upload*/
+    // password: '123456',//'123465' to upload*/
     database: 'textra_db',
     multipleStatements: true
 });

@@ -1,6 +1,7 @@
 drop database textra_db;
 
 create database textra_db;
+
 use textra_db;
 
 create table users (
@@ -202,6 +203,9 @@ INSERT INTO `textra_db`.`questions` (`Q_qeustion`, `isMultipuleAns`, `Q_mediaTyp
 חוקרים בריטיים טוענים שלא. הם אפילו ניסו אפשרויות רבות ושנות ולבסוף מצאו את הדרך המושלמת לצחצוח השיניים. צחצוח של שתי דקות, בלי לצחצח חזק מדי, מביא לתוצאה הטובה ביותר. אם מצחצחים חזק, הורסים את ציפוי השן ואת החניכיים בלי להסיר שאריות אוכל או רובד פלאק.  
 בנטה הנסן, מומחית לצחצוח שיניים, אומרת שזה רעיון טוב להחזיק את מברשת השיניים בצורה שבה אוחזים בעט. "התחילו בפינה אחת וצחצחו לאורך כל השורה", היא אומרת, "אל תשכחו את הלשון! היא יכולה להכיל המון חיידקים שעלולים לגרום לריח רע מהפה."
 (מאמר מכתב עת נורבגי)','קריאה של רצף המשפט/ הפסקה מועילה להסיק את המסקנה המתבקשת - החוקרת מזכירה את העט כדי להמליץ כיצד להחזיק את מברשת השיניים.','נסו לקרוא את כל רצף המשפט/ הפסקה כדי להסיק את המסקנה הנכונה. ','הסקת מסקנות','קלה','הבעה','0','0','0','1','0','1');
+INSERT INTO `textra_db`.`questions` (`Q_qeustion`, `isMultipuleAns`, `Q_mediaType`, `Q_media`, `Q_correctFB`, `Q_notCorrectFB`, `Q_skill`, `Q_difficulty`, `Q_proffession`,  `Q_reported_Offensive`, `Q_reported_Question`, `Q_reported_Answer`,`Q_approved`, `Q_disabled`, `Q_owner`) VALUES ('משהו קרה לאדם שבסיפור בלילה הקודם. מה קרה?', '0','text',
+'האופנוע האם אי פעם התעוררת בתחושה שמשהו לא בסדר? זה היה מין יום כזה בשבילי. התיישבתי במיטה. מעט אחר כך הזזתי את הווילונות. היה מזג אוויר נורא – ירד גשם שוטף. ואז הבטתי למטה לחצר. כן! שם הוא עמד – האופנוע. הוא היה הרוס בדיוק כפי שהיה אתמול בלילה. והרגל שלי התחילה לכאוב.','אם נתבונן ברמזים בטקסט - תחושה של משהו לא בסדר, האופנוע ההרוס, הרגל הכואבת - ונחבר הכל יחד נגיע לכך שאכן האדם עבר תאונת אופנוע.','קרא בתשומת לב את הסיפור הקצר ונסה להבחין אילו רמזים נשתלים בתוכו.',
+'רב','קלה','הבעה','0','0','0','1','0','1');
 
 INSERT INTO `textra_db`.`answers` (`answer`, `Q_id`, `isCorrect`) VALUES ('כדי לשכנע אנשים שהזכייה בפיס אפשרית','1','1');
 INSERT INTO `textra_db`.`answers` (`answer`, `Q_id`, `isCorrect`) VALUES ('כדי לגרום לאנשים להתרגש','1','0');
@@ -280,40 +284,20 @@ INSERT INTO `textra_db`.`answers` (`answer`, `Q_id`, `isCorrect`) VALUES ('כי 
 /*------------------ users -----------------*/
 insert into users
 values (1,"דמרי","עידן",1	,"idandamri@gmail.com","123456");
-
 insert into users
 values (2,"קריגל","שקד",0,"shakedkr@post.bgu.ac.il","123456");
-
 insert into users
 values (3,"גנים","הדס",0,"hadasganim@gmail.com","123456");
-
 insert into users
 values (4,"שטורם","ארנון",1,"sturm@bgu.ac.il","123456");
-
 insert into users
-values (5,"שפייזר","מתן",2,"matan@gmail.com","123456");
-
+values (5,"מנהל המערכת","מנהל מערכת על",2,"admin@gmail.com","123456");
 insert into users
-values (6,"Rand","Tasker",2,"rand@tasker.com","123456");
-/*
+values (6,"יוצר מטלות עצמאיות","משתמש ייחודי",2,"rand@tasker.com","123456");
 insert into users
-values (7,"אורנה","MindCet",0,"Orna@student.com","123456");
-*/
+values (7,"אורנה","מטח",1,"Orna@teacher.com","123456");
 insert into users
-values (8,"אורנה","MindCet",1,"Orna@teacher.com","123456");
-/*
-insert into users
-values (9,"אורנה","MindCet",2,"Orna@superuser.com","123456");
-
-insert into users
-values (10,"מוריה","MindCet",0,"Morya@student.com","123456");
-*/
-insert into users
-values (11,"מוריה","MindCet",1,"Morya@teacher.com","123456");
-/*
-insert into users
-values (12,"מוריה","MindCet",2,"Morya@superuser.com","123456");
-*/
+values (8,"מוריה","מטח",1,"Morya@teacher.com","123456");
 /*------------------------------------------*/
 
 /*-------------- tasks ---------------------*/
@@ -321,7 +305,7 @@ insert into tasks
 values(null,"מטלת ניסוי","מטלת ניסוי לבסיס הנתונים", 1, 1);
 
 insert into tasks
-values(null,"2מטלת ניסוי","מטלת ניסוי לבסיס הנתונים", 4, 1);
+values(null,"מטלת ניסוי 2","מטלת ניסוי לבסיס הנתונים", 4, 1);
 
 /*------------------------------------------*/
 
@@ -353,10 +337,7 @@ insert into students_per_group
 values(2,1234567);
 /*------------------------------------------*/
 
-/*----------- teacherss_per_group -----------*/
-insert into students_per_group
-values(2,1);
-
+/*----------- teachers_per_group -----------*/
 insert into students_per_group
 values(4,1);
 
@@ -394,120 +375,9 @@ values (2,3);
 insert into tasks_joined_with_questions
 values (2,4);
 
-
-
-/*----------- tasks_and_question_for_student_instances ---------*/
-/*idan user
-insert into tasks_and_question_for_student_instances
-values(1,1,1);
-
-insert into tasks_and_question_for_student_instances
-values(1,1,2);
-
-insert into tasks_and_question_for_student_instances
-values(1,1,3);
-
-insert into tasks_and_question_for_student_instances
-values(1,1,4);
-
-
-insert into tasks_and_question_for_student_instances
-values(1,2,1);
-
-insert into tasks_and_question_for_student_instances
-values(1,2,2);
-
-insert into tasks_and_question_for_student_instances
-values(1,2,3);
-
-insert into tasks_and_question_for_student_instances
-values(1,2,4);*/
-
-
-
-/*arnon user
-insert into tasks_and_question_for_student_instances
-values(3,1,1);
-
-insert into tasks_and_question_for_student_instances
-values(3,1,2);
-
-insert into tasks_and_question_for_student_instances
-values(3,1,3);
-
-insert into tasks_and_question_for_student_instances
-values(3,1,4);
-
-
-insert into tasks_and_question_for_student_instances
-values(3,2,1);
-
-insert into tasks_and_question_for_student_instances
-values(3,2,2);
-
-insert into tasks_and_question_for_student_instances
-values(3,2,3);
-
-insert into tasks_and_question_for_student_instances
-values(3,2,4);*/
-
-/*hadas user*/
-insert into tasks_and_question_for_student_instances
-values(3,1,1);
-
-insert into tasks_and_question_for_student_instances
-values(3,1,2);
-
-insert into tasks_and_question_for_student_instances
-values(3,1,3);
-
-insert into tasks_and_question_for_student_instances
-values(3,1,4);
-
-/*task 2
-insert into tasks_and_question_for_student_instances
-values(3,2,1);
-
-insert into tasks_and_question_for_student_instances
-values(3,2,2);
-
-insert into tasks_and_question_for_student_instances
-values(3,2,3);
-
-insert into tasks_and_question_for_student_instances
-values(3,2,4);
-
-insert into tasks_and_question_for_student_instances
-values(3,2,8);*/
-
-/*------------------------------------------*/
-
-/*******questions wtih multiple answers ********/
-
-INSERT INTO `textra_db`.`questions` (`Q_qeustion`, `isMultipuleAns`, `Q_mediaType`, `Q_media`, `Q_correctFB`, `Q_notCorrectFB`, `Q_skill`, `Q_difficulty`, `Q_proffession`,  `Q_reported_Offensive`, `Q_reported_Question`, `Q_reported_Answer`,`Q_approved`, `Q_disabled`, `Q_owner`) 
-VALUES ('מה שמות הסטודנטים שבנו את טקסטרטגיה?', '1','text','רמז - שלושת המופלאים!','אח/ות על מלא את/ה!','וולאק לא משהו..','זיהוי מטרה מרכזית','קלה','הבעה','0','0','0','1','0','1');
-
-INSERT INTO `textra_db`.`questions` (`Q_qeustion`, `isMultipuleAns`, `Q_mediaType`, `Q_media`, `Q_correctFB`, `Q_notCorrectFB`, `Q_skill`, `Q_difficulty`, `Q_proffession`,  `Q_reported_Offensive`, `Q_reported_Question`, `Q_reported_Answer`,`Q_approved`, `Q_disabled`, `Q_owner`) 
-VALUES ('איזה מהמקצועות הבאים נחשבים קשים בתואר שלנו?', '1','text','התואר שלנו - הנדסת תוכנה','אח/ות על מלא את/ה!','וולאק לא משהו..','זיהוי מטרה מרכזית','קלה','הבעה','0','0','0','1','0','1');
-
-/**********************************************/
-
-/***** answers ******/
-INSERT INTO `textra_db`.`answers` (`answer`, `Q_id`, `isCorrect`) VALUES ('הדס','19','1');
-INSERT INTO `textra_db`.`answers` (`answer`, `Q_id`, `isCorrect`) VALUES ('שקד','19','1');
-INSERT INTO `textra_db`.`answers` (`answer`, `Q_id`, `isCorrect`) VALUES ('סופרמן','19','0');
-INSERT INTO `textra_db`.`answers` (`answer`, `Q_id`, `isCorrect`) VALUES ('גק ספארו','19','0');
-INSERT INTO `textra_db`.`answers` (`answer`, `Q_id`, `isCorrect`) VALUES ('אלגוריתמים','20','1');
-INSERT INTO `textra_db`.`answers` (`answer`, `Q_id`, `isCorrect`) VALUES ('הסתברות','20','0');
-INSERT INTO `textra_db`.`answers` (`answer`, `Q_id`, `isCorrect`) VALUES ('מבוא להנדסת תוכנה','20','0');
-INSERT INTO `textra_db`.`answers` (`answer`, `Q_id`, `isCorrect`) VALUES ('אימות תכנה בשיטות פורמאליות','20','1');
-/*******************/
-
 /************ cities and schools **************/
 INSERT INTO `textra_db`.`cities_and_schools` (`School`, `City`) VALUES ('מבועות','אשדוד');
 INSERT INTO `textra_db`.`cities_and_schools` (`School`, `City`) VALUES ('בית ספר אשכולות','אשדןד');
 INSERT INTO `textra_db`.`cities_and_schools` (`School`, `City`) VALUES ('מענית','באר שבע');
 INSERT INTO `textra_db`.`cities_and_schools` (`School`, `City`) VALUES ('אשכולות','אשדוד');
 /**********************************************/
-INSERT INTO `textra_db`.`questions` (`Q_qeustion`, `isMultipuleAns`, `Q_mediaType`, `Q_media`, `Q_correctFB`, `Q_notCorrectFB`, `Q_skill`, `Q_difficulty`, `Q_proffession`,  `Q_reported_Offensive`, `Q_reported_Question`, `Q_reported_Answer`,`Q_approved`, `Q_disabled`, `Q_owner`) VALUES ('משהו קרה לאדם שבסיפור בלילה הקודם. מה קרה?', '0','text','האופנוע האם אי פעם התעוררת בתחושה שמשהו לא בסדר? זה היה מין יום כזה בשבילי. התיישבתי במיטה. מעט אחר כך הזזתי את הווילונות. היה מזג אוויר נורא – ירד גשם שוטף. ואז הבטתי למטה לחצר. כן! שם הוא עמד – האופנוע. הוא היה הרוס בדיוק כפי שהיה אתמול בלילה. והרגל שלי התחילה לכאוב.','אם נתבונן ברמזים בטקסט - תחושה של משהו לא בסדר, האופנוע ההרוס, הרגל הכואבת - ונחבר הכל יחד נגיע לכך שאכן האדם עבר תאונת אופנוע.','קרא בתשומת לב את הסיפור הקצר ונסה להבחין אילו רמזים נשתלים בתוכו.','רב','קלה','הבעה','0','0','0','1','0','1');
--- INSERT INTO `textra_db`.`questions` (`Q_qeustion`, `isMultipuleAns`, `Q_mediaType`, `Q_media`, `Q_correctFB`, `Q_notCorrectFB`, `Q_skill`, `Q_difficulty`, `Q_proffession`,  `Q_reported_Offensive`, `Q_reported_Question`, `Q_reported_Answer`,`Q_approved`, `Q_disabled`, `Q_owner`) VALUES ('משהו קרה לאדם שבסיפור בלילה הקודם. מה קרה?', '0','text','האופנוע האם אי פעם התעוררת בתחושה שמשהו לא בסדר? זה היה מין יום כזה בשבילי. התיישבתי במיטה. מעט אחר כך הזזתי את הווילונות. היה מזג אוויר נורא – ירד גשם שוטף. ואז הבטתי למטה לחצר. כן! שם הוא עמד – האופנוע. הוא היה הרוס בדיוק כפי שהיה אתמול בלילה. והרגל שלי התחילה לכאוב.','אם נתבונן ברמזים בטקסט - תחושה של משהו לא בסדר, האופנוע ההרוס, הרגל הכואבת - ונחבר הכל יחד נגיע לכך שאכן האדם עבר תאונת אופנוע.','קרא בתשומת לב את הסיפור הקצר ונסה להבחין אילו רמזים נשתלים בתוכו.','רב','קלה','הבעה','0','0','0','1','0','1');

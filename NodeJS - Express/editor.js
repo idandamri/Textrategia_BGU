@@ -96,7 +96,7 @@ router.post('/editQuestion', function (req, res) {
         var answersArray = JSON.parse(req.body.answers);
 
         var query = queries.updateQuestion(q_id, q_question, q_media, q_media_type, isMul, q_correctFB, q_notCorrectFB,
-            q_skill, q_diff, q_prof, q_app, q_disabled,reported_offensive,reported_question,reported_answer);
+            q_skill, q_diff, q_prof, q_app, q_disabled, reported_offensive, reported_question, reported_answer);
         connection.query(query, function (err) {
             if (err) {
                 console.log(err);
@@ -225,7 +225,8 @@ router.post('/getUnapprovedQuestion', function (req, res) {
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '123456',//'123465' to upload*/
+    password: '1q2w3e4r',//'123465' to upload*/
+    // password: '123456',//'123465' to upload*/
     database: 'textra_db',
     multipleStatements: true
 });
