@@ -239,12 +239,20 @@ app.post('/getAllSkills', function (req, res) {
 
 var storage = multer.diskStorage({
     destination: function (req, file, callback) {
-        callback(null, './client/views/img');
+        try {
+            callback(null, './client/views/img');
+        } catch (e) {
+            console.log("Error - " + err);
+            res.status(404).send();
+        }
     },
     filename: function (req, file, callback) {
-        // callback(null, +file.originalname.substr(file.originalname.indexOf('.'))
-        callback(null, Date.now() + "_" + file.originalname
-        );
+        try { // callback(null, +file.originalname.substr(file.originalname.indexOf('.'))
+            callback(null, Date.now() + "_" + file.originalname);
+        } catch (e) {
+            console.log("Error - " + err);
+            res.status(404).send();
+        }
     }
 });
 
