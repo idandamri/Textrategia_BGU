@@ -5,14 +5,12 @@ var _ = require('underscore');
 var moment = require('moment');
 var cors = require('cors');
 var multer = require('multer');
-// var utils = require('./utils/utils');
 require('path');
 var app = express();
 app.use(cors());
 var queries = require("./queryForDB.js");
 var bodyParser = require('body-parser');
 app.use(express.static(__dirname + '/client'));
-
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(require('./teacher'));
@@ -62,6 +60,7 @@ app.get('/', function (req, res) {
         res.status(404).send();
     }
 });
+
 
 app.post('/registerUser', function (req, res) {
     try {
@@ -158,47 +157,6 @@ app.post('/registerUser', function (req, res) {
     }
 });
 
-/*NOT IN USE*/
-app.post('/addUsersToGroup', function (req, res) {
-    try {
-        var users = req.body.users;
-        var groupId = mysql.escape(req.body.group_id);
-        var indx = 0;
-        var queriesArr = [];
-
-        if (indx < users.length) {
-            while (indx < users.length) {
-                var user = users[indx];
-                var query = queries.addUsersToGroup(user, groupId);
-                console.log('\n' + query + '\n');
-                queriesArr[indx] = query;
-                indx++;
-            }
-            if (queriesArr.length > 0) {
-                var bigQuery = queriesArr.join(" ");
-                connection.query(bigQuery, function (err) {
-                    if (err) {
-                        console.log(err);
-                        // hasError = true;
-                        res.status(400).send("Insertion error - check DB (group/student does not exist or relation error!");
-
-                    } else {
-                        res.status(200).send("inserted!!");
-                    }
-                });
-            }
-        }
-        else {
-            res.status(204).send();
-            /*empty content*/
-        }
-    } catch (err) {
-        console.log("Error - " + err);
-        res.status(404).send();
-    }
-});
-
-
 
 app.post('/checkIfGroupCodeExists', function (req, res) {
     try {
@@ -222,6 +180,7 @@ app.post('/checkIfGroupCodeExists', function (req, res) {
         res.status(404).send();
     }
 });
+
 
 app.post('/getQuestionsByParamter', function (req, res) {
     try {
@@ -277,6 +236,7 @@ app.post('/getAllSkills', function (req, res) {
     }
 });
 
+
 var storage = multer.diskStorage({
     destination: function (req, file, callback) {
         callback(null, './client/views/img');
@@ -288,7 +248,9 @@ var storage = multer.diskStorage({
     }
 });
 
+
 var upload = multer({storage: storage}).single('file');
+
 
 app.post('/multer', function (req, res) {
     try {
@@ -305,13 +267,16 @@ app.post('/multer', function (req, res) {
     }
 });
 
+
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
+    // password: '1q2w3e4r',//'123465' to upload*/
     password: '123456',//'123465' to upload*/
     database: 'textra_db',
     multipleStatements: true
 });
+
 
 connection.connect(function (err) {
     if (err) {
@@ -320,16 +285,18 @@ connection.connect(function (err) {
 });
 
 
-// var server = app.listen(8081, function () {
-//     var host = server.address().address;
-//     var port = server.address().port;
-//     console.log("Example app listening at http://%s:%s", host, port)
+var server = app.listen(8081, function () {
+    var host = server.address().address;
+    var port = server.address().port;
+    console.log("Example app listening at http://%s:%s", host, port)
+});
+
+
+// // TODO - Hadas you need this/TESTS!!!
+// app.listen(8081, "127.0.0.1", function () {
+//     console.log("App is running ");
 // });
 
-// TODO - Hadas you need this/TESTS!!!
-app.listen(8081, "127.0.0.1", function () {
-    console.log("App is running ");
-});
 
 setInterval(function () {
     connection.query('SELECT 1');
