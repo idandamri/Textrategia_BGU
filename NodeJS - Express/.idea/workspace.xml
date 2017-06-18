@@ -27,11 +27,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="server_testing.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="server_testing.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server_testing.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="69">
-              <caret line="1636" column="9" lean-forward="true" selection-start-line="1636" selection-start-column="9" selection-end-line="1636" selection-end-column="9" />
+            <state relative-caret-position="137">
+              <caret line="1640" column="55" lean-forward="true" selection-start-line="1640" selection-start-column="55" selection-end-line="1640" selection-end-column="55" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OneFileSetup.sql" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../DB/OneFileSetup.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="80">
+              <caret line="95" column="32" lean-forward="true" selection-start-line="95" selection-start-column="32" selection-end-line="95" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -87,8 +97,8 @@
       <file leaf-file-name="queryForDB.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/queryForDB.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="107" column="28" lean-forward="false" selection-start-line="107" selection-start-column="8" selection-end-line="107" selection-end-column="28" />
+            <state relative-caret-position="137">
+              <caret line="108" column="59" lean-forward="true" selection-start-line="108" selection-start-column="59" selection-end-line="108" selection-end-column="59" />
               <folding />
             </state>
           </provider>
@@ -512,9 +522,9 @@
       <find>proff</find>
       <find>getStudentsMissingTaskInGroup</find>
       <find>edit</find>
+      <find>editQ</find>
       <find>group</find>
       <find>Missing</find>
-      <find>editQ</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -1446,7 +1456,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="70365000" />
+    <option name="totallyTimeSpent" value="70831000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -4832,22 +4842,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../DB/OneFileSetup.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3400">
-          <caret line="290" column="17" lean-forward="false" selection-start-line="290" selection-start-column="17" selection-end-line="290" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/queryForDB.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="107" column="28" lean-forward="false" selection-start-line="107" selection-start-column="8" selection-end-line="107" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/API.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="273">
@@ -4856,10 +4850,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/queryForDB.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="108" column="59" lean-forward="true" selection-start-line="108" selection-start-column="59" selection-end-line="108" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/server_testing.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="1636" column="9" lean-forward="true" selection-start-line="1636" selection-start-column="9" selection-end-line="1636" selection-end-column="9" />
+        <state relative-caret-position="137">
+          <caret line="1640" column="55" lean-forward="true" selection-start-line="1640" selection-start-column="55" selection-end-line="1640" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../DB/OneFileSetup.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="95" column="32" lean-forward="true" selection-start-line="95" selection-start-column="32" selection-end-line="95" selection-end-column="32" />
           <folding />
         </state>
       </provider>
