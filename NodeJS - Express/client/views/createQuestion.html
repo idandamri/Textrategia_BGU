@@ -39,7 +39,7 @@
       <!--  2  -->       
       <label class="control-label pull-right">מהו סוג המדיה של השאלה?:&nbsp;&nbsp;</label>
         <select class="form-control inputstl" id="media_type" ng-model="question.question_media_type" ng-change="changeMediaType()" style="padding: 5px 5px;" tabindex="4">
-          <!-- <option value=0>אין מדיה</option> -->
+          <option value="">- בחר -</option>
               <option value="youtube">סרטון youtube</option>
               <option value="page">אודיו</option>
               <option value="img">תמונה</option>
@@ -48,9 +48,10 @@
 
     <!-- 4 -->
 
-        <div ng-show="isImg">
+        <div ng-show="isImg" style="margin: 5px" class="text-info">
             <input type="file" file-model="myFile"/>&nbsp;
-            <button ng-click="uploadFile()">Upload</button>
+            <button class="btn btn-sm btn-info" ng-click="uploadFile()">טען תמונה</button>  &nbsp;&nbsp; {{imageStatus}}
+            <div  class="alert alert-danger login-input"></div>
         </div>
 
         <div  ng-show="!isImg">
@@ -62,6 +63,7 @@
       <!-- 6 -->
       <label class="control-label pull-right">הכנס מיומנות למידה: &nbsp;&nbsp;</label>
       <select class="form-control inputstl" id="skill_type" ng-model="question.selected_skill" ng-change="new_skill_mode()" tabindex="6" style="padding: 5px 5px;">
+       <option value="">- בחר -</option>
         <option  ng-repeat="sk in skills" value={{sk.Q_skill}}>
           {{sk.Q_skill}}
           </option>
@@ -70,10 +72,11 @@
         <input type="text" ng-show="enter_new_skill_mode" class="form-control inputstl pull-right" placeholder="מיומנות למידה" ng-model="question.selected_skill">
       </select>
 
-     	<!-- 8 -->
+      <!-- 8 -->
       <label class="control-label pull-right">מהו קושי השאלה?:&nbsp;&nbsp;</label>
       <select class="form-control inputstl" id="quest_difficulty" tabindex="7" style="padding: 5px 5px;" ng-model="question.quest_difficulty">
-          <!-- <option value=0>אין מדיה</option> -->
+          <option value="">- בחר -</option>  
+
           <option value="קלה">קלה</option>
           <option value="בינונית">בינונית</option>
           <option value="קשה">קשה</option>
@@ -123,11 +126,11 @@
 	<div class="col-sm-4 text-center">
       <!-- 3 -->
       <label class="control-label pull-right">תשובה 3: &nbsp;&nbsp;</label>
-       <textarea  type="text" rows="2" name="possible_ans_3" class="form-control inputstl pull-right" required  ng-model="question.possible_ans_3" tabindex="11"> 
+       <textarea  type="text" rows="2" name="possible_ans_3" class="form-control inputstl pull-right" required  ng-model="question.possible_ans_3" placeholder="הכנס תשובה אפשרית" tabindex="11"> 
        </textarea>
           <!-- 4 -->
       <label class="control-label pull-right">תשובה 4: &nbsp;&nbsp;</label>
-        <textarea type="text" rows="2" name="possible_ans_4" class="form-control inputstl pull-right" required  ng-model="question.possible_ans_4" tabindex="12"> 
+        <textarea type="text" rows="2" name="possible_ans_4" class="form-control inputstl pull-right" required  ng-model="question.possible_ans_4" placeholder="הכנס תשובה אפשרית" tabindex="12"> 
         </textarea>
       <br>
   </div>
@@ -135,11 +138,11 @@
     <div class="col-sm-4 text-center">
       <!-- 1 -->
       <label class="control-label pull-right">תשובה 1: &nbsp;&nbsp;</label>
-        <textarea type="text" rows="2" name="possible_ans_1" class="form-control inputstl pull-right" required ng-model="question.possible_ans_1" tabindex="9" >  
+        <textarea type="text" rows="2" name="possible_ans_1" class="form-control inputstl pull-right" required ng-model="question.possible_ans_1" placeholder="הכנס תשובה אפשרית" tabindex="9" >  
         </textarea>
           <!-- 2 -->
       <label class="control-label pull-right">תשובה 2: &nbsp;&nbsp;</label>
-        <textarea type="text" rows="2" name="possible_ans_2" class="form-control inputstl pull-right" required ng-model="question.possible_ans_2" tabindex="10">  
+        <textarea type="text" rows="2" name="possible_ans_2" class="form-control inputstl pull-right" required ng-model="question.possible_ans_2" placeholder="הכנס תשובה אפשרית" tabindex="10">  
         </textarea>
 
     </div>
