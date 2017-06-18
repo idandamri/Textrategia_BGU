@@ -4,11 +4,9 @@
 var _url = "";
 //var _url = "http://localhost:8081";
 
+
 textrategiaApp.controller("emptyController",function($scope,$http ,$location){
-
     $location.path('questionManagment');
-
-
 });
 
 textrategiaApp.controller("RegisterController",function($scope,$http ,$location){
@@ -118,6 +116,7 @@ textrategiaApp.controller("LoginController", function($scope, $http,$location) {
 
     //------- Authenticate function
     $scope.authenticate = function (){
+
         var user = $scope.user.username;
         var password = $scope.user.password;
         var flag= false;
