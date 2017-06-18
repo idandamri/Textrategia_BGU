@@ -61,8 +61,6 @@ textrategiaApp.controller("StatisticsTeacherController",function($scope, $http,$
 
  $scope.getStatisticForStudent= function (s_id, index) {
 
-        // alert(s_id);
-
         var req = {
             method: 'POST',
             cache: false,
@@ -75,19 +73,26 @@ textrategiaApp.controller("StatisticsTeacherController",function($scope, $http,$
 
         $http(req)
             .success(function(data,status,headers,config){
-                $scope.studentsForStatistics[index].statistics = data;
+                if (status==200) {
+                // alert("success");
+                 $scope.studentsForStatistics[index].statistics = data;
                  $scope.studentsForStatistics[index].gotStats = true;
-                // alert(data);
+             } else if (status==204){
+                $scope.studentsForStatistics[index].gotStats = true;
+                $scope.studentsForStatistics[index].statistics = [];
+                $scope.serverFeedback = "עדיין לא קיימים נתוני סטטיסטיקה על תלמיד זה"
+              }
 
             })
             .error(function(data,status,headers,config) {
-                $scope.studentsForStatistics[index].Q_skill =  "";
-                $scope.studentsForStatistics[index].totalAnsForSkill = "";
-                $scope.studentsForStatistics[index].correctAnsForSkill = "";
-                $scope.studentsForStatistics[index].gotStats = false;
-            });
 
-    };
+            });
+};
+
+    $scope.switchToChooseGroupMod = function(){
+        $scope.studentsForStatistics = false;
+        $scope.chooseGroupMod = true;
+    }
 
 
 
@@ -604,15 +609,18 @@ $scope.studentToSendTaskToList = [];
 
     $scope.showGroupsMembersList = function(g_id){
 
- var req = {
-            method: 'POST',
-            cache: false,
-            url: _url +'/getStudentListFromGroupId',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            data: 'group_id='+g_id
-        };
+        // var g_id = g.GroupId;
+        // alert(g_id)
+        // $scope.choosen_group = g.GroupName;
+         var req = {
+                    method: 'POST',
+                    cache: false,
+                    url: _url +'/getStudentListFromGroupId',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    data: 'group_id='+g_id
+                };
 
         // alert(JSON.stringify(req));
 

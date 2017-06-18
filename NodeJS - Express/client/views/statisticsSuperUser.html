@@ -124,7 +124,12 @@
 <br>
 <br>
 
-  <div id="collapse{{ $index + 1 }}" ng-show="q.gotStats" >   
+ <span class="text-info" ng-show = "q.gotStats && q.sCorrectFirstTry+q.sCorrectSecondTry+q.sThatWereWrong == 0" style="font-size: 17px;" >
+  &nbsp;&nbsp;אין עדיין נתוני סטטיסטיקה על שאלה זו
+  </span>
+
+
+  <div id="collapse{{ $index + 1 }}" ng-show="q.gotStats &&  q.sCorrectFirstTry+q.sCorrectSecondTry+q.sThatWereWrong > 0" >   
     <p class="bg-success">תלמידים שהצליחו בניסיון ראשון: {{q.sCorrectFirstTry}}</p>
     <p class="bg-warning">תלמידים שהצליחו בניסיון שני: {{q.sCorrectSecondTry}}</p>
     <p class="bg-danger">תלמידים שלא הצליחו: {{q.sThatWereWrong}}</p> 

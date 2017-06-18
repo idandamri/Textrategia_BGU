@@ -797,17 +797,25 @@ textrategiaApp.controller("StatisticsSuperUserController",function($scope, $http
 
         $http(req)
             .success(function(data,status,headers,config){
-                $scope.questionForStatistics[index].sThatWereWrong =data[0].StudentsThatWereWrong;
-                $scope.questionForStatistics[index].sCorrectFirstTry =data[0].StudentsCorrectFirstTry;
-                $scope.questionForStatistics[index].sCorrectSecondTry =data[0].StudentsCorrectSecondTry;
-                 $scope.questionForStatistics[index].gotStats = true;
+                if (status==200) {
+                    $scope.questionForStatistics[index].sThatWereWrong =data[0].StudentsThatWereWrong;
+                    $scope.questionForStatistics[index].sCorrectFirstTry =data[0].StudentsCorrectFirstTry;
+                    $scope.questionForStatistics[index].sCorrectSecondTry =data[0].StudentsCorrectSecondTry;
+                    $scope.questionForStatistics[index].gotStats = true;
+                } else if (status==204){
+                    $scope.questionForStatistics[index].gotStats = true;
+                    $scope.questionForStatistics[index].sThatWereWrong = [];
+                    $scope.questionForStatistics[index].sCorrectFirstTry = [];
+                    $scope.questionForStatistics[index].sCorrectSecondTry = [];
+                    $scope.serverFeedback = "אין עדיין נתוני סטטיסטיקה על שאלה זו";
+                }
                 // alert(data);
 
             })
             .error(function(data,status,headers,config) {
-                $scope.questionForStatistics[index].sThatWereWrong = "";
-                $scope.questionForStatistics[index].sCorrectFirstTry = "";
-                $scope.questionForStatistics[index].sCorrectSecondTry = "";
+                $scope.questionForStatistics[index].sThatWereWrong = 0;
+                $scope.questionForStatistics[index].sCorrectFirstTry = 0;
+                $scope.questionForStatistics[index].sCorrectSecondTry = 0;
                 $scope.questionForStatistics[index].gotStats = false;
             });
 
