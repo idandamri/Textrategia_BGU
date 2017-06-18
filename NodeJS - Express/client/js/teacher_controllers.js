@@ -185,10 +185,9 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
             alert("אל תשכח להעלות את התמונה - לחץ על כפתור upload");
         }
         else if (media_type.value!="img" && ($scope.question.question_media=="" || $scope.question.question_media==null)){
-            alert("יכול להיות ששכחת להוסיף מדיה?");
+            alert("יכול להיות ששכחת להוסיף מדיה?")
         }
         else {
-            alert($scope.question.question_media);
             $scope.insertPossibleAnswersMode = true;
         }
     }
@@ -310,10 +309,10 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
         else
             is_approved=0;
 
-        alert("isMultipleAns:" + $scope.isMultipleAns);
+        // alert("isMultipleAns:" + $scope.isMultipleAns);
         var correctAnswer;
         if (! $scope.isMultipleAns){
-            alert("!");
+            // alert("!");
             correctAnswer = $scope.selected_ans;
             // alert(correctAnswer);
         }
