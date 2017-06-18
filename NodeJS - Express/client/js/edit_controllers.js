@@ -23,6 +23,9 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
     $scope.flagEditQuestionMode = false;
     $scope.approved = 5;
     $scope.searched_parameters_once = false;
+    $scope.ask_if_should_disable = false;
+    $scope.question_is_legal = true;     
+    $scope.doneWithPage = false;
 
 
     // start in searchquestion by profiling mode
@@ -70,6 +73,7 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
             choiseButton1.style.backgroundColor  = "#5bc0de";   // blue 
             choiseButton2.style.backgroundColor  = "#c9302c";   // red
             $scope.searchQuestionByProfiling = false;
+            $scope.flagEditQuestionMode = false;
             $scope.myQuestionsStock = [];
 
             get_all_questions("/getUnapprovedQuestion");
@@ -87,6 +91,7 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
             choiseButton1.style.backgroundColor  =  "#5bc0de";  // blue
             choiseButton2.style.backgroundColor  = "#9F221C";   // red pressed
             $scope.searchQuestionByProfiling = false;
+            $scope.flagEditQuestionMode = false;
             $scope.myQuestionsStock = [];
 
             get_all_questions("/getReported");
@@ -194,13 +199,11 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
     };
 
     $scope.id_question_to_edit = "";
+
     $scope.editChosenQuestion = function(q_id, q_question){
         $scope.serverFeedback = "האם ברצונך לערוך את השאלה:" ;
         $scope.serverSecondFeedback= q_question;
         $scope.id_question_to_edit = q_id;
-
-
-
     };
 
     $scope.backToQuestionStockView = function(){
@@ -351,7 +354,7 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
             parseInt($scope.question.answer3_is_correct) +  parseInt($scope.question.answer4_is_correct) ;
 
         if (sum == 0){
-            $scope.serverFeedback = "חייב לבחור לבחות תשובה נכונה אחת";
+            $scope.serverFeedback = "חייב לבחור לפחות תשובה נכונה אחת";
         }
         else if( !isMultipuleAns && sum != 1){
             $scope.serverFeedback = "אסור לבחור יותר מתשובה נכונה אחת";    
@@ -363,6 +366,11 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
         };
 
     };
+    $scope.resetFlags = function(){
+         $scope.question_is_legal = true;      
+
+    };
+
     $scope.sendNewQuestion = function (){
 
         var question_id = $scope.question.question_id;
@@ -463,23 +471,46 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
         };
         // data: 'students=['+ studentIDlst + ']
 
-         alert(JSON.stringify(req));
+         // alert(JSON.stringify(req));
 
         $http(req)
             .success(function(data,status,headers,config){
                 $scope.serverFeedback = "השאלה נערכה בהצלחה!"
                 $scope.doneRegisterQuestion = true;
+                $scope.doneWithPage = true;
             }).error(function(data,status,headers,config){
-            $scope.serverFeedback = "שגיאה בעריכת השאלה שאלה";
+            $scope.serverFeedback = "שגיאה בעריכת השאלה";
+            $location.path('superUser');
+
         });
 
  
 
-        $scope.serverFeedback = "השאלה נשלחה בהצלחה!"
-    }
+
+    };
 
 
     $scope.dontEdit = function(){
         $location.path('superUser');
-    }
+    };
+
+$scope.disableQuestionPermanentlyWrapper = function(){
+    $scope.serverFeedback = "אתה בטוח שברצותך להשבית את השאלה??";
+    $scope.serverSecondFeedback = "שים לב, שאלה שהושבתה לא ניתנת לשחזור!";
+    $scope.ask_if_should_disable = true;
+
+};
+
+$scope.disableQuestionPermanently = function(){
+$scope.ask_if_should_disable = false;
+alert("deleteQ!");
+
+};
+
+$scope.dontDisableQuestion = function(){
+$scope.ask_if_should_disable = false;
+alert("DONT deleteQ!");
+};
+
+
 });
