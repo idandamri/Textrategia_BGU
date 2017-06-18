@@ -11,7 +11,8 @@ textrategiaApp.controller("TeacherController",function($scope, $http,$location){
 textrategiaApp.controller("StatisticsTeacherController",function($scope, $http,$location){
     $scope.teacherName = getUserName();
     $scope.chooseGroupMod = true;
-
+    $scope.noStudentInGroup = "עדיין לא רשומים תלמידים";  
+    $scope.noUsersInGroup = false;
 
    var req = {
         method: 'POST',
@@ -30,8 +31,8 @@ textrategiaApp.controller("StatisticsTeacherController",function($scope, $http,$
     });
 
 
-    $scope.showGroupsMembersList = function(g_id){
-
+    $scope.showGroupsMembersList = function(g_id,g_name){
+        $scope.choosenGroupName = g_name;
         var req = {
             method: 'POST',
             cache: false,
@@ -49,10 +50,12 @@ textrategiaApp.controller("StatisticsTeacherController",function($scope, $http,$
                 if (status==200) {
                     $scope.studentsForStatistics = data;
                     $scope.chooseGroupMod = false;
+                    $scope.noUsersInGroup = false;
                 }
                 else if (status==204){
                     $scope.studentsForStatistics = [];
                     $scope.serverFeedback = "אין תלמידים בקבוצה";
+                    $scope.noUsersInGroup = true;
                 }
             }).error(function(data,status,headers,config){
                 $scope.studentsForStatistics = [];
@@ -92,6 +95,7 @@ textrategiaApp.controller("StatisticsTeacherController",function($scope, $http,$
     $scope.switchToChooseGroupMod = function(){
         $scope.studentsForStatistics = false;
         $scope.chooseGroupMod = true;
+        $scope.noUsersInGroup = false;
     }
 
 
@@ -392,6 +396,9 @@ textrategiaApp.controller("GroupManagementController",function($scope,$http,$loc
     var groups = document.getElementById("available_group");
     var tasks = document.getElementById("available_task");
 
+    $scope.pickedTask = true;
+    $scope.studentLstForTaskSeningIsEmpty = true;
+
     $scope.send_task_mod = false;  // else group managment mode
     $scope.send_task_for_some_student_mod = false;
 
@@ -613,6 +620,10 @@ $scope.studentToSendTaskToList = [];
         {
            $scope.studentToSendTaskToList.splice(index, 1);
         }
+        if ($scope.studentToSendTaskToList.length == 0){
+            $scope.studentLstForTaskSeningIsEmpty = true;
+        }
+
     };
 
     $scope.addThisStudent = function (element){
@@ -621,6 +632,8 @@ $scope.studentToSendTaskToList = [];
                 {
                    $scope.studentToSendTaskToList.push(element);
                 }
+        $scope.studentLstForTaskSeningIsEmpty = false;
+
         };
 
 
@@ -671,7 +684,7 @@ $scope.studentToSendTaskToList = [];
  $scope.showGroupsMembersList2 = function(g_id){
     $scope.noStudentInGroup = "";
     if ($scope.selected_task2) {
-        $scope.taskIsMandetory = "";
+        $scope.pickedTask = true;
         var selected_task2 = $scope.selected_task2;
         var req = {
                     method: 'POST',
@@ -699,7 +712,7 @@ $scope.studentToSendTaskToList = [];
                             $scope.groupsStudentLst2 = [];
                             $scope.noStudentInGroup = "- אין תלמידים בקבוצה הנבחרת -";
                             $scope.serverFeedback = "אין תלמידים בקבוצה";
-                            alert("dude!");
+                            // alert("dude!");
                         }
                     }).error(function(data,status,headers,config){
                         $scope.groupsStudentLst2 = [];
@@ -707,7 +720,7 @@ $scope.studentToSendTaskToList = [];
 
                 });
         } else {
-             $scope.taskIsMandetory = "לא בחרת מטלה!";
+             $scope.pickedTask = false;
         }
 
     }
@@ -716,41 +729,48 @@ $scope.studentToSendTaskToList = [];
 
 
     $scope.sendTaskForSomeStudent = function(){
+        if ($scope.studentToSendTaskToList.length!=0){
+            
+            var studentIDlst = [];
+            var selected_task2 = $scope.selected_task2;
 
-        var studentIDlst = [];
-        var selected_task2 = $scope.selected_task2;
 
+            for (i=0 ; i< $scope.studentToSendTaskToList.length ; i++){
+                studentIDlst.push($scope.studentToSendTaskToList[i].PersonalID);
+            }
 
-        for (i=0 ; i< $scope.studentToSendTaskToList.length ; i++){
-            studentIDlst.push($scope.studentToSendTaskToList[i].PersonalID);
+            $scope.serverFeedback = "didnot finish just yet.....";
+
+            var req = {
+                method: 'POST',
+                cache: false,
+                url: _url +'/sendTaskToStudents',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                data: 'students=['+ studentIDlst + ']&task_id=' + selected_task2
+            };
+
+            // alert(JSON.stringify(req));
+
+            $http(req)
+                .success(function(data,status,headers,config){
+                    $scope.serverFeedback = "המטלה נשלחה בהצלחה"
+                    $scope.doneSendTask = true;
+                }).error(function(data,status,headers,config){
+                $scope.serverFeedback = "שגיאה בשליחת המטלה"
+
+            });
+
+            // alert("group" + group.value  + "\n task:"  + task.value);              // this is T_id
+
         }
-
-        $scope.serverFeedback = "didnot finish just yet.....";
-
-        var req = {
-            method: 'POST',
-            cache: false,
-            url: _url +'/sendTaskToStudents',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            data: 'students=['+ studentIDlst + ']&task_id=' + selected_task2
-        };
-
-        // alert(JSON.stringify(req));
-
-        $http(req)
-            .success(function(data,status,headers,config){
-                $scope.serverFeedback = "המטלה נשלחה בהצלחה"
-                $scope.doneSendTask = true;
-            }).error(function(data,status,headers,config){
-            $scope.serverFeedback = "שגיאה בשליחת המטלה"
-
-        });
-
-        // alert("group" + group.value  + "\n task:"  + task.value);              // this is T_id
-
+        else {
+        }
     }
+
+
+
 
 
     $scope.showStudnetPassword = function(stud){

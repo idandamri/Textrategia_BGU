@@ -42,6 +42,8 @@
       <p> שלח מטלות<br>לתלמידים</p>
     </button>
 
+
+
   </div>
 
   <div class="col-sm-6" >
@@ -111,11 +113,12 @@
 
 
   <div class="col-sm-12">  
-    <h3>בחר מטלה והצמד לה קבוצה</h3> 
+    <h3>בחר מטלה, בחר קבוצה ושלח.<br><small>שים לב, אם המטלה כבר נשלחה לקבוצה, לא ניתן לשלוח פעם נוספת</small></h3> 
   </div>
 
   <br><br>
 
+<form name="taskGroupForm">
   <div class="form-group">
 
           <div class="col-sm-12 text-center">
@@ -133,19 +136,24 @@
 
            <div class="col-sm-2"></div>
           <!-- 1 -->
+
            <div class="col-sm-8" style = "padding: 60px;">
             <label for="available_task" class="control-label pull-right" >מטלות זמינות:</label>
-            <select class="form-control inputstl" id="available_task" ng-model="selected_task" ng-change="getAllGroupForTask()" size=1>
+            <select required class="form-control inputstl" id="available_task" ng-model="selected_task" ng-change="getAllGroupForTask()" size=1>
+              <option value=""></option>
               <option ng-repeat="y in allTasks" value="{{y.T_id}}">{{y.T_title}}</option>
               <option ng-show="info.tasks==0" disabled>אין מטלות זמינות</option>
             </select>
 
-          <!-- 2 -->
-            <label for="available_group" class="control-label pull-right">קבוצות זמינות:</label>
-            <select class="form-control inputstl" id="available_group" ng-model="selected_group" size =1>
-              <option ng-repeat="x in groups" value="{{x.GroupId}}">{{x.GroupName}}</option>
-              <option ng-show="groups==0" disabled>אין קבוצות זמינות</option>
-            </select>
+            <!-- 2 -->
+            <div style="margin-top: 6px;">
+              <label for="available_group" class="control-label pull-right">קבוצות זמינות:</label>
+              <select required class="form-control inputstl" id="available_group" ng-model="selected_group" size =1>
+                <option value=""></option>
+                <option ng-repeat="x in groups" value="{{x.GroupId}}">{{x.GroupName}}</option>
+                <option ng-show="groups==0" disabled>אין קבוצות זמינות</option>
+              </select>
+            </div>
           </div>
              
            <div class="col-sm-2"></div>
@@ -162,9 +170,10 @@
        <p>חזור<br>לניהול<br>קבוצות</p>          </button> 
 
        <!-- Button -->
-     <button ng-click="sendTaskToGroup()" class="btn btn-success squirish-button4" style="font-size: 15px;" data-toggle="modal" data-target="#fedbackModal">
+     <button ng-click="sendTaskToGroup()" ng-disabled="taskGroupForm.$invalid"  class="btn btn-success squirish-button4" style="font-size: 15px;" data-toggle="modal" data-target="#fedbackModal">
        <span class="glyphicon glyphicon-send" style="font-size: 20px;"></span> 
        <p>שלח<br>מטלה<br>לקבוצה</p>          </button>
+  </form>
 
   </div>
 
@@ -175,6 +184,7 @@
 
 <!-- SEND TASK FOR STUDENT MODE -->
 <div class="row" ng-show="send_task_for_some_student_mod">
+<form name="taskStudentForm">
 
   <div class="col-sm-12"> 
   <h3> בחר מטלה, בחר קבוצה, סמן תלמידים ושלח! </h3>
@@ -216,6 +226,11 @@
     </div>
 
 <br><br><br>
+    
+    <div ng-show="studentLstForTaskSeningIsEmpty" class="alert alert-info login-input" style="font-size: 15px;"><strong>
+  <span class="label label-info">לדיעתך! </span>&nbsp;&nbsp;עליך להוסיף תלמידים לטבלה<br> לפני שתוכל לשלוח את המטלה
+   </strong></div>
+
 
 <!-- BUTTON -->
    <button ng-click="groupManagmentMode()" class="btn btn-info squirish-button3" style="font-size: 15px;" >
@@ -223,8 +238,8 @@
              </button> 
 
     <!-- BUTTON -->
-   <button ng-click="sendTaskForSomeStudent()" class="btn btn-success squirish-button3" data-toggle="modal" data-target="#fedbackModal" style="font-size: 15px;">
-     <span class="glyphicon glyphicon-send">   <p>שלח<br> תלמידים</p></span>          </button>
+   <button ng-disabled="taskStudentForm.$invalid || studentLstForTaskSeningIsEmpty"  ng-click="sendTaskForSomeStudent()" class="btn btn-success squirish-button3" data-toggle="modal" data-target="#fedbackModal" style="font-size: 15px;">
+     <span class="glyphicon glyphicon-send">   <p>שלח<br> לתלמידים</p></span>          </button>
 
 
 
@@ -273,25 +288,26 @@
 
       <!-- 1 -->
         <label  class="control-label pull-right" >מטלות זמינות:</label>
-        <select class="form-control inputstl" id="available_task" ng-model="selected_task2" ng-change="changedTask()" size=1>
+        <select required class="form-control inputstl" id="available_task" ng-model="selected_task2" ng-change="changedTask()" size=1>
+          <option value=""></option>
           <option ng-repeat="y in allTasks" value="{{y.T_id}}">{{y.T_title}}</option>
           <option ng-show="info.tasks==0" disabled>אין מטלות זמינות</option>
         </select>
         <br><br>
-        <div ng-show="!taskIsMandetory==''" class="alert alert-danger login-input" style="font-size: 15px;"><strong>
-        <span class="label label-danger">שים לב! </span>&nbsp;&nbsp;{{noStudentInGroup}}
+        <div ng-show="!pickedTask" class="alert alert-danger login-input" style="font-size: 15px;"><strong>
+        <span class="label label-danger">שים לב! </span>&nbsp;&nbsp;עליך לבחור מטלה לפני לחיצה על קבוצה!
          </strong></div> 
           <div ng-show="!noStudentInGroup==''" class="alert alert-info login-input" style="font-size: 15px;"><strong>
         <span class="label label-info">לדיעתך! </span>&nbsp;&nbsp;{{noStudentInGroup}}
          </strong></div>
 
-               
+               `
 
  </div> <!-- /form-group -->
 
 
 
-
+</form>
 </div>   <!-- /send_task_for_some_student_mod -->
 
 
