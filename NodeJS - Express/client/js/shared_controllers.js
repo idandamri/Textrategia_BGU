@@ -16,8 +16,6 @@ textrategiaApp.controller("RegisterController",function($scope,$http ,$location)
     $scope.doneRegister = false;
     $scope.checkedCode = false ;            // init to false
 
-    $scope.showError = false; // set Error flag
-
     $(document).ready(function(){
         $('[data-toggle="tooltip"]').tooltip()  ;
     });
@@ -59,7 +57,6 @@ textrategiaApp.controller("RegisterController",function($scope,$http ,$location)
         });
     }
 
-
     $scope.registerUser = function(){
         $scope.registerMod = true;
 
@@ -95,7 +92,6 @@ textrategiaApp.controller("RegisterController",function($scope,$http ,$location)
                 '&user_type=' + getUserType() + '&email=' + userEmail1 + '&password=' + userPassword1
             };
 
-
             $http(req)
                 .success(function(data,status,headers,config){
                     $scope.serverFeedback = "הרישום התבצע בהצלחה!"
@@ -112,10 +108,7 @@ textrategiaApp.controller("RegisterController",function($scope,$http ,$location)
                 }
             });
         }
-
-
     }
-
 });
 
 textrategiaApp.controller("LoginController", function($scope, $http,$location) {
@@ -148,32 +141,23 @@ textrategiaApp.controller("LoginController", function($scope, $http,$location) {
                 $scope.showError = false;
                 $scope.showSuccess = true;
                 if (data[0].UserType == "1"){
-                    // alert("go teacher!");
                     $location.path('teacher');
                 }
                 else if (data[0].UserType == "0") {
                     $location.path('student');
                 }
                 else if (data[0].UserType == "2") {
-                    // alert("go student!");
                     $location.path('superUser');
                 }
 
 
             }).error(function(data,status,headers,config){
-            $scope.showError = true;
-            $scope.showSuccess = false;
+                $scope.showError = true;
+                $scope.showSuccess = false;
 
 
         });
-
-
     }
-
-    // textrategiaApp.controller("SuperUserController", function($scope,$http,$location ,$sce) {
-    //
-    // });
-
 
 
 });
