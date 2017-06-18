@@ -331,24 +331,6 @@ thead tr th{
 
 
 
-.squirish-button1{
-    width: 150px;
-    height: 100px;
-}
-
-.squirish-button2{
-    width: 90px;
-    height: 60px;
-}
-
-.squirish-button3{
-    width: 100px;
-    height: 80px;
-}
-.squirish-button4{
-    width: 100px;
-    height: 100px;
-}
 
 
 .menu-img-style{
@@ -381,4 +363,22 @@ thead tr th{
     cursor: pointer;
     opacity: 0;
     filter: alpha(opacity=0);
+}
+.squirish-button1{
+    width: 150px;
+    height: 100px;
+}
+
+.squirish-button2{
+    width: 90px;
+    height: 60px;
+}
+
+.squirish-button3{
+    width: 100px;
+    height: 80px;
+}
+.squirish-button4{
+    width: 100px;
+    height: 100px;
 }

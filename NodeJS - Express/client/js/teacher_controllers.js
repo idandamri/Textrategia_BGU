@@ -108,7 +108,12 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
     $scope.enter_new_skill_mode = false;
     $scope.isImg= false;
     $scope.isMultipleAns= false;
+    
     $scope.imageStatus = "";
+    $scope.imageWasUploaded = false;
+
+    $scope.triedSwitchingToPossibleAnsMod = false;
+
 
 
     $scope.changeMultiple= function () {
@@ -129,6 +134,7 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
             $scope.isImg= true;
         }
         else {
+            $scope.triedSwitchingToPossibleAnsMod = false;
             $scope.isImg= false;
         }
     }
@@ -151,9 +157,12 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
 
                 imgUrl = "img/" + data ;
                 $scope.imageStatus = "קובץ עלה בהצלחה!";
+                $scope.imageWasUploaded = true;
+                
                 // alert("קובץ עלה בהצלחה!");
             })
             .error(function(){
+                $scope.imageWasUploaded = false;
                 // alert("error!!");
             });
     };
@@ -183,13 +192,17 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
 
     $scope.possibleAnswersMode = function(){
 
-        if (media_type.value=="img" && (imgUrl=="" ||imgUrl==null)){
-            alert("אל תשכח להעלות את התמונה - לחץ על כפתור upload");
-        }
-        else if (media_type.value!="img" && ($scope.question.question_media=="" || $scope.question.question_media==null)){
-            alert("יכול להיות ששכחת להוסיף מדיה?")
+        // if (media_type.value=="img" && (imgUrl=="" ||imgUrl==null)){
+        //     alert("אל תשכח להעלות את התמונה - לחץ על כפתור upload");
+        // }
+        // else if (media_type.value!="img" && ($scope.question.question_media=="" || $scope.question.question_media==null)){
+        //     alert("יכול להיות ששכחת להוסיף מדיה?")
+        // }
+        if ($scope.imageWasUploaded==false &&  $scope.isImg){
+           $scope.triedSwitchingToPossibleAnsMod = true;
         }
         else {
+            $scope.triedSwitchingToPossibleAnsMod = false;
             $scope.insertPossibleAnswersMode = true;
         }
     }
