@@ -77,6 +77,11 @@
         </tr>
       </tbody>
       </table>
+<br>
+          <div ng-show="!noStudentInGroup==''" class="alert alert-info login-input" style="font-size: 15px;"><strong>
+        <span class="label label-info">לדיעתך! </span>&nbsp;&nbsp;{{noStudentInGroup}}
+         </strong></div>
+
   </div>
 
 
@@ -205,8 +210,8 @@
           <td> {{stud2.FirstName}}</td>
           <td> {{stud2.LastName}}</td>
           <td> <button class="button btn-success" ng-click="addThisStudent(stud2)" > הוסף  </button></td>
-
-        </tr></tbody>
+        </tr>
+        </tbody>
       </table>
     </div>
 
@@ -268,10 +273,17 @@
 
       <!-- 1 -->
         <label  class="control-label pull-right" >מטלות זמינות:</label>
-        <select class="form-control inputstl" id="available_task" ng-model="selected_task2" size=1>
+        <select class="form-control inputstl" id="available_task" ng-model="selected_task2" ng-change="changedTask()" size=1>
           <option ng-repeat="y in allTasks" value="{{y.T_id}}">{{y.T_title}}</option>
           <option ng-show="info.tasks==0" disabled>אין מטלות זמינות</option>
         </select>
+        <br><br>
+        <div ng-show="!taskIsMandetory==''" class="alert alert-danger login-input" style="font-size: 15px;"><strong>
+        <span class="label label-danger">שים לב! </span>&nbsp;&nbsp;{{noStudentInGroup}}
+         </strong></div> 
+          <div ng-show="!noStudentInGroup==''" class="alert alert-info login-input" style="font-size: 15px;"><strong>
+        <span class="label label-info">לדיעתך! </span>&nbsp;&nbsp;{{noStudentInGroup}}
+         </strong></div>
 
                
 
