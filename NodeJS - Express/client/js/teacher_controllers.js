@@ -108,6 +108,7 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
     $scope.enter_new_skill_mode = false;
     $scope.isImg= false;
     $scope.isMultipleAns= false;
+    $scope.imageStatus = "";
 
 
     $scope.changeMultiple= function () {
@@ -149,7 +150,8 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
                 // alert("data to string:" + data.toString());
 
                 imgUrl = "img/" + data ;
-                alert("קובץ עלה בהצלחה!");
+                $scope.imageStatus = "קובץ עלה בהצלחה!";
+                // alert("קובץ עלה בהצלחה!");
             })
             .error(function(){
                 // alert("error!!");
