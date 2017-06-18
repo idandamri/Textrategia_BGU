@@ -12,7 +12,6 @@
       <ul class="nav navbar-nav">
         <!-- <li><a href="student.html">תלמיד</a></li> -->
         <li><a href="#student">תלמיד</a></li>
-        <li><a href="#tasks">מטלות</a></li>
       </ul>
       <p class="navbar-text">בהצלחה</p>
       <ul class="nav navbar-nav navbar-right">
@@ -23,62 +22,52 @@
   </div>
 </nav>
 
-	<div id="wrap">
-		<div class="container" id="c_1">
+<div id="wrap">
+<div class="container" id="c_1">
+   <div class="row">  
 
-<!-- MADE CHANGE !!!!!! -->
-     <div class="row">  
-    <div class="col-sm-12" >
-      <h1>שלום, {{studentName}}!</h1>
+
+  <div class="col-sm-12" >
+    <h1>שלום, {{studentName}}!</h1>
+  </div>
+    
+
+  <div class="col-sm-12" >
+    <div ng-show="tasks.length==0">
+      <h3><em> אין מטלות זמינות לביצוע... </em></h3>
     </div>
-      
+    <div ng-show="tasks.length!=0">
+      <h3><em>לרשותך, רשימת המטלות הזמינות בפניך:</em></h3>
+    </div>
+  </div>
 
-      <!--<div class="col-sm-2" >-->
-        <!--&lt;!&ndash; <h6> <strong> היסטוריית מטלות </strong></h6> &ndash;&gt;-->
-        <!--<a href="#history_tasks"><span class="glyphicon glyphicon-check"></span> היסטוריית מטלות</a>-->
-        <!--<br>-->
-        <!--<a href="#student"><span class="glyphicon glyphicon-home"></span>דף הבית</a>-->
 
-      <!--</div>-->
+  <div class="col-sm-4 panel-group"  ng-repeat="x in tasks">
 
-      <div class="col-sm-6"></div>
-
-      <div class="col-sm-4" >
-        <div ng-show="tasks.length==0">
-          <h3><em> אין מטלות זמינות לביצוע... </em></h3>
-        </div>
-        <div ng-show="tasks.length!=0">
-          <h3><em>לרשותך, רשימת המטלות הזמינות בפניך:</em></h3>
-        </div>
-      </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <p class="text-info"><bold>{{x.T_title}}</bold></p>
+        </h4>
       </div>
 
-  
-    <div class="row">
-      <div class="col-sm-4 panel-group"  ng-repeat="x in tasks">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h4 class="panel-title">
-           <p><bold>{{x.T_title}}</bold></p>
-          </h4>
-        </div>
-        <div class="panel">
-          <div class="panel-body">
-            <div class="text-info" style="margin: 18px 0px; ">
-              {{x.T_description}}
-            </div>
-     				<a ng-click="navigateToOneQuestion(x.T_id, x.T_title)" class="btn btn-primary">התחל מטלה</a>
-              </div> 
-          
-     			
+      <div class="panel">
+        <div class="panel-body">
+          <div class="" style="margin: 18px 0px; ">
+            {{x.T_description}}
           </div>
-     		</div>
-     	</div>
-    </div>
+          <div class="text-center">
+          	<a ng-click="navigateToOneQuestion(x.T_id, x.T_title)" class="btn btn-primary">התחל מטלה</a>
+          </div>
+        </div> 		
+      </div>
+ 		</div>
+ 	</div>
 
 
 
-	</div>
+  </div>
+</div>
 </div>
 
 <br><br><br><br><br>
