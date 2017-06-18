@@ -655,7 +655,13 @@ example:
 ]// the total stats are the sum of the three above
 
 
-40. post('getStudentStatistics')
+40. post('disableQuestion')
+input:disable_status, q_id
+output: status 200 / 400 - "DB Error"
+example:
+
+
+41. post('getStudentStatistics')
 input:s_id
 output: status 200 / 204 - empty content / 400 - "DB Error"
 example:
