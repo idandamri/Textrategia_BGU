@@ -182,10 +182,10 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
     $scope.possibleAnswersMode = function(){
 
         if (media_type.value=="img" && (imgUrl=="" ||imgUrl==null)){
-            alert("אל תשכח להעלות את התמונה - לחץ על כפתור upload")
+            alert("אל תשכח להעלות את התמונה - לחץ על כפתור upload");
         }
-        else if (media_type.value=="img" && ($scope.question.question_media=="" || $scope.question.question_media==null)){
-            alert("יכול להיות ששכחת להוסיף מדיה?")
+        else if (media_type.value!="img" && ($scope.question.question_media=="" || $scope.question.question_media==null)){
+            alert("יכול להיות ששכחת להוסיף מדיה?");
         }
         else {
             alert($scope.question.question_media);
