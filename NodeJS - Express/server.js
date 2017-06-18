@@ -262,19 +262,24 @@ var upload = multer({storage: storage}).single('file');
 
 app.post('/multer', function (req, res) {
     try {
-        upload(req, res, function (err) {
-            if (err) {
-                res.status(400).send();
-            }
-            var s = req.file.filename;
-            res.status(200).send(s);
-        });
+        if (req.file != null && req.file.filename != null) {
+            upload(req, res, function (err) {
+                if (err) {
+                    res.status(400).send();
+                }
+                var s = req.file.filename;
+                res.status(200).send(s);
+            });
+        }
+        else {
+            res.status(204).send();
+        }
+
     } catch (e) {
         console.log("Error - " + err);
         res.status(404).send();
     }
 });
-
 
 var connection = mysql.createConnection({
     host: 'localhost',
