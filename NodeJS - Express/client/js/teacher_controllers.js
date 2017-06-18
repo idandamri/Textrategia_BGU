@@ -8,6 +8,93 @@ textrategiaApp.controller("TeacherController",function($scope, $http,$location){
 });
 
 
+textrategiaApp.controller("StatisticsTeacherController",function($scope, $http,$location){
+    $scope.teacherName = getUserName();
+    $scope.chooseGroupMod = true;
+
+
+   var req = {
+        method: 'POST',
+        cache: false,
+        url: _url +'/getAllGroupForTeacher',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        data: 'user_id='+getUserID()
+    };
+
+    $http(req)
+        .success(function(data,status,headers,config){
+            $scope.allGroups= data;
+        }).error(function(data,status,headers,config){
+    });
+
+
+    $scope.showGroupsMembersList = function(g_id){
+
+        var req = {
+            method: 'POST',
+            cache: false,
+            url: _url +'/getStudentListFromGroupId',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            data: 'group_id='+ g_id
+        };
+
+        // alert(JSON.stringify(req));
+
+        $http(req)
+            .success(function(data,status,headers,config){
+                if (status==200) {
+                    $scope.studentsForStatistics = data;
+                    $scope.chooseGroupMod = false;
+                }
+                else if (status==204){
+                    $scope.studentsForStatistics = [];
+                    $scope.serverFeedback = "אין תלמידים בקבוצה";
+                }
+            }).error(function(data,status,headers,config){
+                $scope.studentsForStatistics = [];
+        });
+      }
+
+ $scope.getStatisticForStudent= function (s_id, index) {
+
+        // alert(s_id);
+
+        var req = {
+            method: 'POST',
+            cache: false,
+            url: _url +'/getStudentStatistics',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            data: 's_id=' + s_id
+        };
+
+        $http(req)
+            .success(function(data,status,headers,config){
+                $scope.studentsForStatistics[index].statistics = data;
+                 $scope.studentsForStatistics[index].gotStats = true;
+                // alert(data);
+
+            })
+            .error(function(data,status,headers,config) {
+                $scope.studentsForStatistics[index].Q_skill =  "";
+                $scope.studentsForStatistics[index].totalAnsForSkill = "";
+                $scope.studentsForStatistics[index].correctAnsForSkill = "";
+                $scope.studentsForStatistics[index].gotStats = false;
+            });
+
+    };
+
+
+
+
+});
+
+
 
 textrategiaApp.controller("CreateQuestionController",function($scope,$location,$http){
     $scope.teacherName = getUserName();
