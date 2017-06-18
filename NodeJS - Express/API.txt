@@ -655,6 +655,20 @@ example:
 ]// the total stats are the sum of the three above
 
 
+40. post('getStudentStatistics')
+input:s_id
+output: status 200 / 204 - empty content / 400 - "DB Error"
+example:
+[
+    {
+        "StudentId": "2"
+    },
+    {
+        "StudentId": "3"
+    }
+]// the total stats are the sum of the three above
+
+
 0-student
 1-teacher
 2-superuser

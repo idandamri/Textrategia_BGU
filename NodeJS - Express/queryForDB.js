@@ -104,16 +104,19 @@ module.exports =
                 "and tasks_and_question_for_student_instances.T_id != " + task_id + ")) " +
                 "b join users on b.StudentId = users.PersonalID;;"
         },
-        //
-        // getStudentsMissingTaskInGroup: function (task_id, group_id) {
-        //     return "select * from " +
-        //         "(select Table_a.StudentId from " +
-        //         "(select StudentId from students_per_group where GroupId = " + group_id + ") as Table_a " +
-        //         "join tasks_and_question_for_student_instances " +
-        //         "on Table_a.StudentId = tasks_and_question_for_student_instances.studentId " +
-        //         "where tasks_and_question_for_student_instances.T_id != " + task_id +
-        //         " group by StudentId) as T join users on T.StudentId = users.PersonalID;"
-        // },
+
+        getStudentStatistics: function (s_id) {
+            return "select a.Q_skill,a.totalAnsForSkill,b.correctAnsForSkill from " +
+                "(SELECT Q_skill,count(*) as totalAnsForSkill FROM " +
+                "textra_db.instances_of_answers join questions on questions.Q_id = instances_of_answers.Q_id " +
+                "where studentId = " + s_id + "  and isMultipuleAns=0 group by Q_skill) a " +
+                "join (select Q_skill,count(*) as correctAnsForSkill from " +
+                "(SELECT Q_skill,A_id FROM textra_db.instances_of_answers " +
+                "join questions on questions.Q_id = instances_of_answers.Q_id " +
+                "where studentId = " + s_id + "  and isMultipuleAns=0 ) t1 " +
+                "join answers on answers.A_id = t1.A_id where answers.isCorrect=1 " +
+                "group by Q_skill) b on a.Q_skill = b.Q_skill ;"
+        },
 
         //delete from textra_db.tasks_and_question_for_student_instances where studentId like '2' and T_id = '1' and Q_id = '1'
         deleteQuestionsFromInstance: function (student_id, task_id, q_id) {
