@@ -51,12 +51,12 @@ textrategiaApp.controller("superUserGroupManagmentController",function($scope,$h
                     }
                     else if (status==204){
                         $scope.groupsStudentLst = [];
-                        alert("אין ילדים בקבוצה");
-                        $scope.serverFeedback = "אין ילדים בקבוצה";
+                        alert("אין תלמידים בקבוצה");
+                        $scope.serverFeedback = "אין תלמידים בקבוצה";
                     }
                 }).error(function(data,status,headers,config){
                     $scope.groupsStudentLst = [];
-                    alert("אין ילדים בקבוצה");
+                    alert("אין תלמידים בקבוצה");
             });
         }
 

@@ -4,21 +4,19 @@
 var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
-
 var _ = require('underscore');
 var moment = require('moment');
 var cors = require('cors');
 var multer = require('multer');
-// var utils = require('./utils/utils');
 require('path');
 var app = express();
 app.use(cors());
 var queries = require("./queryForDB.js");
 var bodyParser = require('body-parser');
 app.use(express.static(__dirname + '/client'));
-
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
+
 
 router.post('/addTaskToGroup', function (req, res) {
     try {
@@ -91,6 +89,7 @@ router.post('/addTaskToGroup', function (req, res) {
     }
 });
 
+
 router.post('/getStudentsMissingTaskInGroup', function (req, res) {
 
     var taskID = req.body.t_id;
@@ -112,6 +111,7 @@ router.post('/getStudentsMissingTaskInGroup', function (req, res) {
         }
     });
 });
+
 
 router.post('/getGroupByUser', function (req, res) {
     try {
@@ -149,6 +149,7 @@ router.post('/getGroupByUser', function (req, res) {
     }
 });
 
+
 router.post('/getAllTasks', function (req, res) {
     try {
         var query = queries.getAllTasks();
@@ -167,6 +168,7 @@ router.post('/getAllTasks', function (req, res) {
         res.status(404).send();
     }
 });
+
 
 router.post('/getMyTasks', function (req, res) {
     try {
@@ -188,6 +190,7 @@ router.post('/getMyTasks', function (req, res) {
     }
 });
 
+
 router.post('/getAllApprovedTasks', function (req, res) {
     try {
         var query = queries.getAllApprovedTasks();
@@ -206,6 +209,7 @@ router.post('/getAllApprovedTasks', function (req, res) {
         res.status(404).send();
     }
 });
+
 
 router.post('/addQuestion', function (req, res) {
     try {
@@ -288,6 +292,7 @@ router.post('/addQuestion', function (req, res) {
     }
 });
 
+
 router.post('/createTask', function (req, res) {
 
     try {
@@ -347,6 +352,7 @@ router.post('/createTask', function (req, res) {
     }
 });
 
+
 router.post('/getAllGroupForTask', function (req, res) {
     try {
         var task_id = mysql.escape(req.body.task_id);
@@ -371,6 +377,7 @@ router.post('/getAllGroupForTask', function (req, res) {
     }
 });
 
+
 router.post('/getStudentListFromGroupId', function (req, res) {
     var groupId = mysql.escape(req.body.group_id);
     try {
@@ -390,6 +397,7 @@ router.post('/getStudentListFromGroupId', function (req, res) {
         res.status(404).send();
     }
 });
+
 
 router.post('/getAllStudentForGroup', function (req, res) {
     try {
@@ -415,6 +423,7 @@ router.post('/getAllStudentForGroup', function (req, res) {
         res.status(404).send();
     }
 });
+
 
 router.post('/getAllGroupForTeacher', function (req, res) {
     try {
@@ -454,7 +463,7 @@ router.post('/getStudentStatistics', function (req, res) {
                 res.status(400).send("DB error");
             }
             else {
-                if (stats!= null && stats.length == 0) {
+                if (stats != null && stats.length == 0) {
                     res.status(204).send();
                 } else {
                     res.status(200).send(stats);
@@ -466,6 +475,7 @@ router.post('/getStudentStatistics', function (req, res) {
         res.status(404).send();
     }
 });
+
 
 router.post('/checkIfpassIsCorrectByID', function (req, res) {
     try {
@@ -491,6 +501,7 @@ router.post('/checkIfpassIsCorrectByID', function (req, res) {
         res.status(404).send();
     }
 });
+
 
 router.post('/sendTaskToStudents', function (req, res) {
     try {
@@ -553,15 +564,18 @@ router.post('/sendTaskToStudents', function (req, res) {
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '123456',//'123465' to upload*/
+    password: '1q2w3e4r',//'123465' to upload*/
+    // password: '123456',//'123465' to upload*/
     database: 'textra_db',
     multipleStatements: true
 });
+
 
 connection.connect(function (err) {
     if (err) {
         console.log("Connection Error")
     }
 });
+
 
 module.exports = router;

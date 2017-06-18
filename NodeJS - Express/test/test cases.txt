@@ -22,10 +22,6 @@ failure -
 success -
 failure -
 
-7.post('/questionApproveOrNot')
-success -
-failure -
-
 8.post('/addTaskToGroup')
 success -
 failure -
@@ -43,10 +39,6 @@ success -
 failure -
 
 12.post('/registerUser')
-success -
-failure -
-
-13.post('/addUsersToGroup')
 success -
 failure -
 

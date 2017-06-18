@@ -4,21 +4,19 @@
 var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
-
 var _ = require('underscore');
 var moment = require('moment');
 var cors = require('cors');
 var multer = require('multer');
-// var utils = require('./utils/utils');
 require('path');
 var app = express();
 app.use(cors());
 var queries = require("./queryForDB.js");
 var bodyParser = require('body-parser');
 app.use(express.static(__dirname + '/client'));
-
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
+
 
 function makeid() {
     try {
@@ -86,6 +84,7 @@ router.post('/createGroup', function (req, res) {
     }
 });
 
+
 router.post('/getQuestionStatistics', function (req, res) {
     var qID = req.body.q_id;
     var query = queries.getQuestionStatistics(qID);
@@ -99,6 +98,7 @@ router.post('/getQuestionStatistics', function (req, res) {
         }
     });
 });
+
 
 router.post('/getGroupsBySchool', function (req, res) {
     try {
@@ -189,6 +189,7 @@ router.post('/getAllTeachersBySchoolAndCity', function (req, res) {
     }
 });
 
+
 router.post('/getAllSchollByCity', function (req, res) {
     try {
         var city = mysql.escape(req.body.city);
@@ -213,6 +214,7 @@ router.post('/getAllSchollByCity', function (req, res) {
         res.status(404).send();
     }
 });
+
 
 router.post('/getGroupBySchoolAndCity', function (req, res) {
     try {
@@ -240,6 +242,7 @@ router.post('/getGroupBySchoolAndCity', function (req, res) {
     }
 });
 
+
 router.post('/addNewSchool', function (req, res) {
     try {
         var city = mysql.escape(req.body.city);
@@ -261,6 +264,7 @@ router.post('/addNewSchool', function (req, res) {
     }
 });
 
+
 router.post('/getTeachersGroupByCityAndSchool', function (req, res) {
     try {
         var city = mysql.escape(req.body.city);
@@ -281,6 +285,7 @@ router.post('/getTeachersGroupByCityAndSchool', function (req, res) {
         res.status(404).send();
     }
 });
+
 
 router.post('/getReported', function (req, res) {
     try {
@@ -307,6 +312,7 @@ router.post('/getReported', function (req, res) {
     }
 });
 
+
 router.post('/disableQuestion', function (req, res) {
     try {
         var query = "";
@@ -329,6 +335,7 @@ router.post('/disableQuestion', function (req, res) {
         res.status(404).send();
     }
 });
+
 
 router.post('/getQuestionsWithOneAnsByParamter', function (req, res) {
     try {
@@ -359,18 +366,22 @@ router.post('/getQuestionsWithOneAnsByParamter', function (req, res) {
     }
 });
 
+
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '123456',//'123465' to upload*/
+    password: '1q2w3e4r',//'123465' to upload*/
+    // password: '123456',//'123465' to upload*/
     database: 'textra_db',
     multipleStatements: true
 });
+
 
 connection.connect(function (err) {
     if (err) {
         console.log("Connection Error")
     }
 });
+
 
 module.exports = router;

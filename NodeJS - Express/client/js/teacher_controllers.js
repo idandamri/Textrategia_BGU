@@ -631,12 +631,12 @@ $scope.studentToSendTaskToList = [];
                 }
                 else if (status==204){
                     $scope.groupsStudentLst = [];
-                    alert("אין ילדים בקבוצה");
-                    $scope.serverFeedback = "אין ילדים בקבוצה";
+                    alert("אין תלמידים בקבוצה");
+                    $scope.serverFeedback = "אין תלמידים בקבוצה";
                 }
             }).error(function(data,status,headers,config){
                 $scope.groupsStudentLst = [];
-                alert("אין ילדים בקבוצה");
+                alert("אין תלמידים בקבוצה");
 
         });
 
@@ -663,12 +663,12 @@ $scope.studentToSendTaskToList = [];
                 }
                 else if (status==204){
                     $scope.groupsStudentLst2 = [];
-                    alert("אין ילדים בקבוצה");
-                    $scope.serverFeedback = "אין ילדים בקבוצה";
+                    alert("אין תלמידים בקבוצה");
+                    $scope.serverFeedback = "אין תלמידים בקבוצה";
                 }
             }).error(function(data,status,headers,config){
                 $scope.groupsStudentLst2 = [];
-                alert("אין ילדים בקבוצה");
+                alert("אין תלמידים בקבוצה");
 
         });
 
@@ -723,6 +723,11 @@ $scope.studentToSendTaskToList = [];
         $scope.studentObject = stud;
         $scope.showPassword = false;
 
+    }
+
+    $scope.doneWithShowPassword = function(){
+        
+        $scope.showPassword = false;
     }
 
     $scope.askPremession = function(){
