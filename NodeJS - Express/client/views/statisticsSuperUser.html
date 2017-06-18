@@ -24,7 +24,7 @@
 
 
 <div id="wrap">
-  <div class="container " id="c_1">
+<div class="container " id="c_1">
 
 
 <div ng-show = "searchQuestionMode">
@@ -93,13 +93,24 @@
 
 
 <div ng-show="!searchQuestionMode">
+
+ <div ng-show = "questionForStatistics.length != 0" class="col-sm-12">  
+      <h3> לרשותך, רשימת שאלות להצגת סטטיסטיקה</h3>      
+  </div>
   
   <span ng-show = "questionForStatistics.length == 0" style="font-size: 17px;" >{{serverFeedback}} </span>
 
-  <div class="panel" ng-repeat="q in questionForStatistics">
+
+<div class="col-sm-2"> <br> </div>
+
+<div class="col-sm-8"> <br> 
+
+  <div class="panel" ng-repeat="q in questionForStatistics track by $index">
     <div ng-model="user.question" value="{{q.Q_id}}">
-    <p>&nbsp;&nbsp;{{q.Q_qeustion}} </p>
-    
+    <a data-toggle="collapse" data-parent="#accordion2" data-target="#collapse{{ $index + 1 }}" class="ng-binding collapsed">
+    &nbsp;&nbsp;{{q.Q_qeustion}}
+    </a>
+    <br>
       <span class="label label-info">{{q.Q_skill}}</span>
       <span ng-show="q.Q_mediaType=='page'" class="label label-lili">אודיו</span>
       <span ng-show="q.Q_mediaType=='img'" class="label label-lili">תמונה</span>
@@ -109,9 +120,20 @@
       <span ng-show="q.Q_difficulty=='קלה'" class="label label-success">{{q.Q_difficulty}}</span>
       <span ng-show="q.Q_difficulty=='בינונית'" class="label label-warning">{{q.Q_difficulty}}</span>
       <span ng-show="q.Q_difficulty=='קשה'" class="label label-danger">{{q.Q_difficulty}}</span>
+
+<br>
+<br>
+
+  <div id="collapse{{ $index + 1 }}" ng-show="q.gotStats" >   
+    <p class="bg-success">תלמידים שהצליחו בניסיון ראשון: {{q.sCorrectFirstTry}}</p>
+    <p class="bg-warning">תלמידים שהצליחו בניסיון שני: {{q.sCorrectSecondTry}}</p>
+    <p class="bg-danger">תלמידים שלא הצליחו: {{q.sThatWereWrong}}</p> 
+
+ </div>
+
     </div>
 
-     <button ng-click="getStatisticForQuestion(q.Q_id)" class="btn btn-info text-center" data-toggle="modal" data-target="#fedbackModal" style="margin: 5px 335px;"> 
+     <button ng-click="getStatisticForQuestion(q.Q_id,$index)" class="btn btn-info text-center" style="margin: 5px 335px;"> 
       הצג סטטיסטיקה
       <!-- <span class="glyphicon glyphicon-king"></span> -->
     </button>
@@ -120,10 +142,16 @@
 </div>
 
 
+<div class="col-sm-2"> <br> </div>
+
+  
+</div>  <!-- !searchQuestionMode -->
 
 
-</div>
-</div>
+
+
+</div> <!-- /containter -->
+</div> <!-- /wrap -->
 
 
 
