@@ -30,7 +30,7 @@
 <div ng-show = "searchQuestionMode">
 
     <div class="col-sm-12">  
-      <h1 >שלום, {{getUserName}}!  <small> חפש שאלות לצפיה בסטטיסטיקה</small></h1>      
+      <h1 >שלום, {{userName}}!  <small> חפש שאלות לצפיה בסטטיסטיקה</small></h1>      
     </div>
 
   <form name="myForm2" class="form-horizontal" role="form">
@@ -95,7 +95,7 @@
 <div ng-show="!searchQuestionMode">
 
  <div ng-show = "questionForStatistics.length != 0" class="col-sm-12">  
-      <h3> לרשותך, רשימת שאלות להצגת סטטיסטיקה</h3>      
+      <h3> לרשותך, רשימת השאלות עם פירוט הסטטיסטיקה<small> &nbsp;&nbsp;לחץ על השאלות שברצונך לראות</small></h3>      
   </div>
   
   <span ng-show = "questionForStatistics.length == 0" style="font-size: 17px;" >{{serverFeedback}} </span>
@@ -105,7 +105,7 @@
 
 <div class="col-sm-8"> <br> 
 
-  <div class="panel" ng-repeat="q in questionForStatistics track by $index">
+  <div class="panel" ng-repeat="q in questionForStatistics track by $index" style="padding: 8px">
     <div ng-model="user.question" value="{{q.Q_id}}">
     <a data-toggle="collapse" data-parent="#accordion2" data-target="#collapse{{ $index + 1 }}" class="ng-binding collapsed">
     &nbsp;&nbsp;{{q.Q_qeustion}}

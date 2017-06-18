@@ -12,7 +12,6 @@
       <ul class="nav navbar-nav">
         <!-- <li><a href="student.html">תלמיד</a></li> -->
         <li><a href="#superUser">משתמש על</a></li>
-        <li class="disabled"><a href="#" >הקבוצות שלי</a></li>
       </ul>
       <p class="navbar-text">בהצלחה</p>
       <ul class="nav navbar-nav navbar-right">
@@ -32,7 +31,7 @@
   <div class="col-sm-12" >
     <h1>שלום, {{userName}}!</h1> 
     <span ng-show="allGroups.length!=0"> <h3>לרשותך, קבוצות המורים במערכת:</h3> </span>
-    <span ng-show="allGroups.length==0"> <h3>עדיין לא קימות קבוצות מורים.</h3> 
+    <span ng-show="allGroups.length==0"> <h3>עדיין לא קיימות קבוצות מורים.</h3> 
     <h5> לרשותך, דף הוספת <a href="#createGroup">קבוצה</a></h5>
     </span>
   </div>
@@ -63,12 +62,19 @@
         </tr>
       </tbody>
       </table>
+
+          <div ng-show="groupIsEmpty" class="alert alert-info login-input" style="font-size: 15px;">
+          <strong>
+        <span class="label label-info">לדיעתך! </span>&nbsp;&nbsp; בקבוצה "{{choosenGroupName}}", עדיין אין מורים רשומים 
+         </strong></div>
+
+
   </div>
 
 
   <div class="col-sm-8">
     <div class="col-sm-6 panel-group panel-hover" ng-repeat="y in allGroups">
-      <div class="panel panel-default" ng-click="showGroupsMembersList(y.GroupId)">
+      <div class="panel panel-default" ng-click="showGroupsMembersList(y.GroupId,y.GroupName)">
         <div class="panel-heading">
           <h4 class="panel-title">
             <p><bold>{{y.GroupName}}</bold></p>

@@ -15,6 +15,7 @@ textrategiaApp.controller("SuperUserController",function($scope, $http,$location
 
 textrategiaApp.controller("superUserGroupManagmentController",function($scope,$http,$location){
     $scope.userName = getUserName();
+     $scope.groupIsEmpty = false;
 
         var req = {
             method: 'POST',
@@ -32,7 +33,8 @@ textrategiaApp.controller("superUserGroupManagmentController",function($scope,$h
             }).error(function(data,status,headers,config){
         });
 
-    $scope.showGroupsMembersList = function(g_id){
+    $scope.showGroupsMembersList = function(g_id,g_name){
+        $scope.choosenGroupName = g_name;
 
      var req = {
                 method: 'POST',
@@ -48,10 +50,12 @@ textrategiaApp.controller("superUserGroupManagmentController",function($scope,$h
                 .success(function(data,status,headers,config){
                     if (status==200) {
                         $scope.groupsStudentLst = data;
+                        $scope.groupIsEmpty = false;
+                       
                     }
                     else if (status==204){
                         $scope.groupsStudentLst = [];
-                        alert("אין תלמידים בקבוצה");
+                        $scope.groupIsEmpty = true;
                         $scope.serverFeedback = "אין תלמידים בקבוצה";
                     }
                 }).error(function(data,status,headers,config){
@@ -64,7 +68,7 @@ textrategiaApp.controller("superUserGroupManagmentController",function($scope,$h
 
     $scope.showStudnetPassword = function(stud){
         $scope.askForUserPassword = true;
-        $scope.serverFeedback = "הזן את ססימתך האישית, על מנת לקבל קישה לסיסמת התלמיד"
+        $scope.serverFeedback = "הזן את ססימתך האישית, על מנת לקבל קישה לסיסמת המשתמש"
         $scope.studentObject = stud;
         $scope.showPassword = false;
     }
@@ -89,7 +93,7 @@ textrategiaApp.controller("superUserGroupManagmentController",function($scope,$h
                 .success(function(data,status,headers,config){
                     if (status==200) {
                     $scope.showPassword = true;
-                    $scope.serverFeedback = "סיסמת התלמיד/ה "+ $scope.studentObject.FirstName +  " היא: "
+                    $scope.serverFeedback = "סיסמת המשתמש: "+ $scope.studentObject.FirstName +  " היא: "
                     }  else if (status==204){
                         $scope.showPassword = false;
                          $scope.serverFeedback = "הסיסמא ששלחת אינה סיסמתך"
@@ -664,6 +668,8 @@ textrategiaApp.controller("CreateGroupController",function($scope,$http,$locatio
 
 textrategiaApp.controller("StatisticsSuperUserController",function($scope, $http,$location){
 
+    $scope.userName = getUserName();
+
     // $scope.searchQuestionMode = false;
     $scope.searchQuestionMode = true;
     
@@ -782,7 +788,7 @@ textrategiaApp.controller("StatisticsSuperUserController",function($scope, $http
 
 
     $scope.getStatisticForQuestion= function (q_id, index) {
-
+        
         // alert(index);
 
         var req = {
