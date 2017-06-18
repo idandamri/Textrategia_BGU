@@ -395,7 +395,7 @@ router.post('/getStudentListFromGroupId', function (req, res) {
                 else{
                     res.status(204).send();
                 }
-            }            }
+            }
         });
     } catch (err) {
         console.log("Error - " + err);
