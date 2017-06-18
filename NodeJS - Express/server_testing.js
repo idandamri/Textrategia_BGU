@@ -29,7 +29,6 @@ app.post('/login', function (req, res) {
 
         console.log('Got a login request from: \n' + user_name + "," + password);
         var query = queries.getDataForUserByIdOrEmail(user_name, password);
-
         console.log("This is the query: " + query);
         connection.query(query, function (err, ans) {
             if (err) {
@@ -56,7 +55,12 @@ app.post('/login', function (req, res) {
 });
 
 app.get('/', function (req, res) {
-    res.redirect('/index.html');
+    try {
+        res.redirect('/index.html');
+    } catch (e) {
+        console.log("Error - " + err);
+        res.status(404).send();
+    }
 });
 
 app.post('/registerUser', function (req, res) {
@@ -322,13 +326,18 @@ var storage = multer.diskStorage({
 var upload = multer({storage: storage}).single('file');
 
 app.post('/multer', function (req, res) {
-    upload(req, res, function (err) {
-        if (err) {
-            res.status(400).send();
-        }
-        var s = req.file.filename;
-        res.status(200).send(s);
-    });
+    try {
+        upload(req, res, function (err) {
+            if (err) {
+                res.status(400).send();
+            }
+            var s = req.file.filename;
+            res.status(200).send(s);
+        });
+    } catch (e) {
+        console.log("Error - " + err);
+        res.status(404).send();
+    }
 });
 
 var connection = mysql.createConnection({
