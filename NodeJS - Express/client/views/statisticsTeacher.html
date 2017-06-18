@@ -41,8 +41,8 @@
 
   <div class="col-sm-12 text-right">
 
-    <div class="col-sm-4 panel-group panel-hover" ng-repeat="y in allGroups">
-      <div class="panel panel-default" ng-click="showGroupsMembersList(y.GroupId)">
+    <div class="col-sm-4 panel-group panel-hover-lili" ng-repeat="y in allGroups">
+      <div class="panel panel-default" ng-click="showGroupsMembersList(y.GroupId)" ng-model="currentGroup">
         <div class="panel-heading">
           <h4 class="panel-title">
             <p><bold>{{y.GroupName}}</bold></p>
@@ -63,7 +63,7 @@
 <!--  -->
 
 <div ng-show = "questionForStatistics.length != 0" class="col-sm-12">  
-      <h3> לרשותך, רשימת שאלות להצגת סטטיסטיקה</h3>      
+      <h3> לרשותך, רשימת התלמידים להצגת סטטיסטיקה</h3>      
   </div>
   
   <span ng-show = "studentsForStatistics.length == 0" style="font-size: 17px;" >{{serverFeedback}} </span>
@@ -76,39 +76,67 @@
   <div class="panel" ng-repeat="stud2 in studentsForStatistics track by $index">
 
     <div ng-model="user.student" value="{{stud2.PersonalID}}">
-    <a data-toggle="collapse" data-parent="#accordion2" data-target="#collapse{{ $index + 1 }}" class="ng-binding collapsed">
-      <h4><strong><div class="text-info">{{stud2.FirstName}} {{stud2.LastName}}</div></strong></h4>
-        <br> &nbsp;&nbsp; {{stud2.Email}}
-    </a>
-    <br>
-        <span class="label-lili" >מיומנות למידה: {{studentsForStatistics.statistics[0].Q_skill}}</span>
+    <!-- <div class="panel-heading"> -->
+      &nbsp;&nbsp;<a data-toggle="collapse" data-parent="#accordion2" data-target="#collapse{{ $index + 1 }}" class="panel-heading ng-binding collapsed">
+        <h4><strong><div class="text-info"> {{stud2.FirstName}} {{stud2.LastName}}</div></strong></h4>
+      </a>
+    <!-- </div> -->
+
+    <!-- <div class="panel-body"> -->
+    <!-- innder pannel -->
+            <div id="collapse{{ $index + 1 }}" ng-show="stud2.gotStats" >   
+              <div class="col-sm-6 panel-group panel-hover" ng-repeat="x in stud2.statistics">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <p class="bg-info"><bold>מיומנות למידה: {{x.Q_skill}}</bold></p>
+                    </h4>
+                  </div>
+
+                  <div class="panel">
+                    <div class="panel-body">
+                    &nbsp;&nbsp;מס' שאלות שנפתרו: &nbsp;<span class="badge">{{x.totalAnsForSkill}}</span><br>
+                    &nbsp;&nbsp;מס' שאלות שנפתרו בהצלחה:&nbsp;<span class="badge">{{x.correctAnsForSkill}}</span><br>
+                    &nbsp;&nbsp;אחוזי הצלחה:&nbsp;<span class="badge" style="background: green">
+                    {{ ((x.correctAnsForSkill/x.totalAnsForSkill)*100).toFixed(0) }}%
+                    </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
 
-  <div id="collapse{{ $index + 1 }}" ng-show="q.gotStats" >   
-<!--     <p class="bg-success">תלמידים שהצליחו בניסיון ראשון: {{q.sCorrectFirstTry}}</p>
-    <p class="bg-warning">תלמידים שהצליחו בניסיון שני: {{q.sCorrectSecondTry}}</p>
-    <p class="bg-danger">תלמידים שלא הצליחו: {{q.sThatWereWrong}}</p>  -->
+      <span class="text-info" ng-show = "stud2.gotStats &&  stud2.statistics.length == 0" style="font-size: 17px;" > &nbsp;&nbsp;{{serverFeedback}} </span>
 
-                <!-- stud2.Q_skill =  ""; -->
-      <div ng-repeat= "x in stud2.statistics"    >
-        <span class="label-lili" >מיומנות למידה: {{x.Q_skill}}</span>
-        <span class="bg-success">שה"כ שאלות שנפתרו: {{x.totalAnsForSkill}}</span>
-        <span class="bg-warning">שה"כ שאלות שנפתרו בהצלחה: {{x.correctAnsForSkill}}</span>
-        <br>
-      </div>
+           </div>
 
+     <!--/inner pannel  -->
+    <!-- </div> -->
 
- </div>
+     <button ng-click="getStatisticForStudent(stud2.PersonalID,$index)" class="btn btn-success text-center" style="margin: 5px 335px;"> 
+      הצג סטטיסטיקה
+    </button> 
 
     </div>
 
-     <button ng-click="getStatisticForStudent(stud2.PersonalID,$index)" class="btn btn-info text-center" style="margin: 5px 335px;"> 
-      הצג סטטיסטיקה
+  </div>
+</div> <!-- col-8 -->
+
+
+
+<div class="col-sm-2"> <br> </div>
+
+
+<div class="col-sm-12 text-center">
+ <br> 
+ <br> 
+    <button ng-click="switchToChooseGroupMod()" class="btn btn-info text-center squirish-button3" style="margin: 5px;"> 
+      חזור לקבוצות
       <!-- <span class="glyphicon glyphicon-king"></span> -->
     </button>
 
-  </div>
-</div> <!-- col-8 -->
+
+ </div>
 
 
 

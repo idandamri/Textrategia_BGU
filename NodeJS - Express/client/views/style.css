@@ -298,6 +298,17 @@ thead tr th{
     padding: 20px;
     box-shadow: 0 0 14px 5px #31b0d5;
 }
+
+.panel-hover-green:hover{
+    padding: 20px;
+    box-shadow: 0 0 14px 5px #48e79c;
+}
+
+.panel-hover-lili:hover{
+    padding: 20px;
+    box-shadow: 0 0 14px 5px #c76ef7;
+}
+
 .panel-click:active{
     padding: 20px;
     box-shadow: 0 0 14px 5px #31b0d5;
