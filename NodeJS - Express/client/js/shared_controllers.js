@@ -57,12 +57,9 @@ textrategiaApp.controller("RegisterController",function($scope,$http ,$location)
             }).error(function(data,status,headers,config){
                 $scope.serverFeedback = "שגיאה בשרת";
         });
-
-
     }
 
 
-    // send information to server + $scope.userCode must be also sent.
     $scope.registerUser = function(){
         $scope.registerMod = true;
 
@@ -76,16 +73,13 @@ textrategiaApp.controller("RegisterController",function($scope,$http ,$location)
         var userEmail2 = $scope.user.userEmail2;
         var userPassword2 = $scope.user.userPassword2;
 
-        // temporry, will pretty it up later.
         if (userEmail1 != userEmail2){
             $scope.inputAlert = "כתובת הדואר האלקטרוני לא זהות";
         }
 
-        // temporry, will pretty it up later.
         if (userPassword1 != userPassword2){
             $scope.inputAlert = "2 הסמסאות שהכנסת אינן זהות";
         }
-
 
         if (userEmail1 == userEmail2 && userPassword1 == userPassword2 ){
             //contact server
@@ -108,7 +102,7 @@ textrategiaApp.controller("RegisterController",function($scope,$http ,$location)
                     $scope.doneRegister = true;
                 }).error(function(data,status,headers,config){
                 if (status==401){
-                    $scope.serverFeedback = "כתובת מייל כבר קיימת במערכת";
+                    $scope.serverFeedback = "כתובת הדואר האלקטרוני כבר קיימת במערכת";
                 }
                 else if (status==409) {
                     $scope.serverFeedback = "שגיאה בהכנסת הפרטים. יכול להיות שאתה כבר רשום למערכת?";
