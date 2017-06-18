@@ -304,6 +304,12 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
     $scope.lastQuestionReported = "blimp";
     $scope.isMultipleAnswers = true;
 
+    $scope.checkStatus51 = false;
+    $scope.checkStatus52 = false;
+    $scope.checkStatus53 = false;
+    $scope.checkStatus54 = false;
+
+
     $scope.finishTask = function () {
         $location.path('tasks');
 
@@ -314,14 +320,48 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
         if (false != elm.checked) {
             elm.click();
         }
-    }
+    };
+
+    var uncheckall = function() {
+        $('#oq_checkStatus51').prop('checked', false);
+        $scope.checkStatus51=false;
+        $('#oq_checkStatus52').prop('checked', false);
+        $scope.checkStatus52=false;
+        $('#oq_checkStatus53').prop('checked', false);
+        $scope.checkStatus53=false;
+        $('#oq_checkStatus54').prop('checked', false);
+        $scope.checkStatus54=false;
+    };
+
+    $scope.updateField = function () {
+        // alert("!");
+        var p = [];
+        if($scope.checkStatus51){
+            p.push($scope.Hadas.answers[0].answer);
+        }
+        if($scope.checkStatus52){
+            p.push($scope.Hadas.answers[1].answer);
+        }
+        if($scope.checkStatus53){
+            p.push($scope.Hadas.answers[2].answer);
+        }
+        if($scope.checkStatus54){
+            p.push($scope.Hadas.answers[3].answer);
+        }
+
+        // alert(p);
+
+        $scope.selectedItems = p;
+
+    };
+
 
 
     $scope.oneMoreTry = function(){
 
         $scope.triedOnce = true;
         $scope.start();
-    }
+    };
 
     $scope.selectedAnswers = [];          // Arg3
 
@@ -349,10 +389,6 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
     };
 
     $scope.start = function(){
-      
-
-  
-
         var req = {
             method: 'POST',
             cache: false,
@@ -384,12 +420,14 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
                 $scope.inProgress = true;
                 $scope.getQuestion();
 
-                      $scope.selectedAnswers = [];
+                      // $scope.selectedAnswers = [];
         // remove_check_by_id("oq_checkStatus50");
-        remove_check_by_id("oq_checkStatus51");
-        remove_check_by_id("oq_checkStatus52");
-        remove_check_by_id("oq_checkStatus53");
-        remove_check_by_id("oq_checkStatus54");
+        // remove_check_by_id("oq_checkStatus51");
+        // remove_check_by_id("oq_checkStatus52");
+        // remove_check_by_id("oq_checkStatus53");
+        // remove_check_by_id("oq_checkStatus54");
+
+                uncheckall();
 
                 $scope.numberOfQuestions += 1 ;
                 if (data.question.Q_mediaType == "youtube" ){
@@ -460,9 +498,10 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
     $scope.checkAnswer = function(){
         if ($scope.isMultipleAnswers){
             // alert("ismULTI");
+            $scope.updateField();
 
-            var ans  = $scope.selectedAnswers; /*ans = all index of selected ans id*/
-            alert("selected ans id: " + ans + " all answers: " + $scope.options);
+            var ans  = $scope.selectedItems; /*ans = all index of selected ans id*/
+            // alert("$scope.selectedItems:" + ans);
             var temp_answers = $scope.Hadas.answers;
 
             var ans_id = get_answer_multi_index($scope.options, $scope.options_id, ans); /*ans_id = all selected ans id (by user)*/
