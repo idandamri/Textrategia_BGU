@@ -22,11 +22,7 @@ textrategiaApp.directive('fileModel', ['$parse', function ($parse) {
 
 textrategiaApp.config(function($routeProvider){
 	$routeProvider
-        .when('/404', {
-            templateUrl:'views/404.html' //,
-            // controller :'404Controller'
-        })
-		.when('/login', {
+        .when('/login', {
 			templateUrl:'views/login.html',
 			controller :'LoginController'
 		})
