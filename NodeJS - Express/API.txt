@@ -661,13 +661,16 @@ output: status 200 / 204 - empty content / 400 - "DB Error"
 example:
 [
     {
-        "StudentId": "2"
+        "Q_skill": "זיהוי מטרה מרכזית",
+        "totalAnsForSkill": 4,
+        "correctAnsForSkill": 1
     },
     {
-        "StudentId": "3"
+        "Q_skill": "רעיון מרכזי",
+        "totalAnsForSkill": 1,
+        "correctAnsForSkill": 1
     }
-]// the total stats are the sum of the three above
-
+]
 
 0-student
 1-teacher

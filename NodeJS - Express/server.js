@@ -5,6 +5,7 @@ var _ = require('underscore');
 var moment = require('moment');
 var cors = require('cors');
 var multer = require('multer');
+// var utils = require('./utils/utils');
 require('path');
 var app = express();
 app.use(cors());
@@ -516,6 +517,7 @@ app.post('/getStudentsMissingTaskInGroup', function (req, res) {
     var taskID = req.body.t_id;
     var groupID = req.body.group_id;
     var query = queries.getStudentsMissingTaskInGroup(taskID, groupID);
+    console.log(query);
     connection.query(query, function (err, listOfStudents) {
         if (err) {
             console.log(err);
@@ -1621,6 +1623,31 @@ app.post('/getUnapprovedQuestion', function (req, res) {
                     res.status(204).send();
                 } else {
                     res.status(200).send(questions);
+                }
+            }
+        });
+    } catch (err) {
+        console.log("Error - " + err);
+        res.status(404).send();
+    }
+});
+
+
+app.post('/getStudentStatistics', function (req, res) {
+    try {
+        var sID = req.body.s_id;
+        var query = queries.getStudentStatistics(sID);
+        console.log('\n' + query + '\n');
+        connection.query(query, function (err, stats) {
+            if (err) {
+                console.log(err);
+                res.status(400).send("DB error");
+            }
+            else {
+                if (stats!= null && stats.length == 0) {
+                    res.status(204).send();
+                } else {
+                    res.status(200).send(stats);
                 }
             }
         });
