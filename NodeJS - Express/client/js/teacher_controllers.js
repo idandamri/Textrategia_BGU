@@ -397,6 +397,10 @@ textrategiaApp.controller("GroupManagementController",function($scope,$http,$loc
 
 
     // ~~~~~ send task mode ~~~~~~~~
+    $scope.changedTask = function(){
+        $scope.studentToSendTaskToList = [];
+        $scope.groupsStudentLst2 = [];
+    }
 
     $scope.getAllGroupForTask= function () {
         $scope.studentToSendTaskToList = [];
@@ -627,10 +631,17 @@ $scope.studentToSendTaskToList = [];
             .success(function(data,status,headers,config){
                 if (status==200) {
                     $scope.groupsStudentLst = data;
+                    if (data.length==0){
+                                $scope.noStudentInGroup = "- אין תלמידים בקבוצה הנבחרת -";  
+                            }else{
+
+                                $scope.noStudentInGroup = "";
+                            }
+
                 }
                 else if (status==204){
                     $scope.groupsStudentLst = [];
-                    alert("אין תלמידים בקבוצה");
+                    $scope.noStudentInGroup = "- אין תלמידים בקבוצה -";
                     $scope.serverFeedback = "אין תלמידים בקבוצה";
                 }
             }).error(function(data,status,headers,config){
@@ -643,35 +654,46 @@ $scope.studentToSendTaskToList = [];
 
     }
  $scope.showGroupsMembersList2 = function(g_id){
-    var selected_task2 = $scope.selected_task2;
- var req = {
-            method: 'POST',
-            cache: false,
-            url: _url +'/getStudentsMissingTaskInGroup',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            data: 'group_id='+g_id + '&t_id=' + selected_task2
-        };
+    $scope.noStudentInGroup = "";
+    if ($scope.selected_task2) {
+        $scope.taskIsMandetory = "";
+        var selected_task2 = $scope.selected_task2;
+        var req = {
+                    method: 'POST',
+                    cache: false,
+                    url: _url +'/getStudentsMissingTaskInGroup',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    data: 'group_id='+g_id + '&t_id=' + selected_task2
+                };
 
 
-        $http(req)
-            .success(function(data,status,headers,config){
-                if (status==200) {
-                    $scope.groupsStudentLst2 = data;
-                }
-                else if (status==204){
-                    $scope.groupsStudentLst2 = [];
-                    alert("אין תלמידים בקבוצה");
-                    $scope.serverFeedback = "אין תלמידים בקבוצה";
-                }
-            }).error(function(data,status,headers,config){
-                $scope.groupsStudentLst2 = [];
-                alert("אין תלמידים בקבוצה");
+                $http(req)
+                    .success(function(data,status,headers,config){
+                        if (status==200) {
+                            $scope.groupsStudentLst2 = data;
+                            if (data.length==0){
+                                $scope.noStudentInGroup = "- אין תלמידים בקבוצה הנבחרת -";  
+                            }else{
 
-        });
+                                $scope.noStudentInGroup = "";
+                            }
+                        }
+                        else if (status==204){
+                            $scope.groupsStudentLst2 = [];
+                            $scope.noStudentInGroup = "- אין תלמידים בקבוצה הנבחרת -";
+                            $scope.serverFeedback = "אין תלמידים בקבוצה";
+                            alert("dude!");
+                        }
+                    }).error(function(data,status,headers,config){
+                        $scope.groupsStudentLst2 = [];
+                        alert("אין תלמידים בקבוצה");
 
-
+                });
+        } else {
+             $scope.taskIsMandetory = "לא בחרת מטלה!";
+        }
 
     }
 
