@@ -44,51 +44,38 @@ textrategiaApp.controller("RegisterController",function($scope,$http ,$location)
 
         $http(req)
             .success(function(data,status,headers,config){
-                $scope.checkedCode = true;
-                //$scope.tmp = data.userType;
-                //alert(data);
-                //alert(data[0].isTeacherGroup);
-                //alert($scope.tmp);
-                setUserType(data[0].isTeacherGroup);
-                //alert(getUserType());
-                $scope.serverFeedback = "הקוד נקלט, הנך מוזמן להמשיך בתהליך הרישום " ;
+                if (status==200){
+                    $scope.checkedCode = true;
+                    setUserType(data[0].isTeacherGroup);
+                    $scope.serverFeedback = "הקוד נקלט, הנך מוזמן להמשיך בתהליך הרישום " ;               
+                } 
+                else if (status == 204){
+                     $scope.serverFeedback = "הקוד לא קיים במערכת!";
+                }
             }).error(function(data,status,headers,config){
-            if (status==401){
-                $scope.serverFeedback = "הקוד לא קיים במערכת!";
-            }
-            else {
                 $scope.serverFeedback = "שגיאה בשרת";
-            }
         });
-
-        //alert("dude!!!");
-
-        $scope.isUserTeacher = false; // this get set by server response
-
     }
 
-
-    // send information to server + $scope.userCode must be also sent.
     $scope.registerUser = function(){
         $scope.registerMod = true;
 
         var userFirstName = $scope.user.userFirstName;
         var userLastName = $scope.user.userLastName;
+        var userIdNumber = $scope.user.userIdNumber;
+        
         var userEmail1 = $scope.user.userEmail1;
         var userPassword1 = $scope.user.userPassword1;
-        var userIdNumber = $scope.user.userIdNumber;
 
         var userEmail2 = $scope.user.userEmail2;
         var userPassword2 = $scope.user.userPassword2;
 
-        // temporry, will pretty it up later.
         if (userEmail1 != userEmail2){
-            $scope.serverFeedback = "email must be the same!";
+            $scope.inputAlert = "כתובת הדואר האלקטרוני לא זהות";
         }
 
-        // temporry, will pretty it up later.
         if (userPassword1 != userPassword2){
-            $scope.serverFeedback = "password must be the same";
+            $scope.inputAlert = "2 הסמסאות שהכנסת אינן זהות";
         }
 
         if (userEmail1 == userEmail2 && userPassword1 == userPassword2 ){
@@ -105,14 +92,13 @@ textrategiaApp.controller("RegisterController",function($scope,$http ,$location)
                 '&user_type=' + getUserType() + '&email=' + userEmail1 + '&password=' + userPassword1
             };
 
-
             $http(req)
                 .success(function(data,status,headers,config){
                     $scope.serverFeedback = "הרישום התבצע בהצלחה!"
                     $scope.doneRegister = true;
                 }).error(function(data,status,headers,config){
                 if (status==401){
-                    $scope.serverFeedback = "כתובת מייל כבר קיימת במערכת";
+                    $scope.serverFeedback = "כתובת הדואר האלקטרוני כבר קיימת במערכת";
                 }
                 else if (status==409) {
                     $scope.serverFeedback = "שגיאה בהכנסת הפרטים. יכול להיות שאתה כבר רשום למערכת?";
@@ -122,10 +108,7 @@ textrategiaApp.controller("RegisterController",function($scope,$http ,$location)
                 }
             });
         }
-
-
     }
-
 });
 
 textrategiaApp.controller("LoginController", function($scope, $http,$location) {
@@ -158,32 +141,23 @@ textrategiaApp.controller("LoginController", function($scope, $http,$location) {
                 $scope.showError = false;
                 $scope.showSuccess = true;
                 if (data[0].UserType == "1"){
-                    // alert("go teacher!");
                     $location.path('teacher');
                 }
                 else if (data[0].UserType == "0") {
                     $location.path('student');
                 }
                 else if (data[0].UserType == "2") {
-                    // alert("go student!");
                     $location.path('superUser');
                 }
 
 
             }).error(function(data,status,headers,config){
-            $scope.showError = true;
-            $scope.showSuccess = false;
+                $scope.showError = true;
+                $scope.showSuccess = false;
 
 
         });
-
-
     }
-
-    // textrategiaApp.controller("SuperUserController", function($scope,$http,$location ,$sce) {
-    //
-    // });
-
 
 
 });
