@@ -387,3 +387,8 @@ thead tr th{
     width: 120px;
     height: 100px;
 }
+
+.rec-button1{
+    min-height: 80px;
+    max-width: 110px;
+}
