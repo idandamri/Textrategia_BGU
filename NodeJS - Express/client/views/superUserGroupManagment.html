@@ -77,11 +77,17 @@
       <div class="panel panel-default" ng-click="showGroupsMembersList(y.GroupId,y.GroupName)">
         <div class="panel-heading">
           <h4 class="panel-title">
-            <p><bold>{{y.GroupName}}</bold></p>
+          <p  style="font-size: 17px;"><bold>{{y.GroupName}}</bold></p>
           </h4>
         </div>
         <div class="panel">
-          <div class="panel-body">קוד קבוצה: <div class="text-info"> {{y.GroupeCode}}</div></div>
+          <div class="panel-body">
+            <p>
+              <span style="font-size: 17px;">קוד קבוצה: <span class="text-info"> {{y.GroupeCode}}</span><br></span>
+                בית ספר: <span class="text-info">{{y.School}}</span><br>
+                עיר: <span class="text-info">{{y.City}}</span>
+            </p>
+          </div>
         </div>
       </div>
     </div>
