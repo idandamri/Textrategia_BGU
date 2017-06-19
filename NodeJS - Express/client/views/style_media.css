@@ -1,17 +1,17 @@
 
 
+
+
 @media(max-width:767px){
 
-  .br-on-mobile {
-        display: static;
-    }
+/*
 
 .login-input1-mobile {
     margin-right: 233px;
 }
 .login-input2-mobile {
     margin-right: 285px;
-}
+}*/
 
 /*~~~~~~~~~~ margin ~~~~~~~~~~~*/
   .margin22{
@@ -26,7 +26,8 @@
   
 }
 
-
+/*
 .br-on-mobile {
     display: none;
-}
+}*/
+

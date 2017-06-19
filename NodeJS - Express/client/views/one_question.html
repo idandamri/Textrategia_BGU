@@ -128,12 +128,20 @@
 
 
 
-
-
-          <button ng-click="checkAnswer()" ng-show="answerMode" type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#fedbackModal">
+       <div class="hidden-xs">
+          <button ng-click="checkAnswer()" ng-show="answerMode" type="button" class="btn btn-warning btn-md" data-toggle="modal" data-target="#fedbackModal">
             בדוק
           </button>
+      </div>
 
+
+
+
+       <div class="col-xs-12 hidden-sm hidden-md hidden-lg text-center" style="margin-bottom: 7px;">
+          <button ng-click="checkAnswer()" ng-show="answerMode" type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#fedbackModal">
+            בדוק
+          </button>
+      </div>
 
         </div> <!-- ng-show="!quizOver" -->
 
@@ -185,10 +193,10 @@
             </div>
             <div class="modal-body">
               <div class="row">
-                <div class="col-xs-5 col-sm-3">
+                <div class="col-xs-12 col-sm-3 text-center">
                   <img alt="תרגול" class="img-circle student_actions" src="views/pic/logo2.png" >
                 </div>
-                <div class="col-xs-7 col-sm-9">
+                <div class="col-xs-12 col-sm-9">
                   <span ng-show="correctAns  && !sendFeedbackMode">כל הכבוד, תשובה נכונה! </span>
                   <span ng-show="!correctAns  && !sendFeedbackMode">אופס... <br> תשובה לא נכונה. </span>
                   <br><p> {{feedback}}</p>

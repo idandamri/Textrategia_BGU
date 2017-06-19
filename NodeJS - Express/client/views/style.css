@@ -118,6 +118,7 @@ removed active.
     width: 50%;
     height: 50%;
     opacity: 0.7;
+    min-width: 90px
 }
 .student_actions:hover {
     border-color: #f1f1f1;

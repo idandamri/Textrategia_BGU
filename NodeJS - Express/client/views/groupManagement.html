@@ -28,7 +28,7 @@
 <!-- GROUP MANAGMENT MODE -->
 <div class="row" ng-show="!send_task_mod && !send_task_for_some_student_mod">
 
-  <div class="col-sm-6 text-center">
+  <div class="col-sm-6 col-xs-12 text-center">
 
     <!-- Button -->
     <button ng-click="sendTaskMode()" class="btn btn-info squirish-button3" style="font-size: 15px;">
@@ -46,17 +46,17 @@
 
   </div>
 
-  <div class="col-sm-6" >
-    <h1>שלום, {{teacherName}}!</h1>  
-    <span ng-show="allGroups.length!=0"> <h3>לרשותך, רשימת הקבוצות שבניהולך: </h3> </span>
-    <span ng-show="allGroups.length==0"> <h3>עדיין לא קיימות קבוצות תלמידים באחריותך.</h3> 
-    
+  <div class="col-sm-6 col-xs-12" >
+    <h1>שלום, {{teacherName}}!
+    <span ng-show="allGroups.length!=0"> <small>לרשותך, רשימת הקבוצות שבניהולך: </small> </span>
+    <span ng-show="allGroups.length==0"> <small>עדיין לא קיימות קבוצות תלמידים באחריותך.</small> 
+    </h1>  
   </div>
 
 
-  <div class="col-sm-12"><br></div>
+  <div class="col-sm-12 col-xs-12"><br></div>
 
-  <div class="col-sm-4">
+  <div class="col-sm-4 col-xs-12">
       <table class="table table-responsive table-fixed table-hover">
       <thead ng-show="$scope.groupsStudentLst!=0 ">  
         <tr> 
@@ -84,11 +84,15 @@
         <span class="label label-info">לדיעתך! </span>&nbsp;&nbsp;{{noStudentInGroup}}
          </strong></div>
 
+         <div class="col-xs-2 hidden-sm hidden-md hidden-lg" ><br></div>
+         <div class="col-xs-8 hidden-sm hidden-md hidden-lg alert alert-info"><p> סובב את המכשיר על מנת לראות טבלה במלואה</p></div>
+         <div class="col-xs-2 hidden-sm hidden-md hidden-lg" ><br></div>
+
   </div>
 
 
-  <div class="col-sm-8">
-    <div class="col-sm-6 panel-group panel-hover" ng-repeat="y in allGroups">
+  <div class="col-sm-8 col-xs-12">
+    <div class="col-sm-6 col-xs-12 panel-group panel-hover" ng-repeat="y in allGroups">
       <div class="panel panel-default" ng-click="showGroupsMembersList(y.GroupId,y.GroupName)">
         <div class="panel-heading">
           <h4 class="panel-title">
@@ -118,8 +122,8 @@
 <div class="row" ng-show="send_task_mod">
 
 
-  <div class="col-sm-12">  
-    <h3>בחר מטלה, בחר קבוצה ושלח.<br><small>שים לב, אם המטלה כבר נשלחה לקבוצה, לא ניתן לשלוח אותה פעם נוספת</small></h3> 
+  <div class="col-sm-12 col-xs-12">  
+    <h3>בחר מטלה, בחר קבוצה ושלח.<br><small>שים לב, אם המטלה כבר ברשימת המטלות של הקבוצה, לא ניתן לשלוח אותה פעם נוספת</small></h3> 
   </div>
 
   <br><br>
@@ -127,7 +131,7 @@
 <form name="taskGroupForm">
   <div class="form-group">
 
-          <div class="col-sm-12 text-center">
+          <div class="col-sm-12 col-xs-12 text-center">
 
             <div class="btn-group btn-group-lg" data-toggle="buttons">
               <!-- Button -->
@@ -140,10 +144,10 @@
             </div>
           </div>          
 
-           <div class="col-sm-2"></div>
+           <div class="col-sm-2 hidden-xs"></div>
           <!-- 1 -->
 
-           <div class="col-sm-8" style = "padding: 60px;">
+           <div class="col-sm-8 col-xs-12" style = "padding: 60px;">
             <label for="available_task" class="control-label pull-right" >מטלות זמינות:</label>
             <select required class="form-control inputstl" id="available_task" ng-model="selected_task" ng-change="getAllGroupForTask()" size=1>
               <option value=""></option>
@@ -162,13 +166,13 @@
             </div>
           </div>
              
-           <div class="col-sm-2"></div>
+           <div class="col-sm-2 hidden-xs"></div>
 
   </div> <!-- /form-group -->
 
   <div class="col-sm-12"><br></div>
 
-  <div class="col-sm-12 text-center">
+  <div class="col-sm-12 col-xs-12 text-center">
 
     <!-- Button -->
      <button ng-click="groupManagmentMode()" class="btn btn-info squirish-button4" style="font-size: 15px;" >
@@ -192,7 +196,7 @@
 <div class="row" ng-show="send_task_for_some_student_mod">
 <form name="taskStudentForm">
 
-  <div class="col-sm-12"> 
+  <div class="col-sm-12 col-xs-12"> 
   <h3> בחר מטלה, בחר קבוצה, סמן תלמידים ושלח! </h3>
   <br><br>
   </div>
