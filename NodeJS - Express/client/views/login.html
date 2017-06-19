@@ -28,7 +28,7 @@
   </div>
 </nav>
 	
-<div class="login-page-container" id="c_1">
+<div class="login-page-container" id="c_1" style="padding-right: 13px;">
 			
 	<h1><strong>טקסטרטגיה</strong></h1>
 	<h4 class="login-subtitle">מתרגלים אסטרטגיות הבנה</h4>
@@ -36,8 +36,8 @@
 <form class="login-form" name="myForm">
   <div class="login-container">
       
-    <div class="form-group">
-      <div class="col login-inputs-container">
+    <div class="form-group"  >
+      <div class="col-xs-12 col-sm-12 login-inputs-container" >
         <label class="login-input-label1"><span class="glyphicon glyphicon-envelope"></span> דואר אלקטרוני: </label>
           <input class="login-input" type="email" name="email" ng-model="user.username" required class="form-control" placeholder="הכנס כתובת דואר אלקטרוני">
         
@@ -49,16 +49,16 @@
         <div ng-show="myForm.pass.$error.required &amp;&amp; myForm.pass.$touched" class="error">שדה חובה!</div>
       </div>
 
-      <div class="col"><br></div>
+      <div class="col-xs-12 col-sm-12"><br></div>
 
-      <div class="col">
+      <div class="col-xs-12 col-sm-12">
         <!-- Button -->
         <button ng-click="authenticate()" ng-disabled="myForm.$invalid" class="btn btn-success button-center login-button"> כניסה  <span class="glyphicon glyphicon-thumbs-up"></span></button>
       </div>
 
     </div>
 
-    <div class="col">
+    <div class="col-xs-12 col-sm-12">
       <br>
       <div ng-show="showError" class="alert alert-danger login-input">שם משתמש או סיסמא לא נכונים!</div>
       <div ng-show="showSuccess" class="alert alert-success login-input">חיבור נעשה בהצלחה!</div>

@@ -23,28 +23,40 @@
   <div class="container" id="c_1">
     <div class="row" >
       
-      <div class="col-sm-12">
+      <div class="hidden-xs col-sm-12">
         <h1>ברוך הבא! <small> הכיף מייד מתחיל... </small> </h1>
       </div>
 
+       <div class="col-xs-12 hidden-sm hidden-md hidden-lg ">
+            <h1>ברוך הבא! 
+              <br><small>&nbsp;&nbsp; הכיף מייד מתחיל... </small> </h1>
+       </div>
 
-    <div ng-show="!checkedCode">
-      <div class="col-sm-3"> <br> </div>
-      <div class="col-sm-1">
-        <h3> <span class="badge" data-toggle="tooltip" title="קוד המונפק באופן אישי לכל משתמש על ידי רכז טקסטרטגיה">מה זה קוד משתמש?</span></h3>
-      </div>  
-      <div class="col-sm-5">
-        <form name="myFirstForm" class="form-group row" role="form">
-          <input type="text" name="code" required class="form-control inputstl form-control-lg" id="lgFormGroupInput" placeholder="הכנס קוד משתמש" ng-model="user.userCode" tabindex="0"> 
-        </form>
-      </div>
-      <div class="col-sm-3"> <br> </div>
 
-      <div class="col-sm-12 text-center">
-      <!-- button! -->
-        <button ng-click="checkUserCode()" ng-disabled="myFirstForm.$invalid" type="submit" class="btn btn-lg btn-info" data-toggle="modal" data-target="#fedbackModal" tabindex="0">שלח קוד</button>
+  <div ng-show="!checkedCode">
+    <div class=" hidden-xs col-sm-3"> <br> </div>
+
+    <div class="col-sm-1 col-xs-12">
+      <h3> <span class="badge" data-toggle="tooltip" title="קוד המונפק באופן אישי לכל משתמש על ידי רכז טקסטרטגיה">מה זה קוד משתמש?</span></h3>
+    </div>
+
+    <form name="myFirstForm" class="form-group row" role="form" style="padding: 5px;">
+      <div class="col-xs-12 col-sm-5">
+          <input type="text" name="code" required class="form-control inputstl form-control-lg" id="lgFormGroupInput" placeholder="הכנס קוד משתמש" ng-model="user.userCode" 
+          tabindex="90"> 
       </div>
-</div>
+      
+      <div class="hidden-xs col-sm-3"> <br> </div>
+      
+       <div class="col-xs-12 hidden-sm hidden-md hidden-lg "><br> </div>
+
+      <div class="col-xs-12 col-sm-12 text-center">
+        <!-- button! -->
+        <button ng-click="checkUserCode()" ng-disabled="myFirstForm.$invalid" type="submit" 
+          class="btn btn-lg btn-info" data-toggle="modal" data-target="#fedbackModal" tabindex="91">שלח קוד</button>
+      </div>
+    </form>
+  </div>
 
 
 <!-- AFTER WE CHECK CODE AND SEE TYPE OF USER -->
@@ -52,9 +64,9 @@
     
       <form name="myForm2" class="form-horizontal" role="form">
 
-        <div class="col-sm-2"></div>
+        <div class="hidden-xs col-sm-2"></div>
 
-        <div class="col-sm-4">
+        <div class="col-sm-12 col-sm-4">
 
           <!-- 5  -->
           <label class="control-label pull-right">שם פרטי:&nbsp;&nbsp;</label>
@@ -70,9 +82,9 @@
 
         </div>
  
-        <div class="col-sm-1"></div>
+        <div class="hidden-xs col-sm-1"></div>
      
-        <div class="col-sm-4">
+        <div class="col-sm-12 col-sm-4">
 
           <!-- 1 -->
           <label class="control-label pull-right">הכנס דואר אלקטרוני:&nbsp;&nbsp;</label>
@@ -94,17 +106,17 @@
 
         </div>
  
-        <div class="col-sm-2"></div>
+        <div class="hidden-xs col-sm-2"></div>
       
-        <div class="col-sm-12 text-center"><br></div>
+        <div class="col-xs-12 col-sm-12 text-center"><br></div>
 
-        <div class="col-sm-12 text-center">
+        <div class="col-xs-12 col-sm-12 text-center">
 
         <!-- register Button! -->
         <button ng-click="registerUser()" ng-disabled="myForm2.$invalid" class="btn squirish-button2 btn-info" data-toggle="modal" data-target="#fedbackModal" tabindex="10">הרשם!</button>
         </div>
 
-      <div class="col-md-12">
+      <div class="col-xs-12 col-md-12">
       <br>
         <div ng-show="user.userPassword2 != user.userPassword1" class="alert alert-danger login-input">הסמסמאות שהכנסת אינן זהות!</div>
         <div ng-show="user.userEmail2 != user.userEmail1" class="alert alert-danger login-input">כתובת הדואר שהכנסת אינן זהות אינן זהות!</div>
@@ -130,7 +142,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-               <h4 class="modal-title text-info"> <strong>טקסטרטגיה</strong> <small>מתרגלים אסטרטגיות הבנה</small></h4>
+               <h4 class="modal-title text-info"> <strong>טקסטרטגיה</strong><small>מתרגלים אסטרטגיות הבנה</small></h4>
               </div>
         
             <div class="modal-body">
