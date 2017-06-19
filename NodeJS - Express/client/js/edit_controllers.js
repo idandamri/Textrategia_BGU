@@ -490,27 +490,55 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
     };
 
 
-    $scope.dontEdit = function(){
-        $location.path('superUser');
-    };
+        $scope.dontEdit = function(){
+            $location.path('superUser');
+        };
 
-$scope.disableQuestionPermanentlyWrapper = function(){
-    $scope.serverFeedback = "אתה בטוח שברצותך להשבית את השאלה??";
-    $scope.serverSecondFeedback = "שים לב, שאלה שהושבתה לא ניתנת לשחזור!";
-    $scope.ask_if_should_disable = true;
+        $scope.disableQuestionPermanentlyWrapper = function(){
+            $scope.serverFeedback = "אתה בטוח שברצותך להשבית את השאלה??";
+            $scope.serverSecondFeedback = "שים לב, השבתת שאלה תמנע את הופעתה במערכת!";
+            $scope.ask_if_should_disable = true;
 
-};
+        };
 
-$scope.disableQuestionPermanently = function(){
-$scope.ask_if_should_disable = false;
-alert("deleteQ!");
+        $scope.disableQuestionPermanently = function(){
+        
+            $scope.ask_if_should_disable = false;
+            var question_id = $scope.question.question_id;
 
-};
 
-$scope.dontDisableQuestion = function(){
-$scope.ask_if_should_disable = false;
-alert("DONT deleteQ!");
-};
+
+          var req = {
+                method: 'POST',
+                cache: false,
+                url: _url +'/disableQuestion',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                data: 'disable_status='+ 1
+                 + '&q_id='+ question_id
+            };
+
+            $http(req)
+                .success(function(data,status,headers,config){
+                    if (status==200) {
+                          $scope.doneWithPage = true;
+                        $scope.serverFeedback = "השאלה הושבתה בהצלחה"
+                    }
+                    else if (status==204) {
+                          $scope.doneWithPage = true;
+                        $scope.serverFeedback = "השאלה הושבתה בהצלחה"
+                    }
+                }).error(function(data,status,headers,config){
+                $scope.serverFeedback = "בהעיה בהשבתת השאלה..."
+            });        
+
+        };
+
+        $scope.dontDisableQuestion = function(){
+            $scope.ask_if_should_disable = false;
+            $location.path('empty');
+        };
 
 
 });

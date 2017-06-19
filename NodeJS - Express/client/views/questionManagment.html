@@ -69,7 +69,7 @@
 </span>
 
  <div id="accordion2" >
-    <div class="panel" ng-repeat="q in myQuestionsStock track by $index">
+    <div class="panel" ng-repeat="q in myQuestionsStock track by $index" style="padding: 10px">
       <div  name="question" ng-model="user.question" value="{{q.Q_id}}" >
       <p>&nbsp;&nbsp;{{q.Q_qeustion}} </p>
       
@@ -267,7 +267,7 @@
         <!-- First part Button! -->
         <div class="col-sm-12 text-center">
           <button ng-click="possibleAnswersMode()" ng-disabled="myForm.$invalid" class="btn btn-lg btn-info squirish-button3" tabindex="8">
-          ערוך <br> מסיחים!           </button>
+          המשך <br> לערוך         </button>
 
          <br><br><br><br>
         </div>  
@@ -279,8 +279,9 @@
 
 <form name="mySecondForm" class="form-horizontal" role="form">
 
+  <div class="col-sm-8 text-center">
 
-  <div class="col-sm-4 text-center">
+  <div class="col-sm-6 text-center">
       <!-- 3 -->
       <label class="control-label pull-right">תשובה 3: &nbsp;&nbsp;</label>
        <textarea  type="text" rows="2" name="possible_ans_3" class="form-control inputstl pull-right" required  
@@ -294,7 +295,7 @@
       <br>
   </div>
 
-    <div class="col-sm-4 text-center">
+    <div class="col-sm-6 text-center">
       <!-- 1 -->
       <label class="control-label pull-right">תשובה 1: &nbsp;&nbsp;</label>
         <textarea type="text" rows="2" name="possible_ans_1" class="form-control inputstl pull-right" required 
@@ -309,50 +310,22 @@
     </div>
 
 
-  <!-- buttons -->
-  <div class="col-sm-4 text-center">
-    <div class="btn-group-vertical">
-        <button ng-click="disableQuestionPermanentlyWrapper()" type="submit" class="btn btn-lg btn-danger squirish-button2"  data-toggle="modal" data-target="#fedbackModal" tabindex="14">השבת<br>שאלה!     </button>
+    <div class="col-sm-3 text-center"><br></div>
+    <div class="col-sm-3 text-center"><br></div>
 
 
-          <button ng-click="editQuestionMode()" class="btn btn-lg btn-info squirish-button3" tabindex="15" >חזור למסך<br> הקודם!
-          <span class="glyphicon glyphicon-hand-right"></span> </button>
-
-        <button ng-click="sendNewQuestionWraper()" ng-disabled="mySecondForm.$invalid" type="submit" class="btn btn-lg btn-success squirish-button3" data-toggle="modal" data-target="#fedbackModal" tabindex="14">סיים<br> וערוך!
-         <span class="glyphicon glyphicon-send"></span> </button>
-
-        <button ng-click="dontEdit()" type="submit" class="btn btn-lg btn-danger squirish-button2" tabindex="14">צא ואל<br> תערוך!     </button>
-
-     <span class="text-danger" ng-show="question.Q_reported_Offensive+ question.Q_reported_Question + question.Q_reported_Answer > 0 " style="font-size: 16px;">
-       לשאלה זו יש התראות,<br> לחץ על "סיים וערוך!"<br> על מנת לבטלן </span>
-
-      <span class="text-warning" ng-show="!question.Q_approved" style="font-size: 16px;">
-       שאלה זו הוכנסה על ידי מורה,<br> לחץ על "סיים וערוך!"<br> על מנת לאשר אותה במערכת</span>
-
-    </div>
-    <br>
-  </div>
-
-<div class="col-sm-4 text-center"></div>
-
-<div class="col-sm-4 text-center">
     <!-- 5 -->
+    <div class="col-sm-6 text-center">
+    <br>
+    <br>
         <label class="control-label pull-right ">בשאלה זו יש: &nbsp;&nbsp; &nbsp;&nbsp;</label>
             <strong>
             <span class="text-info" ng-show="question.isMultipuleAns==0" style="font-size: 18px;">תשובה אחת נכונה בלבד </span>
             <span class="text-danger" ng-show="question.isMultipuleAns==1" style="font-size: 18px;">כמה תשובות נכונות </span>
             </strong>
             <button type="button" class="btn btn-info" ng-click="changeStatusOfAnswer('blimp')"> שנה </button>
-
-<!--      <select class="form-control inputstl " id="is_multiple_ans" style="max-width: 160px;" tabindex="13" ng-model="question.isMultipuleAns">
-              <option value="">לא ידוע</option>
-              <option value=0>תשובה אחת בלבד</option>
-              <option value=1>יותר מתשובה אחת</option>
-            
-            </select>  -->
-  
-<br><br>
-
+  <br>
+    <br>
 
   <label class="control-label pull-right">סמן תשובות נכונות:&nbsp;&nbsp;</label><br>
    
@@ -394,13 +367,55 @@
       </tbody>
       </strong>
       </table>
+
+    </div>
+
+
+
+
+  </div>
+ 
+
+  <!-- buttons -->
+  <div class="col-sm-4 text-center">
+    <div class="btn-group-vertical">
+        <button ng-click="disableQuestionPermanentlyWrapper()" type="submit" class="btn btn-lg btn-danger squirish-button2"  data-toggle="modal" data-target="#fedbackModal" tabindex="14">השבת<br>שאלה!     </button>
+
+
+          <button ng-click="editQuestionMode()" class="btn btn-lg btn-info squirish-button3" tabindex="15" >חזור למסך<br> הקודם!
+          <span class="glyphicon glyphicon-hand-right"></span> </button>
+
+        <button ng-click="sendNewQuestionWraper()" ng-disabled="mySecondForm.$invalid" type="submit" class="btn btn-lg btn-success squirish-button3" data-toggle="modal" data-target="#fedbackModal" tabindex="14">אשר<br> וערוך!
+         <span class="glyphicon glyphicon-send"></span> </button>
+
+        <button ng-click="dontEdit()" type="submit" class="btn btn-lg btn-danger squirish-button2" tabindex="14">צא ואל<br> תערוך!     </button>
+
+     <span class="text-danger" ng-show="question.Q_reported_Offensive+ question.Q_reported_Question + question.Q_reported_Answer > 0 " style="font-size: 16px;">
+       לשאלה זו יש התראות,<br> לחיצה על "אשר וערוך!"<br> תאפס את השאלה<br> מהתרעות אלה </span>
+
+      <span class="text-warning" ng-show="!question.Q_approved" style="font-size: 16px;">
+       שאלה זו הוכנסה על ידי מורה,<br> לחץ על "אשר וערוך!"<br> על מנת לאשר אותה במערכת</span>
+
+    </div>
+    <br>
   </div>
 
 
+    
+    </div>   <!-- insertPossibleAnswersMode -->
 
-  </div>
 
-  <div class="col-sm-4 text-center"></div>
+
+
+
+<div class="col-sm-12 text-center"><br></div>
+
+
+
+
+  </div> <!-- /insertPossibleAnswersMode -->
+
+
 
 </form>
 </div> <!-- //ng-show insertPossibleAnswersMode -->
@@ -442,7 +457,7 @@
                 
                 <button type="button" ng-show="question_is_legal && flagEditQuestionMode && !doneWithPage && !ask_if_should_disable" class="btn btn-default" ng-click="sendNewQuestion()"  > שלח שאלה לעריכה </button>
 
-                <button type="button" ng-show="ask_if_should_disable" data-dismiss="modal" class="btn btn-danger" ng-click="disableQuestionPermanently()" > השבת שאלה לצמיתות! </button>
+                <button type="button" ng-show="ask_if_should_disable" class="btn btn-danger" ng-click="disableQuestionPermanently()"> השבת שאלה לצמיתות! </button>
 
 
                 <button type="button" ng-show="ask_if_should_disable" data-dismiss="modal" class="btn btn-success" ng-click="dontDisableQuestion()"> אל תשבית שאלה </button>
