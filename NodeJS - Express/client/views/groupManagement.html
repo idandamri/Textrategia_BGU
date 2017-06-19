@@ -28,7 +28,7 @@
 <!-- GROUP MANAGMENT MODE -->
 <div class="row" ng-show="!send_task_mod && !send_task_for_some_student_mod">
 
-  <div class="col-sm-6 well text-center">
+  <div class="col-sm-6 text-center">
 
     <!-- Button -->
     <button ng-click="sendTaskMode()" class="btn btn-info squirish-button3" style="font-size: 15px;">
@@ -49,7 +49,7 @@
   <div class="col-sm-6" >
     <h1>שלום, {{teacherName}}!</h1>  
     <span ng-show="allGroups.length!=0"> <h3>לרשותך, רשימת הקבוצות שבניהולך: </h3> </span>
-    <span ng-show="allGroups.length==0"> <h3>עדיין לא קימות קבוצות תלמידים באחריותך.</h3> 
+    <span ng-show="allGroups.length==0"> <h3>עדיין לא קיימות קבוצות תלמידים באחריותך.</h3> 
     
   </div>
 
@@ -89,14 +89,20 @@
 
   <div class="col-sm-8">
     <div class="col-sm-6 panel-group panel-hover" ng-repeat="y in allGroups">
-      <div class="panel panel-default" ng-click="showGroupsMembersList(y.GroupId)">
+      <div class="panel panel-default" ng-click="showGroupsMembersList(y.GroupId,y.GroupName)">
         <div class="panel-heading">
           <h4 class="panel-title">
-            <p><bold>{{y.GroupName}}</bold></p>
+            <p  style="font-size: 17px;"><bold>{{y.GroupName}}</bold></p>
           </h4>
         </div>
         <div class="panel">
-          <div class="panel-body">קוד קבוצה: <div class="text-info"> {{y.GroupeCode}}</div></div>
+          <div class="panel-body">
+          <p>
+              <span style="font-size: 17px;">קוד קבוצה: <span class="text-info"> {{y.GroupeCode}}</span><br></span>
+              בית ספר: <span class="text-info">{{y.School}}</span><br>
+              עיר: <span class="text-info">{{y.City}}</span>
+              </p>
+          </div>
         </div>
       </div>
     </div>
@@ -113,7 +119,7 @@
 
 
   <div class="col-sm-12">  
-    <h3>בחר מטלה, בחר קבוצה ושלח.<br><small>שים לב, אם המטלה כבר נשלחה לקבוצה, לא ניתן לשלוח פעם נוספת</small></h3> 
+    <h3>בחר מטלה, בחר קבוצה ושלח.<br><small>שים לב, אם המטלה כבר נשלחה לקבוצה, לא ניתן לשלוח אותה פעם נוספת</small></h3> 
   </div>
 
   <br><br>
@@ -173,9 +179,9 @@
      <button ng-click="sendTaskToGroup()" ng-disabled="taskGroupForm.$invalid"  class="btn btn-success squirish-button4" style="font-size: 15px;" data-toggle="modal" data-target="#fedbackModal">
        <span class="glyphicon glyphicon-send" style="font-size: 20px;"></span> 
        <p>שלח<br>מטלה<br>לקבוצה</p>          </button>
-  </form>
 
   </div>
+  </form>
 
 </div> <!-- ng-show send task -->
 
@@ -252,7 +258,7 @@
   <div class="col-sm-4">
 
 
-    <div class="panel-group panel-hover" ng-click="showGroupsMembersList2(y.GroupId)" ng-repeat="y in allGroups" id="panelID-{{y.GroupId}}">
+    <div class="panel-group panel-hover col-sm-6" ng-click="showGroupsMembersList2(y.GroupId)" ng-repeat="y in allGroups" id="panelID-{{y.GroupId}}">
       <div class="panel panel-default">
         <div class="panel-heading">
           <h4 class="panel-title">

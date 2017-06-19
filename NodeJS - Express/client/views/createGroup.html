@@ -33,7 +33,7 @@
     <div class="col-sm-12">
         <h1>שלום, {{teacherName}}!</h1>  <h3>צור קבוצת לימוד חדשה: </h3>  
         <div class="text-left"> 
-           <span> חסר בית ספר בעיר {{selected_city}}? <a href="#addSchoolInCity">הוסף </a></span>
+           <span> חסר בית ספר בעיר {{selected_city}}? <a href="#addSchoolInCity" tabindex="-1">הוסף </a></span>
         </div>
     </div>
 
@@ -47,9 +47,9 @@
 
         <!--  2 -->
         <label class="control-label pull-right">סוג קבוצה:&nbsp;&nbsp;</label>
-        <select required class="form-control inputstl" ng-model="selected_group_master" id="group_master" ng-change="changeGroupType()" style="padding: 5px 5px;" placeholder="הכנס סוג קבוצה">
+        <select required class="form-control inputstl" ng-model="selected_group_master" id="group_master" ng-change="changeGroupType()" style="padding: 5px 5px;" placeholder="הכנס סוג קבוצה" tabindex="105">
           <option value=""> - בחר סוג קבוצה - </option>
-          <option value=0>קבוצת-אם תלמידים</option>
+          <option value=0 >קבוצת-אם תלמידים</option>
           <option value=1>קבוצת מורים</option>
           <!--<option value=2>קבוצת תלמידים</option>-->
           <!--<option value=3>קבוצת-אם מורים</option>-->
@@ -60,9 +60,9 @@
         <!-- 4 -->
         <label class="control-label pull-right">בחר בית ספר:&nbsp;&nbsp;</label>
 
-        <select required class="form-control inputstl" ng-model="selected_school" id="group_school" ng-change="getTeacherByCityAndSchool()" style="padding: 5px 5px;">
+        <select required class="form-control inputstl" ng-model="selected_school" id="group_school" ng-change="getTeacherByCityAndSchool()" style="padding: 5px 5px;" tabindex="107">
          <option value=""> - הכנס בית ספר - </option>
-          <option ng-repeat="y in group_school" value="{{y.School}}">{{y.School}}</option>
+          <option ng-repeat="y in group_school" value="{{y.School}}" >{{y.School}}</option>
           <!--<option ng-show="group_school==0" disabled>אין בתי ספר קיימים</option>-->
         </select>
 
@@ -71,7 +71,7 @@
 
           <select ng-required='!selected_group_master' class="form-control inputstl" ng-model="selected_teacher" id="teachers" style="padding: 5px 5px;">
           <option value=""> - בחר מורה אחראי קבוצה - </option>
-            <option ng-repeat="y in teachers" value="{{y.PersonalID}}">{{y.FirstName}}</option>
+            <option ng-repeat="y in teachers" value="{{y.PersonalID}}" tabindex="108">{{y.FirstName}}</option>
           </select>
         </div>
 
@@ -84,17 +84,17 @@
         <!-- 1 -->
         <label class="control-label pull-right">הכנס שם קבוצה:&nbsp;&nbsp;</label>
         <!-- <span class="label label-danger"> Danger Label</span> -->
-        <input type="text" ng-model="text_group" name="groupName" class="form-control inputstl pull-right" required placeholder="הכנס שם קבוצה:" style="padding: 5px 5px;">
+        <input type="text" ng-model="text_group" name="groupName" class="form-control inputstl pull-right" required placeholder="הכנס שם קבוצה:" style="padding: 5px 5px;" tabindex="101">
 
         <!-- 3 -->
         <br>
         <label class="control-label pull-right">לרשותך, חפש עיר לפי שם:&nbsp;&nbsp;</label>
-        <input type="text" id="query" class="form-control inputstl pull-right"  ng-model="query" placeholder="חפש עיר">
+        <input type="text" id="query" class="form-control inputstl pull-right"  ng-model="query" placeholder="חפש עיר" tabindex="102">
 
         <label class="control-label pull-right">בחר עיר:&nbsp;&nbsp;</label>
-        <select required class="form-control inputstl" id="group_city"  ng-model="selected_city" ng-change="getSchoolByCity()" size=5 style="padding: 5px 5px;">
+        <select required class="form-control inputstl" id="group_city"  ng-model="selected_city" ng-change="getSchoolByCity()" size=5 style="padding: 5px 5px;" tabindex="103">
             <option value=""> - בחר עיר -</option>
-          <option ng-repeat="city in myCities.cities | filter:query | orderBy: orderList" value={{city}}>{{city}}</option>
+          <option ng-repeat="city in myCities.cities | filter:query | orderBy: orderList" value={{city}} >{{city}}</option>
         </select>
 
 

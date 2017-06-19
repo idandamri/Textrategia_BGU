@@ -407,6 +407,7 @@ textrategiaApp.controller("GroupManagementController",function($scope,$http,$loc
     }
     $scope.sendTaskForSomeStudentMod = function (){
         $scope.send_task_for_some_student_mod = true;
+        $scope.noStudentInGroup = "";
     }
 
     $scope.groupManagmentMode = function (){
@@ -638,8 +639,8 @@ $scope.studentToSendTaskToList = [];
 
 
 
-    $scope.showGroupsMembersList = function(g_id){
-
+    $scope.showGroupsMembersList = function(g_id,g_name){
+        var group_name = g_name;
         // var g_id = g.GroupId;
         // alert(g_id)
         // $scope.choosen_group = g.GroupName;
@@ -702,7 +703,7 @@ $scope.studentToSendTaskToList = [];
                         if (status==200) {
                             $scope.groupsStudentLst2 = data;
                             if (data.length==0){
-                                $scope.noStudentInGroup = "- אין תלמידים בקבוצה הנבחרת -";  
+                                $scope.noStudentInGroup = " אין תלמידים הזמינים לקבל המטלה זו בקבוצה שבחרת ";  
                             }else{
 
                                 $scope.noStudentInGroup = "";
@@ -710,8 +711,8 @@ $scope.studentToSendTaskToList = [];
                         }
                         else if (status==204){
                             $scope.groupsStudentLst2 = [];
-                            $scope.noStudentInGroup = "- אין תלמידים בקבוצה הנבחרת -";
-                            $scope.serverFeedback = "אין תלמידים בקבוצה";
+                            $scope.noStudentInGroup = " אין תלמידים הזמינים לקבל המטלה זו בקבוצה שבחרת ";  
+                            $scope.serverFeedback = "- אין תלמידים הזמינים לקבלת המטלה בקבוצה -";  
                             // alert("dude!");
                         }
                     }).error(function(data,status,headers,config){

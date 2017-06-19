@@ -238,12 +238,13 @@ textrategiaApp.controller("autodidactController",function($scope,$http,$location
 //                }
             }).error(function(data,status,headers,config){
                 if (status==415){
-                    $scope.feedback = "אין מספיק שאלות. נסה להוסיף התמקצעויות נוספות";
+                    $scope.feedback = "אין מספיק שאלות עם הנתונים שבחרת. נסה להוסיף התמקצעויות נוספות";
                     // alert("אין מספיק שאלות מתאימות. אנא הרחב את הבחירה.");
                 }
                 else{
                     // alert("בעיה ביצירת מטלה");
                     $scope.feedback = "שגיאה ביצירת מטלה";
+                    $location.path(student);
                 }
         });
     };
