@@ -177,6 +177,9 @@ router.post('/getAllTeachersBySchoolAndCity', function (req, res) {
                             }
                         });
                     }
+                    else{
+                        res.status(204).send("no teachers for group");
+                    }
                 } catch (err) {
                     console.log("Error - " + err);
                     res.status(404).send();
