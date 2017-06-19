@@ -5,17 +5,17 @@
     margin-bottom: 0;
     min-height: 50%;
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: center center;
     -webkit-background-size: cover;
     background-size: cover;
 
     /*now:*/
-     background-attachment: fixed;
+     /*background-attachment: fixed;*/
 }
 
 .jumbotron {
-    background-color: transparent; /* Orange */
-    color: #0E76BD; /*#ff5fff; PINK */
+    background-color: transparent; 
+    color: #0E76BD; 
     text-align: center;
     height: 100vh;
 
@@ -224,7 +224,7 @@ thead tr th{
 
 /* ------------------- input style ------------------- */
 .inputstl {
-    padding: 9px;
+    padding: 13px 9px;
     border: solid 1px #0F75BC;
     outline: 0;
     background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #C6ECFF), to(#FFFFFF));
@@ -386,4 +386,14 @@ thead tr th{
 .rec-button1{
     min-height: 80px;
     max-width: 110px;
+}
+
+
+.footer-image{
+    width:100%;
+}
+
+
+.container-padding {
+    padding-bottom: 80px;
 }

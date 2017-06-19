@@ -1,19 +1,40 @@
 
 
 @media(max-width:767px){
-  
-  .padd-button {
-    margin: 150px 10px;
+
+/*~~~~~~~~~~ order ~~~~~~~~~~~*/
+
+.row.reorder-xs {
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+
+    direction: rtl;
   }
+
+  .row.reorder-xs > [class*="col-"] {
+    -webkit-transform: rotate(-180deg);
+    -moz-transform: rotate(-180deg);
+    -ms-transform: rotate(-180deg);
+    -o-transform: rotate(-180deg);
+    transform: rotate(-180deg);
+
+    direction: ltr;
+  }
+
+
+
+/*~~~~~~~~~~ margin ~~~~~~~~~~~*/
+  .margin22{
+  	margin: 22px;
+  }
+
+
+/*~~~~~~~~~~ padding ~~~~~~~~~~~*/
+
+
+
   
 }
-
-@media (min-width:641px){
-
-
-
-}
-
-
-
-
