@@ -703,7 +703,7 @@ $scope.studentToSendTaskToList = [];
                         if (status==200) {
                             $scope.groupsStudentLst2 = data;
                             if (data.length==0){
-                                $scope.noStudentInGroup = " אין תלמידים הזמינים לקבל המטלה זו בקבוצה שבחרת ";  
+                                $scope.noStudentInGroup = "בקבוצה: " + g_id + "אין תלמידים הזמינים לקבלת מטלה: " + selected_task2 ;  
                             }else{
 
                                 $scope.noStudentInGroup = "";
@@ -711,7 +711,7 @@ $scope.studentToSendTaskToList = [];
                         }
                         else if (status==204){
                             $scope.groupsStudentLst2 = [];
-                            $scope.noStudentInGroup = " אין תלמידים הזמינים לקבל המטלה זו בקבוצה שבחרת ";  
+                            $scope.noStudentInGroup = "בקבוצה: " + g_id + " אין תלמידים הזמינים לקבלת מטלה: " + selected_task2 ;   
                             $scope.serverFeedback = "- אין תלמידים הזמינים לקבלת המטלה בקבוצה -";  
                             // alert("dude!");
                         }

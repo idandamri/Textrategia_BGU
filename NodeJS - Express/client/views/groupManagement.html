@@ -85,7 +85,7 @@
          </strong></div>
 
          <div class="col-xs-2 hidden-sm hidden-md hidden-lg" ><br></div>
-         <div class="col-xs-8 hidden-sm hidden-md hidden-lg alert alert-info"><p> סובב את המכשיר על מנת לראות טבלה במלואה</p></div>
+         <div class="col-xs-8 hidden-sm hidden-md hidden-lg alert alert-info" ng-show="noStudentInGroup==''"><p> סובב את המכשיר על מנת לראות טבלה במלואה</p></div>
          <div class="col-xs-2 hidden-sm hidden-md hidden-lg" ><br></div>
 
   </div>
@@ -144,7 +144,7 @@
             </div>
           </div>          
 
-           <div class="col-sm-2 hidden-xs"></div>
+           <div class="col-sm-2 col-xs-12"></div>
           <!-- 1 -->
 
            <div class="col-sm-8 col-xs-12" style = "padding: 60px;">
@@ -166,11 +166,11 @@
             </div>
           </div>
              
-           <div class="col-sm-2 hidden-xs"></div>
+           <div class="col-sm-2 col-xs-12"></div>
 
   </div> <!-- /form-group -->
 
-  <div class="col-sm-12"><br></div>
+  <div class="col-sm-12 col-xs-12"><br></div>
 
   <div class="col-sm-12 col-xs-12 text-center">
 
@@ -201,10 +201,62 @@
   <br><br>
   </div>
 
+  <!-- A  MOBILE ONLY-->
+  <div class="form-group col-xs-12 hidden-sm hidden-md hidden-lg" style="grid-row: initial;">
 
-  <div class="col-sm-4"> 
+      <div class="btn-group btn-group-lg text-right" data-toggle="buttons">
+        <!-- Button -->
+        <button id="choiseButton2" ng-click="changeTaskType(0)" 
+        class="btn btn-info squirish-button3" style="font-size: 15px;" >
+        <p>מאגר<br>המשותף</p>                       </button> 
 
-       
+        <!-- Button -->
+        <button id="choiseButton3" ng-click="changeTaskType(1)" class="btn btn-info squirish-button3" style="font-size: 15px;" >
+        <p>המטלות <br> שלי</p>                          </button>
+      </div>
+
+<br><br><br>
+
+      <!-- 1 -->
+        <label  class="control-label pull-right" >מטלות זמינות:</label>
+        <select required class="form-control inputstl" id="available_task" ng-model="selected_task2" ng-change="changedTask()" size=1>
+          <option value=""></option>
+          <option ng-repeat="y in allTasks" value="{{y.T_id}}">{{y.T_title}}</option>
+          <option ng-show="info.tasks==0" disabled>אין מטלות זמינות</option>
+        </select>
+        <br><br>
+        <div ng-show="!pickedTask" class="alert alert-danger login-input" style="font-size: 15px;"><strong>
+        <span class="label label-danger">שים לב! </span>&nbsp;&nbsp;עליך לבחור מטלה לפני לחיצה על קבוצה!
+         </strong></div> 
+          <div ng-show="!noStudentInGroup==''" class="alert alert-info login-input" style="font-size: 15px;"><strong>
+        <span class="label label-info">לדיעתך! </span>&nbsp;&nbsp;{{noStudentInGroup}}
+         </strong></div>
+ </div> <!-- /form-group -->
+
+<!-- /A -->
+
+
+<!-- B MOBILE ONLY-->
+  <div class="col-xs-12 hidden-sm hidden-md hidden-lg">
+    <div class="panel-group panel-hover col-sm-6" ng-click="showGroupsMembersList2(y.GroupId)" ng-repeat="y in allGroups" id="panelID-{{y.GroupId}}">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <p>
+              <bold>{{y.GroupName}}</bold>
+            </p>
+          </h4>
+        </div>
+        <div class="panel">
+          <div class="panel-body">קוד קבוצה: <div class="text-info"> {{y.GroupeCode}}</div></div>
+        </div>
+      </div>
+    </div>   
+  </div>        <!-- /B -->
+
+
+<!-- C MOBILE AND PC-->
+  <div class="col-sm-4 col-xs-12">      
     <div ng-show="$scope.groupsStudentLst2!=0">
       <table class="table table-responsive table-fixed table-hover">
         <thead ng-show="$scope.groupsStudentLst2!=0 ">  
@@ -253,15 +305,13 @@
 
 
 
-  </div>
+  </div>  <!-- /c -->
 
 
 
 
-
-  <div class="col-sm-4">
-
-
+<!-- B -->
+  <div class="col-sm-4 hidden-xs">
     <div class="panel-group panel-hover col-sm-6" ng-click="showGroupsMembersList2(y.GroupId)" ng-repeat="y in allGroups" id="panelID-{{y.GroupId}}">
       <div class="panel panel-default">
         <div class="panel-heading">
@@ -276,12 +326,12 @@
         </div>
       </div>
     </div>   
-
-  </div>
-
+  </div>        <!-- /B -->
 
 
-  <div class="form-group col-sm-4" style="grid-row: initial;">
+
+<!-- A -->
+  <div class="form-group col-sm-4 hidden-xs" style="grid-row: initial;">
 
       <div class="btn-group btn-group-lg text-right" data-toggle="buttons">
         <!-- Button -->
@@ -310,10 +360,14 @@
           <div ng-show="!noStudentInGroup==''" class="alert alert-info login-input" style="font-size: 15px;"><strong>
         <span class="label label-info">לדיעתך! </span>&nbsp;&nbsp;{{noStudentInGroup}}
          </strong></div>
-
-               `
-
  </div> <!-- /form-group -->
+
+<!-- /A -->
+
+
+
+
+
 
 
 
