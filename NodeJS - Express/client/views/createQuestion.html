@@ -138,7 +138,7 @@
         <!-- First part Button! -->
         <div class="col-xs-12 col-sm-12 text-center">
         <!-- why no work?! ng-required="question.selected_skill=='enter_new_skill'" -->
-          <button ng-click="possibleAnswersMode()" ng-disabled="myForm.$invalid" class="btn btn-lg btn-info squirish-button5" tabindex="8">הוסף<br>מסיחים!<br>
+          <button ng-click="possibleAnswersMode()" ng-disabled="myForm.$invalid || question.selected_skill == 'enter_new_skill'" class="btn btn-lg btn-info squirish-button5" tabindex="8">הוסף<br>מסיחים!<br>
           <span class="glyphicon glyphicon-ice-lolly"></span> </button>
 
           <div ng-show="!imageWasUploaded && triedSwitchingToPossibleAnsMod && isImg" class="alert alert-danger login-input">
