@@ -119,6 +119,7 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
     $scope.triedSwitchingToPossibleAnsMod = false;
 
 
+    $scope.media_placeholder = "הכנס קישור למדיה";
 
     $scope.changeMultiple= function () {
         type = $scope.question.is_multiple_ans;
@@ -137,9 +138,15 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
         if (type =="img"){
             $scope.isImg= true;
         }
-        else {
+        else{
             $scope.triedSwitchingToPossibleAnsMod = false;
             $scope.isImg= false;
+        }
+
+        if (type=="text"){
+            $scope.media_placeholder = "הכנס קטע קריאה כאן";
+        } else {
+            $scope.media_placeholder = "הכנס קישור למדיה";
         }
     }
 
@@ -404,6 +411,7 @@ textrategiaApp.controller("GroupManagementController",function($scope,$http,$loc
 
     $scope.sendTaskMode = function (){
         $scope.send_task_mod = true;
+        $scope.changeTaskType(1);
     }
     $scope.sendTaskForSomeStudentMod = function (){
         $scope.send_task_for_some_student_mod = true;
