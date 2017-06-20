@@ -30,7 +30,7 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
 
     // start in searchquestion by profiling mode
     var choiseButton1 = document.getElementById("choiseButton1");
-    choiseButton1.style.backgroundColor  = "#269ABC";
+    choiseButton1.style.backgroundColor  = "#398439";
     $scope.searchQuestionByProfiling = true;
     
 
@@ -70,7 +70,7 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
 
         if (param==1){
             choiseButton0.style.backgroundColor  =  "#D58512"; //yellow pressed
-            choiseButton1.style.backgroundColor  = "#5bc0de";   // blue 
+            choiseButton1.style.backgroundColor  = "#449d44";   // green 
             choiseButton2.style.backgroundColor  = "#c9302c";   // red
             $scope.searchQuestionByProfiling = false;
             $scope.flagEditQuestionMode = false;
@@ -79,16 +79,15 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
             get_all_questions("/getUnapprovedQuestion");
 
         }
-        else if (param==0){
+        else if (param==0){ // doesnt happend no more
             choiseButton0.style.backgroundColor  =  "#ec971f";      // yellow
-            choiseButton1.style.backgroundColor  = "#269ABC";       // blue pressed
+            choiseButton1.style.backgroundColor  = "#398439";       // green pressed
             choiseButton2.style.backgroundColor  =  "#c9302c";      // red
             $scope.searchQuestionByProfiling = true;
-            $location.path('superUser'); // doesnt work
         }
         else if (param==2){
             choiseButton0.style.backgroundColor  =  "#ec971f"; // yellow
-            choiseButton1.style.backgroundColor  =  "#5bc0de";  // blue
+            choiseButton1.style.backgroundColor  =  "#449d44";  // green
             choiseButton2.style.backgroundColor  = "#9F221C";   // red pressed
             $scope.searchQuestionByProfiling = false;
             $scope.flagEditQuestionMode = false;
@@ -193,6 +192,7 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
                 }
                 else if ( status==204){
                     $scope.myQuestionsStock = [];
+                    $scope.serverFeedbackForNoQuestions = "אין שאלות עם הנתונים שנבחרו. נסה להוסיף התמקצעויות נוספות ";
                 }
             }).error(function(data,status,headers,config){
         });

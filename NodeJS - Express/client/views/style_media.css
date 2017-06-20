@@ -12,6 +12,15 @@
 }
 
 
+.no-margin1-in-mobile{
+  margin: 5px 335px;
+}
+
+.no-margin2-in-mobile{
+  margin: 8px 85px;
+
+}
+
 
 @media(min-width: 1500px){ /*large sceens*/
 
@@ -49,6 +58,11 @@
 
   .no-margin1-in-mobile{
     margin: 8px 40px;
+  }
+
+
+  .no-margin2-in-mobile{
+    margin: 5px; 
   }
 
 #index-wrap{
