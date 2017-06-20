@@ -6,6 +6,34 @@
     margin: 8px 40px;
   }
 
+#index-wrap{
+    background: url('pic/start2.jpg') ;
+
+    margin-bottom: 0;
+    min-height: 50%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    -webkit-background-size: cover;
+    background-size: cover;
+
+    /*now:
+     /*background-attachment: fixed;
+*/
+}
+
+
+
+.vertical-center > .container {
+  max-width: 90%;
+  min-height: 80%;
+  display: inline-block;
+  vertical-align: middle;  /* vertical alignment of the inline element */
+                           /* reset the font property */
+  font: 16px/1 "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /*background-size: 100vw auto*/
+}
+
+
 /*~~~~~~~~~~ order ~~~~~~~~~~~*/
 /*
 .row.reorder-xs {
