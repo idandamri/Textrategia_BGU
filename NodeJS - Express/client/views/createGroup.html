@@ -38,9 +38,28 @@
 
     <form name="myForm" class="form-horizontal" role="form">
 
-      <div class="col-sm-2 col-xs-12">
-        
+      <div class="col-sm-2 col-xs-12">      </div>
+
+       <div class="col-xs-12 hidden-sm hidden-md hidden-lg ">
+
+        <!-- 1 -->
+        <label class="control-label pull-right">הכנס שם קבוצה:&nbsp;&nbsp;</label>
+        <!-- <span class="label label-danger"> Danger Label</span> -->
+        <input type="text" ng-model="text_group" name="groupName" class="form-control inputstl pull-right" required placeholder="הכנס שם קבוצה:" style="padding: 5px 5px;" tabindex="101">
+
+        <!-- 3 -->
+        <br>
+        <label class="control-label pull-right">לרשותך, חפש עיר לפי שם:&nbsp;&nbsp;</label>
+        <input type="text" id="query" class="form-control inputstl pull-right"  ng-model="query" placeholder="חפש עיר" tabindex="102">
+
+        <label class="control-label pull-right">בחר עיר:&nbsp;&nbsp;</label>
+        <select required class="form-control inputstl" id="group_city"  ng-model="selected_city" ng-change="getSchoolByCity()" size=5 style="padding: 5px 5px;" tabindex="103">
+            <option value=""> - בחר עיר -</option>
+          <option ng-repeat="city in myCities.cities | filter:query | orderBy: orderList" value={{city}} >{{city}}</option>
+        </select>
+
       </div>
+
 
       <div class="col-sm-4 col-xs-12">
 
@@ -74,7 +93,7 @@
 
       <div class="col-sm-1 col-xs-12 "></div>
 
-      <div class="col-sm-4 col-xs-12">
+      <div class="col-sm-4 hidden-xs">
 
         <!-- 1 -->
         <label class="control-label pull-right">הכנס שם קבוצה:&nbsp;&nbsp;</label>
@@ -91,7 +110,6 @@
             <option value=""> - בחר עיר -</option>
           <option ng-repeat="city in myCities.cities | filter:query | orderBy: orderList" value={{city}} >{{city}}</option>
         </select>
-
 
       </div>
 
