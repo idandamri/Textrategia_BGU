@@ -310,6 +310,10 @@ app.listen(8081, "127.0.0.1", function () {
     console.log("App is running ");
 });
 
+// // TODO - Hadas you need this/TESTS!!!
+// app.listen(8081, "10.0.0.14", function () {
+//     console.log("App is running ");
+// });
 
 setInterval(function () {
     connection.query('SELECT 1');
