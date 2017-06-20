@@ -528,9 +528,9 @@ textrategiaApp.controller("CreateGroupController",function($scope,$http,$locatio
                 }
                 else if (status==204){
                     $scope.group_school = [];
-                    $scope.group_school.push({
-                        "School": "אין בתי ספר קיימים"
-                    });
+                    // $scope.group_school.push({
+                    //     "School": "אין בתי ספר קיימים"
+                    // });
                 }
             }).error(function(data,status,headers,config){
             $scope.group_school = 0;

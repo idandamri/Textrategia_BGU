@@ -29,7 +29,7 @@
 
    
     
-    <div class="col-sm-12">
+    <div class="col-sm-12 col-xs-12">
         <h1>שלום, {{teacherName}}!</h1>  <h3>צור קבוצת לימוד חדשה: </h3>  
         <div class="text-left"> 
            <span> חסר בית ספר בעיר {{selected_city}}? <a href="#addSchoolInCity" tabindex="-1">הוסף </a></span>
@@ -38,11 +38,11 @@
 
     <form name="myForm" class="form-horizontal" role="form">
 
-      <div class="col-sm-2">
+      <div class="col-sm-2 col-xs-12">
         
       </div>
 
-      <div class="col-sm-4">
+      <div class="col-sm-4 col-xs-12">
 
         <!--  2 -->
         <label class="control-label pull-right">סוג קבוצה:&nbsp;&nbsp;</label>
@@ -50,10 +50,6 @@
           <option value=""> - בחר סוג קבוצה - </option>
           <option value=0 >קבוצת-אם תלמידים</option>
           <option value=1>קבוצת מורים</option>
-          <!--<option value=2>קבוצת תלמידים</option>-->
-          <!--<option value=3>קבוצת-אם מורים</option>-->
-          <!-- <option value=1>קבוצת אם למורים</option> -->
-        <!-- <option value=0>לא</option> -->
         </select>
 
         <!-- 4 -->
@@ -62,7 +58,7 @@
         <select required class="form-control inputstl" ng-model="selected_school" id="group_school" ng-change="getTeacherByCityAndSchool()" style="padding: 5px 5px;" tabindex="107">
          <option value=""> - הכנס בית ספר - </option>
           <option ng-repeat="y in group_school" value="{{y.School}}" >{{y.School}}</option>
-          <!--<option ng-show="group_school==0" disabled>אין בתי ספר קיימים</option>-->
+          <option value='' ng-show="group_school.length=='0'" > לא קיימים בתי ספר בעיר זו</option>
         </select>
 
         <div ng-show="isStudentGroup">
@@ -76,9 +72,9 @@
 
       </div>
 
-      <div class="col-sm-1"></div>
+      <div class="col-sm-1 col-xs-12 "></div>
 
-      <div class="col-sm-4">
+      <div class="col-sm-4 col-xs-12">
 
         <!-- 1 -->
         <label class="control-label pull-right">הכנס שם קבוצה:&nbsp;&nbsp;</label>
@@ -99,11 +95,11 @@
 
       </div>
 
-      <div class="col-sm-2"></div>
+      <div class="col-sm-2 col-xs-12"></div>
 
-      <div class="col-sm-12 text-center"><br></div>
+      <div class="col-sm-12 col-xs-12 text-center"><br></div>
 
-      <div class="col-sm-12 text-center">
+      <div class="col-sm-12 col-xs-12 text-center">
         <!--<button ng-click="createGroup()" ng-disabled="myForm.$invalid" type="submit" class="btn btn-lg btn-info" data-toggle="modal" data-target="#fedbackModal">צור קבוצה!  <span class="glyphicon glyphicon-king"></span>-->
         <button ng-click="createGroup()" type="submit" class="btn btn-lg btn-info"  ng-disabled="myForm.$invalid" data-toggle="modal" data-target="#fedbackModal">צור קבוצה!  <span class="glyphicon glyphicon-king"></span>
         </button>
