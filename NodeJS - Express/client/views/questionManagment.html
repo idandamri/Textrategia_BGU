@@ -75,6 +75,10 @@
       <div ng-show="q.Q_reported_Offensive+ q.Q_reported_Question + q.Q_reported_Answer == 0 ">
         <span class="label label-info">{{q.Q_skill}}</span>
         <span class="label label-lili">קושי: {{q.Q_difficulty}}</span> 
+        <span ng-show="q.Q_mediaType=='page'" class="label label-success">אודיו</span>
+        <span ng-show="q.Q_mediaType=='img'" class="label label-success">תמונה</span>
+        <span ng-show="q.Q_mediaType=='youtube'" class="label label-success">סרטון</span>
+        <span ng-show="q.Q_mediaType=='text'" class="label label-success">טקסט</span>
         <br>
       </div>
         
