@@ -1,14 +1,42 @@
+/* DEFAULT SIZE*/
 
+.welcome_text{
+    font-size: 24px;
+}
 
 .welcome-buttons{
 
-  font-size: 24px; 
-  padding: 13px 22px; 
+  font-size: 13px; 
+  padding: 4px 12px; 
   margin-top:26px;
 }
 
 
-@media(max-width:767px){
+
+@media(min-width: 1500px){ /*large sceens*/
+
+.welcome_text{
+    font-size: 30px;
+}
+
+.welcome-buttons{
+
+  font-size: 18px; 
+  padding: 4px 12px; 
+  margin-top:26px;
+}
+
+
+
+}
+
+@media(max-width:767px){  /*small screens*/
+
+.welcome_text{
+    font-size: 25px;
+}
+
+
 
 .welcome-buttons{
 
@@ -40,7 +68,7 @@
 
 
 
-.vertical-center > .container {
+.vertical-center > .container-welcome {
   max-width: 90%;
   min-height: 80%;
   display: inline-block;
@@ -48,10 +76,6 @@
                            /* reset the font property */
   font: 16px/1 "Helvetica Neue", Helvetica, Arial, sans-serif;
   /*background-size: 100vw auto*/
-}
-
-.welcome_text{
-    font-size: 25px;
 }
 
 

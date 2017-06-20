@@ -38,7 +38,7 @@
   height: 100%;
 }
 
-.vertical-center > .container {
+.vertical-center > .container-welcome {
   max-width: 100%;
   min-height: 75%;
   display: inline-block;
@@ -47,10 +47,6 @@
   font: 16px/1 "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-
-.welcome_text{
-    font-size: 50px;
-}
 
 
 .modal-backdrop {
