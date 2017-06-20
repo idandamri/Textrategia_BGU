@@ -1,6 +1,23 @@
 
 
+.welcome-buttons{
+
+  font-size: 24px; 
+  padding: 13px 22px; 
+  margin-top:26px;
+}
+
+
 @media(max-width:767px){
+
+.welcome-buttons{
+
+  font-size: 14px; 
+  padding: 8px 8px; 
+  margin-top:26px;
+}
+
+
 
   .no-margin1-in-mobile{
     margin: 8px 40px;
@@ -32,6 +49,11 @@
   font: 16px/1 "Helvetica Neue", Helvetica, Arial, sans-serif;
   /*background-size: 100vw auto*/
 }
+
+.welcome_text{
+    font-size: 25px;
+}
+
 
 
 /*~~~~~~~~~~ order ~~~~~~~~~~~*/
