@@ -26,7 +26,7 @@
 <div id="wrap">
   <div class="container" id="c_1">
 
-    <div ng-show = "!searchQuestion" class="col-sm-12">  
+    <div ng-show = "!searchQuestion" class="col-sm-12 col-xs-12">  
       <h1 >שלום, {{getUserName}}!</h1>  
     </div>
 
@@ -34,7 +34,7 @@
      
 
 
-  <div ng-show="searchQuestion" class ="col-sm-12 text-center well">
+  <div ng-show="searchQuestion" class ="col-sm-12 col-xs-12 text-center well">
       <!-- button -->
     <button ng-click="backToTaskDef()" class="btn btn-lg btn-info">
       חזור לנוסח מטלה  
@@ -42,7 +42,7 @@
   </div>
 
 <!-- ################  SELECTED QUESTIONS ############################ -->
-  <div ng-show="myTaskQuestions.length==0"  class="col-sm-4 text-center well">
+  <div ng-show="myTaskQuestions.length==0"  class="col-sm-4 col-xs-12 text-center well">
      <h4> שאלות המטלה החדשה </h4>
      <h6> עדיין אין שאלות לשליחה... </h6>
 
@@ -53,7 +53,7 @@
   </div>
 
 
-  <div ng-show="myTaskQuestions.length!=0" class="col-sm-4 well">
+  <div ng-show="myTaskQuestions.length!=0" class="col-sm-4 col-xs-12 well">
   <h3> שאלות המטלה החדשה </h3>
    <div id="accordion1">
     <div class="panel" ng-repeat="q in myTaskQuestions track by $index">
@@ -81,7 +81,7 @@
 
 <!-- @@@@@@@@@@@@@@@@@@ searchQuestion @@@@@@@@@@@@@@@ -->
 <div ng-show="searchQuestion">
-  <div class="col-sm-5 well">
+  <div class="col-sm-5 col-xs-12 well">
     
  
  <div id="accordion2">
@@ -116,7 +116,7 @@
 
 
 
-  <div class="col-sm-3 well" style="margin-bottom: 50px" >
+  <div class="col-sm-3 col-xs-12 well" style="margin-bottom: 50px" >
     <form name="myForm2" class="form-horizontal" role="form">
     <h3> חפש שאלה </h3>  
 
@@ -173,10 +173,10 @@
 <!-- @@@@@@@@@@@@@@ !searchQuestion @@@@@@@@@@@@@@2222-->
 <div ng-show =  "!searchQuestion">
 
-  <div class="col-sm-2"></div>
+  <div class="col-sm-2 hidden-xs"></div>
 
   <form name="myForm1" class="form-horizontal">
-    <div class="col-sm-6">
+    <div class="col-sm-6 col-xs-12">
 
       <h3>צור מטלה חדשה: </h3>
 
@@ -190,9 +190,9 @@
 
       </div>
 
-    <div class="col-sm-6"><br></div>
+    <div class="col-sm-6 col-xs-12"><br></div>
 
-    <div class="col-sm-6" style="margin: 20px 0px;">
+    <div class="col-sm-6 col-xs-12" style="margin: 20px 0px;">
 
       <!-- button -->
       <button ng-show="!searchQuestion && !showApproveQuestion" ng-click="addQuestions()" ng-disabled="myForm1.$invalid" class="btn btn-lg btn-info">
