@@ -295,9 +295,9 @@ values (5,"מנהל המערכת","מנהל מערכת על",2,"admin@gmail.com"
 insert into users
 values (6,"יוצר מטלות עצמאיות","משתמש ייחודי",2,"rand@tasker.com","123456");
 insert into users
-values (7,"אורנה","מטח",1,"Orna@teacher.com","123456");
+values (7,"אורנה","אורנה",1,"Orna@teacher.com","123456");
 insert into users
-values (8,"מוריה","מטח",1,"Morya@teacher.com","123456");
+values (8,"מוריה","מוריה",1,"Morya@teacher.com","123456");
 /*------------------------------------------*/
 
 /*-------------- tasks ---------------------*/
