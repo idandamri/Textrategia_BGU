@@ -204,11 +204,6 @@ textrategiaApp.controller("autodidactController",function($scope,$http,$location
     };
 
     $scope.generateTask = function(){
-        alert("selectedMedia: " + $scope.selectedMedia +
-            " | selectedDiff: " + $scope.selectedDiff +
-            " | selectedSkill: " + $scope.selectedSkill
-            );
-
         $scope.feedback = "";
         $scope.generate_task= false;
 
