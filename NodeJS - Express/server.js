@@ -315,8 +315,9 @@ app.listen(8081, "10.0.0.9", function () {
     console.log("App is running ");
 });
 
+
 setInterval(function () {
-    connection.query('SELECT 1');
+    connection.query('SELECT 6');
 }, 5000);
 
 

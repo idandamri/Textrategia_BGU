@@ -188,4 +188,9 @@ connection.connect(function (err) {
 });
 
 
+setInterval(function () {
+    connection.query('SELECT 3');
+}, 5000);
+
+
 module.exports = router;

@@ -387,4 +387,9 @@ connection.connect(function (err) {
 });
 
 
+setInterval(function () {
+    connection.query('SELECT 7');
+}, 5000);
+
+
 module.exports = router;
