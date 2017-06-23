@@ -21,9 +21,16 @@
 
 }
 
+.mobile-text{
+  font-size: 11px;
+}
+
 
 @media(min-width: 1500px){ /*large sceens*/
 
+.mobile-text{
+  font-size: 15px;
+}
 .welcome_text{
     font-size: 30px;
 }
@@ -40,6 +47,13 @@
 }
 
 @media(max-width:767px){  /*small screens*/
+
+
+.mobile-text{
+  font-size: 10px;
+}
+
+
 
 .welcome_text{
     font-size: 25px;
