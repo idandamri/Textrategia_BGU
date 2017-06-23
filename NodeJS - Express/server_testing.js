@@ -213,7 +213,7 @@ app.post('/getQuestionsByParamter', function (req, res) {
             if (!emptyMT) {
                 query = query + "Q_mediaType in (\"" + media_types + "\") ";
             }
-            if (!emptyMT && (!emptySkill || !emptyDiff)) {
+            if (!emptyMT && !emptySkill) {
                 query = query + "and"
             }
             if (!emptySkill) {
@@ -323,8 +323,8 @@ app.post('/multer', function (req, res) {
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    // password: '1q2w3e4r',//'123465' to upload*/
-    password: '123456',//'123465' to upload*/
+    password: '1q2w3e4r',//'123465' to upload*/
+    // password: '123456',//'123465' to upload*/
     database: 'textra_db',
     multipleStatements: true
 });

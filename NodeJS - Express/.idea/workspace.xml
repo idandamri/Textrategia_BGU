@@ -18,18 +18,18 @@
       <file leaf-file-name="server_testing.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server_testing.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="99">
+            <state relative-caret-position="828">
               <caret line="231" column="8" lean-forward="false" selection-start-line="231" selection-start-column="8" selection-end-line="231" selection-end-column="8" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="queryForDB.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="queryForDB.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/queryForDB.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="211">
-              <caret line="376" column="0" lean-forward="false" selection-start-line="376" selection-start-column="0" selection-end-line="376" selection-end-column="0" />
+            <state relative-caret-position="6307">
+              <caret line="371" column="6" lean-forward="true" selection-start-line="371" selection-start-column="6" selection-end-line="372" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -48,8 +48,8 @@
       <file leaf-file-name="teacher.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/teacher.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
-              <caret line="573" column="22" lean-forward="false" selection-start-line="573" selection-start-column="22" selection-end-line="573" selection-end-column="22" />
+            <state relative-caret-position="125">
+              <caret line="256" column="79" lean-forward="false" selection-start-line="256" selection-start-column="79" selection-end-line="256" selection-end-column="79" />
               <folding />
             </state>
           </provider>
@@ -58,8 +58,8 @@
       <file leaf-file-name="editor.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/editor.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="143">
-              <caret line="151" column="88" lean-forward="false" selection-start-line="151" selection-start-column="88" selection-end-line="151" selection-end-column="88" />
+            <state relative-caret-position="228">
+              <caret line="178" column="26" lean-forward="true" selection-start-line="178" selection-start-column="26" selection-end-line="178" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -68,18 +68,18 @@
       <file leaf-file-name="forTest.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/forTest.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-5">
-              <caret line="98" column="41" lean-forward="false" selection-start-line="98" selection-start-column="41" selection-end-line="98" selection-end-column="41" />
+            <state relative-caret-position="80">
+              <caret line="103" column="26" lean-forward="true" selection-start-line="103" selection-start-column="26" selection-end-line="103" selection-end-column="26" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="student.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="student.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/student.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-496">
-              <caret line="222" column="42" lean-forward="true" selection-start-line="222" selection-start-column="42" selection-end-line="222" selection-end-column="42" />
+            <state relative-caret-position="148">
+              <caret line="269" column="22" lean-forward="false" selection-start-line="269" selection-start-column="22" selection-end-line="269" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -88,8 +88,8 @@
       <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-360">
-              <caret line="186" column="13" lean-forward="false" selection-start-line="186" selection-start-column="13" selection-end-line="186" selection-end-column="13" />
+            <state relative-caret-position="65">
+              <caret line="328" column="26" lean-forward="true" selection-start-line="328" selection-start-column="26" selection-end-line="328" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -98,8 +98,8 @@
       <file leaf-file-name="superUser.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/superUser.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="99">
-              <caret line="160" column="45" lean-forward="false" selection-start-line="160" selection-start-column="44" selection-end-line="160" selection-end-column="45" />
+            <state relative-caret-position="97">
+              <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -109,8 +109,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>al</find>
-      <find>ale</find>
       <find>aler</find>
       <find>alert)</find>
       <find>alert(</find>
@@ -130,15 +128,17 @@
       <find>getQuestionsBy</find>
       <find>getQuestionsByP</find>
       <find>getQuestionsByPa</find>
-      <find>getQuestionsByParamter</find>
       <find>g</find>
       <find>get</find>
       <find>getReported</find>
-      <find>gene</find>
       <find>getUn</find>
       <find>getUna</find>
       <find>getUnap</find>
       <find>getUnapp</find>
+      <find>getQuestionsByParamter</find>
+      <find>gene</find>
+      <find>makeI</find>
+      <find>make</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -165,13 +165,13 @@
         <option value="$PROJECT_DIR$/client/index.html" />
         <option value="$PROJECT_DIR$/client/js/student_controllers.js" />
         <option value="$PROJECT_DIR$/client/js/shared_controllers.js" />
-        <option value="$PROJECT_DIR$/server_testing.js" />
         <option value="$PROJECT_DIR$/teacher.js" />
+        <option value="$PROJECT_DIR$/editor.js" />
         <option value="$PROJECT_DIR$/forTest.js" />
-        <option value="$PROJECT_DIR$/student.js" />
         <option value="$PROJECT_DIR$/server.js" />
         <option value="$PROJECT_DIR$/superUser.js" />
-        <option value="$PROJECT_DIR$/editor.js" />
+        <option value="$PROJECT_DIR$/server_testing.js" />
+        <option value="$PROJECT_DIR$/student.js" />
       </list>
     </option>
   </component>
@@ -965,7 +965,7 @@
       <workItem from="1496478190632" duration="106000" />
       <workItem from="1497433806950" duration="24416000" />
       <workItem from="1497607937633" duration="31473000" />
-      <workItem from="1497973729791" duration="15796000" />
+      <workItem from="1497973729791" duration="18959000" />
     </task>
     <task id="LOCAL-00001" summary="updated onesetupfile">
       <created>1497607568285</created>
@@ -1115,7 +1115,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="104945000" />
+    <option name="totallyTimeSpent" value="108108000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1128,6 +1128,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1376" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32935154" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1152,7 +1153,7 @@
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3993174" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4095563" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1208,28 +1209,64 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/server_testing.js</url>
-          <line>208</line>
+          <url>file://$PROJECT_DIR$/student.js</url>
+          <line>314</line>
           <properties />
-          <option name="timeStamp" value="462" />
+          <option name="timeStamp" value="465" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/student.js</url>
+          <line>292</line>
+          <properties />
+          <option name="timeStamp" value="466" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/student.js</url>
+          <line>281</line>
+          <properties />
+          <option name="timeStamp" value="467" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/student.js</url>
+          <line>255</line>
+          <properties />
+          <option name="timeStamp" value="468" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/student.js</url>
+          <line>316</line>
+          <properties />
+          <option name="timeStamp" value="469" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/server_testing.js</url>
           <line>231</line>
           <properties />
-          <option name="timeStamp" value="463" />
+          <option name="timeStamp" value="470" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/queryForDB.js</url>
-          <line>324</line>
+          <url>file://$PROJECT_DIR$/student.js</url>
+          <line>257</line>
           <properties />
-          <option name="timeStamp" value="464" />
+          <option name="timeStamp" value="471" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/student.js</url>
+          <line>202</line>
+          <properties />
+          <option name="timeStamp" value="472" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/student.js</url>
+          <line>209</line>
+          <properties />
+          <option name="timeStamp" value="474" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="465" />
+      <option name="time" value="475" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="mocha-javascript-test-runner">
@@ -1538,66 +1575,66 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/teacher.js">
+    <entry file="file://$PROJECT_DIR$/editor.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="573" column="22" lean-forward="false" selection-start-line="573" selection-start-column="22" selection-end-line="573" selection-end-column="22" />
+        <state relative-caret-position="228">
+          <caret line="178" column="26" lean-forward="true" selection-start-line="178" selection-start-column="26" selection-end-line="178" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/forTest.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5">
-          <caret line="98" column="41" lean-forward="false" selection-start-line="98" selection-start-column="41" selection-end-line="98" selection-end-column="41" />
+        <state relative-caret-position="80">
+          <caret line="103" column="26" lean-forward="true" selection-start-line="103" selection-start-column="26" selection-end-line="103" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-360">
-          <caret line="186" column="13" lean-forward="false" selection-start-line="186" selection-start-column="13" selection-end-line="186" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server_testing.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="99">
-          <caret line="231" column="8" lean-forward="false" selection-start-line="231" selection-start-column="8" selection-end-line="231" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/student.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-496">
-          <caret line="222" column="42" lean-forward="true" selection-start-line="222" selection-start-column="42" selection-end-line="222" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/superUser.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="99">
-          <caret line="160" column="45" lean-forward="false" selection-start-line="160" selection-start-column="44" selection-end-line="160" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/editor.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="151" column="88" lean-forward="false" selection-start-line="151" selection-start-column="88" selection-end-line="151" selection-end-column="88" />
+        <state relative-caret-position="65">
+          <caret line="328" column="26" lean-forward="true" selection-start-line="328" selection-start-column="26" selection-end-line="328" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/queryForDB.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="376" column="0" lean-forward="false" selection-start-line="376" selection-start-column="0" selection-end-line="376" selection-end-column="0" />
+        <state relative-caret-position="6307">
+          <caret line="371" column="6" lean-forward="true" selection-start-line="371" selection-start-column="6" selection-end-line="372" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server_testing.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="828">
+          <caret line="231" column="8" lean-forward="false" selection-start-line="231" selection-start-column="8" selection-end-line="231" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/teacher.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="256" column="79" lean-forward="false" selection-start-line="256" selection-start-column="79" selection-end-line="256" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/superUser.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="97">
+          <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/student.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="269" column="22" lean-forward="false" selection-start-line="269" selection-start-column="22" selection-end-line="269" selection-end-column="22" />
           <folding />
         </state>
       </provider>
