@@ -492,20 +492,23 @@
               </div>
             </div>
             <div class="modal-footer">
-                
-                <button type="button" ng-show="ask_if_should_disable && flagEditQuestionMode" class="btn btn-danger" ng-click="disableQuestionPermanently()"> השבת שאלה לצמיתות! </button>
 
+                 <!-- disable question Yes -->
+                <button type="button" ng-show="ask_if_should_disable" class="btn btn-danger" ng-click="disableQuestionPermanently()"> השבת שאלה לצמיתות! </button>
 
-                <button type="button" ng-show="ask_if_should_disable && flagEditQuestionMode" data-dismiss="modal" class="btn btn-success" ng-click="dontDisableQuestion()"> אל תשבית שאלה </button>
+                <!-- disable question No -->
+                <button type="button" ng-show="ask_if_should_disable" data-dismiss="modal" class="btn btn-success" ng-click="dontDisableQuestion()"> אל תשבית שאלה </button>
 
+                <!-- Enter edit mod -->
                  <button type="button" ng-show="!flagEditQuestionMode" data-dismiss="modal" class="btn btn-default" ng-click="getQuestionToEditFromStock()" > ערוך שאלה </button>
                 
-                <button type="button" ng-show="question_is_legal && flagEditQuestionMode && !doneWithPage && !ask_if_should_disable" class="btn btn-default" ng-click="sendNewQuestion()"  > אשר </button>
+                 <!-- Save changes button -->
+                <button type="button" ng-show="question_is_legal && flagEditQuestionMode && !doneWithPage && !ask_if_should_disable" class="btn btn-success" ng-click="sendNewQuestion()"  > שמור שינויים </button>
 
 
                 <button type="button" ng-show="!ask_if_should_disable && !doneWithPage" data-dismiss="modal" class="btn btn-default" ng-click="resetFlags()"> סגור </button>
 
-              <button type="button" ng-show="doneWithPage" data-dismiss="modal" class="btn btn-default" ng-click="dontEdit()"> סגור </button>
+               <button type="button" ng-show="doneWithPage" data-dismiss="modal" class="btn btn-default" ng-click="dontEdit()"> סגור </button>
 
             </div>
           </div><!-- /.modal-content -->
