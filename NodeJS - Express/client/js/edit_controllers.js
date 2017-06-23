@@ -362,11 +362,13 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
         }
         else {
             if (!$scope.question.Q_approved){
-                $scope.serverFeedback = "האם ברצונך לאשר שאלה זו? לחיצה על \"אישור\" תכניס שאלה זו למאגר השאלות במערכת. כמו כן כל שינויים שנעשו על ידיך ישמרו.";   
-            } else if (question.Q_reported_Offensive+ question.Q_reported_Question + question.Q_reported_Answer > 0 ){
-                $scope.serverFeedback = "האם ברצונך לנקות שאלה זו מהתראות קיימות? כמו כן כל שינויים שנעשו על ידיך ישמרו.";                
+                $scope.serverFeedback = "האם ברצונך לאשר שאלה זו? לחיצה על \"שמור שינויים\" תכניס שאלה זו למאגר השאלות במערכת. כמו כן, כל השינויים שנעשו על ידיך ישמרו.";   
+            } else if ($scope.question.Q_reported_Offensive+ $scope.question.Q_reported_Question + $scope.question.Q_reported_Answer > 0 ){
+                $scope.serverFeedback = "האם ברצונך לאשר את השינויים שנעשו על ידך? אם כן לחץ על \"שמור שינויים\". כמו כן ההתראות שיש על שאלה זו יתאפסו.";                
             }
-            $scope.serverFeedback = "האם ברצונך לשמור שינויים?";   
+            else {
+                $scope.serverFeedback = "האם ברצונך לשמור שינויים?";                 
+            }
             $scope.question_is_legal = true;       
         };
 
