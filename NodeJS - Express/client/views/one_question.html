@@ -35,7 +35,7 @@
         <div ng-show="!quizOver">
 
           <div class="col-sm-2">
-            <button ng-click="wanaReport()" type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#fedbackModal">
+            <button ng-click="wanaReport()" type="button" ng-disabled="reported1 && reported2 && reported3 " class="btn btn-danger btn-sm" data-toggle="modal" data-target="#fedbackModal">
               דווח על שאלה בעייתית
             </button>
           </div>
@@ -205,18 +205,21 @@
             </div>
             <div class="modal-footer ">
               <div ng-show="correctAns  && !sendFeedbackMode">
-                <!-- <button type="button" class="btn btn-default" data-dismiss="modal">סגור</button> -->
                 <button type="button" ng-click="nextQuestion()" class="btn btn-primary" data-dismiss="modal" >שאלה הבאה</button>
               </div>
+              
               <div ng-show="!correctAns && !sendFeedbackMode">
                 <button ng-show="!triedOnce" type="button"  ng-click="oneMoreTry()" class="btn btn-default" data-dismiss="modal"> נסה פעם נוספת!</button>
                 <button type="button"  ng-click="nextQuestion()" class="btn btn-link" data-dismiss="modal" >שאלה הבאה...</button>
               </div>
 
               <div ng-show="sendFeedbackMode">
-                <button type="button" data-dismiss="modal" ng-click="report_offensive()" class="btn btn-info" >תוכן פוגעני</button>
-                <button type="button" ng-click="report_question()" class="btn btn-info" data-dismiss="modal"  >בעיה בניסוח שאלה</button>
-                <button type="button"  ng-click="report_answer()" class="btn btn-info" data-dismiss="modal"  >בעיה בניסוח תשובה</button>
+                <button type="button" ng-click="report_offensive()" class="btn btn-danger" ng-disabled="reported1" data-dismiss="modal">תוכן פוגעני</button>
+                <button type="button" ng-click="report_question()" class="btn btn-primary" ng-disabled="reported2" data-dismiss="modal">בעיה בניסוח שאלה</button>
+                <button type="button"  ng-click="report_answer()" class="btn btn-primary" ng-disabled="reported3" data-dismiss="modal">בעיה בניסוח תשובה</button>
+              </div>
+
+
               </div>
             </div>
           </div><!-- /.modal-content -->

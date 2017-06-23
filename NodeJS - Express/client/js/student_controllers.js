@@ -297,13 +297,16 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
     $scope.numberOfQuestions = 0;
     $scope.triedOnce = false;
     $scope.sendFeedbackMode = false;
-    $scope.lastQuestionReported = "blimp";
     $scope.isMultipleAnswers = true;
 
     $scope.checkStatus51 = false;
     $scope.checkStatus52 = false;
     $scope.checkStatus53 = false;
     $scope.checkStatus54 = false;
+
+    $scope.reported1 = false;
+    $scope.reported2 = false;
+    $scope.reported3 = false;
 
 
     $scope.finishTask = function () {
@@ -492,6 +495,7 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
 
     //This is function for submit
     $scope.checkAnswer = function(){
+        $scope.sendFeedbackMode = false;
         if ($scope.isMultipleAnswers){
             // alert("ismULTI");
             $scope.updateField();
@@ -557,7 +561,11 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
     };
 
     $scope.nextQuestion = function(quest_id){
+        $scope.sendFeedbackMode = false;
         $scope.triedOnce = false;
+        $scope.reported1 = false;
+        $scope.reported2 = false;
+        $scope.reported3 = false;
         var req = {
             method: 'POST',
             cache: false,
@@ -589,21 +597,27 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
 
 
     $scope.report_offensive = function () {
+        $scope.reported1 = true;
         $scope.report(0,0,1);
     };
 
     $scope.report_question = function () {
+        $scope.reported2 = true;
         $scope.report(1,0,0);
     };
 
     $scope.report_answer= function () {
+        $scope.reported3 = true;
         $scope.report(0,1,0);
     };
 
+
+
     $scope.report = function (r_question,r_answer,r_offensive) {
-        if ( $scope.questionID== $scope.lastQuestionReported ){
-            //// DONT REPORT
+        if ( $scope.reported1 && $scope.reported2 && $scope.reported3 ){
+            alert("dont report");
         } else {
+            alert("sending report");
             //########################## SEND REPORT HERE ##########################
             var req = {
                 method: 'POST',
@@ -623,8 +637,10 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
                 });
         }
 
-        $scope.lastQuestionReported = $scope.questionID;
+        // $scope.lastQuestionReported = $scope.questionID;
         $scope.sendFeedbackMode = false;
+        alert("sendFeedbackMode: " + $scope.sendFeedbackMode )
+        $('#fedbackModal').modal('hide');
     };
 
 
