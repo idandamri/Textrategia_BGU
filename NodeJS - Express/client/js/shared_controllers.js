@@ -155,7 +155,6 @@ textrategiaApp.controller("LoginController", function($scope, $http,$location) {
             }
 
             }).error(function(data,status,headers,config){
-                alert();
                 $scope.showError = true;
                 $scope.showSuccess = false;
 

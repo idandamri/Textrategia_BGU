@@ -316,7 +316,7 @@ app.listen(8081, "127.0.0.1", function () {
 // });
 
 setInterval(function () {
-    connection.query('SELECT 1');
+    connection.query('SELECT 6');
 }, 5000);
 
 

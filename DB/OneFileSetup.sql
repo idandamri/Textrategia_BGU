@@ -291,13 +291,13 @@ values (3,"גנים","הדס",0,"hadasganim@gmail.com","123456");
 insert into users
 values (4,"שטורם","ארנון",1,"sturm@bgu.ac.il","123456");
 insert into users
-values (5,"מנהל המערכת","מנהל מערכת על",2,"admin@gmail.com","123456");
+values (5,"מנהל המערכת","מנהל מערכת על",2,"admin@gmail.com","admin");
 insert into users
 values (6,"יוצר מטלות עצמאיות","משתמש ייחודי",2,"rand@tasker.com","123456");
 insert into users
-values (7,"אורנה","מטח",1,"Orna@teacher.com","123456");
+values (7,"אורנה","אורנה",1,"Orna@teacher.com","123456");
 insert into users
-values (8,"מוריה","מטח",1,"Morya@teacher.com","123456");
+values (8,"מוריה","מוריה",1,"Morya@teacher.com","123456");
 /*------------------------------------------*/
 
 /*-------------- tasks ---------------------*/
@@ -320,7 +320,7 @@ insert into groups
 values(1234321,"כיתת ניסוי 1","בית ספר אשכולות","אשדוד", 8, 0, 1, "School-Orna", 1, 1);
 
 insert into groups
-values(1235321,"כיתת ניסוי 2","בית ספר אשכולות","אשדוד", 11, 0, 1, "School-Morya", 1, 1);
+values(1235321,"כיתת ניסוי 2","בית ספר אשכולות","אשדוד", 7, 0, 1, "School-Morya", 1, 1);
 
 insert into groups
 values(1, "קבוצת מורים", "מענית", "באר שבע", 5, 1,1,"teach",1,1);
@@ -345,7 +345,7 @@ insert into students_per_group
 values(8,1);
 
 insert into students_per_group
-values(11,1);
+values(7,1);
 /*------------------------------------------*/
 
 /*----------- textra_db.tasks_joined_with_questions ---------*/
