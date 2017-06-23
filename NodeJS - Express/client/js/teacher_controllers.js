@@ -115,8 +115,18 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
     
     $scope.imageStatus = "";
     $scope.imageWasUploaded = false;
+    $scope.question_choisses_r_legal = false; 
 
     $scope.triedSwitchingToPossibleAnsMod = false;
+
+
+    $scope.answer1_is_correct = 0;
+    $scope.answer2_is_correct = 0;
+    $scope.answer3_is_correct = 0;
+    $scope.answer4_is_correct = 0;
+    $scope.isMultipuleAns = 0;
+
+
 
 
     $scope.media_placeholder = "הכנס קישור למדיה";
@@ -245,147 +255,166 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
     });
 
 
-        $scope.checkCorrectAnsLst = [];              // Arg1
-        $scope.checkCorrectAns = function (checkStatus,element){
-            if(checkStatus)        {
-                $scope.checkCorrectAnsLst.push(element);
+         $scope.checkLegal = function(){
+            $scope.question_choisses_r_legal = false;   
+            var isMultipuleAns = parseInt($scope.isMultipuleAns);
+            var sum = parseInt($scope.answer1_is_correct) +  parseInt($scope.answer2_is_correct) +
+                parseInt($scope.answer3_is_correct) +  parseInt($scope.answer4_is_correct) ;
+
+            if (sum == 0){
+                $scope.serverFeedback = "חייב לבחור לפחות תשובה נכונה אחת";
             }
-            else{
-                const index = $scope.checkCorrectAnsLst.indexOf(element);
-                if (index !== -1){
-                   $scope.checkCorrectAnsLst.splice(index, 1);
-                }
+            else if( !isMultipuleAns && sum != 1){
+                $scope.serverFeedback = "אסור לבחור יותר מתשובה נכונה אחת";    
+
             }
+            else {
+                $scope.serverFeedback = "האם ברצונך לשלוח את השאלה לעריכה?";   
+                $scope.question_choisses_r_legal = true;
+            };
+
+             
+         };
+        $scope.resetFlags = function(){
+             $scope.question_choisses_r_legal = true;      
+
         };
+
+         $scope.changeStatusOfAnswer = function(changed_element){
+
+            switch(changed_element) {
+                case "0":
+                    $scope.answer1_is_correct = 1 - $scope.answer1_is_correct;
+                    break;
+                case "1":
+                    $scope.answer2_is_correct = 1 - $scope.answer2_is_correct;
+                    break;
+                case "2":
+                    $scope.answer3_is_correct = 1 - $scope.answer3_is_correct;
+                    break;
+                case "3":
+                    $scope.answer4_is_correct = 1- $scope.answer4_is_correct;
+                    break;
+                case "blimp":
+                    $scope.isMultipuleAns = 1- $scope.isMultipuleAns;
+                    break;
+            } ;
+            $scope.checkLegal();
+
+        };
+
 
     $scope.sendNewQuestion = function (){
         // question_title is argument 1
-        var question_title = $scope.question.question_title;
 
-        // (MEDIA TYPE) opt2.value is argument 3
-        var media_type;
-        var sel2 = document.getElementById("media_type");
-        for (i = 0 ; i < sel2.options.length ; i++){
-            media_type = sel2.options[i];
-            if (media_type.selected == true){
-                // alert(media_type.value);              // 0 is no media.... @SHAKED - CHANGE AS YOU WISH
-                break;
+            var question_title = $scope.question.question_title;
+
+            // (MEDIA TYPE) opt2.value is argument 3
+            var media_type;
+            var sel2 = document.getElementById("media_type");
+            for (i = 0 ; i < sel2.options.length ; i++){
+                media_type = sel2.options[i];
+                if (media_type.selected == true){
+                    // alert(media_type.value);              // 0 is no media.... @SHAKED - CHANGE AS YOU WISH
+                    break;
+                }
             }
-        }
 
-        var quest_difficulty = $scope.question.quest_difficulty;
+            var quest_difficulty = $scope.question.quest_difficulty;
 
-        // arguments 4 - 8
+            // arguments 4 - 8
 
-        var question_media;
-        if (media_type.value=="img"){
-            question_media = imgUrl;
-            // alert("question_media = imgURL: " + question_media);
-        }
-        else if(media_type.value=="youtube"){
-            question_media = $scope.question.question_media.split('=')[1];
-        }
-        else {
-            question_media = $scope.question.question_media;
-        }
-
-
-        var quest_correct_fb = $scope.question.quest_correct_fb;
-        var quest_incorrect_fb = $scope.question.quest_incorrect_fb;
-
-        var quest_skill = $scope.question.selected_skill;
-
-
-        // the information:
-        // quest_proffesion /// quest_is_approved //// who_created /// quest_disabled
-        // is not user inserted
-
-        // get possible answers infomation!
-        var possible_ans_1 = $scope.question.possible_ans_1;
-        var possible_ans_2 = $scope.question.possible_ans_2;
-        var possible_ans_3 = $scope.question.possible_ans_3;
-        var possible_ans_4 = $scope.question.possible_ans_4;
-
-
-
-        // (IS MULTPLE QUESTION?) opt3.value is argument
-        var opt3;
-        var sel3 = document.getElementById("is_multiple_ans");
-        for (i = 0 ; i < sel3.options.length ; i++){
-            opt3 = sel3.options[i];
-            if (opt3.selected == true){
-                // alert(opt3.value);              // 0 is ans1 , 1 is ans2 ...
-                break;
+            var question_media;
+            if (media_type.value=="img"){
+                question_media = imgUrl;
+                // alert("question_media = imgURL: " + question_media);
             }
-        }
+            else if(media_type.value=="youtube"){
+                question_media = $scope.question.question_media.split('=')[1];
+            }
+            else {
+                question_media = $scope.question.question_media;
+            }
 
 
+            var quest_correct_fb = $scope.question.quest_correct_fb;
+            var quest_incorrect_fb = $scope.question.quest_incorrect_fb;
 
-        // ####################################################
-        // SEND INFORMATION TO SERVER HERE
-        // ####################################################
-
-
-        // change server feedback acording to succuss or failure!
-
-        /*set quest_is_approved */
-        var is_approved;
-        if (getUserType() == 2)
-            is_approved=1;
-        else
-            is_approved=0;
-
-        // alert("isMultipleAns:" + $scope.isMultipleAns);
-        var correctAnswer;
-        if (! $scope.isMultipleAns){
-            // alert("!");
-            correctAnswer = $scope.selected_ans;
-            // alert(correctAnswer);
-        }
-        else{
-            correctAnswer = $scope.checkCorrectAnsLst;
-            // alert(correctAnswer);
-        }
-
-        var req = {
-            method: 'POST',
-            cache: false,
-            url: _url +'/addQuestion',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            data: 'question_title='+ question_title
-            +'&is_multiple_ans='+ opt3.value
-            + '&question_media_type=' + media_type.value
-            + '&question_media=' + question_media
-            + '&quest_correct_fb=' + quest_correct_fb
-            +'&quest_incorrect_fb=' + quest_incorrect_fb
-            +'&quest_skill=' +  quest_skill
-            + '&quest_difficulty=' +   quest_difficulty
-            + '&quest_proffesion=' + 'הבעה'
-            + '&quest_is_approved=' + is_approved
-            + '&quest_disabled=' + '0'
-            + '&who_created=' + getUserID()
-            + '&answer1=' + possible_ans_1
-            + '&answer2=' + possible_ans_2
-            + '&answer3=' + possible_ans_3
-            + '&answer4=' + possible_ans_4
-            + '&correctAnswerIndex=' + correctAnswer
-        };
-
-        //alert(JSON.stringify(req));
-
-        $http(req)
-            .success(function(data,status,headers,config){
-                $scope.serverFeedback = "השאלה נשלחה בהצלחה!"
-                $scope.doneRegisterQuestion = true;
-            }).error(function(data,status,headers,config){
-            $scope.serverFeedback = "שגיאה בהכנסת שאלה";
-        });
+            var quest_skill = $scope.question.selected_skill;
 
 
+            // the information:
+            // quest_proffesion /// quest_is_approved //// who_created /// quest_disabled
+            // is not user inserted
 
-        // $scope.serverFeedback = "השאלה נשלחה בהצלחה!"
+            // get possible answers infomation!
+            var possible_ans_1 = $scope.question.possible_ans_1;
+            var possible_ans_2 = $scope.question.possible_ans_2;
+            var possible_ans_3 = $scope.question.possible_ans_3;
+            var possible_ans_4 = $scope.question.possible_ans_4;
+
+            var correct_ans = [];
+            if ($scope.answer1_is_correct){
+                correct_ans.push("0");
+            }        if ($scope.answer2_is_correct){
+                correct_ans.push("1");
+            }        if ($scope.answer3_is_correct){
+                correct_ans.push("2");
+            }        if ($scope.answer4_is_correct){
+                correct_ans.push("3");
+            }
+
+            // ####################################################
+            // SEND INFORMATION TO SERVER HERE
+            // ####################################################
+
+
+            // change server feedback acording to succuss or failure!
+
+            /*set quest_is_approved */
+            var is_approved;
+            if (getUserType() == 2)
+                is_approved=1;
+            else
+                is_approved=0;
+
+            var isMulti = $scope.isMultipuleAns
+
+            var req = {
+                method: 'POST',
+                cache: false,
+                url: _url +'/addQuestion',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                data: 'question_title='+ question_title
+                +'&is_multiple_ans='+ isMulti
+                + '&question_media_type=' + media_type.value
+                + '&question_media=' + question_media
+                + '&quest_correct_fb=' + quest_correct_fb
+                +'&quest_incorrect_fb=' + quest_incorrect_fb
+                +'&quest_skill=' +  quest_skill
+                + '&quest_difficulty=' +   quest_difficulty
+                + '&quest_proffesion=' + 'הבעה'
+                + '&quest_is_approved=' + is_approved
+                + '&quest_disabled=' + '0'
+                + '&who_created=' + getUserID()
+                + '&answer1=' + possible_ans_1
+                + '&answer2=' + possible_ans_2
+                + '&answer3=' + possible_ans_3
+                + '&answer4=' + possible_ans_4
+                + '&correctAnswerIndex=' + correct_ans
+            };
+
+            // alert(JSON.stringify(req));
+
+            $http(req)
+                .success(function(data,status,headers,config){
+                    $scope.serverFeedback = "השאלה נשלחה בהצלחה!"
+                    $scope.doneRegisterQuestion = true;
+                }).error(function(data,status,headers,config){
+                $scope.serverFeedback = "שגיאה בהכנסת שאלה";
+            });
     }
 });
 
@@ -683,13 +712,11 @@ $scope.studentToSendTaskToList = [];
                 }
             }).error(function(data,status,headers,config){
                 $scope.groupsStudentLst = [];
-                alert("אין תלמידים בקבוצה");
+                alert("בעיה בשרת");
 
         });
-
-
-
     }
+
  $scope.showGroupsMembersList2 = function(g_id){
     $scope.noStudentInGroup = "";
     if ($scope.selected_task2) {

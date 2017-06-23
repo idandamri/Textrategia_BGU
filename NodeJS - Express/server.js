@@ -351,10 +351,9 @@ connection.connect(function (err) {
 // });
 
 // TODO - Hadas you need this/TESTS!!!
-app.listen(8081, "10.0.0.9", function () {
+app.listen(8081, "10.0.0.4", function () {
     console.log("App is running ");
 });
-
 
 setInterval(function () {
     connection.query('SELECT 6');

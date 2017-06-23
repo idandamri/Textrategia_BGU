@@ -83,7 +83,7 @@
 
         <div  ng-show="!isImg">
             <label class="control-label pull-right">הכנס מדייה: &nbsp;&nbsp;</label>
-            <input type="text" name="question_media" class="form-control inputstl pull-right" placeholder={{media_placeholder}} ng-model="question.question_media" tabindex="5">
+            <input  ng-required='!isImg' type="text" name="question_media" class="form-control inputstl pull-right" placeholder={{media_placeholder}} ng-model="question.question_media" tabindex="5">
         </div>
 
 
@@ -156,6 +156,9 @@
 <form name="mySecondForm" class="form-horizontal" role="form">
 
 
+
+
+<!-- MOBILE ONLE!!!!!!!!!! -->
  <div class="col-xs-12 hidden-sm hidden-md hidden-lg ">
       <!-- 1 -->
       <label class="control-label pull-right">תשובה 1: &nbsp;&nbsp;</label>
@@ -167,10 +170,12 @@
         </textarea>
 
     </div>
+<!-- /////MOBILE ONLE!!!!!!!!!! -->
 
 
+  <div class="col-xs-12 col-sm-2 text-center"><br></div>
 
-	<div class="col-xs-12 col-sm-4 text-center">
+  <div class="col-xs-12 col-sm-4 text-center">
       <!-- 3 -->
       <label class="control-label pull-right">תשובה 3: &nbsp;&nbsp;</label>
        <textarea  type="text" rows="2" name="possible_ans_3" class="form-control inputstl pull-right" required  ng-model="question.possible_ans_3" placeholder="הכנס תשובה אפשרית" tabindex="11"> 
@@ -195,6 +200,7 @@
 
     </div>
 
+  <div class="col-xs-12 col-sm-2 text-center"><br></div>
 
   <!-- buttons -->
   <div class="hidden-xs col-sm-4 text-center">
@@ -204,46 +210,68 @@
 <div class="col-sm-4 text-center"></div>
 
 <div class="col-xs-12 col-sm-4 text-center">
-		<!-- 5 -->
-      	<label class="control-label pull-right ">כמה תשובות נכונה יש?&nbsp;&nbsp; &nbsp;&nbsp;</label>
-            <select class="form-control inputstl " id="is_multiple_ans" ng-model="question.is_multiple_ans" ng-change="changeMultiple()"  style="max-width: 160px;" tabindex="13">
-	            <option value=0>תשובה אחת בלבד</option>
-	            <option value=1>יותר מתשובה אחת</option>
-	          
-            </select> 
-	
-<br><br>
 
+<!-- HERE HERE -->
+<!-- HERE HERE -->
+<!-- HERE HERE -->
+<!-- HERE HERE -->
+<!-- HERE HERE -->
+<!-- HERE HERE -->
 
-    <div ng-show="isMultipleAns">
+  <br>
+  <br>
+    <label class="control-label pull-right ">בשאלה זו: &nbsp;&nbsp; &nbsp;&nbsp;</label>
+        <strong>
+        <span class="text-info"  ng-show="isMultipuleAns==0" style="font-size: 18px;">תשובה נכונה אחת בלבד </span>
+        <span class="text-warning" ng-show="isMultipuleAns==1" style="font-size: 18px;">כמה תשובות נכונות </span>
+        </strong>
+        &nbsp;&nbsp;<button type="button" class="btn btn-info" ng-click="changeStatusOfAnswer('blimp')"> שנה </button>
+  <br>
+  <br>
+
   <label class="control-label pull-right">סמן תשובות נכונות:&nbsp;&nbsp;</label><br>
-  <div class="padded-20-elemnt well" style="max-width: 240px">
-    <label><input type="checkbox" ng-init='checkStatus11=false' ng-model="checkStatus11" ng-change="checkCorrectAns(checkStatus11,'0')" >
-    &nbsp;&nbsp;1</label><br>
-    <label> <input type="checkbox" ng-init='checkStatus12=false' ng-model="checkStatus12" ng-change="checkCorrectAns(checkStatus12,'1')">
-    &nbsp;&nbsp;2</label><br>
-    <label> <input type="checkbox" ng-init='checkStatus13=false' ng-model="checkStatus13" ng-change="checkCorrectAns(checkStatus13,'2')">
-    &nbsp;&nbsp;3</label><br>
-    <label> <input type="checkbox" ng-init='checkStatus14=false' ng-model="checkStatus14" ng-change="checkCorrectAns(checkStatus14,'3')">
-    &nbsp;&nbsp;4</label><br>
- </div>
-    </div>
+   
+<table class="table table-responsive table-fixed table-hover" style="font-size: 18px">
+<strong>
+      <tbody> 
+        <tr>
+          <td> תשובה 1 היא:  </td>
+          <td>
+            <span class="text-danger" ng-show="!answer1_is_correct">לא נכונה</span>
+            <span class="text-success" ng-show="answer1_is_correct">נכונה</span>
+          </td>
+          <td> <button type="button" class="btn btn-info" ng-click="changeStatusOfAnswer('0')"> שנה </button>  </td>
+        </tr>
+        <tr>
+          <td> תשובה 2 היא:</td>
+          <td>
+            <span class="text-danger" ng-show="!answer2_is_correct">לא נכונה</span>
+            <span class="text-success" ng-show="answer2_is_correct">נכונה</span>
+          </td>
+          <td> <button type="button" class="btn btn-info" ng-click="changeStatusOfAnswer('1')"> שנה </button>  </td>
+        </tr>
+        <tr>
+          <td> תשובה 3 היא:</td>
+          <td>
+            <span class="text-danger" ng-show="!answer3_is_correct">לא נכונה</span>
+            <span class="text-success" ng-show="answer3_is_correct">נכונה</span>
+          </td>
+          <td> <button type="button" class="btn btn-info" ng-click="changeStatusOfAnswer('2')"> שנה </button>  </td>
+        </tr> 
+         <tr>
+          <td> תשובה 4 היא:</td>
+          <td>
+            <span class="text-danger" ng-show="!answer4_is_correct">לא נכונה</span>
+            <span class="text-success" ng-show="answer4_is_correct">נכונה</span>
+          </td>
+          <td> <button type="button" class="btn btn-info" ng-click="changeStatusOfAnswer('3')"> שנה </button>  </td>
+        </tr>
+      </tbody>
+      </strong>
+      </table>
 
-    <div ng-show="!isMultipleAns">
-        <label class="control-label pull-right">סמן תשובות נכונות:&nbsp;&nbsp;</label><br>
-        <div class="padded-20-elemnt well" style="max-width: 240px">
-            <label><input ng-model="selected_ans" ng-value="1" type="radio" >
-                &nbsp;&nbsp;1</label><br>
-            <label><input ng-model="selected_ans" ng-value="2" type="radio" >
-                &nbsp;&nbsp;2</label><br>
-            <label><input ng-model="selected_ans" ng-value="3" type="radio" >
-                &nbsp;&nbsp;3</label><br>
-            <label><input ng-model="selected_ans" ng-value="4" type="radio" >
-                &nbsp;&nbsp;4</label><br>
-        </div>
-    </div>
 
-
+    <!-- HERE HERE -->
 
   </div>
 
@@ -254,7 +282,7 @@
           חזור למסך<br> הקודם!
           <span class="glyphicon glyphicon-hand-right"></span> </button>
 
-        <button ng-click="sendNewQuestion()" ng-disabled="mySecondForm.$invalid" type="submit" class="btn btn-lg btn-info squirish-button5" data-toggle="modal" data-target="#fedbackModal" tabindex="14">
+        <button ng-click="sendNewQuestion()" ng-disabled="mySecondForm.$invalid || !question_choisses_r_legal" type="submit" class="btn btn-lg btn-success squirish-button5" data-toggle="modal" data-target="#fedbackModal" tabindex="14">
         הוסף שאלה<br> למאגר!
          <span class="glyphicon glyphicon-send"></span> </button>
     </div>
