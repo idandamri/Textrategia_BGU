@@ -296,8 +296,6 @@ insert into users
 values (6,"יוצר מטלות עצמאיות","משתמש ייחודי",2,"rand@tasker.com","123456");
 insert into users
 values (7,"אורנה","אורנה",1,"Orna@teacher.com","123456");
-insert into users
-values (8,"מוריה","מוריה",1,"Morya@teacher.com","123456");
 /*------------------------------------------*/
 
 /*-------------- tasks ---------------------*/
@@ -321,6 +319,9 @@ values(1234321,"כיתת ניסוי 1","בית ספר אשכולות","אשדו�
 
 insert into groups
 values(1235321,"כיתת ניסוי 2","בית ספר אשכולות","אשדוד", 7, 0, 1, "School-Morya", 1, 1);
+
+insert into groups
+values(1235321,"GoTeam","מענית","באר שבע", 4, 0, 1, "go123", 1, 1);
 
 insert into groups
 values(1, "קבוצת מורים", "מענית", "באר שבע", 5, 1,1,"teach",1,1);
@@ -379,5 +380,6 @@ values (2,4);
 INSERT INTO `textra_db`.`cities_and_schools` (`School`, `City`) VALUES ('מבועות','אשדוד');
 INSERT INTO `textra_db`.`cities_and_schools` (`School`, `City`) VALUES ('בית ספר אשכולות','אשדןד');
 INSERT INTO `textra_db`.`cities_and_schools` (`School`, `City`) VALUES ('מענית','באר שבע');
+INSERT INTO `textra_db`.`cities_and_schools` (`School`, `City`) VALUES ('אוניברסיטת בן גוריון','באר שבע');
 INSERT INTO `textra_db`.`cities_and_schools` (`School`, `City`) VALUES ('אשכולות','אשדוד');
 /**********************************************/
