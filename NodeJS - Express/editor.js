@@ -149,7 +149,7 @@ app.post('/getApprovedQuestion', function (req, res) {
 
 router.post('/getUnapprovedQuestion', function (req, res) {
     try {
-        var query = "select * from textra_db.questions where Q_approved=0;";
+        var query = "select * from textra_db.questions where Q_approved=0 and disabled=0;";
         console.log('\n' + query + '\n');
         connection.query(query, function (err, questions) {
             if (err) {

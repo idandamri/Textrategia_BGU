@@ -294,7 +294,8 @@ router.post('/getReported', function (req, res) {
     try {
         var query = "select * from textra_db.questions where Q_reported_Offensive>=1" +
             " or Q_reported_Question>=1" +
-            " or Q_reported_Answer>=1;";
+            " or Q_reported_Answer>=1" +
+            " and Q_disabled = 0 and Q_approved = 1;";
         console.log('\n' + query + '\n');
         connection.query(query, function (err, questions) {
             if (err) {
