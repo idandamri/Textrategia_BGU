@@ -324,8 +324,8 @@ app.post('/multer', function (req, res) {
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '1q2w3e4r',//'123465' to upload*/
-    // password: '123456',//'123465' to upload*/
+    // password: '1q2w3e4r',//'123465' to upload*/
+    password: '123456',//'123465' to upload*/
     database: 'textra_db',
     multipleStatements: true
 });
