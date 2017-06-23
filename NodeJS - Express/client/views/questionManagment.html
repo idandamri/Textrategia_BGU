@@ -434,7 +434,7 @@
     </div>
     <br>
      <span class="text-danger" ng-show="question.Q_reported_Offensive+ question.Q_reported_Question + question.Q_reported_Answer > 0 " style="font-size: 16px;">
-       לשאלה זו יש התראות,<br> לחיצה על "אשר וערוך!"<br> תאפס את השאלה<br> מהתרעות אלה </span>
+       לשאלה זו יש התראות,<br> לחיצה על "אשר וערוך!"<br> תאפס את השאלה<br> מהתראות אלה </span>
 
       <span class="text-warning" ng-show="!question.Q_approved" style="font-size: 16px;">
        שאלה זו הוכנסה על ידי מורה,<br> לחץ על "אשר וערוך!"<br> על מנת לאשר אותה במערכת</span>
@@ -487,20 +487,21 @@
                 <br>
                   <span> {{serverFeedback}}<br></span>   
                   <span class="text-info" ng-show="!flagEditQuestionMode"><strong> {{serverSecondFeedback}}</strong></span>   
-                  <span class="text-danger" ng-show="ask_if_should_disable"><strong> {{serverSecondFeedback}}</strong></span>   
+                  <span class="text-danger" ng-show="ask_if_should_disable && flagEditQuestionMode"><strong> {{serverSecondFeedback}}</strong></span>   
                 </div>
               </div>
             </div>
             <div class="modal-footer">
                 
+                <button type="button" ng-show="ask_if_should_disable && flagEditQuestionMode" class="btn btn-danger" ng-click="disableQuestionPermanently()"> השבת שאלה לצמיתות! </button>
+
+
+                <button type="button" ng-show="ask_if_should_disable && flagEditQuestionMode" data-dismiss="modal" class="btn btn-success" ng-click="dontDisableQuestion()"> אל תשבית שאלה </button>
+
                  <button type="button" ng-show="!flagEditQuestionMode" data-dismiss="modal" class="btn btn-default" ng-click="getQuestionToEditFromStock()" > ערוך שאלה </button>
                 
-                <button type="button" ng-show="question_is_legal && flagEditQuestionMode && !doneWithPage && !ask_if_should_disable" class="btn btn-default" ng-click="sendNewQuestion()"  > שלח שאלה לעריכה </button>
+                <button type="button" ng-show="question_is_legal && flagEditQuestionMode && !doneWithPage && !ask_if_should_disable" class="btn btn-default" ng-click="sendNewQuestion()"  > אשר </button>
 
-                <button type="button" ng-show="ask_if_should_disable" class="btn btn-danger" ng-click="disableQuestionPermanently()"> השבת שאלה לצמיתות! </button>
-
-
-                <button type="button" ng-show="ask_if_should_disable" data-dismiss="modal" class="btn btn-success" ng-click="dontDisableQuestion()"> אל תשבית שאלה </button>
 
                 <button type="button" ng-show="!ask_if_should_disable && !doneWithPage" data-dismiss="modal" class="btn btn-default" ng-click="resetFlags()"> סגור </button>
 

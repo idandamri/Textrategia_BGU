@@ -34,7 +34,7 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
     $scope.searchQuestionByProfiling = true;
     
 
-     $scope.serverFeedback = "" ;
+    $scope.serverFeedback = "" ;
     $scope.serverSecondFeedback= "";
 
     var req = {
@@ -217,10 +217,10 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
     }
 
 
-
     $scope.backToEditQuestionView = function(){
     $scope.searchQuestionByProfiling = false;
     $scope.flagEditQuestionMode = true;
+    $scope.serverFeedback = "האם ברצונך לשמור שינויים?";
     $scope.clicked = 0;
 }
 
@@ -361,7 +361,12 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
 
         }
         else {
-            $scope.serverFeedback = "האם ברצונך לשלוח את השאלה לעריכה?";   
+            if (!$scope.question.Q_approved){
+                $scope.serverFeedback = "האם ברצונך לאשר שאלה זו? לחיצה על \"אישור\" תכניס שאלה זו למאגר השאלות במערכת. כמו כן כל שינויים שנעשו על ידיך ישמרו.";   
+            } else if (question.Q_reported_Offensive+ question.Q_reported_Question + question.Q_reported_Answer > 0 ){
+                $scope.serverFeedback = "האם ברצונך לנקות שאלה זו מהתראות קיימות? כמו כן כל שינויים שנעשו על ידיך ישמרו.";                
+            }
+            $scope.serverFeedback = "האם ברצונך לשמור שינויים?";   
             $scope.question_is_legal = true;       
         };
 
@@ -495,7 +500,7 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
         };
 
         $scope.disableQuestionPermanentlyWrapper = function(){
-            $scope.serverFeedback = "אתה בטוח שברצותך להשבית את השאלה??";
+            $scope.serverFeedback = "אתה בטוח שברצונך להשבית את השאלה??";
             $scope.serverSecondFeedback = "שים לב, השבתת שאלה תמנע את הופעתה במערכת!";
             $scope.ask_if_should_disable = true;
 

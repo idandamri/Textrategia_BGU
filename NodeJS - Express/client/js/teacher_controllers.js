@@ -715,10 +715,8 @@ $scope.studentToSendTaskToList = [];
                 alert("בעיה בשרת");
 
         });
-
-
-
     }
+
  $scope.showGroupsMembersList2 = function(g_id){
     $scope.noStudentInGroup = "";
     if ($scope.selected_task2) {
