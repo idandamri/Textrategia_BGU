@@ -338,6 +338,18 @@ textrategiaApp.controller("CreatTaskController",function($scope,$http,$location)
             +'&difficulties='+$scope.selectedDiff
             +'&user_id=' + getUserID()
         };
+        //         var req = {
+        //     method: 'POST',
+        //     cache: false,
+        //     url: _url +'/getQuestionsByParamter',
+        //     headers: {
+        //         'Content-Type': 'application/x-www-form-urlencoded'
+        //     },
+        //     data: 'media_types='+ "youtube"
+        //     +'&skills='+ ""
+        //     +'&difficulties='+ ""
+        //     +'&user_id=' + getUserID()
+        // };
 
         // alert(JSON.stringify(req));
 
