@@ -213,14 +213,14 @@ textrategiaApp.controller("AddSchoolInCityController",function($scope,$http){
 
 textrategiaApp.controller("CreatTaskController",function($scope,$http,$location){
 
+
     $scope.getUserName = getUserName();
     $scope.searchQuestion = false;
     $scope.userApprovedSending = false;
     $scope.showApproveQuestion = false;
 
-    // $scope.goToSuperUser = function () {
-    //     $location.path('superUser');
-    // };
+     $scope.serverFeedbackForNoQuestions = "";
+ $scope.searched_q_clicked = false;
 
     $scope.backToHomePage = function () {
         if (getUserType() == 2)
@@ -237,17 +237,10 @@ textrategiaApp.controller("CreatTaskController",function($scope,$http,$location)
     }
 
 
-
-
     // ####################################################
     // get skills list from server
     // ####################################################
 
-    // $scope.skills = [
-    // {"q_skill": "בלימפים"},
-    // {"q_skill": "דוליז"},
-    // {"q_skill": "בובים"}
-    // ];
 
     var req = {
         method: 'POST',
@@ -325,6 +318,7 @@ textrategiaApp.controller("CreatTaskController",function($scope,$http,$location)
         //     );
         $scope.feedback = "";
         $scope.generate_task= false;
+        $scope.searched_q_clicked = true;
 
         var req = {
             method: 'POST',
@@ -338,18 +332,6 @@ textrategiaApp.controller("CreatTaskController",function($scope,$http,$location)
             +'&difficulties='+$scope.selectedDiff
             +'&user_id=' + getUserID()
         };
-        //         var req = {
-        //     method: 'POST',
-        //     cache: false,
-        //     url: _url +'/getQuestionsByParamter',
-        //     headers: {
-        //         'Content-Type': 'application/x-www-form-urlencoded'
-        //     },
-        //     data: 'media_types='+ "youtube"
-        //     +'&skills='+ ""
-        //     +'&difficulties='+ ""
-        //     +'&user_id=' + getUserID()
-        // };
 
         // alert(JSON.stringify(req));
 
@@ -357,9 +339,11 @@ textrategiaApp.controller("CreatTaskController",function($scope,$http,$location)
             .success(function(data,status,headers,config){
                 if (status==200){
                     $scope.myQuestions = data;
+                    $scope.serverFeedbackForNoQuestions = "";
                 }
                 else if ( status==204){
                     $scope.myQuestions = [];
+                    $scope.serverFeedbackForNoQuestions = "אין במאגר שאלות עם הנתונים שנבחרו. נסה להוסיף התמקצעויות נוספות.";
                 }
             }).error(function(data,status,headers,config){
         });
@@ -370,14 +354,6 @@ textrategiaApp.controller("CreatTaskController",function($scope,$http,$location)
     // send the list: selectedMedia, selectedDiff, selectedSkill 
     // get the question instead
     // ####################################################
-
-
-    // Cיhange questions to server response question
-    // $scope.myQuestions = [
-    // { "Q_id": 2,"Q_qeustion": "לפניך סרטון קצר. צפה בו וענה על השאלה - מהי מטרתו המרכזית של יוצר הסרטון? "},
-    // { "Q_id": 3,"Q_qeustion": "קאפקייק אנד פיש אנד צ'יפס? דיס איז מאדנס' "},
-    // { "Q_id": 4,"Q_qeustion": "בוב, בוב,בוב, בוב,בוב, בוב,בוב, בוב,בוב, בוב,בוב, בוב,בוב, בוב, "}
-    // ];
 
 // This is the scope choosen question
     $scope.selectedQuestionsIndex = [];  //// [2,3,5,6]
@@ -439,15 +415,6 @@ textrategiaApp.controller("CreatTaskController",function($scope,$http,$location)
         for (i = 0 ; i< $scope.myTaskQuestions.length ; i++){
             questionID.push($scope.myTaskQuestions[i].Q_id);
         }
-        // alert(questionID);
-
-        //
-        // alert(getUserID());
-        // alert(questionID);
-        //
-        // alert($scope.task.taskName);
-        // alert($scope.task.taskDesc);
-
 
         var is_approved;
         if (getUserType() == 2)
@@ -769,19 +736,7 @@ textrategiaApp.controller("StatisticsSuperUserController",function($scope, $http
             +'&difficulties='+$scope.selectedDiff
             +'&user_id=' + getUserID()
         };
-        // var req = {
-        //     method: 'POST',
-        //     cache: false,
-        //     url: _url +'/getQuestionsWithOneAnsByParamter',
-        //     headers: {
-        //         'Content-Type': 'application/x-www-form-urlencoded'
-        //     },
-        //     data: 'media_types='+ "youtube,page,img"
-        //     +'&skills='+ "זיהוי מטרה מרכזית,הסקת מסקנות,רעיון מרכזי,איתור מידע"
 
-        //     +'&difficulties=' + "קלה,בינונית"
-        //     +'&user_id=' + getUserID()
-        // };
 
         $http(req)
             .success(function(data,status,headers,config){
