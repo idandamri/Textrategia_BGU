@@ -74,7 +74,16 @@
 
 
  <div id="accordion2" >
-    <div class="panel" ng-repeat="q in myQuestionsStock track by $index" style="padding: 10px">
+
+  <div  ng-show="!myQuestionsStock.length==0" class="text-center">
+  <div class="col-sm-2"></div>
+    <input type="text" id="query" class="col-sm-8 form-control inputstl pull-right"  ng-model="q.Q_qeustion" placeholder="חפש שאלה" style="margin: 25px 0px; ">
+    <br><br><br><br>
+  <div class="col-sm-2"></div>
+ </div>
+
+
+    <div class="panel" ng-repeat="q in myQuestionsStock | filter:q | orderBy: orderList"" style="padding: 10px">
       <div  name="question" ng-model="user.question" value="{{q.Q_id}}" >
       <p>&nbsp;&nbsp;{{q.Q_qeustion}} </p>
       

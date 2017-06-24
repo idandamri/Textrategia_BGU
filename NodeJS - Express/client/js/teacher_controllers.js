@@ -31,6 +31,7 @@ textrategiaApp.controller("StatisticsTeacherController",function($scope, $http,$
     });
 
 
+
     $scope.showGroupsMembersList = function(g_id,g_name){
         $scope.choosenGroupName = g_name;
         var req = {
@@ -566,6 +567,8 @@ textrategiaApp.controller("GroupManagementController",function($scope,$http,$loc
 
 
     $scope.sendTaskToGroup = function(){
+        $scope.showPassword = false;
+
         var group = selected_group;
         var task = selected_task;
         var req = {
@@ -765,6 +768,7 @@ $scope.studentToSendTaskToList = [];
 
 
     $scope.sendTaskForSomeStudent = function(){
+         $scope.showPassword = false;
         if ($scope.studentToSendTaskToList.length!=0){
             
             var studentIDlst = [];

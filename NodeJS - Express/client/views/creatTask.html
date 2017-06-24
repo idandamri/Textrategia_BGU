@@ -71,10 +71,16 @@
 <div ng-show="searchQuestion">
 
 
+
   <div class="col-sm-5 hidden-xs well">
-       
+
+  <div  ng-show="!myQuestions.length==0" class="text-center">
+    <input  type="text" id="query" class="form-control inputstl pull-right"  ng-model="q.Q_qeustion" placeholder="חפש שאלה" style="margin: 25px 0px; ">
+    <br><br><br><br>
+ </div>
+
    <div id="accordion2">
-      <div class="panel" ng-repeat="q in myQuestions track by $index">
+      <div class="panel" ng-repeat="q in myQuestions | filter:q | orderBy: orderList" >
         <input type="checkbox"  ng-init='checkStatus51=false' ng-model="checkStatus51"
         ng-change="checkQuestionSelected(checkStatus51,q.Q_id)" >
         <p>&nbsp;&nbsp;{{q.Q_qeustion}}</p>
@@ -156,10 +162,16 @@
 
 <!-- mobile view!!!!! -->
 
-  <div class="col-xs-12 hidden-sm hidden-md hidden-lg " well">
-       
+  <div class="col-xs-12 hidden-sm hidden-md hidden-lg  well">
+    
+   <div  ng-show="!myQuestions.length==0" class="text-center">
+    <input  type="text" id="query" class="form-control inputstl pull-right"  ng-model="q.Q_qeustion" placeholder="חפש שאלה" style="margin: 25px 0px; ">
+    <br><br><br><br>
+ </div>   
+
+
    <div id="accordion2">
-      <div class="panel" ng-repeat="q in myQuestions track by $index">
+      <div class="panel" ng-repeat="q in myQuestions | filter:q | orderBy: orderList">
         <input type="checkbox"  ng-init='checkStatus51=false' ng-model="checkStatus51"
         ng-change="checkQuestionSelected(checkStatus51,q.Q_id)" >
         <p>&nbsp;&nbsp;{{q.Q_qeustion}}</p>
