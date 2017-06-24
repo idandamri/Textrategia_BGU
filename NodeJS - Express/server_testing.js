@@ -187,9 +187,12 @@ app.post('/getQuestionsByParamter', function (req, res) {
         var query = "";
         query = "SELECT * FROM textra_db.questions";
         var media_types = req.body.media_types.split(",");
+		media_types = stringArrayForQuery(media_types.split(","));
         var skills = req.body.skills.split(",");
-        var difficulties = req.body.difficulties.split(",");
-        var user_id = req.body.user_id;
+        skills = stringArrayForQuery(media_types.split(","));
+		var difficulties = req.body.difficulties.split(",");
+        difficulties = stringArrayForQuery(media_types.split(","));
+		var user_id = req.body.user_id;
 
         var emptyMT = false;
         var emptySkill = false;
@@ -211,19 +214,19 @@ app.post('/getQuestionsByParamter', function (req, res) {
         } else {
             query = query + " where ";
             if (!emptyMT) {
-                query = query + "Q_mediaType in (\"" + media_types + "\") ";
+                query = query + "Q_mediaType in (" + media_types + ") ";
             }
             if (!emptyMT && !emptySkill) {
                 query = query + "and"
             }
             if (!emptySkill) {
-                query = query + " Q_skill in (\"" + skills + "\") ";
+                query = query + " Q_skill in (" + skills + ") ";
             }
             if ((!emptyMT || !emptySkill) && !emptyDiff) {
                 query = query + "and"
             }
             if (!emptyDiff) {
-                query = query + " Q_difficulty in (\"" + difficulties + "\") ";
+                query = query + " Q_difficulty in (" + difficulties + ") ";
             }
             query = query + "and (Q_approved=1 or Q_owner=" + user_id + ") and Q_disabled=0;";
         }
