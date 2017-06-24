@@ -278,6 +278,18 @@ app.post('/getAllSkills', function (req, res) {
 });
 
 
+
+function stringArrayForQuery(arr) {
+    var retval = "";
+    for (var i = 0; i < arr.length; i++) {
+        retval = retval + arr[i];
+        if (i < arr.length - 1) {
+            retval = retval + ",";
+        }
+    }
+    return retval;
+}
+
 var storage = multer.diskStorage({
     destination: function (req, file, callback) {
         try {

@@ -182,6 +182,18 @@ app.post('/checkIfGroupCodeExists', function (req, res) {
 });
 
 
+
+function stringArrayForQuery(arr) {
+    var retval = "";
+    for (var i = 0; i < arr.length; i++) {
+        retval = retval + arr[i];
+        if (i < arr.length - 1) {
+            retval = retval + ",";
+        }
+    }
+    return retval;
+}
+
 app.post('/getQuestionsByParamter', function (req, res) {
     try {
 		var query = "";
