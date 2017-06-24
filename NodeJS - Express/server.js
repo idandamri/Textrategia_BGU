@@ -182,29 +182,14 @@ app.post('/checkIfGroupCodeExists', function (req, res) {
 });
 
 
-
-function stringArrayForQuery(arr) {
-    var retval = "";
-    for (var i = 0; i < arr.length; i++) {
-        retval = retval + arr[i];
-        if (i < arr.length - 1) {
-            retval = retval + ",";
-        }
-    }
-    return retval;
-}
-
 app.post('/getQuestionsByParamter', function (req, res) {
     try {
-		var query = "";
+        var query = "";
         query = "SELECT * FROM textra_db.questions";
         var media_types = req.body.media_types.split(",");
-		media_types = stringArrayForQuery(media_types.split(","));
         var skills = req.body.skills.split(",");
-        skills = stringArrayForQuery(media_types.split(","));
-		var difficulties = req.body.difficulties.split(",");
-        difficulties = stringArrayForQuery(media_types.split(","));
-		var user_id = req.body.user_id;
+        var difficulties = req.body.difficulties.split(",");
+        var user_id = req.body.user_id;
 
         var emptyMT = false;
         var emptySkill = false;
@@ -226,18 +211,21 @@ app.post('/getQuestionsByParamter', function (req, res) {
         } else {
             query = query + " where ";
             if (!emptyMT) {
+                media_types = stringArrayForQuery(media_types);
                 query = query + "Q_mediaType in (" + media_types + ") ";
             }
             if (!emptyMT && !emptySkill) {
                 query = query + "and"
             }
             if (!emptySkill) {
+                skills = stringArrayForQuery(skills);
                 query = query + " Q_skill in (" + skills + ") ";
             }
             if ((!emptyMT || !emptySkill) && !emptyDiff) {
                 query = query + "and"
             }
             if (!emptyDiff) {
+                difficulties = stringArrayForQuery(difficulties);
                 query = query + " Q_difficulty in (" + difficulties + ") ";
             }
             query = query + "and (Q_approved=1 or Q_owner=" + user_id + ") and Q_disabled=0;";
@@ -290,6 +278,18 @@ app.post('/getAllSkills', function (req, res) {
 });
 
 
+
+function stringArrayForQuery(arr) {
+    var retval = "";
+    for (var i = 0; i < arr.length; i++) {
+        retval =retval + "\"" + arr[i] +  "\"";
+        if (i < arr.length - 1) {
+            retval = retval + ",";
+        }
+    }
+    return retval;
+}
+
 var storage = multer.diskStorage({
     destination: function (req, file, callback) {
         try {
@@ -335,7 +335,6 @@ app.post('/multer', function (req, res) {
 });
 
 
-
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -353,22 +352,22 @@ connection.connect(function (err) {
 });
 
 
-// var server = app.listen(8081, function () {
-//     var host = server.address().address;
-//     var port = server.address().port;
-//     console.log("Example app listening at http://%s:%s", host, port)
-// });
+var server = app.listen(80, function () {
+    var host = server.address().address;
+    var port = server.address().port;
+    console.log("Example app listening at http://%s:%s", host, port)
+});
 
 
 // // TODO - Hadas you need this/TESTS!!!
-// app.listen(8081, "127.0.0.1", function () {
+// app.listen(8081, "10.0.0.14", function () {
 //     console.log("App is running ");
 // });
 
 // TODO - Hadas you need this/TESTS!!!
-app.listen(8081, "10.0.0.4", function () {
-    console.log("App is running ");
-});
+// app.listen(8081, "127.0.0.1", function () {
+//     console.log("App is running ");
+// });
 
 setInterval(function () {
     connection.query('SELECT 6');
