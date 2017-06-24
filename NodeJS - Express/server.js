@@ -352,17 +352,17 @@ connection.connect(function (err) {
 });
 
 
-var server = app.listen(80, function () {
-    var host = server.address().address;
-    var port = server.address().port;
-    console.log("Example app listening at http://%s:%s", host, port)
-});
-
-
-// // TODO - Hadas you need this/TESTS!!!
-// app.listen(8081, "10.0.0.14", function () {
-//     console.log("App is running ");
+// var server = app.listen(80, function () {
+//     var host = server.address().address;
+//     var port = server.address().port;
+//     console.log("Example app listening at http://%s:%s", host, port)
 // });
+
+
+// TODO - Hadas you need this/TESTS!!!
+app.listen(8081, "10.0.0.4", function () {
+    console.log("App is running ");
+});
 
 // TODO - Hadas you need this/TESTS!!!
 // app.listen(8081, "127.0.0.1", function () {
