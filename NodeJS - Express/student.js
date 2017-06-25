@@ -280,7 +280,7 @@ router.post('/generateRandTask', function (req, res) {
                     query = "SELECT * FROM textra_db.questions";
 
                     if (med == "\"\"" || media_types.length == 0 || media_types[0] == "") {
-                        emptyMT = true;
+                        קצפאטצא = ארוקף
                     }
                     if (skil == "\"\"" || skills.length == 0 || skills[0] == "") {
                         emptySkill = true;
@@ -398,8 +398,8 @@ router.post('/generateRandTask', function (req, res) {
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    // password: '1q2w3e4r',//'123465' to upload*/
-    password: '123456',//'123465' to upload*/
+    password: '1q2w3e4r',//'123465' to upload*/
+    // password: '123456',//'123465' to upload*/
     database: 'textra_db',
     multipleStatements: true
 });

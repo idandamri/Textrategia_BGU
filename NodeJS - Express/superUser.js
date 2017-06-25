@@ -343,12 +343,54 @@ router.post('/disableQuestion', function (req, res) {
 
 router.post('/getQuestionsWithOneAnsByParamter', function (req, res) {
     try {
-        var media_types = mysql.escape(req.body.media_types.split(","));
-        var skills = mysql.escape(req.body.skills.split(","));
-        var difficulties = mysql.escape(req.body.difficulties.split(","));
+        var media_types = req.body.media_types.split(",");
+        var skills = req.body.skills.split(",");
+        var difficulties = req.body.difficulties.split(",");
         var user_id = mysql.escape(req.body.user_id);
 
-        var query = queries.getQuestionsByParamterAndIdWithOneAns(media_types, skills, difficulties, user_id);
+        query = "SELECT * FROM textra_db.questions";
+
+        var emptyMT = false;
+        var emptySkill = false;
+        var emptyDiff = false;
+
+        if (media_types.length == 0 || media_types[0] == "") {
+            emptyMT = true;
+        }
+        if (skills.length == 0 || skills[0] == "") {
+            emptySkill = true;
+        }
+        if (difficulties.length == 0 || difficulties[0] == "") {
+            emptyDiff = true;
+        }
+
+
+        if (emptySkill && emptyMT && emptyDiff) {
+            query = query + " where (Q_approved=1 or Q_owner=" + user_id + ") and Q_disabled=0;";
+        } else {
+            query = query + " where ";
+            if (!emptyMT) {
+                media_types = stringArrayForQuery(media_types);
+                query = query + "Q_mediaType in (" + media_types + ") ";
+            }
+            if (!emptyMT && !emptySkill) {
+                query = query + "and"
+            }
+            if (!emptySkill) {
+                skills = stringArrayForQuery(skills);
+                query = query + " Q_skill in (" + skills + ") ";
+            }
+            if ((!emptyMT || !emptySkill) && !emptyDiff) {
+                query = query + "and"
+            }
+            if (!emptyDiff) {
+                difficulties = stringArrayForQuery(difficulties);
+                query = query + " Q_difficulty in (" + difficulties + ") ";
+            }
+            query = query + "and (Q_approved=1 or Q_owner=" + user_id + ") and Q_disabled=0;";
+        }
+
+        // var query = queries.getQuestionsByParamterAndIdWithOneAns(media_types, skills, difficulties, user_id);
         console.log('\n' + query + '\n');
         connection.query(query, function (err, questions) {
             if (err) {
@@ -371,11 +413,23 @@ router.post('/getQuestionsWithOneAnsByParamter', function (req, res) {
 });
 
 
+function stringArrayForQuery(arr) {
+    var retval = "";
+    for (var i = 0; i < arr.length; i++) {
+        retval =retval + "\"" + arr[i] +  "\"";
+        if (i < arr.length - 1) {
+            retval = retval + ",";
+        }
+    }
+    return retval;
+}
+
+
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    // password: '1q2w3e4r',//'123465' to upload*/
-    password: '123456',//'123465' to upload*/
+    password: '1q2w3e4r',//'123465' to upload*/
+    // password: '123456',//'123465' to upload*/
     database: 'textra_db',
     multipleStatements: true
 });
