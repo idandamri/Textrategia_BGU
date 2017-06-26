@@ -321,7 +321,7 @@ insert into groups
 values(1235321,"כיתת ניסוי 2","בית ספר אשכולות","אשדוד", 7, 0, 1, "School-Morya", 1, 1);
 
 insert into groups
-values(1235321,"GoTeam","מענית","באר שבע", 4, 0, 1, "go123", 1, 1);
+values(5786769,"GoTeam","מענית","באר שבע", 4, 0, 1, "go123", 1, 1);
 
 insert into groups
 values(1, "קבוצת מורים", "מענית", "באר שבע", 5, 1,1,"teach",1,1);
@@ -341,9 +341,6 @@ values(2,1234567);
 /*----------- teachers_per_group -----------*/
 insert into students_per_group
 values(4,1);
-
-insert into students_per_group
-values(8,1);
 
 insert into students_per_group
 values(7,1);
