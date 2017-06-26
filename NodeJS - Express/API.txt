@@ -348,10 +348,6 @@ exmple:
 input:city,school
 output: status 200 with json  / 400 - double insertion - school already exist in this city
 
-25. post('getValidQuestions')
-input:is_app,is_disabled
-output: status 200 with json  / 400 - double insertion - school already exist in this city
-
 26. post('getGroupsByTeacherAndCity')
 input:teacher_id,city
 output: status 200 with json  / 400 - double insertion - school already exist in this city

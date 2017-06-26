@@ -1,11 +1,120 @@
+/*** server ***/
 1. get('/')
-success -
+uccess -
 failure -
 
 2. post('login')
 success -
 failure -
 
+12.post('/registerUser')
+success -
+failure -
+
+19.post('/checkIfGroupCodeExists')
+success -
+failure -
+
+30. post('getQuestionsByParamter')
+success -
+failure -
+
+31. post('getAllSkills')
+success -
+failure -
+/*** server ***/
+
+-------------------------------------------
+
+/*** teacher ***/
+8.post('/addTaskToGroup')
+success -
+failure -
+
+9.post('/getStudentsMissingTaskInGroup')
+success -
+failure -
+
+14.post('/getGroupByUser')
+success -
+failure -
+
+17.post('/getAllTasks')
+success -
+failure -
+
+*.post('/getMyTasks')
+success -
+failure -
+
+*.post('/getAllApprovedTasks')
+success -
+failure
+
+15.post('/addQuestion')
+success -
+failure -
+
+16.post('/createTask')
+success -
+failure -
+
+18.post('/getAllGroupForTask')
+success -
+failure -
+
+20. post('/getStudentListFromGroupId')
+success -
+failure -
+
+28. post('getAllStudentForGroup')
+success -
+failure -
+
+21. post('getAllGroupForTeacher')
+success -
+failure -
+
+*.post('/getStudentStatistics')
+success -
+failure -
+
+*.post('/checkIfpassIsCorrectByID')
+success -
+failure -
+
+33. post('sendTaskToStudents')
+success -
+failure -
+/*** teacher ***/
+
+-----------------------------------
+
+/*** editor ***/
+3. post('disableQuestion')
+success -
+failure -
+
+11.post('/editQuestion')
+success -
+failure -
+
+35. post('getAnswersByQid')
+success -
+failure -
+
+33. post('getApprovedQuestion')
+success -
+failure -
+
+33. post('getUnapprovedQuestion')
+success -
+failure -
+/*** editor ***/
+
+-----------------------------------
+
+/*** student ***/
 3. post('getListOfTasks')
 success -
 failure -
@@ -22,71 +131,27 @@ failure -
 success -
 failure -
 
-8.post('/addTaskToGroup')
-success -
-failure -
-
-9.post('/createGroup')
-success -
-failure -
-
 10.post('/reportQuestion')
 success -
 failure -
 
-11.post('/editQuestion')
+32. post('generateRandTask')
+success -
+failure -
+/*** student ***/
+
+----------------------------------
+
+/*** superUser ***/
+9.post('/createGroup')
 success -
 failure -
 
-12.post('/registerUser')
-success -
-failure -
-
-14.post('/getGroupByUser')
-success -
-failure -
-
-15.post('/addQuestion')
-success -
-failure -
-
-16.post('/createTask')
-success -
-failure -
-
-17.post('/getAllTasks')
-success -
-failure -
-
-18.post('/getAllGroupForTask')
-success -
-failure -
-
-19.post('/checkIfGroupCodeExists')
-success -
-failure -
-
-20. post('/getStudentListFromGroupId')
-success -
-failure -
-
-21. post('getAllGroupForTeacher')
-success -
-failure -
-
-22. post('getAllSchollByCity')
+9.post('/getQuestionStatistics')
 success -
 failure -
 
 23. post('getGroupsBySchool')
-success -
-failure -
-
-24. post('addNewSchool')
-success -
-failure -
-
-25. post('getValidQuestions')
 success -
 failure -
 
@@ -98,7 +163,7 @@ failure -
 success -
 failure -
 
-28. post('getAllStudentForGroup')
+22. post('getAllSchollByCity')
 success -
 failure -
 
@@ -106,31 +171,7 @@ failure -
 success -
 failure -
 
-30. post('getQuestionsByParamter')
-success -
-failure -
-
-31. post('getAllSkills')
-success -
-failure -
-
-32. post('generateRandTask')
-success -
-failure -
-
-33. post('sendTaskToStudents')
-success -
-failure -
-
-33. post('getReported')
-success -
-failure -
-
-33. post('getApprovedQuestion')
-success -
-failure -
-
-33. post('getUnapprovedQuestion')
+24. post('addNewSchool')
 success -
 failure -
 
@@ -138,14 +179,11 @@ failure -
 success -
 failure -
 
-35. post('getAnswersByQid')
+33. post('getReported')
 success -
 failure -
 
-36. post('editQuestion')
+25. post('getQuestionsWithOneAnsByParamter')
 success -
 failure -
-
-37. post('checkIfpassIsCorrectByID')
-success -
-failure -
+/*** superUser ***/

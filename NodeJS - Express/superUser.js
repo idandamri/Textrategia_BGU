@@ -317,30 +317,6 @@ router.post('/getReported', function (req, res) {
 });
 
 
-router.post('/disableQuestion', function (req, res) {
-    try {
-        var query = "";
-        console.log('\n' + query + '\n');
-        connection.query(query, function (err, questions) {
-            if (err) {
-                console.log(err);
-                res.status(400).send("DB error");
-            }
-            else {
-                if (questions != null && questions.length == 0) {
-                    res.status(204).send();
-                } else {
-                    res.status(200).send(questions);
-                }
-            }
-        });
-    } catch (err) {
-        console.log("Error - " + err);
-        res.status(404).send();
-    }
-});
-
-
 router.post('/getQuestionsWithOneAnsByParamter', function (req, res) {
     try {
         var media_types = req.body.media_types.split(",");
