@@ -465,6 +465,9 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
     };
 
     $scope.getQuestion = function(){
+        $scope.reported1 = false;
+        $scope.reported2 = false;
+        $scope.reported3 = false;
         $scope.question =  myJason.question.Q_qeustion;
         var answers_lst = get_answers_lst_from_jason(myJason.answers);
         $scope.options =  answers_lst.ans_lst;
@@ -563,9 +566,7 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
     $scope.nextQuestion = function(quest_id){
         $scope.sendFeedbackMode = false;
         $scope.triedOnce = false;
-        $scope.reported1 = false;
-        $scope.reported2 = false;
-        $scope.reported3 = false;
+
         var req = {
             method: 'POST',
             cache: false,
@@ -615,9 +616,9 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
 
     $scope.report = function (r_question,r_answer,r_offensive) {
         if ( $scope.reported1 && $scope.reported2 && $scope.reported3 ){
-            alert("dont report");
+            // alert("dont report");
         } else {
-            alert("sending report");
+            // alert("sending report");
             //########################## SEND REPORT HERE ##########################
             var req = {
                 method: 'POST',
@@ -639,7 +640,7 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
 
         // $scope.lastQuestionReported = $scope.questionID;
         $scope.sendFeedbackMode = false;
-        alert("sendFeedbackMode: " + $scope.sendFeedbackMode )
+        // alert("sendFeedbackMode: " + $scope.sendFeedbackMode )
         $('#fedbackModal').modal('hide');
     };
 

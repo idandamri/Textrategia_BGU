@@ -199,6 +199,18 @@ router.post('/reportQuestion', function (req, res) {
 });
 
 
+function stringArrayForQuery(arr) {
+    var retval = "";
+    for (var i = 0; i < arr.length; i++) {
+        retval = retval + arr[i];
+        if (i < arr.length - 1) {
+            retval = retval + ",";
+        }
+    }
+    return retval;
+}
+
+
 router.post('/generateRandTask', function (req, res) {
 
     try {
@@ -243,22 +255,62 @@ router.post('/generateRandTask', function (req, res) {
                     var diffi = "";
                     if (media_types.length > 0) {
                         med = JSON.stringify(media_types).toString().replace("[", "").replace("]", "");
+                        stringArrayForQuery(med.split(","));
                     }
                     else {
                         med = "\"\"";
                     }
                     if (skills.length > 0) {
                         skil = JSON.stringify(skills).toString().replace("[", "").replace("]", "");
+                        stringArrayForQuery(skil.split(","));
                     } else {
                         skil = "\"\"";
                     }
                     if (difficulties.length > 0) {
                         diffi = JSON.stringify(difficulties).toString().replace("[", "").replace("]", "");
+                        stringArrayForQuery(diffi.split(","));
                     }
                     else {
                         diffi = "\"\"";
                     }
-                    var query = queries.getQuestionsByParamter(med, skil, diffi);
+
+                    var emptyMT = false;
+                    var emptySkill = false;
+                    var emptyDiff = false;
+                    query = "SELECT * FROM textra_db.questions";
+
+                    if (med == "\"\"" || media_types.length == 0 || media_types[0] == "") {
+                        emptyMT = true;
+                    }
+                    if (skil == "\"\"" || skills.length == 0 || skills[0] == "") {
+                        emptySkill = true;
+                    }
+                    if (diffi == "\"\"" || difficulties.length == 0 || difficulties[0] == "") {
+                        emptyDiff = true;
+                    }
+
+                    if (emptySkill && emptyMT && emptyDiff) {
+                        query = query + " where (Q_approved=1 or Q_owner=" + stud_id + ") and Q_disabled=0;";
+                    } else {
+                        query = query + " where ";
+                        if (!emptyMT) {
+                            query = query + "Q_mediaType in (" + med + ") ";
+                        }
+                        if (!emptyMT && !emptySkill) {
+                            query = query + "and"
+                        }
+                        if (!emptySkill) {
+                            query = query + " Q_skill in (" + skil + ") ";
+                        }
+                        if ((!emptyMT || !emptySkill) && !emptyDiff) {
+                            query = query + "and"
+                        }
+                        if (!emptyDiff) {
+                            query = query + " Q_difficulty in (" + diffi + ") ";
+                        }
+                        query = query + "and (Q_approved=1 or Q_owner=" + stud_id + ") and Q_disabled=0;";
+                    }
+                    // var query = queries.getQuestionsByParamter(med, skil, diffi);
                     console.log('\n' + query + '\n');
                     connection.query(query, function (err, questions) {
                         if (err) {
@@ -357,6 +409,11 @@ connection.connect(function (err) {
         console.log("Connection Error")
     }
 });
+
+
+setInterval(function () {
+    connection.query('SELECT 5');
+}, 5000);
 
 
 module.exports = router;
