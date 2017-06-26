@@ -1,0 +1,229 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button class="navbar-toggle" data-target="#myNavbar" data-toggle="collapse" type="button"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button> <a class="navbar-brand" href="#student">טקסטרטגיה</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li>
+<!--           <a href="#">תלמיד</a>
+ -->        </li>
+      </ul>
+      <p class="navbar-text">בהצלחה</p>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="#register"><span class="glyphicon glyphicon-user"></span> הרשם</a>
+        </li>
+        <li>
+          <a href="#login"><span class="glyphicon glyphicon-log-in"></span> התחברות</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div id="wrap">
+  <div class="container" id="c_1">
+
+      <div class="row">
+        <div class="col-sm-12">
+          <h1><b>{{task_name}}</b> <small> <span class="label label-success" id="bottom-align-text">{{Q_skill}}</span> </small> </h1>
+        </div>
+      </div>
+
+      <div class="quiz-area">
+        <div ng-show="!quizOver">
+
+          <div class="col-sm-2">
+            <button ng-click="wanaReport()" type="button" ng-disabled="reported1 && reported2 && reported3 " class="btn btn-danger btn-sm" data-toggle="modal" data-target="#fedbackModal">
+              דווח על שאלה בעייתית
+            </button>
+          </div>
+
+          <div class="col-sm-10">
+            <h3 id="question">{{question}}</h3>
+          </div>
+
+          <div class="col-sm-6">
+            <div class="col-sm-1"></div>
+
+
+
+
+            <div class="col-sm-10">
+
+              <!-- <iframe margin="0" ng-show="showVideo" padding="0" border="none" width="700" height="400" frameBorder="0" ng-src="{{videoURL}}"></iframe> -->
+              <div class="embed-responsive embed-responsive-16by9" ng-show="showVideo || showVoice">
+                <iframe class="embed-responsive-item" ng-show="showVideo" ng-src="{{videoURL}}"></iframe>
+
+                <!-- <iframe margin="0" ng-show="showVoice" padding="0" border="none"  height="50" frameBorder="0" ng-src="{{voiceURL}}"></iframe> -->
+                <iframe class="embed-responsive-item" ng-show="showVoice" ng-src="{{voiceURL}}"></iframe>
+              </div>
+
+              <img class="img-rounded img-responsive" ng-show="showImg" ng-src ="{{imgURL}}" alt="oops...">
+              <div class="text-info" ng-show="showText"><h4><strong><em>{{textData}} </em></strong> </h4> </div>
+            </div>
+
+            <div class="col-sm-1"></div>
+          </div>
+
+            <div ng-show="!isMultipleAnswers" class="col-sm-6">
+                <dl id="options_single">
+                <!-- in single -->
+                    <dt ng-repeat="option in options">
+                        <label>
+                  <input type="radio" name="answer" value="{{option}}">
+                  {{option}}
+                        </label>
+                    </dt>
+                </dl>
+            </div>
+
+          <!--<div ng-show="isMultipleAnswers" class="col-sm-6">-->
+            <!--<input type="checkbox" ng-repeat="option in options"-->
+                   <!--ng-model="option.checked"-->
+                   <!--ng-checked="option.checked">-->
+            <!--{{ option }}-->
+            <!--</input>-->
+          <!--</div>-->
+
+
+          <!--<p> selectedItems : {{selectedItems}}</p>-->
+
+           <!--<p>options: {{options}}</p>-->
+
+
+          <div ng-show="isMultipleAnswers" class="col-sm-6">
+            <dl id="options_multi">
+              <dt>
+                <label><input id="oq_checkStatus51" type="checkbox" name="answer1"
+                              value="Hadas.answers[0].answer" ng-model="checkStatus51"
+                              ng-change="checkSelectedAnswers(checkStatus51,Hadas.answers[0].answer)" checked="checked">
+                 {{Hadas.answers[0].answer}}
+                </label>
+              </dt>
+              <dt>
+                <label><input id="oq_checkStatus52" type="checkbox" name="answer2"
+                              value="Hadas.answers[1].answer" ng-model="checkStatus52"
+                              ng-change="checkSelectedAnswers(checkStatus52,Hadas.answers[1].answer)" checked="checked" >
+                 {{Hadas.answers[1].answer}}
+                </label>
+              </dt>
+                <dt>
+                <label><input id="oq_checkStatus53" type="checkbox" name="answer3" value="Hadas.answers[2].answer"
+                              ng-model="checkStatus53"
+                              ng-change="checkSelectedAnswers(checkStatus53,Hadas.answers[2].answer)" checked="checked" >
+                 {{Hadas.answers[2].answer}}
+                </label>
+              </dt>
+              <dt>
+                <label><input id="oq_checkStatus54" type="checkbox" name="answer4"
+                              value="Hadas.answers[3].answer" ng-model="checkStatus54"
+                              ng-change="checkSelectedAnswers(checkStatus54,Hadas.answers[3].answer)" checked="checked" >
+                 {{Hadas.answers[3].answer}}
+                </label>
+              </dt>
+            </dl>
+          </div>
+
+
+
+       <div class="hidden-xs">
+          <button ng-click="checkAnswer()" ng-show="answerMode" type="button" class="btn btn-warning btn-md" data-toggle="modal" data-target="#fedbackModal">
+            בדוק
+          </button>
+      </div>
+
+
+
+
+       <div class="col-xs-12 hidden-sm hidden-md hidden-lg text-center" style="margin-bottom: 7px;">
+          <button ng-click="checkAnswer()" ng-show="answerMode" type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#fedbackModal">
+            בדוק
+          </button>
+      </div>
+
+        </div> <!-- ng-show="!quizOver" -->
+
+        <div ng-show="!answerMode">
+          <button ng-click="nextQuestion()" class="btn btn-primary" type="button" class="btn btn-default btn-sm">
+            שאלה הבאה
+          </button>
+        </div>
+
+        <div ng-show="quizOver">
+          <h2>סיימת את המטלה!</h2>
+          <button class="btn btn-warning" ng-click="finishTask()">חזרה למטלות</button>
+        </div>
+
+        <div id="score">
+          <h3 class="text-info"><strong> ניקוד: {{ score }} </strong></h3>
+        </div>
+
+      </div> <!-- class="quiz-area" -->
+
+
+      <br><br><br><br><br><br><br><br>
+
+
+
+      <br><br><br><br>
+  </div>
+</div>
+
+<br>
+<div ng-show="showImg">
+  <br><br><br>
+  <br><br><br>
+</div>
+
+
+<img class="img-responsive footer-image" id="imag-logo" src="views/pic/bottom.png" >
+
+
+      <!-- Modal -->
+      <div class="modal fade" id="fedbackModal" tabindex="-1" role="dialog" aria-labelledby="myCurrectModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">
+                <h4 class="modal-title text-info"> <strong>טקסטרטגיה</strong> <small>מתרגלים אסטרטגיות הבנה</small></h4>
+              </h4>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-xs-12 col-sm-3 text-center">
+                  <img alt="תרגול" class="img-circle student_actions" src="views/pic/logo2.png" >
+                </div>
+                <div class="col-xs-12 col-sm-9">
+                  <span ng-show="correctAns  && !sendFeedbackMode">כל הכבוד, תשובה נכונה! </span>
+                  <span ng-show="!correctAns  && !sendFeedbackMode">אופס... <br> תשובה לא נכונה. </span>
+                  <br><p> {{feedback}}</p>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer ">
+              <div ng-show="correctAns  && !sendFeedbackMode">
+                <button type="button" ng-click="nextQuestion()" class="btn btn-primary" data-dismiss="modal" >שאלה הבאה</button>
+              </div>
+              
+              <div ng-show="!correctAns && !sendFeedbackMode">
+                <button ng-show="!triedOnce" type="button"  ng-click="oneMoreTry()" class="btn btn-default" data-dismiss="modal"> נסה פעם נוספת!</button>
+                <button type="button"  ng-click="nextQuestion()" class="btn btn-link" data-dismiss="modal" >שאלה הבאה...</button>
+              </div>
+
+              <div ng-show="sendFeedbackMode">
+                <button type="button" ng-click="report_offensive()" class="btn btn-danger" ng-disabled="reported1" data-dismiss="modal">תוכן פוגעני</button>
+                <button type="button" ng-click="report_question()" class="btn btn-primary" ng-disabled="reported2" data-dismiss="modal">בעיה בניסוח שאלה</button>
+                <button type="button"  ng-click="report_answer()" class="btn btn-primary" ng-disabled="reported3" data-dismiss="modal">בעיה בניסוח תשובה</button>
+              </div>
+
+
+              </div>
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
+
+      <!-- bla bla -->

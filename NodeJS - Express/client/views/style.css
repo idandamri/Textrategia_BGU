@@ -1,0 +1,425 @@
+/* -------------------index -------------------*/
+#index-wrap{
+    background: url('pic/start.jpg') ;
+
+    margin-bottom: 0;
+    min-height: 50%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    -webkit-background-size: cover;
+    background-size: cover;
+
+    /*now:
+     /*background-attachment: fixed;
+*/
+}
+
+.jumbotron {
+    background-color: transparent; 
+    color: #0E76BD; 
+    text-align: center;
+    height: 100vh;
+
+}
+
+
+.vertical-center {
+  /*height:100%;*/
+    width:100%;
+    min-height: 80%;
+    text-align: center;  /* align the inline(-block) elements horizontally */
+    font: 0/0 a;         /* remove the gap between inline(-block) elements */
+}
+
+.vertical-center:before {    /* create a full-height inline block pseudo=element */
+  content: " ";
+  display: inline-block;
+  vertical-align: middle;    /* vertical alignment of the inline element */
+  height: 100%;
+}
+
+.vertical-center > .container-welcome {
+  max-width: 100%;
+  min-height: 75%;
+  display: inline-block;
+  vertical-align: middle;  /* vertical alignment of the inline element */
+                           /* reset the font property */
+  font: 16px/1 "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+
+
+.modal-backdrop {
+   background-color: #A19A94;
+
+}
+/* ------------------- header -------------------*/
+
+
+.navbar-default {
+    background-color: #E0E2E1;
+    border-color: #E0E2E1;
+}
+
+.navbar-default .navbar-brand:hover,
+.navbar-default .li:hover {
+    background: #F1F0EE;
+    color: grey;
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+    background: #F1F0EE;
+    color: grey;
+}
+
+/*
+removed active.
+.navbar-default .navbar-nav > .active > a, 
+.navbar-default .navbar-nav > .active > a:hover, 
+.navbar-default .navbar-nav > .active > a:focus {
+    background: #E0E2E1;
+    color: grey;
+}
+*/
+/* ------------------- welcome -------------------*/
+
+* {
+    font-family: 'Varela Round', sans-serif;
+}
+
+
+
+/* ------------------- login ------------------- */
+.radio-inline input[type="radio"],
+.checkbox input[type="checkbox"],
+.checkbox-inline input[type="checkbox"]
+{
+    float: right;
+    margin-right: -20px;
+    margin-left: auto;
+}
+
+.login-page-container {
+    text-align: center;
+}
+
+.login-subtitle{
+    margin-bottom: 30px;
+}
+
+.login-input-label1 {
+    margin-left: 233px;
+}
+.login-input-label2 {
+    margin-left: 285px;
+}
+
+.login-input {
+    margin: auto; /* will always push the element from its sides to center */
+    max-width: 450px;
+    min-width: 350px;
+    margin-top: 7px;
+    margin-bottom: 15px;
+    padding: 7px;
+}
+
+.login-inputs-container {
+    display: grid;
+}
+
+.login-button {
+    padding: 10px 50px;
+}
+
+
+
+/* ------------------- student ------------------- */
+.student_actions{
+    border: 10px solid transparent;
+    margin-bottom: 2.5%;
+    width: 50%;
+    height: 50%;
+    opacity: 0.7;
+    min-width: 90px
+}
+.student_actions:hover {
+    border-color: #f1f1f1;
+}
+
+
+/* ------------------- one-question ------------------- */
+
+table tbody tr td div label {
+
+    margin-right: 3%;
+}
+
+.radio input[type="radio"]
+{
+
+    margin-right: -3%;
+}
+
+/*#labels_in_task{
+  display: inline-block;
+  vertical-align: bottom; 
+}*/
+
+/* ------------------------------------------------ */
+/* ------------------- General  ------------------- */
+/* ------------------------------------------------ */
+
+header ul li:hover {
+    background: #F1F0EE;
+    color: grey;
+}
+
+
+body {
+    background: #E0E2E1 !important;
+}
+
+/*#email.form-control {
+	width: (device-width)/2
+}*/
+
+tr:hover{
+    background: #F1F0EE;
+    color: blue;
+}
+
+/*Dosn't work*/
+#labels_in_task.text-left{
+    margin-left: 20%;
+}
+
+/* ------------------- Buttons  ------------------- */
+.btn-default,
+.btn-default:hover,
+.btn-default:active,
+.btn-default:visited,
+.btn-default:focus
+{
+    background-color: #0A5183;
+    border-color: #0A5183;
+    color: white;
+    margin-right: 2%
+}
+
+/*#one_task_start_btn.btn{
+	position: center;
+}*/
+
+
+/* ------------------- Table ------------------- */
+/*not working*/
+/*tr nth-child(even){*/
+    /*background-color: white !important;*/
+/*}*/
+
+thead tr th{
+    text-align: right;
+}
+
+
+
+/* ------------------- Bottom page ------------------- */
+
+#imag-logo {
+    position: fixed;
+    bottom: 0;
+
+}
+
+#index-bott{
+    background: url('pic/bottom.png') ;
+
+    min-height: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.fix{
+    position:fixed;
+    bottom:0px;
+    left:50%;
+}
+
+/* ------------------- input style ------------------- */
+.inputstl {
+    padding: 9px 9px;
+    border: solid 1px #0F75BC;
+    outline: 0;
+    background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #C6ECFF), to(#FFFFFF));
+    background: -moz-linear-gradient(top, #FFFFFF, #C6ECFF 1px, #FFFFFF 25px);
+    box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+    -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+    -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+
+}
+
+
+.button-center {
+    margin: auto;
+}
+
+/* ------------------- Wells ------------------- */
+
+.well-first-color {
+    background-color: #ffeccc;
+}
+.well-second-color {
+    background-color: #ffaba9;
+}
+
+
+
+/* ------------------- 20 - 20 ------------------- */
+
+.padded-20-elemnt{
+    padding:20px 20px;
+}
+
+.square {
+   width: 100%;
+   height: 0;
+   padding-bottom: 100%;
+}
+
+
+/* ------------------- Table-Fix style ------------------- */
+
+.table-fixed{
+  width: 100%;
+  background-color: #f3f3f3;
+  tbody{
+    height:200px;
+    overflow-y:auto;
+    width: 100%;
+    }
+  thead,tbody,tr,td,th{
+    display:block;
+  }
+  tbody{
+    td{
+      float:left;
+    }
+  }
+  thead {
+    tr{
+      th{
+        float:left;
+       background-color: #f39c12;
+       border-color:#e67e22;
+      }
+    }
+  }
+}
+
+
+.panel-hover:hover{
+    padding: 20px;
+    box-shadow: 0 0 14px 5px #31b0d5;
+}
+
+.panel-hover-green:hover{
+    padding: 20px;
+    box-shadow: 0 0 14px 5px #48e79c;
+}
+
+.panel-hover-lili:hover{
+    padding: 20px;
+    box-shadow: 0 0 14px 5px #c76ef7;
+}
+
+.panel-click:active{
+    padding: 20px;
+    box-shadow: 0 0 14px 5px #31b0d5;
+}
+
+.panel-hover{
+    padding: 20px;
+/*    box-shadow: 0 0 14px 5px;*/
+}
+
+.shadow-box {
+    padding: 20px;
+    box-shadow: 0 0 14px 5px #e4b882;
+}
+
+.shadow-box-2{
+    padding: 20px;
+    box-shadow: 0 0 14px 5px #EABFDC;
+}
+
+
+
+
+
+.menu-img-style{
+    padding: 15px;
+}
+
+
+.label-lili{
+    background-color: #c45bde;
+}
+
+
+.fileUpload {
+    position: relative;
+    overflow: hidden;
+    margin: 10px;
+}
+.fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+.squirish-button1{
+    width: 150px;
+    height: 100px;
+}
+
+.squirish-button2{
+    width: 90px;
+    height: 60px;
+}
+
+.squirish-button3{
+    width: 100px;
+    height: 80px;
+}
+.squirish-button4{
+    width: 100px;
+    height: 100px;
+}
+
+.squirish-button5{
+    width: 120px;
+    height: 100px;
+}
+
+.rec-button1{
+    min-height: 80px;
+    max-width: 110px;
+}
+
+
+.footer-image{
+    width:100%;
+}
+
+
+.container-padding {
+    padding-bottom: 80px;
+}
+
+

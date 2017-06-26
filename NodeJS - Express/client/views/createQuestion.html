@@ -1,0 +1,340 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+        <div ng-show="isAdmin"><a  class="navbar-brand" href="#superUser">טקסטרטגיה</a></div>
+        <div ng-show="!isAdmin"><a class="navbar-brand" href="#teacher">טקסטרטגיה</a></div>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <!-- <li><a href="student.html">תלמיד</a></li> -->
+      </ul>
+      <p class="navbar-text">בהצלחה</p>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#register"><span class="glyphicon glyphicon-user"></span> הרשם</a></li>
+        <li><a href="#login"><span class="glyphicon glyphicon-log-in"></span> התחברות</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div id="wrap" >
+  <div class="container" id="c_1">
+
+    <div class="row">
+
+<div ng-show="!insertPossibleAnswersMode">
+
+
+    <div class="col-xs-12 col-sm-12">  <h1>שלום, {{teacherName}}!</h1>  <h3>צור שאלה חדשה: </h3>  </div>
+    <form name="myForm" class="form-horizontal" role="form">
+
+    <div class="col-xs-12 col-sm-2"></div>
+
+
+        <div class="col-xs-12 hidden-sm hidden-md hidden-lg ">
+      
+          <!-- 1 -->
+          <label class="control-label pull-right">הכנס ניסוח שאלה:&nbsp;&nbsp;</label>
+            <textarea type="text" rows="2" name="question_title" class="form-control inputstl pull-right" required placeholder="ניסוח שאלה חדשה" ng-model="question.question_title" tabindex="1">
+
+          </textarea>
+
+            
+          <!-- 5 -->
+            <label class="control-label pull-right">הכנס פידבק לתשובה נכונה: &nbsp;&nbsp;</label>
+            <textarea type="text" name="quest_correct_fb" rows="1" class="form-control inputstl pull-right" required placeholder="פידבק חיובי" ng-model="question.quest_correct_fb" tabindex="2"></textarea>
+
+          <!-- 7 -->
+            <label class="control-label pull-right">הכנס פידבק לתשובה שגויה: &nbsp;&nbsp;</label>
+            <textarea type="text" name="quest_incorrect_fb" rows="1" class="form-control inputstl pull-right" required placeholder="פידבק שלילי" ng-model="question.quest_incorrect_fb" tabindex="3"> </textarea>
+
+        </div>
+
+
+
+
+
+    <div class="col-xs-12 col-sm-4">
+
+      <!--  2  -->       
+      <label class="control-label pull-right">מהו סוג המדיה של השאלה?:&nbsp;&nbsp;</label>
+        <select required class="form-control inputstl" id="media_type" ng-model="question.question_media_type" ng-change="changeMediaType()" style="padding: 5px 5px;" tabindex="4">
+          <option value="">- בחר -</option>
+              <option value="youtube">סרטון youtube</option>
+              <option value="page">אודיו</option>
+              <option value="img">תמונה</option>
+              <option value="text">טקסט</option>
+        </select>   
+
+    <!-- 4 -->
+
+        <div ng-show="isImg" style="margin: 5px" class="text-info">
+            <input type="file" file-model="myFile"/>&nbsp;
+            <button class="btn btn-sm btn-info" ng-click="uploadFile()">טען תמונה</button>  &nbsp;&nbsp; {{imageStatus}}
+            <div ng-show="!imageWasUploaded" class="alert alert-danger login-input">
+              <div class="label label-danger">שים לב!</div>  לא נטענה תמונה!
+            </div>
+        </div>
+
+        <div  ng-show="!isImg">
+            <label class="control-label pull-right">הכנס מדייה: &nbsp;&nbsp;</label>
+            <input  ng-required='!isImg' type="text" name="question_media" class="form-control inputstl pull-right" placeholder={{media_placeholder}} ng-model="question.question_media" tabindex="5">
+        </div>
+
+
+      <!-- 6 -->
+      <label class="control-label pull-right">הכנס מיומנות למידה: &nbsp;&nbsp;</label>
+      <select required class="form-control inputstl" id="skill_type" ng-model="question.selected_skill" ng-change="new_skill_mode()" tabindex="6" style="padding: 5px 5px;">
+       <option value="">- בחר -</option>
+        <option  ng-repeat="sk in skills" value={{sk.Q_skill}}>
+          {{sk.Q_skill}}
+          </option>
+          <option value="enter_new_skill">   מיומנות חדשה:     </option>
+          <br>
+        <input type="text" ng-show="enter_new_skill_mode" class="form-control inputstl pull-right" placeholder="מיומנות למידה" ng-model="question.selected_skill">
+      </select>
+
+      <!-- 8 -->
+      <label class="control-label pull-right">מהו קושי השאלה?:&nbsp;&nbsp;</label>
+      <select required class="form-control inputstl" id="quest_difficulty" tabindex="7" style="padding: 5px 5px;" ng-model="question.quest_difficulty">
+          <option value="">- בחר -</option>  
+
+          <option value="קלה">קלה</option>
+          <option value="בינונית">בינונית</option>
+          <option value="קשה">קשה</option>
+      </select>
+
+    </div>
+ 
+        <div class="col-xs-12 col-sm-1"></div>
+
+        <div class=" col-sm-4 hidden-xs">
+      
+          <!-- 1 -->
+          <label class="control-label pull-right">הכנס ניסוח שאלה:&nbsp;&nbsp;</label>
+          	<textarea type="text" rows="2" name="question_title" class="form-control inputstl pull-right" required placeholder="ניסוח שאלה חדשה" ng-model="question.question_title" tabindex="1">
+
+          </textarea>
+
+            
+          <!-- 5 -->
+    		    <label class="control-label pull-right">הכנס פידבק לתשובה נכונה: &nbsp;&nbsp;</label>
+         		<textarea type="text" name="quest_correct_fb" rows="1" class="form-control inputstl pull-right" required placeholder="פידבק חיובי" ng-model="question.quest_correct_fb" tabindex="2"></textarea>
+
+    			<!-- 7 -->
+            <label class="control-label pull-right">הכנס פידבק לתשובה שגויה: &nbsp;&nbsp;</label>
+            <textarea type="text" name="quest_incorrect_fb" rows="1" class="form-control inputstl pull-right" required placeholder="פידבק שלילי" ng-model="question.quest_incorrect_fb" tabindex="3"> </textarea>
+
+        </div>
+ 
+        <div class="col-xs-12 col-sm-2"></div>   
+        <div class="col-xs-12 col-sm-12 text-center"><br></div>
+
+        <!-- First part Button! -->
+        <div class="col-xs-12 col-sm-12 text-center">
+        <!-- why no work?! ng-required="question.selected_skill=='enter_new_skill'" -->
+          <button ng-click="possibleAnswersMode()" ng-disabled="myForm.$invalid || question.selected_skill == 'enter_new_skill'" class="btn btn-lg btn-info squirish-button5" tabindex="8">הוסף<br>מסיחים!<br>
+          <span class="glyphicon glyphicon-ice-lolly"></span> </button>
+
+          <div ng-show="!imageWasUploaded && triedSwitchingToPossibleAnsMod && isImg" class="alert alert-danger login-input">
+            <div class="label label-danger">שים לב!</div> סימנת שברצונך להעלות תמונה.<br> נא בחר תמונה ולחץ "טען תמונה"!
+          </div>
+
+         <br><br><br><br>
+        </div>  
+	</form>
+</div>
+
+<div ng-show="insertPossibleAnswersMode">
+	<div class="col-xs-12 col-sm-12">  <h3>הכנס את התשובות: </h3>  </div>
+
+<form name="mySecondForm" class="form-horizontal" role="form">
+
+
+
+
+<!-- MOBILE ONLE!!!!!!!!!! -->
+ <div class="col-xs-12 hidden-sm hidden-md hidden-lg ">
+      <!-- 1 -->
+      <label class="control-label pull-right">תשובה 1: &nbsp;&nbsp;</label>
+        <textarea type="text" rows="2" name="possible_ans_1" class="form-control inputstl pull-right" required ng-model="question.possible_ans_1" placeholder="הכנס תשובה אפשרית" tabindex="9" >  
+        </textarea>
+          <!-- 2 -->
+      <label class="control-label pull-right">תשובה 2: &nbsp;&nbsp;</label>
+        <textarea type="text" rows="2" name="possible_ans_2" class="form-control inputstl pull-right" required ng-model="question.possible_ans_2" placeholder="הכנס תשובה אפשרית" tabindex="10">  
+        </textarea>
+
+    </div>
+<!-- /////MOBILE ONLE!!!!!!!!!! -->
+
+
+  <div class="col-xs-12 col-sm-2 text-center"><br></div>
+
+  <div class="col-xs-12 col-sm-4 text-center">
+      <!-- 3 -->
+      <label class="control-label pull-right">תשובה 3: &nbsp;&nbsp;</label>
+       <textarea  type="text" rows="2" name="possible_ans_3" class="form-control inputstl pull-right" required  ng-model="question.possible_ans_3" placeholder="הכנס תשובה אפשרית" tabindex="11"> 
+       </textarea>
+          <!-- 4 -->
+      <label class="control-label pull-right">תשובה 4: &nbsp;&nbsp;</label>
+        <textarea type="text" rows="2" name="possible_ans_4" class="form-control inputstl pull-right" required  ng-model="question.possible_ans_4" placeholder="הכנס תשובה אפשרית" tabindex="12"> 
+        </textarea>
+      <br>
+  </div>
+
+
+    <div class="hidden-xs col-sm-4 text-center">
+      <!-- 1 -->
+      <label class="control-label pull-right">תשובה 1: &nbsp;&nbsp;</label>
+        <textarea type="text" rows="2" name="possible_ans_1" class="form-control inputstl pull-right" required ng-model="question.possible_ans_1" placeholder="הכנס תשובה אפשרית" tabindex="9" >  
+        </textarea>
+          <!-- 2 -->
+      <label class="control-label pull-right">תשובה 2: &nbsp;&nbsp;</label>
+        <textarea type="text" rows="2" name="possible_ans_2" class="form-control inputstl pull-right" required ng-model="question.possible_ans_2" placeholder="הכנס תשובה אפשרית" tabindex="10">  
+        </textarea>
+
+    </div>
+
+  <div class="col-xs-12 col-sm-2 text-center"><br></div>
+
+  <!-- buttons -->
+  <div class="hidden-xs col-sm-4 text-center">
+  </div>
+
+<div class="col-xs-12 col-sm-12 text-center"><br><br></div>
+<div class="col-sm-4 text-center"></div>
+
+<div class="col-xs-12 col-sm-4 text-center">
+
+<!-- HERE HERE -->
+<!-- HERE HERE -->
+<!-- HERE HERE -->
+<!-- HERE HERE -->
+<!-- HERE HERE -->
+<!-- HERE HERE -->
+
+  <br>
+  <br>
+    <label class="control-label pull-right ">בשאלה זו: &nbsp;&nbsp; &nbsp;&nbsp;</label>
+        <strong>
+        <span class="text-info"  ng-show="isMultipuleAns==0" style="font-size: 18px;">תשובה נכונה אחת בלבד </span>
+        <span class="text-warning" ng-show="isMultipuleAns==1" style="font-size: 18px;">כמה תשובות נכונות </span>
+        </strong>
+        &nbsp;&nbsp;<button type="button" class="btn btn-info" ng-click="changeStatusOfAnswer('blimp')"> שנה </button>
+  <br>
+  <br>
+
+  <label class="control-label pull-right">סמן תשובות נכונות:&nbsp;&nbsp;</label><br>
+   
+<table class="table table-responsive table-fixed table-hover" style="font-size: 18px">
+<strong>
+      <tbody> 
+        <tr>
+          <td> תשובה 1 היא:  </td>
+          <td>
+            <span class="text-danger" ng-show="!answer1_is_correct">לא נכונה</span>
+            <span class="text-success" ng-show="answer1_is_correct">נכונה</span>
+          </td>
+          <td> <button type="button" class="btn btn-info" ng-click="changeStatusOfAnswer('0')"> שנה </button>  </td>
+        </tr>
+        <tr>
+          <td> תשובה 2 היא:</td>
+          <td>
+            <span class="text-danger" ng-show="!answer2_is_correct">לא נכונה</span>
+            <span class="text-success" ng-show="answer2_is_correct">נכונה</span>
+          </td>
+          <td> <button type="button" class="btn btn-info" ng-click="changeStatusOfAnswer('1')"> שנה </button>  </td>
+        </tr>
+        <tr>
+          <td> תשובה 3 היא:</td>
+          <td>
+            <span class="text-danger" ng-show="!answer3_is_correct">לא נכונה</span>
+            <span class="text-success" ng-show="answer3_is_correct">נכונה</span>
+          </td>
+          <td> <button type="button" class="btn btn-info" ng-click="changeStatusOfAnswer('2')"> שנה </button>  </td>
+        </tr> 
+         <tr>
+          <td> תשובה 4 היא:</td>
+          <td>
+            <span class="text-danger" ng-show="!answer4_is_correct">לא נכונה</span>
+            <span class="text-success" ng-show="answer4_is_correct">נכונה</span>
+          </td>
+          <td> <button type="button" class="btn btn-info" ng-click="changeStatusOfAnswer('3')"> שנה </button>  </td>
+        </tr>
+      </tbody>
+      </strong>
+      </table>
+
+
+    <!-- HERE HERE -->
+
+  </div>
+
+    <!-- buttons -->
+  <div class="col-xs-12 text-center margin22-mobile" >
+    <div class="btn-group">
+          <button ng-click="editQuestionMode()"  class="btn btn-lg btn-info squirish-button5" tabindex="15" >
+          חזור למסך<br> הקודם!
+          <span class="glyphicon glyphicon-hand-right"></span> </button>
+
+        <button ng-click="sendNewQuestion()" ng-disabled="mySecondForm.$invalid || !question_choisses_r_legal" type="submit" class="btn btn-lg btn-success squirish-button5" data-toggle="modal" data-target="#fedbackModal" tabindex="14">
+        הוסף שאלה<br> למאגר!
+         <span class="glyphicon glyphicon-send"></span> </button>
+    </div>
+  </div>
+
+  <div class="col-xs-12 col-sm-4 text-center"></div>
+
+
+</form>
+</div> <!-- //ng-show insertPossibleAnswersMode -->
+
+      
+    </div>      
+  </div>
+</div>
+
+
+
+      <!-- Modal -->
+      <div class="modal fade" id="fedbackModal" tabindex="-1" role="dialog" aria-labelledby="myCurrectModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+               <h4 class="modal-title text-info"> <strong>טקסטרטגיה</strong> <small>מתרגלים אסטרטגיות הבנה</small></h4>
+              </div>
+        
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-xs-5 col-sm-3"> 
+                  <img alt="תרגול" class="img-circle student_actions" src="views/pic/logo2.png" >
+                </div>
+                <div class="col-xs-7 col-sm-9">
+                <br>
+                  <span> {{serverFeedback}}</span>   
+                  <span class="text-info"> <strong><em>{{output_groupCode}}</em></strong></span>       
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+                <!-- <button type="button" class="btn btn-default" data-dismiss="modal">סגור</button> -->
+                 <button type="button" ng-show="doneRegisterQuestion" data-dismiss="modal" class="btn btn-default" ng-click="goToTeacher()" > סגור </button>
+                 <button type="button" ng-show="!doneRegisterQuestion" data-dismiss="modal" class="btn btn-default" > סגור </button>
+
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
+
+
+
+<br><br><br><br><br>
+
+<img class="img-responsive footer-image" id="imag-logo" src="views/pic/bottom.png" >
+
