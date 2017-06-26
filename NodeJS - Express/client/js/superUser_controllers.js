@@ -3,6 +3,11 @@
  */
 
 
+textrategiaApp.controller("newControllerName",function($scope, $http,$location){
+    // TO-DO - add data to this controller
+});
+
+
 textrategiaApp.controller("SuperUserController",function($scope, $http,$location){
     $scope.userName = getUserName();
 
@@ -537,6 +542,7 @@ textrategiaApp.controller("CreateGroupController",function($scope,$http,$locatio
                     $scope.teachers = data;
                 }
                 else if (status==204){
+                    alert("no teacher!");
                     $scope.teachers = [];
                     $scope.teachers.push({
                         "School": "אין מורים בבית ספר זה"

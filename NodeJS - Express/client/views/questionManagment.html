@@ -90,7 +90,7 @@
       <div ng-show="q.Q_reported_Offensive+ q.Q_reported_Question + q.Q_reported_Answer == 0 ">
         <span class="label label-info">{{q.Q_skill}}</span>
         <span class="label label-lili">קושי: {{q.Q_difficulty}}</span> 
-        <span ng-show="q.Q_mediaType=='page'" class="label label-success">אודיו</span>
+        <!--<span ng-show="q.Q_mediaType=='page'" class="label label-success">אודיו</span>-->
         <span ng-show="q.Q_mediaType=='img'" class="label label-success">תמונה</span>
         <span ng-show="q.Q_mediaType=='youtube'" class="label label-success">סרטון</span>
         <span ng-show="q.Q_mediaType=='text'" class="label label-success">טקסט</span>
@@ -142,8 +142,8 @@
       <div class="padded-20-elemnt" >
         <label><input type="checkbox" ng-init='checkStatus11=false' ng-model="checkStatus11" ng-change="checkdMediaSelected(checkStatus11,'youtube')" >
         &nbsp;&nbsp;סרטון youtube</label><br>
-        <label> <input type="checkbox" ng-init='checkStatus12=false' ng-model="checkStatus12" ng-change="checkdMediaSelected(checkStatus12,'page')">
-        &nbsp;&nbsp;אודיו</label><br>
+        <!--<label> <input type="checkbox" ng-init='checkStatus12=false' ng-model="checkStatus12" ng-change="checkdMediaSelected(checkStatus12,'page')">-->
+        <!--&nbsp;&nbsp;אודיו</label><br>-->
         <label> <input type="checkbox" ng-init='checkStatus13=false' ng-model="checkStatus13" ng-change="checkdMediaSelected(checkStatus13,'img')">
         &nbsp;&nbsp;תמונה</label><br>
         <label> <input type="checkbox" ng-init='checkStatus14=false' ng-model="checkStatus14" ng-change="checkdMediaSelected(checkStatus14,'text')">
@@ -223,7 +223,7 @@
         <select class="form-control inputstl" id="media_type" style="padding: 5px 5px;" tabindex="4" ng-model="question.media_type">
           <!-- <option value=0>אין מדיה</option> -->
               <option value="youtube">סרטון youtube</option>
-              <option value="page">אודיו</option>
+              <!--<option value="page">אודיו</option>-->
               <option value="img">תמונה</option>
               <option value="text">טקסט</option>
         </select>   
