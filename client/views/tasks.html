@@ -1,0 +1,76 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#student">טקסטרטגיה</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <!-- <li><a href="student.html">תלמיד</a></li> -->
+        
+      </ul>
+      <p class="navbar-text">בהצלחה</p>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#register"><span class="glyphicon glyphicon-user"></span> הרשם</a></li>
+        <li><a href="#login"><span class="glyphicon glyphicon-log-in"></span> התחברות</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div id="wrap">
+<div class="container container-padding" id="c_1" style="padding-bottom: 80px;"">
+   <div class="row">  
+
+
+  <div class="col-sm-12" >
+    <h1>שלום, {{studentName}}!</h1>
+  </div>
+    
+
+  <div class="col-sm-12" >
+    <div ng-show="tasks.length==0">
+      <h3><em> אין מטלות זמינות לביצוע... </em></h3>
+    </div>
+    <div ng-show="tasks.length!=0">
+      <h3><em>לרשותך, רשימת המטלות הזמינות בפניך:</em></h3>
+    </div>
+  </div>
+
+
+  <div class="col-sm-4 panel-group"  ng-repeat="x in tasks">
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <p class="text-info"><bold>{{x.T_title}}</bold></p>
+        </h4>
+      </div>
+
+      <div class="panel">
+        <div class="panel-body">
+          <div class="" style="margin: 18px 0px; ">
+            {{x.T_description}}
+          </div>
+          <div class="text-center">
+          	<a ng-click="navigateToOneQuestion(x.T_id, x.T_title)" class="btn btn-primary">התחל מטלה</a>
+          </div>
+        </div> 		
+      </div>
+ 		</div>
+ 	</div>
+
+
+
+  </div>
+</div>
+</div>
+
+<br><br><br><br><br>
+
+<img class="img-responsive footer-image" id="imag-logo" src="views/pic/bottom.png" >
+

@@ -1,0 +1,157 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#superUser">טקסטרטגיה</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <!-- <li><a href="student.html">תלמיד</a></li> -->
+        <!-- <li><a href="#superUser">משתמש על</a></li> -->
+      </ul>
+      <p class="navbar-text">בהצלחה</p>
+      <ul class="nav navbar-nav navbar-right">
+        <li> <a href="#register"><span class="glyphicon glyphicon-user"></span> הרשם</a></li>
+        <li><a href="#login"><span class="glyphicon glyphicon-log-in"></span> התחברות</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<div id="wrap">
+  <div class="container" id="c_1">
+
+    <div class="row">
+
+     <div class="col-xs-12 col-sm-4 text-left text-bottom" style="margin-top: 44px"> 
+         <span> תרצה להוסיף קבוצה חדשה? <a href="#createGroup">הוסף </a></span>
+      </div>
+    <div class=" col-xs-12 col-sm-8">  
+      <h1>שלום, {{getUserName}}!</h1>  
+      <h3 style="margin-bottom: 20px">הוסף בתי ספר חדשים: </h3>
+    </div>
+    
+
+
+      <div class ="col-xs-12 col-sm-1"></div>
+
+      <!-- Schools -->
+      <div class ="hidden-xs col-sm-4">
+        <div ng-show="showSchools">
+          <table class="table table-responsive table-fixed table-hover">
+            <thead> <tr> <th>בית ספר:</th> </tr> </thead>
+            <tbody> <tr  ng-repeat="school in schools">
+               <td> {{school.School}}</td>
+            </tr></tbody>
+          </table>
+        </div>
+      </div>
+
+
+      <div class ="col-xs-12 col-sm-1"></div>
+
+      <!--  City -->
+      <form name="myForm" class="form-horizontal" >
+      <div class ="col-xs-12 col-sm-5">
+
+        <input type="text" id="query" class="form-control inputstl pull-right"  ng-model="query" placeholder="חפש עיר">
+
+        <label class="control-label pull-right">בחר עיר:&nbsp;&nbsp;</label>
+        <select required class="form-control inputstl" id="group_city" size=5 ng-model="city.city_name">
+          <option value=""> - בחר עיר -</option>
+          <option ng-repeat="city in myCities.cities | filter:query | orderBy: orderList" value={{city}}>   
+          {{city}}
+          </option>
+        </select>    
+
+        <!-- button -->
+        <button ng-click="showSchoolsList()" class="btn btn-lg btn-info text-center" style="margin: 20px 0;"> 
+          הצג בתי ספר!  
+          <span class="glyphicon glyphicon-king"></span>
+        </button>
+      </div>
+        
+
+      <div class ="col-xs-12 col-sm-1"></div>  
+
+      <!-- Schools -->
+      <div class ="col-xs-12 hidden-sm hidden-md hidden-lg ">
+        <div ng-show="showSchools">
+          <table class="table table-responsive table-fixed table-hover">
+            <thead> <tr> <th>בית ספר:</th> </tr> </thead>
+            <tbody> <tr  ng-repeat="school in schools">
+               <td> {{school.School}}</td>
+            </tr></tbody>
+          </table>
+        </div>
+      </div>
+
+
+
+
+        <div class ="col-xs-12 col-sm-4"></div>
+        <div class="col-xs-12 col-sm-4 text-center">
+         
+           <div ng-show="showSchools">
+          <label class="control-label pull-right">הכנס שם בית ספר חדש:&nbsp;&nbsp;</label>
+          <input type="text" required name="groupName" class="form-control inputstl pull-right"  placeholder="הכנס שם בית ספר חדש:" ng-model="user.schoolName">
+          </div>
+
+        <!-- button -->
+          <button type="submit" class="btn btn-lg btn-info" ng-disabled="myForm.$invalid" ng-click="createNewSchoolWraper()" data-toggle="modal" data-target="#fedbackModal" style="margin: 20px 0; margin-bottom: 15px;">הוסף בית ספר חדש!  <span class="glyphicon glyphicon-king"></span>
+          </button>
+        </div>
+    </form>
+<div class ="col-xs-12 col-sm-4"></div>
+     
+</form>
+
+    </div>
+  </div>
+</div>
+
+
+
+      <!-- Modal -->
+      <div class="modal fade" id="fedbackModal" tabindex="-1" role="dialog" aria-labelledby="myCurrectModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+               <h4 class="modal-title text-info"> <strong>טקסטרטגיה</strong> <small>מתרגלים אסטרטגיות הבנה</small></h4>
+              </div>
+        
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-xs-5 col-sm-3"> 
+                  <img alt="תרגול" class="img-circle student_actions" src="views/pic/logo2.png" >
+                </div>
+                <div class="col-xs-7 col-sm-9">
+                <br>
+                  <span ng-show="readyToSendServer"> {{serverFeedback}}</span> 
+                  <div ng-show="!readyToSendServer">
+                     {{serverFeedback}} <span class="text-info">{{user.schoolName}}</span>   
+                    {{secondServerFeedback}} <span class="text-info"> {{city.city_name}}?</span>   
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" ng-show="!readyToSendServer" ng-click="createNewSchool()" data-dismiss="modal">הוסף</button>
+                 <button type="button" data-dismiss="modal" class="btn btn-link" > סגור </button>
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
+
+
+
+<br><br><br><br><br>
+
+<img class="img-responsive footer-image" id="imag-logo" src="views/pic/bottom.png" >
+
