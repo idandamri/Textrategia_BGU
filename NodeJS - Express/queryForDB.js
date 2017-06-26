@@ -12,11 +12,6 @@ module.exports =
                 "a.GroupId  = b.GroupId where isTeacherGroup = 1 and City = " + city + " and School = " + school + ";";
         },
 
-        addSQuestionStatisticsWhenAnswering: function (q_id, s_id, a_id, is_correct, second_chance) {
-            return "insert into textra_db.statistics " +
-                "values(" + q_id + "," + s_id + "," + a_id + "," + is_correct + "," + second_chance + ");";
-        },
-
         getQuestionStatistics: function (q_id) {
             return "select" +
                 "(SELECT count(*) FROM instances_of_answers inner join answers on answers.A_id = instances_of_answers.A_id " +
@@ -40,34 +35,6 @@ module.exports =
                 "inner join tasks " +
                 "on t1.T_id like tasks.T_id;";
         },
-
-        //TODO - check if needed
-        /* not yet final. will update in the maraton (see notes.txt file)
-         get number of correct answer for a task by task id and student id
-         *return 2 attribute - number of correct ans | number of total qustion in task
-         */
-        /*        getNumberOfCorrectAnswersForTask: function (taks_id, student_id) {
-         var query =
-         "select * from" +
-         "(select * from" +
-         "(select *" +
-         "from textra_db.mother_of_all_tables" +
-         "where studentId = " + student_id +
-         "and taskId =" + task_id +
-         "order by instanceTime desc) as t1 /!* this sort by instance time and requested value *!/" +
-         "group by studentId,taskId,Q_id) as t2 /!*this remove the first record (if exist)*!/" +
-         "inner join textra_db.answers /!*in order to check if the answer is correctanswers*!/" +
-         "on textra_db.answers.Q_id= t2.Q_id" +
-         "and textra_db.answers.A_id= t2.A_id " +
-         "and isCorrect=1;";
-         return query;
-         },*/
-
-        /*        getNumberOfQuestionForTask: function (t_id) {
-         var query = "select count(*) as numberOfQuestion from tasks_joined_with_questions where T_id =" +
-         t_id + ";";
-         return query;
-         },*/
 
         getAnswersByTaskAndUser: function (user_id, t_id) {
             return "select " + /*T.Q_id, T.Q_qeustion, T.isMultipuleAns, T.Q_correctFB, T.Q_notCorrectFB,*/" answers.A_id, " +
@@ -152,10 +119,6 @@ module.exports =
 
         getGroupsByTeacherAndCity: function (teacherId, city) {
             return "SELECT * FROM textra_db.groups where teacherID = " + teacherId + " and City = " + city + ";";
-        },
-
-        getValidQuestions: function (is_app, is_disabled) {
-            return "SELECT * FROM textra_db.questions where Q_approved = " + is_app + " and Q_disabled = " + is_disabled + ";";
         },
 
         getGroupsBySchool: function (schoolName) {
@@ -258,12 +221,6 @@ module.exports =
                 "where studentId = " + user_id + " and T_id = " + t_id + " limit 1;";
         },
 
-//TODO check if needed..
-    /*getAnswersByTidQidSid: function (/!*s_id, t_id, *!/q_id) {
-     var query = "select * from textra_db.tasks where Q_id like /'" + q_id + "'/";
-     return query;
-     }*/
-
     addNewTask: function (t_title, t_description, t_owner, t_approved) {
         return "insert into textra_db.tasks values(null," + t_title + "," + t_description + ","
             + t_owner + "," + t_approved + ");";
@@ -271,11 +228,6 @@ module.exports =
 
     deleteTaskForNotEnoughQuestions: function (task_id) {
         return "delete from textra_db.tasks where T_id = " + task_id;
-    },
-
-    addNewTaskGenRand: function (t_title, t_description, t_owner, t_approved) {
-        return "insert into textra_db.tasks values(null," + t_title + "," + t_description + "',"
-            + t_owner + "," + t_approved + ") RETURNING T_id;";
     },
 
     joinNewTaskWithQuestion: function (t_id, q_id) {
@@ -302,7 +254,6 @@ module.exports =
             "and teacherID = " + teacher_id + " and isTeacherGroup!=1;"
     },
 
-
     insertAnswer: function (question_id, answer, isCorrect) {
         return "insert into textra_db.answers values (null," + question_id + "," + answer + "," + isCorrect + ");"
     },
@@ -325,6 +276,7 @@ module.exports =
     addNewSchool: function (city, school) {
         return "insert into textra_db.cities_and_schools values (" + school + " , " + city + ");"
     },
+
     getQuestionsByParamter: function (media_types, skills, difficulties) {
         return "SELECT * FROM textra_db.questions " +
             "where Q_mediaType in (" + media_types + ") " +
