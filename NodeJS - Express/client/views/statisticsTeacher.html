@@ -6,9 +6,13 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#teacher">טקסטרטגיה</a>
+      <a class="navbar-brand" href="#welcome">טקסטרטגיה</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <!-- <li><a href="student.html">תלמיד</a></li> -->
+        <li><a href="#teacher">מורה</a></li>
+      </ul>
       <p class="navbar-text">בהצלחה</p>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#register"><span class="glyphicon glyphicon-user"></span> הרשם</a></li>
@@ -25,37 +29,39 @@
 
 <div ng-show="chooseGroupMod">
 
-        <div class="col-sm-12 col-xs-12" >
-          <h1>שלום, {{teacherName}}!</h1>  
-          <span ng-show="allGroups.length!=0"> <h3>לרשותך, רשימת הקבוצות שבניהולך. <small>לחץ על קבוצה לצפייה בסטטיסטיקה</small></h3> </span>
-          <span ng-show="allGroups.length==0"> <h3>עדיין לא קימות קבוצות תלמידים באחריותך.</h3> 
-          
+  <div class="col-sm-12" >
+    <h1>שלום, {{teacherName}}!</h1>  
+    <span ng-show="allGroups.length!=0"> <h3>לרשותך, רשימת הקבוצות שבניהולך. <small>לחץ על קבוצה לצפייה בסטטיסטיקה</small></h3> </span>
+    <span ng-show="allGroups.length==0"> <h3>עדיין לא קימות קבוצות תלמידים באחריותך.</h3> 
+    
+  </div>
+
+
+
+  <div class="col-sm-12 text-right">
+
+    <div class="col-sm-4 panel-group panel-hover-lili" ng-repeat="y in allGroups">
+      <div class="panel panel-default" ng-click="showGroupsMembersList(y.GroupId,y.GroupName)" ng-model="currentGroup">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <p><bold>{{y.GroupName}}</bold></p>
+          </h4>
         </div>
-
-
-
-          <div class="col-sm-12 col-xs-12 text-right">
-            <div class="col-sm-4 col-xs-12 panel-group panel-hover-lili" ng-repeat="y in allGroups">
-              <div class="panel panel-default" ng-click="showGroupsMembersList(y.GroupId,y.GroupName)" ng-model="currentGroup">
-                <div class="panel-heading">
-                  <h4 class="panel-title">
-                    <p><bold>{{y.GroupName}}</bold></p>
-                  </h4>
-                </div>
-                <div class="panel">
-                  <div class="panel-body">קוד קבוצה: <div class="text-info"> {{y.GroupeCode}}</div></div>
-                </div>
-              </div>
-            </div>       
-          </div>
-
-        <div class="col-sm-12 col-xs-12 text-right">
-          <!-- if no groups: -->
-          <div ng-show="noUsersInGroup" class="alert alert-info" style="font-size: 15px;"><strong>
-          <span class="label label-info">לדיעתך!</span> בקבוצה: "{{choosenGroupName}}",&nbsp;&nbsp;{{noStudentInGroup}}
-          </strong></div>
-
+        <div class="panel">
+          <div class="panel-body">קוד קבוצה: <div class="text-info"> {{y.GroupeCode}}</div></div>
         </div>
+      </div>
+    </div>
+  
+  </div>
+
+  <div class="col-sm-12 text-right">
+<!-- if no groups: -->
+  <div ng-show="noUsersInGroup" class="alert alert-info" style="font-size: 15px;"><strong>
+  <span class="label label-info">לדיעתך!</span> בקבוצה: "{{choosenGroupName}}",&nbsp;&nbsp;{{noStudentInGroup}}
+  </strong></div>
+
+</div>
 
 </div> <!-- /chooseGroupMod -->
 
@@ -63,16 +69,16 @@
 <div ng-show="!chooseGroupMod">
 <!--  -->
 
-  <div ng-show = "questionForStatistics.length != 0" class="col-xs-12 col-sm-12 ">  
+<div ng-show = "questionForStatistics.length != 0" class="col-sm-12">  
       <h3> לרשותך, רשימת התלמידים בקבוצה</h3>      
   </div>
   
   <span ng-show = "studentsForStatistics.length == 0" style="font-size: 17px;" >{{serverFeedback}} </span>
 
 
-<div class="hidden-xs col-sm-2 "> <br> </div>
+<div class="col-sm-2"> <br> </div>
 
-<div class=" col-xs-12 col-sm-8"> <br> 
+<div class="col-sm-8"> <br> 
 
   <div class="panel" ng-repeat="stud2 in studentsForStatistics track by $index">
 
@@ -114,21 +120,21 @@
      <!--/inner pannel  -->
     <!-- </div> -->
 
-
-    </div>
-     <button ng-click="getStatisticForStudent(stud2.PersonalID,$index)" class="btn btn-success text-center no-margin1-in-mobile" > 
+     <button ng-click="getStatisticForStudent(stud2.PersonalID,$index)" class="btn btn-success text-center" style="margin: 5px 335px;"> 
       סטטיסטיקה
     </button> 
+
+    </div>
 
   </div>
 </div> <!-- col-8 -->
 
 
 
-<div class=" hidden-xs col-sm-2 "> <br> </div>
+<div class="col-sm-2"> <br> </div>
 
 
-<div class="col-xs-12 col-sm-12  text-center">
+<div class="col-sm-12 text-center">
  <br> 
  <br> 
     <button ng-click="switchToChooseGroupMod()" class="btn btn-info text-center squirish-button3" style="margin: 5px;"> 
@@ -165,9 +171,7 @@
 
 
 <br><br><br><br><br>
-
-<img class="img-responsive footer-image" id="imag-logo" src="views/pic/bottom.png" >
-
+<img class="img-responsive" id="imag-logo" src="views/pic/bottom.png"> 
 
   
 

@@ -6,12 +6,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#superUser">טקסטרטגיה</a>
+      <a class="navbar-brand" href="#welcome">טקסטרטגיה</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <!-- <li><a href="student.html">תלמיד</a></li> -->
-        <!-- <li><a href="#superUser">משתמש על</a></li> -->
+        <li><a href="#superUser">משתמש על</a></li>
       </ul>
       <p class="navbar-text">בהצלחה</p>
       <ul class="nav navbar-nav navbar-right">
@@ -28,20 +28,20 @@
 
     <div class="row">
 
-     <div class="col-xs-12 col-sm-4 text-left text-bottom" style="margin-top: 44px"> 
+     <div class=" col-sm-4 text-left text-bottom" style="margin-top: 44px"> 
          <span> תרצה להוסיף קבוצה חדשה? <a href="#createGroup">הוסף </a></span>
       </div>
-    <div class=" col-xs-12 col-sm-8">  
+    <div class="col-sm-8">  
       <h1>שלום, {{getUserName}}!</h1>  
       <h3 style="margin-bottom: 20px">הוסף בתי ספר חדשים: </h3>
     </div>
     
 
 
-      <div class ="col-xs-12 col-sm-1"></div>
+      <div class ="col-sm-1"></div>
 
       <!-- Schools -->
-      <div class ="hidden-xs col-sm-4">
+      <div class ="col-sm-4">
         <div ng-show="showSchools">
           <table class="table table-responsive table-fixed table-hover">
             <thead> <tr> <th>בית ספר:</th> </tr> </thead>
@@ -53,11 +53,11 @@
       </div>
 
 
-      <div class ="col-xs-12 col-sm-1"></div>
+      <div class ="col-sm-1"></div>
 
       <!--  City -->
       <form name="myForm" class="form-horizontal" >
-      <div class ="col-xs-12 col-sm-5">
+      <div class ="col-sm-5">
 
         <input type="text" id="query" class="form-control inputstl pull-right"  ng-model="query" placeholder="חפש עיר">
 
@@ -70,32 +70,17 @@
         </select>    
 
         <!-- button -->
-        <button ng-click="showSchoolsList()" class="btn btn-lg btn-info text-center" style="margin: 20px 0;"> 
+        <button ng-click="showSchoolsList()" class="btn btn-lg btn-info" style="margin: 20px 0;"> 
           הצג בתי ספר!  
           <span class="glyphicon glyphicon-king"></span>
         </button>
       </div>
         
 
-      <div class ="col-xs-12 col-sm-1"></div>  
+      <div class ="col-sm-1"></div>  
 
-      <!-- Schools -->
-      <div class ="col-xs-12 hidden-sm hidden-md hidden-lg ">
-        <div ng-show="showSchools">
-          <table class="table table-responsive table-fixed table-hover">
-            <thead> <tr> <th>בית ספר:</th> </tr> </thead>
-            <tbody> <tr  ng-repeat="school in schools">
-               <td> {{school.School}}</td>
-            </tr></tbody>
-          </table>
-        </div>
-      </div>
-
-
-
-
-        <div class ="col-xs-12 col-sm-4"></div>
-        <div class="col-xs-12 col-sm-4 text-center">
+        <div class ="col-sm-4"></div>
+        <div class="col-sm-4 text-center">
          
            <div ng-show="showSchools">
           <label class="control-label pull-right">הכנס שם בית ספר חדש:&nbsp;&nbsp;</label>
@@ -107,7 +92,7 @@
           </button>
         </div>
     </form>
-<div class ="col-xs-12 col-sm-4"></div>
+<div class ="col-sm-4"></div>
      
 </form>
 
@@ -152,6 +137,4 @@
 
 
 <br><br><br><br><br>
-
-<img class="img-responsive footer-image" id="imag-logo" src="views/pic/bottom.png" >
-
+<img class="img-responsive" id="imag-logo" src="views/pic/bottom.png"> 
