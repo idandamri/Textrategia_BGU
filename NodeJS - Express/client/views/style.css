@@ -5,54 +5,31 @@
     margin-bottom: 0;
     min-height: 50%;
     background-repeat: no-repeat;
-    background-position: center center;
+    background-position: center;
     -webkit-background-size: cover;
     background-size: cover;
 
-    /*now:
-     /*background-attachment: fixed;
-*/
+    /*now:*/
+     background-attachment: fixed;
 }
 
 .jumbotron {
-    background-color: transparent; 
-    color: #0E76BD; 
+    background-color: transparent; /* Orange */
+    color: #0E76BD; /*#ff5fff; PINK */
     text-align: center;
     height: 100vh;
 
 }
 
-
-.vertical-center {
-  /*height:100%;*/
-    width:100%;
-    min-height: 80%;
-    text-align: center;  /* align the inline(-block) elements horizontally */
-    font: 0/0 a;         /* remove the gap between inline(-block) elements */
-}
-
-.vertical-center:before {    /* create a full-height inline block pseudo=element */
-  content: " ";
-  display: inline-block;
-  vertical-align: middle;    /* vertical alignment of the inline element */
-  height: 100%;
-}
-
-.vertical-center > .container-welcome {
-  max-width: 100%;
-  min-height: 75%;
-  display: inline-block;
-  vertical-align: middle;  /* vertical alignment of the inline element */
-                           /* reset the font property */
-  font: 16px/1 "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-
-
-
 .modal-backdrop {
    background-color: #A19A94;
 
 }
+/*not pretty...*/
+/*.modal-content{
+    background: #F1F0EE;
+}
+*/
 /* ------------------- header -------------------*/
 
 
@@ -141,7 +118,6 @@ removed active.
     width: 50%;
     height: 50%;
     opacity: 0.7;
-    min-width: 90px
 }
 .student_actions:hover {
     border-color: #f1f1f1;
@@ -248,7 +224,7 @@ thead tr th{
 
 /* ------------------- input style ------------------- */
 .inputstl {
-    padding: 9px 9px;
+    padding: 9px;
     border: solid 1px #0F75BC;
     outline: 0;
     background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #C6ECFF), to(#FFFFFF));
@@ -411,15 +387,3 @@ thead tr th{
     min-height: 80px;
     max-width: 110px;
 }
-
-
-.footer-image{
-    width:100%;
-}
-
-
-.container-padding {
-    padding-bottom: 80px;
-}
-
-

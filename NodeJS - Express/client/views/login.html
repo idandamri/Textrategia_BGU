@@ -11,6 +11,13 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
+      
+        <!-- NOT DISABLED FOR EASINESS: -->
+<!--         <li><a href="#student">תלמיד</a></li>
+        <li><a href="#tasks">מטלות</a></li> -->
+        
+        <!--    DISABLED AS SHOULD BE -->  
+       
       </ul>
       <p class="navbar-text">בהצלחה</p>
       <ul class="nav navbar-nav navbar-right">
@@ -21,7 +28,7 @@
   </div>
 </nav>
 	
-<div class="login-page-container" id="c_1" style="padding-right: 13px;">
+<div class="login-page-container" id="c_1">
 			
 	<h1><strong>טקסטרטגיה</strong></h1>
 	<h4 class="login-subtitle">מתרגלים אסטרטגיות הבנה</h4>
@@ -29,8 +36,8 @@
 <form class="login-form" name="myForm">
   <div class="login-container">
       
-    <div class="form-group"  >
-      <div class="col-xs-12 col-sm-12 login-inputs-container" >
+    <div class="form-group">
+      <div class="col-md-12 login-inputs-container">
         <label class="login-input-label1"><span class="glyphicon glyphicon-envelope"></span> דואר אלקטרוני: </label>
           <input class="login-input" type="email" name="email" ng-model="user.username" required class="form-control" placeholder="הכנס כתובת דואר אלקטרוני">
         
@@ -42,16 +49,16 @@
         <div ng-show="myForm.pass.$error.required &amp;&amp; myForm.pass.$touched" class="error">שדה חובה!</div>
       </div>
 
-      <div class="col-xs-12 col-sm-12"><br></div>
+      <div class="col-md-12"><br></div>
 
-      <div class="col-xs-12 col-sm-12">
+      <div class="col-md-12">
         <!-- Button -->
         <button ng-click="authenticate()" ng-disabled="myForm.$invalid" class="btn btn-success button-center login-button"> כניסה  <span class="glyphicon glyphicon-thumbs-up"></span></button>
       </div>
 
     </div>
 
-    <div class="col-xs-12 col-sm-12">
+    <div class="col-md-12">
       <br>
       <div ng-show="showError" class="alert alert-danger login-input">שם משתמש או סיסמא לא נכונים!</div>
       <div ng-show="showSuccess" class="alert alert-success login-input">חיבור נעשה בהצלחה!</div>
@@ -65,5 +72,5 @@
 <br><br>
 
 </div>
-<img class="img-responsive footer-image" id="imag-logo" src="views/pic/bottom.png" >
+<img class="img-responsive" id="imag-logo" src="views/pic/bottom.png">
 </div>

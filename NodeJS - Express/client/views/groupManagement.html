@@ -6,12 +6,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#teacher">טקסטרטגיה</a>
+      <a class="navbar-brand" href="#welcome">טקסטרטגיה</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <!-- <li><a href="student.html">תלמיד</a></li> -->
-        <!-- <li><a href="#teacher">מורה</a></li> -->
+        <li><a href="#teacher">מורה</a></li>
       </ul>
       <p class="navbar-text">בהצלחה</p>
       <ul class="nav navbar-nav navbar-right">
@@ -28,7 +28,7 @@
 <!-- GROUP MANAGMENT MODE -->
 <div class="row" ng-show="!send_task_mod && !send_task_for_some_student_mod">
 
-  <div class="col-sm-6 col-xs-12 text-center">
+  <div class="col-sm-6 text-center">
 
     <!-- Button -->
     <button ng-click="sendTaskMode()" class="btn btn-info squirish-button3" style="font-size: 15px;">
@@ -46,18 +46,18 @@
 
   </div>
 
-  <div class="col-sm-6 col-xs-12" >
-    <h1>שלום, {{teacherName}}!
-    <span ng-show="allGroups.length!=0"> <small>לרשותך, רשימת הקבוצות שבניהולך: </small> </span>
-    <span ng-show="allGroups.length==0"> <small>עדיין לא קיימות קבוצות תלמידים באחריותך.</small> 
-    </h1>  
+  <div class="col-sm-6" >
+    <h1>שלום, {{teacherName}}!</h1>  
+    <span ng-show="allGroups.length!=0"> <h3>לרשותך, רשימת הקבוצות שבניהולך: </h3> </span>
+    <span ng-show="allGroups.length==0"> <h3>עדיין לא קיימות קבוצות תלמידים באחריותך.</h3> 
+    
   </div>
 
 
-  <div class="col-sm-12 col-xs-12"><br></div>
+  <div class="col-sm-12"><br></div>
 
-  <div class="col-sm-4 col-xs-12">
-      <table class="table table-responsive table-fixed table-hover mobile-text">
+  <div class="col-sm-4">
+      <table class="table table-responsive table-fixed table-hover">
       <thead ng-show="$scope.groupsStudentLst!=0 ">  
         <tr> 
           <th>מספר זהות</th>
@@ -83,16 +83,12 @@
           <div ng-show="!noStudentInGroup==''" class="alert alert-info login-input" style="font-size: 15px;"><strong>
         <span class="label label-info">לדיעתך! </span>&nbsp;&nbsp;{{noStudentInGroup}}
          </strong></div>
-<!-- 
-         <div class="col-xs-2 hidden-sm hidden-md hidden-lg" ><br></div>
-         <div class="col-xs-8 hidden-sm hidden-md hidden-lg alert alert-info" ng-show="noStudentInGroup==''"><p> סובב את המכשיר על מנת לראות טבלה במלואה</p></div>
-         <div class="col-xs-2 hidden-sm hidden-md hidden-lg" ><br></div> -->
 
   </div>
 
 
-  <div class="col-sm-8 col-xs-12">
-    <div class="col-sm-6 col-xs-12 panel-group panel-hover" ng-repeat="y in allGroups">
+  <div class="col-sm-8">
+    <div class="col-sm-6 panel-group panel-hover" ng-repeat="y in allGroups">
       <div class="panel panel-default" ng-click="showGroupsMembersList(y.GroupId,y.GroupName)">
         <div class="panel-heading">
           <h4 class="panel-title">
@@ -122,8 +118,8 @@
 <div class="row" ng-show="send_task_mod">
 
 
-  <div class="col-sm-12 col-xs-12">  
-    <h3>בחר מטלה, בחר קבוצה ושלח.<br><small>שים לב, אם המטלה כבר ברשימת המטלות של הקבוצה, לא ניתן לשלוח אותה פעם נוספת</small></h3> 
+  <div class="col-sm-12">  
+    <h3>בחר מטלה, בחר קבוצה ושלח.<br><small>שים לב, אם המטלה כבר נשלחה לקבוצה, לא ניתן לשלוח אותה פעם נוספת</small></h3> 
   </div>
 
   <br><br>
@@ -131,7 +127,7 @@
 <form name="taskGroupForm">
   <div class="form-group">
 
-          <div class="col-sm-12 col-xs-12 text-center">
+          <div class="col-sm-12 text-center">
 
             <div class="btn-group btn-group-lg" data-toggle="buttons">
               <!-- Button -->
@@ -140,14 +136,14 @@
 
               <!-- Button -->
               <button id="choiseButton1" ng-click="changeTaskType(1)" class="btn btn-info squirish-button3" style="font-size: 15px;" >
-              <p>המטלות<br>שלי</p>                          </button>
+              <p>המטלות שלי</p>                          </button>
             </div>
           </div>          
 
-           <div class="col-sm-2 col-xs-12"></div>
+           <div class="col-sm-2"></div>
           <!-- 1 -->
 
-           <div class="col-sm-8 col-xs-12" style = "padding: 60px;">
+           <div class="col-sm-8" style = "padding: 60px;">
             <label for="available_task" class="control-label pull-right" >מטלות זמינות:</label>
             <select required class="form-control inputstl" id="available_task" ng-model="selected_task" ng-change="getAllGroupForTask()" size=1>
               <option value=""></option>
@@ -166,13 +162,13 @@
             </div>
           </div>
              
-           <div class="col-sm-2 col-xs-12"></div>
+           <div class="col-sm-2"></div>
 
   </div> <!-- /form-group -->
 
-  <div class="col-sm-12 col-xs-12"><br></div>
+  <div class="col-sm-12"><br></div>
 
-  <div class="col-sm-12 col-xs-12 text-center">
+  <div class="col-sm-12 text-center">
 
     <!-- Button -->
      <button ng-click="groupManagmentMode()" class="btn btn-info squirish-button4" style="font-size: 15px;" >
@@ -196,67 +192,15 @@
 <div class="row" ng-show="send_task_for_some_student_mod">
 <form name="taskStudentForm">
 
-  <div class="col-sm-12 col-xs-12"> 
+  <div class="col-sm-12"> 
   <h3> בחר מטלה, בחר קבוצה, סמן תלמידים ושלח! </h3>
   <br><br>
   </div>
 
-  <!-- A  MOBILE ONLY-->
-  <div class="form-group col-xs-12 hidden-sm hidden-md hidden-lg" style="grid-row: initial;">
 
-      <div class="btn-group btn-group-lg text-right" data-toggle="buttons">
-        <!-- Button -->
-        <button id="choiseButton2" ng-click="changeTaskType(0)" 
-        class="btn btn-info squirish-button3" style="font-size: 15px;" >
-        <p>מאגר<br>המשותף</p>                       </button> 
+  <div class="col-sm-4"> 
 
-        <!-- Button -->
-        <button id="choiseButton3" ng-click="changeTaskType(1)" class="btn btn-info squirish-button3" style="font-size: 15px;" >
-        <p>המטלות <br> שלי</p>                          </button>
-      </div>
-
-<br><br><br>
-
-      <!-- 1 -->
-        <label  class="control-label pull-right" >מטלות זמינות:</label>
-        <select required class="form-control inputstl" id="available_task" ng-model="selected_task2" ng-change="changedTask()" size=1>
-          <option value=""></option>
-          <option ng-repeat="y in allTasks" value="{{y.T_id}}">{{y.T_title}}</option>
-          <option ng-show="info.tasks==0" disabled>אין מטלות זמינות</option>
-        </select>
-        <br><br>
-        <div ng-show="!pickedTask" class="alert alert-danger login-input" style="font-size: 15px;"><strong>
-        <span class="label label-danger">שים לב! </span>&nbsp;&nbsp;עליך לבחור מטלה לפני לחיצה על קבוצה!
-         </strong></div> 
-          <div ng-show="!noStudentInGroup==''" class="alert alert-info login-input" style="font-size: 15px;"><strong>
-        <span class="label label-info">לדיעתך! </span>&nbsp;&nbsp;{{noStudentInGroup}}
-         </strong></div>
- </div> <!-- /form-group -->
-
-<!-- /A -->
-
-
-<!-- B MOBILE ONLY-->
-  <div class="col-xs-12 hidden-sm hidden-md hidden-lg">
-    <div class="panel-group panel-hover col-sm-6" ng-click="showGroupsMembersList2(y.GroupId)" ng-repeat="y in allGroups" id="panelID-{{y.GroupId}}">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h4 class="panel-title">
-            <p>
-              <bold>{{y.GroupName}}</bold>
-            </p>
-          </h4>
-        </div>
-        <div class="panel">
-          <div class="panel-body">קוד קבוצה: <div class="text-info"> {{y.GroupeCode}}</div></div>
-        </div>
-      </div>
-    </div>   
-  </div>        <!-- /B -->
-
-
-<!-- C MOBILE AND PC-->
-  <div class="col-sm-4 col-xs-12">      
+       
     <div ng-show="$scope.groupsStudentLst2!=0">
       <table class="table table-responsive table-fixed table-hover">
         <thead ng-show="$scope.groupsStudentLst2!=0 ">  
@@ -305,13 +249,15 @@
 
 
 
-  </div>  <!-- /c -->
+  </div>
 
 
 
 
-<!-- B -->
-  <div class="col-sm-4 hidden-xs">
+
+  <div class="col-sm-4">
+
+
     <div class="panel-group panel-hover col-sm-6" ng-click="showGroupsMembersList2(y.GroupId)" ng-repeat="y in allGroups" id="panelID-{{y.GroupId}}">
       <div class="panel panel-default">
         <div class="panel-heading">
@@ -326,12 +272,12 @@
         </div>
       </div>
     </div>   
-  </div>        <!-- /B -->
+
+  </div>
 
 
 
-<!-- A -->
-  <div class="form-group col-sm-4 hidden-xs" style="grid-row: initial;">
+  <div class="form-group col-sm-4" style="grid-row: initial;">
 
       <div class="btn-group btn-group-lg text-right" data-toggle="buttons">
         <!-- Button -->
@@ -360,14 +306,10 @@
           <div ng-show="!noStudentInGroup==''" class="alert alert-info login-input" style="font-size: 15px;"><strong>
         <span class="label label-info">לדיעתך! </span>&nbsp;&nbsp;{{noStudentInGroup}}
          </strong></div>
+
+               `
+
  </div> <!-- /form-group -->
-
-<!-- /A -->
-
-
-
-
-
 
 
 
@@ -431,6 +373,4 @@
 
 
 <br><br><br><br><br>
-
-<img class="img-responsive footer-image" id="imag-logo" src="views/pic/bottom.png" >
-
+<img class="img-responsive" id="imag-logo" src="views/pic/bottom.png"> 

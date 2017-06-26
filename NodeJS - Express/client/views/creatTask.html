@@ -6,12 +6,13 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-        <div ng-show="isAdmin"><a  class="navbar-brand" href="#superUser">טקסטרטגיה</a></div>
-        <div ng-show="!isAdmin"><a class="navbar-brand" href="#teacher">טקסטרטגיה</a></div>
+      <a class="navbar-brand" href="#welcome">טקסטרטגיה</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <!-- <li><a href="student.html">תלמיד</a></li> -->
+        <li ng-show="!isAdmin"><a href="#teacher">מורה</a></li>
+        <li ng-show="isAdmin"><a href="#superUser">משתמש על</a></li>
       </ul>
       <p class="navbar-text">בהצלחה</p>
       <ul class="nav navbar-nav navbar-right">
@@ -26,11 +27,15 @@
 <div id="wrap">
   <div class="container" id="c_1">
 
-    <div ng-show = "!searchQuestion" class="col-sm-12 col-xs-12">  
+    <div ng-show = "!searchQuestion" class="col-sm-12">  
       <h1 >שלום, {{getUserName}}!</h1>  
     </div>
 
-  <div ng-show="searchQuestion" class ="col-sm-12 col-xs-12 text-center well">
+
+     
+
+
+  <div ng-show="searchQuestion" class ="col-sm-12 text-center well">
       <!-- button -->
     <button ng-click="backToTaskDef()" class="btn btn-lg btn-info">
       חזור לנוסח מטלה  
@@ -38,89 +43,83 @@
   </div>
 
 <!-- ################  SELECTED QUESTIONS ############################ -->
-  <div ng-show="myTaskQuestions.length==0"  class="col-sm-4 hidden-xs text-center well">
+  <div ng-show="myTaskQuestions.length==0"  class="col-sm-4 text-center well">
      <h4> שאלות המטלה החדשה </h4>
      <h6> עדיין אין שאלות לשליחה... </h6>
 
-   <button class="btn btn-success" ng-disabled="true">        צור מטלה חדשה!    </button>
+   <button class="btn btn-success" ng-disabled="true">
+        צור מטלה חדשה!
+    </button>
+
   </div>
 
-  <div ng-show="myTaskQuestions.length!=0" class="col-sm-4 hidden-xs well">
-    <h3> שאלות המטלה החדשה </h3>
-     <div id="accordion1">
-      <div class="panel" ng-repeat="q in myTaskQuestions track by $index">
-        <button class="button btn-danger" ng-click="deleteThisQuestion(q)" > מחק
-        </button>
-        <p>&nbsp;&nbsp;{{q.Q_qeustion}}</p>
-      </div>
+
+  <div ng-show="myTaskQuestions.length!=0" class="col-sm-4 well">
+  <h3> שאלות המטלה החדשה </h3>
+   <div id="accordion1">
+    <div class="panel" ng-repeat="q in myTaskQuestions track by $index">
+      <button class="button btn-danger" ng-click="deleteThisQuestion(q)" > מחק
+      </button>
+      <p>&nbsp;&nbsp;{{q.Q_qeustion}}</p>
+      
     </div>
+  </div>
 
     <div class="text-center">
-      <!-- button -->
-      <button ng-show="!userApprovedSending && searchQuestion" ng-click="sendTaskToServerWrapper()"  
-      class="btn btn-lg btn-success" ng-disabled="myForm1.$invalid || myTaskQuestions.length==0" ">
-        צור מטלה חדשה!     </button>
 
-      <button  ng-show="!searchQuestion" ng-click="addQuestions()" ng-disabled="myForm1.$invalid" class="btn btn-lg btn-info">
-         חזור לבניית מטלה      </button>
+      <!-- button -->
+      <button ng-show="!userApprovedSending && searchQuestion" ng-click="sendTaskToServerWrapper()"  class="btn btn-lg btn-success" ng-disabled="myForm1.$invalid || myTaskQuestions.length==0" ">
+        צור מטלה חדשה! 
+    </button>
+
+    <button  ng-show="!searchQuestion" ng-click="addQuestions()" ng-disabled="myForm1.$invalid" class="btn btn-lg btn-info">
+       חזור לבניית מטלה
+      </button>
+
     </div>
 
   </div>
 
 <!-- @@@@@@@@@@@@@@@@@@ searchQuestion @@@@@@@@@@@@@@@ -->
 <div ng-show="searchQuestion">
-
-
-
-  <div class="col-sm-5 hidden-xs well">
-
-
-<!-- here here -->
- <div ng-show="myQuestions.length == 0 && searched_q_clicked"  class="text-center">
-  <span class="text-info text-center"> {{serverFeedbackForNoQuestions}}
-  <br><br>
- </div>
-
-
-
-
-  <div  ng-show="!myQuestions.length==0" class="text-center">
-    <input  type="text" id="query" class="form-control inputstl pull-right"  ng-model="q.Q_qeustion" placeholder="חפש שאלה" style="margin: 25px 0px; ">
-    <br><br><br><br>
- </div>
-
-   <div id="accordion2">
-      <div class="panel" ng-repeat="q in myQuestions | filter:q | orderBy: orderList" >
-        <input type="checkbox"  ng-init='checkStatus51=false' ng-model="checkStatus51"
-        ng-change="checkQuestionSelected(checkStatus51,q.Q_id)" >
-        <p>&nbsp;&nbsp;{{q.Q_qeustion}}</p>
-        <span class="label label-info">{{q.Q_skill}}</span>
-        <span ng-show="q.Q_mediaType=='page'" class="label label-lili">אודיו</span>
-        <span ng-show="q.Q_mediaType=='img'" class="label label-lili">תמונה</span>
-        <span ng-show="q.Q_mediaType=='youtube'" class="label label-lili">סרטון</span>
-        <span ng-show="q.Q_mediaType=='text'" class="label label-lili">טקסט</span>
-        <span class="label label-danger">{{}}</span>
-        <span ng-show="q.Q_difficulty=='קלה'" class="label label-success">{{q.Q_difficulty}}</span>
-        <span ng-show="q.Q_difficulty=='בינונית'" class="label label-warning">{{q.Q_difficulty}}</span>
-        <span ng-show="q.Q_difficulty=='קשה'" class="label label-danger">{{q.Q_difficulty}}</span>
-      </div>
+  <div class="col-sm-5 well">
+    
+ 
+ <div id="accordion2">
+    <div class="panel" ng-repeat="q in myQuestions track by $index">
+      <input type="checkbox"  ng-init='checkStatus51=false' ng-model="checkStatus51"
+      ng-change="checkQuestionSelected(checkStatus51,q.Q_id)" >
+      <p>&nbsp;&nbsp;{{q.Q_qeustion}}</p>
+      <span class="label label-info">{{q.Q_skill}}</span>
+      <span ng-show="q.Q_mediaType=='page'" class="label label-lili">אודיו</span>
+      <span ng-show="q.Q_mediaType=='img'" class="label label-lili">תמונה</span>
+      <span ng-show="q.Q_mediaType=='youtube'" class="label label-lili">סרטון</span>
+      <span ng-show="q.Q_mediaType=='text'" class="label label-lili">קטע</span>
+      <span class="label label-danger">{{}}</span>
+      <span ng-show="q.Q_difficulty=='קלה'" class="label label-success">{{q.Q_difficulty}}</span>
+      <span ng-show="q.Q_difficulty=='בינונית'" class="label label-warning">{{q.Q_difficulty}}</span>
+      <span ng-show="q.Q_difficulty=='קשה'" class="label label-danger">{{q.Q_difficulty}}</span>
     </div>
+  </div>
 
-    <div class="text-center">
-    <!-- Button -->
-      <button ng-click="addSelectedQuestions()" class="btn btn-lg btn-info" > 
-        הוסף שאלות       <span class="glyphicon glyphicon-king"></span>
-      </button>
-    </div>
+<div class="text-center">
+  <!-- Button -->
+    <button ng-click="addSelectedQuestions()" class="btn btn-lg btn-info" > 
+      הוסף שאלות 
+      <span class="glyphicon glyphicon-king"></span>
+    </button>
+  </div>
+
+
 
   </div>
 
 
 
 
-  <div class="col-sm-3 col-xs-12 well" style="margin-bottom: 50px" >
+  <div class="col-sm-3 well" style="margin-bottom: 50px" >
     <form name="myForm2" class="form-horizontal" role="form">
-    <h3> חפש שאלות </h3>  
+    <h3> חפש שאלה </h3>  
 
 <!-- 3 -->
   <label class="control-label pull-right">סוג מדיה:&nbsp;&nbsp;</label><br>
@@ -166,47 +165,8 @@
       <span class="glyphicon glyphicon-king"></span>
     </button>
   </div>
+
 </div>    <!--  /well -->
-
-
-
-<!-- mobile view!!!!! -->
-
-  <div class="col-xs-12 hidden-sm hidden-md hidden-lg  well">
-    
-   <div  ng-show="!myQuestions.length==0" class="text-center">
-    <input  type="text" id="query" class="form-control inputstl pull-right"  ng-model="q.Q_qeustion" placeholder="חפש שאלה" style="margin: 25px 0px; ">
-    <br><br><br><br>
- </div>   
-
-
-   <div id="accordion2">
-      <div class="panel" ng-repeat="q in myQuestions | filter:q | orderBy: orderList">
-        <input type="checkbox"  ng-init='checkStatus51=false' ng-model="checkStatus51"
-        ng-change="checkQuestionSelected(checkStatus51,q.Q_id)" >
-        <p>&nbsp;&nbsp;{{q.Q_qeustion}}</p>
-        <span class="label label-info">{{q.Q_skill}}</span>
-        <span ng-show="q.Q_mediaType=='page'" class="label label-lili">אודיו</span>
-        <span ng-show="q.Q_mediaType=='img'" class="label label-lili">תמונה</span>
-        <span ng-show="q.Q_mediaType=='youtube'" class="label label-lili">סרטון</span>
-        <span ng-show="q.Q_mediaType=='text'" class="label label-lili">טקסט</span>
-        <span class="label label-danger">{{}}</span>
-        <span ng-show="q.Q_difficulty=='קלה'" class="label label-success">{{q.Q_difficulty}}</span>
-        <span ng-show="q.Q_difficulty=='בינונית'" class="label label-warning">{{q.Q_difficulty}}</span>
-        <span ng-show="q.Q_difficulty=='קשה'" class="label label-danger">{{q.Q_difficulty}}</span>
-      </div>
-    </div>
-
-    <div class="text-center">
-    <!-- Button -->
-      <button ng-click="addSelectedQuestions()" class="btn btn-lg btn-info" > 
-        הוסף שאלות       <span class="glyphicon glyphicon-king"></span>
-      </button>
-    </div>
-
-  </div>
-
-
 </div> <!-- ng-show="searchQuestion" -->
 
 
@@ -214,10 +174,10 @@
 <!-- @@@@@@@@@@@@@@ !searchQuestion @@@@@@@@@@@@@@2222-->
 <div ng-show =  "!searchQuestion">
 
-  <div class="col-sm-2 col-xs-12"></div>
+  <div class="col-sm-2"></div>
 
   <form name="myForm1" class="form-horizontal">
-    <div class="col-sm-6 col-xs-12">
+    <div class="col-sm-6">
 
       <h3>צור מטלה חדשה: </h3>
 
@@ -231,9 +191,9 @@
 
       </div>
 
-    <div class="col-sm-6 col-xs-12"><br></div>
+    <div class="col-sm-6"><br></div>
 
-    <div class="col-sm-6 col-xs-12" style="margin: 20px 0px;">
+    <div class="col-sm-6" style="margin: 20px 0px;">
 
       <!-- button -->
       <button ng-show="!searchQuestion && !showApproveQuestion" ng-click="addQuestions()" ng-disabled="myForm1.$invalid" class="btn btn-lg btn-info">
@@ -258,53 +218,6 @@
     </div>
   </form>
 </div>
-
-
-
-
-<!-- ################  MOBILE VIEW SELECTED QUESTIONS ############################ -->
- <div class="col-xs-12 hidden-sm hidden-md hidden-lg ">
- <br>
- </div>
-  <div ng-show="myTaskQuestions.length==0"  class="col-xs-12 hidden-sm hidden-md hidden-lg text-center well" style="margin-top: 6px;">
-     <h4> שאלות המטלה החדשה </h4>
-     <h6> עדיין אין שאלות לשליחה... </h6>
-
-   <button class="btn btn-success" ng-disabled="true">        צור מטלה חדשה!    </button>
-  </div>
-
-  <div ng-show="myTaskQuestions.length!=0" class="col-xs-12 hidden-sm hidden-md hidden-lg well">
-    <h3> שאלות המטלה החדשה </h3>
-     <div id="accordion1">
-      <div class="panel" ng-repeat="q in myTaskQuestions track by $index">
-        <button class="button btn-danger" ng-click="deleteThisQuestion(q)" > מחק
-        </button>
-        <p>&nbsp;&nbsp;{{q.Q_qeustion}}</p>
-      </div>
-    </div>
-
-    <div class="text-center">
-      <!-- button -->
-      <button ng-show="!userApprovedSending && searchQuestion" ng-click="sendTaskToServerWrapper()"  
-      class="btn btn-lg btn-success" ng-disabled="myForm1.$invalid || myTaskQuestions.length==0" ">
-        צור מטלה חדשה!     </button>
-
-      <div ng-show="!searchQuestion " class="col-xs-12 hidden-sm hidden-md hidden-lg alert alert-info"><p>
-       גלול אל תחילת הדף, בדוק את המטלה בשנית. <br> אם היא לרוחך, אשר אותה <br> ולחץ "צור מטלה חדשה!" </p></div>  
-
-      <button  ng-show="!searchQuestion" ng-click="addQuestions()" ng-disabled="myForm1.$invalid" class="btn btn-lg btn-info">
-         חזור לבניית מטלה      </button>
-    </div>
-
-  </div>
-
-
-
-
-
-
-
-
 
 
 
@@ -346,6 +259,4 @@
 
 
 <br><br><br><br><br>
-
-<img class="img-responsive footer-image" id="imag-logo" src="views/pic/bottom.png" >
-
+<img class="img-responsive" id="imag-logo" src="views/pic/bottom.png"> 

@@ -113,9 +113,4 @@ connection.connect(function (err) {
 });
 
 
-setInterval(function () {
-    connection.query('SELECT 4');
-}, 5000);
-
-
 module.exports = router;

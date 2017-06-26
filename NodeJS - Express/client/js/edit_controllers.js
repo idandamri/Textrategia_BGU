@@ -30,11 +30,11 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
 
     // start in searchquestion by profiling mode
     var choiseButton1 = document.getElementById("choiseButton1");
-    choiseButton1.style.backgroundColor  = "#398439";
+    choiseButton1.style.backgroundColor  = "#269ABC";
     $scope.searchQuestionByProfiling = true;
     
 
-    $scope.serverFeedback = "" ;
+     $scope.serverFeedback = "" ;
     $scope.serverSecondFeedback= "";
 
     var req = {
@@ -70,7 +70,7 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
 
         if (param==1){
             choiseButton0.style.backgroundColor  =  "#D58512"; //yellow pressed
-            choiseButton1.style.backgroundColor  = "#449d44";   // green 
+            choiseButton1.style.backgroundColor  = "#5bc0de";   // blue 
             choiseButton2.style.backgroundColor  = "#c9302c";   // red
             $scope.searchQuestionByProfiling = false;
             $scope.flagEditQuestionMode = false;
@@ -79,15 +79,16 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
             get_all_questions("/getUnapprovedQuestion");
 
         }
-        else if (param==0){ // doesnt happend no more
+        else if (param==0){
             choiseButton0.style.backgroundColor  =  "#ec971f";      // yellow
-            choiseButton1.style.backgroundColor  = "#398439";       // green pressed
+            choiseButton1.style.backgroundColor  = "#269ABC";       // blue pressed
             choiseButton2.style.backgroundColor  =  "#c9302c";      // red
             $scope.searchQuestionByProfiling = true;
+            $location.path('superUser'); // doesnt work
         }
         else if (param==2){
             choiseButton0.style.backgroundColor  =  "#ec971f"; // yellow
-            choiseButton1.style.backgroundColor  =  "#449d44";  // green
+            choiseButton1.style.backgroundColor  =  "#5bc0de";  // blue
             choiseButton2.style.backgroundColor  = "#9F221C";   // red pressed
             $scope.searchQuestionByProfiling = false;
             $scope.flagEditQuestionMode = false;
@@ -192,7 +193,6 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
                 }
                 else if ( status==204){
                     $scope.myQuestionsStock = [];
-                    $scope.serverFeedbackForNoQuestions = "אין שאלות עם הנתונים שנבחרו. נסה להוסיף התמקצעויות נוספות ";
                 }
             }).error(function(data,status,headers,config){
         });
@@ -217,10 +217,10 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
     }
 
 
+
     $scope.backToEditQuestionView = function(){
     $scope.searchQuestionByProfiling = false;
     $scope.flagEditQuestionMode = true;
-    $scope.serverFeedback = "האם ברצונך לשמור שינויים?";
     $scope.clicked = 0;
 }
 
@@ -361,14 +361,7 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
 
         }
         else {
-            if (!$scope.question.Q_approved){
-                $scope.serverFeedback = "האם ברצונך לאשר שאלה זו? לחיצה על \"שמור שינויים\" תכניס שאלה זו למאגר השאלות במערכת. כמו כן, כל השינויים שנעשו על ידיך ישמרו.";   
-            } else if ($scope.question.Q_reported_Offensive+ $scope.question.Q_reported_Question + $scope.question.Q_reported_Answer > 0 ){
-                $scope.serverFeedback = "האם ברצונך לאשר את השינויים שנעשו על ידך? אם כן לחץ על \"שמור שינויים\". כמו כן ההתראות שיש על שאלה זו יתאפסו.";                
-            }
-            else {
-                $scope.serverFeedback = "האם ברצונך לשמור שינויים?";                 
-            }
+            $scope.serverFeedback = "האם ברצונך לשלוח את השאלה לעריכה?";   
             $scope.question_is_legal = true;       
         };
 
@@ -502,7 +495,7 @@ textrategiaApp.controller("QuestionManagmentController",function($scope,$locatio
         };
 
         $scope.disableQuestionPermanentlyWrapper = function(){
-            $scope.serverFeedback = "אתה בטוח שברצונך להשבית את השאלה??";
+            $scope.serverFeedback = "אתה בטוח שברצותך להשבית את השאלה??";
             $scope.serverSecondFeedback = "שים לב, השבתת שאלה תמנע את הופעתה במערכת!";
             $scope.ask_if_should_disable = true;
 
