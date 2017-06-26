@@ -204,6 +204,11 @@ textrategiaApp.controller("autodidactController",function($scope,$http,$location
     };
 
     $scope.generateTask = function(){
+        // alert("selectedMedia: " + $scope.selectedMedia +
+        //     " | selectedDiff: " + $scope.selectedDiff +
+        //     " | selectedSkill: " + $scope.selectedSkill
+        //     );
+
         $scope.feedback = "";
         $scope.generate_task= false;
 
@@ -297,16 +302,13 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
     $scope.numberOfQuestions = 0;
     $scope.triedOnce = false;
     $scope.sendFeedbackMode = false;
+    $scope.lastQuestionReported = "blimp";
     $scope.isMultipleAnswers = true;
 
     $scope.checkStatus51 = false;
     $scope.checkStatus52 = false;
     $scope.checkStatus53 = false;
     $scope.checkStatus54 = false;
-
-    $scope.reported1 = false;
-    $scope.reported2 = false;
-    $scope.reported3 = false;
 
 
     $scope.finishTask = function () {
@@ -429,15 +431,15 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
                 uncheckall();
 
                 $scope.numberOfQuestions += 1 ;
-                if (data.question.Q_mediaType == "youtube" ){
+                if (data.question.Q_mediaType == "youtube" || data.question.Q_mediaType == "page"){
                     $scope.videoURL = $sce.trustAsResourceUrl('https://www.youtube.com/embed/' + data.question.Q_media + '?rel=0'); //data.question.Q_media;
                     $scope.showVideo = true;
                 }
-                else if (data.question.Q_mediaType == "page" ){
-                    //$scope.videoURL = 'https://www.youtube.com/embed/crs0TiiYE4I?rel=0'; //data.question.Q_media;
-                    $scope.voiceURL = $sce.trustAsResourceUrl(data.question.Q_media);
-                    $scope.showVoice = true;
-                }
+                // else if (data.question.Q_mediaType == "page" ){
+                //     //$scope.videoURL = 'https://www.youtube.com/embed/crs0TiiYE4I?rel=0'; //data.question.Q_media;
+                //     $scope.voiceURL = $sce.trustAsResourceUrl(data.question.Q_media);
+                //     $scope.showVoice = true;
+                // }
                 else if (data.question.Q_mediaType == "img" ){
                     $scope.imgURL = "views/" +data.question.Q_media ;
                     $scope.showImg= true;
@@ -495,7 +497,6 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
 
     //This is function for submit
     $scope.checkAnswer = function(){
-        $scope.sendFeedbackMode = false;
         if ($scope.isMultipleAnswers){
             // alert("ismULTI");
             $scope.updateField();
@@ -561,11 +562,7 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
     };
 
     $scope.nextQuestion = function(quest_id){
-        $scope.sendFeedbackMode = false;
         $scope.triedOnce = false;
-        $scope.reported1 = false;
-        $scope.reported2 = false;
-        $scope.reported3 = false;
         var req = {
             method: 'POST',
             cache: false,
@@ -597,27 +594,21 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
 
 
     $scope.report_offensive = function () {
-        $scope.reported1 = true;
         $scope.report(0,0,1);
     };
 
     $scope.report_question = function () {
-        $scope.reported2 = true;
         $scope.report(1,0,0);
     };
 
     $scope.report_answer= function () {
-        $scope.reported3 = true;
         $scope.report(0,1,0);
     };
 
-
-
     $scope.report = function (r_question,r_answer,r_offensive) {
-        if ( $scope.reported1 && $scope.reported2 && $scope.reported3 ){
-            alert("dont report");
+        if ( $scope.questionID== $scope.lastQuestionReported ){
+            //// DONT REPORT
         } else {
-            alert("sending report");
             //########################## SEND REPORT HERE ##########################
             var req = {
                 method: 'POST',
@@ -637,10 +628,8 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
                 });
         }
 
-        // $scope.lastQuestionReported = $scope.questionID;
+        $scope.lastQuestionReported = $scope.questionID;
         $scope.sendFeedbackMode = false;
-        alert("sendFeedbackMode: " + $scope.sendFeedbackMode )
-        $('#fedbackModal').modal('hide');
     };
 
 

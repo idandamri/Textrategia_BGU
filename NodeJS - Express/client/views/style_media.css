@@ -1,148 +1,19 @@
-/* DEFAULT SIZE*/
-
-.welcome_text{
-    font-size: 24px;
-}
-
-.welcome-buttons{
-
-  font-size: 13px; 
-  padding: 4px 12px; 
-  margin-top:26px;
-}
 
 
-.no-margin1-in-mobile{
-  margin: 5px 335px;
-}
-
-.no-margin2-in-mobile{
-  margin: 8px 85px;
-
-}
-
-.mobile-text{
-  font-size: 11px;
-}
-
-
-@media(min-width: 1500px){ /*large sceens*/
-
-.mobile-text{
-  font-size: 15px;
-}
-.welcome_text{
-    font-size: 30px;
-}
-
-.welcome-buttons{
-
-  font-size: 18px; 
-  padding: 4px 12px; 
-  margin-top:26px;
-}
-
-
-
-}
-
-@media(max-width:767px){  /*small screens*/
-
-
-.mobile-text{
-  font-size: 10px;
-}
-
-
-
-.welcome_text{
-    font-size: 25px;
-}
-
-
-
-.welcome-buttons{
-
-  font-size: 14px; 
-  padding: 8px 8px; 
-  margin-top:26px;
-}
-
-
-
-  .no-margin1-in-mobile{
-    margin: 8px 40px;
+@media(max-width:767px){
+  
+  .padd-button {
+    margin: 150px 10px;
   }
-
-
-  .no-margin2-in-mobile{
-    margin: 5px; 
-  }
-
-#index-wrap{
-    background: url('pic/start2.jpg') ;
-
-    margin-bottom: 0;
-    min-height: 50%;
-    background-repeat: no-repeat;
-    background-position: center center;
-    -webkit-background-size: cover;
-    background-size: cover;
-
-    /*now:
-     /*background-attachment: fixed;
-*/
-}
-
-
-
-.vertical-center > .container-welcome {
-  max-width: 90%;
-  min-height: 80%;
-  display: inline-block;
-  vertical-align: middle;  /* vertical alignment of the inline element */
-                           /* reset the font property */
-  font: 16px/1 "Helvetica Neue", Helvetica, Arial, sans-serif;
-  /*background-size: 100vw auto*/
-}
-
-
-
-/*~~~~~~~~~~ order ~~~~~~~~~~~*/
-/*
-.row.reorder-xs {
-    -webkit-transform: rotate(180deg);
-    -moz-transform: rotate(180deg);
-    -ms-transform: rotate(180deg);
-    -o-transform: rotate(180deg);
-    transform: rotate(180deg);
-
-    direction: rtl;
-  }
-
-  .row.reorder-xs > [class*="col-"] {
-    -webkit-transform: rotate(-180deg);
-    -moz-transform: rotate(-180deg);
-    -ms-transform: rotate(-180deg);
-    -o-transform: rotate(-180deg);
-    transform: rotate(-180deg);
-
-    direction: ltr;
-  }
-
-*/
-
-
-/*~~~~~~~~~~ margin ~~~~~~~~~~~*/
-  .margin22-mobile{
-    margin: 22px;
-  }
-
-
-/*~~~~~~~~~~ padding ~~~~~~~~~~~*/
-
-
-
   
 }
+
+@media (min-width:641px){
+
+
+
+}
+
+
+
 

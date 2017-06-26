@@ -1,4 +1,4 @@
-﻿/**
+﻿﻿/**
  * Created by krigel on 5/9/2017.
  */
 var _url = "";
@@ -134,7 +134,6 @@ textrategiaApp.controller("LoginController", function($scope, $http,$location) {
 
         $http(req)
             .success(function(data,status,headers,config){
-                 if (status==200){
                 setUserName(data[0].FirstName);
                 setUserID(data[0].PersonalID);
                 setUserType(data[0].UserType);
@@ -149,10 +148,7 @@ textrategiaApp.controller("LoginController", function($scope, $http,$location) {
                 else if (data[0].UserType == "2") {
                     $location.path('superUser');
                 }
-            }else if (status==204){
-                $scope.showError = true;
-                $scope.showSuccess = false;  
-            }
+
 
             }).error(function(data,status,headers,config){
                 $scope.showError = true;

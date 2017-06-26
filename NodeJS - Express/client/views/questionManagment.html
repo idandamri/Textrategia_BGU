@@ -6,12 +6,13 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <div ng-show="isAdmin"><a  class="navbar-brand" href="#superUser">טקסטרטגיה</a></div>
-      <div ng-show="!isAdmin"><a class="navbar-brand" href="#teacher">טקסטרטגיה</a></div>
+      <a class="navbar-brand" href="#welcome">טקסטרטגיה</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <!-- <li><a href="student.html">תלמיד</a></li> -->
+        <li ng-show="!isAdmin"><a href="#teacher">מורה</a></li>
+        <li ng-show="isAdmin"><a href="#superUser">משתמש על</a></li>
         <!-- <li class="disabled"><a href="#" >הקבוצות שלי</a></li> -->
       </ul>
       <p class="navbar-text">בהצלחה</p>
@@ -28,10 +29,10 @@
   <div class="row">
 
 
-  <div class ="col-xs-12 col-sm-9 text-center" style="height: 118px;"> 
+  <div class ="col-sm-9 text-center" style="height: 118px;"> 
 
   <!-- @@@@ Question Buttons!!! @@@@ -->
-  <div class="btn-group text-center" data-toggle="buttons" style=" ">
+  <div class="btn-group text-center" data-toggle="buttons" style="margin: 8px 85px; ">
        
     <button id="choiseButton2" ng-click="approvedQuestions(2)" class="btn btn-danger squirish-button2" 
     style="font-size: 15px;" >
@@ -41,59 +42,40 @@
     style="font-size: 15px;" >
     שאלות<br>לאישור                      </button> 
 
-    <button id="choiseButton1" ng-click="goToQuestionManagment()" class="btn btn-success squirish-button2" 
+    <button id="choiseButton1" ng-click="goToQuestionManagment()" class="btn btn-info squirish-button2" 
     style="font-size: 15px;" >
     חפש<br>שאלה</button>
   
   </div>  <!-- /Question Buttons! -->
 
-  <button ng-show="flagEditQuestionMode" ng-click="backToQuestionStockView()" class="btn btn-info squirish-button2" 
+  <button ng-show="flagEditQuestionMode" ng-click="backToQuestionStockView()" class="btn btn-success squirish-button2" 
   style="font-size: 15px;" >
         חזור<br>לשאלות                      </button>  
 
- <button ng-show="!flagEditQuestionMode && clicked == 1" ng-click="backToEditQuestionView()" class="btn btn-info squirish-button2" 
+ <button ng-show="!flagEditQuestionMode && clicked == 1" ng-click="backToEditQuestionView()" class="btn btn-success squirish-button2" 
   style="font-size: 15px;" >
         חזור<br>לעריכה                      </button> 
 
   </div>
   
-  <div class="col-xs-12 col-sm-3 text-right">  <h1>שלום, {{teacherName}}! <h3>חפש שאלה לעריכה: </h3></h1></div>
+  <div class="col-sm-3 text-right">  <h1>שלום, {{teacherName}}! <h3>חפש שאלה לעריכה: </h3></h1></div>
 
 
   <div ng-show="!flagEditQuestionMode">
-<div class="col-xs-12 col-sm-8">
+<div class="col-sm-8">
 
 <span ng-show = "myQuestionsStock.length == 0  && !searchQuestionByProfiling" class="text-info" style="font-size: 18px;">
    {{serverFeedbackForNoQuestions}}
 </span>
 
-<span ng-show = "myQuestionsStock.length == 0  && !searched_parameters_once" class="text-info" style="font-size: 18px;">
-   {{serverFeedbackForNoQuestions}}
-</span>
-
-
-
  <div id="accordion2" >
-
-  <div  ng-show="!myQuestionsStock.length==0" class="text-center">
-  <div class="col-sm-2"></div>
-    <input type="text" id="query" class="col-sm-8 form-control inputstl pull-right"  ng-model="q.Q_qeustion" placeholder="חפש שאלה" style="margin: 25px 0px; ">
-    <br><br><br><br>
-  <div class="col-sm-2"></div>
- </div>
-
-
-    <div class="panel" ng-repeat="q in myQuestionsStock | filter:q | orderBy: orderList"" style="padding: 10px">
+    <div class="panel" ng-repeat="q in myQuestionsStock track by $index" style="padding: 10px">
       <div  name="question" ng-model="user.question" value="{{q.Q_id}}" >
       <p>&nbsp;&nbsp;{{q.Q_qeustion}} </p>
       
       <div ng-show="q.Q_reported_Offensive+ q.Q_reported_Question + q.Q_reported_Answer == 0 ">
         <span class="label label-info">{{q.Q_skill}}</span>
         <span class="label label-lili">קושי: {{q.Q_difficulty}}</span> 
-        <span ng-show="q.Q_mediaType=='page'" class="label label-success">אודיו</span>
-        <span ng-show="q.Q_mediaType=='img'" class="label label-success">תמונה</span>
-        <span ng-show="q.Q_mediaType=='youtube'" class="label label-success">סרטון</span>
-        <span ng-show="q.Q_mediaType=='text'" class="label label-success">טקסט</span>
         <br>
       </div>
         
@@ -112,7 +94,7 @@
 
       </div>
 
-       <button ng-click="editChosenQuestion(q.Q_id,q.Q_qeustion)" class="btn btn-info text-center no-margin1-in-mobile" data-toggle="modal" data-target="#fedbackModal"> 
+       <button ng-click="editChosenQuestion(q.Q_id,q.Q_qeustion)" class="btn btn-info text-center" data-toggle="modal" data-target="#fedbackModal" style="margin: 5px 335px;"> 
         ערוך שאלה
         <!-- <span class="glyphicon glyphicon-king"></span> -->
       </button>
@@ -129,9 +111,9 @@
 
 
 
-  <div class="col-xs-12 col-sm-3 well" style="margin-bottom: 50px" >
+  <div class="col-sm-3 well" style="margin-bottom: 50px" >
    
-    <h3> חפש שאלה </h3>  
+    <h3> בחר קריטריונים </h3>  
 
 
     <form name="myForm2" class="form-horizontal" role="form">
@@ -183,11 +165,6 @@
         הצג שאלות לבחירה  
         <span class="glyphicon glyphicon-king"></span>
       </button>
-
-  <div ng-show="searched_parameters_once" class="col-xs-12 hidden-sm hidden-md hidden-lg alert alert-info">
-  <p> נא גלול אל תחילת הדף על מנת לצפות בתוצאות החיפוש.</p></div>
-
-
     </div>
 
 </div>    <!--  /well -->
@@ -214,9 +191,9 @@
 <div ng-show="!insertPossibleAnswersMode">
     <form name="myForm" class="form-horizontal" role="form">
 
-    <div class="col-xs-12 col-sm-2"></div>
+    <div class="col-sm-2"></div>
 
-    <div class="col-xs-12 col-sm-4">
+    <div class="col-sm-4">
 
       <!--  4  -->       
       <label class="control-label pull-right">מהו סוג המדיה של השאלה?:&nbsp;&nbsp;</label>
@@ -258,8 +235,8 @@
 
     </div>
  
-        <div class="col-xs-12 col-sm-1"></div>
-        <div class="col-xs-12 col-sm-4">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-4">
       
           <!-- 1 -->
           <label class="control-label pull-right">הכנס ניסוח שאלה:&nbsp;&nbsp;</label>
@@ -284,11 +261,11 @@
 
         </div>
  
-        <div class="col-xs-12 col-sm-2"></div>   
-        <div class="col-xs-12 col-sm-12 text-center"><br></div>
+        <div class="col-sm-2"></div>   
+        <div class="col-sm-12 text-center"><br></div>
 
         <!-- First part Button! -->
-        <div class="col-xs-12 col-sm-12 text-center">
+        <div class="col-sm-12 text-center">
           <button ng-click="possibleAnswersMode()" ng-disabled="myForm.$invalid" class="btn btn-lg btn-info squirish-button3" tabindex="8">
           המשך <br> לערוך         </button>
 
@@ -298,35 +275,13 @@
 </div>
 
 <div ng-show="insertPossibleAnswersMode">
-  <div class="col-xs-12 col-sm-12">  <h3>הכנס את התשובות: </h3>  </div>
+  <div class="col-sm-12">  <h3>הכנס את התשובות: </h3>  </div>
 
 <form name="mySecondForm" class="form-horizontal" role="form">
 
+  <div class="col-sm-8 text-center">
 
-
-  <div class="col-xs-12 col-sm-8 text-center">  <!-- long div, marked at the end -->
-
-
-
-    <div class="col-xs-12 hidden-sm hidden-md hidden-lg text-center">
-      <!-- 1 -->
-      <label class="control-label pull-right">תשובה 1: &nbsp;&nbsp;</label>
-        <textarea type="text" rows="2" name="possible_ans_1" class="form-control inputstl pull-right" required 
-        ng-model="question.possible_ans_1" tabindex="9" >  
-        </textarea>
-          <!-- 2 -->
-      <label class="control-label pull-right">תשובה 2: &nbsp;&nbsp;</label>
-        <textarea type="text" rows="2" name="possible_ans_2" class="form-control inputstl pull-right" required 
-        ng-model="question.possible_ans_2" tabindex="10">  
-        </textarea>
-
-    </div>
-
-
-
-
-
-  <div class="col-xs-12 col-sm-6 text-center">
+  <div class="col-sm-6 text-center">
       <!-- 3 -->
       <label class="control-label pull-right">תשובה 3: &nbsp;&nbsp;</label>
        <textarea  type="text" rows="2" name="possible_ans_3" class="form-control inputstl pull-right" required  
@@ -340,7 +295,7 @@
       <br>
   </div>
 
-    <div class="col-sm-6 hidden-xs text-center">
+    <div class="col-sm-6 text-center">
       <!-- 1 -->
       <label class="control-label pull-right">תשובה 1: &nbsp;&nbsp;</label>
         <textarea type="text" rows="2" name="possible_ans_1" class="form-control inputstl pull-right" required 
@@ -355,18 +310,18 @@
     </div>
 
 
-    <div class="col-xs-12 col-sm-3 text-center"><br></div>
-    <div class="col-xs-12 col-sm-3 text-center"><br></div>
+    <div class="col-sm-3 text-center"><br></div>
+    <div class="col-sm-3 text-center"><br></div>
 
 
     <!-- 5 -->
-    <div class="col-xs-12 col-sm-6 text-center">
+    <div class="col-sm-6 text-center">
     <br>
     <br>
         <label class="control-label pull-right ">בשאלה זו: &nbsp;&nbsp; &nbsp;&nbsp;</label>
             <strong>
             <span class="text-info" ng-show="question.isMultipuleAns==0" style="font-size: 18px;">תשובה נכונה אחת בלבד </span>
-            <span class="text-warning" ng-show="question.isMultipuleAns==1" style="font-size: 18px;">כמה תשובות נכונות </span>
+            <span class="text-danger" ng-show="question.isMultipuleAns==1" style="font-size: 18px;">כמה תשובות נכונות </span>
             </strong>
             &nbsp;&nbsp;<button type="button" class="btn btn-info" ng-click="changeStatusOfAnswer('blimp')"> שנה </button>
   <br>
@@ -418,13 +373,13 @@
 
 
 
-  </div>   <!--////// class="col-xs-12 col-sm-8 text-center" -->
+  </div>
  
 
   <!-- buttons -->
-  <div class="col-xs-12 col-sm-4 text-center">
+  <div class="col-sm-4 text-center">
     <div class="btn-group-vertical">
-      
+        <button ng-click="disableQuestionPermanentlyWrapper()" type="submit" class="btn btn-lg btn-danger rec-button1"  data-toggle="modal" data-target="#fedbackModal" tabindex="14">השבת<br>שאלה!     </button>
 
 
         <button ng-click="editQuestionMode()" class="btn btn-lg btn-info squirish-button3" tabindex="15" >חזור למסך<br> הקודם!
@@ -433,17 +388,13 @@
         <button ng-click="sendNewQuestionWraper()" ng-disabled="mySecondForm.$invalid" type="submit" class="btn btn-lg btn-success rec-button1" data-toggle="modal" data-target="#fedbackModal" tabindex="14">אשר<br> וערוך!
          <span class="glyphicon glyphicon-send"></span> </button>
 
-        <button ng-click="dontEdit()" type="submit" class="btn btn-lg btn-warning rec-button1" tabindex="14">צא ואל<br> תערוך!     </button>
-
-        <button ng-click="disableQuestionPermanentlyWrapper()" type="submit" class="btn btn-lg btn-danger rec-button1"  data-toggle="modal" data-target="#fedbackModal" tabindex="14">
-        השבת<br>שאלה!     </button>
-        
+        <button ng-click="dontEdit()" type="submit" class="btn btn-lg btn-danger rec-button1" tabindex="14">צא ואל<br> תערוך!     </button>
 
 
     </div>
     <br>
      <span class="text-danger" ng-show="question.Q_reported_Offensive+ question.Q_reported_Question + question.Q_reported_Answer > 0 " style="font-size: 16px;">
-       לשאלה זו יש התראות,<br> לחיצה על "אשר וערוך!"<br> תאפס את השאלה<br> מהתראות אלה </span>
+       לשאלה זו יש התראות,<br> לחיצה על "אשר וערוך!"<br> תאפס את השאלה<br> מהתרעות אלה </span>
 
       <span class="text-warning" ng-show="!question.Q_approved" style="font-size: 16px;">
        שאלה זו הוכנסה על ידי מורה,<br> לחץ על "אשר וערוך!"<br> על מנת לאשר אותה במערכת</span>
@@ -457,7 +408,7 @@
 
 
 
-<div class="col-xs-12 col-sm-12 text-center"><br></div>
+<div class="col-sm-12 text-center"><br></div>
 
 
 
@@ -496,28 +447,24 @@
                 <br>
                   <span> {{serverFeedback}}<br></span>   
                   <span class="text-info" ng-show="!flagEditQuestionMode"><strong> {{serverSecondFeedback}}</strong></span>   
-                  <span class="text-danger" ng-show="ask_if_should_disable && flagEditQuestionMode"><strong> {{serverSecondFeedback}}</strong></span>   
+                  <span class="text-danger" ng-show="ask_if_should_disable"><strong> {{serverSecondFeedback}}</strong></span>   
                 </div>
               </div>
             </div>
             <div class="modal-footer">
-
-                 <!-- disable question Yes -->
-                <button type="button" ng-show="ask_if_should_disable" class="btn btn-danger" ng-click="disableQuestionPermanently()"> השבת שאלה לצמיתות! </button>
-
-                <!-- disable question No -->
-                <button type="button" ng-show="ask_if_should_disable" data-dismiss="modal" class="btn btn-success" ng-click="dontDisableQuestion()"> אל תשבית שאלה </button>
-
-                <!-- Enter edit mod -->
+                
                  <button type="button" ng-show="!flagEditQuestionMode" data-dismiss="modal" class="btn btn-default" ng-click="getQuestionToEditFromStock()" > ערוך שאלה </button>
                 
-                 <!-- Save changes button -->
-                <button type="button" ng-show="question_is_legal && flagEditQuestionMode && !doneWithPage && !ask_if_should_disable" class="btn btn-success" ng-click="sendNewQuestion()"  > שמור שינויים </button>
+                <button type="button" ng-show="question_is_legal && flagEditQuestionMode && !doneWithPage && !ask_if_should_disable" class="btn btn-default" ng-click="sendNewQuestion()"  > שלח שאלה לעריכה </button>
 
+                <button type="button" ng-show="ask_if_should_disable" class="btn btn-danger" ng-click="disableQuestionPermanently()"> השבת שאלה לצמיתות! </button>
+
+
+                <button type="button" ng-show="ask_if_should_disable" data-dismiss="modal" class="btn btn-success" ng-click="dontDisableQuestion()"> אל תשבית שאלה </button>
 
                 <button type="button" ng-show="!ask_if_should_disable && !doneWithPage" data-dismiss="modal" class="btn btn-default" ng-click="resetFlags()"> סגור </button>
 
-               <button type="button" ng-show="doneWithPage" data-dismiss="modal" class="btn btn-default" ng-click="dontEdit()"> סגור </button>
+              <button type="button" ng-show="doneWithPage" data-dismiss="modal" class="btn btn-default" ng-click="dontEdit()"> סגור </button>
 
             </div>
           </div><!-- /.modal-content -->
@@ -527,6 +474,4 @@
 
 
 <br><br><br><br><br>
-
-<img class="img-responsive footer-image" id="imag-logo" src="views/pic/bottom.png" >
-
+<img class="img-responsive" id="imag-logo" src="views/pic/bottom.png"> 

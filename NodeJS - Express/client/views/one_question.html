@@ -1,13 +1,13 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <button class="navbar-toggle" data-target="#myNavbar" data-toggle="collapse" type="button"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button> <a class="navbar-brand" href="#student">טקסטרטגיה</a>
+      <button class="navbar-toggle" data-target="#myNavbar" data-toggle="collapse" type="button"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button> <a class="navbar-brand" href="#welcome">טקסטרטגיה</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li>
-<!--           <a href="#">תלמיד</a>
- -->        </li>
+          <a href="#student">תלמיד</a>
+        </li>
       </ul>
       <p class="navbar-text">בהצלחה</p>
       <ul class="nav navbar-nav navbar-right">
@@ -35,7 +35,7 @@
         <div ng-show="!quizOver">
 
           <div class="col-sm-2">
-            <button ng-click="wanaReport()" type="button" ng-disabled="reported1 && reported2 && reported3 " class="btn btn-danger btn-sm" data-toggle="modal" data-target="#fedbackModal">
+            <button ng-click="wanaReport()" type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#fedbackModal">
               דווח על שאלה בעייתית
             </button>
           </div>
@@ -128,20 +128,12 @@
 
 
 
-       <div class="hidden-xs">
-          <button ng-click="checkAnswer()" ng-show="answerMode" type="button" class="btn btn-warning btn-md" data-toggle="modal" data-target="#fedbackModal">
+
+
+          <button ng-click="checkAnswer()" ng-show="answerMode" type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#fedbackModal">
             בדוק
           </button>
-      </div>
 
-
-
-
-       <div class="col-xs-12 hidden-sm hidden-md hidden-lg text-center" style="margin-bottom: 7px;">
-          <button ng-click="checkAnswer()" ng-show="answerMode" type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#fedbackModal">
-            בדוק
-          </button>
-      </div>
 
         </div> <!-- ng-show="!quizOver" -->
 
@@ -178,9 +170,7 @@
 </div>
 
 
-<img class="img-responsive footer-image" id="imag-logo" src="views/pic/bottom.png" >
-
-
+<img class="img-responsive" id="imag-logo" src="views/pic/bottom.png">
       <!-- Modal -->
       <div class="modal fade" id="fedbackModal" tabindex="-1" role="dialog" aria-labelledby="myCurrectModalLabel">
         <div class="modal-dialog" role="document">
@@ -193,10 +183,10 @@
             </div>
             <div class="modal-body">
               <div class="row">
-                <div class="col-xs-12 col-sm-3 text-center">
+                <div class="col-xs-5 col-sm-3">
                   <img alt="תרגול" class="img-circle student_actions" src="views/pic/logo2.png" >
                 </div>
-                <div class="col-xs-12 col-sm-9">
+                <div class="col-xs-7 col-sm-9">
                   <span ng-show="correctAns  && !sendFeedbackMode">כל הכבוד, תשובה נכונה! </span>
                   <span ng-show="!correctAns  && !sendFeedbackMode">אופס... <br> תשובה לא נכונה. </span>
                   <br><p> {{feedback}}</p>
@@ -205,21 +195,18 @@
             </div>
             <div class="modal-footer ">
               <div ng-show="correctAns  && !sendFeedbackMode">
+                <!-- <button type="button" class="btn btn-default" data-dismiss="modal">סגור</button> -->
                 <button type="button" ng-click="nextQuestion()" class="btn btn-primary" data-dismiss="modal" >שאלה הבאה</button>
               </div>
-              
               <div ng-show="!correctAns && !sendFeedbackMode">
                 <button ng-show="!triedOnce" type="button"  ng-click="oneMoreTry()" class="btn btn-default" data-dismiss="modal"> נסה פעם נוספת!</button>
                 <button type="button"  ng-click="nextQuestion()" class="btn btn-link" data-dismiss="modal" >שאלה הבאה...</button>
               </div>
 
               <div ng-show="sendFeedbackMode">
-                <button type="button" ng-click="report_offensive()" class="btn btn-danger" ng-disabled="reported1" data-dismiss="modal">תוכן פוגעני</button>
-                <button type="button" ng-click="report_question()" class="btn btn-primary" ng-disabled="reported2" data-dismiss="modal">בעיה בניסוח שאלה</button>
-                <button type="button"  ng-click="report_answer()" class="btn btn-primary" ng-disabled="reported3" data-dismiss="modal">בעיה בניסוח תשובה</button>
-              </div>
-
-
+                <button type="button" data-dismiss="modal" ng-click="report_offensive()" class="btn btn-info" >תוכן פוגעני</button>
+                <button type="button" ng-click="report_question()" class="btn btn-info" data-dismiss="modal"  >בעיה בניסוח שאלה</button>
+                <button type="button"  ng-click="report_answer()" class="btn btn-info" data-dismiss="modal"  >בעיה בניסוח תשובה</button>
               </div>
             </div>
           </div><!-- /.modal-content -->
