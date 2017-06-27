@@ -330,7 +330,7 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
                 question_media = imgUrl;
                 // alert("question_media = imgURL: " + question_media);
             }
-            else if(media_type.value=="youtube"){
+            else if(media_type.value=="youtube" || media_type.value=="page"){
                 question_media = $scope.question.question_media.split('=')[1];
             }
             else {

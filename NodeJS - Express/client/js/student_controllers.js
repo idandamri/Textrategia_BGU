@@ -429,15 +429,15 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
                 uncheckall();
 
                 $scope.numberOfQuestions += 1 ;
-                if (data.question.Q_mediaType == "youtube" ){
+                if (data.question.Q_mediaType == "youtube" || "page" ){
                     $scope.videoURL = $sce.trustAsResourceUrl('https://www.youtube.com/embed/' + data.question.Q_media + '?rel=0'); //data.question.Q_media;
                     $scope.showVideo = true;
                 }
-                else if (data.question.Q_mediaType == "page" ){
-                    //$scope.videoURL = 'https://www.youtube.com/embed/crs0TiiYE4I?rel=0'; //data.question.Q_media;
-                    $scope.voiceURL = $sce.trustAsResourceUrl(data.question.Q_media);
-                    $scope.showVoice = true;
-                }
+                // else if (data.question.Q_mediaType == "page" ){
+                //     //$scope.videoURL = 'https://www.youtube.com/embed/crs0TiiYE4I?rel=0'; //data.question.Q_media;
+                //     $scope.voiceURL = $sce.trustAsResourceUrl(data.question.Q_media);
+                //     $scope.showVoice = true;
+                // }
                 else if (data.question.Q_mediaType == "img" ){
                     $scope.imgURL = "views/" +data.question.Q_media ;
                     $scope.showImg= true;
