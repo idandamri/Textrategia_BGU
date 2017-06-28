@@ -38,14 +38,14 @@
   </div>
 
 <!-- ################  SELECTED QUESTIONS ############################ -->
-  <div ng-show="myTaskQuestions.length==0"  class="col-sm-4 hidden-xs text-center well">
+  <div ng-show="myTaskQuestions.length==0"  class="col-md-4 hidden-sm hidden-xs text-center well">
      <h4> שאלות המטלה החדשה </h4>
      <h6> עדיין אין שאלות לשליחה... </h6>
 
    <button class="btn btn-success" ng-disabled="true">        צור מטלה חדשה!    </button>
   </div>
 
-  <div ng-show="myTaskQuestions.length!=0" class="col-sm-4 hidden-xs well">
+  <div ng-show="myTaskQuestions.length!=0" class="col-md-4 hidden-sm hidden-xs well">
     <h3> שאלות המטלה החדשה </h3>
      <div id="accordion1">
       <div class="panel" ng-repeat="q in myTaskQuestions track by $index">
@@ -72,7 +72,7 @@
 
 
 
-  <div class="col-sm-5 hidden-xs well">
+  <div class="col-md-5 hidden-sm hidden-xs well">
 
 
 <!-- here here -->
@@ -118,7 +118,7 @@
 
 
 
-  <div class="col-sm-3 col-xs-12 well" style="margin-bottom: 50px" >
+  <div class="col-md-3 col-sm-12 col-xs-12 well" style="margin-bottom: 50px" >
     <form name="myForm2" class="form-horizontal" role="form">
     <h3> חפש שאלות </h3>  
 
@@ -172,7 +172,7 @@
 
 <!-- mobile view!!!!! -->
 
-  <div class="col-xs-12 hidden-sm hidden-md hidden-lg  well">
+  <div class="col-xs-12 col-sm-12 hidden-md hidden-lg  well">
     
    <div  ng-show="!myQuestions.length==0" class="text-center">
     <input  type="text" id="query" class="form-control inputstl pull-right"  ng-model="q.Q_qeustion" placeholder="חפש שאלה" style="margin: 25px 0px; ">
@@ -214,10 +214,10 @@
 <!-- @@@@@@@@@@@@@@ !searchQuestion @@@@@@@@@@@@@@2222-->
 <div ng-show =  "!searchQuestion">
 
-  <div class="col-sm-2 col-xs-12"></div>
+  <div class="col-md-2 col-sm-12 col-xs-12"></div>
 
   <form name="myForm1" class="form-horizontal">
-    <div class="col-sm-6 col-xs-12">
+    <div class="col-md-6 col-sm-12 col-xs-12">
 
       <h3>צור מטלה חדשה: </h3>
 
@@ -231,9 +231,9 @@
 
       </div>
 
-    <div class="col-sm-6 col-xs-12"><br></div>
+    <div class="col-md-6 col-sm-12 col-xs-12"><br></div>
 
-    <div class="col-sm-6 col-xs-12" style="margin: 20px 0px;">
+    <div class="col-md-6 col-sm-12 col-xs-12" style="margin: 20px 0px;">
 
       <!-- button -->
       <button ng-show="!searchQuestion && !showApproveQuestion" ng-click="addQuestions()" ng-disabled="myForm1.$invalid" class="btn btn-lg btn-info">
@@ -263,17 +263,17 @@
 
 
 <!-- ################  MOBILE VIEW SELECTED QUESTIONS ############################ -->
- <div class="col-xs-12 hidden-sm hidden-md hidden-lg ">
+ <div class="col-xs-12 col-sm-12 hidden-md hidden-lg ">
  <br>
  </div>
-  <div ng-show="myTaskQuestions.length==0"  class="col-xs-12 hidden-sm hidden-md hidden-lg text-center well" style="margin-top: 6px;">
+  <div ng-show="myTaskQuestions.length==0"  class="col-xs-12 col-sm-12 hidden-md hidden-lg text-center well" style="margin-top: 6px;">
      <h4> שאלות המטלה החדשה </h4>
      <h6> עדיין אין שאלות לשליחה... </h6>
 
    <button class="btn btn-success" ng-disabled="true">        צור מטלה חדשה!    </button>
   </div>
 
-  <div ng-show="myTaskQuestions.length!=0" class="col-xs-12 hidden-sm hidden-md hidden-lg well">
+  <div ng-show="myTaskQuestions.length!=0" class="col-xs-12 col-sm-12 hidden-md hidden-lg well">
     <h3> שאלות המטלה החדשה </h3>
      <div id="accordion1">
       <div class="panel" ng-repeat="q in myTaskQuestions track by $index">
@@ -289,7 +289,7 @@
       class="btn btn-lg btn-success" ng-disabled="myForm1.$invalid || myTaskQuestions.length==0" ">
         צור מטלה חדשה!     </button>
 
-      <div ng-show="!searchQuestion " class="col-xs-12 hidden-sm hidden-md hidden-lg alert alert-info"><p>
+      <div ng-show="!searchQuestion " class="col-xs-12 col-sm-12 hidden-md hidden-lg alert alert-info"><p>
        גלול אל תחילת הדף, בדוק את המטלה בשנית. <br> אם היא לרוחך, אשר אותה <br> ולחץ "צור מטלה חדשה!" </p></div>  
 
       <button  ng-show="!searchQuestion" ng-click="addQuestions()" ng-disabled="myForm1.$invalid" class="btn btn-lg btn-info">

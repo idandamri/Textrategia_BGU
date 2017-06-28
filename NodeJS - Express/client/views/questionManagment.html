@@ -28,7 +28,7 @@
   <div class="row">
 
 
-  <div class ="col-xs-12 col-sm-9 text-center" style="height: 118px;"> 
+  <div class ="col-xs-12 col-sm-12 col-md-9 text-center" style="height: 118px;"> 
 
   <!-- @@@@ Question Buttons!!! @@@@ -->
   <div class="btn-group text-center" data-toggle="buttons" style=" ">
@@ -57,11 +57,11 @@
 
   </div>
   
-  <div class="col-xs-12 col-sm-3 text-right">  <h1>שלום, {{teacherName}}! <h3>חפש שאלה לעריכה: </h3></h1></div>
+  <div class="col-xs-12 col-sm-12 col-md-3 text-right">  <h1>שלום, {{teacherName}}! <h3>חפש שאלה לעריכה: </h3></h1></div>
 
 
   <div ng-show="!flagEditQuestionMode">
-<div class="col-xs-12 col-sm-8">
+<div class="col-xs-12 col-sm-12 col-md-8">
 
 <span ng-show = "myQuestionsStock.length == 0  && !searchQuestionByProfiling" class="text-info" style="font-size: 18px;">
    {{serverFeedbackForNoQuestions}}
@@ -76,10 +76,10 @@
  <div id="accordion2" >
 
   <div  ng-show="!myQuestionsStock.length==0" class="text-center">
-  <div class="col-sm-2"></div>
-    <input type="text" id="query" class="col-sm-8 form-control inputstl pull-right"  ng-model="q.Q_qeustion" placeholder="חפש שאלה" style="margin: 25px 0px; ">
+  <div class="col-sm-12 col-md-2"></div>
+    <input type="text" id="query" class="col-sm-12 col-md-8 form-control inputstl pull-right"  ng-model="q.Q_qeustion" placeholder="חפש שאלה" style="margin: 25px 0px; ">
     <br><br><br><br>
-  <div class="col-sm-2"></div>
+  <div class="col-sm-12 col-md-2"></div>
  </div>
 
 
@@ -129,7 +129,7 @@
 
 
 
-  <div class="col-xs-12 col-sm-3 well" style="margin-bottom: 50px" >
+  <div class="col-xs-12 col-sm-12 col-md-3 well" style="margin-bottom: 50px" >
    
     <h3> חפש שאלה </h3>  
 
@@ -214,9 +214,9 @@
 <div ng-show="!insertPossibleAnswersMode">
     <form name="myForm" class="form-horizontal" role="form">
 
-    <div class="col-xs-12 col-sm-2"></div>
+    <div class="col-xs-12 col-sm-12 col-md-2"></div>
 
-    <div class="col-xs-12 col-sm-4">
+    <div class="col-xs-12 col-sm-12 col-md-4">
 
       <!--  4  -->       
       <label class="control-label pull-right">מהו סוג המדיה של השאלה?:&nbsp;&nbsp;</label>
@@ -258,8 +258,8 @@
 
     </div>
  
-        <div class="col-xs-12 col-sm-1"></div>
-        <div class="col-xs-12 col-sm-4">
+        <div class="col-xs-12 col-sm-12 col-md-1"></div>
+        <div class="col-xs-12 col-sm-12 col-md-4">
       
           <!-- 1 -->
           <label class="control-label pull-right">הכנס ניסוח שאלה:&nbsp;&nbsp;</label>
@@ -284,7 +284,7 @@
 
         </div>
  
-        <div class="col-xs-12 col-sm-2"></div>   
+        <div class="col-xs-12 col-sm-12 col-md-2"></div>   
         <div class="col-xs-12 col-sm-12 text-center"><br></div>
 
         <!-- First part Button! -->
@@ -304,11 +304,11 @@
 
 
 
-  <div class="col-xs-12 col-sm-8 text-center">  <!-- long div, marked at the end -->
+  <div class="col-xs-12 col-sm-12 col-md-8 text-center">  <!-- long div, marked at the end -->
 
 
 
-    <div class="col-xs-12 hidden-sm hidden-md hidden-lg text-center">
+    <div class="col-xs-12 col-sm-12 hidden-md hidden-lg text-center">
       <!-- 1 -->
       <label class="control-label pull-right">תשובה 1: &nbsp;&nbsp;</label>
         <textarea type="text" rows="2" name="possible_ans_1" class="form-control inputstl pull-right" required 
@@ -326,7 +326,7 @@
 
 
 
-  <div class="col-xs-12 col-sm-6 text-center">
+  <div class="col-xs-12 col-sm-12 col-md-6 text-center">
       <!-- 3 -->
       <label class="control-label pull-right">תשובה 3: &nbsp;&nbsp;</label>
        <textarea  type="text" rows="2" name="possible_ans_3" class="form-control inputstl pull-right" required  
@@ -340,7 +340,7 @@
       <br>
   </div>
 
-    <div class="col-sm-6 hidden-xs text-center">
+    <div class="col-md-6 hidden-sm hidden-xs text-center">
       <!-- 1 -->
       <label class="control-label pull-right">תשובה 1: &nbsp;&nbsp;</label>
         <textarea type="text" rows="2" name="possible_ans_1" class="form-control inputstl pull-right" required 
@@ -355,12 +355,12 @@
     </div>
 
 
-    <div class="col-xs-12 col-sm-3 text-center"><br></div>
-    <div class="col-xs-12 col-sm-3 text-center"><br></div>
+    <div class="col-xs-12 col-sm-12 col-md-3  text-center"><br></div>
+    <div class="col-xs-12 col-sm-12 col-md-3 text-center"><br></div>
 
 
     <!-- 5 -->
-    <div class="col-xs-12 col-sm-6 text-center">
+    <div class="col-xs-12 col-sm-12 col-md-6  text-center">
     <br>
     <br>
         <label class="control-label pull-right ">בשאלה זו: &nbsp;&nbsp; &nbsp;&nbsp;</label>
@@ -422,7 +422,7 @@
  
 
   <!-- buttons -->
-  <div class="col-xs-12 col-sm-4 text-center">
+  <div class="col-xs-12 col-sm-12 col-md-4 text-center">
     <div class="btn-group-vertical">
       
 

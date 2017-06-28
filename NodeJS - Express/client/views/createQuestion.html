@@ -33,10 +33,10 @@
     <div class="col-xs-12 col-sm-12">  <h1>שלום, {{teacherName}}!</h1>  <h3>צור שאלה חדשה: </h3>  </div>
     <form name="myForm" class="form-horizontal" role="form">
 
-    <div class="col-xs-12 col-sm-2"></div>
+    <div class="col-xs-12 col-sm-12 col-md-2"></div>
 
 
-        <div class="col-xs-12 hidden-sm hidden-md hidden-lg ">
+        <div class="col-xs-12 col-sm-12 hidden-md hidden-lg ">
       
           <!-- 1 -->
           <label class="control-label pull-right">הכנס ניסוח שאלה:&nbsp;&nbsp;</label>
@@ -59,7 +59,7 @@
 
 
 
-    <div class="col-xs-12 col-sm-4">
+    <div class="col-xs-12 col-sm-12 col-md-4">
 
       <!--  2  -->       
       <label class="control-label pull-right">מהו סוג המדיה של השאלה?:&nbsp;&nbsp;</label>
@@ -111,9 +111,9 @@
 
     </div>
  
-        <div class="col-xs-12 col-sm-1"></div>
+        <div class="col-xs-12 col-sm-12 col-md-1"></div>
 
-        <div class=" col-sm-4 hidden-xs">
+        <div class=" col-md-4 hidden-sm hidden-xs">
       
           <!-- 1 -->
           <label class="control-label pull-right">הכנס ניסוח שאלה:&nbsp;&nbsp;</label>
@@ -132,7 +132,7 @@
 
         </div>
  
-        <div class="col-xs-12 col-sm-2"></div>   
+        <div class="col-xs-12 col-sm-12 col-md-2"></div>   
         <div class="col-xs-12 col-sm-12 text-center"><br></div>
 
         <!-- First part Button! -->
@@ -159,7 +159,7 @@
 
 
 <!-- MOBILE ONLE!!!!!!!!!! -->
- <div class="col-xs-12 hidden-sm hidden-md hidden-lg ">
+ <div class="col-xs-12 col-sm-12 hidden-md hidden-lg ">
       <!-- 1 -->
       <label class="control-label pull-right">תשובה 1: &nbsp;&nbsp;</label>
         <textarea type="text" rows="2" name="possible_ans_1" class="form-control inputstl pull-right" required ng-model="question.possible_ans_1" placeholder="הכנס תשובה אפשרית" tabindex="9" >  
@@ -173,9 +173,9 @@
 <!-- /////MOBILE ONLE!!!!!!!!!! -->
 
 
-  <div class="col-xs-12 col-sm-2 text-center"><br></div>
+  <div class="col-xs-12 col-sm-12 col-md-2 text-center"><br></div>
 
-  <div class="col-xs-12 col-sm-4 text-center">
+  <div class="col-xs-12 col-sm-12 col-md-4 text-center">
       <!-- 3 -->
       <label class="control-label pull-right">תשובה 3: &nbsp;&nbsp;</label>
        <textarea  type="text" rows="2" name="possible_ans_3" class="form-control inputstl pull-right" required  ng-model="question.possible_ans_3" placeholder="הכנס תשובה אפשרית" tabindex="11"> 
@@ -188,7 +188,7 @@
   </div>
 
 
-    <div class="hidden-xs col-sm-4 text-center">
+    <div class="hidden-xs hidden-sm col-md-4 text-center">
       <!-- 1 -->
       <label class="control-label pull-right">תשובה 1: &nbsp;&nbsp;</label>
         <textarea type="text" rows="2" name="possible_ans_1" class="form-control inputstl pull-right" required ng-model="question.possible_ans_1" placeholder="הכנס תשובה אפשרית" tabindex="9" >  
@@ -200,16 +200,16 @@
 
     </div>
 
-  <div class="col-xs-12 col-sm-2 text-center"><br></div>
+  <div class="col-xs-12 col-sm-12 col-md-2 text-center"><br></div>
 
   <!-- buttons -->
-  <div class="hidden-xs col-sm-4 text-center">
+  <div class="hidden-xs hidden-sm col-md-4 text-center">
   </div>
 
 <div class="col-xs-12 col-sm-12 text-center"><br><br></div>
-<div class="col-sm-4 text-center"></div>
+<div class="col-md-4 col-sm-12 text-center"></div>
 
-<div class="col-xs-12 col-sm-4 text-center">
+<div class="col-xs-12 col-sm-12 col-md-4 text-center">
 
 <!-- HERE HERE -->
 <!-- HERE HERE -->
@@ -276,7 +276,7 @@
   </div>
 
     <!-- buttons -->
-  <div class="col-xs-12 text-center margin22-mobile" >
+  <div class="col-xs-12 col-sm-12 text-center margin22-mobile" >
     <div class="btn-group">
           <button ng-click="editQuestionMode()"  class="btn btn-lg btn-info squirish-button5" tabindex="15" >
           חזור למסך<br> הקודם!
@@ -288,7 +288,7 @@
     </div>
   </div>
 
-  <div class="col-xs-12 col-sm-4 text-center"></div>
+  <div class="col-xs-12 col-sm-12 col-md-4 text-center"></div>
 
 
 </form>
