@@ -59,7 +59,7 @@
   <div class="col-md-4 col-sm-12 col-xs-12">
       <table class="table table-responsive table-fixed table-hover mobile-text">
       <thead ng-show="$scope.groupsStudentLst!=0 ">  
-        <tr> 
+        <tr class="well"> 
           <th>מספר זהות</th>
           <th>שם</th>
           <th>משפחה</th>
@@ -68,7 +68,7 @@
         </tr> 
       </thead>
       <tbody> 
-        <tr class="" ng-repeat="stud2 in groupsStudentLst">
+        <tr class="well" ng-repeat="stud2 in groupsStudentLst">
           <td> {{stud2.PersonalID}}</td>
           <td> {{stud2.FirstName}}</td>
           <td> {{stud2.LastName}}</td>
