@@ -26,7 +26,7 @@
   }
 
 
-@media(min-width: 1500px){ /*large sceens*/
+@media(min-width: 1536px){ /*large sceens*/
 
   .mobile-text{
     font-size: 15px;
@@ -47,7 +47,7 @@
 }
 
 /*@media(max-width:767px){  /*small screens*/*/
-@media(max-width:1024px){  /*small screens*/
+@media(max-width:1536px){  /*small screens*/
 
 
 .mobile-text{
