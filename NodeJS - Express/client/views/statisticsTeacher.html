@@ -85,7 +85,7 @@
 
     <!-- <div class="panel-body"> -->
     <!-- innder pannel -->
-            <div id="collapse{{ $index + 1 }}" ng-show="stud2.gotStats" >   
+            <div id="collapse{{ $index + 1 }}" ng-show="stud2.gotStats" style="min-height: 200px;">   
               <div class="col-sm-6 panel-group panel-hover" ng-repeat="x in stud2.statistics">
                 <div class="panel panel-default">
                   <div class="panel-heading">
@@ -106,8 +106,7 @@
                 </div>
               </div>
               <br><br>
-              <br><br>
-              <br><br>
+
 
       <span class="text-info" ng-show = "stud2.gotStats &&  stud2.statistics.length == 0" style="font-size: 17px;" > &nbsp;&nbsp;{{serverFeedback}} </span>
 
