@@ -28,7 +28,7 @@
 <!-- GROUP MANAGMENT MODE -->
 <div class="row" ng-show="!send_task_mod && !send_task_for_some_student_mod">
 
-  <div class="col-sm-6 col-xs-12 text-center">
+  <div class="col-md-6 col-sm-12 col-xs-12 text-center">
 
     <!-- Button -->
     <button ng-click="sendTaskMode()" class="btn btn-info squirish-button3" style="font-size: 15px;">
@@ -46,7 +46,7 @@
 
   </div>
 
-  <div class="col-sm-6 col-xs-12" >
+  <div class="col-md-6 col-sm-12 col-xs-12" >
     <h1>שלום, {{teacherName}}!
     <span ng-show="allGroups.length!=0"> <small>לרשותך, רשימת הקבוצות שבניהולך: </small> </span>
     <span ng-show="allGroups.length==0"> <small>עדיין לא קיימות קבוצות תלמידים באחריותך.</small> 
@@ -54,9 +54,9 @@
   </div>
 
 
-  <div class="col-sm-12 col-xs-12"><br></div>
+  <div class="col-md-12 col-sm-12 col-xs-12"><br></div>
 
-  <div class="col-sm-4 col-xs-12">
+  <div class="col-md-4 col-sm-12 col-xs-12">
       <table class="table table-responsive table-fixed table-hover mobile-text">
       <thead ng-show="$scope.groupsStudentLst!=0 ">  
         <tr> 
@@ -91,8 +91,8 @@
   </div>
 
 
-  <div class="col-sm-8 col-xs-12">
-    <div class="col-sm-6 col-xs-12 panel-group panel-hover" ng-repeat="y in allGroups">
+  <div class="col-md-8 col-sm-12 col-xs-12">
+    <div class="col-md-6 col-sm-12 col-xs-12 panel-group panel-hover" ng-repeat="y in allGroups">
       <div class="panel panel-default" ng-click="showGroupsMembersList(y.GroupId,y.GroupName)">
         <div class="panel-heading">
           <h4 class="panel-title">
@@ -122,7 +122,7 @@
 <div class="row" ng-show="send_task_mod">
 
 
-  <div class="col-sm-12 col-xs-12">  
+  <div class="col-md-12 col-sm-12 col-xs-12">  
     <h3>בחר מטלה, בחר קבוצה ושלח.<br><small>שים לב, אם המטלה כבר ברשימת המטלות של הקבוצה, לא ניתן לשלוח אותה פעם נוספת</small></h3> 
   </div>
 
@@ -144,10 +144,10 @@
             </div>
           </div>          
 
-           <div class="col-sm-2 col-xs-12"></div>
+           <div class="col-md-2 col-sm-12 col-xs-12"></div>
           <!-- 1 -->
 
-           <div class="col-sm-8 col-xs-12" style = "padding: 60px;">
+           <div class="col-md-8 col-sm-12 col-xs-12" style = "padding: 60px;">
             <label for="available_task" class="control-label pull-right" >מטלות זמינות:</label>
             <select required class="form-control inputstl" id="available_task" ng-model="selected_task" ng-change="getAllGroupForTask()" size=1>
               <option value=""></option>
@@ -167,7 +167,7 @@
             <br>
 
             <!-- WARNINGS FOR NONE MOBILES!! -->
-            <div class="hidden-xs">
+            <div class="hidden-xs hidden-sm">
                 <div ng-show="groups.length==0" class="alert alert-warning login-input" style="font-size:15px;"><strong>
                 <span class="label label-warning">שים לב! </span>&nbsp;&nbsp; אין קבוצות זמינות. <br>
                 יתכן כי המטלה הנבחרת כבר קיימת בכל הקבוצות שברשותך. 
@@ -180,7 +180,7 @@
             </div>
 
             <!-- WARNINGS FOR MOBILE -->
-            <div class="col-xs-12 hidden-sm hidden-md hidden-lg">
+            <div class="col-xs-12 col-sm-12 hidden-md hidden-lg">
                 <div ng-show="groups.length==0" class="text-warning login-input mobile-text"><strong>
                 <span class="label label-warning">שים לב! </span>&nbsp;&nbsp; אין קבוצות זמינות. <br>
                 יתכן כי המטלה הנבחרת כבר<br>קיימת בכל הקבוצות שברשותך. 
@@ -193,7 +193,7 @@
             </div>
           </div>
              
-           <div class="col-sm-2 col-xs-12"></div>
+           <div class="col-md-2 col-sm-12 col-xs-12"></div>
 
   </div> <!-- /form-group -->
 
@@ -229,7 +229,7 @@
   </div>
 
   <!-- A  MOBILE ONLY-->
-  <div class="form-group col-xs-12 hidden-sm hidden-md hidden-lg" style="grid-row: initial;">
+  <div class="form-group col-xs-12 col-sm-12 hidden-md hidden-lg" style="grid-row: initial;">
 
       <div class="btn-group btn-group-lg text-right" data-toggle="buttons">
         <!-- Button -->
@@ -264,7 +264,7 @@
 
 
 <!-- B MOBILE ONLY-->
-  <div class="col-xs-12 hidden-sm hidden-md hidden-lg">
+  <div class="col-xs-12 col-sm-12 hidden-md hidden-lg">
     <div class="panel-group panel-hover col-sm-6" ng-click="showGroupsMembersList2(y.GroupId)" ng-repeat="y in allGroups" id="panelID-{{y.GroupId}}">
       <div class="panel panel-default">
         <div class="panel-heading">
@@ -283,7 +283,7 @@
 
 
 <!-- C MOBILE AND PC-->
-  <div class="col-sm-4 col-xs-12">      
+  <div class="col-md-4 col-sm-12 col-xs-12">      
     <div ng-show="$scope.groupsStudentLst2!=0">
       <table class="table table-responsive table-fixed table-hover">
         <thead ng-show="$scope.groupsStudentLst2!=0 ">  
@@ -338,7 +338,7 @@
 
 
 <!-- B -->
-  <div class="col-sm-4 hidden-xs">
+  <div class="col-md-4 hidden-sm hidden-xs">
     <div class="panel-group panel-hover col-sm-6" ng-click="showGroupsMembersList2(y.GroupId)" ng-repeat="y in allGroups" id="panelID-{{y.GroupId}}">
       <div class="panel panel-default">
         <div class="panel-heading">
@@ -358,7 +358,7 @@
 
 
 <!-- A -->
-  <div class="form-group col-sm-4 hidden-xs" style="grid-row: initial;">
+  <div class="form-group col-md-4 hidden-sm hidden-xs" style="grid-row: initial;">
 
       <div class="btn-group btn-group-lg text-right" data-toggle="buttons">
         <!-- Button -->
