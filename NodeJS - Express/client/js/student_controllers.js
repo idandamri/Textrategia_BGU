@@ -615,9 +615,7 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
 
 
     $scope.report = function (r_question,r_answer,r_offensive) {
-        if ( $scope.reported1 && $scope.reported2 && $scope.reported3 ){
-            // alert("dont report");
-        } else {
+   
             // alert("sending report");
             //########################## SEND REPORT HERE ##########################
             var req = {
@@ -636,7 +634,7 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
                 })
                 .error(function(data,status,headers,config) {
                 });
-        }
+        
 
         // $scope.lastQuestionReported = $scope.questionID;
         $scope.sendFeedbackMode = false;
