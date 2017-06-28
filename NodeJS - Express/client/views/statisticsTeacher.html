@@ -70,9 +70,9 @@
   <span ng-show = "studentsForStatistics.length == 0" style="font-size: 17px;" >{{serverFeedback}} </span>
 
 
-<div class="hidden-xs col-sm-2 "> <br> </div>
+<div class="hidden-xs col-sm-12 col-md-2 "> <br> </div>
 
-<div class=" col-xs-12 col-sm-8"> <br> 
+<div class=" col-md-8 col-xs-12 col-sm-12"> <br> 
 
   <div class="panel" ng-repeat="stud2 in studentsForStatistics track by $index">
 
@@ -105,7 +105,9 @@
                   </div>
                 </div>
               </div>
-
+              <br><br>
+              <br><br>
+              <br><br>
 
       <span class="text-info" ng-show = "stud2.gotStats &&  stud2.statistics.length == 0" style="font-size: 17px;" > &nbsp;&nbsp;{{serverFeedback}} </span>
 
@@ -125,7 +127,7 @@
 
 
 
-<div class=" hidden-xs col-sm-2 "> <br> </div>
+<div class=" hidden-xs col-sm-12 col-md-2 "> <br> </div>
 
 
 <div class="col-xs-12 col-sm-12  text-center">
