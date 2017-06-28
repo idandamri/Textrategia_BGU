@@ -146,13 +146,17 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
     $scope.changeMediaType = function () {
         type = $scope.question.question_media_type;
         /*teache group*/
-        if (type =="img"){
-            $scope.isImg= true;
-        }
-        else{
-            $scope.triedSwitchingToPossibleAnsMod = false;
-            $scope.isImg= false;
-        }
+        // if (type =="img"){
+        //     $scope.isImg= true;
+        // }
+        // else{
+        //     $scope.triedSwitchingToPossibleAnsMod = false;
+        //     $scope.isImg= false;
+        // }
+
+
+        $scope.triedSwitchingToPossibleAnsMod = false;
+         $scope.isImg= false;
 
         if (type=="text"){
             $scope.media_placeholder = "הכנס קטע קריאה כאן";
@@ -161,33 +165,33 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
         }
     }
 
-    var imgUrl="";
-    $scope.uploadFile = function(){
-
-        var file = $scope.myFile;
-        var uploadUrl = "/multer";
-        var fd = new FormData();
-        fd.append('file', file);
-
-        $http.post(uploadUrl,fd, {
-            transformRequest: angular.identity,
-            headers: {'Content-Type': undefined}
-        })
-            .success(function(data,status,headers,config){
-                // alert("data:" +   data);
-                // alert("data to string:" + data.toString());
-
-                imgUrl = "img/" + data ;
-                $scope.imageStatus = "קובץ עלה בהצלחה!";
-                $scope.imageWasUploaded = true;
-                
-                // alert("קובץ עלה בהצלחה!");
-            })
-            .error(function(){
-                $scope.imageWasUploaded = false;
-                // alert("error!!");
-            });
-    };
+    // var imgUrl="";
+    // $scope.uploadFile = function(){
+    //
+    //     var file = $scope.myFile;
+    //     var uploadUrl = "/multer";
+    //     var fd = new FormData();
+    //     fd.append('file', file);
+    //
+    //     $http.post(uploadUrl,fd, {
+    //         transformRequest: angular.identity,
+    //         headers: {'Content-Type': undefined}
+    //     })
+    //         .success(function(data,status,headers,config){
+    //             // alert("data:" +   data);
+    //             // alert("data to string:" + data.toString());
+    //
+    //             imgUrl = "img/" + data ;
+    //             $scope.imageStatus = "קובץ עלה בהצלחה!";
+    //             $scope.imageWasUploaded = true;
+    //
+    //             // alert("קובץ עלה בהצלחה!");
+    //         })
+    //         .error(function(){
+    //             $scope.imageWasUploaded = false;
+    //             // alert("error!!");
+    //         });
+    // };
 
     $scope.new_skill_mode = function(){
         if ($scope.question.selected_skill == "enter_new_skill"){
@@ -326,11 +330,11 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
             // arguments 4 - 8
 
             var question_media;
-            if (media_type.value=="img"){
-                question_media = imgUrl;
-                // alert("question_media = imgURL: " + question_media);
-            }
-            else if(media_type.value=="youtube" || media_type.value=="page"){
+            // if (media_type.value=="img"){
+            //     question_media = imgUrl;
+            //     // alert("question_media = imgURL: " + question_media);
+            // }
+            if(media_type.value=="youtube" || media_type.value=="page"){
                 question_media = $scope.question.question_media.split('=')[1];
             }
             else {

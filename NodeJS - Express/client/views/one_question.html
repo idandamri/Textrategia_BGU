@@ -60,7 +60,12 @@
                 <iframe class="embed-responsive-item" ng-show="showVoice" ng-src="{{voiceURL}}"></iframe>
               </div>
 
-              <img class="img-rounded img-responsive" ng-show="showImg" ng-src ="{{imgURL}}" alt="oops...">
+              <!--<img class="img-rounded img-responsive" ng-show="showImg" ng-src ="{{imgURL}}" alt="oops...">-->
+
+                <img class="img-rounded img-responsive" ng-show="showImg"
+                     ng-src ="{{imgURL}}"
+                     alt="טוען תמונה...">
+
               <div class="text-info" ng-show="showText"><h4><strong><em>{{textData}} </em></strong> </h4> </div>
             </div>
 

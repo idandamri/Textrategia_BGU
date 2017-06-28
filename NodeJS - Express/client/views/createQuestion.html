@@ -73,15 +73,15 @@
 
     <!-- 4 -->
 
-        <div ng-show="isImg" style="margin: 5px" class="text-info">
-            <input type="file" file-model="myFile"/>&nbsp;
-            <button class="btn btn-sm btn-info" ng-click="uploadFile()">טען תמונה</button>  &nbsp;&nbsp; {{imageStatus}}
-            <div ng-show="!imageWasUploaded" class="alert alert-danger login-input">
-              <div class="label label-danger">שים לב!</div>  לא נטענה תמונה!
-            </div>
-        </div>
+        <!--<div ng-show="isImg" style="margin: 5px" class="text-info">-->
+            <!--<input type="file" file-model="myFile"/>&nbsp;-->
+            <!--<button class="btn btn-sm btn-info" ng-click="uploadFile()">טען תמונה</button>  &nbsp;&nbsp; {{imageStatus}}-->
+            <!--<div ng-show="!imageWasUploaded" class="alert alert-danger login-input">-->
+              <!--<div class="label label-danger">שים לב!</div>  לא נטענה תמונה!-->
+            <!--</div>-->
+        <!--</div>-->
 
-        <div  ng-show="!isImg">
+        <div>
             <label class="control-label pull-right">הכנס מדייה: &nbsp;&nbsp;</label>
             <input  ng-required='!isImg' type="text" name="question_media" class="form-control inputstl pull-right" placeholder={{media_placeholder}} ng-model="question.question_media" tabindex="5">
         </div>
