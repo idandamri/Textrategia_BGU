@@ -1,52 +1,53 @@
 /* DEFAULT SIZE*/
 
-.welcome_text{
-    font-size: 24px;
-}
+  .welcome_text{
+      font-size: 24px;
+  }
 
-.welcome-buttons{
+  .welcome-buttons{
 
-  font-size: 13px; 
-  padding: 4px 12px; 
-  margin-top:26px;
-}
+    font-size: 13px; 
+    padding: 4px 12px; 
+    margin-top:26px;
+  }
 
 
-.no-margin1-in-mobile{
-  margin: 5px 335px;
-}
+  .no-margin1-in-mobile{
+    margin: 5px 335px;
+  }
 
-.no-margin2-in-mobile{
-  margin: 8px 85px;
+  .no-margin2-in-mobile{
+    margin: 8px 85px;
 
-}
+  }
 
-.mobile-text{
-  font-size: 11px;
-}
+  .mobile-text{
+    font-size: 11px;
+  }
 
 
 @media(min-width: 1500px){ /*large sceens*/
 
-.mobile-text{
-  font-size: 15px;
+  .mobile-text{
+    font-size: 15px;
+  }
+  .welcome_text{
+      font-size: 30px;
+  }
+
+  .welcome-buttons{
+
+    font-size: 18px; 
+    padding: 4px 12px; 
+    margin-top:26px;
+  }
+
+
+
 }
-.welcome_text{
-    font-size: 30px;
-}
 
-.welcome-buttons{
-
-  font-size: 18px; 
-  padding: 4px 12px; 
-  margin-top:26px;
-}
-
-
-
-}
-
-@media(max-width:767px){  /*small screens*/
+/*@media(max-width:767px){  /*small screens*/*/
+@media(max-width:1024px){  /*small screens*/
 
 
 .mobile-text{
@@ -70,14 +71,14 @@
 
 
 
-  .no-margin1-in-mobile{
-    margin: 8px 40px;
-  }
+.no-margin1-in-mobile{
+  margin: 8px 40px;
+}
 
 
-  .no-margin2-in-mobile{
-    margin: 5px; 
-  }
+.no-margin2-in-mobile{
+  margin: 5px; 
+}
 
 #index-wrap{
     background: url('pic/start2.jpg') ;
@@ -89,9 +90,6 @@
     -webkit-background-size: cover;
     background-size: cover;
 
-    /*now:
-     /*background-attachment: fixed;
-*/
 }
 
 
@@ -107,39 +105,11 @@
 }
 
 
-
-/*~~~~~~~~~~ order ~~~~~~~~~~~*/
-/*
-.row.reorder-xs {
-    -webkit-transform: rotate(180deg);
-    -moz-transform: rotate(180deg);
-    -ms-transform: rotate(180deg);
-    -o-transform: rotate(180deg);
-    transform: rotate(180deg);
-
-    direction: rtl;
-  }
-
-  .row.reorder-xs > [class*="col-"] {
-    -webkit-transform: rotate(-180deg);
-    -moz-transform: rotate(-180deg);
-    -ms-transform: rotate(-180deg);
-    -o-transform: rotate(-180deg);
-    transform: rotate(-180deg);
-
-    direction: ltr;
-  }
-
-*/
-
-
 /*~~~~~~~~~~ margin ~~~~~~~~~~~*/
   .margin22-mobile{
     margin: 22px;
   }
 
-
-/*~~~~~~~~~~ padding ~~~~~~~~~~~*/
 
 
 

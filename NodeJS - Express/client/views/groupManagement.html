@@ -151,7 +151,7 @@
             <label for="available_task" class="control-label pull-right" >מטלות זמינות:</label>
             <select required class="form-control inputstl" id="available_task" ng-model="selected_task" ng-change="getAllGroupForTask()" size=1>
               <option value=""></option>
-              <option ng-repeat="y in allTasks" value="{{y.T_id}}">{{y.T_title}}</option>
+              <option ng-repeat="y in allTasks track by $index" value="{{y.T_id}}">{{y.T_title}}</option>
               <option ng-show="info.tasks==0" disabled>אין מטלות זמינות</option>
             </select>
 
@@ -161,8 +161,35 @@
               <select required class="form-control inputstl" id="available_group" ng-model="selected_group" size =1>
                 <option value=""></option>
                 <option ng-repeat="x in groups" value="{{x.GroupId}}">{{x.GroupName}}</option>
-                <option ng-show="groups==0" disabled>אין קבוצות זמינות</option>
+                <option ng-show="groups.length==0" disabled>אין קבוצות זמינות</option>
               </select>
+            </div>
+            <br>
+
+            <!-- WARNINGS FOR NONE MOBILES!! -->
+            <div class="hidden-xs">
+                <div ng-show="groups.length==0" class="alert alert-warning login-input" style="font-size:15px;"><strong>
+                <span class="label label-warning">שים לב! </span>&nbsp;&nbsp; אין קבוצות זמינות. <br>
+                יתכן כי המטלה הנבחרת כבר קיימת בכל הקבוצות שברשותך. 
+                </strong></div> 
+
+                <div ng-show="selected_task && !groups.length==0" class="alert alert-info login-input" style="font-size:15px;"><strong>
+                <span class="label label-info">שים לב! </span>&nbsp;&nbsp; אם אינך רואה קבוצה מסויימת ברשימת הקבוצות, <br>
+                יתכן כי המטלה הנבחרת כבר קיימת במאגר המטלות של התלמידים בקבוצה.
+                </strong></div> 
+            </div>
+
+            <!-- WARNINGS FOR MOBILE -->
+            <div class="col-xs-12 hidden-sm hidden-md hidden-lg">
+                <div ng-show="groups.length==0" class="text-warning login-input mobile-text"><strong>
+                <span class="label label-warning">שים לב! </span>&nbsp;&nbsp; אין קבוצות זמינות. <br>
+                יתכן כי המטלה הנבחרת כבר<br>קיימת בכל הקבוצות שברשותך. 
+                </strong></div> 
+
+                <div ng-show="selected_task && !groups.length==0" class="text-info login-input mobile-text"><strong>
+                <span class="label label-info">שים לב! </span>&nbsp;&nbsp; אם אינך רואה קבוצה מסויימת ברשימת הקבוצות, <br>
+                יתכן כי המטלה הנבחרת כבר קיימת<br> במאגר המטלות של התלמידים בקבוצה.
+                </strong></div> 
             </div>
           </div>
              
