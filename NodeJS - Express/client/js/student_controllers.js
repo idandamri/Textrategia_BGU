@@ -429,7 +429,7 @@ textrategiaApp.controller("oneQuestionController", function($scope,$http,$locati
                 uncheckall();
 
                 $scope.numberOfQuestions += 1 ;
-                if (data.question.Q_mediaType == "youtube" || "page" ){
+                if (data.question.Q_mediaType == "youtube" || data.question.Q_mediaType ==  "page" ){
                     $scope.videoURL = $sce.trustAsResourceUrl('https://www.youtube.com/embed/' + data.question.Q_media + '?rel=0'); //data.question.Q_media;
                     $scope.showVideo = true;
                 }
