@@ -25,14 +25,14 @@
 
 <div ng-show = "searchQuestionMode">
 
-    <div class="col-sm-12">  
+    <div class="col-sm-12 col-xs-12">  
       <h1 >שלום, {{userName}}!  <small> חפש שאלות לצפיה בסטטיסטיקה</small></h1>      
     </div>
 
   <form name="myForm2" class="form-horizontal" role="form">
 
 <!-- 3 -->
-  <div class="col-sm-4 well" style="margin-bottom: 50px; min-height: 240px" >
+  <div class="col-md-4 col-sm-12 col-xs-12 well" style="margin-bottom: 50px; min-height: 240px" >
   <label class="control-label pull-right">סוג מדיה:&nbsp;&nbsp;</label><br>
   <div class="padded-20-elemnt" >
     <label><input type="checkbox" ng-init='checkStatus11=false' ng-model="checkStatus11" ng-change="checkdMediaSelected(checkStatus11,'youtube')" >
@@ -47,7 +47,7 @@
  </div>
 
 <!-- 2 -->
-  <div class="col-sm-4 well" style="margin-bottom: 50px; min-height: 240px" >
+  <div class="col-md-4 col-sm-12 col-xs-12 well" style="margin-bottom: 50px; min-height: 240px" >
   <label class="control-label pull-right">מהו קושי השאלה?:&nbsp;&nbsp;</label><br>
   <div class="padded-20-elemnt" >
     <label><input type="checkbox"  ng-init='checkStatus21=false' ng-model="checkStatus21" ng-change="checkDiffSelected(checkStatus21,'קלה')" >
@@ -60,7 +60,7 @@
   </div>
 
 <!-- 1 -->
-  <div class="col-sm-4 well" style="margin-bottom: 50px; min-height: 240px" >
+  <div class="col-md-4 col-sm-12 col-xs-12 well" style="margin-bottom: 50px; min-height: 240px" >
   <label class="control-label pull-right">סוג מיומנות למידה:&nbsp;&nbsp;</label><br>
   <div class="padded-20-elemnt" >
     <div ng-repeat="sk in skills">
@@ -75,7 +75,7 @@
 
 </form>
 
-  <div class="col-sm-12 text-center">
+  <div class="col-sm-12 col-xs-12 text-center">
   <!-- Button -->
     <button ng-click="showSelectedQuestion()" class="btn btn-lg btn-info">
       חפש שאלה!
@@ -97,9 +97,9 @@
   <span ng-show = "questionForStatistics.length == 0" style="font-size: 17px;" >{{serverFeedback}} </span>
 
 
-<div class="col-sm-2"> <br> </div>
+<div class="col-md-2 col-sm-12 col-xs-12"> <br> </div>
 
-<div class="col-sm-8"> <br> 
+<div class="col-md-8 col-sm-12 col-xs-12"> <br> 
 
   <div class="panel" ng-repeat="q in questionForStatistics track by $index" style="padding: 8px">
     <div ng-model="user.question" value="{{q.Q_id}}">
@@ -143,7 +143,7 @@
 </div>
 
 
-<div class="col-sm-2"> <br> </div>
+<div class="col-md-2 col-sm-12 col-xs-12"> <br> </div>
 
   
 </div>  <!-- !searchQuestionMode -->
