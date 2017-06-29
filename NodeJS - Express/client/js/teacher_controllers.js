@@ -208,10 +208,15 @@ textrategiaApp.controller("CreateQuestionController",function($scope,$location,$
         $scope.isAdmin = false; 
     }
 
-    $scope.goToTeacher = function () {
-        $location.path('teacher');
-    };
+    $scope.goBack = function(){
+        if (getUserType()==2){
+            $location.path('superUser');
+        } else {
+              $location.path('teacher');
+        }
+    }
 
+ 
     $scope.editQuestionMode = function(){
         $scope.insertPossibleAnswersMode = false;
     }

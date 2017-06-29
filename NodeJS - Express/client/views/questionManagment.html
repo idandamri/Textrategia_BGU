@@ -230,9 +230,7 @@
 
     <!-- 5 -->
     <label class="control-label pull-right">הכנס מדייה: &nbsp;&nbsp;</label>
-    <span class="text-info" ng-show="question.media_type=='img'" style="font-size: 18px;">
-       לא ניתן לערוך מדיה מסוג תמונה</span>
-      <div ng-show="question.media_type!='img'">
+      <div>
          <input type="text" name="question_media" class="form-control inputstl pull-right" required placeholder="קישור למדיה" ng-model="question.question_media" tabindex="5"> 
       </div>
 
